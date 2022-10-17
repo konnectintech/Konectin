@@ -8,7 +8,7 @@ This is a Konnectin test website to check if the developers team are good enough
   - [The Task](#the-task)
 - [Task Process](#task-process)
   - [Things Added](#things-i-added)
-- [Author](#author)
+- [Authors](#authors)
 
 ## Overview
 
@@ -30,6 +30,6 @@ Developer should be able to:
 - The Task Process
 - Author Section
 
-## Author
+## Authors
 
 - Ajayi Michael - [Github](https://github.com/Michaelajayi150)
