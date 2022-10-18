@@ -1,9 +1,13 @@
+import Header from "./layouts/header";
+import Main from "./layouts/main";
+import Footer from "./layouts/footer";
+
 function App() {
   return (
-    <div className="flex h-full items-center justify-center">
-      <h1 className="text-4xl text-center">
-        Welcome to Konectin - Where Dreams are made Through
-      </h1>
+    <div className="bg-primaryBg app py-16">
+      <Header />
+      <Main />
+      <Footer />
     </div>
   );
 }
