@@ -21,6 +21,7 @@ Developer should be able to:
 - Add their names and what they have added
 - Add a comment and a brief description of what you did
 - Make a pull request
+
 ## Task Process
 
 ### Things I added
