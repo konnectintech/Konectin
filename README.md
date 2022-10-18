@@ -1,36 +1,101 @@
-# Konnectin
-Konnectin website
-This is a Konnectin test website to check if the developers team are good enough to fork, clone, pull and push pull-requests. This repository is restricted to non-konnectin members   
-
-## Objective
+## Table of contents
 
 - [Overview](#overview)
-  - [The Task](#the-task)
-- [Task Process](#task-process)
-  - [Things Added](#things-i-added)
-- [Authors](#authors)
+  - [Konnectin](#Konnectin)
+    - [Feature](#features)
+      - [Landing Page](#landing-page)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+- [Getting Started](#getting-started)
+  - [System Requirements](#system-requirements)
+  - [Installation](#installation)
+  - [Contributing](#contributing)
+- [Author](#author)
 
 ## Overview
 
-### The Task
+### Konnectin
 
-Developer should be able to:
+This website is for the official Konnectin organization...
 
-- Clone this repository
-- Edit only the [README](./README.md) file
-- Add their names and what they have added
-- Add a comment and a brief description of what you did
-- Make a pull request
+#### Features
+Features includes: 
+##### Landing Page
+- Header
+- Hero Setion
+- Konnectin Search
+- Benefits
+- About Konnectin
+- Konnectin Blog
+- Map
+- Footer
 
-## Task Process
 
-### Things I added
+### Links
 
-- The Objective
-- The Task
-- The Task Process
-- Author Section
+- Repository URL: [Github](https://github.com/konnectintech/Konnectin)
+- Live Site URL: [Live site](https://konectin.netlify.app)
 
+## My process
+
+### Built with
+
+- Semantic HTML5 markup
+- CSS custom properties
+- Grid & Flexbox
+- Tailwind CSS - CSS Library
+- [React](https://reactjs.org/) - JS Library
+- [React Icons](https://react-icons.github.io/react-icons/) - NPM Package
+- [Vite](https://vitejs.dev/) - Rapid Development Tools
+
+## Getting Started
+
+In order to view this project locally, you need to make sure you clone this repository and install it's dependencies.
+
+### System Requirements
+
+- [git][https://git-scm.com/] 2.31.1 or greater
+- [node][https://nodejs.org/en/] 14.16.1 or greater
+- [npm][https://nodejs.org/en/] 8.7.0 or greater
+
+To check which versions you have installed you can run these commands:
+```
+git --version
+node --version
+npm --version
+```
+If requirements above are not installed in your computer, you'll need to install them. By clicking on them you can go to their website, which can lead you the way.
+
+### Installation
+
+- Fork the Repository
+
+- Clone the repository
+  ```sh
+  git clone https://github.com/konnectintech/Konnectin.git
+  ```
+- Navigate to repository folder
+  ```sh
+  cd Konnectin
+  ```
+- Install npm packages
+  ```sh
+  npm install
+  ```
+- To run the app in the development mode run in the project directory: 
+  ```sh
+  npm run dev
+  ```
+### Contributing
+
+To contribute to this repository... After contributing to the repository and commit has been merged... Your name and github link would be added as a contibutor to the repo
+
+- Fork the Project
+- Create your Feature Branch (`git checkout -b feature/yourFeature`)
+- Commit your Changes (`git commit -m 'Brief explanation of feature`')
+- Push to the Branch (`git push origin feature/yourFeature`)
+- Open a Pull Request
 ## Authors
 
 - Ajayi Michael - [Github](https://github.com/Michaelajayi150)
