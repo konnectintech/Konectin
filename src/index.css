@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: 231 231 232;
+    --bg-secondary: 255 173 144;
+
+    --btn-primary: 216 104 66;
+    --btn-secondary: 128 52 26;
+  }
+}
+
+/* Remove this when you start programming */
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
