@@ -8,6 +8,7 @@ import locationIcon from "./icons/location.svg";
 import mailIcon from "./icons/mail.svg";
 import shakeIcon from "./icons/shake.svg";
 import starIcon from "./icons/star thingie.svg";
+import heroDash from "./icons/underdash.svg";
 import personIcon from "./icons/person.png";
 import person1Icon from "./icons/person 1.png";
 
@@ -19,6 +20,7 @@ import caseImage from "./images/case one.png";
 import heroImage from "./images/hero.png";
 import sideImage from "./images/side details.png";
 import side1Image from "./images/side details 1.png";
+import signImage from "./images/sign image.png";
 
 export {
   // Icons
@@ -31,6 +33,7 @@ export {
   mailIcon,
   shakeIcon,
   starIcon,
+  heroDash,
   personIcon,
   person1Icon,
 
@@ -42,4 +45,5 @@ export {
   heroImage,
   sideImage,
   side1Image,
+  signImage,
 };
