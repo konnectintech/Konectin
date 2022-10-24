@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
-// import Sign from "../../pages/sign";
 
 // Create a Authenication Hook
 export const RequireAuth = ({ children }) => {
@@ -16,7 +15,7 @@ export const RequireAuth = ({ children }) => {
 
 // Create User logged Hook
 export function useLoginStatus() {
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState(true);
 
   // Function to change user to true when signed in
 
