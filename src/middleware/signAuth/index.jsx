@@ -15,7 +15,7 @@ export const RequireAuth = ({ children }) => {
 
 // Create User logged Hook
 export function useLoginStatus() {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(false);
 
   // Function to change user to true when signed in
 
