@@ -30,7 +30,7 @@ function SignUp() {
   // check if you agreed with terms
 
   return (
-    <section className="flex min-h-screen gap-16 justify-between items-center">
+    <section className="flex flex-col lg:flex-row min-h-screen gap-16 justify-between items-center">
       <div className="hidden lg:block relative h-screen">
         <img className="h-full" src={signImage} alt="sign in background" />
         <h1 className="font-bold text-4xl xl:ml-16 pl-16 relative -top-1/2 z-10">
@@ -40,11 +40,13 @@ function SignUp() {
 
       <div className="p-6 lg:pr-16 lg:p-0 mx-auto lg:w-7/12 xl:w-fit flex flex-col items-start">
         <img src={konectinIcon} alt="Konnectin Logo" />
-        <h1 className="text-4xl mt-4">Create an account...</h1>
+        <h1 className="text-3xl font-semibold lg:text-4xl lg:font-normal mt-4">
+          Create an account...
+        </h1>
         <p>Get started with us at Konectin</p>
 
         {/* Iterate through formList */}
-        <form className="flex w-full flex-col items-stretch">
+        <form className="flex w-full flex-col items-stretch text-xs">
           {signForm.map((input, index) => (
             <Input key={index} {...input} />
           ))}
@@ -106,6 +108,26 @@ function SignUp() {
           </p>
         </form>
       </div>
+
+      <div className="lg:hidden bg-secondaryBtn w-full text-center text-white py-6">
+        <div className="flex gap-4 items-center justify-center mb-6">
+          <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg">
+            <FaIcon.FaTwitter size="1.1rem" />
+          </div>
+          <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg">
+            <FaIcon.FaFacebookF size="1rem" />
+          </div>
+          <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg">
+            <FaIcon.FaLinkedinIn size="1rem" />
+          </div>
+        </div>
+        <p className="text-xs text-gray-200">
+          A product of konectin
+          <br />
+          <br />
+          &copy; 2022 Konectin Ltd. All rights reserved
+        </p>
+      </div>
     </section>
   );
 }
@@ -126,7 +148,7 @@ export function SignIn() {
   const [agreed, setAgreed] = useState(false);
 
   return (
-    <section className="flex min-h-screen gap-16 justify-between items-center">
+    <section className="flex flex-col lg:flex-row min-h-screen gap-16 justify-between items-center">
       <div className="hidden lg:block relative h-screen">
         <img className="h-full" src={signImage} alt="sign in background" />
         <h1 className="font-bold text-4xl xl:ml-16 pl-16 relative -top-1/2 z-10">
@@ -139,7 +161,7 @@ export function SignIn() {
         <h1 className="text-4xl mt-4">Welcome back...</h1>
         <p>Continue from where you stopped</p>
         {/* Form SignIn */}
-        <form className="w-full flex flex-col items-stretch">
+        <form className="w-full flex flex-col items-stretch text-xs md:text-sm">
           {signForm.map((input, index) => (
             <Input key={index} {...input} />
           ))}
@@ -187,6 +209,26 @@ export function SignIn() {
             </Link>
           </p>
         </form>
+      </div>
+
+      <div className="lg:hidden bg-secondaryBtn w-full text-center text-white py-6">
+        <div className="flex gap-4 items-center justify-center mb-6">
+          <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg">
+            <FaIcon.FaTwitter size="1.1rem" />
+          </div>
+          <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg">
+            <FaIcon.FaFacebookF size="1rem" />
+          </div>
+          <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg">
+            <FaIcon.FaLinkedinIn size="1rem" />
+          </div>
+        </div>
+        <p className="text-xs text-gray-200">
+          A product of konectin
+          <br />
+          <br />
+          &copy; 2022 Konectin Ltd. All rights reserved
+        </p>
       </div>
     </section>
   );
