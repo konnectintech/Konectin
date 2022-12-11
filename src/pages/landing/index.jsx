@@ -62,7 +62,15 @@ function Landing() {
           </div>
         </div>
 
+        {/* Recruiters */}
         <div className="flex flex-col gap-8">
+          <div className="md:hidden">
+            <img
+              src={recruitImage}
+              className="mx-auto"
+              alt="Konectin Recruiters"
+            />
+          </div>
           <div className="header--text">
             <h1 className="text-3xl mb-2">
               What{" "}
@@ -75,15 +83,15 @@ function Landing() {
             </p>
           </div>
           <div className="flex flex-col gap-10 md:flex-row items-center justify-between">
-            <div className="w-full w-4/12">
+            <div className="hidden md:w-4/12 md:block">
               <img src={recruitImage} alt="Konectin Recruiters" />
             </div>
-            <div className="w-8/12 flex flex-col gap-6">
-              <div className="grid grid-cols-2 gap-6">
+            <div className="md:w-8/12 flex flex-col gap-6">
+              <div className="grid grid-col sm:grid-cols-2 gap-6">
                 {RecruitersGain.map((item, index) => (
                   <div
                     key={index}
-                    className="flex w-full flex-col gap-3 items-center text-center md:text-start md:items-start justify-center"
+                    className="flex w-full flex-col gap-3 text-start items-start justify-center"
                   >
                     <div className="w-10 h-10 bg-secondaryBg rounded-sm flex flex-col items-center justify-center">
                       <img src={item.logo} alt={item.title} />
@@ -93,7 +101,7 @@ function Landing() {
                   </div>
                 ))}
               </div>
-              <div className="w-full xs:w-fit flex flex-col xxs:flex-row gap-2 xs:gap-4 items-center justify-center xs:justify-between text-sm">
+              <div className="w-full xs:w-fit flex flex-col xxs:flex-row gap-2 xs:gap-4 items-center md:justify-center xs:justify-between text-sm">
                 <button className="px-8 py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primaryBtn border rounded-md">
                   Learn More
                 </button>
@@ -106,8 +114,8 @@ function Landing() {
         </div>
 
         {/* About Us */}
-        <div className="flex flex-col gap-10 md:flex-row items-center justify-between text-xm">
-          <div className="flex w-full md:w-8/12 flex-col gap-10 items-center text-center md:text-start md:items-start justify-center">
+        <div className="flex flex-col-reverse gap-10 md:flex-row items-center justify-between text-xm">
+          <div className="flex w-full md:w-8/12 flex-col gap-6 md:gap-10 text-start items-start justify-center">
             <div className="header--text">
               <h1 className="text-3xl mb-2">
                 About Our <font className="text-primaryBtn">Company</font>
@@ -128,10 +136,15 @@ function Landing() {
             </button>
           </div>
           <div className="w-full md:w-4/12">
-            <img src={sideImage} alt="Get started with Konectin" />
+            <img
+              src={sideImage}
+              className="mx-auto"
+              alt="Get started with Konectin"
+            />
           </div>
         </div>
 
+        {/* Konectin Blog */}
         <div className="flex flex-col gap-8 items-center">
           <div className="header--text text-center">
             <h1 className="text-3xl mb-2">
@@ -142,7 +155,7 @@ function Landing() {
               and so much more.
             </p>
           </div>
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             {Blog.map((blog, index) => (
               <div
                 key={index}
@@ -169,9 +182,11 @@ function Landing() {
           </button>
         </div>
       </section>
+
+      {/* Map */}
       <section className="flex flex-col gap-6 mt-16">
         <div className="flex flex-col gap-8 items-center">
-          <div className="header--text text-center">
+          <div className="w-10/12 mx-auto max-w-screen-lg text-center">
             <h1 className="text-3xl mb-2">
               What others have <font className="text-primaryBtn">gained</font>
             </h1>
@@ -183,22 +198,33 @@ function Landing() {
         </div>
         <img src={caseImage} alt="Map" />
       </section>
-      <section className="relative w-8/12 mx-auto mt-16">
-        <div className="absolute z-10 w-full left-1/2 -translate-x-1/2">
-          <img src={newsletterBg} alt="Newsletter" />
+
+      {/* Newsletter */}
+      <section className="relative w-11/12 xs:w-10/12 md:w-8/12 max-w-scrren-md h-screen mx-auto mt-16">
+        <div className="absolute z-10 w-full left-1/2 h-[340px] -translate-x-1/2">
+          <img className="w-full h-full" src={newsletterBg} alt="Newsletter" />
         </div>
-        <div className="relative z-30 text-center pt-16 text-white">
-          <h1 className="text-3xl mb-3">Subscribe to our newsletter</h1>
-          <p>
+        <div className="relative z-30 text-center pt-8 text-white px-4">
+          <h1 className="text-lg xxs:text-2xl sm:text-3xl mb-3">
+            Subscribe to our newsletter
+          </h1>
+          <p className="text-xs xxs:text-sm sm:text-md">
             Stay updated on our latest news. We promise only valuable mails and
             we will not spam you with irrelevant content.
           </p>
-          <div>
-            <input placeholder="Enter your email address" />
-            <button className="px-8 py-2 bg-primaryBtn text-white text-center rounded-md">
+          <label
+            htmlFor="newsletter"
+            className="w-full xs:w-10/12 max-w-screen-md rounded-lg mx-auto flex gap-2 items-center justify-center pl-8 pr-4 py-3 bg-white mt-10"
+          >
+            <input
+              id="newsletter"
+              placeholder="Enter your email address"
+              className="outline-0 border-0 xs:flex-1 text-secondaryBtn"
+            />
+            <button className="px-4 sm:px-8 py-2 bg-primaryBtn text-white text-center rounded-md">
               Subscribe
             </button>
-          </div>
+          </label>
         </div>
       </section>
     </>
