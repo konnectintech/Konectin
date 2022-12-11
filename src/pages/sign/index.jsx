@@ -91,7 +91,7 @@ function SignUp() {
           </div>
 
           <div className="text-center mt-6">
-            <CustomButton primary={true}>Sign Up</CustomButton>
+            <CustomButton primary>Sign Up</CustomButton>
             or
             <CustomButton>
               <img src={googleIcon} alt="continue with google" /> Continue with

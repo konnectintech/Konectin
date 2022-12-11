@@ -11,6 +11,10 @@ module.exports = {
         primaryBtn: "rgb(var(--btn-primary) / 1)",
         secondaryBtn: "rgb(var(--btn-secondary)/ 1)",
       },
+      screens: {
+        xxs: "375px",
+        xs: "540px",
+      },
     },
   },
   plugins: [],
