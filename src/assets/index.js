@@ -18,6 +18,8 @@ import card1Image from "./images/card 1.png";
 import card2Image from "./images/card 2.png";
 import caseImage from "./images/case one.png";
 import heroImage from "./images/hero.png";
+import recruitImage from "./images/recruiters.png";
+import newsletterBg from "./images/newsletterBg.png";
 import sideImage from "./images/side details.png";
 import side1Image from "./images/side details 1.png";
 import signImage from "./images/sign image.png";
@@ -43,6 +45,8 @@ export {
   card2Image,
   caseImage,
   heroImage,
+  recruitImage,
+  newsletterBg,
   sideImage,
   side1Image,
   signImage,
