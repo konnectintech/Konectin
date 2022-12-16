@@ -12,11 +12,186 @@
   }
 }
 
+
 /* Remove this when you start programming */
+
 .app {
+  width: 100%;
+  height: 110%;
+}
+.signin_wrapper{
+  width: 100%;
+  height: 100vh;
+}
+.acct-section{
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   height: 100vh;
 }
+
+
+/* Sign up Section */
+.bg-image{
+  background: url('./assets/images/signup_bg.jpeg') no-repeat;
+  width: 50%;
+  height: auto;
+  background-size: 80vh;
+  background-position: left;
+}
+.account-title{
+  width: 350px;
+  height: 45px;
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 132%;
+  letter-spacing: 0.02em;
+  color: #191A1F;
+}
+.sub-title{
+  width: 346px;
+height: 38px;
+font-family: 'Avenir';
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 160%;
+letter-spacing: -0.01em;
+color: #66666A;
+margin-bottom: 20px;
+}
+label{
+  width: 72px;
+height: 22px;
+font-family: 'Merriweather';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 160%;
+position: absolute;
+margin-left: 33px;
+color: #191A1F;
+margin-top: -10px;
+background: #E7E7E8
+}
+.email_label{
+  width: 50px;
+}
+.password_label{
+  width: 68px;
+}
+.confirm_password_label{
+  width: 130px;
+}
+.form-controls{
+  height: 61px;
+width: 597px;
+top: 10px;
+bottom: 0%;
+border: 1px solid rgba(220, 121, 87, 0.4);
+outline: none;
+border-radius: 8px;
+padding: 23px 0px 23px 33px;background: #E7E7E8;
+margin-bottom: 50px;
+}
+.form-controls::placeholder{
+  font-family: 'Merriweather';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+color: #8C8C8F;
+}
+.confirm_password{
+  margin-bottom: 22px;
+}
+.form-check{
+  display: flex;
+  align-items: center;
+  width: 597px;
+}
+.form-check-input{
+  height: 30px;
+width: 30px;
+background: #E7E7E8;
+border: 1px solid #D86842;
+border-radius: 6px;
+}
+.form-check-input:checked{
+  background: #D86842;
+  border: #D86842;
+}
+.form-check-label{
+  width: 459px;
+  font-family: 'Avenir';
+font-weight: 500;
+font-size: 16px;
+letter-spacing: -0.01em;
+color: #191A1F;
+}
+.form-check-label a{
+  color: #D86842;
+  text-decoration: underline;
+}
+
+/* Sign up Btn */
+
+.btn_wrapper{
+  margin-top: 42px;
+}
+
+.signup-btn{
+width: 598px;
+border-radius: 10px;
+height: 70px;
+color: white;
+background-color: #D86842;
+}
+.signup-btn:hover{
+  color: white;
+}
+.or_wrapper{
+  width: 598px;
+  margin: 3px 0px;
+}
+.or_wrapper p{
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 28px;
+}
+
+.google-btn{
+  width: 598px;
+  font-family: 'Avenir', sans-serif;
+border-radius: 10px;
+height: 70px;
+color: #343434;
+background-color: transparent;
+
+border: 1px solid #333;
+}
+.fpassword{
+  width: 557px;
+  font-family: 'Avenir', sans-serif;
+  margin-left: 10px;
+}
+.fpassword p a{
+  text-decoration: none;
+}
+.not_yet_a_member{
+  margin-top: 30px;
+  width: 598px;
+  text-align: center;
+}
+.not_yet_a_member p{
+  font-size: 16px;
+  font-weight: 500;
+  color: #000000;
+}
+.not_yet_a_member p a{
+  color: #D86842;
+  text-decoration: underline;
+}
+/* End of Sign up & In Page */

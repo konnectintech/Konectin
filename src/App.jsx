@@ -4,10 +4,10 @@ import Footer from "./layouts/footer";
 
 function App() {
   return (
-    <div className="bg-primaryBg app py-16">
-      <Header />
+    <div className="bg-primaryBg app">
+      {/* <Header /> */}
       <Main />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

@@ -1,10 +1,10 @@
+import Signup from "../../signup_pages/Signup";
+import Signin from "../../signup_pages/Signin";
 function Main() {
   return (
     <div>
-      <h1 className="text-4xl text-center">
-        Welcome to <font className="text-primaryBtn">Ko</font>nectin - Where
-        Dreams are made Through
-      </h1>
+      {/* <Signup /> */}
+      <Signin />
     </div>
   );
 }
