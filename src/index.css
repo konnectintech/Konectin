@@ -1,6 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
+
 @tailwind base;
-@tailwind components;
 @tailwind utilities;
+@tailwind components;
 
 @layer base {
   :root {
@@ -11,7 +13,11 @@
     --btn-secondary: 128 52 26;
   }
 }
+body {
+  font-family: "Arial", sans-serif;
+}
 
+ main
 
 /* Remove this when you start programming */
 
@@ -28,6 +34,14 @@
   flex-direction: column;
   justify-content: center;
   height: 100vh;
+
+h1,
+h2,
+h3,
+h4,
+input {
+  font-family: "Merriweather", sans-serif;
+main
 }
 
 
