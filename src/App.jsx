@@ -7,6 +7,12 @@ import { RequireAuth } from "./middleware/signAuth";
 
 function App() {
   return (
+ main
+    <div className="bg-primaryBg app">
+      {/* <Header /> */}
+      <Main />
+      {/* <Footer /> */}
+
     <div className="bg-primaryBg">
       <BrowserRouter>
         <Routes>
@@ -24,6 +30,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
         </Routes>
       </BrowserRouter>
+>>> main
     </div>
   );
 }
