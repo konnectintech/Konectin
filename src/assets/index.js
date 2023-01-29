@@ -11,8 +11,11 @@ import starIcon from "./icons/star thingie.svg";
 import heroDash from "./icons/underdash.svg";
 import personIcon from "./icons/person.png";
 import person1Icon from "./icons/person 1.png";
+import person2Icon from "./icons/person 2.png";
+import person3Icon from "./icons/person 3.png";
+import person4Icon from "./icons/person 4.png";
 
-// Images
+// landing Page Images
 import cardImage from "./images/card.png";
 import card1Image from "./images/card 1.png";
 import card2Image from "./images/card 2.png";
@@ -22,7 +25,17 @@ import recruitImage from "./images/recruiters.png";
 import newsletterBg from "./images/newsletterBg.png";
 import sideImage from "./images/side details.png";
 import side1Image from "./images/side details 1.png";
+
+// Sign Page Image
 import signImage from "./images/sign image.png";
+
+// Resume Builder Images
+import card3Image from "./images/card 3.png";
+import ResumeHeroImage from "./images/resume hero.png";
+import ResumeTemplateCrossImage from "./images/resume cross.png";
+import ResumeTemplateSampleImage from "./images/resume template.png";
+import ResumeTemplateSample1Image from "./images/resume template 1.png";
+import ResumeCTAImage from "./images/cta.png";
 
 export {
   // Icons
@@ -38,8 +51,11 @@ export {
   heroDash,
   personIcon,
   person1Icon,
+  person2Icon,
+  person3Icon,
+  person4Icon,
 
-  // Images
+  // Landing Images
   cardImage,
   card1Image,
   card2Image,
@@ -49,5 +65,15 @@ export {
   newsletterBg,
   sideImage,
   side1Image,
+
+  // Sign Images
   signImage,
+
+  // Resume Images
+  ResumeCTAImage,
+  ResumeHeroImage,
+  ResumeTemplateCrossImage,
+  ResumeTemplateSampleImage,
+  ResumeTemplateSample1Image,
+  card3Image,
 };
