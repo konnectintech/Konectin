@@ -12,7 +12,7 @@ import { Blog, RecruitersGain } from "./data";
 
 function Landing() {
   return (
-    <>
+    <div className="bg-primaryBg">
       <section className="w-11/12 mx-auto max-w-screen-2xl flex flex-col gap-16">
         {/* Hero section */}
         <div className="flex flex-col gap-10 md:flex-row items-center justify-between">
@@ -227,7 +227,7 @@ function Landing() {
           </label>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 
