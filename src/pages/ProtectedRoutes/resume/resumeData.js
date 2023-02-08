@@ -4,7 +4,7 @@ import {
   person3Icon,
   person4Icon,
   ResumeTemplateCrossImage,
-} from "../../assets";
+} from "../../../assets";
 
 export const SliderData = [
   {

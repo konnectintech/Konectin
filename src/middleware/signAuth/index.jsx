@@ -9,6 +9,7 @@ export const RequireAuth = ({ children }) => {
   if (!userIsLogged) {
     return <Navigate to="/signup" />;
   }
+
   // else return the page you went to
   return children;
 };

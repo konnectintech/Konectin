@@ -1,4 +1,4 @@
-import { CustomButton, ResumeButton } from "../../components/button";
+import { CustomButton, ResumeButton } from "../../../components/button";
 import { Link } from "react-router-dom";
 import {
   ResumeCTAImage,
@@ -6,7 +6,7 @@ import {
   ResumeTemplateSampleImage,
   ResumeTemplateSample1Image,
   card3Image,
-} from "../../assets";
+} from "../../../assets";
 import { useEffect, useState } from "react";
 import { FAQ, ResumeReview, SliderData } from "./resumeData";
 import { FaStar } from "react-icons/fa";

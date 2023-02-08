@@ -1,4 +1,4 @@
-import { CustomButton } from "../../components/button";
+import { CustomButton } from "../../../components/button";
 import { Link } from "react-router-dom";
 import {
   caseImage,
@@ -7,7 +7,7 @@ import {
   newsletterBg,
   recruitImage,
   sideImage,
-} from "../../assets";
+} from "../../../assets";
 import { Blog, RecruitersGain } from "./data";
 
 function Landing() {
@@ -43,7 +43,8 @@ function Landing() {
               type="text"
               placeholder="Enter your email address"
             />
-            <div className="w-full xs:w-fit flex flex-col xxs:flex-row gap-2 xs:gap-6 items-center justify-center xs:justify-between">
+
+            <div className="w-full md:w-fit flex flex-col xxs:flex-row gap-2 xs:gap-6 items-center justify-center md:justify-between">
               <button className="w-full xxs:w-fit px-4 xs:px-0 xs:w-32 py-3 bg-primaryBtn text-white text-center rounded-md">
                 Sign Up
               </button>
@@ -56,7 +57,7 @@ function Landing() {
           </div>
           <div className="text-right mt-2">
             Have an account already?{" "}
-            <Link to="/signin" className="text-primaryBtn">
+            <Link to="/login" className="text-primaryBtn">
               Login
             </Link>
           </div>

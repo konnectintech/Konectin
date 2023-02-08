@@ -8,7 +8,7 @@ import {
   personIcon,
   shakeIcon,
   starIcon,
-} from "../../assets";
+} from "../../../assets";
 
 export const RecruitersGain = [
   {
