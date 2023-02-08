@@ -1,4 +1,4 @@
-import { CustomButton } from "../../components/button";
+import { CustomButton } from "../../../components/button";
 import { Link } from "react-router-dom";
 import {
   caseImage,
@@ -7,7 +7,7 @@ import {
   newsletterBg,
   recruitImage,
   sideImage,
-} from "../../assets";
+} from "../../../assets";
 import { Blog, RecruitersGain } from "./data";
 
 function Landing() {
