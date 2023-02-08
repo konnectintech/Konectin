@@ -1,5 +1,4 @@
 import Header from "./layouts/header";
-import Footer from "./layouts/footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp, { SignIn } from "./pages/sign";
 import { RequireAuth } from "./middleware/signAuth";
@@ -15,7 +14,6 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/resume" element={<ResumeBuilder />} />
         </Routes>
-        <Footer />
       </RequireAuth>
       <Routes>
         <Route path="/login" element={<SignIn />} />
