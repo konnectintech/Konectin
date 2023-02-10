@@ -1,0 +1,24 @@
+/* header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+}
+
+.navbar-change {
+  background-color: rgba(248, 248, 248, 1);
+  box-shadow: 0 1px 7px rgb(122, 122, 122);
+  transform: translateY(0px);
+  transition: all 0.5s linear;
+}
+
+.nav-bar-hidden {
+  transform: translateY(-50vh);
+  transition: all 1s linear;
+}
+
+@media only screen and (min-width: 420px) {
+  .nav-bar-hidden {
+    transform: translateY(-60px);
+  }
+} */

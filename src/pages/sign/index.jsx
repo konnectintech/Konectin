@@ -210,26 +210,6 @@ export function SignIn() {
           </p>
         </form>
       </div>
-
-      <div className="lg:hidden bg-secondaryBtn w-full text-center text-white py-6">
-        <div className="flex gap-4 items-center justify-center mb-6">
-          <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg">
-            <FaIcon.FaTwitter size="1.1rem" />
-          </div>
-          <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg">
-            <FaIcon.FaFacebookF size="1rem" />
-          </div>
-          <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg">
-            <FaIcon.FaLinkedinIn size="1rem" />
-          </div>
-        </div>
-        <p className="text-xs text-gray-200">
-          A product of konectin
-          <br />
-          <br />
-          &copy; 2022 Konectin Ltd. All rights reserved
-        </p>
-      </div>
     </section>
   );
 }

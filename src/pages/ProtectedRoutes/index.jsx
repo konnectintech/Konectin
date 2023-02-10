@@ -1,17 +1,14 @@
-import { Route, Routes } from "react-router-dom";
-import Header from "../../layouts/header";
-import Landing from "./landing";
-import ResumeBuilder from "./resume";
+import { Outlet } from "react-router-dom";
 import Footer from "../../layouts/footer";
+import Header from "../../layouts/header";
 
 function ProtectedRoutes() {
   return (
     <>
       <Header />
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/resume" element={<ResumeBuilder />} />
-      </Routes>
+      <div className="page-hero">
+        <Outlet />
+      </div>
       <Footer />
     </>
   );
