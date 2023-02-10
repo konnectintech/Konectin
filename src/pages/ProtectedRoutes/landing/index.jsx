@@ -1,4 +1,3 @@
-import { CustomButton } from "../../../components/button";
 import { Link } from "react-router-dom";
 import {
   caseImage,
@@ -12,7 +11,7 @@ import { Blog, RecruitersGain } from "./data";
 
 function Landing() {
   return (
-    <div className="bg-primaryBg">
+    <main className="bg-primaryBg">
       <section className="w-11/12 mx-auto max-w-screen-2xl flex flex-col gap-16">
         {/* Hero section */}
         <div className="flex flex-col gap-10 md:flex-row items-center justify-between">
@@ -27,7 +26,12 @@ function Landing() {
               the best possible start to your new Career...
             </p>
             <div className="w-48 md:w-60">
-              <CustomButton primary>Get Started</CustomButton>
+              <Link
+                to="/signup"
+                className="block w-full py-2 bg-primaryBtn text-white text-center rounded-md"
+              >
+                Get Started
+              </Link>
             </div>
           </div>
           <div className="w-full md:w-1/2">
@@ -45,9 +49,12 @@ function Landing() {
             />
 
             <div className="w-full md:w-fit flex flex-col xxs:flex-row gap-2 xs:gap-6 items-center justify-center md:justify-between">
-              <button className="w-full xxs:w-fit px-4 xs:px-0 xs:w-32 py-3 bg-primaryBtn text-white text-center rounded-md">
+              <Link
+                to="/signup"
+                className="w-full xxs:w-fit px-4 xs:px-0 xs:w-32 py-3 bg-primaryBtn text-white text-center rounded-md"
+              >
                 Sign Up
-              </button>
+              </Link>
               or
               <button className="w-full xxs:w-fit px-4 xs:px-0 xs:w-60 py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primaryBtn border rounded-md">
                 <img src={googleIcon} alt="continue with google" /> Continue
@@ -102,13 +109,16 @@ function Landing() {
                   </div>
                 ))}
               </div>
-              <div className="w-full xs:w-fit flex flex-col xxs:flex-row gap-2 xs:gap-4 items-center md:justify-center xs:justify-between text-sm">
+              <div className="w-full xs:w-fit flex flex-col xxs:flex-row gap-2 xs:gap-4 xs:items-center xs:justify-between text-sm">
                 <button className="px-8 py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primaryBtn border rounded-md">
                   Learn More
                 </button>
-                <button className="px-8 py-2 bg-primaryBtn text-white text-center rounded-md">
+                <Link
+                  to="/signup"
+                  className="px-8 py-2 bg-primaryBtn text-white text-center rounded-md"
+                >
                   Sign Up
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -201,9 +211,13 @@ function Landing() {
       </section>
 
       {/* Newsletter */}
-      <section className="relative w-11/12 xs:w-10/12 md:w-8/12 max-w-scrren-md h-screen mx-auto mt-16">
+      <section className="relative w-11/12 xs:w-10/12 md:w-8/12 max-w-screen-md h-[40vh] min-h-[395px] mx-auto mt-16">
         <div className="absolute z-10 w-full left-1/2 h-[340px] -translate-x-1/2">
-          <img className="w-full h-full" src={newsletterBg} alt="Newsletter" />
+          <img
+            className="w-full h-full max-h-[340px]"
+            src={newsletterBg}
+            alt="Newsletter"
+          />
         </div>
         <div className="relative z-30 text-center pt-8 text-white px-4">
           <h1 className="text-lg xxs:text-2xl sm:text-3xl mb-3">
@@ -215,20 +229,20 @@ function Landing() {
           </p>
           <label
             htmlFor="newsletter"
-            className="w-full xs:w-10/12 max-w-screen-md rounded-lg mx-auto flex gap-2 items-center justify-center pl-8 pr-4 py-3 bg-white mt-10"
+            className="w-full sm:w-10/12 max-w-screen-md rounded-lg mx-auto flex gap-2 items-center justify-center pl-4 sm:pl-8 pr-2 sm:pr-4 py-1 md:py-3 bg-white mt-10"
           >
             <input
               id="newsletter"
               placeholder="Enter your email address"
-              className="outline-0 border-0 xs:flex-1 text-secondaryBtn"
+              className="outline-0 border-0 w-full md:flex-1 text-secondaryBtn"
             />
-            <button className="px-4 sm:px-8 py-2 bg-primaryBtn text-white text-center rounded-md">
+            <button className="px-2 text-sm md:text-md sm:px-6 py-2 bg-primaryBtn text-white text-center rounded-md">
               Subscribe
             </button>
           </label>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
 

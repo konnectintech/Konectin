@@ -30,7 +30,7 @@ function ResumeBuilder() {
   };
 
   return (
-    <div className="bg-[#EEEEEE]">
+    <main className="bg-[#EEEEEE]">
       <section className="w-11/12 mx-auto max-w-screen-xl flex flex-col gap-16">
         {/* Hero section */}
         <div className="flex flex-col gap-10 md:flex-row items-center justify-between">
@@ -253,7 +253,7 @@ function ResumeBuilder() {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
 
