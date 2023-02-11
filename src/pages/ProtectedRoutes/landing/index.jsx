@@ -17,8 +17,10 @@ function Landing() {
         <div className="flex flex-col gap-10 md:flex-row items-center justify-between">
           <div className="flex w-full md:w-1/2 flex-col gap-6 items-center text-center md:text-start md:items-start justify-center">
             <h1 className="text-4xl lg:text-6xl xl:text-7xl font-medium leading-tight">
-              Take a step <br /> Closer to your <br /> dream{" "}
-              <font className="text-primaryBtn">Job</font>
+              Take a step <br /> Closer to your <br />{" "}
+              <font className="underdash">
+                dream <font className="text-primaryBtn">Job</font>
+              </font>
             </h1>
             <p className="max-w-md md:max-w-lg">
               Get matched easily with recruiters who see value in your
@@ -170,11 +172,15 @@ function Landing() {
             {Blog.map((blog, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl flex flex-col gap-3 pb-4"
+                className="bg-white rounded-xl overflow-hidden flex flex-col gap-3 pb-4 justify-between"
               >
-                <img className="rounded-md" src={blog.image} alt={blog.title} />
-                <div className="px-4 flex flex-col">
-                  <h2 className="text-xl font-medium mb-3">{blog.title}</h2>
+                <div className="bg-primaryBg">
+                  <img className="w-full" src={blog.image} alt={blog.title} />
+                </div>
+
+                <h2 className="px-4 text-xl font-medium mb-3">{blog.title}</h2>
+
+                <div className="px-4 justify-self-end">
                   <div className="flex gap-2 items-center mt-auto">
                     <img
                       src={blog.info.bloggerImage}
@@ -234,7 +240,7 @@ function Landing() {
             <input
               id="newsletter"
               placeholder="Enter your email address"
-              className="outline-0 border-0 w-full md:flex-1 text-secondaryBtn"
+              className="outline-0 border-0 text-sm md:text-md w-full md:flex-1 text-secondaryBtn"
             />
             <button className="px-2 text-sm md:text-md sm:px-6 py-2 bg-primaryBtn text-white text-center rounded-md">
               Subscribe

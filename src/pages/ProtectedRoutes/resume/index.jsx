@@ -59,20 +59,20 @@ function ResumeBuilder() {
               <div
                 key={index}
                 onClick={() => setTemplate(index)}
-                className={`
-              ${
-                currentTemplate === index
-                  ? "text-primaryBtn"
-                  : "text-secondaryBtn"
-              }
-              w-full cursor-pointer flex flex-col gap-1
+                className={`${
+                  currentTemplate === index
+                    ? "text-primaryBtn"
+                    : "text-secondaryBtn"
+                } w-[60%] cursor-pointer flex flex-col gap-1
               `}
                 aria-current={currentTemplate === index ? "page" : undefined}
               >
                 <h4 className="text-xs font-medium">{template.type}</h4>
                 <small
                   className={
-                    currentTemplate === index ? "small small-selected" : "small"
+                    currentTemplate === index
+                      ? "small w-[130px] sm:w-[150px]"
+                      : "small w-[100px] sm:w-[130px]"
                   }
                 >
                   {template.title}

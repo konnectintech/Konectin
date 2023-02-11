@@ -19,7 +19,10 @@ function App() {
           }
         >
           <Route path="/" element={<Landing />} />
+          <Route path="/internship" element={<div></div>} />
           <Route path="/resume" element={<ResumeBuilder />} />
+          <Route path="/blog" element={<div></div>} />
+          <Route path="/about" element={<div></div>} />
         </Route>
       </Routes>
     </BrowserRouter>
