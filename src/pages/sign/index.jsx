@@ -56,14 +56,14 @@ function SignUp() {
             <div
               className={
                 agreed
-                  ? "w-5 h-5 cursor-pointer rounded-sm bg-primaryBtn flex items-center justify-center"
+                  ? "w-5 h-5 cursor-pointer rounded-md bg-primaryBtn flex items-center justify-center"
                   : "w-5 h-5 cursor-pointer rounded-sm border border-primaryBtn"
               }
               onClick={() => {
                 setAgreed((prev) => !prev);
               }}
             >
-              {agreed ? <FaIcon.FaCheck size=".8rem" color="#fff" /> : null}
+              {agreed ? <FaIcon.FaCheck size=".6rem" color="#fff" /> : null}
             </div>
 
             <div className="cursor-pointer select-none">
@@ -171,14 +171,14 @@ export function SignIn() {
               <div
                 className={
                   agreed
-                    ? "w-5 h-5 cursor-pointer rounded-sm bg-primaryBtn flex items-center justify-center"
+                    ? "w-5 h-5 cursor-pointer rounded-md bg-primaryBtn flex items-center justify-center"
                     : "w-5 h-5 cursor-pointer rounded-sm border border-primaryBtn"
                 }
                 onClick={() => {
                   setAgreed((prev) => !prev);
                 }}
               >
-                {agreed ? <FaIcon.FaCheck size=".8rem" color="#fff" /> : null}
+                {agreed ? <FaIcon.FaCheck size=".6rem" color="#fff" /> : null}
               </div>
               <div
                 className="cursor-pointer select-none"
@@ -209,6 +209,26 @@ export function SignIn() {
             </Link>
           </p>
         </form>
+      </div>
+
+      <div className="lg:hidden bg-secondaryBtn w-full text-center text-white py-6">
+        <div className="flex gap-4 items-center justify-center mb-6">
+          <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg">
+            <FaIcon.FaTwitter size="1.1rem" />
+          </div>
+          <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg">
+            <FaIcon.FaFacebookF size="1rem" />
+          </div>
+          <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg">
+            <FaIcon.FaLinkedinIn size="1rem" />
+          </div>
+        </div>
+        <p className="text-xs text-gray-200">
+          A product of konectin
+          <br />
+          <br />
+          &copy; 2022 Konectin Ltd. All rights reserved
+        </p>
       </div>
     </section>
   );

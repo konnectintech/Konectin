@@ -4,7 +4,7 @@ export function CustomButton({ primary, children }) {
     <button
       className={
         primary
-          ? "w-full py-2 bg-primaryBtn text-white text-center rounded-md"
+          ? "w-full py-4 bg-primaryBtn text-white text-center rounded-md"
           : "w-full py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-black border rounded-md"
       }
     >

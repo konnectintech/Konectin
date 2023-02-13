@@ -5,7 +5,7 @@ export function Input({ legend, type, placeholder }) {
       <legend className="ml-4 px-1">{legend}</legend>
       <input
         type={type}
-        className="w-full text-xs bg-transparent border-0 outline-0 px-4 pb-4"
+        className="w-full text-xs bg-transparent border-0 outline-0 px-4 pt-3 pb-4"
         placeholder={placeholder}
       />
     </fieldset>

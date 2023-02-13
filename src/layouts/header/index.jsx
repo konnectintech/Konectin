@@ -44,22 +44,22 @@ function Header() {
     <header
       className={`
         ${
-          offset.visible && offset.prevScrollpos >= 50
-            ? (() => toggle(), "navbar-change")
-            : offset.prevScrollpos <= 50
+          isOpen || offset.prevScrollpos <= 50
             ? "navbar"
+            : offset.visible && offset.prevScrollpos >= 50
+            ? "navbar-change"
             : "nav-bar-hidden"
         }
       ${isOpen ? "bg-secondaryBtn" : "bg-primaryBg"} py-2 md:bg-primaryBg`}
     >
       <nav className="w-11/12 mx-auto max-w-screen-2xl flex justify-between items-center gap-16">
-        <Link to="/" className="relative z-10 nav-icon block">
+        <Link to="/" className="relative z-30 nav-icon block">
           <img
             className={isOpen ? "brightness-[500%] md:filter-none" : "konectin"}
             src={konectinIcon}
           />
         </Link>
-        <nav onClick={toggle} className="md:hidden relative z-10">
+        <nav onClick={toggle} className="md:hidden relative z-30">
           {isOpen ? (
             <FaTimes size="1.5rem" color="#fff" />
           ) : (
@@ -69,7 +69,7 @@ function Header() {
         <nav
           className={`${
             isOpen
-              ? "flex flex-col w-3/4 h-full items-start pt-36 bg-secondaryBtn px-6 text-white fixed top-0 right-0"
+              ? "flex flex-col w-3/4 h-full items-start pt-36 bg-secondaryBtn px-6 text-white fixed z-20 top-0 right-0"
               : "hidden"
           } gap-8 transistion-all md:flex md:flex-row md:relative md:h-fit md:w-fit md:text-black md:p-0 md:bg-transparent`}
         >
@@ -80,6 +80,7 @@ function Header() {
                   ? "py-1 border-b-2 border-primaryBtn"
                   : "py-1"
               }
+              onClick={toggle}
               key={index}
               to={link.link}
             >
