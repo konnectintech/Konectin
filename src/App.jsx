@@ -4,6 +4,7 @@ import { RequireAuth } from "./middleware/signAuth";
 import ProtectedRoutes from "./pages/ProtectedRoutes";
 import Landing from "./pages/ProtectedRoutes/landing";
 import ResumeBuilder from "./pages/ProtectedRoutes/resume";
+import DashBoard from "./pages/ProtectedRoutes/DashBoard";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/internship" element={<div></div>} />
           <Route path="/resume" element={<ResumeBuilder />} />
+          <Route path="/dashboard/*" element={<DashBoard />}/>
           <Route path="/blog" element={<div></div>} />
           <Route path="/about" element={<div></div>} />
         </Route>
