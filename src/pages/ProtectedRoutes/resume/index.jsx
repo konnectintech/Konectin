@@ -233,7 +233,7 @@ function ResumeBuilder() {
           <div className="flex flex-col justify-stretch gap-8">
             {FAQ.map((accordion, index) => (
               <div
-                className="flex gap-2 items-start gap-3"
+                className="flex gap-2 items-start border-red-600"
                 onClick={() => handleFAQ(index)}
                 key={index}
               >

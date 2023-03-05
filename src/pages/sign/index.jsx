@@ -3,31 +3,38 @@ import { googleIcon, konectinIcon, signImage } from "../../assets";
 import { CustomButton } from "../../components/button";
 import { Input } from "../../components/form";
 import * as FaIcon from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+// All Form Input and its detail
+const signForm = [
+  { legend: "Full Name", type: "text", placeholder: "e.g John Doe John" },
+  {
+    legend: "E-mail",
+    type: "email",
+    placeholder: "e.g JohnDaneJohn@gmail.com",
+  },
+  {
+    legend: "Password",
+    type: "password",
+    placeholder: "Minimum of 8 characters",
+  },
+  {
+    legend: "Confirm Password",
+    type: "password",
+    placeholder: "Minimum of 8 character",
+  },
+];
 
 function SignUp() {
-  // All Form Input and its detail
-  const signForm = [
-    { legend: "Full Name", type: "text", placeholder: "e.g John Doe John" },
-    {
-      legend: "E-mail",
-      type: "email",
-      placeholder: "e.g JohnDaneJohn@gmail.com",
-    },
-    {
-      legend: "Password",
-      type: "password",
-      placeholder: "Minimum of 8 characters",
-    },
-    {
-      legend: "Confirm Password",
-      type: "password",
-      placeholder: "Minimum of 8 character",
-    },
-  ];
-
+  const navigate = useNavigate();
   const [agreed, setAgreed] = useState(false);
   // check if you agreed with terms
+
+  // handle sign up
+
+  const handleSignUp = () => {
+    navigate("/resume/options");
+  };
 
   return (
     <section className="flex flex-col lg:flex-row min-h-screen gap-16 justify-between items-center">
@@ -91,7 +98,9 @@ function SignUp() {
           </div>
 
           <div className="text-center mt-6">
-            <CustomButton primary>Sign Up</CustomButton>
+            <CustomButton onClick={handleSignUp} primary>
+              Sign Up
+            </CustomButton>
             or
             <CustomButton>
               <img src={googleIcon} alt="continue with google" /> Continue with
