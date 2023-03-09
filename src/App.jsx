@@ -5,6 +5,9 @@ import ProtectedRoutes from "./pages/ProtectedRoutes";
 import Landing from "./pages/ProtectedRoutes/landing";
 import ResumeBuilder from "./pages/ProtectedRoutes/resume";
 import DashBoard from "./pages/ProtectedRoutes/DashBoard";
+import Options from "./pages/ProtectedRoutes/builder/options";
+import StartBuilder from "./pages/ProtectedRoutes/builder/start";
+import Builder from "./pages/ProtectedRoutes/builder/screens";
 
 function App() {
   return (
@@ -22,7 +25,10 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/internship" element={<div></div>} />
           <Route path="/resume" element={<ResumeBuilder />} />
-          <Route path="/dashboard/*" element={<DashBoard />}/>
+          <Route path="/resume/options" element={<Options />} />
+          <Route path="/resume/start" element={<StartBuilder />} />
+          <Route path="/resume/builder" element={<Builder />} />
+          <Route path="/dashboard/*" element={<DashBoard />} />
           <Route path="/blog" element={<div></div>} />
           <Route path="/about" element={<div></div>} />
         </Route>

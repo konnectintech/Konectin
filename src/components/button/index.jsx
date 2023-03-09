@@ -1,7 +1,8 @@
 // Create a custom components for the major buttons in the app
-export function CustomButton({ primary, children }) {
+export function CustomButton({ primary, children, onClick }) {
   return (
     <button
+      onClick={onClick}
       className={
         primary
           ? "w-full py-4 bg-primaryBtn text-white text-center rounded-md"
