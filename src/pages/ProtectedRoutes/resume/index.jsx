@@ -44,7 +44,9 @@ function ResumeBuilder() {
               the best possible start to your new Career...
             </p>
             <Link to="/signup" className="w-56 md:w-72">
-              <CustomButton primary>Sign up to get started</CustomButton>
+              <CustomButton primary colorType="secondary">
+                Sign up to get started
+              </CustomButton>
             </Link>
           </div>
           <div className="w-full md:w-1/2">

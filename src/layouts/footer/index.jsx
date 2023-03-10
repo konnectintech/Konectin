@@ -20,19 +20,31 @@ function Footer() {
 
             <nav className="flex flex-col gap-6 text-white text-sm">
               <div className="flex gap-4 items-center">
-                <img className="w-6" src={contactIcon} alt="Phone call" />
+                <img
+                  className="w-6 h-4 brightness-[500%]"
+                  src={contactIcon}
+                  alt="Phone call"
+                />
                 <a className="w-full" href="tel:03302438">
                   03302438
                 </a>
               </div>
               <div className="flex gap-4 items-center">
-                <img className="w-6" src={mailIcon} alt="Konectin mail" />
+                <img
+                  className="w-6 h-3 brightness-[500%]"
+                  src={mailIcon}
+                  alt="Konectin mail"
+                />
                 <a href="mailto:Konectincompany@gmail.com">
                   Konectincompany@gmail.com
                 </a>
               </div>
               <div className="flex gap-4 items-center">
-                <img className="w-6" src={locationIcon} alt="address" />
+                <img
+                  className="w-6 h-5 brightness-[500%]"
+                  src={locationIcon}
+                  alt="address"
+                />
                 <address>Lagos, Nigeria.</address>
               </div>
             </nav>
@@ -53,19 +65,19 @@ function Footer() {
           </nav>
         </div>
 
-        <div className="w-full text-center text-white py-6 md:flex justify-between items-center">
-          <div className="flex gap-4 items-center justify-center mb-6">
-            <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg">
+        <div className="w-full text-center text-white pb-10 md:py-6 md:flex justify-between items-center">
+          <div className="flex gap-4 items-center justify-center mb-6 md:mb-0">
+            <div className="w-10 h-10 flex items-center justify-center rounded-full border-2">
               <FaIcon.FaTwitter size="1.1rem" />
             </div>
-            <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg">
+            <div className="w-10 h-10 flex items-center justify-center rounded-full border-2">
               <FaIcon.FaFacebookF size="1rem" />
             </div>
-            <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg">
+            <div className="w-10 h-10 flex items-center justify-center rounded-full border-2">
               <FaIcon.FaLinkedinIn size="1rem" />
             </div>
           </div>
-          <p>A product of konectin</p>
+          <p className="mb-4 md:mb-0">A product of konectin</p>
           <p>&copy; 2022 Konectin Ltd. All rights reserved</p>
         </div>
       </div>

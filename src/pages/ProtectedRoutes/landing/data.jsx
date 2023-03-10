@@ -37,7 +37,7 @@ export const RecruitersGain = [
   },
 ];
 
-export const Blog = [
+export const BlogData = [
   {
     title: "5 advantages of Creating a well written cover letter",
     image: cardImage,
