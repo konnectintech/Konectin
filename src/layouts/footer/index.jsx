@@ -10,7 +10,7 @@ import { FooterLinks } from "./footerLinks";
 
 function Footer() {
   return (
-    <footer className="bg-secondaryBtn pt-16 pb-8 px-8 text-xs text-gray-200">
+    <footer className="bg-primary-600 pt-16 pb-8 px-8 text-xs text-gray-200">
       <div className="w-11/12 mx-auto max-w-screen-2xl flex flex-col justify-between items-center gap-8">
         <div className="w-full flex flex-col gap-8 md:gap-24 lg:gap-36 md:flex-row justify-start items-start pb-16 border-b border-white">
           <nav className="flex flex-col gap-12">

@@ -11,7 +11,7 @@ import { Blog, RecruitersGain } from "./data";
 
 function Landing() {
   return (
-    <main className="bg-primaryBg">
+    <main className="bg-neutral-1000">
       <section className="w-11/12 mx-auto max-w-screen-2xl flex flex-col gap-16">
         {/* Hero section */}
         <div className="flex flex-col gap-10 md:flex-row items-center justify-between">
@@ -19,7 +19,7 @@ function Landing() {
             <h1 className="text-4xl lg:text-6xl xl:text-7xl font-medium leading-tight">
               Take a step <br /> Closer to your <br />{" "}
               <font className="underdash">
-                dream <font className="text-primaryBtn">Job</font>
+                dream <font className="text-secondary-600">Job</font>
               </font>
             </h1>
             <p className="max-w-md md:max-w-lg">
@@ -30,7 +30,7 @@ function Landing() {
             <div className="w-48 md:w-60">
               <Link
                 to="/signup"
-                className="block w-full py-2 bg-primaryBtn text-white text-center rounded-md"
+                className="block w-full py-2 bg-secondary-600 text-white text-center rounded-md"
               >
                 Get Started
               </Link>
@@ -53,12 +53,12 @@ function Landing() {
             <div className="w-full md:w-fit flex flex-col xxs:flex-row gap-2 xs:gap-6 items-center justify-center md:justify-between">
               <Link
                 to="/signup"
-                className="w-full xxs:w-fit px-4 xs:px-0 xs:w-32 py-3 bg-primaryBtn text-white text-center rounded-md"
+                className="w-full xxs:w-fit px-4 xs:px-0 xs:w-32 py-3 bg-primary-500 text-white text-center rounded-md"
               >
                 Sign Up
               </Link>
               or
-              <button className="w-full xxs:w-fit px-4 xs:px-0 xs:w-60 py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primaryBtn border rounded-md">
+              <button className="w-full xxs:w-fit px-4 xs:px-0 xs:w-60 py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primary-500 border rounded-md">
                 <img src={googleIcon} alt="continue with google" /> Continue
                 with Google
               </button>
@@ -66,7 +66,7 @@ function Landing() {
           </div>
           <div className="text-right mt-2">
             Have an account already?{" "}
-            <Link to="/login" className="text-primaryBtn">
+            <Link to="/login" className="text-secondary-600">
               Login
             </Link>
           </div>
@@ -84,7 +84,9 @@ function Landing() {
           <div className="header--text">
             <h1 className="text-3xl mb-2">
               What{" "}
-              <font className="text-primaryBtn">Jobseekers & Recruiters</font>{" "}
+              <font className="text-secondary-600">
+                Jobseekers & Recruiters
+              </font>{" "}
               gain from us
             </h1>
             <p>
@@ -103,7 +105,7 @@ function Landing() {
                     key={index}
                     className="flex w-full flex-col gap-3 text-start items-start justify-center"
                   >
-                    <div className="w-10 h-10 bg-secondaryBg rounded-sm flex flex-col items-center justify-center">
+                    <div className="w-10 h-10 bg-secondary-200 rounded-sm flex flex-col items-center justify-center">
                       <img src={item.logo} alt={item.title} />
                     </div>
                     <h4 className="text-lg font-semibold">{item.title}</h4>
@@ -112,12 +114,12 @@ function Landing() {
                 ))}
               </div>
               <div className="w-full xs:w-fit flex flex-col xxs:flex-row gap-2 xs:gap-4 xs:items-center xs:justify-between text-sm">
-                <button className="px-8 py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primaryBtn border rounded-md">
+                <button className="px-8 py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primary-500 border rounded-md">
                   Learn More
                 </button>
                 <Link
                   to="/signup"
-                  className="px-8 py-2 bg-primaryBtn text-white text-center rounded-md"
+                  className="px-8 py-2 bg-primary-500 text-white text-center rounded-md"
                 >
                   Sign Up
                 </Link>
@@ -131,7 +133,7 @@ function Landing() {
           <div className="flex w-full md:w-8/12 flex-col gap-6 md:gap-10 text-start items-start justify-center">
             <div className="header--text">
               <h1 className="text-3xl mb-2">
-                About Our <font className="text-primaryBtn">Company</font>
+                About Our <font className="text-secondary-600">Company</font>
               </h1>
               <p>A brief Introduction to Konectin.</p>
             </div>
@@ -144,7 +146,7 @@ function Landing() {
               and user friendly resume builder to help you create that resume
               that will land you your dream job...
             </p>
-            <button className="px-8 py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primaryBtn border rounded-md">
+            <button className="px-8 py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primary-500 border rounded-md">
               Learn More
             </button>
           </div>
@@ -161,7 +163,7 @@ function Landing() {
         <div className="flex flex-col gap-8 items-center">
           <div className="header--text text-center">
             <h1 className="text-3xl mb-2">
-              <font className="text-primaryBtn">Konectin</font> Blog
+              <font className="text-secondary-600">Konectin</font> Blog
             </h1>
             <p>
               Career talk, tips and advice, articles around the employment world
@@ -194,7 +196,7 @@ function Landing() {
               </div>
             ))}
           </div>
-          <button className="px-8 py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primaryBtn border rounded-md">
+          <button className="px-8 py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primary-500 border rounded-md">
             Learn More
           </button>
         </div>
@@ -205,7 +207,8 @@ function Landing() {
         <div className="flex flex-col gap-8 items-center">
           <div className="w-10/12 mx-auto max-w-screen-lg text-center">
             <h1 className="text-3xl mb-2">
-              What others have <font className="text-primaryBtn">gained</font>
+              What others have{" "}
+              <font className="text-secondary-600">gained</font>
             </h1>
             <p>
               Read all about how Konectin has impacted other job seekers,
@@ -242,7 +245,7 @@ function Landing() {
               placeholder="Enter your email address"
               className="outline-0 border-0 text-sm md:text-md w-full md:flex-1 text-secondaryBtn"
             />
-            <button className="px-2 text-sm md:text-md sm:px-6 py-2 bg-primaryBtn text-white text-center rounded-md">
+            <button className="px-2 text-sm md:text-md sm:px-6 py-2 bg-secondary-600 text-white text-center rounded-md">
               Subscribe
             </button>
           </label>

@@ -30,15 +30,15 @@ function ResumeBuilder() {
   };
 
   return (
-    <main className="bg-[#EEEEEE]">
-      <section className="w-11/12 mx-auto max-w-screen-xl flex flex-col gap-16">
-        {/* Hero section */}
-        <div className="flex flex-col gap-10 md:flex-row items-center justify-between">
+    <main className="flex flex-col gap-2 bg-neutral-1000 text-neutral-100 relative">
+      {/* Hero section */}
+      <div className="bg-secondary-100 py-24 -translate-y-24">
+        <div className="w-11/12 mx-auto max-w-screen-xl flex flex-col gap-10 md:flex-row items-center justify-between">
           <div className="flex w-full md:w-1/2 flex-col gap-6 items-center text-center md:text-start md:items-start justify-center">
             <h1 className="text-4xl lg:text-6xl xl:text-7xl leading-tight w-9/12 font-semibold md:leading-snug">
               Step up your job search with a Perfect Resume
             </h1>
-            <p className="text-start max-w-md md:max-w-lg">
+            <p className="text-start text-neutral-300 max-w-md md:max-w-lg">
               Get matched easily with recruiters who see value in your
               experience amidst other great Career oppurtunities. We offer you
               the best possible start to your new Career...
@@ -51,7 +51,9 @@ function ResumeBuilder() {
             <img src={ResumeHeroImage} alt="build your resume" />
           </div>
         </div>
+      </div>
 
+      <section className="w-11/12 mx-auto max-w-screen-xl flex flex-col gap-16">
         {/* Resume Slider */}
         <div className="flex flex-col gap-12">
           <div className="flex items-center justify-between text-center gap-2 w-full max-w-screen-lg mx-auto">
@@ -61,8 +63,8 @@ function ResumeBuilder() {
                 onClick={() => setTemplate(index)}
                 className={`${
                   currentTemplate === index
-                    ? "text-primaryBtn"
-                    : "text-secondaryBtn"
+                    ? "text-primary-400"
+                    : "text-neutral-300"
                 } w-[60%] cursor-pointer flex flex-col gap-1
               `}
                 aria-current={currentTemplate === index ? "page" : undefined}
@@ -81,10 +83,10 @@ function ResumeBuilder() {
                   className={`
                   ${
                     currentTemplate === index
-                      ? "w-3/4 bg-primaryBtn"
-                      : "w-7/12 bg-secondaryBtn"
+                      ? "w-3/4 bg-secondary-600"
+                      : "w-7/12 bg-neutral-300"
                   }
-                  mx-auto h-0.5 mt-2
+                  mx-auto h-[1px] mt-2
                   `}
                 ></div>
               </div>
@@ -111,7 +113,7 @@ function ResumeBuilder() {
                   {template.title}
                 </h1>
 
-                <p className="w-9/12">{template.body}</p>
+                <p className="w-9/12 text-neutral-300">{template.body}</p>
 
                 <ResumeButton />
               </div>
@@ -145,7 +147,7 @@ function ResumeBuilder() {
             <h1 className="text-2xl font-semibold md:text-3xl md:leading-relaxed">
               Choose from our professional template
             </h1>
-            <p className="w-10/12">
+            <p className="w-10/12 text-neutral-300">
               At konectin, we believe that first impresions matter, that’s why
               we make sure you put your best foot forward with eye-catching
               resume designs that stand out from the rest.
@@ -175,7 +177,7 @@ function ResumeBuilder() {
             <h1 className="text-2xl font-semibold mb-2 md:text-3xl md:leading-relaxed">
               Follow useful tips from industry experts
             </h1>
-            <p>
+            <p className="text-neutral-300">
               At konectin, we believe that first impresions matter, that’s why
               we make sure you put your best foot forward with eye-catching
               resume designs that stand out from the rest
@@ -190,18 +192,18 @@ function ResumeBuilder() {
             Loved & used by individuals <br /> across the globe.
           </h1>
           <div className="flex flex-col gap-2">
-            <div className="grid sm:grid-cols-2 bg-white md:grid-cols-3 md:bg-[#EEE] lg:grid-cols-4 lg:bg-white gap-2 shadow-lg">
+            <div className="grid sm:grid-cols-2 bg-white md:grid-cols-3 md:bg-neutral-1000 lg:grid-cols-4 lg:bg-white gap-2 shadow-lg">
               {ResumeReview.map((review, index) => (
                 <div
-                  className="flex flex-col justify-between gap-4 bg-[#EEEEEE] px-4 py-6"
+                  className="flex flex-col justify-between gap-4 bg-neutral-1000 px-4 py-6"
                   key={index}
                 >
                   <div className="justify-self-start flex items-center gap-1">
-                    <FaStar color="#ff865e" size=".8rem" />
-                    <FaStar color="#ff865e" size=".8rem" />
-                    <FaStar color="#ff865e" size=".8rem" />
-                    <FaStar color="#ff865e" size=".8rem" />
-                    <FaStar color="#ff865e" size=".8rem" />
+                    <FaStar color="#FBB040" size=".8rem" />
+                    <FaStar color="#FBB040" size=".8rem" />
+                    <FaStar color="#FBB040" size=".8rem" />
+                    <FaStar color="#FBB040" size=".8rem" />
+                    <FaStar color="#FBB040" size=".8rem" />
                   </div>
                   <p className="justify-self-center text-sm w-11/12">
                     {review.text}
@@ -210,15 +212,17 @@ function ResumeBuilder() {
                     <img src={review.image} alt={review.name} />
                     <div className="flex flex-col text-sm">
                       <b>{review.name}</b>
-                      <small>{review.location}</small>
+                      <small className="text-neutral-300">
+                        {review.location}
+                      </small>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-            <small className="w-3/4 mt-3">
+            <small className="w-3/4 mt-3 text-neutral-200">
               Give us a Call 1-888-111-2222 and we can set you up, or{" "}
-              <Link className="text-primaryBtn underline" to="/">
+              <Link className="text-secondary-600 underline" to="/">
                 check our pricing plans
               </Link>
             </small>
@@ -228,7 +232,8 @@ function ResumeBuilder() {
         {/* Konectin Resume */}
         <div className="flex flex-col gap-8">
           <h1 className="text-2xl font-semibold mb-2 md:text-3xl md:leading-relaxed">
-            Konectin Resume Builder FAQ
+            <font className="text-secondary-600">Konectin</font> Resume Builder
+            FAQ
           </h1>
           <div className="flex flex-col justify-stretch gap-8">
             {FAQ.map((accordion, index) => (

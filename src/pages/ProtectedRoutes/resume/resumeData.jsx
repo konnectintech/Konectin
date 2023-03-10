@@ -11,21 +11,36 @@ export const SliderData = [
     body: "At konectin, we believe that first impresions matter, that’s why we make sure you put your best foot forward with eye-catching resume designs that stand out from the rest",
     button: "Build resume now",
     image: ResumeTemplateCrossImage,
-    title: "Create eye-catching resume that gets you the job.",
+    title: (
+      <>
+        Create <font className="text-secondary-600">eye-catching resume</font>{" "}
+        that gets you the job.
+      </>
+    ),
     type: "Resume Builder",
   },
   {
     body: "At konectin, we believe that first impresions matter, that’s why we make sure you put your best foot forward with eye-catching resume designs that stand out from the rest",
     button: "Build resume now",
     image: ResumeTemplateCrossImage,
-    title: "Designed specifically for you",
+    title: (
+      <>
+        <font className="text-secondary-600">Designed specifically</font> for
+        you
+      </>
+    ),
     type: "Resume Templates",
   },
   {
     body: "At konectin, we believe that first impresions matter, that’s why we make sure you put your best foot forward with eye-catching resume designs that stand out from the rest",
     button: "Build resume now",
     image: ResumeTemplateCrossImage,
-    title: "Follow useful tips from industry experts",
+    title: (
+      <>
+        Follow <font className="text-secondary-600">useful tips</font> from
+        industry experts
+      </>
+    ),
     type: "Resume Examples",
   },
 ];

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { konectinIcon } from "../../assets";
@@ -18,19 +18,16 @@ function Header() {
     { name: "Blog", link: "/blog" },
     { name: "About Us", link: "/about" },
   ];
-  const nav = useLocation();
+  const { pathname } = useLocation();
 
   const handleScroll = () => {
     const { prevScrollpos } = offset;
     const currentScrollPos = window.pageYOffset;
     const visible = prevScrollpos > currentScrollPos;
-    const pageHero = document.querySelector(".page-hero").clientHeight;
-    const darken = pageHero < currentScrollPos;
 
     setOffset({
       prevScrollpos: currentScrollPos,
       visible,
-      darken,
     });
   };
 
@@ -42,20 +39,24 @@ function Header() {
 
   return (
     <header
-      className={`
-        ${
-          isOpen || offset.prevScrollpos <= 50
-            ? "navbar"
-            : offset.visible && offset.prevScrollpos >= 50
-            ? "navbar-change"
-            : "nav-bar-hidden"
-        }
-      ${isOpen ? "bg-secondaryBtn" : "bg-primaryBg"} py-2 md:bg-primaryBg`}
+      className={
+        isOpen || offset.prevScrollpos <= 50
+          ? "navbar"
+          : offset.visible && offset.prevScrollpos >= 50
+          ? "navbar-change bg-primary-600"
+          : "nav-bar-hidden"
+      }
     >
-      <nav className="w-11/12 mx-auto max-w-screen-2xl flex justify-between items-center gap-16">
+      <nav className="w-11/12 mx-auto max-w-screen-2xl flex justify-between items-center gap-16 py-3">
         <Link to="/" className="relative z-30 nav-icon block">
           <img
-            className={isOpen ? "brightness-[500%] md:filter-none" : "konectin"}
+            className={
+              isOpen
+                ? "brightness-[500%] md:filter-none"
+                : offset.visible && offset.prevScrollpos >= 50
+                ? "brightness-[500%]"
+                : "konectin"
+            }
             src={konectinIcon}
           />
         </Link>
@@ -66,18 +67,36 @@ function Header() {
             <FaBars size="1.5rem" color="#D86842" />
           )}
         </nav>
+
+        <nav className="hidden gap-8 transistion-all md:flex flex-row text-sm">
+          {links.map((link, index) => (
+            <Link
+              className={
+                link.link === pathname
+                  ? "py-1 border-b border-secondary-600"
+                  : "py-1"
+              }
+              key={index}
+              to={link.link}
+            >
+              {link.name}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Mobile View  */}
         <nav
-          className={`${
+          className={
             isOpen
-              ? "flex flex-col w-3/4 h-full items-start pt-36 bg-secondaryBtn px-6 text-white fixed z-20 top-0 right-0"
+              ? "flex flex-col w-3/4 h-full items-start pt-36 bg-secondaryBtn px-6 text-white fixed z-20 top-0 right-0 md:hidden"
               : "hidden"
-          } gap-8 transistion-all md:flex md:flex-row md:relative md:h-fit md:w-fit md:text-black md:p-0 md:bg-transparent`}
+          }
         >
           {links.map((link, index) => (
             <Link
               className={
-                link.link === nav.pathname
-                  ? "py-1 border-b-2 border-primaryBtn"
+                link.link === pathname
+                  ? "py-1 border-b border-secondary-600"
                   : "py-1"
               }
               onClick={toggle}
@@ -92,7 +111,7 @@ function Header() {
         <nav className="hidden lg:block">
           <Link
             to="/login"
-            className="w-full text-sm px-6 py-2 text-black-500 border-primaryBtn border rounded-sm"
+            className="w-full text-sm px-6 py-2 text-black-500 border-secondary-500 border rounded-sm"
           >
             Log In
           </Link>
