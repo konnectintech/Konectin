@@ -4,16 +4,6 @@
 @tailwind utilities;
 @tailwind components;
 
-@layer base {
-  :root {
-    --bg-primary: 231 231 232;
-    --bg-secondary: 255 173 144;
-
-    --btn-primary: 216 104 66;
-    --btn-secondary: 128 52 26;
-  }
-}
-
 body {
   font-family: "Arial", sans-serif;
 }

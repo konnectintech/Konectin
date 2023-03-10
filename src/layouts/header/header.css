@@ -2,7 +2,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 5;
+  z-index: 15;
 }
 
 .navbar-change {
@@ -10,6 +10,15 @@ header {
   box-shadow: 0 1px 7px rgb(122, 122, 122);
   transform: translateY(0px);
   transition: all 0.5s linear;
+}
+
+.navbar-change a {
+  transition: all 0.5s linear;
+  color: #fff;
+}
+
+.navbar-change .border-secondary-500 {
+  border: 1px solid #fff !important;
 }
 
 .nav-bar-hidden {
