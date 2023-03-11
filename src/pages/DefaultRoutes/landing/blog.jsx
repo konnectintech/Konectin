@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function BlogSection({ data }) {
   return (
     <div className="flex flex-col gap-8 items-center">
@@ -16,13 +18,17 @@ function BlogSection({ data }) {
             key={index}
             className="bg-white rounded-xl overflow-hidden flex flex-col gap-3 pb-4 justify-between"
           >
-            <div className="bg-primaryBg">
-              <img className="w-full" src={blog.image} alt={blog.title} />
+            <div className="bg-neutral-1000 overflow-hidden">
+              <img
+                className="w-full hover:scale-105 duration-300"
+                src={blog.image}
+                alt={blog.title}
+              />
             </div>
 
             <h2 className="px-4 text-xl font-medium mb-3">{blog.title}</h2>
 
-            <div className="px-4 justify-self-end">
+            <div className="px-4 text-neutral-300 justify-self-end">
               <div className="flex gap-2 items-center mt-auto">
                 <img src={blog.info.bloggerImage} alt={blog.info.bloggerName} />
                 <small>{blog.info.bloggerName}</small>
@@ -33,9 +39,12 @@ function BlogSection({ data }) {
           </div>
         ))}
       </div>
-      <button className="px-8 py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primary-500 border rounded-md">
+      <Link
+        to="/blog"
+        className="px-8 py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primary-500 border rounded-md"
+      >
         Learn More
-      </button>
+      </Link>
     </div>
   );
 }

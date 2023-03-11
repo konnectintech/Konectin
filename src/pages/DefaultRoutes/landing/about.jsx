@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { sideImage } from "../../../assets";
 
 function AboutSection() {
@@ -19,9 +20,12 @@ function AboutSection() {
           builder to help you create that resume that will land you your dream
           job...
         </p>
-        <button className="px-8 py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primary-500 border rounded-md">
+        <Link
+          to="/about"
+          className="px-8 py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primary-500 border rounded-md"
+        >
           Learn More
-        </button>
+        </Link>
       </div>
       <div className="w-full md:w-4/12">
         <img

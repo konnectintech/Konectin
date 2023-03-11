@@ -19,38 +19,41 @@ function Footer() {
             </Link>
 
             <nav className="flex flex-col gap-6 text-white text-sm">
-              <div className="flex gap-4 items-center">
+              <a href="tel:03302438" className="flex gap-4 items-center">
                 <img
                   className="w-6 h-4 brightness-[500%]"
                   src={contactIcon}
                   alt="Phone call"
                 />
-                <a className="w-full" href="tel:03302438">
-                  03302438
-                </a>
-              </div>
-              <div className="flex gap-4 items-center">
+                <span>03302438</span>
+              </a>
+              <a
+                href="mailto:Konectincompany@gmail.com"
+                className="flex gap-4 items-center"
+              >
                 <img
                   className="w-6 h-3 brightness-[500%]"
                   src={mailIcon}
                   alt="Konectin mail"
                 />
-                <a href="mailto:Konectincompany@gmail.com">
-                  Konectincompany@gmail.com
-                </a>
-              </div>
-              <div className="flex gap-4 items-center">
+                <span>Konectincompany@gmail.com</span>
+              </a>
+              <a
+                href="https://maps.app.goo.gl/bYQgmTQcDAYWPpQn8"
+                target="_blank"
+                className="flex gap-4 items-center"
+              >
                 <img
                   className="w-6 h-5 brightness-[500%]"
                   src={locationIcon}
                   alt="address"
                 />
                 <address>Lagos, Nigeria.</address>
-              </div>
+              </a>
             </nav>
           </nav>
 
-          <nav className="grid grid-cols-2 lg:grid-cols-4 gap-16 py-4">
+          <nav className="grid grid-cols-2 lg:grid-cols-4 gap-16 py-4 md:py-0">
             {FooterLinks.map((nav, index) => (
               <nav key={index} className="flex flex-col gap-6">
                 <h2 className="text-white text-2xl">{nav.head}</h2>
