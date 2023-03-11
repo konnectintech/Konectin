@@ -24,10 +24,12 @@ function Header() {
     const { prevScrollpos } = offset;
     const currentScrollPos = window.pageYOffset;
     const visible = prevScrollpos > currentScrollPos;
+    const darken = visible && currentScrollPos >= 50;
 
     setOffset({
       prevScrollpos: currentScrollPos,
       visible,
+      darken,
     });
   };
 
@@ -40,31 +42,36 @@ function Header() {
   return (
     <header
       className={
-        isOpen || offset.prevScrollpos <= 50
+        isOpen
+          ? "navbar bg-primary-600"
+          : offset.prevScrollpos <= 50
           ? "navbar"
-          : offset.visible && offset.prevScrollpos >= 50
+          : offset?.darken
           ? "navbar-change bg-primary-600"
           : "nav-bar-hidden"
       }
     >
-      <nav className="w-11/12 mx-auto max-w-screen-2xl flex justify-between items-center gap-16 py-3">
+      <nav className="w-11/12 mx-auto max-w-screen-2xl flex justify-between items-center gap-16 py-4">
         <Link to="/" className="relative z-30 nav-icon block">
           <img
             className={
               isOpen
                 ? "brightness-[500%] md:filter-none"
-                : offset.visible && offset.prevScrollpos >= 50
+                : offset?.darken
                 ? "brightness-[500%]"
                 : "konectin"
             }
             src={konectinIcon}
           />
         </Link>
-        <nav onClick={toggle} className="md:hidden relative z-30">
+        <nav
+          onClick={toggle}
+          className="md:hidden relative z-30 cursor-pointer"
+        >
           {isOpen ? (
             <FaTimes size="1.5rem" color="#fff" />
           ) : (
-            <FaBars size="1.5rem" color="#D86842" />
+            <FaBars size="1.5rem" color={offset?.darken ? "#fff" : "#332a66"} />
           )}
         </nav>
 
@@ -88,7 +95,7 @@ function Header() {
         <nav
           className={
             isOpen
-              ? "flex flex-col w-3/4 h-full items-start pt-36 bg-secondaryBtn px-6 text-white fixed z-20 top-0 right-0 md:hidden"
+              ? "flex flex-col gap-8 w-3/4 h-full items-start pt-36 bg-primary-600 px-6 text-white fixed z-20 top-0 right-0 md:hidden"
               : "hidden"
           }
         >
@@ -111,7 +118,11 @@ function Header() {
         <nav className="hidden lg:block">
           <Link
             to="/login"
-            className="w-full text-sm px-6 py-2 text-black-500 border-secondary-500 border rounded-sm"
+            className={`w-full text-sm px-6 py-2 text-black-500 border-secondary-500 border rounded-sm ${
+              offset.darken
+                ? "hover:text-neutral-100 hover:bg-white"
+                : "hover:text-white hover:bg-secondary-500"
+            } transistion duration-500`}
           >
             Log In
           </Link>

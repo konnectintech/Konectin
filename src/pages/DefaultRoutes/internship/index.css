@@ -1,0 +1,16 @@
+.image-move {
+  width: 160px;
+  height: 20px;
+  background: url("coming soon.png") repeat-x 0 center;
+  animation: moveImage 30s infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes moveImage {
+  0% {
+    background-position: 0px center;
+  }
+  100% {
+    background-position: -800px center;
+  }
+}

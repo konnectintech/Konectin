@@ -125,7 +125,7 @@ function FieldForm({
       {children}
       {errorState ? <p className="text-red-600">{errorMessage}</p> : null}
       <div className="text-center flex flex-col gap-2">
-        <CustomButton disabled={!formValid} primary={true}>
+        <CustomButton disabled={!formValid} primary={true} colorType="primary">
           {formFor}
         </CustomButton>
         or

@@ -1,24 +1,23 @@
 import { signImage, konectinIcon } from "../../assets";
 import * as FaIcon from "react-icons/fa";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 function Sign() {
   return (
     <section className="flex flex-col lg:flex-row min-h-screen gap-8 lg:gap-16 justify-between items-center bg-neutral-1000">
-      <div className="hidden lg:block xl:w-6/12 relative h-screen">
+      <div className="hidden lg:block relative h-screen">
         <img
           className="w-full h-full"
           src={signImage}
           alt="sign in background"
         />
-        <h1 className="font-bold text-4xl xl:ml-16 pl-16 relative -top-1/2 z-10">
-          Find the Job made <br /> for you
-        </h1>
       </div>
 
       <div className="items-start lg:w-6/12 w-full sm:min-w-[500px] flex-1">
         <div className="p-6 lg:pr-16 max-w-[600px] min-h-[80vh] lg:p-0 mx-auto flex flex-col gap-4 items-start justify-center">
-          <img src={konectinIcon} alt="Konectin Logo" />
+          <Link to="/">
+            <img src={konectinIcon} alt="Konectin Logo" />
+          </Link>
           <Outlet />
         </div>
       </div>

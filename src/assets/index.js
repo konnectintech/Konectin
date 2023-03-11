@@ -37,6 +37,10 @@ import ResumeTemplateSampleImage from "./images/resume template.png";
 import ResumeTemplateSample1Image from "./images/resume template 1.png";
 import ResumeCTAImage from "./images/cta.png";
 
+// Internship Images
+import internHero from "./images/internship hero.png";
+import comingSoon from "./images/coming soon.png";
+
 export {
   // Icons
   contactIcon,
@@ -76,4 +80,8 @@ export {
   ResumeTemplateSampleImage,
   ResumeTemplateSample1Image,
   card3Image,
+
+  // Resume Images
+  internHero,
+  comingSoon,
 };
