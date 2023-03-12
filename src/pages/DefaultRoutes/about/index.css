@@ -1,0 +1,16 @@
+.custom-grid {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 4rem 2rem;
+}
+
+.custom-grid .bg-white {
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.custom-grid .bg-white img {
+  width: 50px;
+  height: 50px;
+}
