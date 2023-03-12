@@ -3,9 +3,9 @@ import BlogSection from "./blog";
 import HeroSection from "./hero";
 import RecruiterSection from "./recruiters";
 import SignPrompt from "./signPrompt";
-import MapSection from "./map";
 import NewsLetter from "./newsletter";
 import { BlogData, RecruitersGain } from "./data";
+import MapSection from "../../../components/map";
 
 function Landing() {
   return (

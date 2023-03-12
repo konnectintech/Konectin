@@ -1,13 +1,10 @@
-import { CustomButton } from "../../../components/button";
-import { Link } from "react-router-dom";
-import { ResumeHeroImage } from "../../../assets";
 import { FAQ, ResumeReview, SliderData } from "./resumeData";
 import FAQSection from "./faq";
 import TestimonialSection from "./testimonial";
 import TipSection from "./tips";
-import CTASection from "./cta";
 import SliderSection from "./slider";
 import HeroSection from "./hero";
+import CTASection from "../../../components/cta";
 
 function ResumeBuilder() {
   return (

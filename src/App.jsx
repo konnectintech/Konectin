@@ -15,6 +15,7 @@ import DefaultRoutes from "./pages/DefaultRoutes";
 import Landing from "./pages/DefaultRoutes/landing";
 import Internship from "./pages/DefaultRoutes/internship";
 import ResumeBuilder from "./pages/DefaultRoutes/resume";
+import About from "./pages/DefaultRoutes/about";
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
           <Route path="/internship" element={<Internship />} />
           <Route path="/resume" element={<ResumeBuilder />} />
           <Route path="/blog" element={<div className="h-screen"></div>} />
-          <Route path="/about" element={<div className="h-screen"></div>} />
+          <Route path="/about" element={<About />} />
         </Route>
 
         <Route
