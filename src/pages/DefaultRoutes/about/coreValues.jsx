@@ -14,17 +14,36 @@ function CoreValues({ data }) {
         </p>
       </div>
 
+      <div className="selector-grid">
+        {data?.map((selector, index) => (
+          <div key={index} className={`selectors selector${index + 1}`}>
+            <img
+              className="variant"
+              src={selector.variant}
+              alt={selector.name}
+            />
+            <img
+              className="w-1/2 rounded-full lg:w-3/12 mt-auto cursor-pointer border-2 border-transparent hover:border-secondary-500"
+              src={selector.rep}
+              alt={selector.name}
+            />
+          </div>
+        ))}
+      </div>
+
       <div className="custom-grid mx-auto">
-        {data?.map((value, index) => (
+        {data?.map((tab, index) => (
           <div
             key={index}
-            className="bg-white flex flex-col py-6 px-4 gap-4 items-center text-center rounded-md"
+            className={`bg-white tab${
+              index + 1
+            } flex flex-col py-6 px-4 gap-4 items-center text-center rounded-md`}
           >
-            <img src={value.icon} alt={value.name} />
+            <img src={tab.icon} alt={tab.name} />
             <h4 className="text-md font-semibold text-secondary-600 capitalize">
-              {value.name}
+              {tab.name}
             </h4>
-            <q className="text-xs leading-normal">{value.text}</q>
+            <q className="text-xs leading-normal">{tab.text}</q>
           </div>
         ))}
       </div>

@@ -15,7 +15,7 @@ export function CustomButton({
       className={`w-full ${
         primary
           ? `py-3 text-neutral-100 bg-${colorType}-${
-              disabled ? "400" : "600"
+              disabled ? "500" : "600"
             } text-center rounded-sm`
           : "py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primary-800 border rounded-md"
       }`}

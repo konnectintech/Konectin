@@ -19,6 +19,11 @@ import person2Icon from "./icons/person 2.png";
 import person3Icon from "./icons/person 3.png";
 import person4Icon from "./icons/person 4.png";
 import person5Icon from "./icons/person 5.svg";
+import variantIcon from "./icons/variant (1).svg";
+import variant2Icon from "./icons/variant (2).svg";
+import variant3Icon from "./icons/variant (3).svg";
+import variant4Icon from "./icons/variant (4).svg";
+import variant5Icon from "./icons/variant (5).svg";
 import teamIcon from "./icons/team.svg";
 
 // Sign Page Image
@@ -106,4 +111,9 @@ export {
   // About Images
   AboutHeroImage,
   OurVisionImage,
+  variantIcon,
+  variant2Icon,
+  variant3Icon,
+  variant4Icon,
+  variant5Icon,
 };
