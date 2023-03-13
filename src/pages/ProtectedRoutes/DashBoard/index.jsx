@@ -37,7 +37,7 @@ const DashBoard = () => {
 
   return (
     <div className='dash-container w-full flex gap-4 md:h-screen md:overflow-hidden'>
-        <div className="dashboard-navigation w-full pt-20 flex flex-col justify-between gap-20 px-8 text-white md:w-1/3 lg:w-1/4 bg-secondaryBtn" >
+        <div className="dashboard-navigation w-full pt-20 flex flex-col justify-between gap-20 px-8 text-white md:w-1/3 lg:w-1/4 bg-primary" >
             <div className="profile grid grid-cols-2 md:scale-95 lg:scale-100 items-center" >
                 <div className='profile-section flex items-center gap-2'>
                     <div className='img-section'>

@@ -41,17 +41,7 @@ function Header() {
 
   return (
     <header
-<<<<<<< HEAD
-      className={`
-        ${
-          isOpen || offset.prevScrollpos <= 50
-            ? "navbar"
-            : offset.visible && offset.prevScrollpos >= 50
-            ? "navbar-change"
-            : "nav-bar-hidden"
-        }
-      ${isOpen ? "bg-secondaryBtn" : "bg-primaryBg"} py-2 md:bg-secondaryBtn`}
-=======
+
       className={
         isOpen
           ? "navbar bg-primary-600"
@@ -61,7 +51,7 @@ function Header() {
           ? "navbar-change bg-primary-600"
           : "nav-bar-hidden"
       }
->>>>>>> 509e4b5f6a54943d9f873d34ae386d33e976ad4d
+
     >
       <nav className="w-11/12 mx-auto max-w-screen-2xl flex justify-between items-center gap-16 py-4">
         <Link to="/" className="relative z-30 nav-icon block">
@@ -105,15 +95,11 @@ function Header() {
 
         {/* Mobile View  */}
         <nav
-          className={
+          className={`${
             isOpen
               ? "flex flex-col gap-8 w-3/4 h-full items-start pt-36 bg-primary-600 px-6 text-white fixed z-20 top-0 right-0 md:hidden"
               : "hidden"
-<<<<<<< HEAD
           } gap-8 transistion-all md:flex md:flex-row md:relative md:h-fit md:w-fit md:text-white md:p-0 md:bg-transparent`}
-=======
-          }
->>>>>>> 509e4b5f6a54943d9f873d34ae386d33e976ad4d
         >
           {links.map((link, index) => (
             <Link
@@ -134,15 +120,12 @@ function Header() {
         <nav className="hidden lg:block">
           <Link
             to="/login"
-<<<<<<< HEAD
-            className="w-full text-sm px-6 py-2 text-white border-primaryBtn border rounded-sm"
-=======
+
             className={`w-full text-sm px-6 py-2 text-black-500 border-secondary-500 border rounded-sm ${
               offset.darken
                 ? "hover:text-neutral-100 hover:bg-white"
                 : "hover:text-white hover:bg-secondary-500"
             } transistion duration-500`}
->>>>>>> 509e4b5f6a54943d9f873d34ae386d33e976ad4d
           >
             Log In
           </Link>

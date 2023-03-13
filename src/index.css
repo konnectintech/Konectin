@@ -4,7 +4,7 @@
 @tailwind utilities;
 @tailwind components;
 
-<<<<<<< HEAD
+
 @layer base {
   :root {
     --bg-primary: 231 231 232;
@@ -27,8 +27,6 @@
 
 }
 
-=======
->>>>>>> 509e4b5f6a54943d9f873d34ae386d33e976ad4d
 body {
   font-family: "Arial", sans-serif;
 }

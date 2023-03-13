@@ -112,7 +112,7 @@ export {
   ResumeTemplateSample1Image,
   card3Image,
 
-<<<<<<< HEAD
+
   //Dashboard Images
   bell,
   job,
@@ -121,12 +121,12 @@ export {
   profile,
   logOut,
   chat,
-  application
-=======
+  application,
+
   // Blog Images
 
   // About Images
   AboutHeroImage,
   OurVisionImage,
->>>>>>> 509e4b5f6a54943d9f873d34ae386d33e976ad4d
+
 };
