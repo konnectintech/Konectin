@@ -7,10 +7,113 @@
 }
 
 .custom-grid .bg-white {
+  transition: all 300ms ease;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .custom-grid .bg-white img {
   width: 50px;
   height: 50px;
+}
+
+.selector-grid,
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+}
+
+.selector-grid .selectors,
+.team-grid .team-mate {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  text-align: center;
+  align-self: baseline;
+}
+
+.selector-grid .selectors:nth-of-type(odd),
+.team-grid .team-mate:nth-of-type(even) {
+  grid-row: 2/4;
+}
+
+.selector-grid .selectors:nth-of-type(even),
+.team-grid .team-mate:nth-of-type(odd) {
+  grid-row: 1/3;
+}
+
+.team-mate {
+  min-height: 400px;
+}
+
+.team-mate .flex {
+  transition: all 300ms ease;
+}
+
+.arrow {
+  position: absolute;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 300ms ease-in;
+}
+
+.team-mate .flex:hover .arrow {
+  position: relative;
+  opacity: 1;
+  display: block;
+  visibility: visible;
+}
+
+.selector-grid .selectors .variant {
+  animation: visibility 5s linear backwards;
+}
+
+@keyframes visibility {
+  from {
+    visibility: visible;
+    opacity: 0;
+  }
+  to {
+    visibility: hidden;
+    opacity: 1;
+  }
+}
+
+.selector-grid .selector1 .variant {
+  width: 70%;
+  transform: translateX(-15px);
+}
+
+.selector-grid .selector2 .variant {
+  transform: translateX(-25px);
+  animation-delay: 1s;
+  animation-duration: 4s;
+}
+
+.selector-grid .selector3 .variant {
+  transform: translateX(-15px);
+  animation-delay: 2s;
+  animation-duration: 3s;
+}
+
+.selector-grid .selector4 .variant {
+  transform: translateX(20px);
+  animation-delay: 3s;
+  animation-duration: 2s;
+}
+
+.selector-grid .selector5 .variant {
+  transform: translateX(10px);
+  animation-delay: 4s;
+  animation-duration: 1s;
+}
+
+.selector-grid:has(.selector1:hover) + .custom-grid .tab1,
+.selector-grid:has(.selector2:hover) + .custom-grid .tab2,
+.selector-grid:has(.selector3:hover) + .custom-grid .tab3,
+.selector-grid:has(.selector4:hover) + .custom-grid .tab4,
+.selector-grid:has(.selector5:hover) + .custom-grid .tab5 {
+  transform: translateY(-20px);
+  box-shadow: 5px 5px 20px rgba(252, 103, 11, 0.3);
 }
