@@ -1,8 +1,7 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { useState } from 'react';
 import Jobs from './Jobs';
-import { person2Icon } from '../../../assets';
+import { application, web, help, job, chat, profile, bell, logOut, person2Icon } from '../../../assets';
 import Application from './Application';
 import LogOut from './Log-out';
 import Profile from './Profile';
@@ -24,13 +23,22 @@ const DashBoard = () => {
         )
     }
 
+    function webIndex() {
+        const web = Array.from(document.getElementsByClassName('web-content'))
+        web.map(
+            (value) => {
+                value.classList.add('z-1')
+            }
+        )
+    }
+
     
     
 
   return (
-    <div className='dash-container w-full md:grid md:grid-cols-2'>
-        <div className="dashboard-navigation w-full pt-20 flex flex-col justify-between gap-10 px-8 text-white md:w-1/2 bg-secondaryBtn" >
-            <div className="profile grid grid-cols-2 grid-flow-col" >
+    <div className='dash-container w-full flex gap-4 md:h-screen md:overflow-hidden'>
+        <div className="dashboard-navigation w-full pt-20 flex flex-col justify-between gap-20 px-8 text-white md:w-1/3 lg:w-1/4 bg-secondaryBtn" >
+            <div className="profile grid grid-cols-2 md:scale-95 lg:scale-100 items-center" >
                 <div className='profile-section flex items-center gap-2'>
                     <div className='img-section'>
                         <img src={person2Icon} alt="male" style={{maxWidth: '20vw', height: '10vh'}}  />
@@ -41,45 +49,69 @@ const DashBoard = () => {
                     </div>
                 </div>
 
-                <div className='notification'>
-                    <div className='bell notify rounded-lg'></div>
-                    <div className='chat notify rounded-lg'></div>
+                <div className='notification flex justify-end  gap-2'>
+                    <div className='bell notify rounded-md bg-white p-2 flex items-center'>
+                    <img src={bell} alt="jobs available" />
+                    </div>
+                    <div className='chat notify rounded-md bg-white p-2 flex items-center'>
+                    <img src={chat} alt="jobs available" />
+                    </div>
                 </div>
             </div>
 
-            <div className='navigation-content flex flex-col gap-4'>
-                <Link to='/dashboard/jobs'><div className={`jobs item flex item-center p-3 pl-12 font-sm hover:bg-white hover:text-black hover:border-l-4 hover:border-red-700 rounded-sm`} onClick={(e) => {
+            <div className='navigation-content flex flex-col gap-5'>
+                <Link to='/dashboard/jobs'><div className={`jobs item flex item-center [&.active]:bg-white [&.active]:text-black [&.active]:border-l-4 [&.active]:border-red-700 gap-3 p-3 pl-12 font-sm hover:bg-white hover:text-black group hover:border-l-4 hover:border-red-700 rounded-sm`} onClick={(e) => {
                     items()
                     e.target.classList.toggle('active')
-                }}>Jobs</div></Link>
-                <Link to='/dashboard/application'><div className='application item flex item-center p-3 pl-12 font-sm hover:bg-white hover:text-black hover:border-l-4 hover:border-red-700 rounded-sm' onClick={(e) => {
+                    webIndex()
+                }}>
+                    <img src={job} alt="jobs available" className='invert sepia saturate-0 hue-rotate-305 brightness-103 contrast-103 group-hover:filter-none' />
+                    Jobs
+                </div></Link>
+                <Link to='/dashboard/application'><div className='application item gap-3 flex item-center [&.active]:bg-white [&.active]:text-black [&.active]:border-l-4 [&.active]:border-red-700 p-3 pl-12 font-sm hover:bg-white hover:text-black group hover:border-l-4 hover:border-red-700 rounded-sm' onClick={(e) => {
                     items()
                     e.target.classList.toggle('active')
-                }}>Application</div></Link>
-                <Link to='/dashboard/profile'><div className='profile item flex item-center p-3 pl-12 font-sm hover:bg-white hover:text-black hover:border-l-4 hover:border-red-700 rounded-sm' onClick={(e) => {
+                }}>
+                    <img src={application} alt="jobs available" className='invert sepia saturate-0 hue-rotate-305 brightness-103 contrast-103 group-hover:filter-none'/>{" "}
+                    Application
+                </div></Link>
+                <Link to='/dashboard/profile'><div className='profile item gap-3 flex item-center [&.active]:bg-white [&.active]:text-black [&.active]:border-l-4 [&.active]:border-red-700 p-3 pl-12 font-sm hover:bg-white hover:text-black group hover:border-l-4 hover:border-red-700 rounded-sm' onClick={(e) => {
                     items()
                     e.target.classList.toggle('active')
-                }}>Profile</div></Link>
-                <Link to='/dashboard/blog'><div className='blog item flex item-center p-3 pl-12 font-sm hover:bg-white hover:text-black hover:border-l-4 hover:border-red-700 rounded-sm' onClick={(e) => {
+                }}>
+                    <img src={profile} alt="jobs available" className='invert sepia saturate-0 hue-rotate-305 brightness-103 contrast-103 group-hover:filter-none'/>
+                    Profile
+                </div></Link>
+                <Link to='/dashboard/blog'><div className='blog item gap-3 flex item-center [&.active]:bg-white [&.active]:text-black [&.active]:border-l-4 [&.active]:border-red-700 p-3 pl-12 font-sm hover:bg-white hover:text-black group hover:border-l-4 hover:border-red-700 rounded-sm' onClick={(e) => {
                     items()
                     e.target.classList.toggle('active')
-                }}>Blogs</div></Link>
-                <Link to='/dashboard/help'><div className='help item flex item-center p-3 pl-12 font-sm hover:bg-white hover:text-black hover:border-l-4 hover:border-red-700 rounded-sm' onClick={(e) => {
+                }}>
+                    <img src={web} alt="jobs available" className='invert sepia saturate-0 hue-rotate-305 brightness-103 contrast-103 group-hover:filter-none'/>
+                    Blogs
+                </div></Link>
+                <Link to='/dashboard/help'><div className='help item gap-3 flex item-center [&.active]:bg-white [&.active]:text-black [&.active]:border-l-4 [&.active]:border-red-700 p-3 pl-12 font-sm hover:bg-white hover:text-black group hover:border-l-4 hover:border-red-700 rounded-sm' onClick={(e) => {
                     items()
                     e.target.classList.toggle('active')
-                }}>Help</div></Link>
+                }}>
+                    <img src={help} alt="jobs available" className='invert sepia saturate-0 hue-rotate-305 brightness-103 contrast-103 group-hover:filter-none'/>
+                    Help
+                </div></Link>
             </div>
 
             <div className='navigation-footer flex p-2 pl-12'>
-                <Link to='/dashboard/log-out'><div className="log-out" onClick={(e) => {
+                <Link to='/dashboard/log-out'><div className="log-out flex gap-3" onClick={(e) => {
                     items()
-                }}>Log-out</div></Link>
+                }}>
+                    <img src={logOut} alt="jobs available" className='invert sepia saturate-0 hue-rotate-305 brightness-103 contrast-103 group-hover:filter-none'/>
+                    Log-out
+                </div></Link>
             </div>
         </div>
         
-        <div className="web-content hidden md:grid pt-20" >
+        <div className="web-content absolute z-0 bg-white md:relative md:grid flex-1 py-20 overflow-y-scroll h-screen" >
+            <div className='hidden md:invisible'> {'<'} </div>
             <Routes>
-                <Route exact path='/jobs' element={<Jobs />}/>
+                <Route exact path='/jobs/*' element={<Jobs />}/>
                 <Route exact path='/application' element={<Application />} />
                 <Route exact path='/profile' element={<Profile />}/>
                 <Route exact path='/help' element={<Help />}/>

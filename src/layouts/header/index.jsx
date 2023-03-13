@@ -50,7 +50,7 @@ function Header() {
             ? "navbar-change"
             : "nav-bar-hidden"
         }
-      ${isOpen ? "bg-secondaryBtn" : "bg-primaryBg"} py-2 md:bg-primaryBg`}
+      ${isOpen ? "bg-secondaryBtn" : "bg-primaryBg"} py-2 md:bg-secondaryBtn`}
     >
       <nav className="w-11/12 mx-auto max-w-screen-2xl flex justify-between items-center gap-16">
         <Link to="/" className="relative z-30 nav-icon block">
@@ -71,7 +71,7 @@ function Header() {
             isOpen
               ? "flex flex-col w-3/4 h-full items-start pt-36 bg-secondaryBtn px-6 text-white fixed z-20 top-0 right-0"
               : "hidden"
-          } gap-8 transistion-all md:flex md:flex-row md:relative md:h-fit md:w-fit md:text-black md:p-0 md:bg-transparent`}
+          } gap-8 transistion-all md:flex md:flex-row md:relative md:h-fit md:w-fit md:text-white md:p-0 md:bg-transparent`}
         >
           {links.map((link, index) => (
             <Link
@@ -92,7 +92,7 @@ function Header() {
         <nav className="hidden lg:block">
           <Link
             to="/login"
-            className="w-full text-sm px-6 py-2 text-black-500 border-primaryBtn border rounded-sm"
+            className="w-full text-sm px-6 py-2 text-white border-primaryBtn border rounded-sm"
           >
             Log In
           </Link>

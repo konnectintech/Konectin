@@ -15,6 +15,17 @@ import person2Icon from "./icons/person 2.png";
 import person3Icon from "./icons/person 3.png";
 import person4Icon from "./icons/person 4.png";
 
+
+// Dashboard Icons
+import bell from "./icons/bell.svg";
+import job from "./icons/jobs.png";
+import help from "./icons/help.png";
+import logOut from "./icons/logout.png";
+import chat from "./icons/chat.png";
+import web from "./icons/web.png";
+import profile from "./icons/profile.png";
+import application from "./icons/application.png";
+
 // landing Page Images
 import cardImage from "./images/card.png";
 import card1Image from "./images/card 1.png";
@@ -76,4 +87,14 @@ export {
   ResumeTemplateSampleImage,
   ResumeTemplateSample1Image,
   card3Image,
+
+  //Dashboard Images
+  bell,
+  job,
+  help,
+  web,
+  profile,
+  logOut,
+  chat,
+  application
 };
