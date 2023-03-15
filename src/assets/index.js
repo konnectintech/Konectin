@@ -52,6 +52,20 @@ import ResumeTemplateSampleImage from "./images/resume template.png";
 import ResumeTemplateSample1Image from "./images/resume template 1.png";
 import ResumeCTAImage from "./images/cta.png";
 
+// Blog Images
+import blogHero from "./images/blog hero.png";
+import blogImage from "./images/blog 1.png";
+import blog1Image from "./images/blog 2.png";
+import blog2Image from "./images/blog 3.png";
+import blog3Image from "./images/blog 4.png";
+import blog4Image from "./images/blog 5.png";
+import blog5Image from "./images/blog 6.png";
+import blog6Image from "./images/blog 7.png";
+import blog7Image from "./images/blog 8.png";
+import BlogCTAImage from "./images/cta 1.png";
+import BlogCTA1Image from "./images/cta 2.png";
+import BlogCTA2Image from "./images/cta 3.png";
+
 // About Us Images
 import AboutHeroImage from "./images/about hero.png";
 import OurVisionImage from "./images/vision.png";
@@ -107,6 +121,18 @@ export {
   card3Image,
 
   // Blog Images
+  blogHero,
+  blogImage,
+  blog1Image,
+  blog2Image,
+  blog3Image,
+  blog4Image,
+  blog5Image,
+  blog6Image,
+  blog7Image,
+  BlogCTAImage,
+  BlogCTA1Image,
+  BlogCTA2Image,
 
   // About Images
   AboutHeroImage,
