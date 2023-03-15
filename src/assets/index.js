@@ -25,6 +25,9 @@ import variant3Icon from "./icons/variant (3).svg";
 import variant4Icon from "./icons/variant (4).svg";
 import variant5Icon from "./icons/variant (5).svg";
 import teamIcon from "./icons/team.svg";
+import likeIcon from "./icons/like.svg";
+import dislikeIcon from "./icons/dislike.svg";
+import bookmarkIcon from "./icons/bookmark.svg";
 
 // Sign Page Image
 import signImage from "./images/sign image.png";
@@ -93,6 +96,9 @@ export {
   person4Icon,
   person5Icon,
   teamIcon,
+  bookmarkIcon,
+  likeIcon,
+  dislikeIcon,
 
   // Sign Images
   signImage,
