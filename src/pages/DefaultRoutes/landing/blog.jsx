@@ -40,7 +40,7 @@ function BlogSection({ data }) {
         ))}
       </div>
       <Link
-        to="/blog"
+        to="/blog/all"
         className="px-8 py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primary-500 border rounded-md"
       >
         Learn More
