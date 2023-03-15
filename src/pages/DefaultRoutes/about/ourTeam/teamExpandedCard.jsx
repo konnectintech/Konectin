@@ -6,7 +6,10 @@ function TeamExpandedCard({ data, selected, onClose }) {
       {data?.map(
         (team, index) =>
           selected === index && (
-            <div className="h-screen bg-[#191A1Fcf] fixed w-full top-0 flex">
+            <div
+              key={index}
+              className="h-screen bg-[#191A1Fcf] fixed w-full top-0 flex"
+            >
               <div className="w-11/12 max-w-screen-xl m-auto bg-neutral-1000 flex items-stretch min-h-[50vh] relative">
                 <div className="bg-primary-600 w-1/3 flex flex-col gap-4 items-center">
                   <div className="mt-auto">
