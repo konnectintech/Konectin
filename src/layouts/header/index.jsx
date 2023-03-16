@@ -15,7 +15,7 @@ function Header() {
     { name: "Home", link: "/" },
     { name: "Internships", link: "/internship" },
     { name: "Resume Builder", link: "/resume" },
-    { name: "Blog", link: "/blog/all" },
+    { name: "Blog", link: "/blog" },
     { name: "About Us", link: "/about" },
   ];
   const { pathname } = useLocation();
@@ -79,12 +79,13 @@ function Header() {
           {links.map((link, index) => (
             <Link
               className={
+                (link.link === "/blog" && pathname.split("/")[1] === "blog") ||
                 link.link === pathname
                   ? "py-1 border-b border-secondary-600"
                   : "py-1"
               }
               key={index}
-              to={link.link}
+              to={link.link === "/blog" ? "/blog/all" : link.link}
             >
               {link.name}
             </Link>
