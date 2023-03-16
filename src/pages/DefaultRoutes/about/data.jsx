@@ -1,4 +1,5 @@
 import {
+  AboutProfileImage,
   bulbIcon,
   calendarIcon,
   person5Icon,
@@ -54,30 +55,35 @@ export const TeamData = [
   {
     name: "Jane Cooper",
     image: person5Icon,
+    profile: AboutProfileImage,
     title: "Founder",
     contact: { twitter: "/", facebook: "/", linkedin: "/" },
   },
   {
     name: "Jane Cooper",
     image: person5Icon,
+    profile: AboutProfileImage,
     title: "Founder",
     contact: { twitter: "/", facebook: "/", linkedin: "/" },
   },
   {
     name: "Jane Cooper",
     image: person5Icon,
+    profile: AboutProfileImage,
     title: "Founder",
     contact: { twitter: "/", facebook: "/", linkedin: "/" },
   },
   {
     name: "Jane Cooper",
     image: person5Icon,
+    profile: AboutProfileImage,
     title: "Founder",
     contact: { twitter: "/", facebook: "/", linkedin: "/" },
   },
   {
     name: "Jane Cooper",
     image: person5Icon,
+    profile: AboutProfileImage,
     title: "Founder",
     contact: { twitter: "/", facebook: "/", linkedin: "/" },
   },
