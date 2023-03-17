@@ -50,7 +50,7 @@ const Profile = () => {
           head: "Product Designer at Konectin",
           location: "Lagos, Nigeria . April 2022 - May 2023 ( 2 years)",
           text: "Full time Employment",
-          link: "see all"
+          link: "See all"
         }
       },
       {
@@ -59,11 +59,76 @@ const Profile = () => {
         edit: editIcon,
         editTxt: "Add Experience",
         experience: {
-          head: "Product Designer at Konectin",
-          location: "Lagos, Nigeria . April 2022 - May 2023 ( 2 years)",
-          text: "Full time Employment",
-          link: "see all"
+          head: "University of Ibadan",
+          location: "February 2015 - July 2020",
+          text: "Degreee : 2nd class upper divison",
+          link: "See all"
         }
+      },
+      {
+        head: "Certificate & Awards",
+        text: "Showcase your professional certifications to employers",
+        edit: editIcon,
+        editTxt: "Add Certification",
+        experience: {
+          head: "Google UX desing certification",
+          location: "July 2022",
+          text: "Professional Certificate",
+          link: "See all"
+        }
+      },
+      {
+        head: "Resume",
+        text: "You have the option of applying with your uploaded Resume or your Konetin Resume",
+        edit: editIcon,
+        editTxt: "Replace Resume",
+        experience: {
+          head: "My Konectin Resume",
+          location: "July 2022",
+          text: "Built on 7th July,2022.",
+          link: "Delete"
+        }
+      },
+      {
+        head: "Projects & Portfolio",
+        text: "Attach links to some of your best works to showcase to recruiters",
+        edit: editIcon,
+        editTxt: "Add Project",
+        experience: {
+          head: "My Portfolio",
+          location: "https// behance.com",
+          text: "https// behance.com",
+          link: "See all"
+        }
+      }
+    ],
+
+    skill = [
+      {
+        head: "Job Skills",
+        text: "Add skills you have acquired relevant to your career.",
+        edit: editIcon,
+        editTxt: "Add Skill",
+        skills: ["Usability Testing", "Wireframing", "High Fidelity designs", "User research", 
+        "Competitive audit", "Low fidelity designs"],
+        delete: editIcon
+      }
+    ],
+
+    letter = [
+      {
+        head: "Cover Letter",
+        text: "Keeping this section up to date will help employers & recruiters find you. They will know the field you are in, what your preferred industries are, and if you are actively looking...",
+        edit: editIcon,
+        editTxt: "Edit"
+      }
+    ],
+
+    download = [
+      {
+        head: "Download your Career Profile",
+        text: "Completing your Career Profile makes it easier for employers to find you and will also be sent to employers & recruiters when you apply for a job, so keeping it up to date is very important.",
+        editTxt: "Download"
       }
     ]
 
@@ -137,9 +202,27 @@ const Profile = () => {
                     <div className='text-black'>{value.experience.head}</div>
                     <div className='text-black'>{value.experience.text}</div>
                     <div className='text-black'>{value.experience.location}</div>
-                    <div className='text-black'>{value.experience.link}</div>
+                    <div className='text-secondary-600'>{value.experience.link}</div>
                     <div className='text-primary-400 flex items-center justify-end'>
                       <img className='p-0 m-0 w-10 inset-0 flex items-start' src={value.edit} alt="edit"/>
+                      {value.editTxt}
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+          )
+        }
+
+        {
+          download.map(
+            (value, index) => {
+              return(
+                <div className='flex flex-col py-8'>
+                  <div className='text-sm font-bold'>{value.head}</div>
+                  <div className='flex flex-col md:flex-row text-xs gap-4'>
+                    <div className='text-slate-600'>{value.text}</div>
+                    <div className='text-white font-bold text-sm bg-primary-600 rounded-lg flex justify-center p-2 items-center '>
                       {value.editTxt}
                     </div>
                   </div>
