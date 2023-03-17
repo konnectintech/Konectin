@@ -88,6 +88,7 @@ import BlogCTA2Image from "./images/cta 3.png";
 
 // About Us Images
 import AboutHeroImage from "./images/about hero.png";
+import AboutProfileImage from "./images/about profile.png";
 import OurVisionImage from "./images/vision.png";
 
 export {
@@ -176,6 +177,7 @@ export {
 
   // About Images
   AboutHeroImage,
+  AboutProfileImage,
   OurVisionImage,
   variantIcon,
   variant2Icon,
