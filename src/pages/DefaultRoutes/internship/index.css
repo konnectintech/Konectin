@@ -1,7 +1,8 @@
 .image-move {
   width: 160px;
   height: 20px;
-  background: url("coming soon.png") repeat-x 0 center;
+  background-repeat: repeat-x;
+  background-position: 0 center;
   animation: moveImage 30s infinite;
   animation-timing-function: linear;
 }

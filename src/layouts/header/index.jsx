@@ -15,7 +15,7 @@ function Header() {
     { name: "Home", link: "/" },
     { name: "Internships", link: "/internship" },
     { name: "Resume Builder", link: "/resume" },
-    { name: "Blog", link: "/blog" },
+    { name: "Blog", link: "/blog/all" },
     { name: "About Us", link: "/about" },
   ];
   const { pathname } = useLocation();

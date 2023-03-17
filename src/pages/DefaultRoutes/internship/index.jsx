@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { internHero } from "../../../assets";
+import { comingSoon, internHero } from "../../../assets";
 import NotifyForm from "../../../components/form/notifyForm";
 import "./index.css";
 
@@ -15,7 +15,12 @@ function Internship() {
       <div className="w-11/12 mx-auto max-w-screen-2xl min-h-[70vh] flex flex-col md:gap-16 lg:gap-48 md:flex-row items-center py-32">
         <div className="flex flex-col gap-6 font-semibold w-full my-auto md:w-9/12 lg:w-6/12">
           <div>
-            <div className="image-move mb-3"></div>
+            <div
+              style={{
+                backgroundImage: `url("${comingSoon}")`,
+              }}
+              className="image-move mb-3"
+            ></div>
             <h1 className="text-4xl lg:text-5xl xl:text-6xl leading-tight">
               <font className="text-secondary-500">Konectin</font> Internship
             </h1>

@@ -1,0 +1,8 @@
+.blog-grid-system {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.blog-grid-system .blog-card {
+  max-width: 400px;
+}

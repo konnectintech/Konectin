@@ -3,10 +3,10 @@ import CTASection from "../../../components/cta";
 import MapSection from "../../../components/map";
 import CoreValues from "./coreValues";
 import HeroSection from "./hero";
-import Team from "./ourTeam";
 import Vision from "./vision";
-import { Values } from "./data";
+import { TeamData, Values } from "./data";
 import "./index.css";
+import Team from "./ourTeam/ourTeam";
 
 function About() {
   return (
@@ -15,7 +15,7 @@ function About() {
       <CoreValues data={Values} />
       <CTASection />
       <Vision />
-      <Team />
+      <Team data={TeamData} />
       <MapSection />
     </main>
   );
