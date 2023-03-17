@@ -34,6 +34,12 @@ import chat from "./icons/chat.png";
 import web from "./icons/web.png";
 import profile from "./icons/profile.png";
 import application from "./icons/application.png";
+import arrowBack from "./icons/P1-Lighticons-line-289.png";
+import bookmark from "./icons/P1-Lighticons-line-057.png";
+import like from "./icons/P1-Lighticons-line-093.png";
+import dislike from "./icons/P1-Lighticons-line-094.png";
+import more from "./icons/P1-Lighticons-full-029.png";
+import editIcon from "./icons/P1-Lighticons-line-100.svg";
 
 // landing Page Images
 import cardImage from "./images/card.png";
@@ -122,6 +128,12 @@ export {
   logOut,
   chat,
   application,
+  arrowBack,
+  bookmark,
+  like,
+  dislike,
+  more,
+  editIcon,
 
   // Blog Images
 

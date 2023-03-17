@@ -95,11 +95,11 @@ function Header() {
 
         {/* Mobile View  */}
         <nav
-          className={`${
+          className={
             isOpen
               ? "flex flex-col gap-8 w-3/4 h-full items-start pt-36 bg-primary-600 px-6 text-white fixed z-20 top-0 right-0 md:hidden"
               : "hidden"
-          } gap-8 transistion-all md:flex md:flex-row md:relative md:h-fit md:w-fit md:text-white md:p-0 md:bg-transparent`}
+          } 
         >
           {links.map((link, index) => (
             <Link

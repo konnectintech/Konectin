@@ -32,8 +32,8 @@ const Jobs = () => {
 
   return (
     <div>
-      <div className='w-full p-10 flex flex-col'>
-        <div className='w-full p-10 bg-secondaryBtn text-white grid grid-cols-2 gap-10 items-center'>
+      <div className='w-full flex flex-col'>
+        <div className='w-full p-10 bg-primary-500 text-white grid grid-cols-2 gap-10 items-center'>
           <div className='flex justify-center'>
             <svg width={size} height={size}>
               <circle fill={circleFill} cx={circleSize} cy={circleSize} 
@@ -50,9 +50,9 @@ const Jobs = () => {
           <div className='tracking-wide'>Stand out by completing your <br/> Profile and applying with it..</div>
         </div>
         <div>
-          <div className='py-5'>
-            <h1 className='font-black text-2xl'>Hello John</h1>
-            <p>Welcome to your dashboard, checkout what's happening.</p>
+          <div className='py-8'>
+            <h1 className='text-md font-bold'>Hello John</h1>
+            <p className='text-sm'>Welcome to your dashboard, checkout what's happening.</p>
           </div>
           <div>
             <div>
@@ -79,7 +79,7 @@ const Jobs = () => {
             </div>
             <div className='py-4'>
               <Routes>
-                <Route path={'/latest-jobs'} element={<Latest />}/>
+                <Route path={'/'} element={<Latest />}/>
                 <Route path={'/recommended-jobs'} element={<Recommended />}/>
                 <Route path={'/saved-jobs'} element={<Saved />}/>
               </Routes>

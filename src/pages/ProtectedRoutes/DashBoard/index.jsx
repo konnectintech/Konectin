@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import Jobs from './Jobs';
-import { application, web, help, job, chat, profile, bell, logOut, person2Icon } from '../../../assets';
+import { application, web, help, job, chat, profile, bell, logOut, person2Icon, arrowBack } from '../../../assets';
 import Application from './Application';
 import LogOut from './Log-out';
 import Profile from './Profile';
@@ -27,17 +27,27 @@ const DashBoard = () => {
         const web = Array.from(document.getElementsByClassName('web-content'))
         web.map(
             (value) => {
+                value.classList.remove('-z-10')
                 value.classList.add('z-1')
             }
         )
     }
 
+    function backArrow() {
+        const web = Array.from(document.getElementsByClassName('web-content'))
+        web.map(
+            (value) => {
+                value.classList.remove('z-1')
+                value.classList.add('-z-10')
+            }
+        )
+    }
     
     
 
   return (
     <div className='dash-container w-full flex gap-4 md:h-screen md:overflow-hidden'>
-        <div className="dashboard-navigation w-full pt-20 flex flex-col justify-between gap-20 px-8 text-white md:w-1/3 lg:w-1/4 bg-primary" >
+        <div className="dashboard-navigation w-full flex flex-col justify-between gap-20 py-10 px-5 text-white md:w-1/3 lg:w-1/4 bg-primary-500" >
             <div className="profile grid grid-cols-2 md:scale-95 lg:scale-100 items-center" >
                 <div className='profile-section flex items-center gap-2'>
                     <div className='img-section'>
@@ -71,6 +81,7 @@ const DashBoard = () => {
                 <Link to='/dashboard/application'><div className='application item gap-3 flex item-center [&.active]:bg-white [&.active]:text-black [&.active]:border-l-4 [&.active]:border-red-700 p-3 pl-12 font-sm hover:bg-white hover:text-black group hover:border-l-4 hover:border-red-700 rounded-sm' onClick={(e) => {
                     items()
                     e.target.classList.toggle('active')
+                    webIndex()
                 }}>
                     <img src={application} alt="jobs available" className='invert sepia saturate-0 hue-rotate-305 brightness-103 contrast-103 group-hover:filter-none'/>{" "}
                     Application
@@ -78,6 +89,7 @@ const DashBoard = () => {
                 <Link to='/dashboard/profile'><div className='profile item gap-3 flex item-center [&.active]:bg-white [&.active]:text-black [&.active]:border-l-4 [&.active]:border-red-700 p-3 pl-12 font-sm hover:bg-white hover:text-black group hover:border-l-4 hover:border-red-700 rounded-sm' onClick={(e) => {
                     items()
                     e.target.classList.toggle('active')
+                    webIndex()
                 }}>
                     <img src={profile} alt="jobs available" className='invert sepia saturate-0 hue-rotate-305 brightness-103 contrast-103 group-hover:filter-none'/>
                     Profile
@@ -85,6 +97,7 @@ const DashBoard = () => {
                 <Link to='/dashboard/blog'><div className='blog item gap-3 flex item-center [&.active]:bg-white [&.active]:text-black [&.active]:border-l-4 [&.active]:border-red-700 p-3 pl-12 font-sm hover:bg-white hover:text-black group hover:border-l-4 hover:border-red-700 rounded-sm' onClick={(e) => {
                     items()
                     e.target.classList.toggle('active')
+                    webIndex()
                 }}>
                     <img src={web} alt="jobs available" className='invert sepia saturate-0 hue-rotate-305 brightness-103 contrast-103 group-hover:filter-none'/>
                     Blogs
@@ -92,6 +105,7 @@ const DashBoard = () => {
                 <Link to='/dashboard/help'><div className='help item gap-3 flex item-center [&.active]:bg-white [&.active]:text-black [&.active]:border-l-4 [&.active]:border-red-700 p-3 pl-12 font-sm hover:bg-white hover:text-black group hover:border-l-4 hover:border-red-700 rounded-sm' onClick={(e) => {
                     items()
                     e.target.classList.toggle('active')
+                    webIndex()
                 }}>
                     <img src={help} alt="jobs available" className='invert sepia saturate-0 hue-rotate-305 brightness-103 contrast-103 group-hover:filter-none'/>
                     Help
@@ -108,8 +122,17 @@ const DashBoard = () => {
             </div>
         </div>
         
-        <div className="web-content absolute z-0 bg-white md:relative md:grid flex-1 py-20 overflow-y-scroll h-screen" >
-            <div className='hidden md:invisible'> {'<'} </div>
+        <div className="web-content w-full absolute -z-10 bg-white 
+        md:relative md:grid flex-1 py-4 px-5 overflow-y-scroll h-screen" >
+            <div className='md:hidden cursor-pointer rounded-full 
+            w-16 items-center justify-center bg-slate-400 scale-75
+            mb-4 hover:bg-slate-300' onClick={
+                () => {
+                    backArrow()
+                }
+            }>
+                <img src={arrowBack} alt="previous page" /> 
+            </div>
             <Routes>
                 <Route exact path='/jobs/*' element={<Jobs />}/>
                 <Route exact path='/application' element={<Application />} />
