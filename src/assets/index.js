@@ -32,6 +32,23 @@ import bookmarkIcon from "./icons/bookmark.svg";
 // Sign Page Image
 import signImage from "./images/sign image.png";
 
+
+// Dashboard Icons
+import bell from "./icons/bell.svg";
+import job from "./icons/jobs.png";
+import help from "./icons/help.png";
+import logOut from "./icons/logout.png";
+import chat from "./icons/chat.png";
+import web from "./icons/web.png";
+import profile from "./icons/profile.png";
+import application from "./icons/application.png";
+import arrowBack from "./icons/P1-Lighticons-line-289.png";
+import bookmark from "./icons/P1-Lighticons-line-057.png";
+import like from "./icons/P1-Lighticons-line-093.png";
+import dislike from "./icons/P1-Lighticons-line-094.png";
+import more from "./icons/P1-Lighticons-full-029.png";
+import editIcon from "./icons/P1-Lighticons-line-100.svg";
+
 // landing Page Images
 import cardImage from "./images/card.png";
 import card1Image from "./images/card 1.png";
@@ -127,6 +144,23 @@ export {
   ResumeTemplateSample1Image,
   card3Image,
 
+
+  //Dashboard Images
+  bell,
+  job,
+  help,
+  web,
+  profile,
+  logOut,
+  chat,
+  application,
+  arrowBack,
+  bookmark,
+  like,
+  dislike,
+  more,
+  editIcon,
+
   // Blog Images
   blogHero,
   blogImage,
@@ -145,9 +179,13 @@ export {
   AboutHeroImage,
   AboutProfileImage,
   OurVisionImage,
+<<<<<<< HEAD
+
+=======
   variantIcon,
   variant2Icon,
   variant3Icon,
   variant4Icon,
   variant5Icon,
+>>>>>>> 924514c3819252bc59083e1f0cdb9964f718ebac
 };

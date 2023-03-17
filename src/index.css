@@ -4,6 +4,29 @@
 @tailwind utilities;
 @tailwind components;
 
+
+@layer base {
+  :root {
+    --bg-primary: 231 231 232;
+    --bg-secondary: 255 173 144;
+
+    --btn-primary: 216 104 66;
+    --btn-secondary: 38 32 77;
+  }
+}
+
+@layer utilities {
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+}
+
 body {
   font-family: "Arial", sans-serif;
 }
