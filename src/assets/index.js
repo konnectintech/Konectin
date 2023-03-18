@@ -179,13 +179,9 @@ export {
   AboutHeroImage,
   AboutProfileImage,
   OurVisionImage,
-<<<<<<< HEAD
-
-=======
   variantIcon,
   variant2Icon,
   variant3Icon,
   variant4Icon,
-  variant5Icon,
->>>>>>> 924514c3819252bc59083e1f0cdb9964f718ebac
+  variant5Icon
 };
