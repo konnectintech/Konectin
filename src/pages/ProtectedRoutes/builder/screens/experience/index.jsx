@@ -4,8 +4,7 @@ import Responsibilities from "./responsibilites";
 const EmploymentExperience = ({ next, previous }) => {
   const [activities, setActivities] = useState(true);
 
-  const handleEmploymentActivities = (e) => {
-    e.preventDefault();
+  const handleEmploymentActivities = () => {
     setActivities(!activities);
   };
   const form_classes =

@@ -27,7 +27,7 @@ const Suggestions = () => {
         <input
           type="text"
           placeholder="Type your job responsibility"
-          className="w-full border-b border-[#b2b3b48a] rounded-tl-lg rounded-tr-lg p-6 text-[11px] tracking-wide"
+          className="w-full border-b border-[#b2b3b48a] rounded-tl-lg rounded-tr-lg p-6 text-[11px] tracking-wide outline-none"
         />
         <button className="absolute right-10 ">
           <FaSearch siz="0.08rem" color="#d2d2d2" />

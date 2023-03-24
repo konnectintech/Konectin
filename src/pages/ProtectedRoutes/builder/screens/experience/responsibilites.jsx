@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TextEditor from "../../../../../components/editor";
-import WorkExperience from "./work-experience";
 import Suggestions from "./suggestions";
+import JobActivities from "./activities";
 
 const Responsibilities = ({ data, next, previous }) => {
   const [experience, setExperience] = useState(true);
@@ -57,7 +57,7 @@ const Responsibilities = ({ data, next, previous }) => {
           </div>
         </main>
       ) : (
-        <WorkExperience />
+        <JobActivities next={next} previous={previous} />
       )}
     </>
   );

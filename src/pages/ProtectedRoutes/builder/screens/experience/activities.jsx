@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaPlus, FaPen, FaTrash, FaCaretDown } from "react-icons/fa";
 
-const WorkExperience = ({ data, next, previous }) => {
+const JobActivities = ({ data, next, previous }) => {
   return (
     <main className="-mt-8 flex flex-col justify-between items-start mx-16">
       <h2 className="-mt-6 max-w-[30ch] text-3xl leading-tight font-semibold md:leading-snug">
@@ -55,14 +55,16 @@ const WorkExperience = ({ data, next, previous }) => {
             <FaCaretDown className="ml-1" color="#b2b3b4" size="0.5rem" />
           </button>
         </div>
-        <button className="flex items-center border-none outline-none mt-4 ">
-          <div className=" bg-[#665d99] p-2 border rounded-full">
-            <FaPlus color="#f5f5f5" size="0.6rem" />{" "}
-          </div>
-          <span className=" ml-3 font-extrabold text-sm text-[#8c8c8f]">
-            Add Company
-          </span>
-        </button>
+        <div>
+          <button className="flex items-center border-none outline-none mt-4 ">
+            <div className=" bg-[#665d99] p-2 border rounded-full">
+              <FaPlus color="#f5f5f5" size="0.6rem" />{" "}
+            </div>
+            <span className=" ml-3 font-extrabold text-sm text-[#8c8c8f]">
+              Add Company
+            </span>
+          </button>
+        </div>
       </section>
       <div className="w-full flex justify-between">
         <button
@@ -78,11 +80,14 @@ const WorkExperience = ({ data, next, previous }) => {
           Continue
         </button>
       </div>
-      <button className="text-[#FC670B] text-sm font-extralight tracking-[0.02rem] underline mx-auto mt-8">
+      <button
+        onClick={next}
+        className="text-[#FC670B] text-sm font-extralight tracking-[0.02rem] underline mx-auto mt-8"
+      >
         Skip this step
       </button>
     </main>
   );
 };
 
-export default WorkExperience;
+export default JobActivities;
