@@ -5,6 +5,7 @@ import BasicInformation from "./basicinfo";
 import Education from "./education";
 import EmploymentExperience from "./experience";
 import Skills from "./skills";
+import Bio from "./bio";
 
 const Builder = () => {
   const [resume_data, setResumeData] = useState({
@@ -34,6 +35,7 @@ const Builder = () => {
     <Education data={resume_data} next={next} previous={previous} />,
     <EmploymentExperience data={resume_data} next={next} previous={previous} />,
     <Skills data={resume_data} next={next} previous={previous} />,
+    <Bio data={resume_data} next={next} previous={previous} />,
   ];
 
   return (
