@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import BasicInformation from "./basic";
+import BasicInformation from "./basicinfo";
 import Education from "./education";
 import EmploymentExperience from "./experience";
+import Skills from "./skills";
 
 const Builder = () => {
   const [resume_data, setResumeData] = useState({
@@ -32,6 +33,7 @@ const Builder = () => {
     <BasicInformation data={resume_data} next={next} />,
     <Education data={resume_data} next={next} previous={previous} />,
     <EmploymentExperience data={resume_data} next={next} previous={previous} />,
+    <Skills data={resume_data} next={next} previous={previous} />,
   ];
 
   return (
