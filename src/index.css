@@ -4,19 +4,27 @@
 @tailwind utilities;
 @tailwind components;
 
-@layer utilities {
-  @variants responsive {
-    /* Hide scrollbar for Chrome, Safari and Opera */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
 
-    /* Hide scrollbar for IE, Edge and Firefox */
-    .no-scrollbar {
-      -ms-overflow-style: none; /* IE and Edge */
-      scrollbar-width: none; /* Firefox */
-    }
+@layer base {
+  :root {
+    --bg-primary: 231 231 232;
+    --bg-secondary: 255 173 144;
+
+    --btn-primary: 216 104 66;
+    --btn-secondary: 38 32 77;
   }
+}
+
+@layer utilities {
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
 }
 
 body {
