@@ -28,9 +28,6 @@ const StartBuilder = () => {
             </Link>
           </div>
         </div>
-        <button className=" absolute right-60 bottom-0 flex place-self-end px-20 py-3 rounded bg-[#332a66] text-[#eee]">
-          Next
-        </button>
       </section>
     </main>
   );

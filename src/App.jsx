@@ -33,6 +33,8 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/internship" element={<Internship />} />
           <Route path="/resume" element={<ResumeBuilder />} />
+          <Route path="/resume/options" element={<StartBuilder />} />
+
           <Route path="/blog/" element={<Blog />}>
             <Route path="/blog/:feed" element={<Feeds />} />
             <Route path="/blog/:feed/:title" element={<BlogContent />} />
