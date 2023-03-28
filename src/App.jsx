@@ -3,9 +3,9 @@ import { RequireAuth } from "./middleware/signAuth";
 
 import ProtectedRoutes from "./pages/ProtectedRoutes";
 import DashBoard from "./pages/ProtectedRoutes/DashBoard";
-import Options from "./pages/ProtectedRoutes/builder/options";
-import StartBuilder from "./pages/ProtectedRoutes/builder/start";
-import Builder from "./pages/ProtectedRoutes/builder/screens";
+import Options from "./pages/ProtectedRoutes/resume-builder";
+import StartBuilder from "./pages/ProtectedRoutes/resume-builder/start";
+import Builder from "./pages/ProtectedRoutes/resume-builder/screens";
 
 import Sign from "./pages/sign";
 import Login from "./pages/sign/login/login";
@@ -33,7 +33,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/internship" element={<Internship />} />
           <Route path="/resume" element={<ResumeBuilder />} />
-          <Route path="/resume/options" element={<StartBuilder />} />
+          <Route path="/resume/options" element={<Options />} />
 
           <Route path="/blog/" element={<Blog />}>
             <Route path="/blog/:feed" element={<Feeds />} />
