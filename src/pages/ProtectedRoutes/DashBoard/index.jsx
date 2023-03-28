@@ -114,9 +114,6 @@ const DashBoard = () => {
                     Log-out
                 </div></Link>
             </div>
-            <div className="chat notify rounded-md bg-white p-2 flex items-center">
-              <img src={chat} alt="jobs available" />
-            </div>
         </div>
         
         <div className="web-content w-full absolute -z-10 bg-white 
