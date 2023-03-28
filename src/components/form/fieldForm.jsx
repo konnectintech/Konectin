@@ -67,8 +67,6 @@ function FieldForm({
       const value = formReq.get(name);
       formArray[name] = value;
     }
-
-    console.log("Button clicked");
     handleSubmit(formArray);
   };
 
