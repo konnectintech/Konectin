@@ -33,7 +33,7 @@ const SkillsForm = () => {
         <Droppable droppableId="list-container">
           {(provided) => (
             <div
-              className="list-container h-80 overflow-y-auto no-scrollbar"
+              className="list-container h-80 border overflow-y-auto no-scrollbar mt-8"
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
@@ -41,12 +41,12 @@ const SkillsForm = () => {
                 <Draggable key={item} draggableId={item} index={index}>
                   {(provided) => (
                     <div
-                      className=" flex justify-between items-center rounded border border-[#b2b3b48a] font-extralight text-[#8C8C8F] mb-4 text-sm py-3 px-2 bg-white"
+                      className=" flex w-full justify-between items-center rounded-lg border border-[#b2b3b48a] font-extralight text-[#8C8C8F] mb-4 text-sm py-3 px-2 bg-white"
                       ref={provided.innerRef}
                       {...provided.dragHandleProps}
                       {...provided.draggableProps}
                     >
-                      <span className="flex items-center">
+                      <span className="flex items-center ">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"

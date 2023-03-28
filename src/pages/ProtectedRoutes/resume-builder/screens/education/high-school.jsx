@@ -7,12 +7,12 @@ const HighSchool = ({ data, next, previous }) => {
   return (
     <>
       <section className="flex justify-between items-center">
-        <div>
-          <h2 className="-mt-6 text-3xl leading-tight font-semibold md:leading-snug">
+        <div className="mx-auto">
+          <h2 className=" text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
             Add High School
           </h2>
 
-          <form className="w-10/12  mt-12">
+          <form className="w-full mt-12">
             <input
               className={form_classes}
               type="text"
@@ -78,20 +78,20 @@ const HighSchool = ({ data, next, previous }) => {
             </div>
           </form>
         </div>
-        <div className="flex flex-col mr-10">
-          <div className=" w-[300px] h-[222px] mb-6 border border-[#b2b3b4] shadow-lg rounded-lg"></div>
+        <div className=" hidden flex-col md:ml-10 md:flex">
+          <div className=" w-[300px] h-[422px] border border-[#b2b3b4] shadow- rounded-lg"></div>
         </div>
       </section>
-      <div className="w-8/12 mx-auto flex items-center justify-center">
+      <div className="w-8/12 flex flex-col justify-between mx-auto mt-12 gap-5 md:flex-row ">
         <button
           onClick={previous}
-          className="border w-10/12 font-semibold border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 mr-8"
+          className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
         >
           Back
         </button>
         <button
           onClick={next}
-          className="w-10/12 border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] font-semibold py-5 px-6 ml-8 bg-[#332A66]"
+          className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] mx-auto py-5 px-6 bg-[#332A66]"
         >
           Continue
         </button>

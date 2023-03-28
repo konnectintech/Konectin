@@ -3,16 +3,16 @@ import { FaPlus, FaPen, FaTrash, FaCaretDown } from "react-icons/fa";
 
 const JobActivities = ({ data, next, previous }) => {
   return (
-    <main className="-mt-8 flex flex-col justify-between items-start mx-16">
-      <h2 className="-mt-6 max-w-[30ch] text-3xl leading-tight font-semibold md:leading-snug">
+    <main className="-mt-8 flex flex-col justify-between items-start mx-auto md:mx-16">
+      <h2 className="-mt-6 max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
         Work Experience
       </h2>
       <p className=" text-[#66666a] text-sm tracking-[-0.01rem] mt-3 mb-5 max-w-2xl">
         Add, edit or delete your work experience.
       </p>
-      <section className="w-full h-[400px] flex flex-col mt-8">
-        <div className="w-10/12 flex justify-between mb-2">
-          <p className="font-bold text-[#66666a] text-sm">
+      <section className="w-full h-[400px] flex flex-col items-start mt-8 mx-auto">
+        <div className="w-10/12 flex flex-col md:justify-between md:flex-row  mb-2">
+          <p className="font-bold text-[#66666a] text-sm mb-4">
             Konectin | <span className="font-medium">Lagos, Lagos</span>
           </p>
           <button className="flex items-center border-none outline-none">
@@ -66,16 +66,16 @@ const JobActivities = ({ data, next, previous }) => {
           </button>
         </div>
       </section>
-      <div className="w-full flex justify-between">
+      <div className="w-full md:max-w-6xl flex flex-col justify-center mx-auto mt-2 gap-5 md:flex-row">
         <button
           onClick={previous}
-          className="border w-1/4 font-extrabold border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 mr-4"
+          className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
         >
           Back
         </button>
         <button
           onClick={next}
-          className=" w-1/4 border border-[#b2b3b48a] rounded-lg text-sm font-extrabold text-[#f5f5f5] py-5 px-6 bg-[#332A66]"
+          className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] mx-auto py-5 px-6 bg-[#332A66]"
         >
           Continue
         </button>
