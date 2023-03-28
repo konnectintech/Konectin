@@ -236,6 +236,40 @@ export const newBlogData = {
       source: "/blog",
     },
   ],
+  soft_skills: [
+    {
+      title: "Let’s Talk About Work, Life and Balance",
+      publisher: "Konectin",
+      timeFrame: "5 mins",
+      publishedAt: "01 January 2023",
+      image: blog2Image,
+      source: "/blog",
+    },
+    {
+      title: "Working Together To Keep Konectin Safe",
+      publisher: "Konectin",
+      timeFrame: "5 mins",
+      publishedAt: "01 January 2023",
+      image: blog3Image,
+      source: "/blog",
+    },
+    {
+      title: "Workplace Toxicity",
+      publisher: "Konectin",
+      timeFrame: "5 mins",
+      publishedAt: "01 January 2023",
+      image: blog1Image,
+      source: "/blog",
+    },
+    {
+      title: "Ace your interviews with these 5 steps",
+      publisher: "Konectin",
+      timeFrame: "5 mins",
+      publishedAt: "01 January 2023",
+      image: blogImage,
+      source: "/blog",
+    },
+  ],
   start_up: [
     {
       title: "Let’s Talk About Work, Life and Balance",
@@ -375,6 +409,40 @@ export const trendingBlogData = {
     },
   ],
   start_up: [
+    {
+      title: "Let’s Talk About Work, Life and Balance",
+      publisher: "Konectin",
+      timeFrame: "5 mins",
+      publishedAt: "01 January 2023",
+      image: blog2Image,
+      source: "/blog",
+    },
+    {
+      title: "Working Together To Keep Konectin Safe",
+      publisher: "Konectin",
+      timeFrame: "5 mins",
+      publishedAt: "01 January 2023",
+      image: blog3Image,
+      source: "/blog",
+    },
+    {
+      title: "Workplace Toxicity",
+      publisher: "Konectin",
+      timeFrame: "5 mins",
+      publishedAt: "01 January 2023",
+      image: blog1Image,
+      source: "/blog",
+    },
+    {
+      title: "Ace your interviews with these 5 steps",
+      publisher: "Konectin",
+      timeFrame: "5 mins",
+      publishedAt: "01 January 2023",
+      image: blogImage,
+      source: "/blog",
+    },
+  ],
+  soft_skills: [
     {
       title: "Let’s Talk About Work, Life and Balance",
       publisher: "Konectin",
