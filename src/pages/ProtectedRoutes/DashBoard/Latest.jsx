@@ -70,7 +70,7 @@ const Latest = () => {
             return(
               <div key={indexJob} className="flex flex-col gap-4 bg-slate-100 border-2 border-slate-400 p-2 rounded-lg">
                 <div className='flex items-start gap-2 overflow-hidden'>
-                  <div><img className='w-36' src={job.icon} alt="" srcset="" /></div>
+                  <div><img className='w-36 md:w-fit' src={job.icon} alt="" srcset="" /></div>
                   <div className='flex grow'>
                     {
                       job.role.map(
@@ -98,7 +98,7 @@ const Latest = () => {
                       )
                     }
                   </div>
-                  <div className='flex gap-2 md:flex-[0.2] w-fit justify-end'>
+                  <div className='flex gap-2 md:flex-1 w-fit justify-end'>
                     {
                       job.spec.map(
                         (spec) => {
