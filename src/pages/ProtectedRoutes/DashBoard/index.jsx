@@ -11,7 +11,7 @@ import BlogContent from "../../../pages/DefaultRoutes/blog/feeds/feed/blogConten
 import Feeds from "../../../pages/DefaultRoutes/blog/feeds";
 import './index.css'
 import { Suspense } from 'react'
-import { lazy } from 'react'
+
 
 const DashBoard = () => {
 
