@@ -95,8 +95,8 @@ const Application = () => {
         applications.map(
           (job, indexJob) => {
             return(
-              <div key={indexJob} className="flex flex-col gap-4 bg-slate-100 border-2 border-slate-400 p-4 rounded-lg">
-                <div className='flex items-start gap-4 overflow-hidden'>
+              <div key={indexJob} className="flex flex-col gap-4 bg-slate-100 border-2 border-slate-400 p-2 rounded-lg">
+                <div className='flex items-start gap-2 overflow-hidden'>
                   <div><img src={job.icon} alt="" srcset="" /></div>
                   <div className='grow'>
                     {
@@ -123,7 +123,7 @@ const Application = () => {
                     }
                   </div>
                   <div className='flex item-start'>
-                    <div className='font-[400] text-xs rounded-sm text-center p-3 bg-primary-500 text-white'>View more</div>
+                    <div className='font-[400] text-xs rounded-lg text-center p-2 py-4 bg-primary-500 text-white'>View more</div>
                     {
                       job.spec.map(
                         (spec) => {

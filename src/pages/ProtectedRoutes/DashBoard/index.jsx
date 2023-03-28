@@ -25,7 +25,7 @@ const DashBoard = () => {
   function webIndex() {
     const web = Array.from(document.getElementsByClassName("web-content"));
     web.map((value) => {
-      value.classList.remove("-z-10");
+      value.classList.remove("hidden");
       value.classList.add("z-1");
     });
   }
@@ -34,12 +34,12 @@ const DashBoard = () => {
     const web = Array.from(document.getElementsByClassName("web-content"));
     web.map((value) => {
       value.classList.remove("z-1");
-      value.classList.add("-z-10");
+      value.classList.add("hidden");
     });
   }
 
   return (
-    <div className='dash-container w-full flex gap-4 md:h-screen overflow-hidden '>
+    <div className='dash-container w-full flex gap-4 h-screen overflow-hidden '>
         <div className="dashboard-navigation w-full flex flex-col justify-between gap-20 py-10 px-5 text-white md:w-1/3 lg:w-1/4 md:bg-white md:text-black md:font-bold bg-primary-800" >
             <div className="profile grid grid-cols-2 md:scale-95 lg:scale-100 items-center" >
                 <div className='profile-section flex items-center gap-2'>
@@ -117,7 +117,7 @@ const DashBoard = () => {
             
         </div>
         
-        <div className="web-content w-full absolute -z-10 bg-white 
+        <div className="web-content w-full absolute hidden md:block bg-white 
         md:relative md:grid flex-1 py-4 px-5 overflow-y-scroll h-screen bg-neutral-600" >
             <div className='md:hidden cursor-pointer rounded-full 
             w-16 items-center justify-center bg-slate-400 scale-75
