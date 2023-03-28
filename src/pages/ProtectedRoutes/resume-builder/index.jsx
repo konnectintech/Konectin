@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const BuilderOption = ({ title, description, link }) => {
   return (
     <Link to={link}>
-      <div className=" w-[320px] md:w-[400px] h-[270px] border-2 mx-10 border-gray-400 rounded-lg bg-[#353535] flex flex-col justify-center items-center p-5">
+      <div className=" w-[320px] md:w-[400px] h-[220px] md:h-[270px] border-2 mx-10 border-gray-400 rounded-lg bg-[#353535] flex flex-col justify-center items-center p-5">
         <h3 className=" font-bold text-2xl mb-2 text-[#f5f5f5]">{title}</h3>
         <p className=" text-[12px] text-center text-[#f5f5f5]">{description}</p>
       </div>
