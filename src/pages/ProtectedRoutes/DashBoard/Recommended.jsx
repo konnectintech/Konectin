@@ -69,9 +69,9 @@ const Recommended = () => {
           (job, indexJob) => {
             return(
               <div key={indexJob} className="flex flex-col gap-4 bg-slate-100 border-2 border-slate-400 p-2 rounded-lg">
-                <div className='flex items-start gap-4 overflow-hidden'>
-                  <div><img src={job.icon} alt="" srcset="" /></div>
-                  <div className='flex-1'>
+                <div className='flex items-start gap-2 overflow-hidden'>
+                  <div><img className='w-36 md:w-fit' src={job.icon} alt="" srcset="" /></div>
+                  <div className='flex grow'>
                     {
                       job.role.map(
                         (role) => {
@@ -91,29 +91,29 @@ const Recommended = () => {
                                 </div>
                               </div>
                               <div className='text-slate-600 italic text-sm'>{role.timepost}</div>
-                              <div className='font-[600] text-slate-600 text-xs mt-3'>{role.brief}</div>
+                              <div className='font-[600] text-slate-600 text-xs mt-3 flex flex-wrap'>{role.brief}</div>
                             </div>
                           )
                         }
                       )
                     }
                   </div>
-                  <div className='grid gap-2 grid-flow-col flex-[0.4] md:flex-[]'>
+                  <div className='flex gap-2 md:flex-1 w-fit justify-end'>
                     {
                       job.spec.map(
                         (spec) => {
-                          return <img className='rounded-full bg-secondary-400' src={spec} alt="" />
+                          return <img className='rounded-full bg-secondary-400 w-1/4' src={spec} alt="" />
                         }
                       )
                     }
                   </div>
                 </div>
-                <div className='flex h-fit gap-2'>
+                <div className='flex gap-2'>
                   {
                     job.tag.map(
                       (tags, indexTag) => {
                         return(
-                          <div key={indexTag} className="bg-secondary-200 text-sm md:text-xs text-primary-500 font-[600] p-3 flex rounded-lg items-center">{tags}</div>
+                          <div key={indexTag} className="bg-secondary-200 text-sm text-primary-500 font-[600] p-3 flex rounded-lg items-center">{tags}</div>
                         )
                       }
                     )
