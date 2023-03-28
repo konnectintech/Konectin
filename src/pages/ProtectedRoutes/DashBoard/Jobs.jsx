@@ -80,6 +80,7 @@ const Jobs = () => {
             <div className='py-4'>
               <Routes>
                 <Route path={'/'} element={<Latest />}/>
+                <Route path={'/latest-jobs'} element={<Latest />}/>
                 <Route path={'/recommended-jobs'} element={<Recommended />}/>
                 <Route path={'/saved-jobs'} element={<Saved />}/>
               </Routes>

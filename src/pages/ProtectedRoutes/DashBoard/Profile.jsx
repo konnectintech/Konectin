@@ -1,5 +1,5 @@
-import React from 'react'
-import { editIcon } from '../../../assets'
+import React, { Suspense } from 'react'
+import { cancelIcon, circleProfile, editIcon, profileBg } from '../../../assets'
 
 const Profile = () => {
 
@@ -16,8 +16,8 @@ const Profile = () => {
     strokeLenoffset = strokeLen * ((100 - progress) / 100),
     user = [ 
       {
-        profileBg: "profile background",
-        profilePic: "profile picture",
+        profileBg: profileBg,
+        profilePic: circleProfile,
         name: "John Klostermann Doe",
         experience: "5 years",
         status: "Unemployed",
@@ -111,7 +111,7 @@ const Profile = () => {
         editTxt: "Add Skill",
         skills: ["Usability Testing", "Wireframing", "High Fidelity designs", "User research", 
         "Competitive audit", "Low fidelity designs"],
-        delete: editIcon
+        delete: cancelIcon
       }
     ],
 
@@ -157,9 +157,9 @@ const Profile = () => {
             (value, index) => {
               return(
                 <div className='user-details border-b-2 border-slate-400 py-8' key={index}>
-                  <div>{value.profileBg}</div>
-                  <div>{value.profilePic}</div>
-                 <div className='grid gap-2'>
+                  <div><img src={value.profileBg} alt="" srcset="" /></div>
+                  <div className='-mt-10 ml-8'><img src={value.profilePic} alt="" srcset="" /></div>
+                  <div className='grid gap-2'>
                     <div className='text-md font-bold'>{value.name}</div>
                     <div className='text-sm font-bold text-slate-600'>Experience: {value.experience}</div>
                     <div className='text-sm font-bold text-slate-600'>Employment Status: {value.status}</div>
@@ -203,6 +203,54 @@ const Profile = () => {
                     <div className='text-black'>{value.experience.text}</div>
                     <div className='text-black'>{value.experience.location}</div>
                     <div className='text-secondary-600'>{value.experience.link}</div>
+                    <div className='text-primary-400 flex items-center justify-end'>
+                      <img className='p-0 m-0 w-10 inset-0 flex items-start' src={value.edit} alt="edit"/>
+                      {value.editTxt}
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+          )
+        }
+
+        {
+          skill.map(
+            (value, index) => {
+              return(
+                <div className='flex flex-col py-8'>
+                  <div className='text-sm font-bold'>{value.head}</div>
+                  <div className='text-xs text-slate-600'>{value.text}</div>
+                  <div className='flex gap-2 text-xs flex-wrap py-4'>
+                    {
+                      value.skills.map(
+                        (skill, index) => {
+                          return <div className='border-secondary-600 border-2 p-2 items-center rounded-full flex gap-2'>
+                            {skill}
+                            <div><img src={value.delete} alt="delete" /></div>
+                          </div>
+                        }
+                      )
+                    }
+                  </div>
+                  <div className='text-primary-400 text-xs flex items-center justify-end'>
+                    <img className='p-0 m-0 w-10 inset-0 flex items-start' src={value.edit} alt="edit"/>
+                    {value.editTxt}
+                  </div>
+                </div>
+              )
+            }
+          )
+        }
+
+{
+          letter.map(
+            (value, index) => {
+              return(
+                <div className='flex flex-col py-8'>
+                  <div className='text-sm font-bold'>{value.head}</div>
+                  <div className='flex flex-col md:flex-row text-xs'>
+                    <div className='text-slate-600'>{value.text}</div>
                     <div className='text-primary-400 flex items-center justify-end'>
                       <img className='p-0 m-0 w-10 inset-0 flex items-start' src={value.edit} alt="edit"/>
                       {value.editTxt}

@@ -48,6 +48,13 @@ import like from "./icons/P1-Lighticons-line-093.png";
 import dislike from "./icons/P1-Lighticons-line-094.png";
 import more from "./icons/P1-Lighticons-full-029.png";
 import editIcon from "./icons/P1-Lighticons-line-100.svg";
+import profileLocation from "./icons/shapeloaction-profile.svg";
+import homeIcon from "./icons/Rectangle 2954.svg";
+import ninjaIcon from "./icons/Rectangle 2954 (1).svg";
+import arrowIcon from "./icons/Rectangle 2955.svg";
+import circleProfile from "./icons/Ellipse 97circle-profile.svg";
+import profileBg from "./icons/Rectangle 2952.svg";
+import cancelIcon from "./icons/ic_round-cancelcancle-profile (1).svg";
 
 // landing Page Images
 import cardImage from "./images/card.png";
@@ -160,6 +167,13 @@ export {
   dislike,
   more,
   editIcon,
+  profileLocation,
+  homeIcon,
+  ninjaIcon,
+  arrowIcon,
+  circleProfile,
+  profileBg,
+  cancelIcon,
 
   // Blog Images
   blogHero,
