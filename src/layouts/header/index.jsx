@@ -105,13 +105,13 @@ function Header() {
           {links.map((link, index) => (
             <Link
               className={
+                (link.link === "/blog" && pathname.split("/")[1] === "blog") ||
                 link.link === pathname
                   ? "py-1 border-b border-secondary-600"
                   : "py-1"
               }
-              onClick={toggle}
               key={index}
-              to={link.link}
+              to={link.link === "/blog" ? "/blog/all" : link.link}
             >
               {link.name}
             </Link>

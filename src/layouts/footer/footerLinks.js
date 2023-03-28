@@ -10,7 +10,7 @@ export const FooterLinks = [
   {
     head: "Company",
     sublinks: [
-      { link: "/blog", name: "Blog" },
+      { link: "/blog/all", name: "Blog" },
       { link: "/about", name: "About Us" },
     ],
   },

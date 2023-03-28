@@ -10,7 +10,7 @@ export function CustomButton({
 }) {
   return (
     <button
-      disabled={disabled}
+      // disabled={disabled}
       onClick={onClick}
       className={`w-full ${
         primary
