@@ -28,7 +28,7 @@ const Bio = ({ next, previous }) => {
 
             <div className=" w-[280px] h-[350px] border border-[#b2b3b4] shadow-lg rounded-lg"></div>
           </div>
-          <div className="w-full md:max-w-6xl flex flex-col justify-center mx-auto mt-12 gap-5 md:flex-row">
+          <div className="w-8/12 md:max-w-4xl flex flex-col justify-center mx-auto mt-12 gap-5 md:flex-row">
             <button
               onClick={previous}
               className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"

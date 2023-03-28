@@ -40,7 +40,7 @@ const Responsibilities = ({ data, next, previous }) => {
               </div>
             </div>
           </section>
-          <div className="w-8/12 flex flex-col justify-center mx-auto mt-12 gap-5 md:flex-row">
+          <div className="w-8/12 lg:max-w-4xl flex flex-col justify-center mx-auto mt-12 gap-5 md:flex-row">
             <button
               onClick={previous}
               className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"

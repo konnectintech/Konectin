@@ -91,7 +91,7 @@ const Education = ({ data, next, previous }) => {
               </span>
             </button>
           </div>
-          <div className="w-8/12 mx-auto flex flex-col md:flex-row items-center justify-center gap-5 md:gap-0">
+          <div className="w-full md:max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-center gap-5 md:gap-0">
             <button
               onClick={previous}
               className="border w-full border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-8"
