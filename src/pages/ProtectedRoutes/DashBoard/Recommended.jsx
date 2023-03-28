@@ -68,7 +68,7 @@ const Recommended = () => {
         jobset.map(
           (job, indexJob) => {
             return(
-              <div key={indexJob} className="flex flex-col gap-4 bg-slate-100 border-2 border-slate-400 p-4 rounded-lg">
+              <div key={indexJob} className="flex flex-col gap-4 bg-slate-100 border-2 border-slate-400 p-2 rounded-lg">
                 <div className='flex items-start gap-4 overflow-hidden'>
                   <div><img src={job.icon} alt="" srcset="" /></div>
                   <div className='flex-1'>
@@ -98,7 +98,7 @@ const Recommended = () => {
                       )
                     }
                   </div>
-                  <div className='grid gap-2 grid-flow-col flex-[0.2]'>
+                  <div className='grid gap-2 grid-flow-col flex-[0.4] md:flex-[]'>
                     {
                       job.spec.map(
                         (spec) => {
