@@ -14,40 +14,29 @@ import { Suspense } from 'react'
 
 
 const DashBoard = () => {
+  function items() {
+    const item = Array.from(document.getElementsByClassName("item"));
+    item.map((value) => {
+      value.classList.remove("active");
+      console.log(value.classList);
+    });
+  }
 
-    
-    function items() {
-        const item = Array.from(document.getElementsByClassName('item'))
-        item.map(
-            (value) => {
-                value.classList.remove('active')
-                console.log(value.classList)
+  function webIndex() {
+    const web = Array.from(document.getElementsByClassName("web-content"));
+    web.map((value) => {
+      value.classList.remove("-z-10");
+      value.classList.add("z-1");
+    });
+  }
 
-            }
-        )
-    }
-
-    function webIndex() {
-        const web = Array.from(document.getElementsByClassName('web-content'))
-        web.map(
-            (value) => {
-                value.classList.remove('-z-10')
-                value.classList.add('z-1')
-            }
-        )
-    }
-
-    function backArrow() {
-        const web = Array.from(document.getElementsByClassName('web-content'))
-        web.map(
-            (value) => {
-                value.classList.remove('z-1')
-                value.classList.add('-z-10')
-            }
-        )
-    }
-    
-    
+  function backArrow() {
+    const web = Array.from(document.getElementsByClassName("web-content"));
+    web.map((value) => {
+      value.classList.remove("z-1");
+      value.classList.add("-z-10");
+    });
+  }
 
   return (
     <div className='dash-container w-full flex gap-4 md:h-screen md:overflow-hidden '>
@@ -115,6 +104,7 @@ const DashBoard = () => {
                     Help
                 </div></Link>
             </div>
+          
 
             <div className='navigation-footer flex p-2 pl-12'>
                 <Link to='/dashboard/log-out'><div className="log-out flex gap-3 text-secondary-800 font-800" onClick={(e) => {
@@ -123,6 +113,9 @@ const DashBoard = () => {
                     <img src={logOut} alt="jobs available" className='invert sepia saturate-0 hue-rotate-100 contrast-108 md:invert-0 md:sepia-0 md:saturate-100 md:hue-rotate-188 md:brightness-101 md:contrast-102 group-hover:filter-none w-5 h-5'/>
                     Log-out
                 </div></Link>
+            </div>
+            <div className="chat notify rounded-md bg-white p-2 flex items-center">
+              <img src={chat} alt="jobs available" />
             </div>
         </div>
         
@@ -157,8 +150,10 @@ const DashBoard = () => {
                 <Route exact path='/log-out' element={<LogOut />}/>
             </Routes>
         </div>
+        
+      
     </div>
-  )
-}
+  );
+};
 
-export default DashBoard
+export default DashBoard;
