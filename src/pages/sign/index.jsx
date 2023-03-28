@@ -24,15 +24,27 @@ function Sign() {
 
       <div className="lg:hidden bg-primary-700 w-full text-center text-white py-6">
         <div className="flex gap-4 items-center justify-center mb-6">
-          <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg">
+          <a
+            href="https://twitter.com/konectin_you?t=LyVvMn4twNiZjYGU6F48pg&s=09"
+            target="_blank"
+            className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg"
+          >
             <FaIcon.FaTwitter size="1.1rem" />
-          </div>
-          <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg">
+          </a>
+          <a
+            href=""
+            target="_blank"
+            className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg"
+          >
             <FaIcon.FaFacebookF size="1rem" />
-          </div>
-          <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg">
+          </a>
+          <a
+            href="https://linkedin.com/company/konectin/"
+            target="_blank"
+            className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg"
+          >
             <FaIcon.FaLinkedinIn size="1rem" />
-          </div>
+          </a>
         </div>
         <p className="text-xs text-gray-200">
           A product of konectin

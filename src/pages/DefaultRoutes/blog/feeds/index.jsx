@@ -9,7 +9,7 @@ function Feeds() {
     { name: "All articles", link: "all" },
     { name: "Career", link: "career" },
     { name: "Start ups", link: "start_up" },
-    { name: "soft skills", link: "soft-skills" },
+    { name: "soft skills", link: "soft_skills" },
   ];
 
   const [newBlogs, setNewBlogs] = useState([]);
