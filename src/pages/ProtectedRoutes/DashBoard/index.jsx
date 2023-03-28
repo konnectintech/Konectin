@@ -39,7 +39,7 @@ const DashBoard = () => {
   }
 
   return (
-    <div className='dash-container w-full flex gap-4 md:h-screen md:overflow-hidden '>
+    <div className='dash-container w-full flex gap-4 md:h-screen overflow-hidden '>
         <div className="dashboard-navigation w-full flex flex-col justify-between gap-20 py-10 px-5 text-white md:w-1/3 lg:w-1/4 md:bg-white md:text-black md:font-bold bg-primary-800" >
             <div className="profile grid grid-cols-2 md:scale-95 lg:scale-100 items-center" >
                 <div className='profile-section flex items-center gap-2'>
@@ -114,6 +114,7 @@ const DashBoard = () => {
                     Log-out
                 </div></Link>
             </div>
+            
         </div>
         
         <div className="web-content w-full absolute -z-10 bg-white 

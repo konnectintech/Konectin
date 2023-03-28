@@ -68,10 +68,10 @@ const Latest = () => {
         jobset.map(
           (job, indexJob) => {
             return(
-              <div key={indexJob} className="flex flex-col gap-4 bg-slate-100 border-2 border-slate-400 p-4 rounded-lg">
-                <div className='flex items-start gap-4 overflow-hidden'>
-                  <div><img src={job.icon} alt="" srcset="" /></div>
-                  <div className='grow'>
+              <div key={indexJob} className="flex flex-col gap-4 bg-slate-100 border-2 border-slate-400 p-2 rounded-lg">
+                <div className='flex items-start gap-2 overflow-hidden'>
+                  <div><img className='w-36' src={job.icon} alt="" srcset="" /></div>
+                  <div className='flex grow'>
                     {
                       job.role.map(
                         (role) => {
@@ -91,18 +91,18 @@ const Latest = () => {
                                 </div>
                               </div>
                               <div className='text-slate-600 italic text-sm'>{role.timepost}</div>
-                              <div className='font-[600] text-slate-600 text-xs mt-3'>{role.brief}</div>
+                              <div className='font-[600] text-slate-600 text-xs mt-3 flex flex-wrap'>{role.brief}</div>
                             </div>
                           )
                         }
                       )
                     }
                   </div>
-                  <div className='grid gap-2 grid-flow-col flex-1'>
+                  <div className='flex gap-2 md:flex-[0.2] w-fit justify-end'>
                     {
                       job.spec.map(
                         (spec) => {
-                          return <img className='rounded-full bg-secondary-400' src={spec} alt="" />
+                          return <img className='rounded-full bg-secondary-400 w-1/4' src={spec} alt="" />
                         }
                       )
                     }
