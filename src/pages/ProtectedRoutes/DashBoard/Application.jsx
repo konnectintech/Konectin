@@ -1,11 +1,11 @@
 import React from 'react'
-import { more } from '../../../assets'
+import { arrowIcon, homeIcon, more, ninjaIcon } from '../../../assets'
 
 const Application = () => {
 
   const applications = [
     {
-      icon: "icon",
+      icon: homeIcon,
       role: [
         {
           head: "UX Reseacher",
@@ -21,7 +21,7 @@ const Application = () => {
     },
 
     {
-      icon: "icon",
+      icon: ninjaIcon,
       role: [
         {
           head: "UX Reseacher",
@@ -37,7 +37,7 @@ const Application = () => {
     },
 
     {
-      icon: "icon",
+      icon: arrowIcon,
       role: [
         {
           head: "UX Reseacher",
@@ -90,15 +90,15 @@ const Application = () => {
         <div className='text-sm'>Here is an overview of your applications so far.</div>
       </div>
 
-      <div className='w-full grid md:grid-cols-2 lg:grid-cols-3 gap-4'>
+      <div className='w-full grid gap-4'>
       {
         applications.map(
           (job, indexJob) => {
             return(
-              <div key={indexJob} className="flex flex-col gap-4 bg-slate-100 border-2 border-slate-400 py-4 px-1 rounded-lg items-center">
-                <div className='flex items-start gap-1 overflow-hidden'>
-                  <div>{job.icon}</div>
-                  <div className='flex-1'>
+              <div key={indexJob} className="flex flex-col gap-4 bg-slate-100 border-2 border-slate-400 p-2 rounded-lg">
+                <div className='flex items-start gap-2 overflow-hidden'>
+                  <div><img src={job.icon} alt="" srcset="" /></div>
+                  <div className='grow'>
                     {
                       job.role.map(
                         (role) => {
@@ -122,12 +122,12 @@ const Application = () => {
                       )
                     }
                   </div>
-                  <div className='grid grid-flow-col flex-[0.6]'>
-                    <div className='font-[400] text-xs rounded-sm text-center flex items-center px-1 bg-primary-500 text-white'>View more</div>
+                  <div className='flex item-start'>
+                    <div className='font-[400] text-xs rounded-lg text-center p-2 py-4 bg-primary-500 text-white'>View more</div>
                     {
                       job.spec.map(
                         (spec) => {
-                          return <img className='rounded-full rotate-90 w-20' src={spec} alt="" />
+                          return <img className='rounded-full rotate-90 w-5' src={spec} alt="" />
                         }
                       )
                     }
