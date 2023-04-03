@@ -19,6 +19,7 @@ import About from "./pages/DefaultRoutes/about";
 import Blog from "./pages/DefaultRoutes/blog";
 import BlogContent from "./pages/DefaultRoutes/blog/feeds/feed/blogContent";
 import Feeds from "./pages/DefaultRoutes/blog/feeds";
+import AIStarter from "./pages/ProtectedRoutes/resume-builder/screens-ai";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/internship" element={<Internship />} />
           <Route path="/resume" element={<ResumeBuilder />} />
+          <Route path="/resume/ai" element={<AIStarter />} />
           <Route path="/resume/options" element={<Options />} />
 
           <Route path="/blog/" element={<Blog />}>
@@ -49,9 +51,6 @@ function App() {
             </RequireAuth>
           }
         >
-          <Route path="/resume/options" element={<Options />} />
-          <Route path="/resume/start" element={<StartBuilder />} />
-          <Route path="/resume/builder" element={<Builder />} />
           <Route path="/dashboard/*" element={<DashBoard />} />
         </Route>
       </Routes>
