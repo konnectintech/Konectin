@@ -1,10 +1,7 @@
-import { useState } from "react";
 import * as FaIcon from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-function Agreement() {
-  const [agreed, setAgreed] = useState(false);
-
+function Agreement({ agreed, setAgreed }) {
   return (
     <div className="flex md:justify-start gap-2">
       {/* Agreed buttton */}

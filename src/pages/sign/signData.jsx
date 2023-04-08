@@ -57,7 +57,7 @@ export const signUpForm = [
 
 export const loginForm = [
   {
-    id: "fullname",
+    id: "email",
     icon: (
       <MdIcons.MdPerson
         className="absolute -translate-y-1/2 top-1/2 right-3 pb-2"
@@ -65,9 +65,9 @@ export const loginForm = [
         size="1.7rem"
       />
     ),
-    legend: "Full Name",
-    placeholder: "e.g John Doe",
-    type: "text",
+    legend: "Email",
+    placeholder: "e.g JohnDoe122@gmail.com",
+    type: "email",
   },
   {
     id: "password",

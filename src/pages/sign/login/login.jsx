@@ -1,15 +1,31 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { FieldForm } from "../../../components/form/";
 import ForgetPassword from "./forgetPassword";
 import { loginForm } from "../signData";
+import axios from "axios";
+import { getLoginStatus } from "../../../middleware/signAuth";
 
 function Login() {
-  const [errorState, setErrorState] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const navigate = useNavigate();
+  const userIsLogged = getLoginStatus();
+
+  useEffect(() => {
+    if (userIsLogged) navigate("/dashboard/profile");
+  }, [userIsLogged]);
+
   const handleSubmit = (data) => {
-    console.log(data);
+    axios
+      .post("http://localhost:5000/user/login", data)
+      .then(async (res) => {
+        const userData = await res.data.data;
+        const userToken = await res.data.token;
+        localStorage.setItem("User", JSON.stringify(userData));
+        localStorage.setItem("UserToken", userToken);
+      })
+      .catch((err) => setErrorMessage(err.response.data.message));
   };
 
   return (
@@ -23,7 +39,6 @@ function Login() {
           handleSubmit={handleSubmit}
           params={loginForm}
           formFor="Sign in"
-          errorState={errorState}
           errorMessage={errorMessage}
         >
           <ForgetPassword />
