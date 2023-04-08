@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import * as MdIcons from "react-icons/md";
 import { googleIcon } from "../../assets";
 import { CustomButton } from "../button";
+import { ErrorModal } from "./modal";
 import { validateField, validateForm } from "./validator";
 
 function FieldForm({
   handleSubmit,
   params,
   formFor,
-  errorState,
+
   errorMessage,
   children,
 }) {
@@ -75,6 +76,7 @@ function FieldForm({
       onSubmit={submitHandler}
       className="w-full flex flex-col mt-2 items-stretch text-xs md:text-sm gap-6"
     >
+      {errorMessage && <ErrorModal text={errorMessage} />}
       <div className="flex flex-col gap-4">
         {params?.map((formField, index) => (
           <div key={index}>
@@ -121,7 +123,6 @@ function FieldForm({
         ))}
       </div>
       {children}
-      {errorState ? <p className="text-red-600">{errorMessage}</p> : null}
       <div className="text-center flex flex-col gap-2">
         <CustomButton disabled={!formValid} primary={true} colorType="primary">
           {formFor}

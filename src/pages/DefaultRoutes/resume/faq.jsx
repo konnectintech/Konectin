@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 function FAQSection({ data }) {
   const [isOpen, setOpen] = useState();
@@ -27,9 +26,7 @@ function FAQSection({ data }) {
                 {accordion.question}?
               </div>
               {isOpen === index && (
-                <Link to="/dashboard/profile" className="text-sm w-[80%]">
-                  {accordion.answer}
-                </Link>
+                <div className="text-sm w-[80%]">{accordion.answer}</div>
               )}
             </div>
           </div>

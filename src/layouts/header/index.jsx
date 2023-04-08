@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { konectinIcon } from "../../assets";
@@ -18,6 +18,7 @@ function Header() {
     { name: "Blog", link: "/blog" },
     { name: "About Us", link: "/about" },
   ];
+
   const { pathname } = useLocation();
 
   const handleScroll = () => {
@@ -41,7 +42,6 @@ function Header() {
 
   return (
     <header
-
       className={
         isOpen
           ? "navbar bg-primary-600"
@@ -51,7 +51,6 @@ function Header() {
           ? "navbar-change bg-primary-600"
           : "nav-bar-hidden"
       }
-
     >
       <nav className="w-11/12 mx-auto max-w-screen-2xl flex justify-between items-center gap-16 py-4">
         <Link to="/" className="relative z-30 nav-icon block">
@@ -100,7 +99,7 @@ function Header() {
             isOpen
               ? "flex flex-col gap-8 w-3/4 h-full items-start pt-36 bg-primary-600 px-6 text-white fixed z-20 top-0 right-0 md:hidden"
               : "hidden"
-          } 
+          }
         >
           {links.map((link, index) => (
             <Link
@@ -121,7 +120,6 @@ function Header() {
         <nav className="hidden lg:block">
           <Link
             to="/login"
-
             className={`w-full text-sm px-6 py-2 text-black-500 border-secondary-500 border rounded-sm ${
               offset.darken
                 ? "hover:text-neutral-100 hover:bg-white"
