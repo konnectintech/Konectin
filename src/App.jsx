@@ -20,6 +20,7 @@ import Blog from "./pages/DefaultRoutes/blog";
 import BlogContent from "./pages/DefaultRoutes/blog/feeds/feed/blogContent";
 import Feeds from "./pages/DefaultRoutes/blog/feeds";
 import RouteIdentifier from "./layouts/routeIdentifier";
+import VerifyMail from "./pages/sign/signup/verifyMail";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
           </Route>
+          <Route path="/verify-mail" element={<VerifyMail />} />
 
           <Route element={<DefaultRoutes />}>
             <Route path="/" element={<Landing />} />
