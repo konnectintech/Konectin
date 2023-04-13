@@ -1,17 +1,49 @@
+import axios from "axios";
+import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FieldForm } from "../../../components/form";
+import { getLoginStatus } from "../../../middleware/signAuth";
 import { signUpForm } from "../signData";
 import Agreement from "./agreement";
 
 function SignUp() {
-  const [errorState, setErrorState] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [agreed, setAgreed] = useState(false);
+
   const navigate = useNavigate();
+  const userIsLogged = getLoginStatus();
+
+  useEffect(() => {
+    if (userIsLogged) navigate("/dashboard/profile");
+  }, [userIsLogged]);
+
+  useEffect(() => {
+    if (agreed) {
+      setErrorMessage("");
+    }
+  }, [agreed]);
 
   // handle sign up
-  const handleSignUp = () => {
-    navigate("/resume/options");
+  const handleSignUp = (data) => {
+    if (agreed) {
+      axios
+        .post("http://localhost:5000/user/register", data)
+        .then(async (res) => {
+          const userData = await res.data.data;
+          const userToken = await res.data.token;
+          localStorage.setItem("User", JSON.stringify(userData));
+          localStorage.setItem("UserToken", userToken);
+          setTimeout(() => {
+            navigate("/verify-mail");
+          }, 1000);
+        })
+        .catch((err) => setErrorMessage(err.response.data.message));
+    } else {
+      setErrorMessage(
+        "Please read and agreed with our terms and condition to continue"
+      );
+    }
   };
 
   return (
@@ -28,10 +60,9 @@ function SignUp() {
           handleSubmit={handleSignUp}
           params={signUpForm}
           formFor="Sign up"
-          errorState={errorState}
           errorMessage={errorMessage}
         >
-          <Agreement />
+          <Agreement agreed={agreed} setAgreed={setAgreed} />
         </FieldForm>
 
         {/* Log In Link */}

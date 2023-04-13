@@ -74,7 +74,7 @@ const Application = () => {
             <circle fill={circleFill} cx={circleSize} cy={circleSize} 
             strokeWidth={strokeSize} stroke={strokeCirce1} r={rad}/>
             <circle fill={circleFill} cy={circleSize} 
-            cx={circleSize} strokeWidth={strokeSize} strokeLinecap={strokeLen} 
+            cx={circleSize} strokeWidth={strokeSize}
             stroke={strokeCirce2} r={rad} strokeDasharray={strokeLen} 
             strokeDashoffset={strokeLenoffset} strokeLinecap={strokeCap} 
             style={{transformOrigin: "center", transform: "rotate(-90deg)"}} />

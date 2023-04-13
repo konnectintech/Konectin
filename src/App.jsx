@@ -20,15 +20,20 @@ import Blog from "./pages/DefaultRoutes/blog";
 import BlogContent from "./pages/DefaultRoutes/blog/feeds/feed/blogContent";
 import Feeds from "./pages/DefaultRoutes/blog/feeds";
 import AIStarter from "./pages/ProtectedRoutes/resume-builder/screens-ai";
+import RouteIdentifier from "./layouts/routeIdentifier";
+import VerifyMail from "./pages/sign/signup/verifyMail";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Sign />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-        </Route>
+        <Route element={<RouteIdentifier />}>
+          <Route element={<Sign />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+          </Route>
+          <Route path="/verify-mail" element={<VerifyMail />} />
+
 
         <Route element={<DefaultRoutes />}>
           <Route path="/" element={<Landing />} />
@@ -37,21 +42,25 @@ function App() {
           <Route path="/resume/ai" element={<AIStarter />} />
           <Route path="/resume/options" element={<Options />} />
 
-          <Route path="/blog/" element={<Blog />}>
-            <Route path="/blog/:feed" element={<Feeds />} />
-            <Route path="/blog/:feed/:title" element={<BlogContent />} />
+            <Route path="/blog/" element={<Blog />}>
+              <Route path="/blog/:feed" element={<Feeds />} />
+              <Route path="/blog/:feed/:title" element={<BlogContent />} />
+            </Route>
+            <Route path="/about" element={<About />} />
           </Route>
-          <Route path="/about" element={<About />} />
-        </Route>
 
-        <Route
-          element={
-            <RequireAuth>
-              <ProtectedRoutes />
-            </RequireAuth>
-          }
-        >
-          <Route path="/dashboard/*" element={<DashBoard />} />
+          <Route
+            element={
+              <RequireAuth>
+                <ProtectedRoutes />
+              </RequireAuth>
+            }
+          >
+            <Route path="/resume/options" element={<Options />} />
+            <Route path="/resume/start" element={<StartBuilder />} />
+            <Route path="/resume/builder" element={<Builder />} />
+            <Route path="/dashboard/*" element={<DashBoard />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

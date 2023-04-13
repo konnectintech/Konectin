@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { konectinIcon } from "../../assets";
@@ -18,6 +18,7 @@ function Header() {
     { name: "Blog", link: "/blog" },
     { name: "About Us", link: "/about" },
   ];
+
   const { pathname } = useLocation();
 
   const handleScroll = () => {

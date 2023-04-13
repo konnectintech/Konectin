@@ -4,7 +4,6 @@
 @tailwind utilities;
 @tailwind components;
 
-
 @layer base {
   :root {
     --bg-primary: 231 231 232;
@@ -16,15 +15,14 @@
 }
 
 @layer utilities {
-  
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-
 }
 
 body {
@@ -34,6 +32,15 @@ body {
 main {
   padding-top: 85px;
   padding-bottom: 4rem;
+}
+
+input:-webkit-autofill {
+  -webkit-background-clip: text;
+}
+
+input[type="tel"]:-webkit-autofill {
+  outline: 1px solid #fd853c;
+  -webkit-background-clip: unset;
 }
 
 .underdash {
