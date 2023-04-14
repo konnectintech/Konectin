@@ -19,6 +19,7 @@ import About from "./pages/DefaultRoutes/about";
 import Blog from "./pages/DefaultRoutes/blog";
 import BlogContent from "./pages/DefaultRoutes/blog/feeds/feed/blogContent";
 import Feeds from "./pages/DefaultRoutes/blog/feeds";
+import AIStarter from "./pages/ProtectedRoutes/resume-builder/screens-ai";
 import RouteIdentifier from "./layouts/routeIdentifier";
 import VerifyMail from "./pages/sign/signup/verifyMail";
 
@@ -33,11 +34,13 @@ function App() {
           </Route>
           <Route path="/verify-mail" element={<VerifyMail />} />
 
-          <Route element={<DefaultRoutes />}>
-            <Route path="/" element={<Landing />} />
-            <Route path="/internship" element={<Internship />} />
-            <Route path="/resume" element={<ResumeBuilder />} />
-            <Route path="/resume/options" element={<Options />} />
+
+        <Route element={<DefaultRoutes />}>
+          <Route path="/" element={<Landing />} />
+          <Route path="/internship" element={<Internship />} />
+          <Route path="/resume" element={<ResumeBuilder />} />
+          <Route path="/resume/ai" element={<AIStarter />} />
+          <Route path="/resume/options" element={<Options />} />
 
             <Route path="/blog/" element={<Blog />}>
               <Route path="/blog/:feed" element={<Feeds />} />

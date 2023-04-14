@@ -109,6 +109,7 @@ function Header() {
                   ? "py-1 border-b border-secondary-600"
                   : "py-1"
               }
+              onClick={toggle}
               key={index}
               to={link.link === "/blog" ? "/blog/all" : link.link}
             >
