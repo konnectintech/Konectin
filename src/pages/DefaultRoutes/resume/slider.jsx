@@ -12,7 +12,7 @@ function SliderSection({ data }) {
     return () => {
       clearInterval(interval);
     };
-  }, [currentTemplate]);
+  }, [currentTemplate, data.length]);
 
   return (
     <section className="w-11/12 mx-auto max-w-screen-xl flex flex-col gap-16">

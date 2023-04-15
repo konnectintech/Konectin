@@ -5,6 +5,7 @@ import contactIcon from "./icons/contact.svg";
 import fileIcon from "./icons/file.svg";
 import googleIcon from "./icons/google.svg";
 import guardIcon from "./icons/guard.svg";
+import konectinLogo from "./icons/konectin.png";
 import konectinIcon from "./icons/konectin.svg";
 import locationIcon from "./icons/location.svg";
 import mailIcon from "./icons/mail.svg";
@@ -31,7 +32,6 @@ import bookmarkIcon from "./icons/bookmark.svg";
 
 // Sign Page Image
 import signImage from "./images/sign image.png";
-
 
 // Dashboard Icons
 import bell from "./icons/bell.svg";
@@ -106,6 +106,7 @@ export {
   fileIcon,
   googleIcon,
   guardIcon,
+  konectinLogo,
   konectinIcon,
   locationIcon,
   mailIcon,
@@ -150,7 +151,6 @@ export {
   ResumeTemplateSampleImage,
   ResumeTemplateSample1Image,
   card3Image,
-
 
   //Dashboard Images
   bell,
@@ -197,5 +197,5 @@ export {
   variant2Icon,
   variant3Icon,
   variant4Icon,
-  variant5Icon
+  variant5Icon,
 };

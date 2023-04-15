@@ -3,11 +3,10 @@ import { newsletterBg } from "../../../assets";
 import { NotifyForm } from "../../../components/form";
 
 function NewsLetter() {
-  const [errorState, setErrorState] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleNewsLetter = (data) => {
-    console.log(data);
+    setErrorMessage("You have successfully joined the konectin family");
   };
 
   return (
@@ -31,7 +30,6 @@ function NewsLetter() {
           <NotifyForm
             handleSubmit={handleNewsLetter}
             formFor="Subscribe"
-            errorState={errorState}
             errorMessage={errorMessage}
           />
         </div>

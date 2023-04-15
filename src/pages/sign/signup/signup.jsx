@@ -1,22 +1,23 @@
 import axios from "axios";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FieldForm } from "../../../components/form";
-import { getLoginStatus } from "../../../middleware/signAuth";
+import { GetLoginStatus } from "../../../middleware/signAuth";
 import { signUpForm } from "../signData";
 import Agreement from "./agreement";
+import Preloader from "../../../components/preloader";
 
 function SignUp() {
   const [errorMessage, setErrorMessage] = useState("");
   const [agreed, setAgreed] = useState(false);
+  const [isloading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  const userIsLogged = getLoginStatus();
+  const userIsLogged = GetLoginStatus();
 
   useEffect(() => {
     if (userIsLogged) navigate("/dashboard/profile");
-  }, [userIsLogged]);
+  }, [userIsLogged, navigate]);
 
   useEffect(() => {
     if (agreed) {
@@ -27,6 +28,7 @@ function SignUp() {
   // handle sign up
   const handleSignUp = (data) => {
     if (agreed) {
+      setLoading(true);
       axios
         .post("http://localhost:5000/user/register", data)
         .then(async (res) => {
@@ -34,11 +36,16 @@ function SignUp() {
           const userToken = await res.data.token;
           localStorage.setItem("User", JSON.stringify(userData));
           localStorage.setItem("UserToken", userToken);
+
+          setLoading(false);
           setTimeout(() => {
             navigate("/verify-mail");
           }, 1000);
         })
-        .catch((err) => setErrorMessage(err.response.data.message));
+        .catch((err) => {
+          setErrorMessage(err.response.data.message);
+          setLoading(false);
+        });
     } else {
       setErrorMessage(
         "Please read and agreed with our terms and condition to continue"
@@ -48,6 +55,7 @@ function SignUp() {
 
   return (
     <>
+      {isloading && <Preloader />}
       <div>
         <h1 className="text-3xl font-semibold lg:text-4xl lg:font-normal">
           Create an account...

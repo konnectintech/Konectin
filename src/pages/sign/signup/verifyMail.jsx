@@ -4,9 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { konectinIcon } from "../../../assets";
 import { CustomButton } from "../../../components/button";
 import { ErrorModal, SuccessModal } from "../../../components/form/modal";
+import Preloader from "../../../components/preloader";
 
 function VerifyMail() {
   const [code, setCode] = useState("");
+  const [isloading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [modal, popModal] = useState("");
 
@@ -21,20 +23,26 @@ function VerifyMail() {
   const resendCode = () => {
     const url = `http://localhost:5000/user/requestEmail?userId=${user._id}`;
 
+    setLoading(true);
     axios
       .post(url, { email: user.email })
       .then(async (res) => {
-        const status = await res.status;
+        const status = res.status;
         if (status === 200) {
+          setLoading(false);
           popModal("A code has been resent to your mail");
           setTimeout(() => {
             popModal("");
           }, 2000);
         } else {
+          setLoading(false);
           setErrorMessage(res.data.message);
         }
       })
-      .catch((err) => setErrorMessage(err.response.data.message));
+      .catch((err) => {
+        setLoading(false);
+        setErrorMessage(err.response.data.message);
+      });
   };
 
   const submitHandler = (event) => {
@@ -44,25 +52,33 @@ function VerifyMail() {
 
     const url = `http://localhost:5000/user/verifyEmail?userId=${user._id}`;
 
+    setLoading(true);
+
     axios
       .post(url, { OTP: value })
       .then(async (res) => {
-        const status = await res.status;
+        const status = res.status;
         if (status === 200) {
+          setLoading(false);
           popModal("You have been verified");
           setTimeout(() => {
             popModal("");
             navigate("/resume/options");
           }, 2000);
         } else {
+          setLoading(false);
           setErrorMessage(res.data.message);
         }
       })
-      .catch((err) => setErrorMessage(err.response.data.message));
+      .catch((err) => {
+        setLoading(false);
+        setErrorMessage(err.response.data.message);
+      });
   };
 
   return (
     <main className="bg-neutral-800 flex items-center min-h-[100vh] justify-center">
+      {isloading && <Preloader />}
       <section className="w-8/12 max-w-md mx-auto text-center space-y-10">
         <Link
           to="/"
