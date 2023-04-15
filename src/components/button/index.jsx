@@ -14,9 +14,11 @@ export function CustomButton({
       onClick={onClick}
       className={`w-full ${
         primary
-          ? `py-3 text-neutral-100 bg-${colorType}${
-              disabled ? "-500" : "-600"
-            } text-center rounded-sm`
+          ? `py-3 text-neutral-100 bg-${colorType}-${
+              disabled ? 200 : 600
+            } text-center rounded-sm ${
+              colorType === "primary" ? "text-white" : "text-black-500"
+            }`
           : "py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primary-800 border rounded-md"
       }`}
     >
