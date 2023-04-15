@@ -74,6 +74,14 @@ input {
   font-family: "Merriweather", sans-serif;
 }
 
+.bg-primary-200 {
+  background-color: #b3aecc;
+}
+
+.bg-secondary-200 {
+  background-color: #fee1ce;
+}
+
 .resume-cta img {
   filter: brightness(40%);
 }
