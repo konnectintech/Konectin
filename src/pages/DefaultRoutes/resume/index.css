@@ -1,16 +1,26 @@
-.scroll img {
-  animation: scrollImage 10s infinite linear;
-}
-
-.scroll img:nth-child(2) {
-  animation-delay: 1s;
-}
-
-@keyframes scrollImage {
+@keyframes slideAnimation {
   from {
     transform: translateX(0%);
   }
   to {
-    transform: translateX(-100%);
+    transform: translateX(calc(-100% - 1rem));
   }
+}
+
+.looper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.looper-innerList {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+}
+
+.looper-list-instance {
+  display: flex;
+  width: max-content;
+
+  animation: slideAnimation linear infinite;
 }

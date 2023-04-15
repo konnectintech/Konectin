@@ -4,7 +4,7 @@ import { FieldForm } from "../../../components/form/";
 import ForgetPassword from "./forgetPassword";
 import { loginForm } from "../signData";
 import axios from "axios";
-import { GetLoginStatus } from "../../../middleware/signAuth";
+import { GetLoginStatus } from "../../../middleware";
 import Preloader from "../../../components/preloader";
 
 function Login() {
