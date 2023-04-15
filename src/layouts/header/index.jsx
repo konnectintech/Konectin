@@ -63,6 +63,7 @@ function Header() {
                 : "konectin"
             }
             src={konectinIcon}
+            alt="Konectin Logo"
           />
         </Link>
         <nav

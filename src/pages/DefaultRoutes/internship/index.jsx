@@ -4,12 +4,12 @@ import NotifyForm from "../../../components/form/notifyForm";
 import "./index.css";
 
 function Internship() {
-  const [errorState, setErrorState] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = () => {
-    navigate("/resume/options");
+    setErrorMessage("Done!");
   };
+
   return (
     <section className="min-h-[70vh]">
       <div className="w-11/12 mx-auto max-w-screen-2xl min-h-[70vh] flex flex-col md:gap-16 lg:gap-48 md:flex-row items-center py-32">
@@ -32,7 +32,6 @@ function Internship() {
             <NotifyForm
               handleSubmit={handleSubmit}
               formFor="Notify Me"
-              errorState={errorState}
               errorMessage={errorMessage}
             />
           </div>

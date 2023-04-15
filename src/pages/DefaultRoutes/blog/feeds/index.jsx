@@ -1,8 +1,9 @@
+// import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import HeroSection from "../hero";
-import { newBlogData, trendingBlogData } from "./data";
 import Feed from "./feed";
+import { newBlogData, trendingBlogData } from "./data";
 
 function Feeds() {
   const feedList = [
@@ -22,6 +23,14 @@ function Feeds() {
     let trendingBlog = trendingBlogData[params.feed];
     setNewBlogs(newBlog);
     setTrendingBlogs(trendingBlog);
+    // axios
+    //   .get("http://localhost:5000/user/getAllBlogs")
+    //   .then(async (res) => {
+    //     const allBlogs = await res.data.blogs;
+    //     let currentFeed; // Filter all blogs using the params feed
+    //     console.log(res);
+    //   })
+    //   .catch((err) => console.log(err));
   }, [params]);
 
   return (

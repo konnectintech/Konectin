@@ -4,19 +4,22 @@ import { FieldForm } from "../../../components/form/";
 import ForgetPassword from "./forgetPassword";
 import { loginForm } from "../signData";
 import axios from "axios";
-import { getLoginStatus } from "../../../middleware/signAuth";
+import { GetLoginStatus } from "../../../middleware/signAuth";
+import Preloader from "../../../components/preloader";
 
 function Login() {
+  const [isloading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
-  const userIsLogged = getLoginStatus();
+  const userIsLogged = GetLoginStatus();
 
   useEffect(() => {
     if (userIsLogged) navigate("/dashboard/profile");
-  }, [userIsLogged]);
+  }, [userIsLogged, navigate]);
 
   const handleSubmit = (data) => {
+    setLoading(true);
     axios
       .post("http://localhost:5000/user/login", data)
       .then(async (res) => {
@@ -24,12 +27,18 @@ function Login() {
         const userToken = await res.data.token;
         localStorage.setItem("User", JSON.stringify(userData));
         localStorage.setItem("UserToken", userToken);
+
+        setLoading(false);
       })
-      .catch((err) => setErrorMessage(err.response.data.message));
+      .catch((err) => {
+        setLoading(false);
+        setErrorMessage(err.response.data.message);
+      });
   };
 
   return (
     <>
+      {isloading && <Preloader />}
       <div>
         <h1 className="text-4xl">Welcome back...</h1>
         <p>Continue from where you stopped</p>

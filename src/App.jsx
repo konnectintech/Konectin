@@ -34,13 +34,12 @@ function App() {
           </Route>
           <Route path="/verify-mail" element={<VerifyMail />} />
 
-
-        <Route element={<DefaultRoutes />}>
-          <Route path="/" element={<Landing />} />
-          <Route path="/internship" element={<Internship />} />
-          <Route path="/resume" element={<ResumeBuilder />} />
-          <Route path="/resume/ai" element={<AIStarter />} />
-          <Route path="/resume/options" element={<Options />} />
+          <Route element={<DefaultRoutes />}>
+            <Route path="/" element={<Landing />} />
+            <Route path="/internship" element={<Internship />} />
+            <Route path="/resume" element={<ResumeBuilder />} />
+            <Route path="/resume/ai" element={<AIStarter />} />
+            <Route path="/resume/options" element={<Options />} />
 
             <Route path="/blog/" element={<Blog />}>
               <Route path="/blog/:feed" element={<Feeds />} />

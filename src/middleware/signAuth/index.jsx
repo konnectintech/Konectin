@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
 // Create a Authenication Hook
 export const RequireAuth = ({ children }) => {
-  const userIsLogged = getLoginStatus(); // Your hook to get login status
+  const userIsLogged = GetLoginStatus(); // Your hook to get login status
 
   // if you are not signed in then return to signup page
   if (!userIsLogged) {
@@ -15,10 +15,19 @@ export const RequireAuth = ({ children }) => {
 };
 
 // Create User logged Hook
-export function getLoginStatus() {
+export function GetLoginStatus() {
   const [user, setUser] = useState(false);
 
   // Function to change user to true when signed in
+  useEffect(() => {
+    const isLogged = JSON.parse(localStorage.getItem("User"));
+
+    if (isLogged?._id) {
+      setUser(true);
+    } else {
+      setUser(false);
+    }
+  }, [user]);
 
   return user;
 }

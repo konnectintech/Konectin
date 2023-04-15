@@ -5,14 +5,7 @@ import { CustomButton } from "../button";
 import { ErrorModal } from "./modal";
 import { validateField, validateForm } from "./validator";
 
-function FieldForm({
-  handleSubmit,
-  params,
-  formFor,
-
-  errorMessage,
-  children,
-}) {
+function FieldForm({ handleSubmit, params, formFor, errorMessage, children }) {
   const [mail, setMail] = useState({
     formValids: {},
     formErrors: {},
@@ -38,7 +31,7 @@ function FieldForm({
         },
       }));
     }
-  }, []);
+  }, [params]);
 
   useEffect(() => {
     validateForm(mail.formValids, setFormValid);

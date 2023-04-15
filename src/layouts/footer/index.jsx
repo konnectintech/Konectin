@@ -41,6 +41,7 @@ function Footer() {
               <a
                 href="https://maps.app.goo.gl/bYQgmTQcDAYWPpQn8"
                 target="_blank"
+                rel="noreferrer"
                 className="flex gap-4 items-center"
               >
                 <img
@@ -73,13 +74,15 @@ function Footer() {
             <a
               href="https://twitter.com/konectin_you?t=LyVvMn4twNiZjYGU6F48pg&s=09"
               target="_blank"
+              rel="noreferrer"
               className="w-10 h-10 flex items-center justify-center rounded-full border-2"
             >
               <FaIcon.FaTwitter size="1.1rem" />
             </a>
             <a
-              href=""
+              href="/"
               target="_blank"
+              rel="noreferrer"
               className="w-10 h-10 flex items-center justify-center rounded-full border-2"
             >
               <FaIcon.FaFacebookF size="1rem" />
@@ -87,6 +90,7 @@ function Footer() {
             <a
               href="https://linkedin.com/company/konectin/"
               target="_blank"
+              rel="noreferrer"
               className="w-10 h-10 flex items-center justify-center rounded-full border-2"
             >
               <FaIcon.FaLinkedinIn size="1rem" />
