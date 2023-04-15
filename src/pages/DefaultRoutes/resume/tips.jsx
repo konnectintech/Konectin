@@ -4,13 +4,14 @@ import {
   ResumeTemplateSampleImage,
 } from "../../../assets";
 import { ResumeButton } from "../../../components/button";
+import InfiniteLooper from "../../../components/elementScroll";
 import "./index.css";
 
 function TipSection() {
   return (
     <>
       <div className="flex flex-col gap-10 md:flex-row items-center justify-between text-xm">
-        <div className="flex w-full md:w-8/12 flex-col gap-4 md:gap-6 text-start items-start justify-center">
+        <div className="flex w-full md:w-7/12 lg:w-8/12 flex-col gap-4 md:gap-6 text-start items-start justify-center">
           <h1 className="text-2xl font-semibold md:text-3xl md:leading-relaxed">
             Choose from our professional template
           </h1>
@@ -21,17 +22,19 @@ function TipSection() {
           </p>
           <ResumeButton />
         </div>
-        <div className="w-full md:w-4/12 flex gap-4 overflow-hidden scroll">
-          <img
-            src={ResumeTemplateSampleImage}
-            className="mx-auto"
-            alt="Get started with Konectin"
-          />
-          <img
-            src={ResumeTemplateSample1Image}
-            className="mx-auto"
-            alt="Get started with Konectin"
-          />
+        <div className="w-full md:w-5/12 lg:w-4/12 overflow-hidden">
+          <InfiniteLooper speed="12" direction="left">
+            <img
+              src={ResumeTemplateSampleImage}
+              className="mx-auto"
+              alt="Get started with Konectin"
+            />
+            <img
+              src={ResumeTemplateSample1Image}
+              className="mx-auto"
+              alt="Get started with Konectin"
+            />
+          </InfiniteLooper>
         </div>
       </div>
 

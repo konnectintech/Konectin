@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FieldForm } from "../../../components/form";
-import { GetLoginStatus } from "../../../middleware/signAuth";
+import { GetLoginStatus } from "../../../middleware";
 import { signUpForm } from "../signData";
 import Agreement from "./agreement";
 import Preloader from "../../../components/preloader";

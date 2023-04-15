@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { RequireAuth } from "./middleware/signAuth";
+import { RequireAuth } from "./middleware";
 
 import ProtectedRoutes from "./pages/ProtectedRoutes";
 import DashBoard from "./pages/ProtectedRoutes/DashBoard";
