@@ -21,12 +21,14 @@ function Login() {
   const handleSubmit = (data) => {
     setLoading(true);
     axios
-      .post("http://localhost:5000/user/login", data)
+      .post("https://konectin-backend-hj09.onrender.com/user/login", data)
       .then(async (res) => {
         const userData = await res.data.data;
         const userToken = await res.data.token;
         localStorage.setItem("User", JSON.stringify(userData));
         localStorage.setItem("UserToken", userToken);
+
+        navigate("/blog/all");
 
         setLoading(false);
       })

@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import HeroSection from "../hero";
 import Feed from "./feed";
-import { newBlogData, trendingBlogData } from "./data";
+import { BlogAnalysis } from "./data";
 
 function Feeds() {
   const feedList = [
     { name: "All articles", link: "all" },
     { name: "Career", link: "career" },
-    { name: "Start ups", link: "start_up" },
-    { name: "soft skills", link: "soft_skills" },
+    { name: "Start ups", link: "start-up" },
+    { name: "soft skills", link: "soft-skills" },
   ];
 
   const [newBlogs, setNewBlogs] = useState([]);
@@ -19,10 +19,41 @@ function Feeds() {
   let params = useParams();
 
   useEffect(() => {
-    let newBlog = newBlogData[params.feed];
-    let trendingBlog = trendingBlogData[params.feed];
-    setNewBlogs(newBlog);
-    setTrendingBlogs(trendingBlog);
+    const category = params.feed;
+
+    if (category === "all") {
+      setNewBlogs(BlogAnalysis);
+    } else {
+      const sectionBlogs = BlogAnalysis.filter((blog) =>
+        blog.post.category.includes(category)
+      );
+
+      setNewBlogs(sectionBlogs);
+    }
+
+    let likesArray = BlogAnalysis.map((blog) => {
+      return blog.likes;
+    });
+
+    setTrendingBlogs(() => {
+      // Get highest likes ranking
+      const highestLikes = likesArray
+        .sort(function (a, b) {
+          return b - a;
+        })
+        .slice(0, 3);
+
+      // Get first 3 blogs with highest likes ranking
+      let filteredBlog = BlogAnalysis.filter((blog) => {
+        return highestLikes.some((num) => blog.likes === num);
+      });
+      filteredBlog = filteredBlog.reverse().splice(0, 3);
+
+      return filteredBlog;
+    });
+
+    // setNewBlogs(newBlog);
+    // setTrendingBlogs(trendingBlog);
     // axios
     //   .get("http://localhost:5000/user/getAllBlogs")
     //   .then(async (res) => {

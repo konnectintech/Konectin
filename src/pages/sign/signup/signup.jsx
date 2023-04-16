@@ -30,7 +30,7 @@ function SignUp() {
     if (agreed) {
       setLoading(true);
       axios
-        .post("http://localhost:5000/user/register", data)
+        .post("https://konectin-backend-hj09.onrender.com/user/register", data)
         .then(async (res) => {
           const userData = await res.data.data;
           const userToken = await res.data.token;
@@ -48,7 +48,7 @@ function SignUp() {
         });
     } else {
       setErrorMessage(
-        "Please read and agreed with our terms and condition to continue"
+        "Please read and agree with our terms and condition to continue"
       );
     }
   };

@@ -9,8 +9,6 @@ function Feed({ newBlogs, trendingBlogs, gridNumber }) {
   // Every thing Pagination
   const LastCardOfNewBlog = currentPage * (cardsPerPage - 3); // Get the last new blog in the page
   const FirstCardOfNewBlog = LastCardOfNewBlog - (cardsPerPage - 3); // Get the first new blog in the page
-  const LastCardOfTrendingBlog = currentPage * (cardsPerPage - 6); // Get the last trending blog in the page
-  const FirstCardOfTrendingBlog = LastCardOfTrendingBlog - (cardsPerPage - 6); // Get the first trending blog in the page
 
   const paginate = (pageNumber) => {
     window.scrollTo({ top: 350, left: 0, behavior: "smooth" });
@@ -18,10 +16,6 @@ function Feed({ newBlogs, trendingBlogs, gridNumber }) {
   };
 
   const currentNewCards = newBlogs.slice(FirstCardOfNewBlog, LastCardOfNewBlog);
-  const currentTrendingCards = trendingBlogs.slice(
-    FirstCardOfTrendingBlog,
-    LastCardOfTrendingBlog
-  );
 
   return (
     <div className="flex flex-col gap-8">
@@ -37,7 +31,7 @@ function Feed({ newBlogs, trendingBlogs, gridNumber }) {
       <div className="flex flex-col gap-4">
         <h1 className="font-semibold">What's Trending?</h1>
         <div className="blog-grid-system gap-4">
-          {currentTrendingCards.map((trendingCard, index) => (
+          {trendingBlogs.map((trendingCard, index) => (
             <BlogCard key={index} article={trendingCard} />
           ))}
         </div>
