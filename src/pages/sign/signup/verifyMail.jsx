@@ -12,7 +12,7 @@ function VerifyMail() {
   const [errorMessage, setErrorMessage] = useState("");
   const [modal, popModal] = useState("");
 
-  const user = JSON.parse(localStorage.getItem("User"));
+
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -21,6 +21,7 @@ function VerifyMail() {
   };
 
   const resendCode = () => {
+    const user = JSON.parse(localStorage.getItem("User"));
     const url = `https://konectin-backend-hj09.onrender.com/user/requestEmail?userId=${user._id}`;
 
     setLoading(true);
@@ -47,6 +48,7 @@ function VerifyMail() {
 
   const submitHandler = (event) => {
     event.preventDefault();
+    const user = JSON.parse(localStorage.getItem("User"));
     const formReq = new FormData(event.target);
     const value = formReq.get("code");
 
