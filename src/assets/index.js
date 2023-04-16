@@ -7,6 +7,7 @@ import googleIcon from "./icons/google.svg";
 import guardIcon from "./icons/guard.svg";
 import konectinLogo from "./icons/konectin.png";
 import konectinIcon from "./icons/konectin.svg";
+import errorTriangle from "./icons/alert-triangle.svg";
 import locationIcon from "./icons/location.svg";
 import mailIcon from "./icons/mail.svg";
 import shakeIcon from "./icons/shake.svg";
@@ -108,6 +109,7 @@ export {
   guardIcon,
   konectinLogo,
   konectinIcon,
+  errorTriangle,
   locationIcon,
   mailIcon,
   shakeIcon,

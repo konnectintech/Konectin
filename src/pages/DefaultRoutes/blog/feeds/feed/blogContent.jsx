@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import BlogCard from "../../../../../components/blogCard";
 import Pagination from "../../../../../components/pagination";
-import { newBlogData } from "../data";
+import { BlogAnalysis } from "../data";
 
 function BlogContent() {
   const [blog, setBlog] = useState([]);
@@ -10,7 +10,6 @@ function BlogContent() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const { pathname } = useLocation();
-  const { title } = useParams();
 
   const paginate = (pageNumber) => {
     window.scrollTo({ top: 1150, left: 0, behavior: "smooth" });
@@ -18,16 +17,18 @@ function BlogContent() {
   };
 
   useEffect(() => {
-    const blogFeed = newBlogData[pathname.split("/")[2]];
-    const blogTitle = title.split("-").join(" ");
-    blogFeed.forEach((blog) => {
-      if (blog.title === blogTitle) {
-        setBlog(blog);
-      } else {
-        setSimilarContent((prev) => [...prev, blog]);
-      }
-    });
-  }, [title, pathname]);
+    const blogFeed = pathname.split("/")[2];
+    const currentBlog = BlogAnalysis.filter((blog) => blog.blogId === blogFeed);
+
+    console.log(currentBlog[0].post.title);
+
+    const sectionBlogs = BlogAnalysis.filter((blog) =>
+      blog.post.category.some((cat) => cat === currentBlog[0].post.category[0])
+    );
+
+    setBlog(currentBlog[0]);
+    setSimilarContent(sectionBlogs);
+  }, [pathname]);
 
   const currentSimilarContent = similarContent.slice(
     currentPage * 6 - 6,
@@ -39,18 +40,33 @@ function BlogContent() {
       <div className="flex flex-col gap-4 pt-8">
         <div className="text-sm space-y-2 text-neutral-300 text-center">
           <h1 className="text-3xl font-semibold mb-1 text-neutral-100">
-            {blog.title}
+            {blog.post.title}
           </h1>
-          <p>{blog.publisher}</p>
-          <p>{blog.timeFrame}</p>
+          <p>Konectin</p>
+          <p>{blog.post.timeFrame}</p>
         </div>
         <div>
           <div className="w-full md:h-[60vh]">
-            <img className="w-full h-full" src={blog.image} alt={blog.title} />
+            <img
+              className="w-full h-full"
+              src={blog.post.image}
+              alt={blog.post.title}
+            />
           </div>
           <div className="text-start text-xs leading-normal bg-white py-8 rounded-b-md">
             <article className="w-10/12 mx-auto font-semibold pb-3">
-              {blog.story}
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
+              doloremque iste fuga impedit sint optio eum molestiae! Rem
+              explicabo dignissimos eos, sint sapiente ipsum quia? Sapiente
+              laborum est labore ducimus? Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Similique, rem quisquam. Unde eveniet repellat
+              atque? Commodi optio ipsa, dicta adipisci dolor nemo eum saepe
+              deserunt possimus hic error. Culpa, ipsam?Lorem ipsum, dolor sit
+              amet consectetur adipisicing elit. Assumenda error doloremque
+              commodi consectetur, eos omnis minus ducimus, accusantium
+              temporibus dignissimos et atque exercitationem iure autem voluptas
+              perferendis corporis accusamus officia.
+              <p className="mt-2">{blog.post.body}</p>
             </article>
           </div>
         </div>

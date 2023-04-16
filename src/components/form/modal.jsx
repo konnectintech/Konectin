@@ -1,5 +1,6 @@
 import React from "react";
 import { MdClose } from "react-icons/md";
+import { errorTriangle } from "../../assets";
 
 export function SuccessModal({ text, popModal, closeModal }) {
   return (
@@ -21,7 +22,8 @@ export function SuccessModal({ text, popModal, closeModal }) {
 
 export function ErrorModal({ text }) {
   return (
-    <div className="relative bg-neutral-600 w-full mx-auto py-6 transition ease-in-out duration-300">
+    <div className="relative bg-red-300 w-full mx-auto py-6 transition ease-in-out duration-300 flex px-4 gap-4 items-center">
+      <img src={errorTriangle} alt="error" />
       <p>{text}</p>
     </div>
   );

@@ -21,7 +21,7 @@ function VerifyMail() {
   };
 
   const resendCode = () => {
-    const url = `http://localhost:5000/user/requestEmail?userId=${user._id}`;
+    const url = `https://konectin-backend-hj09.onrender.com/user/requestEmail?userId=${user._id}`;
 
     setLoading(true);
     axios
@@ -50,7 +50,7 @@ function VerifyMail() {
     const formReq = new FormData(event.target);
     const value = formReq.get("code");
 
-    const url = `http://localhost:5000/user/verifyEmail?userId=${user._id}`;
+    const url = `https://konectin-backend-hj09.onrender.com/user/verifyEmail?userId=${user._id}`;
 
     setLoading(true);
 
