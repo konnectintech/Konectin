@@ -22,6 +22,7 @@ import Feeds from "./pages/DefaultRoutes/blog/feeds";
 // import AIStarter from "./pages/ProtectedRoutes/resume-builder/screens-ai";
 import RouteIdentifier from "./layouts/routeIdentifier";
 import VerifyMail from "./pages/sign/signup/verifyMail";
+import TermsAndCondition from "./pages/DefaultRoutes/terms/TermsAndConditions";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Route path="/resume" element={<ResumeBuilder />} />
             {/* <Route path="/resume/ai" element={<AIStarter />} />
             <Route path="/resume/options" element={<Options />} /> */}
+            <Route path="/terms" element={<TermsAndCondition />} />
 
             <Route path="/blog/" element={<Blog />}>
               <Route path="/blog/:feed" element={<Feeds />} />
