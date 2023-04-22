@@ -26,26 +26,25 @@ function SignUp() {
   }, [agreed]);
 
   // handle sign up
-  const handleSignUp = (data) => {
+  const handleSignUp = async (data) => {
     if (agreed) {
       setLoading(true);
-      axios
-        .post("https://konectin-backend-hj09.onrender.com/user/register", data)
-        .then(async (res) => {
-          const userData = await res.data.data;
-          const userToken = await res.data.token;
-          localStorage.setItem("User", JSON.stringify(userData));
-          localStorage.setItem("UserToken", userToken);
+      try {
+        const res = await axios.post(
+          "https://konectin-backend-hj09.onrender.com/user/register",
+          data
+        );
+        const userData = res.data.user;
+        localStorage.setItem("User", JSON.stringify(userData));
 
-          setLoading(false);
-          setTimeout(() => {
-            navigate("/verify-mail");
-          }, 1000);
-        })
-        .catch((err) => {
-          setErrorMessage(err.response.data.message);
-          setLoading(false);
-        });
+        setLoading(false);
+        setTimeout(() => {
+          navigate("/verify-mail");
+        }, 1000);
+      } catch (err) {
+        setErrorMessage(err.message);
+        setLoading(false);
+      }
     } else {
       setErrorMessage(
         "Please read and agree with our terms and condition to continue"

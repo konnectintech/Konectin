@@ -62,6 +62,8 @@ function VerifyMail() {
         const status = res.status;
         if (status === 200) {
           setLoading(false);
+          let userUpdate = { ...user, isEmailVerified: true };
+          localStorage.setItem("User", JSON.stringify(userUpdate));
           popModal("You have been verified");
           setTimeout(() => {
             popModal("");
@@ -71,11 +73,13 @@ function VerifyMail() {
         } else {
           setLoading(false);
           setErrorMessage(res.data.message);
+          console.log(res);
         }
       })
       .catch((err) => {
         setLoading(false);
         setErrorMessage(err.response.data.message);
+        console.log(err);
       });
   };
 
@@ -83,10 +87,7 @@ function VerifyMail() {
     <main className="bg-neutral-800 flex items-center min-h-[100vh] justify-center">
       {isloading && <Preloader />}
       <section className="w-8/12 max-w-md mx-auto text-center space-y-10">
-        <Link
-          to="/"
-          className="w-fit mx-auto flex justify-center relative z-10"
-        >
+        <Link to="/" className="w-fit mx-auto flex justify-center relative z-5">
           <img src={konectinIcon} alt="Konectin Icon" />
         </Link>
 
