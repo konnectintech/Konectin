@@ -1,0 +1,27 @@
+.auth-container {
+  display: flex;
+  align-items: center;
+}
+
+.auth-side-image {
+  height: 100vh;
+}
+
+@media only screen and (max-height: 768px) {
+  .auth-container {
+    align-items: stretch;
+  }
+
+  .auth-side-image {
+    height: initial;
+  }
+
+  .auth-side-image img {
+    height: 100%;
+  }
+
+  .auth-body {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}

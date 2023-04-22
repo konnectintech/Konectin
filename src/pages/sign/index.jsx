@@ -1,11 +1,12 @@
 import { signImage, konectinIcon } from "../../assets";
 import * as FaIcon from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
+import "./sign.css";
 
 function Sign() {
   return (
-    <section className="flex flex-col lg:flex-row min-h-screen gap-8 lg:gap-16 justify-between items-center bg-neutral-1000">
-      <div className="hidden lg:block relative h-screen">
+    <section className="flex-col lg:flex-row min-h-screen gap-8 lg:gap-16 justify-between bg-neutral-1000 auth-container">
+      <div className="auth-side-image hidden lg:block relative">
         <img
           className="w-full h-full"
           src={signImage}
@@ -13,7 +14,7 @@ function Sign() {
         />
       </div>
 
-      <div className="items-start lg:w-6/12 w-full sm:min-w-[500px] flex-1">
+      <div className="auth-body items-start lg:w-6/12 w-full sm:min-w-[500px] flex-1">
         <div className="p-6 lg:pr-16 max-w-[600px] min-h-[80vh] lg:p-0 mx-auto flex flex-col gap-4 items-start justify-center">
           <Link to="/">
             <img src={konectinIcon} alt="Konectin Logo" />
