@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BlogCard from "../../../../../components/blogCard";
 import Pagination from "../../../../../components/pagination";
 
-function Feed({ newBlogs, trendingBlogs, gridNumber }) {
+function Feed({ newBlogs, trendingBlogs, gridNumber, isLoading }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [cardsPerPage] = useState(gridNumber);
+
+  useEffect(() => {
+    console.log(newBlogs);
+  }, [newBlogs]);
 
   // Every thing Pagination
   const LastCardOfNewBlog = currentPage * (cardsPerPage - 3); // Get the last new blog in the page
@@ -22,20 +26,45 @@ function Feed({ newBlogs, trendingBlogs, gridNumber }) {
       <div className="flex flex-col gap-4">
         <h1 className="font-semibold">What's New?</h1>
         <div className="blog-grid-system gap-4">
-          {currentNewCards.map((newCard, index) => (
-            <BlogCard key={index} article={newCard} />
-          ))}
+          {isLoading
+            ? new Array(6)
+                .fill(0, 0, 6)
+                .map((newCard, index) => (
+                  <BlogCard
+                    key={index}
+                    article={newCard}
+                    isLoading={isLoading}
+                  />
+                ))
+            : currentNewCards.map((newCard, index) => (
+                <BlogCard key={index} article={newCard} isLoading={isLoading} />
+              ))}
         </div>
       </div>
-
-      <div className="flex flex-col gap-4">
-        <h1 className="font-semibold">What's Trending?</h1>
-        <div className="blog-grid-system gap-4">
-          {trendingBlogs.map((trendingCard, index) => (
-            <BlogCard key={index} article={trendingCard} />
-          ))}
+      {trendingBlogs.length >= 1 && (
+        <div className="flex flex-col gap-4">
+          <h1 className="font-semibold">What's Trending?</h1>
+          <div className="blog-grid-system gap-4">
+            {isLoading
+              ? new Array(6)
+                  .fill(0, 0, 6)
+                  .map((newCard, index) => (
+                    <BlogCard
+                      key={index}
+                      article={newCard}
+                      isLoading={isLoading}
+                    />
+                  ))
+              : trendingBlogs.map((trendingCard, index) => (
+                  <BlogCard
+                    key={index}
+                    article={trendingCard}
+                    isLoading={isLoading}
+                  />
+                ))}
+          </div>
         </div>
-      </div>
+      )}
       <Pagination
         cardsPerPage={cardsPerPage}
         totalCards={newBlogs.length}

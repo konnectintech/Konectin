@@ -1,5 +1,6 @@
 // Icons
 import bulbIcon from "./icons/bulb.svg";
+import blurImage from "./icons/blur.svg";
 import calendarIcon from "./icons/calendar.svg";
 import contactIcon from "./icons/contact.svg";
 import fileIcon from "./icons/file.svg";
@@ -102,6 +103,7 @@ import OurVisionImage from "./images/vision.png";
 export {
   // Icons
   bulbIcon,
+  blurImage,
   calendarIcon,
   contactIcon,
   fileIcon,
