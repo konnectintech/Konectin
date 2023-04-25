@@ -7,10 +7,20 @@
   background-color: #fff;
 }
 
-.blur {
-  line-height: 3;
-  color: transparent;
-  text-shadow: 0 0 10px #292a2b;
+.blurry-text {
+  color: transparent !important;
+  text-shadow: 0 0 3.5px #292a2b;
+}
+
+.blurry-text-md div,
+.blurry-text-md div h1,
+.blurry-text-md article {
+  color: transparent !important;
+  text-shadow: 0 0 10px #58595a;
+}
+
+.lazy-load-image-background.blur.lazy-load-image-loaded {
+  display: block !important;
 }
 
 article p {

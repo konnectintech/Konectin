@@ -17,18 +17,36 @@ function Feeds() {
   const [isLoading, setLoading] = useState(true);
   const [trendingBlogs, setTrendingBlogs] = useState([]);
 
+  async function getAllBlogs() {
+    try {
+      const response = await axios.get(
+        "https://konectin-backend-hj09.onrender.com/user/getAllBlogs"
+      );
+      const blogs = response.data.blogs;
+      setAllBlogs(blogs);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   useEffect(() => {
-    setLoading(true);
-    console.log("Fetching all blogs");
-    axios
-      .get("https://konectin-backend-hj09.onrender.com/user/getAllBlogs")
-      .then((res) => {
-        const blogs = res.data.blogs;
-        setAllBlogs(blogs);
-        setLoading(false);
-      })
-      .catch((err) => console.log(err));
+    getAllBlogs();
   }, []);
+
+  useEffect(() => {
+    if (isLoading) {
+      const preloader = new Array(6).fill({
+        title: "Loading contents",
+        readingTime: "1 min read",
+        category: ["career", "start-up", "soft-skill"],
+        updatedAt: new Date().getDate(),
+        blurred: true,
+      });
+
+      setAllBlogs(preloader);
+    }
+  }, [isLoading]);
 
   let params = useParams();
 
@@ -37,68 +55,59 @@ function Feeds() {
     if (category === "all") {
       setNewBlogs(allBlogs);
     } else {
-      const currentFeed = allBlogs.filter((blog) =>
-        blog.post.category.includes(category)
-      );
+      const currentFeed = allBlogs;
       setNewBlogs(currentFeed);
-
-      let likesArray = allBlogs.map((blog) => {
-        return blog.likes;
-      });
-
-      setTrendingBlogs(() => {
-        // Get highest likes ranking
-        const highestLikes = likesArray
-          .sort(function (a, b) {
-            return b - a;
-          })
-          .slice(0, 3);
-
-        // Get first 3 blogs with highest likes ranking
-        let filteredBlog = allBlogs.filter((blog) => {
-          return highestLikes.some((num) => blog.likes === num);
-        });
-        filteredBlog = filteredBlog.reverse().splice(0, 3);
-
-        return filteredBlog;
-      });
     }
+    let readArray = allBlogs.map((blog) => {
+      return blog.numOfReads;
+    });
+
+    // Get highest read ranking
+    const highestRead = readArray
+      .sort(function (a, b) {
+        return b - a;
+      })
+      .slice(0, 3);
+
+    // Get first 3 blogs with highest read ranking
+    let filteredBlog = allBlogs.filter((blog) => {
+      return highestRead.some((num) => blog.numOfReads === num);
+    });
+
+    filteredBlog = filteredBlog.reverse().splice(0, 3);
+    setTrendingBlogs(filteredBlog);
   }, [params, allBlogs]);
 
   return (
     <div
-      className={`w-11/12 mx-auto max-w-screen-lg flex flex-col gap-16 ${
+      className={`w-11/12 mx-auto max-w-screen-lg flex flex-col gap-10 ${
         isLoading ? "animate-pulse text-neutral-500" : ""
       }`}
     >
       <HeroSection isLoading={isLoading} />
       <div className="flex flex-col gap-8">
         <div className="flex gap-6 text-sm sm:text-md sm:gap-8 items-center">
-          {feedList.map((feedItem, index) =>
-            isLoading ? (
-              <div key={index} className="bg-neutral-500">
-                {feedItem.name}
-              </div>
-            ) : (
-              <Link
-                key={index}
-                to={`/blog/${feedItem.link}`}
-                className={
-                  params.feed === feedItem.link
-                    ? "border-b-2 border-secondary-600 capitalize"
-                    : "text-neutral-200 capitalize"
-                }
-              >
-                {feedItem.name}
-              </Link>
-            )
-          )}
+          {feedList.map((feedItem, index) => (
+            <Link
+              key={index}
+              to={`/blog/${feedItem.link}`}
+              className={`
+                ${
+                  isLoading
+                    ? "text-neutral-500"
+                    : params.feed === feedItem.link
+                    ? "border-b-2 border-secondary-600"
+                    : "text-neutral-200"
+                } capitalize`}
+            >
+              {feedItem.name}
+            </Link>
+          ))}
         </div>
         <Feed
           newBlogs={newBlogs}
           trendingBlogs={trendingBlogs}
           gridNumber={9}
-          isLoading={isLoading}
         />
       </div>
     </div>
