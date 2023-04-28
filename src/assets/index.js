@@ -1,5 +1,6 @@
 // Icons
 import bulbIcon from "./icons/bulb.svg";
+import blurImage from "./icons/blur.svg";
 import calendarIcon from "./icons/calendar.svg";
 import contactIcon from "./icons/contact.svg";
 import fileIcon from "./icons/file.svg";
@@ -27,6 +28,7 @@ import variant3Icon from "./icons/variant (3).svg";
 import variant4Icon from "./icons/variant (4).svg";
 import variant5Icon from "./icons/variant (5).svg";
 import teamIcon from "./icons/team.svg";
+import userIcon from "./icons/user.svg";
 import likeIcon from "./icons/like.svg";
 import dislikeIcon from "./icons/dislike.svg";
 import bookmarkIcon from "./icons/bookmark.svg";
@@ -104,6 +106,7 @@ import OurVisionImage from "./images/vision.png";
 export {
   // Icons
   bulbIcon,
+  blurImage,
   calendarIcon,
   contactIcon,
   fileIcon,
@@ -126,6 +129,7 @@ export {
   person4Icon,
   person5Icon,
   teamIcon,
+  userIcon,
   bookmarkIcon,
   likeIcon,
   dislikeIcon,

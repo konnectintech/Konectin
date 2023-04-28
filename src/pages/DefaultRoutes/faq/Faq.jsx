@@ -40,7 +40,7 @@ const Faq = () => {
             })
         }
     </div>
-  )
+  );
 }
 
-export default Faq
+export default Faq;

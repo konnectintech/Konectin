@@ -27,15 +27,16 @@ function Feed({ newBlogs, trendingBlogs, gridNumber }) {
           ))}
         </div>
       </div>
-
-      <div className="flex flex-col gap-4">
-        <h1 className="font-semibold">What's Trending?</h1>
-        <div className="blog-grid-system gap-4">
-          {trendingBlogs.map((trendingCard, index) => (
-            <BlogCard key={index} article={trendingCard} />
-          ))}
+      {trendingBlogs.length >= 1 && (
+        <div className="flex flex-col gap-4">
+          <h1 className="font-semibold">What's Trending?</h1>
+          <div className="blog-grid-system gap-4">
+            {trendingBlogs.map((trendingCard, index) => (
+              <BlogCard key={index} article={trendingCard} />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
       <Pagination
         cardsPerPage={cardsPerPage}
         totalCards={newBlogs.length}
