@@ -4,14 +4,15 @@ const TermsAndCondition = () => {
 
   return (
     <div>
-        <div className='p-16'>
+        <div className='p-16 flex flex-col'>
+            <div className='flex items-center text-2xl font-black justify-center'>Terms & Conditions</div>
             <div className='text-sm pt-4'>The website located at www.konectinyou.com (the “Site”) is a 
                 copyrighted work belonging to Konectin Inc (“Company”, “us”, “our”, and “we”).  
                 Certain features of the Site may be subject to additional guidelines, terms, or rules, 
                 which will be posted on the Site in connection with such features.  All such additional terms, 
                 guidelines, and rules are incorporated by reference into these Terms.
             </div>
-            <div className='text-sm font-bold pt-4'>THESE TERMS OF USE (THESE “TERMS”) SET FORTH THE LEGALLY BINDING TERMS AND CONDITIONS THAT 
+            <div className='text-sm pt-4'>THESE TERMS OF USE (THESE “TERMS”) SET FORTH THE LEGALLY BINDING TERMS AND CONDITIONS THAT 
                 GOVERN YOUR USE OF THE SITE.  BY ACCESSING OR USING THE SITE, YOU ARE ACCEPTING THESE TERMS 
                 (ON BEHALF OF YOURSELF OR THE ENTITY THAT YOU REPRESENT), AND YOU REPRESENT AND WARRANT THAT 
                 YOU HAVE THE RIGHT, AUTHORITY, AND CAPACITY TO ENTER INTO THESE TERMS (ON BEHALF OF YOURSELF 
@@ -19,7 +20,7 @@ const TermsAndCondition = () => {
                 YOU ARE NOT AT LEAST 18 YEARS OLD.  IF YOU DO NOT AGREE WITH ALL OF THE PROVISIONS OF THESE TERMS, 
                 DO NOT ACCESS AND/OR USE THE SITE.
             </div>
-            <div className='text-sm font-bold pt-4'>PLEASE BE AWARE THAT SECTION 10.2 OF THESE TERMS CONTAINS PROVISIONS GOVERNING HOW DISPUTES THAT 
+            <div className='text-sm pt-4'>PLEASE BE AWARE THAT SECTION 10.2 OF THESE TERMS CONTAINS PROVISIONS GOVERNING HOW DISPUTES THAT 
                 YOU AND WE HAVE AGAINST EACH OTHER ARE RESOLVED, INCLUDING, WITHOUT LIMITATION, ANY DISPUTES THAT 
                 AROSE OR WERE ASSERTED PRIOR TO THE EFFECTIVE DATE OF YOUR ACCEPTANCE OF THESE TERMS. IN PARTICULAR, 
                 IT CONTAINS AN ARBITRATION AGREEMENT WHICH WILL, WITH LIMITED EXCEPTIONS, REQUIRE DISPUTES BETWEEN 
@@ -36,8 +37,8 @@ const TermsAndCondition = () => {
                 </ul>
             </div>
             <div className='text-sm pt-4'>
-                <p className='font-bold'>ACCOUNTS</p>
-                <ul>
+                <p className='font-bold p-2 bg-primary-200'>1. ACCOUNTS</p>
+                <ul className='list-decimal'>
                     <li className='text-sm pt-4'>
                         <p className='font-bold'> Account Creation.</p>  In order to use certain features of the Site, you must register for an account 
                         (“Account”) and provide certain information about yourself as prompted by the account registration form. 
@@ -47,7 +48,7 @@ const TermsAndCondition = () => {
                         Account in accordance with Section 8.
                     </li>
                     <li className='text-sm pt-4'>
-                        <p> Account Responsibilities.</p>  You are responsible for maintaining the confidentiality of your Account login 
+                        <p className='font-bold'> Account Responsibilities.</p>  You are responsible for maintaining the confidentiality of your Account login 
                         information and are fully responsible for all activities that occur under your Account.  You agree to 
                         immediately notify Company of any unauthorized use, or suspected unauthorized use of your Account or any 
                         other breach of security.  Company cannot and will not be liable for any loss or damage arising from your 
@@ -56,17 +57,17 @@ const TermsAndCondition = () => {
                 </ul>
             </div>
             <div className='text-sm pt-4'> 
-                <p className='font-bold'>
-                    ACCESS TO THE SITE
+                <p className='font-bold p-2 bg-primary-200'>
+                    2. ACCESS TO THE SITE
                 </p>
-                <ul>
+                <ul className='list-decimal'>
                     <li className='text-sm pt-4'>
                         <p className='font-bold'>License.</p>  Subject to these Terms, Company grants you a non-transferable, non-exclusive, revocable, 
                         limited license to use and access the Site solely for your own personal, noncommercial use.
                     </li>
                     <li className='text-sm '> 
                         <p className='font-bold'>Certain Restrictions.</p>  The rights granted to you in these Terms are subject to the following restrictions: 
-                        <ul>
+                        <ul className='list-[upper-roman]'>
                             <li className='text-sm'>
                                 you shall not license, sell, rent, lease, transfer, assign, distribute, host, or otherwise commercially exploit the Site, 
                                 whether in whole or in part, or any content displayed on the Site;
@@ -110,8 +111,8 @@ const TermsAndCondition = () => {
                 </ul>
             </div>
             <div className='text-sm pt-4'> 
-                <p className='font-bold'>USER CONTENT</p>
-                <ul>
+                <p className='font-bold p-2 bg-primary-200'>3. USER CONTENT</p>
+                <ul className='list-decimal'>
                     <li className='text-sm pt-4'>
                         <p className='font-bold'>User Content.</p>  “User Content” means any and all information and content that a user submits to, or uses with, the Site (e.g., content in the user’s profile or postings).  
                         You are solely responsible for your User Content.  You assume all risks associated with use of your User Content, including any reliance on its accuracy, completeness or 
@@ -178,7 +179,7 @@ const TermsAndCondition = () => {
             <div className='text-sm pt-4'>
                 <p className='font-bold'>INDEMNIFICATION.</p>   You agree to indemnify and hold Company (and its officers, employees, and agents) harmless, 
                 including costs and attorneys’ fees, from any claim or demand made by any third party due to or arising out of 
-                <ul>
+                <ul className='list-decimal'>
                     <li className='text-sm'>
                         your use of the Site,
                     </li>
@@ -197,8 +198,8 @@ const TermsAndCondition = () => {
                 </ul> 
             </div>
             <div className='text-sm pt-4'>
-                <p className='font-bold'>THIRD-PARTY LINKS & ADS; OTHER USERS</p>
-                <ul>
+                <p className='font-bold p-2 bg-primary-200'>4. THIRD-PARTY LINKS & ADS; OTHER USERS</p>
+                <ul className='list-decimal'>
                     <li className='text-sm pt-4'>
                         <p className='font-bold'>Third-Party Links & Ads.</p>  The Site may contain links to third-party websites and services, 
                         and/or display advertisements for third parties (collectively, “Third-Party Links & Ads”).  
@@ -236,8 +237,8 @@ const TermsAndCondition = () => {
                 </ul>
             </div>
             <div className='text-sm pt-4'>
-                <p className='font-bold'>DISCLAIMERS </p>
-                <ul>
+                <p className='font-bold p-2 bg-primary-200'>5. DISCLAIMERS </p>
+                <ul className='list-decimal'>
                     <li className='text-sm pt-4'>
                         THE SITE IS PROVIDED ON AN “AS-IS” AND “AS AVAILABLE” BASIS, AND COMPANY (AND OUR SUPPLIERS) 
                         EXPRESSLY DISCLAIM ANY AND ALL WARRANTIES AND CONDITIONS OF ANY KIND, WHETHER EXPRESS, IMPLIED, 
@@ -257,8 +258,8 @@ const TermsAndCondition = () => {
                 </ul>
             </div>
             <div className='text-sm pt-4'>
-                <p className='font-bold'>LIMITATION ON LIABILITY</p>
-                <ul>
+                <p className='font-bold p-2 bg-primary-200'>6. LIMITATION ON LIABILITY</p>
+                <ul className='list-decimal'>
                     <li className='text-sm pt-4'>
                         TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL COMPANY (OR OUR SUPPLIERS) BE 
                         LIABLE TO YOU OR ANY THIRD PARTY FOR ANY LOST PROFITS, LOST DATA, COSTS OF PROCUREMENT 
@@ -283,7 +284,7 @@ const TermsAndCondition = () => {
                 SO THE ABOVE LIMITATION OR EXCLUSION MAY NOT APPLY TO YOU.
             </div>
             <div className='text-sm pt-2'>
-                <p className='font-bold'>TERM AND TERMINATION.</p>
+                <p className='font-bold p-2 bg-primary-200'>7. TERM AND TERMINATION.</p>
                 Subject to this Section, these Terms will remain in full force and effect while you use the 
                 Site.  We may suspend or terminate your rights to use the Site (including your Account) at any time for any 
                 reason at our sole discretion, including for any use of the Site in violation of these Terms.  
@@ -295,7 +296,7 @@ const TermsAndCondition = () => {
                 provisions of these Terms will remain in effect: Sections 2.2 through 2.6, Section 3 and Sections 4 through 10.
             </div>
             <div className='text-sm pt-4'>
-                <p className='font-bold'>COPYRIGHT POLICY.</p>
+                <p className='font-bold p-2 bg-primary-200'>8. COPYRIGHT POLICY.</p>
                 <div>
                     <p className='text-sm pt-4'>
                         Company respects the intellectual property of others and asks that users of our Site do the same.  
@@ -344,8 +345,8 @@ const TermsAndCondition = () => {
                 <p className='text-sm'>Address of Agent: 651 N Broad St. Suite 201, Middletown, Delaware 19709</p>
             </div>
             <div className='text-sm pt-4'>
-                <p className='font-bold'>GENERAL</p>
-                <ul>
+                <p className='font-bold p-2 bg-primary-200'>9. GENERAL</p>
+                <ul className='list-decimal'>
                     <li className='text-sm pt-4'>
                         Changes.  These Terms are subject to occasional revision, and if we make any substantial changes, 
                         we may notify you by sending you an e-mail to the last e-mail address you provided to us (if any), 
@@ -361,7 +362,7 @@ const TermsAndCondition = () => {
                         Dispute Resolution. Please read this Section 10.2 (sometimes referred to herein as this “Arbitration Agreement”) 
                         carefully.  It is part of your contract with Company and affects your rights.  It contains procedures for 
                         MANDATORY BINDING ARBITRATION AND A CLASS ACTION WAIVER.
-                        <ul>
+                        <ul className='list-[upper-roman]'>
                             <li className='text-sm pt-4'>
                                 <p className='font-bold'>Applicability of Arbitration Agreement.</p >  All claims and disputes (excluding claims for injunctive or 
                                 other equitable relief as set forth below) in connection with these Terms or the use of any product 
@@ -521,8 +522,7 @@ const TermsAndCondition = () => {
                     <p className='font-black'> Contact Information:</p>
                     <p>Michael Fadehan</p>
                     <p>Address:</p> 
-                    <p>651 N Broad St. Suite 201</p>
-                    <p>Middletown, Delaware 19709</p>
+                    <p>651 N Broad St. Suite 201 Middletown, Delaware 19709</p>
                     <p>Telephone: +2348148595317</p>
                     <p>Email: admin@konectinyou.onmicrosoft.com</p>
 

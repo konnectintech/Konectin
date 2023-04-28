@@ -95,6 +95,8 @@ import blog7Image from "./images/blog 8.png";
 import BlogCTAImage from "./images/cta 1.png";
 import BlogCTA1Image from "./images/cta 2.png";
 import BlogCTA2Image from "./images/cta 3.png";
+import arrowUp from "./icons/P1-Lighticons-line-292.png";
+import arrowDown from "./icons/P1-Lighticons-line-291.png";
 
 // About Us Images
 import AboutHeroImage from "./images/about hero.png";
@@ -194,6 +196,8 @@ export {
   BlogCTAImage,
   BlogCTA1Image,
   BlogCTA2Image,
+  arrowDown,
+  arrowUp,
 
   // About Images
   AboutHeroImage,
