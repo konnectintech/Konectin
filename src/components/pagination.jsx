@@ -17,7 +17,7 @@ function Pagination({ cardsPerPage, totalCards, currentPage, paginate }) {
   }
 
   return (
-    <nav className="mt-12 pt-3 border-t-2 border-neutral-500 text-xs flex items-center justify-between">
+    <nav className="mt-4 pt-3 border-t-2 border-neutral-500 text-xs flex items-center justify-between">
       <ul className="italic flex gap-2 items-center">
         <MdIcons.MdArrowBackIos
           onClick={previousPage}
