@@ -8,6 +8,7 @@ function FAQSection({ data }) {
   };
   return (
     <div className="flex flex-col gap-8">
+      
       <h1 className="text-2xl font-semibold mb-2 md:text-3xl md:leading-relaxed">
         <font className="text-secondary-600">Konectin</font> Resume Builder FAQ
       </h1>
