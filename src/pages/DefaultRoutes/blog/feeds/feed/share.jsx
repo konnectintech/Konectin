@@ -4,7 +4,7 @@ function Share() {
   return (
     <div className="font-bold text-primary-500">
       <h4 className="text-[12px]">Share this article</h4>
-      <div className="flex gap-3 items-center mt-2">
+      <div className="flex flex-wrap gap-3 items-center mt-2">
         <a
           className="px-6 py-2 text-white bg-primary-500 rounded-md flex gap-2 items-center"
           href="gmal"

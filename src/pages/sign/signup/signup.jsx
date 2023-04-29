@@ -1,8 +1,7 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FieldForm } from "../../../components/form";
-import { GetLoginStatus } from "../../../middleware";
+import { useAuth } from "../../../middleware";
 import { signUpForm } from "../signData";
 import Agreement from "./agreement";
 import Preloader from "../../../components/preloader";
@@ -12,39 +11,19 @@ function SignUp() {
   const [agreed, setAgreed] = useState(false);
   const [isloading, setLoading] = useState(false);
 
-  const navigate = useNavigate();
-  const userIsLogged = GetLoginStatus();
-
-  useEffect(() => {
-    if (userIsLogged) navigate("/dashboard/profile");
-  }, [userIsLogged, navigate]);
-
   useEffect(() => {
     if (agreed) {
       setErrorMessage("");
     }
   }, [agreed]);
 
+  let { signUp } = useAuth();
+
   // handle sign up
   const handleSignUp = async (data) => {
     if (agreed) {
       setLoading(true);
-      try {
-        const res = await axios.post(
-          "https://konectin-backend-hj09.onrender.com/user/register",
-          data
-        );
-        const userData = res.data.user;
-        localStorage.setItem("User", JSON.stringify(userData));
-
-        setLoading(false);
-        setTimeout(() => {
-          navigate("/verify-mail");
-        }, 1000);
-      } catch (err) {
-        setErrorMessage(err.message);
-        setLoading(false);
-      }
+      signUp(data, setLoading, setErrorMessage);
     } else {
       setErrorMessage(
         "Please read and agree with our terms and condition to continue"

@@ -1,6 +1,34 @@
+import axios from "axios";
+import { useEffect } from "react";
 import { userIcon } from "../../../../../assets";
+import { useLocalStorage } from "../../../../../middleware/storage";
 
-function BlogComment() {
+function BlogComment({ blogID }) {
+  const [user] = useLocalStorage("user");
+
+  useEffect(() => {
+    const getComments = async (blogID) => {
+      try {
+        let authresult = await axios.get(
+          `https://konectin-backend-hj09.onrender.com/user/getComments?blogId=${blogID}`,
+          {
+            blogId: blogID,
+          },
+          {
+            headers: {
+              Authorization: "bearer " + user.token,
+            },
+          }
+        );
+        console.log(authresult);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    getComments(blogID);
+  }, [blogID, user]);
+
   return (
     <div className="flex flex-col gap-4 mt-6">
       <div className="flex items-center gap-2 border-b border-neutral-700 pb-4">

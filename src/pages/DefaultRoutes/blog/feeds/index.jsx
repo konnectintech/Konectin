@@ -24,6 +24,7 @@ function Feeds() {
       );
       const blogs = response.data.blogs;
       setAllBlogs(blogs);
+      console.log(blogs);
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -81,7 +82,7 @@ function Feeds() {
   return (
     <div
       className={`w-11/12 mx-auto max-w-screen-lg flex flex-col gap-10 ${
-        isLoading ? "animate-pulse text-neutral-500" : ""
+        isLoading && "text-neutral-500"
       }`}
     >
       <HeroSection isLoading={isLoading} />

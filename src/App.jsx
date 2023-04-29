@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { RequireAuth } from "./middleware";
 
 import ProtectedRoutes from "./pages/ProtectedRoutes";
+import { AuthProvider } from "./middleware";
 // import DashBoard from "./pages/ProtectedRoutes/DashBoard";
 // import Options from "./pages/ProtectedRoutes/resume-builder";
 // import StartBuilder from "./pages/ProtectedRoutes/resume-builder/start";
@@ -25,13 +26,19 @@ import VerifyMail from "./pages/sign/signup/verifyMail";
 import TermsAndCondition from "./pages/DefaultRoutes/terms/TermsAndConditions";
 import Faq from "./pages/DefaultRoutes/faq/Faq";
 import Contact from "./pages/DefaultRoutes/contact/Contact";
-import Admin from "./pages/ProtectedRoutes/DashBoard/Admin"
+import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<RouteIdentifier />}>
+        <Route
+          element={
+            <AuthProvider>
+              <RouteIdentifier />
+            </AuthProvider>
+          }
+        >
           <Route element={<Sign />}>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
@@ -45,9 +52,9 @@ function App() {
             {/* <Route path="/resume/ai" element={<AIStarter />} />
             <Route path="/resume/options" element={<Options />} /> */}
             <Route path="/terms" element={<TermsAndCondition />} />
-            <Route path="/faq" element={<Faq />}/>
-            <Route path="/contact-us" element={<Contact />}/>
-            <Route path="/admin" element={<Admin />}/>
+            <Route path="/faq" element={<Faq />} />
+            <Route path="/contact-us" element={<Contact />} />
+            <Route path="/admin" element={<Admin />} />
 
             <Route path="/blog/" element={<Blog />}>
               <Route path="/blog/:feed" element={<Feeds />} />

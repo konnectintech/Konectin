@@ -14,7 +14,6 @@ function BlogContent() {
   const [similarContent, setSimilarContent] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isFull, setOpen] = useState(false);
-
   const [blogBody, setBlogBody] = useState([]);
 
   const { pathname } = useLocation();
@@ -145,7 +144,7 @@ function BlogContent() {
             {isFull && (
               <div className="w-10/12 mx-auto">
                 <Share />
-                <BlogComment />
+                <BlogComment blogID={pathname.split("/")[3]} />
               </div>
             )}
           </div>
@@ -153,7 +152,7 @@ function BlogContent() {
       </div>
       <div>
         <p className="font-semibold text-xl mb-6">Related articles</p>
-        <div className="blog-grid-system gap-6 items-stretch">
+        <div className="animate-pulse blog-grid-system gap-6 items-stretch">
           {currentSimilarContent.map((blog, index) => (
             <BlogCard key={index} article={blog} isLoading={isLoading} />
           ))}
