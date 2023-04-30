@@ -15,7 +15,7 @@ const EducationOption = ({ title, toggleEducation }) => (
   </button>
 );
 
-const SelectEducation = ({ next, previous, data }) => {
+const SelectEducation = ({ next, previous, data, handleChange }) => {
   const [education, setEducation] = useState(false);
   let view;
   const [view_control, setViewControl] = useState(null);
@@ -26,10 +26,24 @@ const SelectEducation = ({ next, previous, data }) => {
   };
 
   if (view_control === "college") {
-    view = <College next={next} previous={previous} data={data} />;
+    view = (
+      <College
+        next={next}
+        previous={previous}
+        data={data}
+        handleChange={handleChange}
+      />
+    );
   }
   if (view_control === "high-school") {
-    view = <HighSchool next={next} previous={previous} data={data} />;
+    view = (
+      <HighSchool
+        next={next}
+        previous={previous}
+        data={data}
+        handleChange={handleChange}
+      />
+    );
   }
   return (
     <main className="-mt-8 max-w-5xl mx-auto flex flex-col justify-between">
@@ -59,8 +73,12 @@ const SelectEducation = ({ next, previous, data }) => {
   );
 };
 
-const Education = ({ data, next, previous }) => {
+const Education = ({ data, next, previous, handleChange }) => {
   const [select_education, setSelectEducation] = useState(true);
+
+  const handleSubmit = () => {
+    next(data);
+  };
 
   const toggleEducation = () => {
     setSelectEducation(!select_education);
@@ -99,7 +117,7 @@ const Education = ({ data, next, previous }) => {
               Back
             </button>
             <button
-              onClick={next}
+              onClick={handleSubmit}
               className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-5 px-6 md:ml-8 bg-[#332A66]"
             >
               Continue
@@ -107,7 +125,12 @@ const Education = ({ data, next, previous }) => {
           </div>
         </main>
       ) : (
-        <SelectEducation next={next} previous={previous} data={data} />
+        <SelectEducation
+          next={next}
+          previous={previous}
+          data={data}
+          handleChange={handleChange}
+        />
       )}
     </>
   );
