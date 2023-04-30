@@ -10,30 +10,24 @@ const Admin = () => {
     function items() {
         const item = Array.from(document.getElementsByClassName("item"));
         item.map((value) => {
-            return(
-                value.classList.remove("active"),
-                console.log(value.classList)
-            )
+            value.classList.remove("active");
+            console.log(value.classList);
         });
     }
 
     function webIndex() {
         const web = Array.from(document.getElementsByClassName("web-content"));
         web.map((value) => {
-            return(
-                value.classList.remove("hidden"),
-                value.classList.add("z-1")
-            )
+            value.classList.remove("hidden");
+            value.classList.add("z-1");
         });
     }
 
     function backArrow() {
         const web = Array.from(document.getElementsByClassName("web-content"));
         web.map((value) => {
-            return(
-                value.classList.remove("z-1"),
-                value.classList.add("hidden")
-            )
+            value.classList.remove("z-1");
+            value.classList.add("hidden");
         });
     }
 
