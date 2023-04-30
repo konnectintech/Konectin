@@ -17,8 +17,6 @@ const Skills = ({ next, previous, data }) => {
     ]);
   };
 
-  console.log(skillList);
-
   const removeSkill = (index) => {
     const list = [...skillList];
     list.splice(index, 1);
@@ -35,6 +33,7 @@ const Skills = ({ next, previous, data }) => {
     updatedList.splice(droppedItem.destination.index, 0, reorderedItem);
     // Update State
     setSkillList(updatedList);
+    console.log(jobSkill);
   };
 
   const handleSubmit = (e) => {
