@@ -56,7 +56,6 @@ export const useAuth = () => {
 
       setUser(userData);
       loader(false);
-      console.log(userData);
       setTimeout(() => {
         navigate("/blog/all");
       }, 1000);

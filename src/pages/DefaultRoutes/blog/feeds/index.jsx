@@ -24,7 +24,6 @@ function Feeds() {
       );
       const blogs = response.data.blogs;
       setAllBlogs(blogs);
-      console.log(blogs);
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -52,13 +51,18 @@ function Feeds() {
   let params = useParams();
 
   useEffect(() => {
-    const category = params.feed;
-    if (category === "all") {
+    const category =
+      params.feed.charAt(0).toUpperCase() +
+      params.feed.slice(1, params.feed.length);
+    if (category === "All") {
       setNewBlogs(allBlogs);
     } else {
-      const currentFeed = allBlogs;
+      const currentFeed = allBlogs.filter((blog) =>
+        blog.category.includes(category)
+      );
       setNewBlogs(currentFeed);
     }
+
     let readArray = allBlogs.map((blog) => {
       return blog.numOfReads;
     });

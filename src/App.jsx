@@ -18,7 +18,7 @@ import Internship from "./pages/DefaultRoutes/internship";
 import ResumeBuilder from "./pages/DefaultRoutes/resume";
 import About from "./pages/DefaultRoutes/about";
 import Blog from "./pages/DefaultRoutes/blog";
-import BlogContent from "./pages/DefaultRoutes/blog/feeds/feed/blogContent";
+import BlogContent from "./pages/DefaultRoutes/blog/blogContent";
 import Feeds from "./pages/DefaultRoutes/blog/feeds";
 // import AIStarter from "./pages/ProtectedRoutes/resume-builder/screens-ai";
 import RouteIdentifier from "./layouts/routeIdentifier";
