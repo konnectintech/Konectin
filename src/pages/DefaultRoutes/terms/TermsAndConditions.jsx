@@ -7,7 +7,7 @@ const TermsAndCondition = () => {
     <div className='flex gap-4 h-screen overflow-hidden'>
         <div className='bg-primary-600 text-white pt-20 w-full pl-12 flex flex-col items-center pr-4'>
             <div className='font-bold text-sm w-full pb-4 items-start'>TABLE OF CONTENT</div>
-            <ul className='list-decimal text-xs gap-4 flex flex-col pl-4'>
+            <ul className='text-xs gap-4 flex flex-col pl-4'>
                 <li><HashLink to='#accounts'>ACCOUNTS</HashLink></li>
                 <li><HashLink to='#access'>ACCESS TO THE SITE</HashLink></li>
                 <li><HashLink to='#user'>USER CONTENT</HashLink></li>
