@@ -4,7 +4,6 @@ export const TemplateOne = ({ data }) => {
   const {
     firstName,
     lastName,
-    company,
     profession,
     phoneNumber,
     bio,
@@ -20,9 +19,6 @@ export const TemplateOne = ({ data }) => {
     firstName.charAt(0).toUpperCase() + firstName.slice(1);
   let capitalizedLastName =
     lastName.charAt(0).toUpperCase() + lastName.slice(1);
-
-  console.log(jobExperience);
-  console.log(education);
 
   return (
     <main
@@ -88,7 +84,8 @@ export const TemplateOne = ({ data }) => {
             return (
               <div key={index}>
                 <p className="mt-4 text-[13px] font-semibold text-[#3F4044]">
-                  Msc. Human Interaction, University of Lagos | Lagos, Nigeria
+                  Msc. Human Interaction, University of Lagos | {state},{" "}
+                  {country}
                 </p>
                 <p className=" text-[10px] text-[#b2b3b4]">
                   Jan 2021 - Mar 2022
