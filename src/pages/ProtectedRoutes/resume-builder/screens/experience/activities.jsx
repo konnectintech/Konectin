@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaPlus, FaPen, FaTrash, FaCaretDown } from "react-icons/fa";
 
-const JobActivities = ({ data, next, previous }) => {
+const JobActivities = ({ data, resume_data, previous, next }) => {
   return (
     <main className="-mt-8 flex flex-col justify-between items-start mx-auto md:mx-16">
       <h2 className="-mt-6 max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
@@ -74,7 +74,7 @@ const JobActivities = ({ data, next, previous }) => {
           Back
         </button>
         <button
-          onClick={next}
+          onClick={() => next(data)}
           className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] mx-auto py-5 px-6 bg-[#332A66]"
         >
           Continue

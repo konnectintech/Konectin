@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-import { FaPlus } from "react-icons/fa";
+import { ResumeTemplateSample1Image } from "../../../../../assets";
 import BioSummary from "./summary";
 
-const Bio = ({ next, previous }) => {
+const Bio = ({ next, previous, data, handleChange }) => {
   const [show_summary, setShowSummary] = useState(true);
 
   const toggleSummary = () => {
@@ -26,9 +26,11 @@ const Bio = ({ next, previous }) => {
               </p>
             </div>
 
-            <div className=" w-[280px] h-[350px] border border-[#b2b3b4] shadow-lg rounded-lg"></div>
+            <div className=" w-[280px] h-[350px] shadow-lg rounded-lg">
+              <img src={ResumeTemplateSample1Image} alt="template" />
+            </div>
           </div>
-          <div className="w-8/12 md:max-w-4xl flex flex-col justify-center mx-auto mt-12 gap-5 md:flex-row">
+          <div className="w-8/12 md:max-w-4xl flex flex-col justify-center mx-auto mt-24 gap-5 md:flex-row">
             <button
               onClick={previous}
               className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
@@ -43,14 +45,19 @@ const Bio = ({ next, previous }) => {
             </button>
           </div>
           <button
-            onClick={next}
+            onClick={() => next(data)}
             className="text-[#FC670B] text-sm font-extralight tracking-[0.02rem] underline mx-auto mt-8"
           >
             Skip this step
           </button>
         </main>
       ) : (
-        <BioSummary next={next} previous={previous} />
+        <BioSummary
+          next={next}
+          previous={previous}
+          data={data}
+          handleChange={handleChange}
+        />
       )}
     </>
   );
