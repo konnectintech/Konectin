@@ -10,7 +10,7 @@ function Faq() {
   };
 
   return (
-    <div className="flex flex-col gap-4 p-16 bg-slate-400">
+    <div className="flex flex-col gap-4 p-16 bg-slate-200">
       <font className="mt-8 flex text-2xl font-black ">
         Frequently Asked Questions
       </font>
