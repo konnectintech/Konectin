@@ -61,7 +61,6 @@ const Builder = () => {
   };
 
   const next = (data) => {
-    console.log(data);
     setResumeData(data);
     setStep((prev) => prev + 1);
   };
