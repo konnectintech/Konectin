@@ -1,10 +1,25 @@
 import React from 'react'
+import { HashLink } from 'react-router-hash-link'
 
 const TermsAndCondition = () => {
 
   return (
-    <div>
-        <div className='p-16 flex flex-col'>
+    <div className='flex gap-4 h-screen overflow-hidden'>
+        <div className='bg-primary-600 text-white pt-20 w-full pl-12 flex flex-col items-center pr-4'>
+            <div className='font-bold text-sm w-full pb-4 items-start'>TABLE OF CONTENT</div>
+            <ul className='list-decimal text-xs gap-4 flex flex-col pl-4'>
+                <li><HashLink to='#accounts'>ACCOUNTS</HashLink></li>
+                <li><HashLink to='#access'>ACCESS TO THE SITE</HashLink></li>
+                <li><HashLink to='#user'>USER CONTENT</HashLink></li>
+                <li><HashLink to='#third'>THIRD-PARTY LINKS & ADS; OTHER USERS</HashLink></li>
+                <li><HashLink to='#disclaimers'>DISCLAIMERS</HashLink></li>
+                <li><HashLink to='#limitation'>LIMITATION ON LIABILITY</HashLink></li>
+                <li><HashLink to='#term'>TERM AND TERMINATION.</HashLink></li>
+                <li><HashLink to='#policy'>COPYRIGHT POLICY.</HashLink></li>
+                <li><HashLink to='/terms#general'>GENERAL</HashLink></li>
+            </ul>
+        </div>
+        <div className='pt-16 flex flex-col overflow-y-scroll'>
             <div className='flex items-center text-2xl font-black justify-center'>Terms & Conditions</div>
             <div className='text-sm pt-4'>The website located at www.konectinyou.com (the “Site”) is a 
                 copyrighted work belonging to Konectin Inc (“Company”, “us”, “our”, and “we”).  
@@ -36,7 +51,7 @@ const TermsAndCondition = () => {
                     </li>
                 </ul>
             </div>
-            <div className='text-sm pt-4'>
+            <div className='text-sm pt-4' id='accounts'>
                 <p className='font-bold p-2 bg-primary-200'>1. ACCOUNTS</p>
                 <ul className='list-decimal'>
                     <li className='text-sm pt-4'>
@@ -56,7 +71,7 @@ const TermsAndCondition = () => {
                     </li>
                 </ul>
             </div>
-            <div className='text-sm pt-4'> 
+            <div className='text-sm pt-4' id='access'> 
                 <p className='font-bold p-2 bg-primary-200'>
                     2. ACCESS TO THE SITE
                 </p>
@@ -110,7 +125,7 @@ const TermsAndCondition = () => {
                     </li>
                 </ul>
             </div>
-            <div className='text-sm pt-4'> 
+            <div className='text-sm pt-4' id='user'> 
                 <p className='font-bold p-2 bg-primary-200'>3. USER CONTENT</p>
                 <ul className='list-decimal'>
                     <li className='text-sm pt-4'>
@@ -197,7 +212,7 @@ const TermsAndCondition = () => {
                     </li>
                 </ul> 
             </div>
-            <div className='text-sm pt-4'>
+            <div className='text-sm pt-4' id='third'>
                 <p className='font-bold p-2 bg-primary-200'>4. THIRD-PARTY LINKS & ADS; OTHER USERS</p>
                 <ul className='list-decimal'>
                     <li className='text-sm pt-4'>
@@ -236,7 +251,7 @@ const TermsAndCondition = () => {
                     </li>
                 </ul>
             </div>
-            <div className='text-sm pt-4'>
+            <div className='text-sm pt-4' id='disclaimers'>
                 <p className='font-bold p-2 bg-primary-200'>5. DISCLAIMERS </p>
                 <ul className='list-decimal'>
                     <li className='text-sm pt-4'>
@@ -257,7 +272,7 @@ const TermsAndCondition = () => {
                     </li>
                 </ul>
             </div>
-            <div className='text-sm pt-4'>
+            <div className='text-sm pt-4' id='limitation'>
                 <p className='font-bold p-2 bg-primary-200'>6. LIMITATION ON LIABILITY</p>
                 <ul className='list-decimal'>
                     <li className='text-sm pt-4'>
@@ -283,7 +298,7 @@ const TermsAndCondition = () => {
                 SOME JURISDICTIONS DO NOT ALLOW THE LIMITATION OR EXCLUSION OF LIABILITY FOR INCIDENTAL OR CONSEQUENTIAL DAMAGES, 
                 SO THE ABOVE LIMITATION OR EXCLUSION MAY NOT APPLY TO YOU.
             </div>
-            <div className='text-sm pt-2'>
+            <div className='text-sm pt-2' id='term'>
                 <p className='font-bold p-2 bg-primary-200'>7. TERM AND TERMINATION.</p>
                 Subject to this Section, these Terms will remain in full force and effect while you use the 
                 Site.  We may suspend or terminate your rights to use the Site (including your Account) at any time for any 
@@ -295,7 +310,7 @@ const TermsAndCondition = () => {
                 deletion of your User Content.  Even after your rights under these Terms are terminated, the following 
                 provisions of these Terms will remain in effect: Sections 2.2 through 2.6, Section 3 and Sections 4 through 10.
             </div>
-            <div className='text-sm pt-4'>
+            <div className='text-sm pt-4' id='policy'>
                 <p className='font-bold p-2 bg-primary-200'>8. COPYRIGHT POLICY.</p>
                 <div>
                     <p className='text-sm pt-4'>
@@ -344,7 +359,7 @@ const TermsAndCondition = () => {
                 <p>The designated Copyright Agent for Company is: Legal Inc</p>
                 <p className='text-sm'>Address of Agent: 651 N Broad St. Suite 201, Middletown, Delaware 19709</p>
             </div>
-            <div className='text-sm pt-4'>
+            <div className='text-sm pt-4' id='general'>
                 <p className='font-bold p-2 bg-primary-200'>9. GENERAL</p>
                 <ul className='list-decimal'>
                     <li className='text-sm pt-4'>
