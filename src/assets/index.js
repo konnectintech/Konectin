@@ -28,6 +28,7 @@ import variant3Icon from "./icons/variant (3).svg";
 import variant4Icon from "./icons/variant (4).svg";
 import variant5Icon from "./icons/variant (5).svg";
 import teamIcon from "./icons/team.svg";
+import userIcon from "./icons/user.svg";
 import likeIcon from "./icons/like.svg";
 import dislikeIcon from "./icons/dislike.svg";
 import bookmarkIcon from "./icons/bookmark.svg";
@@ -94,6 +95,8 @@ import blog7Image from "./images/blog 8.png";
 import BlogCTAImage from "./images/cta 1.png";
 import BlogCTA1Image from "./images/cta 2.png";
 import BlogCTA2Image from "./images/cta 3.png";
+import arrowUp from "./icons/P1-Lighticons-line-292.png";
+import arrowDown from "./icons/P1-Lighticons-line-291.png";
 
 // About Us Images
 import AboutHeroImage from "./images/about hero.png";
@@ -126,6 +129,7 @@ export {
   person4Icon,
   person5Icon,
   teamIcon,
+  userIcon,
   bookmarkIcon,
   likeIcon,
   dislikeIcon,
@@ -192,6 +196,8 @@ export {
   BlogCTAImage,
   BlogCTA1Image,
   BlogCTA2Image,
+  arrowDown,
+  arrowUp,
 
   // About Images
   AboutHeroImage,

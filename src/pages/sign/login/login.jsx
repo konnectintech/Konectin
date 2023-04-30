@@ -1,41 +1,20 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { FieldForm } from "../../../components/form/";
 import ForgetPassword from "./forgetPassword";
 import { loginForm } from "../signData";
-import axios from "axios";
-import { GetLoginStatus } from "../../../middleware";
 import Preloader from "../../../components/preloader";
+import { useAuth } from "../../../middleware";
 
 function Login() {
   const [isloading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const navigate = useNavigate();
-  const userIsLogged = GetLoginStatus();
-
-  useEffect(() => {
-    if (userIsLogged) navigate("/dashboard/profile");
-  }, [userIsLogged, navigate]);
+  const { signIn } = useAuth();
 
   const handleSubmit = (data) => {
     setLoading(true);
-    axios
-      .post("https://konectin-backend-hj09.onrender.com/user/login", data)
-      .then(async (res) => {
-        const userData = await res.data.data;
-        const userToken = await res.data.token;
-        localStorage.setItem("User", JSON.stringify(userData));
-        localStorage.setItem("UserToken", userToken);
-
-        navigate("/blog/all");
-
-        setLoading(false);
-      })
-      .catch((err) => {
-        setLoading(false);
-        setErrorMessage(err.response.data.message);
-      });
+    signIn(data, setLoading, setErrorMessage);
   };
 
   return (

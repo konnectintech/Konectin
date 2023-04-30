@@ -1,19 +1,38 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import Jobs from './Jobs';
+
 import { application, web, help, job, chat, profile, bell, logOut, person2Icon, arrowBack } from '../../../assets';
-const Application = React.lazy(() => import('./Application'));
+
 import LogOut from './Log-out';
-import Profile from './Profile';
-import Help from './Help';
-import Blog from "../../../pages/DefaultRoutes/blog";
-import BlogContent from "../../../pages/DefaultRoutes/blog/feeds/feed/blogContent";
-import Feeds from "../../../pages/DefaultRoutes/blog/feeds";
-import './index.css'
-import { Suspense } from 'react';
+
 const Admin = () => {
+
+    function items() {
+        const item = Array.from(document.getElementsByClassName("item"));
+        item.map((value) => {
+            value.classList.remove("active");
+            console.log(value.classList);
+        });
+    }
+
+    function webIndex() {
+        const web = Array.from(document.getElementsByClassName("web-content"));
+        web.map((value) => {
+            value.classList.remove("hidden");
+            value.classList.add("z-1");
+        });
+    }
+
+    function backArrow() {
+        const web = Array.from(document.getElementsByClassName("web-content"));
+        web.map((value) => {
+            value.classList.remove("z-1");
+            value.classList.add("hidden");
+        });
+    }
+
     return (
-        <div className='w-full flex flex-col gap-2'>
+        <div className='w-full flex flex-col gap-2 pt-12'>
             <div className='w-full hidden md:flex px-10 pt-5'>
                 <div className="profile flex md:scale-95 lg:scale-100 items-center w-full justify-between" >
                     <div className='profile-section flex items-center gap-2'>
@@ -58,9 +77,51 @@ const Admin = () => {
                             </div>
                         </div>
                     </div>
+
+                    <div className='navigation-content flex flex-col gap-5'>
+                        <Link to='/dashboard/jobs'><div className={`jobs item flex item-center bg-primary-600 md:bg-white [&.active]:bg-neutral-600 [&.active]:text-black [&.active]:border-l-4 [&.active]:border-primary-600 gap-3 p-3 pl-12 font-sm hover:bg-white hover:text-black group hover:border-l-4 hover:border-primary-600 rounded-sm md:hover:bg-neutral-600`} onClick={(e) => {
+                            items()
+                            e.target.classList.toggle('active')
+                            webIndex()
+                        }}>
+                            <img src={job} alt="jobs available" className='invert sepia saturate-0 hue-rotate-100 contrast-108 md:invert-0 md:sepia-0 md:saturate-100 md:hue-rotate-188 md:brightness-101 md:contrast-102 group-hover:filter-none w-5 h-5' />
+                            Jobs
+                        </div></Link>
+                        <Link to='/dashboard/application'><div className='application item gap-3 flex item-center bg-primary-600 md:bg-white [&.active]:bg-neutral-600 [&.active]:text-black [&.active]:border-l-4 [&.active]:border-primary-600 gap-3 p-3 pl-12 font-sm hover:bg-white hover:text-black group hover:border-l-4 hover:border-primary-600 rounded-sm md:hover:bg-neutral-600' onClick={(e) => {
+                            items()
+                            e.target.classList.toggle('active')
+                            webIndex()
+                        }}>
+                            <img src={application} alt="jobs available" className='invert sepia saturate-0 hue-rotate-100 contrast-108 md:invert-0 md:sepia-0 md:saturate-100 md:hue-rotate-188 md:brightness-101 md:contrast-102 group-hover:filter-none w-5 h-5'/>{" "}
+                            Application
+                        </div></Link>
+                        <Link to='/dashboard/profile'><div className='profile item gap-3 flex item-center bg-primary-600 md:bg-white [&.active]:bg-neutral-600 [&.active]:text-black [&.active]:border-l-4 [&.active]:border-primary-600 gap-3 p-3 pl-12 font-sm hover:bg-white hover:text-black group hover:border-l-4 hover:border-primary-600 rounded-sm md:hover:bg-neutral-600' onClick={(e) => {
+                            items()
+                            e.target.classList.toggle('active')
+                            webIndex()
+                        }}>
+                            <img src={profile} alt="jobs available" className='invert sepia saturate-0 hue-rotate-100 contrast-108 md:invert-0 md:sepia-0 md:saturate-100 md:hue-rotate-188 md:brightness-101 md:contrast-102 group-hover:filter-none w-5 h-5'/>
+                            Profile
+                        </div></Link>
+                        <Link to='/dashboard/blog'><div className='blog item gap-3 flex item-center bg-primary-600 md:bg-white [&.active]:bg-neutral-600 [&.active]:text-black [&.active]:border-l-4 [&.active]:border-primary-600 gap-3 p-3 pl-12 font-sm hover:bg-white hover:text-black group hover:border-l-4 hover:border-primary-600 rounded-sm md:hover:bg-neutral-600' onClick={(e) => {
+                            items()
+                            e.target.classList.toggle('active')
+                            webIndex()
+                        }}>
+                            <img src={web} alt="jobs available" className='invert sepia saturate-0 hue-rotate-100 contrast-108 md:invert-0 md:sepia-0 md:saturate-100 md:hue-rotate-188 md:brightness-101 md:contrast-102 group-hover:filter-none w-5 h-5'/>
+                            Blogs
+                        </div></Link>
+                        <Link to='/dashboard/help'><div className='help item gap-3 flex item-center bg-primary-600 md:bg-white [&.active]:bg-neutral-600 [&.active]:text-black [&.active]:border-l-4 [&.active]:border-primary-600 gap-3 p-3 pl-12 font-sm hover:bg-white hover:text-black group hover:border-l-4 hover:border-primary-600 rounded-sm md:hover:bg-neutral-600' onClick={(e) => {
+                            items()
+                            e.target.classList.toggle('active')
+                            webIndex()
+                        }}>
+                            <img src={help} alt="jobs available" className='invert sepia saturate-0 hue-rotate-100 contrast-108 md:invert-0 md:sepia-0 md:saturate-100 md:hue-rotate-188 md:brightness-101 md:contrast-102 group-hover:filter-none w-5 h-5'/>
+                            Help
+                        </div></Link>
+                    </div>
                     
-                    
-                    <div className='navigation-footer flex p-2 pl-12'>
+                    <div className='navigation-footer flex p-2'>
                         <Link to='/dashboard/log-out'><div className="log-out flex gap-3 text-secondary-800 font-800" onClick={(e) => {
                             items()
                         }}>
