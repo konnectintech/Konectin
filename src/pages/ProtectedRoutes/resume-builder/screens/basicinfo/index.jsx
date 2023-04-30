@@ -1,8 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { countries } from "../../../../../assets/data/countries";
+import { ResumeTemplateSample1Image } from "../../../../../assets";
 
-const BasicInformation = ({ data, next }) => {
+const BasicInformation = ({ data, handleChange, next }) => {
+  const [selected_country, setSelectedCountry] = useState("");
   const form_classes =
     "p-4 mb-6 text-[11px] w-full text-[#8C8C8F] border border-[#b2b3b48a] outline-0 rounded-[4px] bg-[#f9f9f9]";
+
+  useEffect(() => {
+    if (data.country) {
+      setSelectedCountry(data.country);
+    }
+  }, []);
+
+  const handleCountryChange = (event) => {
+    setSelectedCountry(event.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    data.country = selected_country;
+    next(data);
+  };
 
   return (
     <main className=" max-w-4xl -mt-8 md:-mt-0 flex flex-col md:flex-row justify-between self-center items-center mx-auto">
@@ -14,49 +33,84 @@ const BasicInformation = ({ data, next }) => {
           This information will placed at the top of your resume.
         </p>
 
-        <form className="w-full">
+        <form className="w-full" onSubmit={handleSubmit}>
           <div className=" flex">
             <input
               className={`mr-4  ${form_classes}`}
               type="text"
+              value={data.firstName}
+              onChange={handleChange("firstName")}
               placeholder="First Name"
             />
             <input
               type="text"
               placeholder="Last Name"
+              value={data.lastName}
+              onChange={handleChange("lastName")}
               className={`${form_classes}`}
             />
           </div>
-          <input className={form_classes} type="text" placeholder="Job Title" />
-          <input className={form_classes} type="text" placeholder="Phone" />
+          <input
+            className={form_classes}
+            type="text"
+            value={data.profession}
+            onChange={handleChange("profession")}
+            placeholder="Job Title"
+          />
+          <input
+            className={form_classes}
+            type="text"
+            placeholder="Phone"
+            value={data.phoneNumber}
+            onChange={handleChange("phoneNumber")}
+          />
           <div className="flex">
-            <input
+            <select
+              value={selected_country}
+              onChange={handleCountryChange}
               className={`${form_classes} mr-4`}
+            >
+              {countries.map((country) => (
+                <option key={country.code} value={country.name}>
+                  {country.name}
+                </option>
+              ))}
+            </select>
+            <input
+              value={data.city}
+              onChange={handleChange("city")}
+              className={form_classes}
               type="text"
-              placeholder="Country"
+              placeholder="City"
             />
-            <input className={form_classes} type="text" placeholder="City" />
           </div>
           <div className="flex">
             <input
               className={`${form_classes} mr-4`}
               type="text"
+              value={data.state}
+              onChange={handleChange("state")}
               placeholder="State / Province"
             />
             <input
               className={form_classes}
               type="text"
+              value={data.zipCode}
+              onChange={handleChange("zipCode")}
               placeholder="Zip Code"
             />
           </div>
-          <input className={form_classes} type="email" placeholder="Email*" />
+          <input
+            className={form_classes}
+            type="email"
+            value={data.email}
+            onChange={handleChange("email")}
+            placeholder="Email*"
+          />
 
-          <div className="w-full flex flex-col justify-center mx-auto mt-5 gap-5 md:flex-row">
-            <button className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4">
-              Back
-            </button>
+          <div className="w-full mx-auto mt-5">
             <button
-              onClick={next}
+              type="submit"
               className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] mx-auto py-5 px-6 bg-[#332A66]"
             >
               Continue
@@ -65,7 +119,9 @@ const BasicInformation = ({ data, next }) => {
         </form>
       </div>
       <div className=" hidden flex-col md:ml-10 md:flex">
-        <div className=" w-[300px] h-[422px] border border-[#b2b3b4] shadow- rounded-lg"></div>
+        <div className=" w-[300px] h-[422px] shadow- rounded-lg">
+          <img src={ResumeTemplateSample1Image} alt="template" />
+        </div>
       </div>
     </main>
   );

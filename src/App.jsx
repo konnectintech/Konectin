@@ -3,9 +3,9 @@ import { RequireAuth } from "./middleware";
 
 import ProtectedRoutes from "./pages/ProtectedRoutes";
 // import DashBoard from "./pages/ProtectedRoutes/DashBoard";
-// import Options from "./pages/ProtectedRoutes/resume-builder";
-// import StartBuilder from "./pages/ProtectedRoutes/resume-builder/start";
-// import Builder from "./pages/ProtectedRoutes/resume-builder/screens";
+import Options from "./pages/ProtectedRoutes/resume-builder";
+import StartBuilder from "./pages/ProtectedRoutes/resume-builder/start";
+import Builder from "./pages/ProtectedRoutes/resume-builder/screens";
 
 import Sign from "./pages/sign";
 import Login from "./pages/sign/login/login";
@@ -19,7 +19,7 @@ import About from "./pages/DefaultRoutes/about";
 import Blog from "./pages/DefaultRoutes/blog";
 import BlogContent from "./pages/DefaultRoutes/blog/feeds/feed/blogContent";
 import Feeds from "./pages/DefaultRoutes/blog/feeds";
-// import AIStarter from "./pages/ProtectedRoutes/resume-builder/screens-ai";
+import AIStarter from "./pages/ProtectedRoutes/resume-builder/screens-ai";
 import RouteIdentifier from "./layouts/routeIdentifier";
 import VerifyMail from "./pages/sign/signup/verifyMail";
 import TermsAndCondition from "./pages/DefaultRoutes/terms/TermsAndConditions";
@@ -43,8 +43,12 @@ function App() {
             {/* <Route path="/resume/ai" element={<AIStarter />} />
             <Route path="/resume/options" element={<Options />} /> */}
             <Route path="/terms" element={<TermsAndCondition />} />
-            <Route path="/faq" element={<Faq />}/>
+            <Route path="/faq" element={<Faq />} />
+            <Route path="/resume/ai" element={<AIStarter />} />
 
+            <Route path="/resume/options" element={<Options />} />
+            <Route path="/resume/start" element={<StartBuilder />} />
+            <Route path="/resume/builder" element={<Builder />} />
             <Route path="/blog/" element={<Blog />}>
               <Route path="/blog/:feed" element={<Feeds />} />
               <Route path="/blog/:feed/:title" element={<BlogContent />} />
@@ -59,10 +63,7 @@ function App() {
               </RequireAuth>
             }
           >
-            {/* <Route path="/resume/options" element={<Options />} />
-            <Route path="/resume/start" element={<StartBuilder />} />
-            <Route path="/resume/builder" element={<Builder />} />
-            <Route path="/dashboard/*" element={<DashBoard />} /> */}
+            {/* <Route path="/dashboard/*" element={<DashBoard />} /> */}
           </Route>
         </Route>
       </Routes>
