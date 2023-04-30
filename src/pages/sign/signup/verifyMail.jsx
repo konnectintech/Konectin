@@ -12,7 +12,6 @@ function VerifyMail() {
   const [errorMessage, setErrorMessage] = useState("");
   const [modal, popModal] = useState("");
 
-
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {

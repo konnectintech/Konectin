@@ -51,13 +51,18 @@ function Feeds() {
   let params = useParams();
 
   useEffect(() => {
-    const category = params.feed;
-    if (category === "all") {
+    const category =
+      params.feed.charAt(0).toUpperCase() +
+      params.feed.slice(1, params.feed.length);
+    if (category === "All") {
       setNewBlogs(allBlogs);
     } else {
-      const currentFeed = allBlogs;
+      const currentFeed = allBlogs.filter((blog) =>
+        blog.category.includes(category)
+      );
       setNewBlogs(currentFeed);
     }
+
     let readArray = allBlogs.map((blog) => {
       return blog.numOfReads;
     });
@@ -81,7 +86,7 @@ function Feeds() {
   return (
     <div
       className={`w-11/12 mx-auto max-w-screen-lg flex flex-col gap-10 ${
-        isLoading ? "animate-pulse text-neutral-500" : ""
+        isLoading && "text-neutral-500"
       }`}
     >
       <HeroSection isLoading={isLoading} />

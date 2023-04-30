@@ -1,20 +1,18 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import BlogCard from "../../../../../components/blogCard";
-import Pagination from "../../../../../components/pagination";
-import "../../index.css";
+import BlogCard from "../../../../components/blogCard";
+import Pagination from "../../../../components/pagination";
+import "../index.css";
 import Share from "./share";
-import BlogComment from "./comment";
+import BlogComment from "./comments";
 
 function BlogContent() {
   const [blog, setBlog] = useState({});
   const [isLoading, setLoading] = useState({ post: true, related: true });
-  // const [allBlogs, setAllBlogs] = useState([]);
   const [similarContent, setSimilarContent] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isFull, setOpen] = useState(false);
-
   const [blogBody, setBlogBody] = useState([]);
 
   const { pathname } = useLocation();
@@ -24,8 +22,24 @@ function BlogContent() {
     setCurrentPage(pageNumber);
   };
 
+  async function getRelatedBlogs(key) {
+    try {
+      const response = await axios.get(
+        "https://konectin-backend-hj09.onrender.com/user/getAllBlogs"
+      );
+      const blogs = response.data.blogs;
+
+      const relatedBlogs = blogs.filter((blog) =>
+        blog.category.some((feed) => key.includes(feed))
+      );
+      setSimilarContent(relatedBlogs);
+      setLoading((prev) => ({ ...prev, related: false }));
+    } catch (err) {}
+  }
+
   useEffect(() => {
     const blogID = pathname.split("/")[3];
+
     async function addAsRead() {
       try {
         await axios.put(
@@ -52,6 +66,10 @@ function BlogContent() {
 
     getBlog();
   }, [pathname]);
+
+  useEffect(() => {
+    getRelatedBlogs(blog.category);
+  }, [blog]);
 
   useEffect(() => {
     if (isLoading.related) {
@@ -109,9 +127,9 @@ function BlogContent() {
   return (
     <div className="flex flex-col gap-10">
       <div
-        className={`${
-          isLoading.post ? "blurry-text-md animate-pulse" : ""
-        } flex flex-col gap-4 pt-8`}
+        className={`flex flex-col gap-4 pt-8 ${
+          isLoading.post && "blurry-text-md animate-pulse"
+        }`}
       >
         <div className="text-sm space-y-2 text-neutral-300 text-center">
           <h1 className="text-3xl font-semibold mb-1 text-neutral-100">
@@ -145,7 +163,7 @@ function BlogContent() {
             {isFull && (
               <div className="w-10/12 mx-auto">
                 <Share />
-                <BlogComment />
+                <BlogComment blogID={pathname.split("/")[3]} />
               </div>
             )}
           </div>
@@ -153,7 +171,11 @@ function BlogContent() {
       </div>
       <div>
         <p className="font-semibold text-xl mb-6">Related articles</p>
-        <div className="blog-grid-system gap-6 items-stretch">
+        <div
+          className={`blog-grid-system gap-6 items-stretch ${
+            isLoading.related && "animate-pulse"
+          }`}
+        >
           {currentSimilarContent.map((blog, index) => (
             <BlogCard key={index} article={blog} isLoading={isLoading} />
           ))}
