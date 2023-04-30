@@ -26,7 +26,7 @@ import VerifyMail from "./pages/sign/signup/verifyMail";
 import TermsAndCondition from "./pages/DefaultRoutes/terms/TermsAndConditions";
 import Faq from "./pages/DefaultRoutes/faq/Faq";
 import Contact from "./pages/DefaultRoutes/contact/Contact";
-import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
+// import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
 
 function App() {
   return (
@@ -55,7 +55,7 @@ function App() {
             <Route path="/faq" element={<Faq />} />
             <Route path="/resume/ai" element={<AIStarter />} />
             <Route path="/contact-us" element={<Contact />} />
-            <Route path="/admin" element={<Admin />} />
+            {/* <Route path="/admin" element={<Admin />} /> */}
             <Route path="/resume/options" element={<Options />} />
             <Route path="/resume/start" element={<StartBuilder />} />
             <Route path="/resume/builder" element={<Builder />} />

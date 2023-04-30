@@ -66,8 +66,8 @@ function VerifyMail() {
           popModal("You have been verified");
           setTimeout(() => {
             popModal("");
-            // navigate("/resume/options");
-            navigate("/blog/all");
+            navigate("/resume/options");
+            // navigate("/blog/all");
           }, 2000);
         } else {
           setLoading(false);
