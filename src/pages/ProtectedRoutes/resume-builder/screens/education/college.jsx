@@ -61,6 +61,7 @@ const College = ({ data, next, previous }) => {
   };
 
   const handleGraduated = (e, index) => {
+    console.log(graduated);
     setGraduated(e.target.checked);
     education_list[index].graduated = e.target.checked;
   };

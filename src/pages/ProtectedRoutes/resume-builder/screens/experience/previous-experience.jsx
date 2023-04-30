@@ -91,6 +91,7 @@ const PreviousExperience = ({ next, previous, data }) => {
 
   const handleCurrent = (e, index) => {
     setCurrent(e.target.checked);
+    console.log(endMonth, endYear);
     experience_list[index].current = e.target.checked;
   };
 
@@ -102,7 +103,16 @@ const PreviousExperience = ({ next, previous, data }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    data.jobExperience = experience_list;
+    if (
+      selected_country &&
+      jobTitle &&
+      company &&
+      startMonth &&
+      startYear &&
+      state
+    ) {
+      data.jobExperience = experience_list;
+    }
 
     next(data);
   };
