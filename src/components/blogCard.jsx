@@ -8,7 +8,9 @@ function BlogCard({
   return (
     <Link
       to={`/blog/${title.split(" ").join("-") + "/" + _id}`}
-      className="blog-card overflow-hidden rounded-md text-xs w-full h-full flex flex-col justify-between"
+      className={`${
+        blurred && "animate-pulse"
+      } blog-card overflow-hidden rounded-md text-xs w-full h-full flex flex-col justify-between`}
     >
       <div className="bg-neutral-500 min-h-[150px] overflow-hidden">
         <LazyLoadImage

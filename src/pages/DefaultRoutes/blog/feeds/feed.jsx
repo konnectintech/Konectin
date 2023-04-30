@@ -1,6 +1,6 @@
 import { useState } from "react";
-import BlogCard from "../../../../../components/blogCard";
-import Pagination from "../../../../../components/pagination";
+import BlogCard from "../../../../components/blogCard";
+import Pagination from "../../../../components/pagination";
 
 function Feed({ newBlogs, trendingBlogs, gridNumber }) {
   const [currentPage, setCurrentPage] = useState(1);

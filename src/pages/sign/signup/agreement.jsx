@@ -27,7 +27,7 @@ function Agreement({ agreed, setAgreed }) {
           I agree to Konectin{" "}
         </font>
         <Link
-          to="/"
+          to="/terms"
           className="text-primary-600 underline hover:text-secondaryBtn"
         >
           TERMS OF SERVICE
