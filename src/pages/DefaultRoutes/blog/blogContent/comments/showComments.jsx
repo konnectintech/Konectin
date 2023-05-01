@@ -41,9 +41,7 @@ function ShowComments({ commentArr }) {
                 {comment.fullname.split(" ")[0]}.{" "}
                 {comment.fullname.split(" ")[1].charAt(0)}
               </h3>
-              <h6 className="text-[8px] text-neutral-500">
-                {Math.abs(new Date() - new Date(comment.updatedAt))}
-              </h6>
+              <h6 className="text-[8px] text-neutral-500">dd</h6>
             </hgroup>
 
             <p className="text-[11px] text-neutral-400">{comment.comment}</p>

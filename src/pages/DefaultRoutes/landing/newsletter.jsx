@@ -1,12 +1,59 @@
+import axios from "axios";
 import { useState } from "react";
 import { newsletterBg } from "../../../assets";
 import { NotifyForm } from "../../../components/form";
+import { NotifyModal } from "../../../components/form/modal";
 
 function NewsLetter() {
-  const [errorMessage, setErrorMessage] = useState("");
+  const [state, setState] = useState({
+    error: false,
+    header: "",
+    p1: "",
+    p2: "",
+  });
 
-  const handleNewsLetter = (data) => {
-    setErrorMessage("You have successfully joined the konectin family");
+  const handleNewsLetter = async (data) => {
+    try {
+      await axios.post(
+        "https://konectin-backend-hj09.onrender.com/user/subscribeMail",
+        { email: data }
+      );
+      const newState = {
+        error: true,
+        header: (
+          <>
+            <font className="font-bold text-[18px]">Congratulations</font>,
+            you're ow part of the{" "}
+            <font className="text-secondary-600">Konectin</font> family 🎉
+          </>
+        ),
+        p1: "Thank you for subscribing to our newsletter. Keep an eye on your inbox for the first email from us. Stay tuned for exciting updates! 📩",
+        p2: "We can't wait to share with you all the latest job opportunities, career advice, juicy job-seeking tips, sneak peeks, and special offers straight to your inbox.",
+      };
+      setState(newState);
+    } catch (err) {
+      const newState = {
+        error: true,
+        header: (
+          <>
+            <font className="text-secondary-600">Oops!</font> Something went
+            wrong 🥴
+          </>
+        ),
+        p1: "",
+        p2: "It looks like our newsletter subscription system is on a coffee break. Please try again later, or go grab a cup of coffee with us and let's try again together!",
+      };
+      setState(newState);
+    }
+  };
+
+  const handleClick = () => {
+    setState({
+      error: false,
+      header: "",
+      p1: "",
+      p2: "",
+    });
   };
 
   return (
@@ -27,13 +74,21 @@ function NewsLetter() {
           will not spam you with irrelevant content.
         </p>
         <div className="w-full sm:w-10/12 max-w-screen-md rounded-lg mx-auto flex gap-2 items-center justify-center pl-4 sm:pl-8 pr-2 sm:pr-4 py-1 md:py-3 bg-white mt-10">
-          <NotifyForm
-            handleSubmit={handleNewsLetter}
-            formFor="Subscribe"
-            errorMessage={errorMessage}
-          />
+          <NotifyForm handleSubmit={handleNewsLetter} formFor="Subscribe" />
         </div>
       </div>
+
+      {state.header && (
+        <div className="fixed top-0 left-0 w-full h-full z-50 bg-neutral-500 flex items-center justify-center">
+          <NotifyModal
+            error={state.error}
+            header={state.header}
+            paragraph1={state.p1}
+            paragraph2={state.p2}
+            click={handleClick}
+          />
+        </div>
+      )}
     </section>
   );
 }

@@ -1,14 +1,69 @@
+import axios from "axios";
 import { useState } from "react";
 import { comingSoon, internHero } from "../../../assets";
 import NotifyForm from "../../../components/form/notifyForm";
+import { NotifyModal } from "../../../components/form/modal";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 
 function Internship() {
-  const [errorMessage, setErrorMessage] = useState("");
+  const [state, setState] = useState({
+    error: false,
+    header: "",
+    p1: "",
+    p2: "",
+  });
 
-  const handleSubmit = () => {
-    setErrorMessage("Done!");
+  const handleSubmit = async (data) => {
+    try {
+      await axios.post(
+        "https://konectin-backend-hj09.onrender.com/user/internshipMail",
+        { email: data }
+      );
+      const newState = {
+        error: true,
+        header: (
+          <>
+            <font className="font-bold text-[18px]">Congratulations</font>,
+            you're one step closer to your dream internship with{" "}
+            <font className="text-secondary-600">Konectin</font> 🎉
+          </>
+        ),
+        p1: "We'll notify you as soon as the internship section of our platform is live.",
+        p2: (
+          <>
+            Keep an eye on your inbox for updates and prepare to take your
+            career to the next level! 🚀. In the meantime, keep honing those
+            skills and getting ready to connect with potential employers from
+            around the world with{" "}
+            <font className="text-secondary-600">Konectin!</font> 😎
+          </>
+        ),
+      };
+      setState(newState);
+    } catch (err) {
+      const newState = {
+        error: true,
+        header: (
+          <>
+            <font className="text-secondary-600">Oops!</font> Something went
+            wrong 🥴
+          </>
+        ),
+        p1: (
+          <>
+            Don't worry, our team of tech wizards is on it. Please try again
+            later or contact our support team at{" "}
+            <font className="text-secondary-600">support@konectin.com.</font> 😎
+          </>
+        ),
+        p2: "In the meantime, keep working hard and don't forget to smile 🙂 - your dream internship is just around the corner! 👍",
+      };
+      setState(newState);
+    }
   };
+
+  const navigate = useNavigate();
 
   return (
     <section className="min-h-[70vh]">
@@ -29,11 +84,7 @@ function Internship() {
             Get Notified When <br /> We Launch
           </p>
           <div className="w-full max-w-[550px] border border-primary-100 rounded-md pl-3 pr-2 py-3">
-            <NotifyForm
-              handleSubmit={handleSubmit}
-              formFor="Notify Me"
-              errorMessage={errorMessage}
-            />
+            <NotifyForm handleSubmit={handleSubmit} formFor="Notify Me" />
           </div>
         </div>
 
@@ -41,6 +92,17 @@ function Internship() {
           <img src={internHero} alt="Konectin Internship" />
         </picture>
       </div>
+      {state.header && (
+        <div className="fixed top-0 w-full h-full z-50 bg-neutral-500 flex items-center justify-center">
+          <NotifyModal
+            error={state.error}
+            header={state.header}
+            paragraph1={state.p1}
+            paragraph2={state.p2}
+            click={() => navigate("/")}
+          />
+        </div>
+      )}
     </section>
   );
 }

@@ -32,6 +32,8 @@ import userIcon from "./icons/user.svg";
 import likeIcon from "./icons/like.svg";
 import dislikeIcon from "./icons/dislike.svg";
 import bookmarkIcon from "./icons/bookmark.svg";
+import notifySuccess from "./icons/notifysuccess.svg";
+import notifyError from "./icons/notifyerror.svg";
 
 // Sign Page Image
 import signImage from "./images/sign image.png";
@@ -73,6 +75,7 @@ import side1Image from "./images/side details 1.png";
 // Internship Images
 import internHero from "./images/internship hero.png";
 import comingSoon from "./images/coming soon.png";
+import modalBackground from "./images/modal background.png";
 
 // Resume Builder Images
 import card3Image from "./images/card 3.png";
@@ -84,14 +87,6 @@ import ResumeCTAImage from "./images/cta.png";
 
 // Blog Images
 import blogHero from "./images/blog hero.png";
-import blogImage from "./images/blog 1.png";
-import blog1Image from "./images/blog 2.png";
-import blog2Image from "./images/blog 3.png";
-import blog3Image from "./images/blog 4.png";
-import blog4Image from "./images/blog 5.png";
-import blog5Image from "./images/blog 6.png";
-import blog6Image from "./images/blog 7.png";
-import blog7Image from "./images/blog 8.png";
 import BlogCTAImage from "./images/cta 1.png";
 import BlogCTA1Image from "./images/cta 2.png";
 import BlogCTA2Image from "./images/cta 3.png";
@@ -131,6 +126,8 @@ export {
   teamIcon,
   userIcon,
   bookmarkIcon,
+  notifySuccess,
+  notifyError,
   likeIcon,
   dislikeIcon,
 
@@ -151,6 +148,7 @@ export {
   // Internship Images
   internHero,
   comingSoon,
+  modalBackground,
 
   // Resume Images
   ResumeCTAImage,
@@ -185,14 +183,6 @@ export {
 
   // Blog Images
   blogHero,
-  blogImage,
-  blog1Image,
-  blog2Image,
-  blog3Image,
-  blog4Image,
-  blog5Image,
-  blog6Image,
-  blog7Image,
   BlogCTAImage,
   BlogCTA1Image,
   BlogCTA2Image,

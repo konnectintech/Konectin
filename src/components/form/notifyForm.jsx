@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { validateField, validateForm } from "./validator";
 
-function NotifyForm({ handleSubmit, formFor, errorState, errorMessage }) {
+function NotifyForm({ handleSubmit, formFor }) {
   const [mail, setMail] = useState({
     formValids: { emailValid: false },
     formErrors: { emailError: "" },
@@ -17,7 +17,6 @@ function NotifyForm({ handleSubmit, formFor, errorState, errorMessage }) {
     const value = e.target.value;
     setMail((prev) => ({ ...prev, [name]: value }));
     validateField(name, value, mail, setMail);
-    console.log(mail);
   };
 
   const submitHandler = (event) => {
@@ -26,6 +25,13 @@ function NotifyForm({ handleSubmit, formFor, errorState, errorMessage }) {
     const formResult = formReq.get("email");
 
     handleSubmit(formResult);
+    setTimeout(() => {
+      setMail({
+        email: "",
+        formValids: { emailValid: false },
+        formErrors: { emailError: "" },
+      });
+    }, 1000);
   };
 
   return (
@@ -47,8 +53,8 @@ function NotifyForm({ handleSubmit, formFor, errorState, errorMessage }) {
         <button
           disabled={!formValid}
           className={`${
-            !formValid ? "bg-secondary-300" : "bg-secondary-500 text-white"
-          } px-2 text-sm md:text-md sm:px-6 py-2 bg-secondary-600 text-white text-center rounded-md`}
+            !formValid ? "bg-secondary-300" : "bg-secondary-500"
+          } px-2 text-sm md:text-md sm:px-6 py-2 text-white text-center rounded-md w-28`}
         >
           {formFor}
         </button>
