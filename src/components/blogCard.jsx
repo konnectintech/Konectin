@@ -7,7 +7,11 @@ function BlogCard({
 }) {
   return (
     <Link
-      to={`/blog/${title.split(" ").join("-") + "/" + _id}`}
+      to={
+        blurred
+          ? "/blog/all"
+          : `/blog/${title.split(" ").join("-") + "/" + _id}`
+      }
       className={`${
         blurred && "animate-pulse"
       } blog-card overflow-hidden rounded-md text-xs w-full h-full flex flex-col justify-between`}
