@@ -164,7 +164,7 @@ function ForgetPassword() {
             paragraph2={state.p2}
             click={() =>
               state.button.length <= 6
-                ? navigate("/")
+                ? navigate("/login")
                 : setState({
                     error: false,
                     header: "",
