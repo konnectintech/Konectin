@@ -9,7 +9,7 @@ function Agreement({ agreed, setAgreed }) {
         className={
           agreed
             ? "w-5 h-5 cursor-pointer rounded-sm bg-primary-600 flex items-center justify-center"
-            : "w-5 h-5 cursor-pointer rounded-sm border border-primary-600"
+            : "w-5 h-5 cursor-pointer bg-white rounded-sm border border-primary-600"
         }
         onClick={() => {
           setAgreed((prev) => !prev);

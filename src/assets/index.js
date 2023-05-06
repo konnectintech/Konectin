@@ -37,6 +37,7 @@ import notifyError from "./icons/notifyerror.svg";
 
 // Sign Page Image
 import signImage from "./images/sign image.png";
+import forgotPasswordImage from "./images/forgot-password.png";
 
 // Dashboard Icons
 import bell from "./icons/bell.svg";
@@ -86,6 +87,8 @@ import ResumeTemplateSample1Image from "./images/resume template 1.png";
 import ResumeCTAImage from "./images/cta.png";
 
 // Blog Images
+import shareIcon from "./icons/share.svg";
+import commentIcon from "./icons/comment.svg";
 import blogHero from "./images/blog hero.png";
 import BlogCTAImage from "./images/cta 1.png";
 import BlogCTA1Image from "./images/cta 2.png";
@@ -133,6 +136,7 @@ export {
 
   // Sign Images
   signImage,
+  forgotPasswordImage,
 
   // Landing Images
   cardImage,
@@ -182,6 +186,8 @@ export {
   cancelIcon,
 
   // Blog Images
+  shareIcon,
+  commentIcon,
   blogHero,
   BlogCTAImage,
   BlogCTA1Image,

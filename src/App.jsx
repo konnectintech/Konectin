@@ -26,6 +26,7 @@ import VerifyMail from "./pages/sign/signup/verifyMail";
 import TermsAndCondition from "./pages/DefaultRoutes/terms/TermsAndConditions";
 import Faq from "./pages/DefaultRoutes/faq/Faq";
 import Contact from "./pages/DefaultRoutes/contact/Contact";
+import ForgetPassword from "./pages/sign/login/forgetPassword";
 // import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
           </Route>
+          <Route path="/forgot-password" element={<ForgetPassword />} />
           <Route path="/verify-mail" element={<VerifyMail />} />
 
           <Route element={<DefaultRoutes />}>

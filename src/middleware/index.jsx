@@ -33,16 +33,16 @@ export const useAuth = () => {
   const [user, setUser] = useLocalStorage("user", null);
   const navigate = useNavigate();
 
-  const getUser = async (data) => {
-    try {
-      let authresult = await axios.get(
-        `https://konectin-backend-hj09.onrender.com/user/getUser?userId=${data}`
-      );
-      console.log(authresult);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  // const getUser = async (data) => {
+  //   try {
+  //     let authresult = await axios.get(
+  //       `https://konectin-backend-hj09.onrender.com/user/getUser?userId=${data}`
+  //     );
+  //     console.log(authresult);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   const signIn = async (data, loader, setError) => {
     try {
@@ -52,6 +52,7 @@ export const useAuth = () => {
       );
 
       const userData = { ...authresult.data.data };
+      console.log(authresult);
       userData.token = authresult.data.token;
 
       setUser(userData);
@@ -87,5 +88,5 @@ export const useAuth = () => {
     setUser(null);
   };
 
-  return { user, getUser, signIn, signUp, signOut };
+  return { user, signIn, signUp, signOut };
 };

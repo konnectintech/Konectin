@@ -18,9 +18,9 @@ function BlogComment({ blogID }) {
         let authresult = await axios.get(
           `https://konectin-backend-hj09.onrender.com/user/getComments?blogId=${blogID}`
         );
-        console.log(authresult);
+        setComments(authresult.data.comments);
       } catch (err) {
-        console.error(err);
+        setError("Please check internet connection");
       }
     };
 
@@ -31,9 +31,15 @@ function BlogComment({ blogID }) {
     try {
       await axios.post(
         `https://konectin-backend-hj09.onrender.com/user/commentPost?userId=${user._id}&postId=${postID}`,
-        { comment: comment }
+        { comment: comment },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
       );
-      
+
+      setError("");
       setComments((prev) => [
         ...prev,
         {
@@ -47,14 +53,20 @@ function BlogComment({ blogID }) {
         },
       ]);
     } catch (err) {
-      console.log(err);
+      setError(
+        <p className="text-red-500">
+          You have to be logged in to comment.{" "}
+          <Link className="text-primary-500" to="/login">
+            Click here to log in
+          </Link>
+        </p>
+      );
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (user?._id) {
-      console.log(user._id);
       // You have to be loggged in to post
       postComment(blogID, comment);
       setError("");
@@ -62,7 +74,7 @@ function BlogComment({ blogID }) {
       setError(
         <p className="text-red-500">
           You have to be logged in to comment.{" "}
-          <Link className="text-primary-500" to="/signup">
+          <Link className="text-primary-500" to="/login">
             Click here to log in
           </Link>
         </p>
@@ -94,7 +106,7 @@ function BlogComment({ blogID }) {
               type="submit"
               className={`${
                 comment.length >= 1 ? "opacity-100" : "opacity-0"
-              } absolute top-1/2 -translate-y-1/2 right-3`}
+              } absolute transistion-opacity duration-500 translate-y-1/2 right-3`}
             >
               <TbIcons.TbSend className="text-secondary-400" size="1.2rem" />
             </button>

@@ -1,17 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 function BlogCard({
   article: { image, title, _id, readingTime, updatedAt, blurred },
 }) {
+  const param = useParams();
+
   return (
     <Link
-      to={
-        blurred
-          ? "/blog/all"
-          : `/blog/${title.split(" ").join("-") + "/" + _id}`
-      }
+      to={blurred ? param : `/blog/${title.split(" ").join("-") + "/" + _id}`}
       className={`${
         blurred && "animate-pulse"
       } blog-card overflow-hidden rounded-md text-xs w-full h-full flex flex-col justify-between`}

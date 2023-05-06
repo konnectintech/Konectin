@@ -1,35 +1,183 @@
+import axios from "axios";
 import { useState } from "react";
+import { forgotPasswordImage, konectinIcon } from "../../../assets";
 import * as FaIcon from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import Preloader from "../../../components/preloader";
+import { NotifyModal } from "../../../components/form/modal";
+import { CustomButton } from "../../../components/button";
 
 function ForgetPassword() {
-  const [agreed, setAgreed] = useState(false);
+  const [mail, setMail] = useState("");
+  const [isloading, setLoading] = useState(false);
+  const [state, setState] = useState({
+    error: false,
+    header: "",
+    p1: "",
+    p2: "",
+    button: "",
+  });
+  const navigate = useNavigate();
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formReq = new FormData(event.target);
+    const formResult = formReq.get("email");
+    setLoading(true);
+
+    try {
+      await axios.post(
+        "https://konectin-backend-hj09.onrender.com/user/forgotPassword",
+        { email: formResult }
+      );
+      setLoading(false);
+      const newState = {
+        error: true,
+        header: (
+          <>
+            <font className="font-bold text-[18px] text-secondary-600">
+              Congratulations,
+            </font>{" "}
+            Password Reset Email Sent 🎉
+          </>
+        ),
+        p1: "We've sent a magic email to reset your password.",
+        p2: "Check your inbox (and spam folder) and you'll be back to enjoying our service in no time. You rock!😎",
+        button: "Got it",
+      };
+      setState(newState);
+    } catch (err) {
+      setLoading(false);
+      const newState = {
+        error: true,
+        header: (
+          <>
+            <font className="text-secondary-600">Oops!</font> Something went
+            wrong 🥴
+          </>
+        ),
+        p1: "It looks like something went wrong while trying to reset your password.",
+        p2: "Please give it another shot, or contact our support team for a helping hand. We're sorry for any frustration this may have caused.",
+        button: "Let's Try Again",
+      };
+      setState(newState);
+    }
+  };
   return (
-    <div className="w-full flex justify-between items-center">
-      <div className="flex gap-2 items-center">
-        <div
-          className={
-            agreed
-              ? "w-5 h-5 cursor-pointer rounded-sm bg-primary-600 flex items-center justify-center"
-              : "w-5 h-5 cursor-pointer rounded-sm border border-primary-600"
-          }
-          onClick={() => {
-            setAgreed((prev) => !prev);
-          }}
-        >
-          {agreed ? <FaIcon.FaCheck size=".6rem" color="#fff" /> : null}
+    <section className="bg-[#F5F5F5]">
+      <div className="mx-auto max-w-screen-xl flex flex-col md:flex-row min-h-screen gap-8 lg:gap-16 justify-between ">
+        {isloading && <Preloader />}
+        <div className="hidden h-screen md:w-11/12 md:block relative lg:w-auto">
+          <img
+            className="w-full h-full"
+            src={forgotPasswordImage}
+            alt="sign in background"
+          />
         </div>
-        <div
-          className="cursor-pointer select-none"
-          onClick={() => {
-            setAgreed((prev) => !prev);
-          }}
-        >
-          Remember me
+
+        <div className="items-start md:min-w-[250px] lg:w-1/4 lg:min-w-[500px] w-full sm:min-w-[400px]">
+          <div className="p-6 lg:pr-16 max-w-[600px] min-h-[80vh] lg:p-0 mx-auto flex flex-col gap-4 items-start justify-center">
+            <div className="md:hidden">
+              <img
+                className="w-full h-full"
+                src={konectinIcon}
+                alt="sign in background"
+              />
+            </div>
+            <hgroup>
+              <h1 className="text-4xl mb-2">Forgot Password</h1>
+              <h6>Enter your email below</h6>
+            </hgroup>
+            <div className="w-full flex flex-col items-stretch text-xs md:text-sm">
+              <form
+                className="flex flex-col gap-4 mb-4"
+                onSubmit={handleSubmit}
+              >
+                <label htmlFor="email">
+                  <fieldset className="border border-secondary-300 rounded-md cursor-pointer relative">
+                    <legend className="ml-4 px-1">E-mail</legend>
+                    <input
+                      className="outline-0 border-0 text-sm md:text-md w-full bg-transparent p-4 pt-3 text-primary-900"
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="Enter your email address"
+                      value={mail}
+                      onChange={(event) => setMail(event.target.value)}
+                      onInput={(event) => setMail(event.target.value)}
+                    />
+                  </fieldset>
+                </label>
+                <button
+                  disabled={!mail}
+                  className={`${
+                    mail
+                      ? "bg-purple-500 hover:bg-purple-700"
+                      : "bg-purple-200 hover:bg-purple-300"
+                  } px-2 text-sm md:text-md sm:px-6 py-3 text-white text-center rounded-md`}
+                >
+                  Reset Password
+                </button>
+              </form>
+              <CustomButton onClick={() => navigate("/login")}>
+                Back to sign in
+              </CustomButton>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="text-secondary-600">Forget password?</div>
-    </div>
+
+      <div className="lg:hidden bg-primary-700 w-full text-center text-white py-6">
+        <div className="flex gap-4 items-center justify-center mb-6">
+          <a
+            href="https://twitter.com/konectin_you?t=LyVvMn4twNiZjYGU6F48pg&s=09"
+            target="_blank"
+            rel="noreferrer"
+            className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg"
+          >
+            <FaIcon.FaTwitter size="1.1rem" />
+          </a>
+          <a
+            href="/"
+            target="_blank"
+            rel="noreferrer"
+            className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg"
+          >
+            <FaIcon.FaFacebookF size="1rem" />
+          </a>
+          <a
+            href="https://linkedin.com/company/konectin/"
+            target="_blank"
+            rel="noreferrer"
+            className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg"
+          >
+            <FaIcon.FaLinkedinIn size="1rem" />
+          </a>
+        </div>
+      </div>
+      {state.header && (
+        <div className="fixed top-0 w-full h-full z-50 bg-neutral-500 flex items-center justify-center">
+          <NotifyModal
+            error={state.error}
+            header={state.header}
+            paragraph1={state.p1}
+            paragraph2={state.p2}
+            click={() =>
+              state.button.length <= 6
+                ? navigate("/")
+                : setState({
+                    error: false,
+                    header: "",
+                    p1: "",
+                    p2: "",
+                  })
+            }
+          >
+            {state.button}
+          </NotifyModal>
+        </div>
+      )}
+    </section>
   );
 }
 

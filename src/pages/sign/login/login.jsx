@@ -1,10 +1,44 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { FieldForm } from "../../../components/form/";
-import ForgetPassword from "./forgetPassword";
-import { loginForm } from "../signData";
-import Preloader from "../../../components/preloader";
 import { useAuth } from "../../../middleware";
+import { loginForm } from "../signData";
+import { FieldForm } from "../../../components/form/";
+import Preloader from "../../../components/preloader";
+import * as FaIcon from "react-icons/fa";
+
+export function RememberMe() {
+  const [agreed, setAgreed] = useState(false);
+
+  return (
+    <div className="w-full flex justify-between items-center">
+      <div className="flex gap-2 items-center">
+        <div
+          className={
+            agreed
+              ? "w-5 h-5 cursor-pointer rounded-sm bg-primary-600 flex items-center justify-center"
+              : "w-5 h-5 cursor-pointer bg-white rounded-sm border border-primary-600"
+          }
+          onClick={() => {
+            setAgreed((prev) => !prev);
+          }}
+        >
+          {agreed ? <FaIcon.FaCheck size=".6rem" color="#fff" /> : null}
+        </div>
+        <div
+          className="cursor-pointer select-none"
+          onClick={() => {
+            setAgreed((prev) => !prev);
+          }}
+        >
+          Remember me
+        </div>
+      </div>
+      <Link to="/forgot-password" className="text-secondary-600">
+        Forget password?
+      </Link>
+    </div>
+  );
+}
 
 function Login() {
   const [isloading, setLoading] = useState(false);
@@ -31,7 +65,7 @@ function Login() {
           formFor="Sign in"
           errorMessage={errorMessage}
         >
-          <ForgetPassword />
+          <RememberMe />
         </FieldForm>
 
         {/* Log In Link */}
