@@ -25,7 +25,7 @@ function BlogComment({ blogID }) {
     };
 
     getComments(blogID);
-  }, [blogID]);
+  }, [blogID, comments]);
 
   const postComment = async (postID, comment) => {
     try {
@@ -52,6 +52,7 @@ function BlogComment({ blogID }) {
           __v: 0,
         },
       ]);
+      setComment("");
     } catch (err) {
       setError(
         <p className="text-red-500">

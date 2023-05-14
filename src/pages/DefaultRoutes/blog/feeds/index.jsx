@@ -95,7 +95,7 @@ function Feeds() {
           {feedList.map((feedItem, index) => (
             <Link
               key={index}
-              to={`/blog/${feedItem.link}`}
+              to={isLoading ? "/blog/all" : `/blog/${feedItem.link}`}
               className={`
                 ${
                   isLoading

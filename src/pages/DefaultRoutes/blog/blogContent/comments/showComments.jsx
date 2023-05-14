@@ -5,11 +5,12 @@ import * as BiIcons from "react-icons/bi";
 
 function ShowComments({ commentArr }) {
   const [comments, setComments] = useState([]);
+  const [allComments, setAllComments] = useState([]);
 
   useEffect(() => {
     commentArr.map(async (comment) => {
       let res = await getUser(comment);
-      setComments((prev) => {
+      setAllComments((prev) => {
         if (prev.some((data) => data._id === comment._id)) {
           return prev;
         } else {
@@ -19,16 +20,25 @@ function ShowComments({ commentArr }) {
     });
   }, [commentArr]);
 
+  useEffect(() => {
+    lessComments();
+  }, [allComments]);
+
   const getUser = (comment) => {
     return axios.get(
       `https://konectin-backend-hj09.onrender.com/user/getUser?userId=${comment.userId}`
     );
   };
 
+  const lessComments = () => {
+    const splicedComments = allComments.slice(0, 5);
+    setComments(splicedComments);
+  };
+
   const likeComment = (data) => {};
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 scrollbar-hide">
       {comments.map((comment, index) => (
         <div
           key={index}
@@ -79,6 +89,11 @@ function ShowComments({ commentArr }) {
           </div>
         </div>
       ))}
+      {allComments.length > comments.length ? (
+        <p onClick={() => setComments(allComments)}>Show more</p>
+      ) : allComments.length >= 6 && allComments.length === comments.length ? (
+        <p onClick={() => lessComments()}>Show less</p>
+      ) : null}
     </div>
   );
 }
