@@ -1,10 +1,8 @@
-main
+
 ## Table of contents
 
 - [Overview](#overview)
   - [Konnectin](#Konnectin)
-    - [Feature](#features)
-      - [Landing Page](#landing-page)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
@@ -18,27 +16,17 @@ main
 
 ### Konnectin
 
-This website is for the official Konnectin organization...
-
-#### Features
-Features includes: 
-##### Landing Page
-- Header
-- Hero Setion
-- Konnectin Search
-- Benefits
-- About Konnectin
-- Konnectin Blog
-- Map
-- Footer
+Konectin is the perfect platform for business professionals and job seekers to connect with each other. With our easy-to-use tools, you can find the perfect match for your next Business quickly and easily....
+Konectin is the perfect platform for business professionals and job seekers to connect with each other. With our easy-to-use tools, you can find the perfect match for your next Business quickly and easily....
 
 
 ### Links
 
 - Repository URL: [Github](https://github.com/konnectintech/Konnectin)
 - Live Site URL: [Live site](https://konectin.netlify.app)
+- [Linkedln](https://www.linkedin.com/company/konectin/)
 
-## My process
+## Process
 
 ### Built with
 
@@ -101,14 +89,3 @@ To contribute to this repository... After contributing to the repository and com
 
 - Ajayi Michael - [Github](https://github.com/Michaelajayi150)
 
-# Konectin
-Konnectin website
-! [konectin] (https://avatars.githubusercontent.com/u/108042261?s=40&v=4)
-## **About**
-Konectin is the perfect platform for business professionals and job seekers to connect with each other. With our easy-to-use tools, you can find the perfect match for your next Business quickly and easily.
-## **Features**
-
-## Social Media
-[Linkedln] (https://www.linkedin.com/company/konectin/)
-[cruchbase] (https://www.crunchbase.com/organization/konectin)
- main
