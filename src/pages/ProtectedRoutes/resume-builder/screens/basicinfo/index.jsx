@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { countries } from "../../../../../assets/data/countries";
-import { ResumeTemplateSample1Image } from "../../../../../assets";
 
-const BasicInformation = ({ data, handleChange, next }) => {
+const BasicInformation = ({ data, handleChange, next, template }) => {
   const [selected_country, setSelectedCountry] = useState("");
   const form_classes =
     "p-4 mb-6 text-[11px] w-full text-[#8C8C8F] border border-[#b2b3b48a] outline-0 rounded-[4px] bg-[#f9f9f9]";
@@ -25,7 +24,7 @@ const BasicInformation = ({ data, handleChange, next }) => {
   };
 
   return (
-    <main className=" max-w-4xl -mt-8 md:-mt-0 flex flex-col md:flex-row justify-between self-center items-center mx-auto">
+    <main className=" max-w-6xl -mt-8 md:-mt-0 flex flex-col xl:flex-row justify-between self-center items-center mx-auto gap-10">
       <div className="  -mt-8 flex flex-col justify-center">
         <h2 className=" text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
           Basic Information
@@ -109,7 +108,7 @@ const BasicInformation = ({ data, handleChange, next }) => {
             placeholder="Email*"
           />
 
-          <div className="w-full mx-auto mt-5">
+          <div className="w-full mt-5">
             <button
               type="submit"
               className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] mx-auto py-5 px-6 bg-[#332A66]"
@@ -119,10 +118,8 @@ const BasicInformation = ({ data, handleChange, next }) => {
           </div>
         </form>
       </div>
-      <div className=" hidden flex-col md:ml-10 md:flex">
-        <div className=" w-[300px] h-[422px] shadow- rounded-lg">
-          <img src={ResumeTemplateSample1Image} alt="template" />
-        </div>
+      <div className=" hidden flex-col md:ml-10 xl:flex">
+        <div className=" w-[503px] shadow- rounded-lg">{template()}</div>
       </div>
     </main>
   );

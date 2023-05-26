@@ -15,7 +15,7 @@ const EducationOption = ({ title, toggleEducation }) => (
   </button>
 );
 
-const SelectEducation = ({ next, previous, data, handleChange }) => {
+const SelectEducation = ({ next, previous, data, handleChange, template }) => {
   const [education, setEducation] = useState(false);
   let view;
   const [view_control, setViewControl] = useState(null);
@@ -30,6 +30,7 @@ const SelectEducation = ({ next, previous, data, handleChange }) => {
       <College
         next={next}
         previous={previous}
+        template={template}
         data={data}
         handleChange={handleChange}
       />
@@ -40,6 +41,7 @@ const SelectEducation = ({ next, previous, data, handleChange }) => {
       <HighSchool
         next={next}
         previous={previous}
+        template={template}
         data={data}
         handleChange={handleChange}
       />
@@ -73,7 +75,7 @@ const SelectEducation = ({ next, previous, data, handleChange }) => {
   );
 };
 
-const Education = ({ data, next, previous, handleChange }) => {
+const Education = ({ data, next, previous, handleChange, template }) => {
   const [select_education, setSelectEducation] = useState(true);
 
   const handleSubmit = () => {
@@ -128,6 +130,7 @@ const Education = ({ data, next, previous, handleChange }) => {
         <SelectEducation
           next={next}
           previous={previous}
+          template={template}
           data={data}
           handleChange={handleChange}
         />
