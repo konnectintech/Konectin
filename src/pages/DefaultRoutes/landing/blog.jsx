@@ -16,7 +16,7 @@ function BlogSection({ data }) {
         {data?.map((blog, index) => (
           <div
             key={index}
-            className="bg-white rounded-xl overflow-hidden flex flex-col gap-3 pb-4 justify-between"
+            className="bg-white rounded-xl overflow-hidden flex flex-col gap-3 pb-4"
           >
             <div className="bg-neutral-1000 overflow-hidden">
               <img
@@ -28,7 +28,7 @@ function BlogSection({ data }) {
 
             <h2 className="px-4 text-xl font-medium mb-3">{blog.title}</h2>
 
-            <div className="px-4 text-neutral-300 justify-self-end">
+            <div className="px-4 text-neutral-300 justify-self-end mt-auto">
               <div className="flex gap-2 items-center mt-auto">
                 <img src={blog.info.bloggerImage} alt={blog.info.bloggerName} />
                 <small>{blog.info.bloggerName}</small>

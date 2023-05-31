@@ -51,7 +51,7 @@ export const BlogData = [
     title: "Check out these tips to help you with creative block",
     image: card1Image,
     info: {
-      bloggerName: "Peter Obi",
+      bloggerName: "John Doe",
       bloggerImage: personIcon,
       date: "June 2022",
     },
@@ -60,7 +60,7 @@ export const BlogData = [
     title: "10 ways to be prominent on LinkedIn",
     image: card2Image,
     info: {
-      bloggerName: "Peter Obi",
+      bloggerName: "John Doe",
       bloggerImage: personIcon,
       date: "June 2022",
     },

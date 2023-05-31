@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import { useTemplateContext } from "../../../../contexts/resume";
 
 const TemplateOption = ({ templateId, image }) => {

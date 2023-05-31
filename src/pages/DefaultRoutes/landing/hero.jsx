@@ -11,7 +11,7 @@ function HeroSection() {
             dream <font className="text-secondary-600">Job</font>
           </font>
         </h1>
-        <p className="max-w-md md:max-w-lg">
+        <p className="max-w-md md:max-w-lg md:mt-4">
           Get matched easily with recruiters who see value in your experience
           amidst other great Career oppurtunities. We offer you the best
           possible start to your new Career...

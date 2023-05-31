@@ -11,11 +11,11 @@ function TipSection() {
   return (
     <>
       <div className="flex flex-col gap-10 md:flex-row items-center justify-between text-xm">
-        <div className="flex w-full md:w-7/12 lg:w-8/12 flex-col gap-4 md:gap-6 text-start items-start justify-center">
+        <div className="flex w-full md:w-7/12 lg:w-8/12 flex-col gap-4 text-start items-start justify-center">
           <h1 className="text-2xl font-semibold md:text-3xl md:leading-relaxed">
             Choose from our professional template
           </h1>
-          <p className="w-10/12 text-neutral-300">
+          <p className="w-10/12 text-neutral-300 mb-2">
             At konectin, we believe that first impresions matter, that’s why we
             make sure you put your best foot forward with eye-catching resume
             designs that stand out from the rest.
@@ -42,11 +42,11 @@ function TipSection() {
         <div className="w-3/4 md:w-full">
           <img src={card3Image} alt="useful tips" />
         </div>
-        <div className="flex flex-col gap-4 w-11/12">
+        <div className="flex flex-col gap-1 w-11/12">
           <h1 className="text-2xl font-semibold mb-2 md:text-3xl md:leading-relaxed">
             Follow useful tips from industry experts
           </h1>
-          <p className="text-neutral-300">
+          <p className="text-neutral-300 mb-2">
             At konectin, we believe that first impresions matter, that’s why we
             make sure you put your best foot forward with eye-catching resume
             designs that stand out from the rest

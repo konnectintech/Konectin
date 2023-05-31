@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 export function CustomButton({
   primary,
   children,
+  type,
   onClick,
   disabled,
   colorType,
 }) {
   return (
     <button
+      type={type ? type : ""}
       disabled={disabled}
       onClick={onClick}
       className={`w-full ${

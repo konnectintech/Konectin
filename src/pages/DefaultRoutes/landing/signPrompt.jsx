@@ -14,12 +14,12 @@ function SignPrompt() {
         <div className="w-full md:w-fit flex flex-col xxs:flex-row gap-2 xs:gap-6 items-center justify-center md:justify-between">
           <Link
             to="/signup"
-            className="w-full xxs:w-fit px-4 xs:px-0 xs:w-32 py-3 bg-primary-500 text-white text-center rounded-md"
+            className="w-full xxs:w-fit px-4 xs:px-0 xs:w-32 py-3 bg-primary-500 text-white text-center rounded-md hover:text-primary-500 hover:bg-transparent duration-500 hover:border border-primary-500 peer peer-hover/link:text-primary-500"
           >
             Sign Up
           </Link>
           or
-          <button className="w-full xxs:w-fit px-4 xs:px-0 xs:w-60 py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primary-500 border rounded-md">
+          <button className="w-full xxs:w-fit px-4 xs:px-0 xs:w-60 py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primary-500 border rounded-md hover:text-white hover:bg-primary-500 peer-hover:text-white peer-hover:bg-primary-500  duration-500 peer/link">
             <img src={googleIcon} alt="continue with google" /> Continue with
             Google
           </button>

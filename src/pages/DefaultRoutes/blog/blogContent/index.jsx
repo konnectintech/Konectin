@@ -139,11 +139,15 @@ function BlogContent() {
           <p>{blog.readingTime}</p>
         </div>
         <div className="max-w-screen-md w-full mx-auto">
-          <div className="w-full bg-neutral-500 h-[65vh] h-full">
-            <img className="w-full h-full" src={blog.image} alt={blog.title} />
+          <div className="w-full bg-neutral-500 overflow-hidd rounded-t-2xl">
+            <img
+              className="object-contain mx-auto"
+              src={blog.image}
+              alt={blog.title}
+            />
           </div>
           <div className="text-start text-xs leading-normal bg-white py-8 rounded-b-md">
-            <div className="flex flex-wrap w-10/12 mx-auto font-semibold">
+            <div className="flex flex-wrap w-10/12 mx-auto">
               <article
                 dangerouslySetInnerHTML={{
                   __html: !isFull ? blogBody[0] : blogBody[0] + blogBody[1],

@@ -47,7 +47,7 @@ function VerifyMail() {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    const user = JSON.parse(localStorage.getItem("User"));
+    const user = JSON.parse(localStorage.getItem("user"));
     const formReq = new FormData(event.target);
     const value = formReq.get("code");
 
@@ -76,8 +76,8 @@ function VerifyMail() {
       })
       .catch((err) => {
         setLoading(false);
-        setErrorMessage(err.response.data.message);
         console.log(err);
+        setErrorMessage(err.response.data.message);
       });
   };
 
@@ -127,6 +127,7 @@ function VerifyMail() {
               </font>
             </div>
             <CustomButton
+              type="submit"
               disabled={code.length !== 6}
               primary={true}
               colorType="primary"
