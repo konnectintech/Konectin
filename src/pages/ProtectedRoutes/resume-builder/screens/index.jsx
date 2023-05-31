@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState } from "react";
 
 import BasicInformation from "./basicinfo";
 import Education from "./education";
@@ -9,7 +9,7 @@ import Download from "./download";
 import Footer from "../../../../layouts/footer";
 import Header from "../../../../layouts/header";
 import PreviousExperience from "./experience/previous-experience";
-import { TemplateContext } from "../../../../contexts/resume";
+import { useTemplateContext } from "../../../../contexts/resume";
 // import Responsibilities from "./experience/responsibilites";
 // import JobActivities from "./experience/activities";
 import {
@@ -18,7 +18,7 @@ import {
 } from "../../../../assets";
 
 const Builder = () => {
-  const { selectedTemplate } = useContext(TemplateContext);
+  const { selectedTemplate } = useTemplateContext();
   const [resume_data, setResumeData] = useState({
     bio: "",
     firstName: "",

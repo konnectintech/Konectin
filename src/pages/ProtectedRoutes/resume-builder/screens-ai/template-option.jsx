@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { TemplateContext } from "../../../../contexts/resume";
+import { useTemplateContext } from "../../../../contexts/resume";
 
 const TemplateOption = ({ templateId, image }) => {
-  const { setSelectedTemplate } = useContext(TemplateContext);
+  const { setSelectedTemplate } = useTemplateContext();
 
   const handleSelect = (id) => {
     setSelectedTemplate(id);

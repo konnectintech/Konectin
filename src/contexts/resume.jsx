@@ -1,6 +1,7 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 
 const TemplateContext = createContext();
+const useTemplateContext = () => useContext(TemplateContext);
 
 const TemplateProvider = ({ children }) => {
   const [selectedTemplate, setSelectedTemplate] = useState(() => {
@@ -22,4 +23,4 @@ const TemplateProvider = ({ children }) => {
   );
 };
 
-export { TemplateContext, TemplateProvider };
+export { useTemplateContext, TemplateProvider };
