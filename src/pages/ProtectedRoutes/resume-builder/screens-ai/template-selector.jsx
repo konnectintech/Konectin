@@ -1,12 +1,20 @@
-import React from "react";
-
 import {
   ResumeTemplateSample1Image,
   ResumeTemplateSampleImage,
 } from "../../../../assets";
 import { Link } from "react-router-dom";
+import TemplateOption from "./template-option";
 
-const TemplateSelector = ({ next, data, handleChange }) => {
+const template_images = [
+  {
+    img: ResumeTemplateSample1Image,
+  },
+  {
+    img: ResumeTemplateSampleImage,
+  },
+];
+
+const TemplateSelector = ({ data }) => {
   return (
     <main className="flex flex-col justify-center mx-auto items-center gap-10">
       <div className="w-[96px] h-[96px] rounded-full flex items-center justify-center mx-auto bg-slate-300">
@@ -25,26 +33,13 @@ const TemplateSelector = ({ next, data, handleChange }) => {
         <div className=" flex flex-col items-start justify-start gap-7">
           <h3 className="text-xl lg:text-2xl font-bold">Modern</h3>
           <div className="w-fit h-fit overflow-x-auto flex items-center justify-center gap-10">
-            <img
-              src={ResumeTemplateSample1Image}
-              className=" h-[313px]  lg:h-[535px] lg:w-[379px]"
-              alt="template 1"
-            />
-            <img
-              src={ResumeTemplateSampleImage}
-              className=" h-[313px]  lg:h-[535px] lg:w-[379px]"
-              alt="template 2"
-            />
-            <img
-              src={ResumeTemplateSample1Image}
-              className=" h-[313px]  lg:h-[535px] lg:w-[379px]"
-              alt="template 1"
-            />
-            <img
-              src={ResumeTemplateSampleImage}
-              className=" h-[313px]  lg:h-[535px] lg:w-[379px]"
-              alt="template 2"
-            />
+            {template_images.map((image, index) => (
+              <TemplateOption
+                key={index}
+                templateId={`template${index}`}
+                image={image.img}
+              />
+            ))}
           </div>
         </div>
         <div className=" flex flex-col items-start justify-start gap-7">

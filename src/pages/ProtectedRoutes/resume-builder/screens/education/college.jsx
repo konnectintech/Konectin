@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { months } from "../../../../../assets/data/months";
 import { years } from "../../../../../assets/data/years";
-import { ResumeTemplateSample1Image } from "../../../../../assets";
 
-const College = ({ data, next, previous }) => {
+const College = ({ data, next, previous, template }) => {
   const [education_list, setEducationList] = useState(data.education);
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
@@ -75,7 +74,7 @@ const College = ({ data, next, previous }) => {
   };
   return (
     <>
-      <section className="flex justify-between items-center">
+      <section className=" max-w-6xl flex justify-between items-center gap-10">
         <div className="mx-auto">
           <h2 className=" text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
             What’s your college or university?
@@ -212,11 +211,8 @@ const College = ({ data, next, previous }) => {
             </button>
           </form>
         </div>
-        <div className=" hidden flex-col md:ml-10 md:flex">
-          <div className=" w-[300px] h-[422px] shadow- rounded-lg">
-            {" "}
-            <img src={ResumeTemplateSample1Image} alt="template" />
-          </div>
+        <div className=" hidden xl:ml-20 xl:flex">
+          <div className="flex self-end w-[503px] rounded-lg">{template()}</div>
         </div>
       </section>
       <div className="w-8/12 flex flex-col justify-center mx-auto mt-12 gap-5 md:flex-row">

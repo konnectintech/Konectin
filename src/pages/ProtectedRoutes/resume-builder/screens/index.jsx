@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import BasicInformation from "./basicinfo";
 import Education from "./education";
@@ -9,10 +9,16 @@ import Download from "./download";
 import Footer from "../../../../layouts/footer";
 import Header from "../../../../layouts/header";
 import PreviousExperience from "./experience/previous-experience";
+import { useTemplateContext } from "../../../../contexts/resume";
 // import Responsibilities from "./experience/responsibilites";
 // import JobActivities from "./experience/activities";
+import {
+  ResumeTemplateSample1Image,
+  ResumeTemplateSampleImage,
+} from "../../../../assets";
 
 const Builder = () => {
+  const { selectedTemplate } = useTemplateContext();
   const [resume_data, setResumeData] = useState({
     bio: "",
     firstName: "",
@@ -69,38 +75,63 @@ const Builder = () => {
     setStep((prev) => prev - 1);
   };
 
+  const resumeTemplate = () => {
+    switch (selectedTemplate) {
+      case "template0":
+        return <img src={ResumeTemplateSample1Image} alt="resume template" />;
+      case "template1":
+        return <img src={ResumeTemplateSampleImage} alt="resume template" />;
+      default:
+        return null;
+    }
+  };
+
   const component_list = [
     <BasicInformation
       data={resume_data}
+      template={resumeTemplate}
       handleChange={handleChange}
       next={next}
     />,
     <Education
       data={resume_data}
+      template={resumeTemplate}
       handleChange={handleChange}
       next={next}
       previous={previous}
     />,
     <PreviousExperience
       data={resume_data}
+      template={resumeTemplate}
       handleChange={handleChange}
       next={next}
       previous={previous}
     />,
     <Skills
       data={resume_data}
+      template={resumeTemplate}
       handleChange={handleChange}
       next={next}
       previous={previous}
     />,
     <Bio
       data={resume_data}
+      template={resumeTemplate}
       handleChange={handleChange}
       next={next}
       previous={previous}
     />,
-    <Preview data={resume_data} next={next} previous={previous} />,
-    <Download data={resume_data} previous={previous} />,
+    <Preview
+      data={resume_data}
+      next={next}
+      previous={previous}
+      template={resumeTemplate}
+    />,
+    <Download
+      data={resume_data}
+      previous={previous}
+      template={resumeTemplate}
+    />,
   ];
 
   return (
