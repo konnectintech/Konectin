@@ -55,7 +55,7 @@ function App() {
             <Route path="/resume/options" element={<Options />} /> */}
             <Route path="/terms" element={<TermsAndCondition />} />
             <Route path="/faq" element={<Faq />} />
-            <Route path="/resume/ai" element={<AIStarter />} />
+            <Route path="/resume/ai/*" element={<AIStarter />} />
             <Route path="/contact-us" element={<Contact />} />
             {/* <Route path="/admin" element={<Admin />} /> */}
             <Route path="/resume/options" element={<Options />} />
