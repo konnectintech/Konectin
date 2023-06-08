@@ -6,7 +6,7 @@ import Skills from "./skills";
 import Bio from "./bio";
 import Preview from "./preview";
 import Download from "./download";
-import Footer from "../../../../layouts/footer";
+// import Footer from "../../../../layouts/footer";
 import Header from "../../../../layouts/header";
 import PreviousExperience from "./experience/previous-experience";
 import { useTemplateContext } from "../../../../contexts/resume";
@@ -136,11 +136,11 @@ const Builder = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <main className="bg-[#EEEEEE] ">
         <div className=" w-11/12 mx-auto">{component_list[step]}</div>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

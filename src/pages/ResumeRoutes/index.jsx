@@ -1,19 +1,17 @@
 import { Outlet } from "react-router-dom";
 import ScrollToTop from "../../components/scrollToTop";
-import Footer from "../../layouts/footer";
-import Header from "../../layouts/header";
 import ResumeFooter from "../../layouts/resumeHeader-Footer/ResumeFooter";
+import ResumeHeader from "../../layouts/resumeHeader-Footer/ResumeHeader";
 
-function DefaultRoutes() {
+function ResumeRoutes() {
   return (
     <>
       <ScrollToTop />
-      <Header />
+      <ResumeHeader />
       <Outlet />
-      <Footer />
-      {/* <ResumeFooter /> */}
+      <ResumeFooter />
     </>
   );
 }
 
-export default DefaultRoutes;
+export default ResumeRoutes;
