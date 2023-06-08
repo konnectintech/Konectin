@@ -38,6 +38,7 @@ const TemplateSelector = ({ data }) => {
                 key={index}
                 templateId={`template${index}`}
                 image={image.img}
+                className=""
               />
             ))}
           </div>
@@ -60,7 +61,8 @@ const TemplateSelector = ({ data }) => {
       </section>
 
       <Link
-        to="/resume/options"
+        // to="/resume/options"
+        to="/resume/builder"
         className=" bg-[#332a66] py-5 px-14 text-white"
       >
         Continue
