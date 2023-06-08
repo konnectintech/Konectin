@@ -32,7 +32,7 @@ export function CustomButton({
 export function ResumeButton() {
   return (
     <Link
-      to="/resume/ai"
+      to="/resume/options"
       className="self-start px-6 py-2 bg-white flex gap-2 items-center justify-center text-primary-500 border-primary-500 border rounded-sm"
     >
       Build resume now

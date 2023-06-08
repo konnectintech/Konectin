@@ -93,14 +93,14 @@ const Builder = () => {
       handleChange={handleChange}
       next={next}
     />,
-    <Education
+    <PreviousExperience
       data={resume_data}
       template={resumeTemplate}
       handleChange={handleChange}
       next={next}
       previous={previous}
     />,
-    <PreviousExperience
+    <Education
       data={resume_data}
       template={resumeTemplate}
       handleChange={handleChange}
@@ -137,8 +137,10 @@ const Builder = () => {
   return (
     <>
       <Header />
-      <main className="bg-[#EEEEEE] ">
-        <div className=" w-11/12 mx-auto">{component_list[step]}</div>
+      <main className="bg-[#EEEEEE]">
+        <div className=" w-11/12 mx-auto max-w-screen-xl">
+          {component_list[step]}
+        </div>
       </main>
       <Footer />
     </>

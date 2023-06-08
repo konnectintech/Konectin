@@ -80,9 +80,12 @@ import modalBackground from "./images/modal background.png";
 
 // Resume Builder Images
 import card3Image from "./images/card 3.png";
+import uploadResume from "./images/upload resume.png";
+import createResume from "./images/create resume.png";
 import ResumeHeroImage from "./images/resume hero.png";
 import ResumeTemplateCrossImage from "./images/resume cross.png";
 import ResumeTemplateSampleImage from "./images/resume template.png";
+import BuilderBg from "./images/builder-bg.png";
 import ResumeTemplateSample1Image from "./images/resume template 1.png";
 import ResumeCTAImage from "./images/cta.png";
 
@@ -160,7 +163,10 @@ export {
   ResumeTemplateCrossImage,
   ResumeTemplateSampleImage,
   ResumeTemplateSample1Image,
+  BuilderBg,
   card3Image,
+  createResume,
+  uploadResume,
 
   //Dashboard Images
   bell,
