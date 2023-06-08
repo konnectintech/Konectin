@@ -9,9 +9,7 @@ const TemplateOption = ({ templateId, image }) => {
     setSelectedTemplate(id);
   };
 
-  const selectedImage=()=>{
-   
-  }
+ 
 
   return (
     <div onClick={() => handleSelect(templateId, image)}>
@@ -20,7 +18,7 @@ const TemplateOption = ({ templateId, image }) => {
         className=" h-[313px]  lg:h-[535px] lg:w-[379px] transition duration-500 ease-in-out hover:border-b-2  border-[#332a66] cursor-pointer"
         // alt="template 1"
         alt={templateId}
-        id={templateId}
+        
         onClick={()=>selectedImage(templateId)}
       />
     </div>
