@@ -19,7 +19,7 @@ const TemplateOption = ({ templateId, image }) => {
         // alt="template 1"
         alt={templateId}
         
-        onClick={()=>selectedImage(templateId)}
+        
       />
     </div>
   );
