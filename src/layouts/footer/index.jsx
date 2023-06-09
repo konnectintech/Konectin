@@ -97,7 +97,9 @@ function Footer() {
             </a>
           </div>
           <p className="mb-4 md:mb-0">A product of konectin</p>
-          <p>&copy; 2022 Konectin Ltd. All rights reserved</p>
+          <p>
+            &copy; {new Date().getFullYear()} Konectin Ltd. All rights reserved
+          </p>
         </div>
       </div>
     </footer>
