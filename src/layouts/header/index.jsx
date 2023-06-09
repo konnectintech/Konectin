@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { konectinIcon } from "../../assets";
 import "./header.css";
 
@@ -79,10 +79,11 @@ function Header() {
 
         <nav className="hidden gap-8 transistion-all md:flex flex-row text-sm">
           {links.map((link, index) => (
-            <Link
-              className={
-                (link.link === "/blog" && pathname.split("/")[1] === "blog") ||
-                link.link === pathname
+            <NavLink
+              className={({ isActive }) =>
+                (isActive && pathname.split("/")[1] === "blog") ||
+                (isActive && pathname.split("/")[1] === "blog") ||
+                isActive
                   ? "py-1 border-b border-secondary-600"
                   : "py-1 hover:border-b border-secondary-600"
               }
@@ -90,7 +91,7 @@ function Header() {
               to={link.link === "/blog" ? "/blog/all" : link.link}
             >
               {link.name}
-            </Link>
+            </NavLink>
           ))}
         </nav>
 

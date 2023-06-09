@@ -118,7 +118,7 @@ const BasicInformation = ({ data, handleChange, next, template }) => {
           </div>
         </form>
       </div>
-      <div className=" hidden flex-col md:ml-10 xl:flex">
+      <div className="hidden flex-col md:ml-10 xl:flex">
         <div className=" w-[503px] shadow- rounded-lg">{template()}</div>
       </div>
     </main>

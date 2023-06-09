@@ -93,14 +93,14 @@ const Builder = () => {
       handleChange={handleChange}
       next={next}
     />,
-    <Education
+    <PreviousExperience
       data={resume_data}
       template={resumeTemplate}
       handleChange={handleChange}
       next={next}
       previous={previous}
     />,
-    <PreviousExperience
+    <Education
       data={resume_data}
       template={resumeTemplate}
       handleChange={handleChange}

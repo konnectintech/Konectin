@@ -52,8 +52,6 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/internship" element={<Internship />} />
             <Route path="/resume" element={<ResumeBuilder />} />
-            {/* <Route path="/resume/ai" element={<AIStarter />} />
-            <Route path="/resume/options" element={<Options />} /> */}
             <Route path="/terms" element={<TermsAndCondition />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/contact-us" element={<Contact />} />
