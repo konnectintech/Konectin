@@ -89,6 +89,10 @@ select.select-wrapper::after {
   position: absolute;
 }
 
+.css-art2ul-ValueContainer2 {
+  padding-left: 1rem !important;
+}
+
 .bg-primary-200 {
   background-color: #b3aecc;
 }

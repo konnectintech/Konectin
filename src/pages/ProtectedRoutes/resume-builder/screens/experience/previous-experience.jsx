@@ -4,6 +4,7 @@ import { months } from "../../../../../assets/data/months";
 import { years } from "../../../../../assets/data/years";
 import { countries } from "../../../../../assets/data/countries";
 import { ResumeTemplateSample1Image } from "../../../../../assets";
+import JobTitleInput from "../../../../../components/jobTitleInput";
 
 const PreviousExperience = ({ next, previous, data }) => {
   const [experience, setExperience] = useState(data.jobExperience[0]);
@@ -47,7 +48,7 @@ const PreviousExperience = ({ next, previous, data }) => {
 
           <form onSubmit={handleSubmit} className="max-w-96">
             <div className="mt-6">
-              <input
+              {/* <input
                 className={form_classes}
                 value={experience.jobTitle}
                 type="text"
@@ -55,7 +56,8 @@ const PreviousExperience = ({ next, previous, data }) => {
                 onChange={(e) => handleChange(e)}
                 onInput={handleChange}
                 placeholder="Job Title"
-              />
+              /> */}
+              <JobTitleInput updateForm={setExperience} />
               <input
                 className={form_classes}
                 type="text"

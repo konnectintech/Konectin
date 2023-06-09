@@ -65,10 +65,10 @@ function App() {
 
           {/* Resume Builder Routes */}
           <Route element={<ResumeRoutes />}>
-            <Route path="/resume/ai" element={<AIStarter />} />
+            <Route path="/resume/ai/*" element={<AIStarter />} />
             <Route path="/resume/options" element={<Options />} />
             <Route path="/resume/start" element={<StartBuilder />} />
-            <Route path="/resume/builder" element={<Builder />} />
+            <Route path="/resume/builder/*" element={<Builder />} />
           </Route>
 
           <Route

@@ -1,21 +1,18 @@
 import { useState } from "react";
 
 import BasicInformation from "./basicinfo";
+import EmploymentExperience from "./experience";
 import Education from "./education";
 import Skills from "./skills";
 import Bio from "./bio";
 import Preview from "./preview";
 import Download from "./download";
-// import Footer from "../../../../layouts/footer";
-import Header from "../../../../layouts/header";
-import PreviousExperience from "./experience/previous-experience";
 import { useTemplateContext } from "../../../../contexts/resume";
-// import Responsibilities from "./experience/responsibilites";
-// import JobActivities from "./experience/activities";
 import {
   ResumeTemplateSample1Image,
   ResumeTemplateSampleImage,
 } from "../../../../assets";
+import { Route, Routes } from "react-router-dom";
 
 const Builder = () => {
   const { selectedTemplate } = useTemplateContext();
@@ -60,19 +57,9 @@ const Builder = () => {
     ],
     skills: [{ skill: "" }],
   });
-  const [step, setStep] = useState(0);
 
   const handleChange = (input) => (e) => {
     setResumeData({ ...resume_data, [input]: e.target.value });
-  };
-
-  const next = (data) => {
-    setResumeData(data);
-    setStep((prev) => prev + 1);
-  };
-
-  const previous = () => {
-    setStep((prev) => prev - 1);
   };
 
   const resumeTemplate = () => {
@@ -87,60 +74,57 @@ const Builder = () => {
   };
 
   const component_list = [
-    <BasicInformation
-      data={resume_data}
-      template={resumeTemplate}
-      handleChange={handleChange}
-      next={next}
-    />,
-    <PreviousExperience
-      data={resume_data}
-      template={resumeTemplate}
-      handleChange={handleChange}
-      next={next}
-      previous={previous}
-    />,
-    <Education
-      data={resume_data}
-      template={resumeTemplate}
-      handleChange={handleChange}
-      next={next}
-      previous={previous}
-    />,
-    <Skills
-      data={resume_data}
-      template={resumeTemplate}
-      handleChange={handleChange}
-      next={next}
-      previous={previous}
-    />,
-    <Bio
-      data={resume_data}
-      template={resumeTemplate}
-      handleChange={handleChange}
-      next={next}
-      previous={previous}
-    />,
-    <Preview
-      data={resume_data}
-      next={next}
-      previous={previous}
-      template={resumeTemplate}
-    />,
-    <Download
-      data={resume_data}
-      previous={previous}
-      template={resumeTemplate}
-    />,
+    {
+      element: BasicInformation,
+      link: "/",
+    },
+    {
+      element: EmploymentExperience,
+      link: "/employment-experience",
+    },
+    {
+      element: Education,
+      link: "/education",
+    },
+    {
+      element: Skills,
+      link: "/skills",
+    },
+    {
+      element: Bio,
+      link: "/bio",
+    },
+    {
+      element: Preview,
+      link: "/preview",
+    },
+    {
+      element: Download,
+      link: "/download",
+    },
   ];
 
   return (
     <>
-      {/* <Header /> */}
       <main className="bg-[#EEEEEE] ">
-        <div className=" w-11/12 mx-auto">{component_list[step]}</div>
+        <div className="w-11/12 mx-auto">
+          <Routes>
+            {component_list.map((component) => (
+              <Route
+                key={component.link}
+                path={component.link}
+                element={
+                  <component.element
+                    data={resume_data}
+                    template={resumeTemplate}
+                    handleChange={handleChange}
+                  />
+                }
+              />
+            ))}
+          </Routes>
+        </div>
       </main>
-      {/* <Footer /> */}
     </>
   );
 };
