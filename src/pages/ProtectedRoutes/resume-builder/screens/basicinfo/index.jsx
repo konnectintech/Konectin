@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { countries } from "../../../../../assets/data/countries";
+import JobTitleInput from "../../../../../components/jobTitleInput";
+import { Link, useNavigate } from "react-router-dom";
 
-const BasicInformation = ({ data, handleChange, next, template }) => {
+const BasicInformation = ({ data, handleChange, template }) => {
   const [selected_country, setSelectedCountry] = useState("");
   const form_classes =
     "p-4 mb-6 text-[11px] w-full text-[#8C8C8F] border border-[#b2b3b48a] outline-0 rounded-[4px] bg-[#f9f9f9]";
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (data.country) {
@@ -20,7 +24,7 @@ const BasicInformation = ({ data, handleChange, next, template }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     data.country = selected_country;
-    next(data);
+    navigate("employment-experience");
   };
 
   return (
@@ -50,13 +54,7 @@ const BasicInformation = ({ data, handleChange, next, template }) => {
               className={`${form_classes}`}
             />
           </div>
-          <input
-            className={form_classes}
-            type="text"
-            value={data.profession}
-            onChange={handleChange("profession")}
-            placeholder="Job Title"
-          />
+          <JobTitleInput updateForm={setSelectedCountry} />
           <input
             className={form_classes}
             type="text"
@@ -108,10 +106,16 @@ const BasicInformation = ({ data, handleChange, next, template }) => {
             placeholder="Email*"
           />
 
-          <div className="w-full mt-5">
+          <div className="max-w-md flex gap-4 mt-2">
+            <Link
+              to="/resume/ai/template-selector"
+              className="w-full max-w-xs text-center border border-primary-200 rounded-lg text-sm py-3 px-6 bg-transparent"
+            >
+              Back
+            </Link>
             <button
               type="submit"
-              className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] mx-auto py-5 px-6 bg-[#332A66]"
+              className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-white py-3 px-6 bg-primary-500"
             >
               Continue
             </button>
