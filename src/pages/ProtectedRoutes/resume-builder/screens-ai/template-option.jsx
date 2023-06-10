@@ -1,25 +1,39 @@
+import { useState } from "react";
 import { useTemplateContext } from "../../../../contexts/resume";
 
-const TemplateOption = ({ templateId, image }) => {
+
+
+
+const TemplateOption = ({ templateId, image, index}) => {
+   
   const { setSelectedTemplate } = useTemplateContext();
 
-  const handleSelect = (id) => {
-    console.log(id, image)
-    // localStorage.setItem("selectedTemplate", id);
-    setSelectedTemplate(id);
-  };
+ 
+ 
 
+
+  
+  const handleSelect = (id, index) => {
+    console.log(index) 
+    
+     localStorage.setItem("selectedTemplate", id);
+    setSelectedTemplate(id);
+    
+   
+  };
+ 
  
 
   return (
-    <div onClick={() => handleSelect(templateId, image)}>
+    <div >
       <img
         src={image}
-        className=" h-[313px]  lg:h-[535px] lg:w-[379px] transition duration-500 ease-in-out hover:border-b-2  border-[#332a66] cursor-pointer"
-        // alt="template 1"
+        className={selectedDiv===index ? `h-[313px]  lg:h-[535px] lg:w-[379px] border-4 border-indigo-600 transition duration-500 ease-in-out hover:cursor-pointer`:`h-[313px]  lg:h-[535px] lg:w-[379px]  hover:cursor-pointer`}
+        
         alt={templateId}
         
-        
+       
+         onClick={() => handleSelect(templateId, index)} 
       />
     </div>
   );

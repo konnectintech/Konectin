@@ -27,6 +27,7 @@ import TermsAndCondition from "./pages/DefaultRoutes/terms/TermsAndConditions";
 import Faq from "./pages/DefaultRoutes/faq/Faq";
 import Contact from "./pages/DefaultRoutes/contact/Contact";
 import ForgetPassword from "./pages/sign/login/forgetPassword";
+
 // import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
 
 function App() {
@@ -66,6 +67,8 @@ function App() {
               <Route path="/blog/:feed/:title" element={<BlogContent />} />
             </Route>
             <Route path="/about" element={<About />} />
+            
+
           </Route>
 
           <Route

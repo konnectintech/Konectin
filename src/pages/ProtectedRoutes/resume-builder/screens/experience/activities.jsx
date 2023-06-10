@@ -1,7 +1,7 @@
 import React from "react";
 import { FaPlus, FaPen, FaTrash, FaCaretDown } from "react-icons/fa";
 
-const JobActivities = ({ data, resume_data, previous, next }) => {
+const JobActivities = ({ data, resume_data, previous, next, template }) => {
   return (
     <main className="-mt-8 flex flex-col justify-between items-start mx-auto md:mx-16">
       <h2 className="-mt-6 max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
@@ -66,6 +66,9 @@ const JobActivities = ({ data, resume_data, previous, next }) => {
           </button>
         </div>
       </section>
+      {/* <div className=" hidden xl:ml-20 xl:flex">
+          <div className="flex self-end w-[503px] rounded-lg">{template()}</div>
+        </div> */}
       <div className="w-8/12 lg:max-w-4xl flex flex-col justify-center mx-auto mt-2 gap-5 md:flex-row">
         <button
           onClick={previous}

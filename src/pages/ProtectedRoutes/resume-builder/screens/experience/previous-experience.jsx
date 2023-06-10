@@ -6,7 +6,7 @@ import { years } from "../../../../../assets/data/years";
 import { countries } from "../../../../../assets/data/countries";
 import { ResumeTemplateSample1Image } from "../../../../../assets";
 
-const PreviousExperience = ({ next, previous, data }) => {
+const PreviousExperience = ({ next, previous, data, template }) => {
   const [experience_list, setExperienceList] = useState(data.jobExperience);
   const [selected_country, setSelectedCountry] = useState("");
   const [jobTitle, setJobTitle] = useState("");
@@ -332,10 +332,14 @@ const PreviousExperience = ({ next, previous, data }) => {
         <div className=" hidden flex-col md:ml-10 md:flex">
           <div className=" w-[300px] h-[422px] shadow rounded-lg">
             {" "}
-            <img src={ResumeTemplateSample1Image} alt="template" />
+           {template()}
           </div>
+          {/* <div className=" hidden xl:ml-20 xl:flex">
+          <div className="flex self-end w-[503px] rounded-lg">{template()}</div>
+        </div> */}
         </div>
       </div>
+      
       <div className="w-8/12 lg:max-w-4xl flex flex-col justify-center mx-auto mt-12 gap-5 md:flex-row">
         <button
           onClick={previous}
