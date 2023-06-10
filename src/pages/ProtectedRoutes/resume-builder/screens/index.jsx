@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Route, Routes } from "react-router-dom";
 import BasicInformation from "./basicinfo";
 import EmploymentExperience from "./experience";
 import Education from "./education";
@@ -12,7 +12,6 @@ import {
   ResumeTemplateSample1Image,
   ResumeTemplateSampleImage,
 } from "../../../../assets";
-import { Route, Routes } from "react-router-dom";
 
 const Builder = () => {
   const { selectedTemplate } = useTemplateContext();
@@ -80,7 +79,7 @@ const Builder = () => {
     },
     {
       element: EmploymentExperience,
-      link: "/employment-experience",
+      link: "/employment-experience/*",
     },
     {
       element: Education,

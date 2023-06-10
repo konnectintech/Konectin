@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { months } from "../../../../../assets/data/months";
 import { years } from "../../../../../assets/data/years";
 import { countries } from "../../../../../assets/data/countries";
 import { ResumeTemplateSample1Image } from "../../../../../assets";
 import JobTitleInput from "../../../../../components/jobTitleInput";
 
-const PreviousExperience = ({ next, previous, data }) => {
+const PreviousExperience = ({ data }) => {
   const [experience, setExperience] = useState(data.jobExperience[0]);
+  const navigate = useNavigate();
 
   const form_classes =
     "p-4 mb-6 text-[11px] w-full text-[#8C8C8F] border border-[#b2b3b48a] outline-0 rounded-[4px] bg-[#f9f9f9] select-wrapper";
@@ -35,7 +36,7 @@ const PreviousExperience = ({ next, previous, data }) => {
     }
 
     // handleSubmit(formArray); Sends data to backend then
-    next(data);
+    navigate("responsibilities");
   };
 
   return (
@@ -187,7 +188,7 @@ const PreviousExperience = ({ next, previous, data }) => {
 
             <div className="max-w-xl flex flex-col justify-center mt-6 gap-5 md:flex-row">
               <button
-                onClick={previous}
+                onClick={() => navigate(-1)}
                 className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
               >
                 Back
