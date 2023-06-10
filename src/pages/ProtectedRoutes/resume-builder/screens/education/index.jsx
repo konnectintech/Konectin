@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 import College from "./college";
 import HighSchool from "./high-school";
@@ -15,7 +16,7 @@ const EducationOption = ({ title, toggleEducation }) => (
   </button>
 );
 
-const SelectEducation = ({ next, previous, data, handleChange, template }) => {
+const SelectEducation = ({ data, handleChange, template }) => {
   const [education, setEducation] = useState(false);
   let view;
   const [view_control, setViewControl] = useState(null);
@@ -27,24 +28,12 @@ const SelectEducation = ({ next, previous, data, handleChange, template }) => {
 
   if (view_control === "college") {
     view = (
-      <College
-        next={next}
-        previous={previous}
-        template={template}
-        data={data}
-        handleChange={handleChange}
-      />
+      <College template={template} data={data} handleChange={handleChange} />
     );
   }
   if (view_control === "high-school") {
     view = (
-      <HighSchool
-        next={next}
-        previous={previous}
-        template={template}
-        data={data}
-        handleChange={handleChange}
-      />
+      <HighSchool template={template} data={data} handleChange={handleChange} />
     );
   }
   return (
@@ -75,16 +64,19 @@ const SelectEducation = ({ next, previous, data, handleChange, template }) => {
   );
 };
 
-const Education = ({ data, next, previous, handleChange, template }) => {
+const Education = ({ data, handleChange, template }) => {
   const [select_education, setSelectEducation] = useState(true);
 
+  const navigate = useNavigate();
+
   const handleSubmit = () => {
-    next(data);
+    navigate("/resume/builder/skills");
   };
 
   const toggleEducation = () => {
     setSelectEducation(!select_education);
   };
+
   return (
     <>
       {select_education ? (
@@ -113,7 +105,7 @@ const Education = ({ data, next, previous, handleChange, template }) => {
           </div>
           <div className="w-full md:max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-center gap-5 md:gap-0">
             <button
-              onClick={previous}
+              onClick={() => navigate(-1)}
               className="border w-full border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-8"
             >
               Back
@@ -128,8 +120,6 @@ const Education = ({ data, next, previous, handleChange, template }) => {
         </main>
       ) : (
         <SelectEducation
-          next={next}
-          previous={previous}
           template={template}
           data={data}
           handleChange={handleChange}

@@ -1,9 +1,12 @@
-import React from "react";
 import { FaPlus } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-const HighSchool = ({ data, next, previous, template }) => {
+const HighSchool = ({ data, template }) => {
   const form_classes =
     "p-4 mb-6 text-[11px] w-full text-[#8C8C8F] border border-[#b2b3b48a] outline-0 rounded-[4px] bg-[#f9f9f9]";
+
+  const navigate = useNavigate();
+
   return (
     <>
       <section className="flex justify-between items-center">
@@ -87,13 +90,13 @@ const HighSchool = ({ data, next, previous, template }) => {
       </section>
       <div className="w-8/12 flex flex-col justify-between mx-auto mt-12 gap-5 md:flex-row ">
         <button
-          onClick={previous}
+          onClick={() => navigate(-1)}
           className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
         >
           Back
         </button>
         <button
-          onClick={next}
+          onClick={() => navigate("/resume/builder/skills")}
           className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] mx-auto py-5 px-6 bg-[#332A66]"
         >
           Continue

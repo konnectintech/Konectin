@@ -1,10 +1,12 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
 import { TemplateOne } from "../../resume-templates/template-1";
 import { ResumeTemplateSample1Image } from "../../../../../assets";
 
-const Download = ({ previous, data }) => {
+const Download = ({ data }) => {
   const resumeRef = useRef();
+  const navigate = useNavigate();
 
   const handlePrint = useReactToPrint({
     content: () => resumeRef.current,
@@ -32,7 +34,7 @@ const Download = ({ previous, data }) => {
             Download
           </button>
           <button
-            onClick={previous}
+            onClick={() => navigate(-1)}
             className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
           >
             Back

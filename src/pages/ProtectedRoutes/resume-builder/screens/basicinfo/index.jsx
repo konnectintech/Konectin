@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { countries } from "../../../../../assets/data/countries";
 import JobTitleInput from "../../../../../components/jobTitleInput";
-import { Link, useNavigate } from "react-router-dom";
 
 const BasicInformation = ({ data, handleChange, template }) => {
   const [selected_country, setSelectedCountry] = useState("");
@@ -107,12 +107,12 @@ const BasicInformation = ({ data, handleChange, template }) => {
           />
 
           <div className="max-w-md flex gap-4 mt-2">
-            <Link
-              to="/resume/ai/template-selector"
+            <button
+              onClick={() => navigate(-1)}
               className="w-full max-w-xs text-center border border-primary-200 rounded-lg text-sm py-3 px-6 bg-transparent"
             >
               Back
-            </Link>
+            </button>
             <button
               type="submit"
               className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-white py-3 px-6 bg-primary-500"

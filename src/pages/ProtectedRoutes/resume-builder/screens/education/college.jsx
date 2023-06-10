@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { months } from "../../../../../assets/data/months";
 import { years } from "../../../../../assets/data/years";
+import { useNavigate } from "react-router-dom";
 
-const College = ({ data, next, previous, template }) => {
+const College = ({ data, template }) => {
   const [education_list, setEducationList] = useState(data.education);
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
@@ -15,6 +16,8 @@ const College = ({ data, next, previous, template }) => {
   const [graduated, setGraduated] = useState("false");
   const form_classes =
     "p-4 mb-6 text-[11px] w-full text-[#8C8C8F] border border-[#b2b3b48a] outline-0 rounded-[4px] bg-[#f9f9f9]";
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (data.education?.length) {
@@ -70,7 +73,8 @@ const College = ({ data, next, previous, template }) => {
     if (school_name && country && state && city) {
       data.education = education_list;
     }
-    next(data);
+
+    navigate("/resume/builder/skills");
   };
   return (
     <>
@@ -217,7 +221,7 @@ const College = ({ data, next, previous, template }) => {
       </section>
       <div className="w-8/12 flex flex-col justify-center mx-auto mt-12 gap-5 md:flex-row">
         <button
-          onClick={previous}
+          onClick={() => navigate(-1)}
           className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
         >
           Back
