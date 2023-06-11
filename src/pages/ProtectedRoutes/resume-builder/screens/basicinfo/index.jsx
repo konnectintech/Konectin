@@ -40,7 +40,7 @@ const BasicInformation = ({ data, handleChange, template }) => {
         <form className="w-full" onSubmit={handleSubmit}>
           <div className=" flex">
             <input
-              className={`mr-4  ${form_classes}`}
+              className={`mr-4 ${form_classes}`}
               type="text"
               value={data.firstName}
               onChange={handleChange("firstName")}
