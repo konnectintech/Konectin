@@ -5,7 +5,8 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { FaTrash, FaPlus } from "react-icons/fa";
 import { ResumeTemplateSample1Image } from "../../../../../assets";
 
-const Skills = ({ data }) => {
+
+const Skills = ({ data, template }) => {
   const [skillList, setSkillList] = useState(data.skills);
   const [jobSkill, setJobSkill] = useState("");
   const navigate = useNavigate();
@@ -132,7 +133,8 @@ const Skills = ({ data }) => {
         </div>
 
         <div className=" w-[280px] h-[350px] shadow-lg rounded-lg mt-16 hidden md:block">
-          <img src={ResumeTemplateSample1Image} alt="template" />
+          {/* <img src={ResumeTemplateSample1Image} alt="template" /> */}
+          {template()}
         </div>
       </div>
       <div className="w-8/12 md:max-w-6xl flex flex-col justify-center mx-auto mt-20 gap-5 md:flex-row">

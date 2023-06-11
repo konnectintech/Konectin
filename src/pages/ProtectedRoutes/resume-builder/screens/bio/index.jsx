@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { ResumeTemplateSample1Image } from "../../../../../assets";
 import BioSummary from "./summary";
 
-const Bio = ({ next, previous, data, handleChange }) => {
+const Bio = ({ next, previous, data, handleChange, template }) => {
   const [show_summary, setShowSummary] = useState(true);
 
   const toggleSummary = () => {
@@ -27,7 +27,8 @@ const Bio = ({ next, previous, data, handleChange }) => {
             </div>
 
             <div className=" w-[280px] h-[350px] shadow-lg rounded-lg">
-              <img src={ResumeTemplateSample1Image} alt="template" />
+              {/* <img src={ResumeTemplateSample1Image} alt="template" /> */}
+              {template()}
             </div>
           </div>
           <div className="w-8/12 md:max-w-4xl flex flex-col justify-center mx-auto mt-24 gap-5 md:flex-row">

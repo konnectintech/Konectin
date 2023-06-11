@@ -61,6 +61,8 @@ function App() {
               <Route path="/blog/:feed/:title" element={<BlogContent />} />
             </Route>
             <Route path="/about" element={<About />} />
+            
+
           </Route>
 
           {/* Resume Builder Routes */}
