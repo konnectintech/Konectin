@@ -1,12 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 // import SkillsForm from "./form";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { FaTrash, FaPlus } from "react-icons/fa";
 import { ResumeTemplateSample1Image } from "../../../../../assets";
 
-const Skills = ({ next, previous, data, template }) => {
+
+const Skills = ({ data, template }) => {
   const [skillList, setSkillList] = useState(data.skills);
   const [jobSkill, setJobSkill] = useState("");
+  const navigate = useNavigate();
 
   const addSkill = () => {
     setSkillList([
@@ -39,7 +42,7 @@ const Skills = ({ next, previous, data, template }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     data.skills = skillList;
-    next(data);
+    navigate("/resume/builder/preview");
   };
 
   return (
@@ -136,7 +139,7 @@ const Skills = ({ next, previous, data, template }) => {
       </div>
       <div className="w-8/12 md:max-w-6xl flex flex-col justify-center mx-auto mt-20 gap-5 md:flex-row">
         <button
-          onClick={previous}
+          onClick={() => navigate(-1)}
           className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
         >
           Back
@@ -149,7 +152,7 @@ const Skills = ({ next, previous, data, template }) => {
         </button>
       </div>
       <button
-        onClick={() => next(data)}
+        onClick={() => navigate("/resume/builder/preview")}
         className="text-[#FC670B] text-sm font-extralight tracking-[0.02rem] underline mx-auto mt-8"
       >
         Skip this step

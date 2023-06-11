@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { konectinIcon } from "../../assets";
-import "./header.css";
+import "../header/header.css";
 
-function Header() {
+function ResumeHeader() {
   const [offset, setOffset] = useState({
     prevScrollpos: window.pageYOffset,
     visible: true,
@@ -79,11 +79,10 @@ function Header() {
 
         <nav className="hidden gap-8 transistion-all md:flex flex-row text-sm">
           {links.map((link, index) => (
-            <NavLink
-              className={({ isActive }) =>
-                (isActive && pathname.split("/")[1] === "blog") ||
-                (isActive && pathname.split("/")[1] === "blog") ||
-                isActive
+            <Link
+              className={
+                (link.link === "/blog" && pathname.split("/")[1] === "blog") ||
+                link.link === pathname
                   ? "py-1 border-b border-secondary-600"
                   : "py-1 hover:border-b border-secondary-600"
               }
@@ -91,7 +90,7 @@ function Header() {
               to={link.link === "/blog" ? "/blog/all" : link.link}
             >
               {link.name}
-            </NavLink>
+            </Link>
           ))}
         </nav>
 
@@ -119,22 +118,10 @@ function Header() {
             </Link>
           ))}
         </nav>
-
-        <nav className="hidden lg:block">
-          <Link
-            to="/login"
-            className={`w-full text-sm px-6 py-2 text-black-500 border-secondary-500 border rounded-sm ${
-              offset.darken
-                ? "hover:text-neutral-100 hover:bg-white"
-                : "hover:text-white hover:bg-secondary-500"
-            } transistion duration-500`}
-          >
-            Log In
-          </Link>
-        </nav>
+        <nav className="hidden lg:block"></nav>
       </nav>
     </header>
   );
 }
 
-export default Header;
+export default ResumeHeader;

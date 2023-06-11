@@ -1,7 +1,9 @@
-import React from "react";
 import { FaPlus, FaPen, FaTrash, FaCaretDown } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-const JobActivities = ({ data, resume_data, previous, next, template }) => {
+const JobActivities = ({ data, resume_data }) => {
+  const navigate = useNavigate();
+  
   return (
     <main className="-mt-8 flex flex-col justify-between items-start mx-auto md:mx-16">
       <h2 className="-mt-6 max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
@@ -71,20 +73,20 @@ const JobActivities = ({ data, resume_data, previous, next, template }) => {
         </div> */}
       <div className="w-8/12 lg:max-w-4xl flex flex-col justify-center mx-auto mt-2 gap-5 md:flex-row">
         <button
-          onClick={previous}
+          onClick={() => navigate(-1)}
           className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
         >
           Back
         </button>
         <button
-          onClick={() => next(data)}
+          onClick={() => navigate("/resume/builder/education")}
           className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] mx-auto py-5 px-6 bg-[#332A66]"
         >
           Continue
         </button>
       </div>
       <button
-        onClick={next}
+        onClick={() => navigate("/resume/builder/education")}
         className="text-[#FC670B] text-sm font-extralight tracking-[0.02rem] underline mx-auto mt-8"
       >
         Skip this step

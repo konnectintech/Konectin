@@ -74,6 +74,25 @@ input {
   font-family: "Merriweather", sans-serif;
 }
 
+select.select-wrapper {
+  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+select.select-wrapper::after {
+  content: "";
+  font-size: 1rem;
+  top: 6px;
+  right: 10px;
+  position: absolute;
+}
+
+.css-art2ul-ValueContainer2 {
+  padding-left: 1rem !important;
+}
+
 .bg-primary-200 {
   background-color: #b3aecc;
 }

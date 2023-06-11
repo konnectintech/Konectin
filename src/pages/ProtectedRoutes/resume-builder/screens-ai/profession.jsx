@@ -1,20 +1,21 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Profession = ({ next, data, handleChange }) => {
+const Profession = ({ data, handleChange }) => {
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!data.profession) {
       setError("Please enter a profession");
       return;
     }
-    next();
+    navigate("/resume/ai/template-selector");
   };
   return (
-    <main className="flex flex-col justify-center mx-auto items-center gap-10">
-      <div className="w-[96px] h-[96px] rounded-full flex items-center justify-center mx-auto bg-slate-300">
-        <img src="." alt="" />
-      </div>
+    <>
       <h2 className="text-2xl lg:text-3xl font-extrabold text-center">
         It's Nice to Meet You{" "}
         <span className="text-[#FC670B]">{data.name}</span>
@@ -45,7 +46,7 @@ const Profession = ({ next, data, handleChange }) => {
           Press Enter
         </button>
       </form>
-    </main>
+    </>
   );
 };
 

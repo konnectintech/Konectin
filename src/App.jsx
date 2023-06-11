@@ -27,7 +27,7 @@ import TermsAndCondition from "./pages/DefaultRoutes/terms/TermsAndConditions";
 import Faq from "./pages/DefaultRoutes/faq/Faq";
 import Contact from "./pages/DefaultRoutes/contact/Contact";
 import ForgetPassword from "./pages/sign/login/forgetPassword";
-
+import ResumeRoutes from "./pages/ResumeRoutes";
 // import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
 
 function App() {
@@ -52,16 +52,10 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/internship" element={<Internship />} />
             <Route path="/resume" element={<ResumeBuilder />} />
-            {/* <Route path="/resume/ai" element={<AIStarter />} />
-            <Route path="/resume/options" element={<Options />} /> */}
             <Route path="/terms" element={<TermsAndCondition />} />
             <Route path="/faq" element={<Faq />} />
-            <Route path="/resume/ai" element={<AIStarter />} />
             <Route path="/contact-us" element={<Contact />} />
             {/* <Route path="/admin" element={<Admin />} /> */}
-            <Route path="/resume/options" element={<Options />} />
-            <Route path="/resume/start" element={<StartBuilder />} />
-            <Route path="/resume/builder" element={<Builder />} />
             <Route path="/blog/" element={<Blog />}>
               <Route path="/blog/:feed" element={<Feeds />} />
               <Route path="/blog/:feed/:title" element={<BlogContent />} />
@@ -69,6 +63,14 @@ function App() {
             <Route path="/about" element={<About />} />
             
 
+          </Route>
+
+          {/* Resume Builder Routes */}
+          <Route element={<ResumeRoutes />}>
+            <Route path="/resume/ai/*" element={<AIStarter />} />
+            <Route path="/resume/options" element={<Options />} />
+            <Route path="/resume/start" element={<StartBuilder />} />
+            <Route path="/resume/builder/*" element={<Builder />} />
           </Route>
 
           <Route

@@ -3,11 +3,11 @@ import { Editor } from "@tinymce/tinymce-react";
 
 export default function TextEditor() {
   const editorRef = useRef(null);
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
-  };
+  // const log = () => {
+  //   if (editorRef.current) {
+  //     console.log(editorRef.current.getContent());
+  //   }
+  // };
   return (
     <>
       <Editor
@@ -18,7 +18,7 @@ export default function TextEditor() {
           branding: false,
           plugins: "advlist lists",
           elementpath: false,
-          toolbar: "undo redo " + "bold italic underline " + " bullist",
+          toolbar: "undo redo bold italic underline bullist",
           content_style:
             "body { font-family:Merriweather,Arial,sans-serif; font-size:12px, }",
         }}
