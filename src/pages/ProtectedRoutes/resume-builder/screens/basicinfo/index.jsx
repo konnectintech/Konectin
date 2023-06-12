@@ -14,7 +14,6 @@ const BasicInformation = ({ data, handleChange, template }) => {
     if (data.country) {
       setSelectedCountry(data.country);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCountryChange = (event) => {

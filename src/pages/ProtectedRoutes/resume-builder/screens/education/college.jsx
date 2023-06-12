@@ -23,7 +23,6 @@ const College = ({ data, template }) => {
     if (data.education?.length) {
       setEducationList(data.education);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleMonthChange = (event, index) => {

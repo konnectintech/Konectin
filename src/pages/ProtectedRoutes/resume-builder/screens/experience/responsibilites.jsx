@@ -3,7 +3,7 @@ import TextEditor from "../../../../../components/editor";
 import Suggestions from "./suggestions";
 import { useNavigate } from "react-router-dom";
 
-const Responsibilities = ({ data }) => {
+const Responsibilities = ({ data, template }) => {
   // const [experience, setExperience] = useState(true);
   const navigate = useNavigate();
 

@@ -34,7 +34,9 @@ function BlogContent() {
       );
       setSimilarContent(relatedBlogs);
       setLoading((prev) => ({ ...prev, related: false }));
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   useEffect(() => {

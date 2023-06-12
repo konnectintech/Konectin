@@ -31,7 +31,7 @@ function ShowComments({ commentArr }) {
     );
   };
 
-  const likeComment = (data) => {};
+  // const likeComment = (data) => {};
 
   return (
     <>
@@ -85,7 +85,7 @@ function ShowComments({ commentArr }) {
                   alt="share"
                 />
                 <BiIcons.BiLike
-                  onClick={() => likeComment(comment)}
+                  // onClick={() => likeComment(comment)}
                   className="cursor-pointer"
                 />
               </div>

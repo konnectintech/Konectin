@@ -3,7 +3,7 @@ import Responsibilities from "./responsibilites";
 import JobActivities from "./activities";
 import PreviousExperience from "./previous-experience";
 
-const EmploymentExperience = ({ data }) => {
+const EmploymentExperience = ({ data, template }) => {
   const employment_components = [
     {
       element: PreviousExperience,
@@ -25,7 +25,7 @@ const EmploymentExperience = ({ data }) => {
         <Route
           key={component.link}
           path={component.link}
-          element={<component.element data={data} />}
+          element={<component.element template={template} data={data} />}
         />
       ))}
     </Routes>

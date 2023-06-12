@@ -6,8 +6,7 @@ import { countries } from "../../../../../assets/data/countries";
 import { ResumeTemplateSample1Image } from "../../../../../assets";
 import JobTitleInput from "../../../../../components/jobTitleInput";
 
-
-const PreviousExperience = ({ data,template }) => {
+const PreviousExperience = ({ data, template }) => {
   const [experience, setExperience] = useState(data.jobExperience[0]);
   const navigate = useNavigate();
 
@@ -205,7 +204,7 @@ const PreviousExperience = ({ data,template }) => {
         </div>
         <div className="hidden flex-col md:ml-10 md:flex">
           <div className=" w-[300px] h-[422px] shadow rounded-lg">
-           {template()}
+            {template()}
           </div>
           {/* <div className=" hidden xl:ml-20 xl:flex">
           <div className="flex self-end w-[503px] rounded-lg">{template()}</div>

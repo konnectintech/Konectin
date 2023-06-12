@@ -1,3 +1,23 @@
 {
-  "extends": "react-app"
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+
+  "parser": "@typescript-eslint/parser",
+
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+
+  "parserOptions": {
+    "sourceType": "module"
+  },
+
+  "rules": {
+    "no-console": "warn",
+    "no-var": "warn"
+  }
 }
+

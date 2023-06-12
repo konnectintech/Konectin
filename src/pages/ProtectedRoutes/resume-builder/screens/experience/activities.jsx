@@ -1,9 +1,9 @@
 import { FaPlus, FaPen, FaTrash, FaCaretDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-const JobActivities = ({ data, resume_data }) => {
+const JobActivities = ({ data, template }) => {
   const navigate = useNavigate();
-  
+
   return (
     <main className="-mt-8 flex flex-col justify-between items-start mx-auto md:mx-16">
       <h2 className="-mt-6 max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
@@ -17,14 +17,6 @@ const JobActivities = ({ data, resume_data }) => {
           <p className="font-bold text-[#66666a] text-sm mb-4">
             Konectin | <span className="font-medium">Lagos, Lagos</span>
           </p>
-          <button className="flex items-center border-none outline-none">
-            <div className=" bg-[#665d99] p-2 border rounded-full">
-              <FaPlus color="#f5f5f5" size="0.6rem" />{" "}
-            </div>
-            <span className=" ml-3 font-extrabold text-sm text-[#8c8c8f]">
-              Add Position
-            </span>
-          </button>
         </div>
         <div className="w-10/12 h-[200px] border border-[#b2b3b48a] rounded-lg bg-white p-4">
           <div className="flex justify-between">
