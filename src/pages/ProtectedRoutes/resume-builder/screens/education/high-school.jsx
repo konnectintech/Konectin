@@ -1,7 +1,7 @@
 import { FaPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-const HighSchool = ({ data, template }) => {
+const HighSchool = ({ template }) => {
   const form_classes =
     "p-4 mb-6 text-[11px] w-full text-[#8C8C8F] border border-[#b2b3b48a] outline-0 rounded-[4px] bg-[#f9f9f9]";
 
@@ -81,9 +81,8 @@ const HighSchool = ({ data, template }) => {
             </div>
           </form>
         </div>
-        <div className=" hidden flex-col md:ml-10 md:flex">
-          <div className=" w-[503px] border border-[#b2b3b4] shadow- rounded-lg">
-            {" "}
+        <div className="hidden flex-col md:ml-10 md:flex">
+          <div className="w-[503px] border border-[#b2b3b4] shadow- rounded-lg">
             {template()}
           </div>
         </div>

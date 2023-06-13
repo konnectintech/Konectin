@@ -62,7 +62,6 @@ const College = ({ data, template }) => {
   };
 
   const handleGraduated = (e, index) => {
-    console.log(graduated);
     setGraduated(e.target.checked);
     education_list[index].graduated = e.target.checked;
   };
@@ -151,7 +150,7 @@ const College = ({ data, template }) => {
                   <label>Graduated?</label>
                   <input
                     type="checkbox"
-                    value={education.graduated}
+                    value={graduated}
                     onChange={(e) => handleGraduated(e, index)}
                     placeholder=""
                   />
