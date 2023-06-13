@@ -1,20 +1,30 @@
-import React from "react";
-import TextEditor from "../../../../../components/editor";
-import Suggestions from "./suggestions";
+import { useRef, useState } from "react";
+import { Editor } from "@tinymce/tinymce-react";
 import { useNavigate } from "react-router-dom";
+import Suggestions from "./suggestions";
 
-const Responsibilities = ({ data, template }) => {
-  // const [experience, setExperience] = useState(true);
+const Responsibilities = ({ data }) => {
+  const [responsibility, setResponsibility] = useState(
+    data.jobExperience[0].jobTitle
+  );
+  const [editorValue, setEditorValue] = useState("");
+  const [dirty, setDirty] = useState("");
+  const editorRef = useRef(null);
   const navigate = useNavigate();
+
+  const handleAddSuggestion = (value) => {
+    const content = editorRef.current.getContent();
+    setEditorValue(`${content} <ul><li>${value}</li></ul>`);
+    setDirty(false);
+    editorRef.current.setDirty(false);
+    // editorRef.current.plugins.wordcount.body.getCharacterCount();
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     navigate("/resume/builder/employment-experience/job-activities");
   };
-  // const toggleExperience = () => {
-  //   setExperience(!experience);
-  // };
 
   return (
     <>
@@ -22,18 +32,35 @@ const Responsibilities = ({ data, template }) => {
         <h2 className="-mt-6 md:max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
           Your work responsibilities
         </h2>
-        <p className=" text-[#66666a] text-sm tracking-[-0.01rem] mt-3 mb-5 max-w-2xl">
+        <p className="text-[#66666a] text-sm tracking-[-0.01rem] mt-3 max-w-2xl">
           Try to include 3-6 work experience bullet points. Little is less and
           more is too much.
         </p>
-        <form onSubmit={handleSubmit}>
-          <section className="w-full h-[400px] flex justify-between mt-4">
+        <form className="w-full" onSubmit={handleSubmit}>
+          <section className="w-full h-[400px] flex justify-between mt-6">
             <div className="w-full md:w-1/2">
               <p className="font-bold text-[#66666a] text-sm mb-3">
                 Product Designer | Konectin
               </p>
               <div className="h-full rounded-lg border border-[#b2b3b459]">
-                <TextEditor />
+                <Editor
+                  apiKey="muetp0kpit1cdofn0tsv7aym5shbxqnxzglv3000ilo9pc0m"
+                  onInit={(_, editor) => (editorRef.current = editor)}
+                  init={{
+                    menubar: false,
+                    resize: false,
+                    branding: false,
+                    plugins: "lists wordcount",
+                    elementpath: false,
+                    toolbar: "bold italic underline undo redo bullist",
+                    content_style:
+                      "body { font-family: Merriweather, Arial, sans-serif; font-size: 12px }",
+                  }}
+                  initialValue={editorValue}
+                  onDirty={() => setDirty(true)}
+                />
+
+                {dirty && <p>You have unsaved content!</p>}
               </div>
             </div>
             <div className="w-1/2 hidden md:block">
@@ -42,7 +69,11 @@ const Responsibilities = ({ data, template }) => {
                 powered tool
               </p>
               <div className="h-full ml-6 border border-[#b2b3b48a] rounded-lg">
-                <Suggestions />
+                <Suggestions
+                  jobTitle={responsibility}
+                  handleChange={(value) => setResponsibility(value)}
+                  handleAddSuggestion={handleAddSuggestion}
+                />
               </div>
             </div>
           </section>
