@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaBars, FaTimes, FaArrowRight } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { konectinIcon } from "../../assets";
@@ -9,6 +9,7 @@ function ResumeInfoHeader() {
     prevScrollpos: window.pageYOffset,
     visible: true,
   });
+  const [locationNo, setLocationNo] = useState(1);
 
   const [isOpen, setToggle] = useState(false);
   const navLinks = [
@@ -19,7 +20,7 @@ function ResumeInfoHeader() {
     { name: "About Us", link: "/about" },
   ];
 
-  const links = [
+  const [links] = useState([
     { path: "/resume/builder", text: "BASIC INFO", no: "1" },
     {
       path: "/resume/builder/employment-experience",
@@ -41,7 +42,8 @@ function ResumeInfoHeader() {
     },
     { path: "/bio", text: "BIO", icon: <FaArrowRight size="1rem" />, no: "5" },
     { path: "/resume/builder/download", text: "FINALIZE", no: "6" },
-  ];
+  ]);
+
   const { pathname } = useLocation();
 
   const handleScroll = () => {
@@ -56,6 +58,18 @@ function ResumeInfoHeader() {
       darken,
     });
   };
+
+  useEffect(() => {
+    for (let i = 0; i < links.length; i++) {
+      if (
+        (links[i].path === "/resume/builder/employment-experience" &&
+          pathname.includes("/resume/builder/employment-experience")) ||
+        links[i].path === pathname
+      ) {
+        setLocationNo(links[i].no);
+      }
+    }
+  }, [pathname, links]);
 
   const toggle = () => {
     setToggle(!isOpen);
@@ -107,29 +121,29 @@ function ResumeInfoHeader() {
               exact
               to={link.path}
               activeClassName="text-red-500"
-              className={`flex items-center  hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium ${
-                (link.path === "/resume/builder/employment-experience" &&
-                  pathname.includes("/resume/builder/employment-experience")) ||
-                link.path === pathname
-                  ? "text-red-500 "
-                  : "text-red-300"
+              className={`flex items-center gap-1 hover:text-secondary-500 px-3 py-2 rounded-md text-sm font-medium ${
+                locationNo >= link.no
+                  ? "text-secondary-500"
+                  : "text-secondary-300"
               }`}
             >
-              {" "}
               <span
-                className={`circleOrange border border-red-300 text-red-300 mr-1 text-sm font-medium ${
-                  (link.path === "/resume/builder/employment-experience" &&
-                    pathname.includes(
-                      "/resume/builder/employment-experience"
-                    )) ||
-                  link.path === pathname
-                    ? "text-red-500 "
-                    : "text-red-300"
+                className={`circleOrange border border-secondary-300 text-secondary-300 mr-1 text-sm font-medium ${
+                  locationNo >= link.no
+                    ? "text-secondary-500 "
+                    : "text-secondary-300"
                 }`}
               >
                 {link.no}
               </span>
-              {link.text}
+              <span className="flex-1">{link.text}</span>
+              <span
+                className={`nav-dotted-line relative rounded-xl block w-6 h-0.5 ml-1 ${
+                  locationNo >= link.no
+                    ? "bg-secondary-500"
+                    : "bg-secondary-300 inactive"
+                }`}
+              />
             </Link>
           ))}
         </nav>
