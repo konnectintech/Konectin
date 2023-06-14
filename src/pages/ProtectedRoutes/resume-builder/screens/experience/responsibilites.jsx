@@ -1,16 +1,14 @@
 import { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import { useNavigate } from "react-router-dom";
 import Suggestions from "./suggestions";
 
-const Responsibilities = ({ data }) => {
+const Responsibilities = ({ data, next, previous }) => {
   const [responsibility, setResponsibility] = useState(
     data.jobExperience[0].jobTitle
   );
   const [editorValue, setEditorValue] = useState("");
   const [dirty, setDirty] = useState("");
   const editorRef = useRef(null);
-  const navigate = useNavigate();
 
   const handleAddSuggestion = (value) => {
     const content = editorRef.current.getContent();
@@ -23,7 +21,7 @@ const Responsibilities = ({ data }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    navigate("/resume/builder/employment-experience/job-activities");
+    next();
   };
 
   return (
@@ -79,7 +77,7 @@ const Responsibilities = ({ data }) => {
           </section>
           <div className="w-8/12 lg:max-w-4xl flex flex-col justify-center mx-auto mt-20 gap-5 md:flex-row">
             <button
-              onClick={() => navigate(-1)}
+              onClick={previous}
               className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
             >
               Back

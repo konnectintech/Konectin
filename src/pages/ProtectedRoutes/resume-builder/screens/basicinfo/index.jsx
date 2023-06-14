@@ -14,7 +14,7 @@ const BasicInformation = ({ data, handleChange, template }) => {
     if (data.country) {
       setSelectedCountry(data.country);
     }
-  }, []);
+  }, [data.country]);
 
   const handleCountryChange = (event) => {
     setSelectedCountry(event.target.value);
@@ -27,17 +27,17 @@ const BasicInformation = ({ data, handleChange, template }) => {
   };
 
   return (
-    <main className=" max-w-6xl -mt-8 md:-mt-0 flex flex-col xl:flex-row justify-between self-center items-center mx-auto gap-10">
-      <div className="  -mt-8 flex flex-col justify-center">
-        <h2 className=" text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
+    <main className="max-w-6xl -mt-8 md:-mt-0 flex flex-col xl:flex-row justify-between self-center items-center mx-auto gap-10">
+      <div className="-mt-8 flex flex-col justify-center">
+        <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
           Basic Information
         </h2>
-        <p className=" text-[#66666a] text-sm tracking-wide mt-3 mb-5">
+        <p className="text-[#66666a] text-sm tracking-wide mt-3 mb-5">
           This information will placed at the top of your resume.
         </p>
 
         <form className="w-full" onSubmit={handleSubmit}>
-          <div className=" flex">
+          <div className="flex">
             <input
               className={`mr-4 ${form_classes}`}
               type="text"

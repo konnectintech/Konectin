@@ -1,7 +1,7 @@
 import { FaPlus, FaPen, FaTrash, FaCaretDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-const JobActivities = ({ data, template }) => {
+const JobActivities = ({ data, template, previous, addCompany }) => {
   const navigate = useNavigate();
 
   return (
@@ -9,7 +9,7 @@ const JobActivities = ({ data, template }) => {
       <h2 className="-mt-6 max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
         Work Experience
       </h2>
-      <p className=" text-[#66666a] text-sm tracking-[-0.01rem] mt-3 mb-5 max-w-2xl">
+      <p className="text-[#66666a] text-sm tracking-[-0.01rem] mt-3 mb-5 max-w-2xl">
         Add, edit or delete your work experience.
       </p>
       <section className="w-full h-[400px] flex flex-col items-start mt-8 mx-auto">
@@ -20,7 +20,7 @@ const JobActivities = ({ data, template }) => {
         </div>
         <div className="w-10/12 h-[200px] border border-[#b2b3b48a] rounded-lg bg-white p-4">
           <div className="flex justify-between">
-            <h3 className=" font-extrabold text-[#66666a] text-lg">
+            <h3 className="font-extrabold text-[#66666a] text-lg">
               Product Manager
             </h3>
             <div>
@@ -32,11 +32,11 @@ const JobActivities = ({ data, template }) => {
               </button>
             </div>
           </div>
-          <p className=" font-light text-[#66666a] text-sm leading-3 mt-3">
+          <p className="font-light text-[#66666a] text-sm leading-3 mt-3">
             Jan 2021 - Mar 2022
           </p>
-          <ul className=" text-[#8C8C8F] text-xs list-disc ml-5 mt-3">
-            <li className=" mb-2">
+          <ul className="text-[#8C8C8F] text-xs list-disc ml-5 mt-3">
+            <li className="mb-2">
               Compiled Lists to describe product/service offerings.
             </li>
             <li>
@@ -45,19 +45,20 @@ const JobActivities = ({ data, template }) => {
             </li>
           </ul>
           <button className="text-[#b2b3b4] text-xs font-extralight flex items-center mt-4">
-            Show more{" "}
+            Show more
             <FaCaretDown className="ml-1" color="#b2b3b4" size="0.5rem" />
           </button>
         </div>
-        <div>
-          <button className="flex items-center border-none outline-none mt-4 ">
-            <div className=" bg-[#665d99] p-2 border rounded-full">
-              <FaPlus color="#f5f5f5" size="0.6rem" />{" "}
-            </div>
-            <span className=" ml-3 font-extrabold text-sm text-[#8c8c8f]">
-              Add Company
-            </span>
-          </button>
+        <div
+          onClick={addCompany}
+          className="flex items-center gap-2 border-none outline-none mt-4 cursor-pointer"
+        >
+          <div className="bg-[#665d99] p-2 border rounded-full">
+            <FaPlus color="#f5f5f5" size="0.6rem" />
+          </div>
+          <span className="font-extrabold text-sm text-[#8c8c8f]">
+            Add Company
+          </span>
         </div>
       </section>
       {/* <div className=" hidden xl:ml-20 xl:flex">
@@ -65,7 +66,7 @@ const JobActivities = ({ data, template }) => {
         </div> */}
       <div className="w-8/12 lg:max-w-4xl flex flex-col justify-center mx-auto mt-2 gap-5 md:flex-row">
         <button
-          onClick={() => navigate(-1)}
+          onClick={previous}
           className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
         >
           Back

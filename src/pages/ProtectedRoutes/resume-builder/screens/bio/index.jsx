@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-
-import { ResumeTemplateSample1Image } from "../../../../../assets";
+import { useState } from "react";
 import BioSummary from "./summary";
 
 const Bio = ({ next, previous, data, handleChange, template }) => {
@@ -27,7 +25,6 @@ const Bio = ({ next, previous, data, handleChange, template }) => {
             </div>
 
             <div className=" w-[280px] h-[350px] shadow-lg rounded-lg">
-              {/* <img src={ResumeTemplateSample1Image} alt="template" /> */}
               {template()}
             </div>
           </div>

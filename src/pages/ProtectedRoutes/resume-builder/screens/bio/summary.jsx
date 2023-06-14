@@ -1,6 +1,4 @@
 import Suggestions from "./suggestions";
-import { ResumeTemplateSample1Image } from "../../../../../assets";
-// import TextEditor from "../../../../../components/editor";
 
 const BioSummary = ({ next, previous, data, handleChange, template }) => {
   return (
@@ -31,8 +29,6 @@ const BioSummary = ({ next, previous, data, handleChange, template }) => {
             />
           </div>
           <div className=" w-[280px] h-[300px] border border-[#b2b3b4] shadow-lg rounded-lg -mt-32 ml-16 hidden xl:block">
-            {" "}
-            {/* <img src={ResumeTemplateSample1Image} alt="template" /> */}
             {template()}
           </div>
         </div>

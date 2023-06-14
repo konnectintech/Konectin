@@ -1,35 +1,47 @@
-import { Route, Routes } from "react-router-dom";
+import { useState } from "react";
 import Responsibilities from "./responsibilites";
 import JobActivities from "./activities";
 import PreviousExperience from "./previous-experience";
 
 const EmploymentExperience = ({ data, template }) => {
+  const [step, setStep] = useState(0);
+  const [workUploaded, setWorkUploaded] = useState(1);
+
+  const nextStep = () => {
+    setStep((prev) => prev + 1);
+  };
+
+  const previousStep = () => {
+    setStep((prev) => prev - 1);
+  };
+
+  const addWorkExperience = () => {
+    setStep(0);
+    setWorkUploaded((prev) => prev + 1);
+  };
+
   const employment_components = [
-    {
-      element: PreviousExperience,
-      link: "/",
-    },
-    {
-      element: Responsibilities,
-      link: "/responsibilities",
-    },
-    {
-      element: JobActivities,
-      link: "/job-activities",
-    },
+    <PreviousExperience
+      next={nextStep}
+      data={data}
+      template={template}
+      workId={workUploaded}
+    />,
+    <Responsibilities
+      next={nextStep}
+      data={data}
+      previous={previousStep}
+      workId={workUploaded}
+    />,
+    <JobActivities
+      previous={previousStep}
+      data={data}
+      template={template}
+      addCompany={addWorkExperience}
+    />,
   ];
 
-  return (
-    <Routes>
-      {employment_components.map((component) => (
-        <Route
-          key={component.link}
-          path={component.link}
-          element={<component.element template={template} data={data} />}
-        />
-      ))}
-    </Routes>
-  );
+  return employment_components[step];
 };
 
 export default EmploymentExperience;

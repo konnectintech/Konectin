@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { months } from "../../../../../assets/data/months";
 import { years } from "../../../../../assets/data/years";
 import { countries } from "../../../../../assets/data/countries";
-import { ResumeTemplateSample1Image } from "../../../../../assets";
 import JobTitleInput from "../../../../../components/jobTitleInput";
 
-const PreviousExperience = ({ data, template }) => {
-  const [experience, setExperience] = useState(data.jobExperience[0]);
+const PreviousExperience = ({ data, next, template, workId }) => {
+  const [experience, setExperience] = useState(data.jobExperience[workId - 1]);
   const navigate = useNavigate();
 
   const form_classes =
@@ -36,7 +35,7 @@ const PreviousExperience = ({ data, template }) => {
     }
 
     // handleSubmit(formArray); Sends data to backend then
-    navigate("responsibilities");
+    next();
   };
 
   return (
