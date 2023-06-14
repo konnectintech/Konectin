@@ -57,9 +57,9 @@ const Builder = () => {
     skills: [{ skill: "" }],
   });
 
-  const handleChange = (input) => (e) => {
-    setResumeData({ ...resume_data, [input]: e.target.value });
-  };
+  // const handleChange = (input) => (e) => {
+  //   setResumeData({ ...resume_data, [input]: e.target.value });
+  // };
 
   const resumeTemplate = () => {
     switch (selectedTemplate) {
@@ -116,7 +116,7 @@ const Builder = () => {
                   <component.element
                     data={resume_data}
                     template={resumeTemplate}
-                    handleChange={handleChange}
+                    updateResume={setResumeData}
                   />
                 }
               />

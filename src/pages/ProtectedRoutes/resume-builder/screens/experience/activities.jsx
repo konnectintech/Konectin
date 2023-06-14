@@ -1,7 +1,7 @@
 import { FaPlus, FaPen, FaTrash, FaCaretDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-const JobActivities = ({ data, template, previous, addCompany }) => {
+const JobActivities = ({ data, template, handleStep, addCompany }) => {
   const navigate = useNavigate();
 
   return (
@@ -61,12 +61,9 @@ const JobActivities = ({ data, template, previous, addCompany }) => {
           </span>
         </div>
       </section>
-      {/* <div className=" hidden xl:ml-20 xl:flex">
-          <div className="flex self-end w-[503px] rounded-lg">{template()}</div>
-        </div> */}
       <div className="w-8/12 lg:max-w-4xl flex flex-col justify-center mx-auto mt-2 gap-5 md:flex-row">
         <button
-          onClick={previous}
+          onClick={() => handleStep(0)}
           className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
         >
           Back

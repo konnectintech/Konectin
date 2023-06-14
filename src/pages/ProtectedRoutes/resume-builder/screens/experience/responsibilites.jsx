@@ -2,9 +2,9 @@ import { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import Suggestions from "./suggestions";
 
-const Responsibilities = ({ data, next, previous }) => {
+const Responsibilities = ({ data, handleStep, workId }) => {
   const [responsibility, setResponsibility] = useState(
-    data.jobExperience[0].jobTitle
+    data.jobExperience[workId - 1].jobTitle
   );
   const [editorValue, setEditorValue] = useState("");
   const [dirty, setDirty] = useState("");
@@ -21,7 +21,7 @@ const Responsibilities = ({ data, next, previous }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    next();
+    handleStep(2);
   };
 
   return (
@@ -77,7 +77,7 @@ const Responsibilities = ({ data, next, previous }) => {
           </section>
           <div className="w-8/12 lg:max-w-4xl flex flex-col justify-center mx-auto mt-20 gap-5 md:flex-row">
             <button
-              onClick={previous}
+              onClick={() => handleStep(0)}
               className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
             >
               Back

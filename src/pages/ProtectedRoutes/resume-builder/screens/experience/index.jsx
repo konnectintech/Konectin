@@ -3,38 +3,50 @@ import Responsibilities from "./responsibilites";
 import JobActivities from "./activities";
 import PreviousExperience from "./previous-experience";
 
-const EmploymentExperience = ({ data, template }) => {
+const EmploymentExperience = ({ data, template, updateResume }) => {
   const [step, setStep] = useState(0);
   const [workUploaded, setWorkUploaded] = useState(1);
 
-  const nextStep = () => {
-    setStep((prev) => prev + 1);
-  };
-
-  const previousStep = () => {
-    setStep((prev) => prev - 1);
+  const handleStep = (stepNumber) => {
+    setStep(stepNumber);
   };
 
   const addWorkExperience = () => {
     setStep(0);
     setWorkUploaded((prev) => prev + 1);
+    const jobExperience = [
+      data.jobExperience,
+      {
+        jobTitle: "",
+        company: "",
+        country: "",
+        city: "",
+        state: "",
+        startMonth: "",
+        startYear: "",
+        endMonth: "",
+        endYear: "",
+        workDesc: [{ summary: "" }],
+        current: false,
+      },
+    ];
+    updateResume((prev) => ({ ...prev, jobExperience: jobExperience }));
   };
 
   const employment_components = [
     <PreviousExperience
-      next={nextStep}
+      handleStep={handleStep}
       data={data}
       template={template}
       workId={workUploaded}
     />,
     <Responsibilities
-      next={nextStep}
+      handleStep={handleStep}
       data={data}
-      previous={previousStep}
       workId={workUploaded}
     />,
     <JobActivities
-      previous={previousStep}
+      handleStep={handleStep}
       data={data}
       template={template}
       addCompany={addWorkExperience}
