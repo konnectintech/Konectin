@@ -12,6 +12,7 @@ import {
   ResumeTemplateSample1Image,
   ResumeTemplateSampleImage,
 } from "../../../../assets";
+import builderBg from "../../../../assets/images/builder-bg.png";
 
 const Builder = () => {
   const { selectedTemplate } = useTemplateContext();
@@ -105,7 +106,13 @@ const Builder = () => {
 
   return (
     <>
-      <main className="bg-[#EEEEEE] ">
+      <main
+        className=""
+        style={{
+          backgroundImage: `linear-gradient(rgba(249, 249, 249, 0.81), rgba(249, 249, 249, 0.81)), url("${builderBg}")`,
+          backgroundSize: "cover",
+        }}
+      >
         <div className="w-11/12 mx-auto">
           <Routes>
             {component_list.map((component) => (
