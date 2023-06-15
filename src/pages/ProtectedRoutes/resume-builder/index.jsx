@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { createResume, uploadResume } from "../../../assets";
-
+import builderBg from "../../../assets/images/builder-bg.png";
 const BuilderOption = ({
   title,
   description,
@@ -41,7 +41,13 @@ const Options = () => {
   };
 
   return (
-    <main className="bg-[#EEEEEE]">
+    <main
+      className=""
+      style={{
+        backgroundImage: `linear-gradient(rgba(249, 249, 249, 0.81), rgba(249, 249, 249, 0.81)), url("${builderBg}")`,
+        backgroundSize: "cover",
+      }}
+    >
       <section className="w-11/12 h-full min-h-[55vh] mx-auto max-w-screen-xl flex flex-col justify-center items-center gap-8">
         <h1 className="text-2xl md:text-3xl lg:text-4xl text-center leading-tight font-semibold md:leading-snug">
           Ready to take your career to the next level?
@@ -67,11 +73,12 @@ const Options = () => {
         </div>
         <Link
           to={`/resume/${choice}`}
-          className="px-12 py-3 rounded-md text-[#fff] bg-primary-100 hover:bg-primary-600 mt-6"
+          className="px-12 py-3 rounded-md text-[#fff] bg-primary-200 hover:bg-primary-600 mt-6"
         >
           Next
         </Link>
       </section>
+      {/* </div> */}
     </main>
   );
 };

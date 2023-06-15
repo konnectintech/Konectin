@@ -5,6 +5,7 @@ import Profession from "./profession";
 import TemplateSelector from "./template-selector";
 import { Route, Routes } from "react-router-dom";
 import { person4Icon } from "../../../../assets";
+import builderBg from "../../../../assets/images/builder-bg.png";
 
 const AIStarter = () => {
   const [data, setData] = useState({
@@ -32,7 +33,13 @@ const AIStarter = () => {
   ];
 
   return (
-    <main className="bg-neutral-1000">
+    <main
+      className=""
+      style={{
+        backgroundImage: `linear-gradient(rgba(249, 249, 249, 0.81), rgba(249, 249, 249, 0.81)), url("${builderBg}")`,
+        backgroundSize: "cover",
+      }}
+    >
       <div className="w-11/12 mx-auto max-w-screen-2xl">
         <section className="min-h-[65vh] flex flex-col justify-center mx-auto items-center gap-6">
           <div className="w-[96px] h-[96px] rounded-full flex items-center justify-center mx-auto bg-slate-300">
