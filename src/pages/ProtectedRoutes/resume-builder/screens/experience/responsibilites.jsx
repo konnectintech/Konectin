@@ -40,7 +40,7 @@ const Responsibilities = ({ data, handleStep, workId }) => {
               <p className="font-bold text-[#66666a] text-sm mb-3">
                 Product Designer | Konectin
               </p>
-              <div className="h-full rounded-lg border border-[#b2b3b459]">
+              <div className="h-full">
                 <Editor
                   apiKey="muetp0kpit1cdofn0tsv7aym5shbxqnxzglv3000ilo9pc0m"
                   onInit={(_, editor) => (editorRef.current = editor)}

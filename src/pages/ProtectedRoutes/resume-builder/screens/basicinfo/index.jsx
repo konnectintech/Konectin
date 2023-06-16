@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { countries } from "../../../../../assets/data/countries";
 import JobTitleInput from "../../../../../components/jobTitleInput";
 
-const BasicInformation = ({ data, handleChange, template }) => {
+const BasicInformation = ({ data, updateResume, template }) => {
   const [selected_country, setSelectedCountry] = useState("");
   const form_classes =
     "p-4 mb-6 text-[11px] w-full text-[#8C8C8F] border border-[#b2b3b48a] outline-0 rounded-[4px] bg-[#f9f9f9]";
@@ -16,8 +16,9 @@ const BasicInformation = ({ data, handleChange, template }) => {
     }
   }, [data.country]);
 
-  const handleCountryChange = (event) => {
-    setSelectedCountry(event.target.value);
+  const handleChange = (event, name) => {
+    const { value } = event.target;
+    updateResume((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
@@ -42,14 +43,14 @@ const BasicInformation = ({ data, handleChange, template }) => {
               className={`mr-4 ${form_classes}`}
               type="text"
               value={data.firstName}
-              onChange={handleChange("firstName")}
+              onChange={(e) => handleChange(e, "firstName")}
               placeholder="First Name"
             />
             <input
               type="text"
               placeholder="Last Name"
               value={data.lastName}
-              onChange={handleChange("lastName")}
+              onChange={(e) => handleChange(e, "lastName")}
               className={`${form_classes}`}
             />
           </div>
@@ -59,12 +60,12 @@ const BasicInformation = ({ data, handleChange, template }) => {
             type="text"
             placeholder="Phone"
             value={data.phoneNumber}
-            onChange={handleChange("phoneNumber")}
+            onChange={(e) => handleChange(e, "phoneNumber")}
           />
           <div className="flex">
             <select
               value={selected_country}
-              onChange={handleCountryChange}
+              onChange={(e) => handleChange(e, "country")}
               className={`${form_classes} mr-4`}
             >
               {countries.map((country) => (
@@ -75,7 +76,7 @@ const BasicInformation = ({ data, handleChange, template }) => {
             </select>
             <input
               value={data.city}
-              onChange={handleChange("city")}
+              onChange={(e) => handleChange(e, "city")}
               className={form_classes}
               type="text"
               placeholder="City"
@@ -86,14 +87,14 @@ const BasicInformation = ({ data, handleChange, template }) => {
               className={`${form_classes} mr-4`}
               type="text"
               value={data.state}
-              onChange={handleChange("state")}
+              onChange={(e) => handleChange(e, "state")}
               placeholder="State / Province"
             />
             <input
               className={form_classes}
               type="text"
               value={data.zipCode}
-              onChange={handleChange("zipCode")}
+              onChange={(e) => handleChange(e, "zipCode")}
               placeholder="Zip Code"
             />
           </div>
@@ -101,7 +102,7 @@ const BasicInformation = ({ data, handleChange, template }) => {
             className={form_classes}
             type="email"
             value={data.email}
-            onChange={handleChange("email")}
+            onChange={(e) => handleChange(e, "email")}
             placeholder="Email*"
           />
 
