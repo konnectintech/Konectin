@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import SkillsForm from "./form";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { FaTrash, FaPlus } from "react-icons/fa";
-import { ResumeTemplateSample1Image } from "../../../../../assets";
-
 
 const Skills = ({ data, template }) => {
   const [skillList, setSkillList] = useState(data.skills);
@@ -42,7 +39,7 @@ const Skills = ({ data, template }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     data.skills = skillList;
-    navigate("/resume/builder/preview");
+    navigate("/resume/builder/bio");
   };
 
   return (

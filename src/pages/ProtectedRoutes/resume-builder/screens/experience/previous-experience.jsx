@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { months } from "../../../../../assets/data/months";
 import { years } from "../../../../../assets/data/years";
 import { countries } from "../../../../../assets/data/countries";
-import { ResumeTemplateSample1Image } from "../../../../../assets";
 import JobTitleInput from "../../../../../components/jobTitleInput";
 
-const PreviousExperience = ({ data, template }) => {
-  const [experience, setExperience] = useState(data.jobExperience[0]);
+const PreviousExperience = ({ data, handleStep, template, workId }) => {
+  const [experience, setExperience] = useState(data.jobExperience[workId - 1]);
   const navigate = useNavigate();
 
   const form_classes =
@@ -36,7 +35,7 @@ const PreviousExperience = ({ data, template }) => {
     }
 
     // handleSubmit(formArray); Sends data to backend then
-    navigate("responsibilities");
+    handleStep(1);
   };
 
   return (
@@ -188,7 +187,7 @@ const PreviousExperience = ({ data, template }) => {
 
             <div className="max-w-xl flex flex-col justify-center mt-6 gap-5 md:flex-row">
               <button
-                onClick={() => navigate(-1)}
+                onClick={() => (workId === 1 ? navigate(-1) : handleStep(2))}
                 className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
               >
                 Back
@@ -206,9 +205,6 @@ const PreviousExperience = ({ data, template }) => {
           <div className=" w-[300px] h-[422px] shadow rounded-lg">
             {template()}
           </div>
-          {/* <div className=" hidden xl:ml-20 xl:flex">
-          <div className="flex self-end w-[503px] rounded-lg">{template()}</div>
-        </div> */}
         </div>
       </div>
     </section>
