@@ -23,22 +23,22 @@ const Preview = ({ data }) => {
             resume template, you can easily make changes before finalizing your
             download. Thank you for using our resume builder!
           </p>
-          <button className="bg-[#FC670B] font-bold text-lg border border-[#665d99] rounded-lg p-4 mt-7 flex md:flex-none mx-auto">
+          <button className="bg-[#FC670B] font-bold  border border-black rounded-lg w-full md:w-fit max-w-xs text-sm text-white py-3 px-[3.5rem] ">
             Change resume template
           </button>
         </div>
       </div>
-
-      <div className="w-8/12 md:max-w-4xl flex flex-col justify-center mx-auto mt-10 gap-5 md:flex-row">
+      <div className="max-w-xl w-full flex flex-col justify-center mt-8 lg:mt-16 md:mt-8  gap-5 md:flex-row mx-auto ">
         <button
           onClick={() => navigate(-1)}
-          className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
+          className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
         >
           Back
         </button>
         <button
           onClick={() => navigate("/resume/builder/download")}
-          className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] mx-auto py-5 px-6 bg-[#332A66]"
+          type="submit"
+          className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-[#332A66]"
         >
           Continue
         </button>

@@ -77,20 +77,20 @@ const Responsibilities = ({ data }) => {
               </div>
             </div>
           </section>
-          <div className="w-8/12 lg:max-w-4xl flex flex-col justify-center mx-auto mt-20 gap-5 md:flex-row">
-            <button
-              onClick={() => navigate(-1)}
-              className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
-            >
-              Back
-            </button>
-            <button
-              type="submit"
-              className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] mx-auto py-5 px-6 bg-[#332A66]"
-            >
-              Continue
-            </button>
-          </div>
+          <div className="max-w-xl flex flex-col max-md:justify-center mt-16 gap-5 md:flex-row">
+                <button
+                  onClick={() => navigate(-1)}
+                  className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
+                >
+                  Back
+                </button>
+                <button
+                  type="submit"
+                  className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-[#332A66]"
+                >
+                  Continue
+                </button>
+            </div>
         </form>
       </main>
     </>

@@ -25,21 +25,21 @@ const Download = ({ data }) => {
         <div className="block md:hidden w-[350px] h-[450px] shadow-lg rounded-lg md:mr-10 mt-16">
           <img src={ResumeTemplateSample1Image} alt="template" />
         </div>
-
-        <div className="w-8/12 lg:max-w-4xl flex flex-col justify-center mx-auto mt-24 gap-5 md:flex-row">
-          <button
-            onClick={handlePrint}
-            className="w-full border border-[#b2b3b48a] rounded-lg font-extrabold text-lg text-[#f5f5f5] mx-auto py-5 px-6 bg-[#332A66]"
-          >
-            Download
-          </button>
-          <button
-            onClick={() => navigate(-1)}
-            className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
-          >
-            Back
-          </button>
-        </div>
+      </div>
+      <div className="max-w-xl w-full flex flex-col max-md:justify-center mt-16 gap-5 md:flex-row">
+        <button
+          onClick={handlePrint}
+          type="submit"
+          className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-[#332A66]"
+        >
+          Download
+        </button>
+        <button
+          onClick={() => navigate(-1)}
+          className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
+        >
+          Back
+        </button>
       </div>
     </main>
   );

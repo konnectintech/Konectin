@@ -103,16 +103,17 @@ const Education = ({ data, handleChange, template }) => {
               </span>
             </button>
           </div>
-          <div className="w-full md:max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-center gap-5 md:gap-0">
+          <div className="max-w-xl w-full flex flex-col  mt-6 gap-5 md:flex-row">
             <button
               onClick={() => navigate(-1)}
-              className="border w-full border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-8"
+              className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
             >
               Back
             </button>
             <button
               onClick={handleSubmit}
-              className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-5 px-6 md:ml-8 bg-[#332A66]"
+              type="submit"
+              className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-[#332A66]"
             >
               Continue
             </button>

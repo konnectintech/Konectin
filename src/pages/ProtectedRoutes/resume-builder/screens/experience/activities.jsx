@@ -12,7 +12,7 @@ const JobActivities = ({ data, template }) => {
       <p className=" text-[#66666a] text-sm tracking-[-0.01rem] mt-3 mb-5 max-w-2xl">
         Add, edit or delete your work experience.
       </p>
-      <section className="w-full h-[400px] flex flex-col items-start mt-8 mx-auto">
+      <section className="w-full h-[370px] flex flex-col items-start mt-8 mx-auto">
         <div className="w-10/12 flex flex-col md:justify-between md:flex-row  mb-2">
           <p className="font-bold text-[#66666a] text-sm mb-4">
             Konectin | <span className="font-medium">Lagos, Lagos</span>
@@ -50,7 +50,7 @@ const JobActivities = ({ data, template }) => {
           </button>
         </div>
         <div>
-          <button className="flex items-center border-none outline-none mt-4 ">
+          <button className="flex items-center border-none outline-none mt-8 ">
             <div className=" bg-[#665d99] p-2 border rounded-full">
               <FaPlus color="#f5f5f5" size="0.6rem" />{" "}
             </div>
@@ -60,26 +60,25 @@ const JobActivities = ({ data, template }) => {
           </button>
         </div>
       </section>
-      {/* <div className=" hidden xl:ml-20 xl:flex">
-          <div className="flex self-end w-[503px] rounded-lg">{template()}</div>
-        </div> */}
-      <div className="w-8/12 lg:max-w-4xl flex flex-col justify-center mx-auto mt-2 gap-5 md:flex-row">
+
+      <div className="max-w-xl w-full flex flex-col max-md:justify-center mt-6 gap-5 md:flex-row">
         <button
           onClick={() => navigate(-1)}
-          className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
+          className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
         >
           Back
         </button>
         <button
           onClick={() => navigate("/resume/builder/education")}
-          className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] mx-auto py-5 px-6 bg-[#332A66]"
+          type="submit"
+          className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-[#332A66]"
         >
           Continue
         </button>
       </div>
       <button
         onClick={() => navigate("/resume/builder/education")}
-        className="text-[#FC670B] text-sm font-extralight tracking-[0.02rem] underline mx-auto mt-8"
+        className="text-[#FC670B] text-sm font-extralight tracking-[0.02rem] underline mt-8"
       >
         Skip this step
       </button>
