@@ -5,8 +5,8 @@ import { years } from "../../../../../assets/data/years";
 import { countries } from "../../../../../assets/data/countries";
 import JobTitleInput from "../../../../../components/jobTitleInput";
 
-const PreviousExperience = ({ data, template }) => {
-  const [experience, setExperience] = useState(data.jobExperience[0]);
+const PreviousExperience = ({ data, handleStep, template, workId }) => {
+  const [experience, setExperience] = useState(data.jobExperience[workId - 1]);
   const navigate = useNavigate();
 
   const form_classes =
@@ -35,11 +35,11 @@ const PreviousExperience = ({ data, template }) => {
     }
 
     // handleSubmit(formArray); Sends data to backend then
-    navigate("responsibilities");
+    handleStep(1);
   };
 
   return (
-    <div className="min-h-[70vh] h-full mt-8 flex justify-between items-center mx-auto"> 
+    <div className="min-h-[90vh] h-full mt-8 flex justify-between items-center mx-auto"> 
       <div className="flex max-w-6xl overflow-hidden flex-col justify-between mx-auto md:flex-row gap-6 items-center self-center">
           <div className="flex flex-col w-full ">
             <h2 className="text-xl w-[25ch] md:max-w-[30ch] md:text-2xl leading-tight font-semibold md:leading-snug">
@@ -179,7 +179,7 @@ const PreviousExperience = ({ data, template }) => {
 
               <div className="max-w-xl w-full flex flex-col max-md:justify-center mt-6 gap-5 md:flex-row">
                 <button
-                  onClick={() => navigate(-1)}
+                  onClick={() => (workId === 1 ? navigate(-1) : handleStep(2))}
                   className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
                 >
                   Back
@@ -193,12 +193,11 @@ const PreviousExperience = ({ data, template }) => {
               </div>
             </form>
           </div>
-          <div className=" flex-col md:ml-10 md:flex">
+          <div className="flex-col md:ml-10 md:flex">
             <div className="hidden xl:block w-[500px]  shadow rounded-lg">{template()}</div>
           </div>
           </div> 
     </div> 
-    
   );
 };
 

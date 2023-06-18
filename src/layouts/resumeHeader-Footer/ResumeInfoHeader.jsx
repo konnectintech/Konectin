@@ -1,23 +1,48 @@
-import { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { FaBars, FaTimes, FaArrowRight } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { konectinIcon } from "../../assets";
 import "../header/header.css";
 
-function ResumeHeader() {
+function ResumeInfoHeader() {
   const [offset, setOffset] = useState({
     prevScrollpos: window.pageYOffset,
     visible: true,
   });
+  const [locationNo, setLocationNo] = useState(1);
 
   const [isOpen, setToggle] = useState(false);
-  const links = [
+  const navLinks = [
     { name: "Home", link: "/" },
     { name: "Internships", link: "/internship" },
     { name: "Resume Builder", link: "/resume" },
     { name: "Blog", link: "/blog" },
     { name: "About Us", link: "/about" },
   ];
+
+  const [links] = useState([
+    { path: "/resume/builder", text: "BASIC INFO", no: "1" },
+    {
+      path: "/resume/builder/employment-experience",
+      text: "WORK HISTORY",
+      icon: <FaArrowRight size="1rem" />,
+      no: "2",
+    },
+    {
+      path: "/resume/builder/education",
+      text: "EDUCATION",
+      icon: <FaArrowRight size="1rem" />,
+      no: "3",
+    },
+    {
+      path: "/resume/builder/skills",
+      text: "SKILL",
+      icon: <FaArrowRight size="1rem" />,
+      no: "4",
+    },
+    { path: "/bio", text: "BIO", icon: <FaArrowRight size="1rem" />, no: "5" },
+    { path: "/resume/builder/download", text: "FINALIZE", no: "6" },
+  ]);
 
   const { pathname } = useLocation();
 
@@ -33,6 +58,18 @@ function ResumeHeader() {
       darken,
     });
   };
+
+  useEffect(() => {
+    for (let i = 0; i < links.length; i++) {
+      if (
+        (links[i].path === "/resume/builder/employment-experience" &&
+          pathname.includes("/resume/builder/employment-experience")) ||
+        links[i].path === pathname
+      ) {
+        setLocationNo(links[i].no);
+      }
+    }
+  }, [pathname, links]);
 
   const toggle = () => {
     setToggle(!isOpen);
@@ -76,22 +113,41 @@ function ResumeHeader() {
             <FaBars size="1.5rem" color={offset?.darken ? "#fff" : "#332a66"} />
           )}
         </nav>
-        <nav className="hidden gap-8 transistion-all md:flex flex-row text-sm">
+
+        <nav className="hidden gap-1 transistion-all md:flex flex-row text-sm">
           {links.map((link, index) => (
             <Link
-              className={
-                (link.link === "/blog" && pathname.split("/")[1] === "blog") ||
-                link.link === pathname
-                  ? "py-1 border-b border-secondary-600"
-                  : "py-1 hover:border-b border-secondary-600"
-              }
               key={index}
-              to={link.link === "/blog" ? "/blog/all" : link.link}
+              exact
+              to={link.path}
+              activeClassName="text-red-500"
+              className={`flex items-center gap-1 hover:text-secondary-500 px-3 py-2 rounded-md text-sm font-medium ${
+                locationNo >= link.no
+                  ? "text-secondary-500"
+                  : "text-secondary-300"
+              }`}
             >
-              {link.name}
+              <span
+                className={`circleOrange border border-secondary-300 text-secondary-300 mr-1 text-sm font-medium ${
+                  locationNo >= link.no
+                    ? "text-secondary-500 "
+                    : "text-secondary-300"
+                }`}
+              >
+                {link.no}
+              </span>
+              <span className="flex-1">{link.text}</span>
+              <span
+                className={`nav-dotted-line relative rounded-xl block w-6 h-0.5 ml-1 ${
+                  locationNo >= link.no
+                    ? "bg-secondary-500"
+                    : "bg-secondary-300 inactive"
+                }`}
+              />
             </Link>
           ))}
         </nav>
+
         {/* Mobile View  */}
         <nav
           className={
@@ -100,7 +156,7 @@ function ResumeHeader() {
               : "hidden"
           }
         >
-          {links.map((link, index) => (
+          {navLinks.map((link, index) => (
             <Link
               className={
                 (link.link === "/blog" && pathname.split("/")[1] === "blog") ||
@@ -116,21 +172,10 @@ function ResumeHeader() {
             </Link>
           ))}
         </nav>
-        <nav className="hidden lg:block">
-          <Link
-            to="/login"
-            className={`w-full text-sm px-6 py-2 text-black-500 border-secondary-500 border rounded-sm ${
-              offset.darken
-                ? "hover:text-neutral-100 hover:bg-white"
-                : "hover:text-white hover:bg-secondary-500"
-            } transistion duration-500`}
-          >
-            Log In
-          </Link>
-        </nav>{" "}
+        <nav className="hidden lg:block"></nav>
       </nav>
     </header>
   );
 }
 
-export default ResumeHeader;
+export default ResumeInfoHeader;

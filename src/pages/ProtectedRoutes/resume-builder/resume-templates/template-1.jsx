@@ -39,7 +39,7 @@ export const TemplateOne = ({ data }) => {
           </p>
         </section>
         <section className="mt-8">
-          <h3 className="text-lg font-black">Employement History</h3>
+          <h3 className="text-lg font-black">Employment History</h3>
           {jobExperience.map((experience, index) => {
             const {
               company,
@@ -87,7 +87,7 @@ export const TemplateOne = ({ data }) => {
                   Msc. Human Interaction, University of Lagos | {state},{" "}
                   {country}
                 </p>
-                <p className=" text-[10px] text-[#b2b3b4]">
+                <p className="text-[10px] text-[#b2b3b4]">
                   Jan 2021 - Mar 2022
                 </p>
               </div>

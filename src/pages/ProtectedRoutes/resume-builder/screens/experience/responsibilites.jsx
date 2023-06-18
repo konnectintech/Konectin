@@ -1,34 +1,32 @@
 import { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import { useNavigate } from "react-router-dom";
 import Suggestions from "./suggestions";
 
-const Responsibilities = ({ data }) => {
+const Responsibilities = ({ data, handleStep, workId }) => {
   const [responsibility, setResponsibility] = useState(
-    data.jobExperience[0].jobTitle
+    data.jobExperience[workId - 1].jobTitle
   );
   const [editorValue, setEditorValue] = useState("");
   const [dirty, setDirty] = useState("");
   const editorRef = useRef(null);
-  const navigate = useNavigate();
 
   const handleAddSuggestion = (value) => {
     const content = editorRef.current.getContent();
     setEditorValue(`${content} <ul><li>${value}</li></ul>`);
     setDirty(false);
     editorRef.current.setDirty(false);
-    // editorRef.current.plugins.wordcount.body.getCharacterCount();
+
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    navigate("/resume/builder/employment-experience/job-activities");
+    handleStep(2);
   };
 
   return (
     <>
-      <main className="-mt-8 flex flex-col justify-between items-start mx-auto md:mx-16">
+      <main className="min-h-[90vh] -mt-8 flex flex-col justify-center items-start mx-auto md:mx-16">
         <h2 className="-mt-6 md:max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
           Your work responsibilities
         </h2>
@@ -42,7 +40,7 @@ const Responsibilities = ({ data }) => {
               <p className="font-bold text-[#66666a] text-sm mb-3">
                 Product Designer | Konectin
               </p>
-              <div className="h-full rounded-lg border border-[#b2b3b459]">
+              <div className="h-full">
                 <Editor
                   apiKey="muetp0kpit1cdofn0tsv7aym5shbxqnxzglv3000ilo9pc0m"
                   onInit={(_, editor) => (editorRef.current = editor)}
@@ -77,9 +75,10 @@ const Responsibilities = ({ data }) => {
               </div>
             </div>
           </section>
+
           <div className="max-w-xl flex flex-col max-md:justify-center mt-16 gap-5 md:flex-row">
                 <button
-                  onClick={() => navigate(-1)}
+                  onClick={() => handleStep(0)}
                   className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
                 >
                   Back
@@ -91,6 +90,8 @@ const Responsibilities = ({ data }) => {
                   Continue
                 </button>
             </div>
+
+
         </form>
       </main>
     </>

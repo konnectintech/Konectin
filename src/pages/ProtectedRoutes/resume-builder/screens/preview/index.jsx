@@ -13,7 +13,6 @@ const Preview = ({ data }) => {
       <TemplateOne data={data} />
       <div className="w-full flex flex-col justify-around items-center md:flex-row gap-10">
         <div className=" w-[300px] lg:hidden h-[400px] shadow-lg rounded-lg mt-16">
-          {" "}
           <img src={ResumeTemplateSample1Image} alt="template" />
         </div>
         <div className="md:mt-10">

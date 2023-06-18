@@ -80,7 +80,7 @@ const Education = ({ data, handleChange, template }) => {
   return (
     <>
       {select_education ? (
-        <main className="-mt-8 flex flex-col justify-between items-start md:mx-16">
+        <main className="-mt-8 min-h-[90vh] flex flex-col justify-center items-start md:mx-16">
           <div className="flex flex-col">
             <h2 className="-mt-6 text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
               Education

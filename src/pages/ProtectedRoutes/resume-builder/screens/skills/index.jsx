@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 // import SkillsForm from "./form";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { FaTrash, FaPlus } from "react-icons/fa";
-// import { ResumeTemplateSample1Image } from "../../../../../assets";
+import { ResumeTemplateSample1Image } from "../../../../../assets";
 
 const Skills = ({ data, template }) => {
   const [skillList, setSkillList] = useState(data.skills);
@@ -45,8 +45,8 @@ const Skills = ({ data, template }) => {
   };
 
   return (
-    <main className=" flex flex-col gap-10 justify-between items-start  md:mx-36">
-      <div className="w-full flex flex-col items-start md:flex-row md:justify-center md:gap-20">
+    <div className="min-h-[90vh] flex flex-col justify-center items-start  md:mx-36">
+      <div className="w-full flex flex-col md:flex-row md:justify-start md:gap-20">
         <div className="flex flex-col ">
           <h2 className="max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
             Skills
@@ -131,13 +131,12 @@ const Skills = ({ data, template }) => {
           </div>
         </div>
 
-        <div className=" w-[300px] h-[350px] self-center shadow-lg rounded-lg hidden md:block">
-          {/* <img src={ResumeTemplateSample1Image} alt="template" /> */}
+        <div className=" w-[500px] h-[350px] shadow-lg rounded-lg hidden md:block">
           {template()}
         </div>
       </div>
 
-      <div className="max-w-xl w-full flex flex-col justify-center mt-8 lg:mt-16 md:mt-8  gap-5 md:flex-row mx-auto">
+      <div className="max-w-xl w-full flex flex-col justify-center lg:mt-40 md:mt-8  gap-5 md:flex-row mx-auto bg-black">
         <button
           onClick={() => navigate(-1)}
           className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
@@ -151,14 +150,14 @@ const Skills = ({ data, template }) => {
         >
           Continue
         </button>
-        <button
-          onClick={() => navigate("/resume/builder/preview")}
-          className="text-[#FC670B] text-sm font-extralight tracking-[0.02rem] underline mt-8 mx-auto"
-        >
-          Skip this step
-        </button>
       </div>
-    </main>
+      <button
+        onClick={() => navigate("/resume/builder/preview")}
+        className="text-[#FC670B] text-sm font-extralight tracking-[0.02rem] underline mt-8 mx-auto"
+      >
+        Skip this step
+      </button>
+    </div>
   );
 };
 
