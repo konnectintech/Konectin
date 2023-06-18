@@ -31,18 +31,19 @@ const SelectEducation = ({ data, handleChange, template }) => {
       <College template={template} data={data} handleChange={handleChange} />
     );
   }
+  
   if (view_control === "high-school") {
     view = (
       <HighSchool template={template} data={data} handleChange={handleChange} />
     );
   }
   return (
-    <main className="-mt-8 max-w-5xl mx-auto flex flex-col justify-between">
+    <main className="min-h-[90vh] -mt-8 max-w-5xl mx-auto flex flex-col justify-center">
       {education ? (
         view
       ) : (
         <>
-          <div className="flex">
+          <div className="flex justify-center">
             <h2 className="-mt-6 text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
               Add school
             </h2>
@@ -57,7 +58,7 @@ const SelectEducation = ({ data, handleChange, template }) => {
               toggleEducation={() => toggleEducation("high-school")}
             />
             <EducationOption title="Others" />
-          </div>{" "}
+          </div>
         </>
       )}
     </main>
@@ -80,7 +81,7 @@ const Education = ({ data, handleChange, template }) => {
   return (
     <>
       {select_education ? (
-        <main className="-mt-8 min-h-[90vh] flex flex-col justify-center items-start md:mx-16">
+        <main className=" -mt-8 flex min-h-[90vh] flex-col justify-center items-start md:mx-16">
           <div className="flex flex-col">
             <h2 className="-mt-6 text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
               Education

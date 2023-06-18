@@ -28,7 +28,7 @@ const BasicInformation = ({ data, updateResume, template }) => {
   };
 
   return (
-    <div className="min-h-[90vh] max-w-6xl items-center flex mx-auto">
+    <main className="min-h-[90vh] max-w-6xl items-center flex mx-auto">
       <div className="w-full flex flex-col xl:flex-row justify-center xl:justify-between self-center gap-10">
         <div className="flex flex-col">
           <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
@@ -127,7 +127,7 @@ const BasicInformation = ({ data, updateResume, template }) => {
           <div className=" w-[503px] shadow- rounded-lg">{template()}</div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

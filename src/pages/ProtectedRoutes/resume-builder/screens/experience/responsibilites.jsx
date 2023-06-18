@@ -15,7 +15,6 @@ const Responsibilities = ({ data, handleStep, workId }) => {
     setEditorValue(`${content} <ul><li>${value}</li></ul>`);
     setDirty(false);
     editorRef.current.setDirty(false);
-
   };
 
   const handleSubmit = (e) => {
@@ -77,21 +76,19 @@ const Responsibilities = ({ data, handleStep, workId }) => {
           </section>
 
           <div className="max-w-xl flex flex-col max-md:justify-center mt-16 gap-5 md:flex-row">
-                <button
-                  onClick={() => handleStep(0)}
-                  className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
-                >
-                  Back
-                </button>
-                <button
-                  type="submit"
-                  className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-[#332A66]"
-                >
-                  Continue
-                </button>
-            </div>
-
-
+            <button
+              onClick={() => handleStep(0)}
+              className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
+            >
+              Back
+            </button>
+            <button
+              type="submit"
+              className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-[#332A66]"
+            >
+              Continue
+            </button>
+          </div>
         </form>
       </main>
     </>

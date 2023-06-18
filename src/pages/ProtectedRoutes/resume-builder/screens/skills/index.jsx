@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import SkillsForm from "./form";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { FaTrash, FaPlus } from "react-icons/fa";
-import { ResumeTemplateSample1Image } from "../../../../../assets";
 
 const Skills = ({ data, template }) => {
   const [skillList, setSkillList] = useState(data.skills);
@@ -41,14 +39,14 @@ const Skills = ({ data, template }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     data.skills = skillList;
-    navigate("/resume/builder/preview");
+    navigate("/resume/builder/bio");
   };
 
   return (
-    <div className="min-h-[90vh] flex flex-col justify-center items-start  md:mx-36">
-      <div className="w-full flex flex-col md:flex-row md:justify-start md:gap-20">
+    <main className="min-h-[90vh] -mt-8 flex flex-col justify-center items-start  md:mx-36">
+      <div className="w-full flex flex-col md:flex-row md:justify-center md:gap-20">
         <div className="flex flex-col ">
-          <h2 className="max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
+          <h2 className="-mt-6 max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
             Skills
           </h2>
           <p className=" font-extralight text-[#66666a] text-sm tracking-[-0.01rem] mt-3 mb-5max-w-2xl">
@@ -131,33 +129,34 @@ const Skills = ({ data, template }) => {
           </div>
         </div>
 
-        <div className=" w-[500px] h-[350px] shadow-lg rounded-lg hidden md:block">
+        <div className=" w-[280px] h-[350px] shadow-lg rounded-lg mt-16 hidden md:block">
           {template()}
         </div>
       </div>
 
-      <div className="max-w-xl w-full flex flex-col justify-center lg:mt-40 md:mt-8  gap-5 md:flex-row mx-auto bg-black">
-        <button
-          onClick={() => navigate(-1)}
-          className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
-        >
-          Back
-        </button>
-        <button
-          onClick={handleSubmit}
-          type="submit"
-          className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-[#332A66]"
-        >
-          Continue
-        </button>
+      <div className="max-w-xl flex flex-col max-md:justify-center mt-20 gap-5 md:flex-row">
+            <button
+              onClick={() => navigate(-1)}
+              className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
+            >
+              Back
+            </button>
+            <button
+              onClick={handleSubmit}
+              type="submit"
+              className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-[#332A66]"
+            >
+              Continue
+            </button>
       </div>
+
       <button
         onClick={() => navigate("/resume/builder/preview")}
-        className="text-[#FC670B] text-sm font-extralight tracking-[0.02rem] underline mt-8 mx-auto"
+        className="text-[#FC670B] text-sm font-extralight tracking-[0.02rem] underline mx-auto mt-8"
       >
         Skip this step
       </button>
-    </div>
+    </main>
   );
 };
 
