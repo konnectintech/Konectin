@@ -28,8 +28,8 @@ const BasicInformation = ({ data, updateResume, template }) => {
   };
 
   return (
-    <main className="max-w-6xl -mt-8 md:-mt-0 flex flex-col xl:flex-row justify-between self-center items-center mx-auto gap-10">
-      <div className="-mt-8 flex flex-col justify-center">
+    <div className="mt-4 max-w-6xl flex flex-col md:flex-row justify-between self-center mx-auto gap-10">
+      <div className="flex flex-col justify-center">
         <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
           Basic Information
         </h2>
@@ -65,7 +65,7 @@ const BasicInformation = ({ data, updateResume, template }) => {
           <div className="flex">
             <select
               value={selected_country}
-              onChange={(e) => handleChange(e, "country")}
+              onChange={handleChange}
               className={`${form_classes} mr-4`}
             >
               {countries.map((country) => (
@@ -122,10 +122,8 @@ const BasicInformation = ({ data, updateResume, template }) => {
           </div>
         </form>
       </div>
-      <div className="hidden flex-col md:ml-10 xl:flex">
-        <div className=" w-[503px] shadow- rounded-lg">{template()}</div>
-      </div>
-    </main>
+      <div className="max-md:hidden">{template()}</div>
+    </div>
   );
 };
 

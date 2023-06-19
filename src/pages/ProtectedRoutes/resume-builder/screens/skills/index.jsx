@@ -43,10 +43,10 @@ const Skills = ({ data, template }) => {
   };
 
   return (
-    <main className="-mt-8 flex flex-col justify-between items-start  md:mx-36">
+    <div className="flex flex-col justify-center items-start mx-auto">
       <div className="w-full flex flex-col md:flex-row md:justify-center md:gap-20">
         <div className="flex flex-col ">
-          <h2 className="-mt-6 max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
+          <h2 className="max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
             Skills
           </h2>
           <p className=" font-extralight text-[#66666a] text-sm tracking-[-0.01rem] mt-3 mb-5max-w-2xl">
@@ -130,31 +130,33 @@ const Skills = ({ data, template }) => {
         </div>
 
         <div className=" w-[280px] h-[350px] shadow-lg rounded-lg mt-16 hidden md:block">
-          {/* <img src={ResumeTemplateSample1Image} alt="template" /> */}
           {template()}
         </div>
       </div>
-      <div className="w-8/12 md:max-w-6xl flex flex-col justify-center mx-auto mt-20 gap-5 md:flex-row">
+
+      <div className="max-w-xl flex flex-col max-md:justify-center mt-20 gap-5 md:flex-row">
         <button
           onClick={() => navigate(-1)}
-          className="w-full border border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
+          className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
         >
           Back
         </button>
         <button
           onClick={handleSubmit}
-          className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] mx-auto py-5 px-6 bg-[#332A66]"
+          type="submit"
+          className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-[#332A66]"
         >
           Continue
         </button>
       </div>
+
       <button
         onClick={() => navigate("/resume/builder/preview")}
         className="text-[#FC670B] text-sm font-extralight tracking-[0.02rem] underline mx-auto mt-8"
       >
         Skip this step
       </button>
-    </main>
+    </div>
   );
 };
 

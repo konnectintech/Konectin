@@ -10,14 +10,7 @@ function ResumeRoutes() {
   return (
     <>
       <ScrollToTop />
-      {pathname === "/resume/builder" ||
-      pathname === "/resume/builder/employment-experience" ||
-      pathname === "/resume/builder/education" ||
-      pathname === "/resume/builder/skills" ||
-      pathname === "/resume/builder/download" ||
-      pathname === "/resume/builder/employment-experience/responsibilities" ||
-      pathname === "/resume/builder/employment-experience/job-activities" ||
-      pathname === "/resume/builder/preview" ? (
+      {pathname.split("/")[2] === "builder" ? (
         <ResumeInfoHeader />
       ) : (
         <ResumeHeader />
