@@ -114,14 +114,13 @@ function ResumeInfoHeader() {
           )}
         </nav>
 
-        <nav className="hidden gap-1 transistion-all md:flex flex-row text-sm">
+        {/* Desktop View  */}
+        <nav className="hidden gap-1 transistion-all lg:flex flex-row text-sm">
           {links.map((link, index) => (
-            <Link
+            <li
               key={index}
               exact
-              to={link.path}
-              activeClassName="text-red-500"
-              className={`flex items-center gap-1 hover:text-secondary-500 px-3 py-2 rounded-md text-sm font-medium ${
+              className={`flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium ${
                 locationNo >= link.no
                   ? "text-secondary-500"
                   : "text-secondary-300"
@@ -144,7 +143,32 @@ function ResumeInfoHeader() {
                     : "bg-secondary-300 inactive"
                 }`}
               />
-            </Link>
+            </li>
+          ))}
+        </nav>
+
+        {/* Tablet View*/}
+        <nav className="hidden gap-8 transistion-all md:flex flex-row text-sm lg:hidden">
+          {links.map((link, index) => (
+            <div key={index} className="flex items-center px-2 ">
+              <span
+                className={`flex circleOrange border border-secondary-300 text-secondary-300 text-sm font-medium ${
+                  locationNo >= link.no
+                    ? "text-secondary-500 "
+                    : "text-secondary-300"
+                }`}
+              >
+                {link.no}
+              </span>
+
+              <span
+                className={`nav-dotted-line relative rounded-xl block w-5 h-0.5 ml-1 ${
+                  locationNo >= link.no
+                    ? "bg-secondary-500"
+                    : "bg-secondary-300 inactive"
+                }`}
+              />
+            </div>
           ))}
         </nav>
 
@@ -172,7 +196,29 @@ function ResumeInfoHeader() {
             </Link>
           ))}
         </nav>
-        <nav className="hidden lg:block"></nav>
+      </nav>
+      <nav className="flex flex-row justify-center mt-1 mx-auto md:hidden ">
+        {links.map((link, index) => (
+          <div key={index} className="flex items-center px-2 ">
+            <span
+              className={`flex circleOrange border border-secondary-300 text-secondary-300 text-sm font-medium ${
+                locationNo >= link.no
+                  ? "text-secondary-500 "
+                  : "text-secondary-300"
+              }`}
+            >
+              {link.no}
+            </span>
+
+            <span
+              className={`nav-dotted-line relative rounded-xl block w-5 h-0.5 ml-1 ${
+                locationNo >= link.no
+                  ? "bg-secondary-500"
+                  : "bg-secondary-300 inactive"
+              }`}
+            />
+          </div>
+        ))}
       </nav>
     </header>
   );
