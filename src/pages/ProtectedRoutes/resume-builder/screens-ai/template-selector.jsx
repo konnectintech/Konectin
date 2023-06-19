@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useTemplateContext } from "../../../../contexts/resume";
+import { useTemplateContext } from "../../../../middleware/resume";
 import {
   ResumeTemplateSample1Image,
   ResumeTemplateSampleImage,

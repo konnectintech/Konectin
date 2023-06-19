@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import BasicInformation from "./basicinfo";
 import EmploymentExperience from "./experience";
@@ -7,7 +6,7 @@ import Skills from "./skills";
 import Bio from "./bio";
 import Preview from "./preview";
 import Download from "./download";
-import { useTemplateContext } from "../../../../contexts/resume";
+import { useTemplateContext } from "../../../../middleware/resume";
 import {
   ResumeTemplateSample1Image,
   ResumeTemplateSampleImage,
@@ -15,52 +14,8 @@ import {
 import builderBg from "../../../../assets/images/builder-bg.png";
 
 const Builder = () => {
-  const { selectedTemplate } = useTemplateContext();
-  const [resume_data, setResumeData] = useState({
-    bio: "",
-    firstName: "",
-    lastName: "",
-    profession: "",
-    company: "",
-    phoneNumber: "",
-    country: "",
-    city: "",
-    state: "",
-    zipCode: "",
-    email: "",
-    education: [
-      {
-        schoolName: "",
-        country: "",
-        degree: "",
-        state: "",
-        city: "",
-        graduated: false,
-        graduationMonth: "",
-        graduationYear: "",
-      },
-    ],
-    jobExperience: [
-      {
-        jobTitle: "",
-        company: "",
-        country: "",
-        city: "",
-        state: "",
-        startMonth: "",
-        startYear: "",
-        endMonth: "",
-        endYear: "",
-        workDesc: [{ summary: "" }],
-        current: false,
-      },
-    ],
-    skills: [{ skill: "" }],
-  });
-
-  // const handleChange = (input) => (e) => {
-  //   setResumeData({ ...resume_data, [input]: e.target.value });
-  // };
+  const { selectedTemplate, templateData, setTemplateData } =
+    useTemplateContext();
 
   const resumeTemplate = () => {
     switch (selectedTemplate) {
@@ -121,9 +76,9 @@ const Builder = () => {
                 path={component.link}
                 element={
                   <component.element
-                    data={resume_data}
+                    data={templateData}
                     template={resumeTemplate}
-                    updateResume={setResumeData}
+                    updateResume={setTemplateData}
                   />
                 }
               />

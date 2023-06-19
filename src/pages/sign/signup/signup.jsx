@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FieldForm } from "../../../components/form";
-import { useAuth } from "../../../middleware";
+import { useAuth } from "../../../middleware/auth";
 import { signUpForm } from "../signData";
 import Agreement from "./agreement";
 import Preloader from "../../../components/preloader";
