@@ -120,7 +120,6 @@ function ResumeInfoHeader() {
             <li
               key={index}
               exact
-              activeClassName="text-red-500"
               className={`flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium ${
                 locationNo >= link.no
                   ? "text-secondary-500"
@@ -151,7 +150,7 @@ function ResumeInfoHeader() {
         {/* Tablet View*/}
         <nav className="hidden gap-8 transistion-all md:flex flex-row text-sm lg:hidden">
           {links.map((link, index) => (
-            <div className="flex items-center px-2 ">
+            <div key={index} className="flex items-center px-2 ">
               <span
                 className={`flex circleOrange border border-secondary-300 text-secondary-300 text-sm font-medium ${
                   locationNo >= link.no
@@ -200,7 +199,7 @@ function ResumeInfoHeader() {
       </nav>
       <nav className="flex flex-row justify-center mt-1 mx-auto md:hidden ">
         {links.map((link, index) => (
-          <div className="flex items-center px-2 ">
+          <div key={index} className="flex items-center px-2 ">
             <span
               className={`flex circleOrange border border-secondary-300 text-secondary-300 text-sm font-medium ${
                 locationNo >= link.no
