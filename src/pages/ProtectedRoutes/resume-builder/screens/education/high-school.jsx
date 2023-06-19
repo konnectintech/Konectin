@@ -9,9 +9,9 @@ const HighSchool = ({ template }) => {
 
   return (
     <>
-      <section className="flex justify-between items-center">
+      <section className="mt-12 flex justify-between items-center gap-10">
         <div className="mx-auto">
-          <h2 className=" text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
+          <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
             Add High School
           </h2>
 
@@ -81,10 +81,8 @@ const HighSchool = ({ template }) => {
             </div>
           </form>
         </div>
-        <div className="hidden flex-col md:ml-10 md:flex">
-          <div className="w-[503px] border border-[#b2b3b4] shadow- rounded-lg">
+        <div className="max-md:hidden">
             {template()}
-          </div>
         </div>
       </section>
 

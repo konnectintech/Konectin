@@ -62,7 +62,7 @@ const Suggestions = ({ jobTitle, handleChange, handleAddSuggestion }) => {
           })}
         />
       </div>
-      <section className="px-6 flex flex-col gap-4 mt-4">
+      <section className="flex flex-col gap-4 mt-4">
         <p className="text-[#3f4044] font-extralight tracking-[-0.01em] text-sm">
           Showing 3 results for <span className="font-bold">{jobTitle}</span>
         </p>

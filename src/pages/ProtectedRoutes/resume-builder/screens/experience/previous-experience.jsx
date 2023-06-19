@@ -39,165 +39,160 @@ const PreviousExperience = ({ data, handleStep, template, workId }) => {
   };
 
   return (
-    <div className="min-h-[90vh] h-full mt-8 flex justify-between items-center mx-auto"> 
-      <div className="flex max-w-6xl overflow-hidden flex-col justify-between mx-auto md:flex-row gap-6 items-center self-center">
-          <div className="flex flex-col w-full ">
-            <h2 className="text-xl w-[25ch] md:max-w-[30ch] md:text-2xl leading-tight font-semibold md:leading-snug">
-              What recent employment experience do you have?
-            </h2>
+    <div className="max-w-6xl flex flex-col md:flex-row justify-between self-center mx-auto gap-10">
+      <div className="flex flex-col justify-center">
+        <h2 className="text-xl md:max-w-[30ch] md:text-2xl leading-tight font-semibold md:leading-snug">
+          What recent employment experience do you have?
+        </h2>
 
-            <form onSubmit={handleSubmit} className="max-w-96">
-              <div className="mt-6">
-                
-                <JobTitleInput updateForm={setExperience} />
-                <input
-                  className={form_classes}
-                  type="text"
-                  name="company"
-                  value={experience.company}
+        <form onSubmit={handleSubmit} className="w-full">
+          <div className="mt-6">
+            <JobTitleInput updateForm={setExperience} />
+            <input
+              className={form_classes}
+              type="text"
+              name="company"
+              value={experience.company}
+              onChange={(e) => handleChange(e)}
+              onInput={handleChange}
+              placeholder="Company / Organization Name"
+            />
+            <div className="flex">
+              <select
+                value={experience.country}
+                name="country"
+                onChange={(e) => handleChange(e)}
+                onInput={handleChange}
+                className={`${form_classes} mr-4`}
+                placeholder="Country"
+              >
+                {countries.map((country) => (
+                  <option key={country.code} value={country.name}>
+                    {country.name}
+                  </option>
+                ))}
+              </select>
+              <input
+                type="text"
+                name="state"
+                value={experience.state}
+                onChange={(e) => handleChange(e)}
+                onInput={handleChange}
+                placeholder="State / Province"
+                className={`mr-4 ${form_classes}`}
+              />
+              <input
+                className={form_classes}
+                type="text"
+                name="city"
+                onChange={(e) => handleChange(e)}
+                onInput={handleChange}
+                placeholder="City"
+              />
+            </div>
+
+            <div className="flex">
+              <select
+                name="startMonth"
+                value={experience.startMonth}
+                onChange={(e) => handleChange(e)}
+                onInput={handleChange}
+                className={`${form_classes} mr-4`}
+              >
+                <option value="">Start Month</option>
+                {months.map((month) => (
+                  <option key={month.label} value={month.value}>
+                    {month.label}
+                  </option>
+                ))}
+              </select>
+              <select
+                name="startYear"
+                value={experience.startYear}
+                onChange={(e) => handleChange(e)}
+                onInput={handleChange}
+                className={form_classes}
+              >
+                <option value="" disabled>
+                  Start Year
+                </option>
+                {years.map((year) => (
+                  <option key={year.label} value={year.value}>
+                    {year.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {!experience.current && (
+              <div className="flex">
+                <select
+                  name="endMonth"
+                  value={experience.endMonth}
                   onChange={(e) => handleChange(e)}
                   onInput={handleChange}
-                  placeholder="Company / Organization Name"
-                />
-                <div className="flex">
-                  <select
-                    value={experience.country}
-                    name="country"
-                    onChange={(e) => handleChange(e)}
-                    onInput={handleChange}
-                    className={`${form_classes} mr-4`}
-                    placeholder="Country"
-                  >
-                    {countries.map((country) => (
-                      <option key={country.code} value={country.name}>
-                        {country.name}
-                      </option>
-                    ))}
-                  </select>
-                  <input
-                    type="text"
-                    name="state"
-                    value={experience.state}
-                    onChange={(e) => handleChange(e)}
-                    onInput={handleChange}
-                    placeholder="State / Province"
-                    className={`mr-4 ${form_classes}`}
-                  />
-                  <input
-                    className={form_classes}
-                    type="text"
-                    name="city"
-                    onChange={(e) => handleChange(e)}
-                    onInput={handleChange}
-                    placeholder="City"
-                  />
-                </div>
-
-                <div className="flex">
-                  <select
-                    name="startMonth"
-                    value={experience.startMonth}
-                    onChange={(e) => handleChange(e)}
-                    onInput={handleChange}
-                    className={`${form_classes} mr-4`}
-                  >
-                    <option value="">Start Month</option>
-                    {months.map((month) => (
-                      <option key={month.label} value={month.value}>
-                        {month.label}
-                      </option>
-                    ))}
-                  </select>
-                  <select
-                    name="startYear"
-                    value={experience.startYear}
-                    onChange={(e) => handleChange(e)}
-                    onInput={handleChange}
-                    className={form_classes}
-                  >
-                    <option value="" disabled>
-                      Start Year
+                  className={`${form_classes} mr-4`}
+                >
+                  <option value="">End Month</option>
+                  {months.map((month) => (
+                    <option key={month.label} value={month.value}>
+                      {month.label}
                     </option>
-                    {years.map((year) => (
-                      <option key={year.label} value={year.value}>
-                        {year.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                {!experience.current && (
-                  <div className="flex">
-                    <select
-                      name="endMonth"
-                      value={experience.endMonth}
-                      onChange={(e) => handleChange(e)}
-                      onInput={handleChange}
-                      className={`${form_classes} mr-4`}
-                    >
-                      <option value="">End Month</option>
-                      {months.map((month) => (
-                        <option key={month.label} value={month.value}>
-                          {month.label}
-                        </option>
-                      ))}
-                    </select>
-                    <select
-                      name="endYear"
-                      value={experience.endYear}
-                      onChange={(e) => handleChange(e)}
-                      onInput={handleChange}
-                      className={form_classes}
-                      placeholder="End Year"
-                    >
-                      <option value="" disabled>
-                        End Year
-                      </option>
-                      {years.map((year) => (
-                        <option key={year.label} value={year.value}>
-                          {year.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                )}
-                <div className="flex items-center">
-                  <input
-                    id="checkbox"
-                    type="checkbox"
-                    name="current"
-                    value={experience.current}
-                    onChange={(e) => handleCurrent(e)}
-                  />
-                  <label
-                    htmlFor="checkbox"
-                    className="ml-2 mt-[2px] text-sm font-light text-[#66666a]"
-                  >
-                    I currently work here
-                  </label>
-                </div>
+                  ))}
+                </select>
+                <select
+                  name="endYear"
+                  value={experience.endYear}
+                  onChange={(e) => handleChange(e)}
+                  onInput={handleChange}
+                  className={form_classes}
+                  placeholder="End Year"
+                >
+                  <option value="" disabled>
+                    End Year
+                  </option>
+                  {years.map((year) => (
+                    <option key={year.label} value={year.value}>
+                      {year.label}
+                    </option>
+                  ))}
+                </select>
               </div>
+            )}
+            <div className="flex items-center">
+              <input
+                id="checkbox"
+                type="checkbox"
+                name="current"
+                value={experience.current}
+                onChange={(e) => handleCurrent(e)}
+              />
+              <label
+                htmlFor="checkbox"
+                className="ml-2 mt-[2px] text-sm font-light text-[#66666a]"
+              >
+                I currently work here
+              </label>
+            </div>
+          </div>
 
-              <div className="max-w-xl w-full flex flex-col max-md:justify-center mt-6 gap-5 md:flex-row">
-                <button
-                  onClick={() => (workId === 1 ? navigate(-1) : handleStep(2))}
-                  className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
-                >
-                  Back
-                </button>
-                <button
-                  type="submit"
-                  className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-[#332A66]"
-                >
-                  Continue
-                </button>
-              </div>
-            </form>
+          <div className="w-full flex flex-col max-md:justify-center mt-6 gap-5 md:flex-row">
+            <button
+              onClick={() => (workId === 1 ? navigate(-1) : handleStep(2))}
+              className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
+            >
+              Back
+            </button>
+            <button
+              type="submit"
+              className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-[#332A66]"
+            >
+              Continue
+            </button>
           </div>
-          <div className="flex-col md:ml-10 md:flex">
-            <div className="hidden xl:block w-[500px]  shadow rounded-lg">{template()}</div>
-          </div>
-          </div> 
-    </div> 
+        </form>
+      </div>
+      <div className="max-md:hidden">{template()}</div>
+    </div>
   );
 };
 

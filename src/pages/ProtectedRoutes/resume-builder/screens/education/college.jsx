@@ -23,7 +23,7 @@ const College = ({ data, template }) => {
     if (data.education?.length) {
       setEducationList(data.education);
     }
-  }, []);
+  }, [data]);
 
   const handleMonthChange = (event, index) => {
     setMonth(event.target.value);
@@ -76,9 +76,9 @@ const College = ({ data, template }) => {
   };
   return (
     <>
-      <section className=" max-w-6xl flex justify-between items-center gap-10">
-        <div className="mx-auto">
-          <h2 className=" text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
+      <section className="max-w-6xl flex justify-between items-center gap-10 mt-8">
+        <div className="w-full mx-auto">
+          <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
             What’s your college or university?
           </h2>
 
@@ -213,9 +213,7 @@ const College = ({ data, template }) => {
             </button>
           </form>
         </div>
-        <div className=" hidden xl:ml-20 xl:flex">
-          <div className="flex self-end w-[503px] rounded-lg">{template()}</div>
-        </div>
+        <div className="max-md:hidden">{template()}</div>
       </section>
 
       <div className="max-w-xl flex flex-col max-md:justify-center mt-16 gap-5 md:flex-row">

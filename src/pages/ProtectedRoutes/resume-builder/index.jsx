@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import * as BsIcon from "react-icons/bs";
 import { createResume, uploadResume } from "../../../assets";
 import builderBg from "../../../assets/images/builder-bg.png";
+
 const BuilderOption = ({
   title,
   description,
@@ -14,27 +16,35 @@ const BuilderOption = ({
     <div
       onClick={() => handleChoice(selector)}
       style={{ backgroundImage: `url("${image}")` }}
-      className={`${
-        selector === choice
-          ? "border-primary-400 shadow-xl shadow-primary-200"
-          : "border-gray-400"
-      } md:w-[400px] h-[240px] md:h-[270px] border mx-10 border-gray-400 rounded-lg p-5 cursor-pointer bg-cover relative overflow-hidden  text-neutral-1000`}
+      className="md:w-[400px] h-[240px] md:h-[270px] border mx-10 border-gray-400 rounded-lg p-5 cursor-pointer bg-cover relative overflow-hidden text-neutral-1000 hover:scale-110 duration-200"
     >
       <div
         className={`${
           selector === choice ? "bg-opacity-20" : "bg-opacity-40"
         } absolute left-0 top-0 bg-primary-600 bg-opacity-40 w-full h-full duration-500`}
-      ></div>
+      />
+      <div
+        className={`${
+          selector === choice ? "top-0" : "-top-full"
+        } absolute left-0 bg-secondary-500 w-full h-full duration-500`}
+      />
       <div className="w-full h-full flex flex-col justify-center items-center relative">
-        <h3 className="font-bold text-2xl mb-2">{title}</h3>
-        <p className="text-[12px] text-center">{description}</p>
+        <div className="my-auto text-center">
+          <h3 className="font-bold text-2xl mb-2">{title}</h3>
+          <p className="text-[12px] text-center">{description}</p>
+        </div>
+        <BsIcon.BsCheckCircle
+          className={`${
+            selector === choice ? "opacity-100" : "hidden"
+          } mt-auto mb-6 duration-500`}
+        />
       </div>
     </div>
   );
 };
 
 const Options = () => {
-  const [choice, setChoice] = useState("ai");
+  const [choice, setChoice] = useState("");
 
   const handleChoice = (choice) => {
     setChoice(choice);
@@ -72,13 +82,14 @@ const Options = () => {
           />
         </div>
         <Link
-          to={`/resume/${choice}`}
-          className="px-12 py-3 rounded-md text-[#fff] bg-primary-200 hover:bg-primary-600 mt-6"
+          to={choice ? `/resume/${choice}` : "#"}
+          className={`duration-500 px-12 py-3 rounded-md text-[#fff] mt-6${
+            choice ? " bg-primary-600" : " bg-primary-200"
+          }`}
         >
           Next
         </Link>
       </section>
-      {/* </div> */}
     </main>
   );
 };
