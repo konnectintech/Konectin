@@ -21,10 +21,10 @@ const Bio = ({ data, template }) => {
   };
 
   return (
-    <main className="-mt-8 flex flex-col justify-between items-start mx-auto md:mx-16">
+    <div className="mt-8 flex flex-col justify-between items-start mx-auto">
       <div className="w-full flex flex-col justify-center items-center mx-auto ">
         <div className="flex flex-col self-start">
-          <h2 className="-mt-6 max-w-[30ch] text-3xl leading-tight font-semibold md:leading-snug">
+          <h2 className="max-w-[30ch] text-3xl leading-tight font-semibold md:leading-snug">
             Bio
           </h2>
           <p className=" max-w-[85ch] font-extralight text-[#66666a] text-[12px] tracking-[-0.01rem] mt-3 mb-5">
@@ -35,13 +35,15 @@ const Bio = ({ data, template }) => {
           </p>
         </div>
 
-        <div className="w-9/12 xl:w-11/12 xl:grid xl:grid-cols-3 items-center gap-4 mt-8">
-          <Suggestions
-            jobTitle={responsibility}
-            handleChange={(value) => setResponsibility(value)}
-            handleAddSuggestion={handleAddSuggestion}
-          />
-          <div>
+        <div className="flex flex-col-reverse sm:flex-row items-center gap-8 w-full">
+          <div className="max-sm:hidden w-1/2">
+            <Suggestions
+              jobTitle={responsibility}
+              handleChange={(value) => setResponsibility(value)}
+              handleAddSuggestion={handleAddSuggestion}
+            />
+          </div>
+          <div className="sm:w-1/2">
             <p className="font-semibold text-[#66666a] text-xs mb-3 mt-1">
               This is a brief description of you job background
             </p>
@@ -66,32 +68,33 @@ const Bio = ({ data, template }) => {
               {dirty && <p>You have unsaved content!</p>}
             </div>
           </div>
-          <div className=" w-[280px] h-[300px] border border-[#b2b3b4] shadow-lg rounded-lg -mt-32 ml-16 hidden xl:block">
-            {template()}
-          </div>
+          <div className="max-lg:hidden">{template()}</div>
         </div>
       </div>
-      <div className="w-8/12 md:max-w-4xl flex flex-col justify-center mx-auto mt-24 gap-5 md:flex-row">
-        <div
+
+      <div className="max-w-xl flex flex-col max-md:justify-center mt-16 gap-5 md:flex-row">
+        <button
           onClick={() => navigate(-1)}
-          className="w-full border cursor-pointer border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-4"
+          className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
         >
           Back
-        </div>
-        <div
+        </button>
+        <button
           onClick={() => navigate("/resume/builder/preview")}
-          className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] mx-auto py-5 px-6 bg-[#332A66] cursor-pointer"
+          type="submit"
+          className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-[#332A66]"
         >
           Continue
-        </div>
+        </button>
       </div>
+
       <button
         onClick={() => navigate("/resume/builder/preview")}
         className="text-[#FC670B] text-sm font-extralight tracking-[0.02rem] underline mx-auto mt-8"
       >
         Skip this step
       </button>
-    </main>
+    </div>
   );
 };
 

@@ -61,7 +61,7 @@ const TemplateSelector = ({ data }) => {
               .filter((record) => record.category === "modern")
               .map((item, index) => {
                 return (
-                  <div>
+                  <div key={index}>
                     <img
                       key={index}
                       src={item.img}

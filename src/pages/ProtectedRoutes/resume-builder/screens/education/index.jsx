@@ -31,23 +31,24 @@ const SelectEducation = ({ data, handleChange, template }) => {
       <College template={template} data={data} handleChange={handleChange} />
     );
   }
+
   if (view_control === "high-school") {
     view = (
       <HighSchool template={template} data={data} handleChange={handleChange} />
     );
   }
   return (
-    <main className="-mt-8 max-w-5xl mx-auto flex flex-col justify-between">
+    <div className="max-w-5xl mx-auto flex flex-col justify-center">
       {education ? (
         view
       ) : (
         <>
-          <div className="flex">
-            <h2 className="-mt-6 text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
+          <div className="flex justify-center">
+            <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
               Add school
             </h2>
           </div>
-          <div className=" w-full flex flex-col md:flex-row mx-auto gap-4 mt-10 md:mt-20">
+          <div className="w-full flex flex-col md:flex-row mx-auto gap-4 mt-10 md:mt-20">
             <EducationOption
               title="College/University"
               toggleEducation={() => toggleEducation("college")}
@@ -57,10 +58,10 @@ const SelectEducation = ({ data, handleChange, template }) => {
               toggleEducation={() => toggleEducation("high-school")}
             />
             <EducationOption title="Others" />
-          </div>{" "}
+          </div>
         </>
       )}
-    </main>
+    </div>
   );
 };
 
@@ -80,9 +81,9 @@ const Education = ({ data, handleChange, template }) => {
   return (
     <>
       {select_education ? (
-        <main className="-mt-8 flex flex-col justify-between items-start md:mx-16">
+        <div className="flex flex-col justify-center items-start">
           <div className="flex flex-col">
-            <h2 className="-mt-6 text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
+            <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
               Education
             </h2>
             <p className=" text-[#66666a] text-[12px] md:text-sm tracking-wider mt-3 mb-5 max-w-2xl">
@@ -90,7 +91,7 @@ const Education = ({ data, handleChange, template }) => {
               or university, you should NOT include your high school.
             </p>
           </div>
-          <div className=" bg-[#f7f7f7] flex items-center justify-center border border-dashed border-[#b2b3b48a] rounded-lg w-full h-[150px] md:h-[270px] mb-14 mt-6">
+          <div className=" bg-[#f7f7f7] flex items-center justify-center border border-dashed border-[#b2b3b48a] rounded-lg w-full h-[150px] md:h-[270px]">
             <button
               onClick={toggleEducation}
               className="flex items-center border-none outline-none"
@@ -103,21 +104,22 @@ const Education = ({ data, handleChange, template }) => {
               </span>
             </button>
           </div>
-          <div className="w-full md:max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-center gap-5 md:gap-0">
+          <div className="max-w-xl w-full flex flex-col mt-12 gap-5 md:flex-row">
             <button
               onClick={() => navigate(-1)}
-              className="border w-full border-[#b2b3b48a] rounded-lg text-sm py-5 px-6 md:mr-8"
+              className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
             >
               Back
             </button>
             <button
               onClick={handleSubmit}
-              className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-5 px-6 md:ml-8 bg-[#332A66]"
+              type="submit"
+              className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-[#332A66]"
             >
               Continue
             </button>
           </div>
-        </main>
+        </div>
       ) : (
         <SelectEducation
           template={template}
