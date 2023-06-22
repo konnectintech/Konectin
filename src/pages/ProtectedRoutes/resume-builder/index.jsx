@@ -58,7 +58,7 @@ const Options = () => {
         backgroundSize: "cover",
       }}
     >
-      <section className="w-11/12 h-full min-h-[55vh] mx-auto max-w-screen-xl flex flex-col justify-center items-center gap-8">
+      <section className="w-11/12 h-full mx-auto max-w-screen-xl flex flex-col justify-center items-center gap-8">
         <h1 className="text-2xl md:text-3xl lg:text-4xl text-center leading-tight font-semibold md:leading-snug">
           Ready to take your career to the next level?
         </h1>

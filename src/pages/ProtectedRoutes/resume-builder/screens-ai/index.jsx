@@ -1,20 +1,20 @@
-import { useState } from "react";
-
 import Username from "./username";
 import Profession from "./profession";
 import TemplateSelector from "./template-selector";
 import { Route, Routes } from "react-router-dom";
 import { person4Icon } from "../../../../assets";
 import builderBg from "../../../../assets/images/builder-bg.png";
+import { useTemplateContext } from "../../../../middleware/resume";
 
 const AIStarter = () => {
-  const [data, setData] = useState({
-    name: "",
-    profession: "",
-  });
+  const { templateData, onInputChange } = useTemplateContext();
 
-  const handleChange = (input) => (e) => {
-    setData({ ...data, [input]: e.target.value });
+  const handleInputChange = (input) => (e) => {
+    onInputChange({
+      section: "basicInfo",
+      values: e.target.value,
+      subsection: input,
+    });
   };
 
   const component_list = [
@@ -46,7 +46,7 @@ const AIStarter = () => {
             <img
               className="object-contain w-full h-full"
               src={person4Icon}
-              alt={data.name}
+              alt="Konecto-bot"
             />
           </div>
           <Routes>
@@ -55,7 +55,10 @@ const AIStarter = () => {
                 key={component.link}
                 path={component.link}
                 element={
-                  <component.element data={data} handleChange={handleChange} />
+                  <component.element
+                    data={templateData.basicInfo}
+                    handleChange={handleInputChange}
+                  />
                 }
               />
             ))}

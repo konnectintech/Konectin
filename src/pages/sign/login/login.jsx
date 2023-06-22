@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../../middleware";
+import { useAuth } from "../../../middleware/auth";
 import { loginForm } from "../signData";
 import { FieldForm } from "../../../components/form/";
 import Preloader from "../../../components/preloader";
