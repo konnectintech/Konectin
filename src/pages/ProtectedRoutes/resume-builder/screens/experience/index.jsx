@@ -64,6 +64,11 @@ const EmploymentExperience = ({ data, template }) => {
       },
     ]);
 
+    setTemplateData((prev) => ({
+      ...prev,
+      currentEditedJob: prev.currentEditedJob + 1,
+    }));
+
     navigate("/resume/builder/employment-experience/");
   };
 

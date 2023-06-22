@@ -1,10 +1,19 @@
 import { FaPlus, FaPen, FaTrash, FaCaretDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useTemplateContext } from "../../../../../middleware/resume";
+import { useEffect } from "react";
 
 const JobActivities = ({ addCompany, goBack }) => {
-  const { templateData } = useTemplateContext();
+  const { templateData, setTemplateData } = useTemplateContext();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setTemplateData((prev) => ({
+      ...prev,
+      currentEditedJob: Object.keys(templateData.jobExperience).length,
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="mt-8 flex flex-col justify-center">
@@ -44,9 +53,7 @@ const JobActivities = ({ addCompany, goBack }) => {
             </div>
             <p className="font-light text-[#66666a] text-sm leading-3 mt-3">
               {data.startMonth} {data.startYear} -
-              {data.current
-                ? " Present"
-                : ` ${data.startMonth} ${data.startYear}`}
+              {data.current ? " Present" : ` ${data.endMonth} ${data.endYear}`}
             </p>
             <div
               className="text-[#8C8C8F] text-xs job-desc ml-5 mt-3"

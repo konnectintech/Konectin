@@ -37,6 +37,7 @@ const SelectEducation = ({ data, handleChange, template }) => {
       <HighSchool template={template} data={data} handleChange={handleChange} />
     );
   }
+  
   return (
     <div className="max-w-5xl mx-auto flex flex-col justify-center">
       {education ? (

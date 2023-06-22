@@ -32,7 +32,7 @@ const BasicInformation = ({ data, onInputChange, template }) => {
         return;
       }
 
-      navigate("/resume/employment-experience/job-activities");
+      navigate("/resume/builder/employment-experience/job-activities");
     }
   };
 
