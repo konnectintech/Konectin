@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -5,6 +6,13 @@ const Profession = ({ data, handleChange }) => {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!data.fullName) {
+      navigate("/resume/ai/");
+      return;
+    }
+  }, [navigate, data]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,11 +25,14 @@ const Profession = ({ data, handleChange }) => {
   return (
     <>
       <h2 className="text-2xl lg:text-3xl font-extrabold text-center">
-        It's Nice to Meet You{" "}
-        <span className="text-[#FC670B]">{data.name}</span>
+        It's Nice to Meet You
+        <span className="text-secondary-500 capitalize">
+          {" "}
+          {data.fullName.split(" ")[1]}
+        </span>
       </h2>
 
-      <p className=" font-bold text-center">
+      <p className="font-bold text-center">
         {" "}
         What best describes your profession??
       </p>

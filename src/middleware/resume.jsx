@@ -1,4 +1,4 @@
-import { useEffect, createContext, useContext } from "react";
+import { createContext, useContext } from "react";
 // import axios from "axios";
 import { useLocalStorage } from "./storage";
 
@@ -6,10 +6,6 @@ const TemplateContext = createContext();
 const useTemplateContext = () => useContext(TemplateContext);
 
 const TemplateProvider = ({ children }) => {
-  const [selectedTemplate, setSelectedTemplate] = useLocalStorage(
-    "selectedTemplate",
-    false
-  );
   const {
     templateData,
     setTemplateData,
@@ -18,14 +14,9 @@ const TemplateProvider = ({ children }) => {
     finalizeData,
   } = useTemplateData();
 
-  useEffect(() => {
-    localStorage.setItem("selectedTemplate", selectedTemplate);
-  }, [selectedTemplate]);
-
   return (
     <TemplateContext.Provider
       value={{
-        setSelectedTemplate,
         templateData,
         setTemplateData,
         onInputChange,
@@ -52,38 +43,52 @@ export const useTemplateData = () => {
       state: "",
       zipCode: "",
     },
+    currentEditedJob: 1,
     jobExperience: [
       {
         city: "",
         company: "",
-        current: false,
         country: "",
+        current: false,
         endMonth: "",
         endYear: "",
         jobTitle: "",
         startMonth: "",
         startYear: "",
         state: "",
-        workDesc: [{ summary: "" }],
+        workDesc: "",
       },
     ],
     education: [
       {
-        schoolName: "",
+        city: "",
         country: "",
         degree: "",
-        state: "",
-        city: "",
         graduated: false,
         graduationMonth: "",
         graduationYear: "",
+        schoolName: "",
+        state: "",
       },
     ],
-    skills: [{ skill: "" }],
+    skills: [""],
     bio: "",
+    selectedTemplate: "",
   });
 
-  const onInputChange = (section, values) => {};
+  const onInputChange = ({ section, subsection, values }) => {
+    if (subsection) {
+      setTemplateData({
+        ...templateData,
+        [section]: {
+          ...templateData[section],
+          [subsection]: values,
+        },
+      });
+    } else {
+      setTemplateData({ ...templateData, [section]: values });
+    }
+  };
 
   const onSectionComplete = (section, values) => {};
 

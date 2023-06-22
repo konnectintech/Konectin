@@ -8,8 +8,16 @@ const Username = ({ data, handleChange }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!data.name || data.name.length < 2) {
+    if (!data.fullName || data.fullName.length < 2) {
       setError("Please enter a valid name");
+      return;
+    }
+
+    if (
+      data.fullName.split(" ").length < 2 ||
+      data.fullName.split(" ")[1].length < 2
+    ) {
+      setError("Please your full name");
       return;
     }
     navigate("profession");
@@ -35,8 +43,8 @@ const Username = ({ data, handleChange }) => {
         <input
           type="text"
           placeholder="Enter your full name"
-          value={data.name}
-          onChange={handleChange("name")}
+          value={data.fullName}
+          onChange={handleChange("fullName")}
           className="w-full border-b border-[#b2b3b48a] rounded-lg p-6 text-[11px]  text-[#8C8C8F] tracking-wide outline-none"
         />
         <p className="absolute -bottom-7 text-sm text-[#F11010]">{error}</p>
