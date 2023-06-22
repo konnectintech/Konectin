@@ -5,19 +5,6 @@ import { countries } from "../../../../../assets/data/countries";
 import JobTitleInput from "../../../../../components/jobTitleInput";
 
 const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
-  const {
-    city,
-    company,
-    country,
-    current,
-    endMonth,
-    endYear,
-    jobTitle,
-    startMonth,
-    startYear,
-    state,
-  } = data;
-
   const navigate = useNavigate();
 
   const form_classes =
@@ -39,7 +26,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
       <div className="w-full">
         <div className="mt-6">
           <JobTitleInput
-            title={jobTitle}
+            title={data?.jobTitle}
             handleInputChange={({ subsection, values }) =>
               handleInputChange(subsection, values)
             }
@@ -50,14 +37,14 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
             className={form_classes}
             type="text"
             name="company"
-            value={company}
+            value={data?.company}
             onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             onInput={(e) => handleInputChange(e.target.name, e.target.value)}
             placeholder="Company / Organization Name"
           />
           <div className="flex">
             <select
-              value={country}
+              value={data?.country}
               name="country"
               onChange={(e) => handleInputChange(e.target.name, e.target.value)}
               onInput={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -73,7 +60,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
             <input
               type="text"
               name="state"
-              value={state}
+              value={data?.state}
               onChange={(e) => handleInputChange(e.target.name, e.target.value)}
               onInput={(e) => handleInputChange(e.target.name, e.target.value)}
               placeholder="State / Province"
@@ -82,7 +69,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
             <input
               className={form_classes}
               type="text"
-              value={city}
+              value={data?.city}
               name="city"
               onChange={(e) => handleInputChange(e.target.name, e.target.value)}
               onInput={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -93,7 +80,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
           <div className="flex">
             <select
               name="startMonth"
-              value={startMonth}
+              value={data?.startMonth}
               onChange={(e) => handleInputChange(e.target.name, e.target.value)}
               onInput={(e) => handleInputChange(e.target.name, e.target.value)}
               className={`${form_classes} mr-4`}
@@ -107,7 +94,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
             </select>
             <select
               name="startYear"
-              value={startYear}
+              value={data?.startYear}
               onChange={(e) => handleInputChange(e.target.name, e.target.value)}
               onInput={(e) => handleInputChange(e.target.name, e.target.value)}
               className={form_classes}
@@ -122,11 +109,11 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
               ))}
             </select>
           </div>
-          {!current && (
+          {!data?.current && (
             <div className="flex">
               <select
                 name="endMonth"
-                value={endMonth}
+                value={data?.endMonth}
                 onChange={(e) =>
                   handleInputChange(e.target.name, e.target.value)
                 }
@@ -144,7 +131,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
               </select>
               <select
                 name="endYear"
-                value={endYear}
+                value={data?.endYear}
                 onChange={(e) =>
                   handleInputChange(e.target.name, e.target.value)
                 }
@@ -170,7 +157,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
               id="checkbox"
               type="checkbox"
               name="current"
-              value={current}
+              value={data?.current}
               onChange={(e) =>
                 handleInputChange(e.target.name, e.target.checked)
               }

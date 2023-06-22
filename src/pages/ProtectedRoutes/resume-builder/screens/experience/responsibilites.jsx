@@ -5,11 +5,11 @@ import Suggestions from "./suggestions";
 import { useTemplateContext } from "../../../../../middleware/resume";
 
 const Responsibilities = ({ data, jobArray, handleInputChange }) => {
-  const [responsibility, setResponsibility] = useState(data.jobTitle);
+  const [responsibility, setResponsibility] = useState(data?.jobTitle);
 
   const { setTemplateData } = useTemplateContext();
 
-  const [editorValue, setEditorValue] = useState(data.workDesc);
+  const [editorValue, setEditorValue] = useState(data?.workDesc);
 
   const [dirty, setDirty] = useState(false);
 
@@ -38,7 +38,6 @@ const Responsibilities = ({ data, jobArray, handleInputChange }) => {
     setTemplateData((prev) => ({
       ...prev,
       jobExperience: jobArray,
-      currentEditedJob: prev.currentEditedJob + 1,
     }));
 
     navigate("/resume/builder/employment-experience/job-activities");
@@ -57,7 +56,7 @@ const Responsibilities = ({ data, jobArray, handleInputChange }) => {
         <section className="w-full h-[400px] flex justify-between mt-6">
           <div className="w-full md:w-1/2">
             <p className="font-bold text-[#66666a] text-sm mb-3">
-              {data.jobTitle} | {data.company}
+              {data?.jobTitle} | {data?.company}
             </p>
             <div className="h-full">
               <Editor
