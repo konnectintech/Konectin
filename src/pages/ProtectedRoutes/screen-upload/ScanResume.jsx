@@ -21,7 +21,6 @@ const ScanResume = () => {
               </div>
               <div className="mt-3 text-center flex flex-col gap-4">
                 <p className="text-secondary-600 font-bold">Personal Details</p>
-
                 <p className="text-white text-sm">
                   Stand out by completing your Profile and applying with it...
                 </p>
