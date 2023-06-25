@@ -1,30 +1,39 @@
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { countries } from "../../../../../assets/data/countries";
 import JobTitleInput from "../../../../../components/jobTitleInput";
+import { Link } from "react-router-dom";
 
-const BasicInformation = ({ data, updateResume, template }) => {
-  const [selected_country, setSelectedCountry] = useState("");
+const BasicInformation = ({ data, onInputChange, template }) => {
+  const {
+    fullName,
+    profession,
+    phoneNumber,
+    city,
+    country,
+    state,
+    zipCode,
+    email,
+  } = data?.basicInfo;
+
   const form_classes =
     "p-4 mb-6 text-[11px] w-full text-[#8C8C8F] border border-[#b2b3b48a] outline-0 rounded-[4px] bg-[#f9f9f9]";
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (data.country) {
-      setSelectedCountry(data.country);
-    }
-  }, [data.country]);
-
-  const handleChange = (event, name) => {
+  const handleInputChange = (event, name) => {
     const { value } = event.target;
-    updateResume((prev) => ({ ...prev, [name]: value }));
+    onInputChange({ section: "basicInfo", subsection: name, values: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    data.country = selected_country;
-    navigate("employment-experience");
+  const handleSubmit = () => {
+    if (fullName && profession && email && country) {
+      if (Object.keys(data.jobExperience).length <= 1) {
+        navigate("employment-experience");
+        return;
+      }
+
+      navigate("/resume/builder/employment-experience/job-activities");
+    }
   };
 
   return (
@@ -37,35 +46,40 @@ const BasicInformation = ({ data, updateResume, template }) => {
           This information will placed at the top of your resume.
         </p>
 
-        <form className="w-full" onSubmit={handleSubmit}>
+        <div className="w-full">
           <div className="flex">
             <input
               className={`mr-4 ${form_classes}`}
               type="text"
-              value={data.firstName}
-              onChange={(e) => handleChange(e, "firstName")}
+              value={fullName.split(" ")[0]}
+              onChange={(e) => handleInputChange(e, "fullName")}
               placeholder="First Name"
             />
             <input
               type="text"
               placeholder="Last Name"
-              value={data.lastName}
-              onChange={(e) => handleChange(e, "lastName")}
+              value={fullName.split(" ")[1]}
+              onChange={(e) => handleInputChange(e, "fullName")}
               className={`${form_classes}`}
             />
           </div>
-          <JobTitleInput updateForm={setSelectedCountry} />
+          <JobTitleInput
+            title={profession}
+            handleInputChange={onInputChange}
+            section="basicInfo"
+            subsection="profession"
+          />
           <input
             className={form_classes}
             type="text"
             placeholder="Phone"
-            value={data.phoneNumber}
-            onChange={(e) => handleChange(e, "phoneNumber")}
+            value={phoneNumber}
+            onChange={(e) => handleInputChange(e, "phoneNumber")}
           />
           <div className="flex">
             <select
-              value={selected_country}
-              onChange={handleChange}
+              value={country}
+              onChange={(e) => handleInputChange(e, "country")}
               className={`${form_classes} mr-4`}
             >
               {countries.map((country) => (
@@ -75,8 +89,8 @@ const BasicInformation = ({ data, updateResume, template }) => {
               ))}
             </select>
             <input
-              value={data.city}
-              onChange={(e) => handleChange(e, "city")}
+              value={city}
+              onChange={(e) => handleInputChange(e, "city")}
               className={form_classes}
               type="text"
               placeholder="City"
@@ -86,41 +100,41 @@ const BasicInformation = ({ data, updateResume, template }) => {
             <input
               className={`${form_classes} mr-4`}
               type="text"
-              value={data.state}
-              onChange={(e) => handleChange(e, "state")}
+              value={state}
+              onChange={(e) => handleInputChange(e, "state")}
               placeholder="State / Province"
             />
             <input
               className={form_classes}
               type="text"
-              value={data.zipCode}
-              onChange={(e) => handleChange(e, "zipCode")}
+              value={zipCode}
+              onChange={(e) => handleInputChange(e, "zipCode")}
               placeholder="Zip Code"
             />
           </div>
           <input
             className={form_classes}
             type="email"
-            value={data.email}
-            onChange={(e) => handleChange(e, "email")}
+            value={email}
+            onChange={(e) => handleInputChange(e, "email")}
             placeholder="Email*"
           />
 
           <div className="max-w-md flex gap-4 mt-2">
-            <button
-              onClick={() => navigate(-1)}
+            <Link
+              to="/resume/ai/template-selector"
               className="w-full max-w-xs text-center border border-primary-200 rounded-lg text-sm py-3 px-6 bg-transparent"
             >
               Back
-            </button>
+            </Link>
             <button
-              type="submit"
+              onClick={handleSubmit}
               className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-white py-3 px-6 bg-primary-500"
             >
               Continue
             </button>
           </div>
-        </form>
+        </div>
       </div>
       <div className="max-md:hidden">{template()}</div>
     </div>

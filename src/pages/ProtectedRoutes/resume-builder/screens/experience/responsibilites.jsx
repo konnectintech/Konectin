@@ -1,26 +1,46 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Editor } from "@tinymce/tinymce-react";
+import { useNavigate } from "react-router-dom";
 import Suggestions from "./suggestions";
+import { useTemplateContext } from "../../../../../middleware/resume";
 
-const Responsibilities = ({ data, handleStep, workId }) => {
-  const [responsibility, setResponsibility] = useState(
-    data.jobExperience[workId - 1].jobTitle
-  );
-  const [editorValue, setEditorValue] = useState("");
-  const [dirty, setDirty] = useState("");
+const Responsibilities = ({ data, jobArray, handleInputChange }) => {
+  const [responsibility, setResponsibility] = useState(data?.jobTitle);
+
+  const { setTemplateData } = useTemplateContext();
+
+  const [editorValue, setEditorValue] = useState(data?.workDesc);
+
+  const [dirty, setDirty] = useState(false);
+
   const editorRef = useRef(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleInputChange("workDesc", editorValue);
+      setDirty(false);
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [editorValue, handleInputChange]);
 
   const handleAddSuggestion = (value) => {
     const content = editorRef.current.getContent();
     setEditorValue(`${content} <ul><li>${value}</li></ul>`);
-    setDirty(false);
-    editorRef.current.setDirty(false);
+    editorRef.current.setDirty(true);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setTemplateData((prev) => ({
+      ...prev,
+      jobExperience: jobArray,
+    }));
 
-    handleStep(2);
+    navigate("/resume/builder/employment-experience/job-activities");
   };
 
   return (
@@ -32,11 +52,11 @@ const Responsibilities = ({ data, handleStep, workId }) => {
         Try to include 3-6 work experience bullet points. Little is less and
         more is too much.
       </p>
-      <form className="w-full" onSubmit={handleSubmit}>
+      <div className="w-full">
         <section className="w-full h-[400px] flex justify-between mt-6">
           <div className="w-full md:w-1/2">
             <p className="font-bold text-[#66666a] text-sm mb-3">
-              Product Designer | Konectin
+              {data?.jobTitle} | {data?.company}
             </p>
             <div className="h-full">
               <Editor
@@ -76,19 +96,19 @@ const Responsibilities = ({ data, handleStep, workId }) => {
 
         <div className="max-w-xl flex flex-col max-md:justify-center mt-16 gap-5 md:flex-row">
           <button
-            onClick={() => handleStep(0)}
+            onClick={() => navigate("/resume/builder/employment-experience/")}
             className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
           >
             Back
           </button>
           <button
-            type="submit"
+            onClick={handleSubmit}
             className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-[#332A66]"
           >
             Continue
           </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

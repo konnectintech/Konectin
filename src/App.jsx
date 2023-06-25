@@ -1,8 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { RequireAuth } from "./middleware";
-
 import ProtectedRoutes from "./pages/ProtectedRoutes";
-import { AuthProvider } from "./middleware";
+import { AuthProvider, RequireAuth } from "./middleware/auth";
 // import DashBoard from "./pages/ProtectedRoutes/DashBoard";
 import Options from "./pages/ProtectedRoutes/resume-builder";
 import StartBuilder from "./pages/ProtectedRoutes/resume-builder/start";

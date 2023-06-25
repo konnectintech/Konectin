@@ -13,9 +13,13 @@ const DropdownIndicator = (props) => {
   );
 };
 
-function JobTitleInput({ updateForm }) {
+function JobTitleInput({ title, handleInputChange, section, subsection }) {
   const handleChange = (opt) => {
-    updateForm((prev) => ({ ...prev, jobTitle: opt.value }));
+    handleInputChange({
+      section: section,
+      subsection: subsection,
+      values: opt.value,
+    });
   };
 
   return (
@@ -23,6 +27,7 @@ function JobTitleInput({ updateForm }) {
       className="mb-6 text-[11px] w-full text-[#8C8C8F] border border-[#b2b3b48a] outline-0 rounded-[4px] bg-[#f9f9f9]"
       placeholder="Job Title"
       components={{ DropdownIndicator }}
+      defaultInputValue={title}
       styles={{
         control: (base) => ({
           ...base,

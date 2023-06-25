@@ -94,6 +94,10 @@ select.select-wrapper::after {
   position: absolute;
 }
 
+.job-desc ul {
+  @apply list-disc;
+}
+
 .css-art2ul-ValueContainer2 {
   padding-left: 1rem !important;
 }

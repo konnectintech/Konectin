@@ -1,28 +1,46 @@
 import { FaPlus, FaPen, FaTrash, FaCaretDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useTemplateContext } from "../../../../../middleware/resume";
+import { useEffect } from "react";
 
-const JobActivities = ({ data, template, handleStep, addCompany }) => {
+const JobActivities = ({ addCompany, goBack }) => {
+  const { templateData, setTemplateData } = useTemplateContext();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setTemplateData((prev) => ({
+      ...prev,
+      currentEditedJob: Object.keys(templateData.jobExperience).length,
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <div className="mt-8 max-w-6xl flex flex-col md:flex-row justify-between self-center mx-auto gap-10">
-      <div className="flex flex-col justify-center">
-        <h2 className="-mt-6 max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
-          Work Experience
-        </h2>
-        <p className="text-[#66666a] text-sm tracking-[-0.01rem] my-3 max-w-2xl">
-          Add, edit or delete your work experience.
-        </p>
-        <section className="w-full flex flex-col items-start mx-auto">
+    <div className="mt-8 flex flex-col justify-center">
+      <h2 className="-mt-6 max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
+        Work Experience
+      </h2>
+      <p className="text-[#66666a] text-sm tracking-[-0.01rem] my-3 max-w-2xl">
+        Add, edit or delete your work experience.
+      </p>
+      {templateData.jobExperience.map((data, index) => (
+        <section
+          key={index}
+          className="w-full flex flex-col items-start mx-auto mb-4"
+        >
           <div className="flex flex-col md:justify-between md:flex-row ">
             <p className="font-bold text-[#66666a] text-sm mb-4">
-              Konectin | <span className="font-medium">Lagos, Lagos</span>
+              {data.company} |{" "}
+              <span className="font-medium">
+                {data.city && `${data.city}, `}
+                {data.state}
+              </span>
             </p>
           </div>
           <div className="h-[200px] border border-[#b2b3b48a] rounded-lg bg-white p-4">
             <div className="flex justify-between">
               <h3 className="font-extrabold text-[#66666a] text-lg">
-                Product Manager
+                {data.jobTitle}
               </h3>
               <div>
                 <button className="mr-3">
@@ -34,61 +52,56 @@ const JobActivities = ({ data, template, handleStep, addCompany }) => {
               </div>
             </div>
             <p className="font-light text-[#66666a] text-sm leading-3 mt-3">
-              Jan 2021 - Mar 2022
+              {data.startMonth} {data.startYear} -
+              {data.current ? " Present" : ` ${data.endMonth} ${data.endYear}`}
             </p>
-            <ul className="text-[#8C8C8F] text-xs list-disc ml-5 mt-3">
-              <li className="mb-2">
-                Compiled Lists to describe product/service offerings.
-              </li>
-              <li>
-                Directed hiring, training and performance evaluations marketing
-                staff.
-              </li>
-            </ul>
+            <div
+              className="text-[#8C8C8F] text-xs job-desc ml-5 mt-3"
+              dangerouslySetInnerHTML={{
+                __html: data.workDesc,
+              }}
+            ></div>
             <button className="text-[#b2b3b4] text-xs font-extralight flex items-center mt-4">
               Show more
               <FaCaretDown className="ml-1" color="#b2b3b4" size="0.5rem" />
             </button>
           </div>
-
-          <div>
-            <div
-              className="flex items-center border-none outline-none mt-8 cursor-pointer"
-              onClick={addCompany}
-            >
-              <div className="bg-[#665d99] p-2 border rounded-full">
-                <FaPlus color="#f5f5f5" size="0.6rem" />
-              </div>
-              <span className=" ml-3 font-extrabold text-sm text-[#8c8c8f]">
-                Add Company
-              </span>
-            </div>
-          </div>
         </section>
+      ))}
 
-        <div className="max-w-xl w-full flex flex-col max-md:justify-center mt-6 gap-5 md:flex-row">
-          <button
-            onClick={() => handleStep(1)}
-            className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
-          >
-            Back
-          </button>
-          <button
-            onClick={() => navigate("/resume/builder/education")}
-            type="submit"
-            className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-[#332A66]"
-          >
-            Continue
-          </button>
+      <div
+        className="flex items-center border-none outline-none cursor-pointer"
+        onClick={addCompany}
+      >
+        <div className="bg-primary-400 p-2 border rounded-full">
+          <FaPlus color="#f5f5f5" size="0.6rem" />
         </div>
+        <span className=" ml-3 font-extrabold text-sm text-[#8c8c8f]">
+          Add Company
+        </span>
+      </div>
+
+      <div className="max-w-xl w-full flex flex-col max-md:justify-center mt-6 gap-5 md:flex-row">
+        <button
+          onClick={goBack}
+          className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
+        >
+          Back
+        </button>
         <button
           onClick={() => navigate("/resume/builder/education")}
-          className="text-[#FC670B] text-sm font-extralight tracking-[0.02rem] underline mt-8"
+          type="submit"
+          className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-primary-500"
         >
-          Skip this step
+          Continue
         </button>
       </div>
-      <div className="max-md:hidden">{template()}</div>
+      <button
+        onClick={() => navigate("/resume/builder/education")}
+        className="text-secondary-500 text-sm font-extralight tracking-[0.02rem] underline mt-8"
+      >
+        Skip this step
+      </button>
     </div>
   );
 };
