@@ -151,3 +151,31 @@ select.select-wrapper::after {
   vertical-align: middle;
   font-weight: bold;
 }
+
+/* files */
+.drop-file-input {
+  position: relative;
+}
+
+.drop-file-input input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.drop-file-input:hover,
+.drop-file-input.dragover {
+  opacity: 0.6;
+}
+
+.drop-file-preview {
+  margin-top: 70px;
+}
+
+.drop-file-preview p {
+  font-weight: 500;
+}
