@@ -26,6 +26,7 @@ import Faq from "./pages/DefaultRoutes/faq/Faq";
 import Contact from "./pages/DefaultRoutes/contact/Contact";
 import ForgetPassword from "./pages/sign/login/forgetPassword";
 import ResumeRoutes from "./pages/ResumeRoutes";
+import ResUploadStarter from "./pages/ProtectedRoutes/screen-upload";
 // import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
 
 function App() {
@@ -67,6 +68,7 @@ function App() {
             <Route path="/resume/options" element={<Options />} />
             <Route path="/resume/start" element={<StartBuilder />} />
             <Route path="/resume/builder/*" element={<Builder />} />
+            <Route path="/resume/upload/*" element={<ResUploadStarter />} />
           </Route>
 
           <Route
