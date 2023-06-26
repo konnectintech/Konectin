@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTemplateContext } from "../../../../../middleware/resume";
 import { useEffect } from "react";
 
-const JobActivities = ({ addCompany, goBack }) => {
+const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
   const { templateData, setTemplateData } = useTemplateContext();
   const navigate = useNavigate();
 
@@ -37,16 +37,34 @@ const JobActivities = ({ addCompany, goBack }) => {
               </span>
             </p>
           </div>
-          <div className="h-[200px] border border-[#b2b3b48a] rounded-lg bg-white p-4">
+          <div className="border border-[#b2b3b48a] rounded-lg bg-white p-4">
             <div className="flex justify-between">
               <h3 className="font-extrabold text-[#66666a] text-lg">
                 {data.jobTitle}
               </h3>
               <div>
-                <button className="mr-3">
+                <button
+                  onClick={() => {
+                    setTemplateData((prev) => ({
+                      ...prev,
+                      currentEditedJob: index + 1,
+                    }));
+
+                    navigate("/resume/builder/employment-experience");
+                  }}
+                  className="mr-3"
+                >
                   <FaPen color="#b2b3b4" size="1rem" />
                 </button>
-                <button>
+                <button
+                  onClick={() => {
+                    templateData.jobExperience.length <= 1
+                      ? alert(
+                          "You can't delete the last experience edit it instead"
+                        )
+                      : deleteExperience(index);
+                  }}
+                >
                   <FaTrash color="#b2b3b4" size="1rem" />
                 </button>
               </div>
@@ -55,12 +73,13 @@ const JobActivities = ({ addCompany, goBack }) => {
               {data.startMonth} {data.startYear} -
               {data.current ? " Present" : ` ${data.endMonth} ${data.endYear}`}
             </p>
-            <div
-              className="text-[#8C8C8F] text-xs job-desc ml-5 mt-3"
-              dangerouslySetInnerHTML={{
-                __html: data.workDesc,
-              }}
-            ></div>
+            <div className="text-[#8C8C8F] text-xs job-desc px-4 mt-3">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: data.workDesc,
+                }}
+              />
+            </div>
             <button className="text-[#b2b3b4] text-xs font-extralight flex items-center mt-4">
               Show more
               <FaCaretDown className="ml-1" color="#b2b3b4" size="0.5rem" />

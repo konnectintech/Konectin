@@ -2,10 +2,7 @@ import { useEffect } from "react";
 import builderBg from "../../../../assets/images/builder-bg.png";
 import { useTemplateContext } from "../../../../middleware/resume";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import {
-  ResumeTemplateSample1Image,
-  ResumeTemplateSampleImage,
-} from "../../../../assets";
+import { ResumeTemplateSampleImage } from "../../../../assets";
 
 import BasicInformation from "./basicinfo";
 import EmploymentExperience from "./experience";
@@ -14,19 +11,19 @@ import Skills from "./skills";
 import Bio from "./bio";
 import Preview from "./preview";
 import Download from "./download";
+import { TemplateOne } from "../resume-templates/template-1";
 
 const Builder = () => {
-  const { selectedTemplate, templateData, onInputChange, setTemplateData } =
-    useTemplateContext();
+  const { templateData, onInputChange, setTemplateData } = useTemplateContext();
 
   const resumeTemplate = () => {
-    switch (selectedTemplate) {
-      case "template0":
-        return <img src={ResumeTemplateSample1Image} alt="resume template" />;
-      case "template1":
+    switch (templateData.selectedTemplate) {
+      case "modern_template_1":
+        return <TemplateOne data={templateData} />;
+      case "modern_template_2":
         return <img src={ResumeTemplateSampleImage} alt="resume template" />;
       default:
-        return null;
+        return <img src={ResumeTemplateSampleImage} alt="resume template" />;
     }
   };
 
@@ -53,7 +50,7 @@ const Builder = () => {
     },
     {
       element: Education,
-      link: "/education",
+      link: "/education/*",
     },
     {
       element: Skills,
@@ -75,7 +72,6 @@ const Builder = () => {
 
   return (
     <main
-      className=""
       style={{
         backgroundImage: `linear-gradient(rgba(249, 249, 249, 0.81), rgba(249, 249, 249, 0.81)), url("${builderBg}")`,
         backgroundSize: "cover",

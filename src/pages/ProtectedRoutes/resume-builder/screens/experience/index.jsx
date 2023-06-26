@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
@@ -25,8 +26,18 @@ const EmploymentExperience = ({ data, template }) => {
   // A re-effect to update the job Experience according to the exact jb being edited whenever the currentEditedjob is updated
   useEffect(() => {
     setJobExperience(jobExperienceArray[data.currentEditedJob - 1]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.currentEditedJob]);
+
+  useEffect(() => {
+    setJobExperienceArray((prev) =>
+      Object.values(prev).map((obj, id) => {
+        if (id === data.currentEditedJob - 1) {
+          return jobExperience;
+        }
+        return obj;
+      })
+    );
+  }, [jobExperience]);
 
   // Handles all changes in the input field of the form and updates the jobExperienceArray
   const handleStateChange = (name, value) => {
@@ -34,15 +45,6 @@ const EmploymentExperience = ({ data, template }) => {
       ...prev,
       [name]: value,
     }));
-
-    setJobExperienceArray(
-      Object.values(jobExperienceArray).map((obj, id) => {
-        if (id === data.currentEditedJob - 1) {
-          return jobExperience;
-        }
-        return obj;
-      })
-    );
   };
 
   // add another empty valued object into the jobExperience and navigates to the first job field
@@ -78,7 +80,7 @@ const EmploymentExperience = ({ data, template }) => {
     if (Object.keys(jobExperienceArray).length <= 1) {
       setTemplateData((prev) => ({
         ...prev,
-        currentEditedJob: prev.currentEditedJob - 1,
+        currentEditedJob: prev.currentEditedJob,
       }));
 
       navigate("/resume/builder/employment-experience/responsibilities");
@@ -91,13 +93,23 @@ const EmploymentExperience = ({ data, template }) => {
   // Controls the previous experience page go back functions
   const handleBack = () => {
     // if the array contains more than one object it goes to the job activities page and set the array back to the normal otherwise goes to the basicInfo page
-    if (Object.keys(jobExperienceArray).length >= 1) {
+    if (Object.keys(jobExperienceArray).length >= 2) {
       setJobExperienceArray(data.jobExperience);
       navigate("/resume/builder/employment-experience/job-activities");
       return;
     }
 
     navigate("/resume/builder/");
+  };
+
+  const handleDelete = (index) => {
+    jobExperienceArray.splice(index, 1);
+    setTemplateData((prev) => ({
+      ...prev,
+      jobExperience: jobExperienceArray,
+    }));
+
+    setJobExperienceArray(jobExperienceArray);
   };
 
   const employment_components = [
@@ -107,7 +119,7 @@ const EmploymentExperience = ({ data, template }) => {
   ];
 
   return (
-    <div className="max-w-6xl flex flex-col md:flex-row justify-between self-center mx-auto gap-10">
+    <div className="max-w-6xl flex flex-col md:flex-row items-start justify-between self-center mx-auto gap-10">
       <Routes>
         {employment_components.map((route) => (
           <Route
@@ -121,6 +133,7 @@ const EmploymentExperience = ({ data, template }) => {
                 addCompany={addWorkExperience}
                 goBack={goBack}
                 handleBack={handleBack}
+                deleteExperience={handleDelete}
               />
             }
           />

@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { person4Icon } from "../../../assets";
 import builderBg from "../../../assets/images/builder-bg.png";
-import UploadFiles from "./uploadFiles";
+import UploadFiles from "./UploadFiles";
 import ScanResume from "./ScanResume";
 
 const ResUploadStarter = () => {

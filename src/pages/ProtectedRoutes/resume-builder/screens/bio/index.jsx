@@ -35,7 +35,7 @@ const Bio = ({ data, template }) => {
           </p>
         </div>
 
-        <div className="flex flex-col-reverse sm:flex-row items-center gap-8 w-full">
+        <div className="flex flex-col-reverse sm:flex-row gap-8 w-full">
           <div className="max-sm:hidden w-1/2">
             <Suggestions
               jobTitle={responsibility}
