@@ -21,7 +21,8 @@
     "react-router-dom": "^6.3.0",
     "react-router-hash-link": "^2.4.3",
     "react-select": "^5.7.3",
-    "react-to-print": "^2.14.12"
+    "react-to-print": "^2.14.12",
+    "swiper": "^9.4.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
