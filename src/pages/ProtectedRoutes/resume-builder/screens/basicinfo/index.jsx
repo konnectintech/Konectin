@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 const BasicInformation = ({ data, onInputChange, template }) => {
   const {
     fullName,
+    firstName,
+    lastName,
     profession,
     phoneNumber,
     city,
@@ -51,15 +53,15 @@ const BasicInformation = ({ data, onInputChange, template }) => {
             <input
               className={`mr-4 ${form_classes}`}
               type="text"
-              value={fullName.split(" ")[0]}
-              onChange={(e) => handleInputChange(e, "fullName")}
+              value={firstName}
+              onChange={(e) => handleInputChange(e, "firstName")}
               placeholder="First Name"
             />
             <input
               type="text"
               placeholder="Last Name"
-              value={fullName.split(" ")[1]}
-              onChange={(e) => handleInputChange(e, "fullName")}
+              value={lastName}
+              onChange={(e) => handleInputChange(e, "lastName")}
               className={`${form_classes}`}
             />
           </div>

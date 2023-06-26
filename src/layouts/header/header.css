@@ -17,7 +17,7 @@ header {
   color: #fff;
 }
 
-.navbar-change .border-secondary-500 {
+.navbar-change .w-full.border-secondary-500 {
   border: 1px solid #fff !important;
 }
 

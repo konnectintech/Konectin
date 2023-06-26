@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTemplateContext } from "../../../../middleware/resume";
 
 const Username = ({ data, handleChange }) => {
   const [error, setError] = useState("");
+  const { setTemplateData } = useTemplateContext();
 
   const navigate = useNavigate();
 
@@ -20,6 +22,16 @@ const Username = ({ data, handleChange }) => {
       setError("Please your full name");
       return;
     }
+
+    setTemplateData((prev) => ({
+      ...prev,
+      basicInfo: {
+        ...prev.basicInfo,
+        firstName: data.fullName.split(" ")[0],
+        lastName: data.fullName.split(" ")[1],
+      },
+    }));
+
     navigate("profession");
   };
 
