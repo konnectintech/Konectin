@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import ImageConfig from "../ImageConfig";
-import Progress from "./Progress";
+// import Progress from "./Progress";
 import { FiUploadCloud } from "react-icons/fi";
 
 const DropFileInput = ({ props }) => {
@@ -14,13 +14,13 @@ const DropFileInput = ({ props }) => {
 
   const onDrop = () => wrapperRef.current.classList.remove("dragover");
 
-  const [uploadPercentage, setUploadPercentage] = useState(0);
+  // const [uploadPercentage, setUploadPercentage] = useState(0);
 
-  const filePercentages = (percentage) => {
-    // setUploadPercentage(percentage);
+  // const filePercentages = (percentage) => {
+  //   // setUploadPercentage(percentage);
 
-    setUploadPercentage(parseInt(Math.round(percentage)));
-  };
+  //   setUploadPercentage(parseInt(Math.round(percentage)));
+  // };
 
   const onFileDrop = (e) => {
     // setFile(e.target.files[0]);
