@@ -8,7 +8,13 @@ const Download = ({ data, template }) => {
 
   const handlePrint = useReactToPrint({
     content: () => resumeRef.current,
-    documentTitle: `${data.firstName}_${data.lastName}_Resume`,
+    pageStyle: `@media print {
+      @page {
+        size: 500mm 500mm;
+      }
+    }`,
+    documentTitle: `${data.basicInfo.firstName} ${data.basicInfo.lastName} Resume`,
+    onPrintError: () => alert("Resume not downloaded"),
     onAfterPrint: () => alert("Resume downloaded"),
   });
   return (

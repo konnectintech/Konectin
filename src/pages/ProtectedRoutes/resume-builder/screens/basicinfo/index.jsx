@@ -39,7 +39,7 @@ const BasicInformation = ({ data, onInputChange, template }) => {
   };
 
   return (
-    <div className="mt-4 max-w-6xl flex flex-col md:flex-row justify-between self-center mx-auto gap-10">
+    <div className="max-w-6xl flex flex-col md:flex-row justify-between self-center mx-auto gap-10">
       <div className="flex flex-col justify-center">
         <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
           Basic Information

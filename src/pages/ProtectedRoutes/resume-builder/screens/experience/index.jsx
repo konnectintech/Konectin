@@ -119,7 +119,7 @@ const EmploymentExperience = ({ data, template }) => {
   ];
 
   return (
-    <div className="max-w-6xl flex flex-col md:flex-row justify-between self-center mx-auto gap-10">
+    <div className="max-w-6xl flex flex-col md:flex-row items-start justify-between self-center mx-auto gap-10">
       <Routes>
         {employment_components.map((route) => (
           <Route

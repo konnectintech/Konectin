@@ -6,11 +6,6 @@ import "../header/header.css";
 import { useLocalStorage } from "../../middleware/storage";
 
 function ResumeInfoHeader() {
-  const [offset, setOffset] = useState({
-    prevScrollpos: window.pageYOffset,
-    visible: true,
-  });
-
   const [locationNo, setLocationNo] = useLocalStorage("crStage", 1);
 
   const [isOpen, setToggle] = useState(false);
@@ -49,19 +44,6 @@ function ResumeInfoHeader() {
 
   const { pathname } = useLocation();
 
-  const handleScroll = () => {
-    const { prevScrollpos } = offset;
-    const currentScrollPos = window.pageYOffset;
-    const visible = prevScrollpos > currentScrollPos;
-    const darken = visible && currentScrollPos >= 50;
-
-    setOffset({
-      prevScrollpos: currentScrollPos,
-      visible,
-      darken,
-    });
-  };
-
   useEffect(() => {
     for (let i = 0; i < links.length; i++) {
       if (
@@ -78,21 +60,9 @@ function ResumeInfoHeader() {
     setToggle(!isOpen);
   };
 
-  window.addEventListener("scroll", handleScroll);
-
   return (
     <>
-      <header
-        className={
-          isOpen
-            ? "navbar bg-white"
-            : offset.prevScrollpos <= 50
-            ? "navbar"
-            : offset?.darken
-            ? "navbar-change bg-white"
-            : "nav-bar-hidden"
-        }
-      >
+      <header className="relative navbar-change bg-white">
         <nav className="w-11/12 mx-auto max-w-screen-2xl flex justify-between items-center gap-6 lg:gap-16 py-4">
           <Link to="/" className="relative z-30 nav-icon block">
             <img src={konectinIcon} alt="Konectin Logo" />
@@ -146,7 +116,7 @@ function ResumeInfoHeader() {
           <nav
             className={
               isOpen
-                ? "flex flex-col gap-8 w-full h-full items-start pt-36 bg-white px-6 text-white fixed z-20 top-0 right-0 md:hidden"
+                ? "flex flex-col gap-8 w-full h-screen items-start pt-36 bg-primary-600 px-6 text-white fixed z-20 top-0 right-0 md:hidden"
                 : "hidden"
             }
           >
@@ -170,7 +140,7 @@ function ResumeInfoHeader() {
         </nav>
       </header>
 
-      <nav className="absolute w-full top-20 flex flex-row justify-center gap-4 mx-auto md:hidden mb-8 px-4">
+      <nav className="absolute w-full top-24 flex flex-row justify-center gap-4 mx-auto md:hidden px-4">
         {links.map((link, index) => (
           <div
             key={index}

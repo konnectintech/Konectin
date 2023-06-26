@@ -8,7 +8,7 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import "swiper/swiper.css"
+import "swiper/swiper.css";
 
 const TemplateOption = ({ sectionName }) => {
   const { templateData, onInputChange } = useTemplateContext();
@@ -39,11 +39,11 @@ const TemplateOption = ({ sectionName }) => {
       category: "artistic",
     },
     {
-      img: ResumeTemplateSampleImage,
+      img: ResumeTemplateSample1Image,
       category: "artistic",
     },
     {
-      img: ResumeTemplateSample1Image,
+      img: ResumeTemplateSampleImage,
       category: "artistic",
     },
     {
@@ -57,50 +57,45 @@ const TemplateOption = ({ sectionName }) => {
       <h3 className="text-xl lg:text-2xl font-bold capitalize">
         {sectionName}
       </h3>
-      <div className="lg:w-[800px] md:w-[550px] w-[280px] lg:h-[600px] overflow-x-auto flex items-center justify-center gap-10 lg:px-8">
-        <Swiper
-          spaceBetween={30}
-          slidesPerView={1.7}
-        >
-
-{template_images
-    .filter((record) => record.category === sectionName)
-    .map((item, index) => {
-      return (
-        
-        <SwiperSlide className="cursor-pointer ml-2 flex justify-center items-center text-center">
-          <div
-            className={`
-          ${
-            templateData.selectedTemplate ===
-            `${sectionName}_template_${index + 1}`
-              ? "absolute w-full h-full top-0 bg-neutral-100 bg-opacity-60"
-              : "-top-full"
-          } left-0 duration-500 flex items-center justify-center`}
-          >
-            {templateData.selectedTemplate ===
-              `${sectionName}_template_${index + 1}` && (
-              <BsIcon.BsCheckCircle
-                size="1.2rem"
-                className="absolute text-neutral-700 bg-primary-400 rounded-full"
-              />
-            )}
-          </div>
-          <img
-            src={item.img}
-            alt={`${sectionName}_template_${index + 1}`}
-            className="w-full h-full"
-            onClick={() =>
-              handleSelect(`${sectionName}_template_${index + 1}`)
-            }
-          />
-        </SwiperSlide>
-      );
-    })}
-
-        </Swiper>  
-
-        
+      <div className="lg:w-[800px] md:w-[550px] w-[270px] lg:h-[400px]">
+        <Swiper spaceBetween={20} slidesPerView={2.7}>
+          {template_images
+            .filter((record) => record.category === sectionName)
+            .map((item, index) => {
+              return (
+                <SwiperSlide
+                  key={index}
+                  className="cursor-pointer flex justify-center items-center text-center"
+                >
+                  <div
+                    className={`
+                                ${
+                                  templateData.selectedTemplate ===
+                                  `${sectionName}_template_${index + 1}`
+                                    ? "absolute w-full h-full top-0 bg-neutral-100 bg-opacity-60"
+                                    : "-top-full"
+                                } left-0 duration-500 flex items-center justify-center`}
+                  >
+                    {templateData.selectedTemplate ===
+                      `${sectionName}_template_${index + 1}` && (
+                      <BsIcon.BsCheckCircle
+                        size="1.2rem"
+                        className="absolute text-neutral-700 bg-primary-400 rounded-full"
+                      />
+                    )}
+                  </div>
+                  <img
+                    src={item.img}
+                    alt={`${sectionName}_template_${index + 1}`}
+                    className="w-full h-full"
+                    onClick={() =>
+                      handleSelect(`${sectionName}_template_${index + 1}`)
+                    }
+                  />
+                </SwiperSlide>
+              );
+            })}
+        </Swiper>
       </div>
     </div>
   );

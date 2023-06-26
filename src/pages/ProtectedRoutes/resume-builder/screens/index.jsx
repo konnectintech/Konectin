@@ -50,7 +50,7 @@ const Builder = () => {
     },
     {
       element: Education,
-      link: "/education",
+      link: "/education/*",
     },
     {
       element: Skills,
@@ -77,7 +77,7 @@ const Builder = () => {
         backgroundSize: "cover",
       }}
     >
-      <div className="w-11/12 mx-auto mt-10">
+      <div className="w-11/12 mx-auto">
         <Routes>
           {component_list.map((component) => (
             <Route
