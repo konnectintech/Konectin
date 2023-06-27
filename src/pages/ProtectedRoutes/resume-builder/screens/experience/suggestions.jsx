@@ -1,5 +1,6 @@
+import professions from "professions";
 import * as BsIcon from "react-icons/bs";
-import { jobs } from "../../../../../assets/data/job";
+import { useState, useEffect } from "react";
 import Select, { components } from "react-select";
 
 const DropdownIndicator = (props) => {
@@ -18,6 +19,14 @@ const responsibilities_suggestions = [
 ];
 
 const Suggestions = ({ jobTitle, handleChange, handleAddSuggestion }) => {
+  const [professionOption, setProfessionOption] = useState([]);
+
+  useEffect(() => {
+    professions.map((obj) =>
+      setProfessionOption((prev) => [...prev, { label: obj, value: obj }])
+    );
+  }, []);
+
   return (
     <>
       <div className="flex position relative items-center">
@@ -50,7 +59,7 @@ const Suggestions = ({ jobTitle, handleChange, handleAddSuggestion }) => {
               display: state.isFocused ? "flex" : "none",
             }),
           }}
-          options={jobs}
+          options={professionOption}
           onChange={(opt) => handleChange(opt.value)}
           theme={(theme) => ({
             ...theme,

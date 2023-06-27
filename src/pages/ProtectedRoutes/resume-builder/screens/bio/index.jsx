@@ -1,23 +1,33 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Suggestions from "./suggestions";
 import { Editor } from "@tinymce/tinymce-react";
 
-const Bio = ({ data, template }) => {
+const Bio = ({ data, template, onInputChange }) => {
   const [responsibility, setResponsibility] = useState(
-    data.jobExperience[0].jobTitle
+    data.basicInfo.profession
   );
-  const [editorValue, setEditorValue] = useState("");
-  const [dirty, setDirty] = useState("");
+  const [editorValue, setEditorValue] = useState(data?.bio);
+  const [dirty, setDirty] = useState(false);
+
   const editorRef = useRef(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      onInputChange({ section: "bio", values: editorValue });
+      setDirty(false);
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [editorValue, onInputChange]);
 
   const handleAddSuggestion = (value) => {
     const content = editorRef.current.getContent();
     setEditorValue(`${content} <ul><li>${value}</li></ul>`);
-    setDirty(false);
-    editorRef.current.setDirty(false);
-    // editorRef.current.plugins.wordcount.body.getCharacterCount();
+    editorRef.current.setDirty(true);
   };
 
   return (
@@ -27,7 +37,7 @@ const Bio = ({ data, template }) => {
           <h2 className="max-w-[30ch] text-3xl leading-tight font-semibold md:leading-snug">
             Bio
           </h2>
-          <p className=" max-w-[85ch] font-extralight text-[#66666a] text-[12px] tracking-[-0.01rem] mt-3 mb-5">
+          <p className="max-w-[85ch] font-extralight text-[#66666a] text-[12px] tracking-[-0.01rem] mt-3 mb-5">
             Bio is short for biographical information which is a summary of a
             person's professional and educational background. It is typically
             included at the top of a resume and gives employers a quick overview
@@ -61,7 +71,11 @@ const Bio = ({ data, template }) => {
                   content_style:
                     "body { font-family: Merriweather, Arial, sans-serif; font-size: 12px }",
                 }}
-                initialValue={editorValue}
+                onEditorChange={() => {
+                  setEditorValue(editorRef.current.getContent());
+                  setDirty(true);
+                }}
+                value={editorValue}
                 onDirty={() => setDirty(true)}
               />
 

@@ -1,7 +1,7 @@
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-function AddType() {
+function AddType({ data }) {
   return (
     <div className="w-full flex flex-col justify-center items-start">
       <div className="flex flex-col">
@@ -33,6 +33,14 @@ function AddType() {
         >
           Back
         </Link>
+        {data.currentEditedEducation >= 2 && (
+          <Link
+            to="/resume/builder/skills"
+            className="w-full md:w-fit max-w-xs border border-neutral-500 rounded-lg text-sm py-3 px-[4.5rem]"
+          >
+            Go to Skills
+          </Link>
+        )}
       </div>
     </div>
   );

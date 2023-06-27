@@ -7,9 +7,6 @@ import JobTitleInput from "../../../../../components/jobTitleInput";
 const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
   const navigate = useNavigate();
 
-  const form_classes =
-    "p-4 mb-6 text-[11px] w-full text-[#8C8C8F] border border-[#b2b3b48a] outline-0 rounded-[4px] bg-[#f9f9f9] select-wrapper";
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -34,7 +31,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
             subsection="jobTitle"
           />
           <input
-            className={form_classes}
+            className="input-container"
             type="text"
             name="company"
             value={data?.company}
@@ -42,13 +39,13 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
             onInput={(e) => handleInputChange(e.target.name, e.target.value)}
             placeholder="Company / Organization Name"
           />
-          <div className="flex">
+          <div className="flex gap-4">
             <select
               value={data?.country}
               name="country"
               onChange={(e) => handleInputChange(e.target.name, e.target.value)}
               onInput={(e) => handleInputChange(e.target.name, e.target.value)}
-              className={`${form_classes} mr-4`}
+              className="input-container"
               placeholder="Country"
             >
               {countries.map((country) => (
@@ -64,10 +61,10 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
               onChange={(e) => handleInputChange(e.target.name, e.target.value)}
               onInput={(e) => handleInputChange(e.target.name, e.target.value)}
               placeholder="State / Province"
-              className={`mr-4 ${form_classes}`}
+              className="input-container"
             />
             <input
-              className={form_classes}
+              className="input-container"
               type="text"
               value={data?.city}
               name="city"
@@ -77,13 +74,13 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
             />
           </div>
 
-          <div className="flex">
+          <div className="flex gap-4">
             <select
               name="startMonth"
               value={data?.startMonth}
               onChange={(e) => handleInputChange(e.target.name, e.target.value)}
               onInput={(e) => handleInputChange(e.target.name, e.target.value)}
-              className={`${form_classes} mr-4`}
+              className="input-container"
             >
               <option value="">Start Month</option>
               {months.map((month) => (
@@ -97,7 +94,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
               value={data?.startYear}
               onChange={(e) => handleInputChange(e.target.name, e.target.value)}
               onInput={(e) => handleInputChange(e.target.name, e.target.value)}
-              className={form_classes}
+              className="input-container"
             >
               <option value="" disabled>
                 Start Year
@@ -120,7 +117,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
                 onInput={(e) =>
                   handleInputChange(e.target.name, e.target.value)
                 }
-                className={`${form_classes} mr-4`}
+                className="input-container"
               >
                 <option value="">End Month</option>
                 {months.map((month) => (
@@ -138,7 +135,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
                 onInput={(e) =>
                   handleInputChange(e.target.name, e.target.value)
                 }
-                className={form_classes}
+                className="input-container"
                 placeholder="End Year"
               >
                 <option value="" disabled>
@@ -164,7 +161,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
             />
             <label
               htmlFor="checkbox"
-              className="ml-2 mt-[2px] text-sm font-light text-[#66666a]"
+              className="ml-2 mt-[2px] text-sm font-light text-neutral-300"
             >
               I currently work here
             </label>
@@ -174,13 +171,13 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
         <div className="w-full flex flex-col max-md:justify-center mt-6 gap-5 md:flex-row">
           <button
             onClick={handleBack}
-            className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
+            className="w-full md:w-fit max-w-xs border border-neutral-500 rounded-lg text-sm py-3 px-[4.5rem]"
           >
             Back
           </button>
           <button
             onClick={handleSubmit}
-            className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-[#332A66]"
+            className="w-full md:w-fit max-w-xs border border-neutral-500 rounded-lg text-sm text-neutral-1000 py-3 px-[4.5rem] bg-primary-600"
           >
             Continue
           </button>

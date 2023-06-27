@@ -48,14 +48,14 @@ const Responsibilities = ({ data, jobArray, handleInputChange }) => {
       <h2 className="md:max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
         Your work responsibilities
       </h2>
-      <p className="text-[#66666a] text-sm tracking-[-0.01rem] mt-3 max-w-2xl">
+      <p className="text-neutral-300 text-sm tracking-[-0.01rem] mt-3 max-w-2xl">
         Try to include 3-6 work experience bullet points. Little is less and
         more is too much.
       </p>
       <div className="w-full">
         <section className="w-full h-[400px] flex justify-between mt-6">
           <div className="w-full md:w-1/2">
-            <p className="font-bold text-[#66666a] text-sm mb-3">
+            <p className="font-bold text-neutral-300 text-sm mb-3">
               {data?.jobTitle} | {data?.company}
             </p>
             <div className="h-full">
@@ -80,11 +80,11 @@ const Responsibilities = ({ data, jobArray, handleInputChange }) => {
             </div>
           </div>
           <div className="w-1/2 hidden md:block">
-            <p className=" font-semibold text-[#66666a] text-xs mb-3 mt-1 ml-6 ">
+            <p className=" font-semibold text-neutral-300 text-xs mb-3 mt-1 ml-6 ">
               Let’s help your refine your job responsibilities with our top AI
               powered tool
             </p>
-            <div className="h-full ml-6 border border-[#b2b3b48a] rounded-lg">
+            <div className="h-full ml-6 border border-neutral-500 rounded-lg">
               <Suggestions
                 jobTitle={responsibility}
                 handleChange={(value) => setResponsibility(value)}
@@ -97,13 +97,13 @@ const Responsibilities = ({ data, jobArray, handleInputChange }) => {
         <div className="max-w-xl flex flex-col max-md:justify-center mt-16 gap-5 md:flex-row">
           <button
             onClick={() => navigate("/resume/builder/employment-experience/")}
-            className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
+            className="w-full md:w-fit max-w-xs border border-neutral-500 rounded-lg text-sm py-3 px-[4.5rem]"
           >
             Back
           </button>
           <button
             onClick={handleSubmit}
-            className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-[#332A66]"
+            className="w-full md:w-fit max-w-xs border border-neutral-500 rounded-lg text-sm text-neutral-1000 py-3 px-[4.5rem] bg-[#332A66]"
           >
             Continue
           </button>

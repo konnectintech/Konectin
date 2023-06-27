@@ -46,6 +46,7 @@ export const useTemplateData = () => {
       zipCode: "",
     },
     currentEditedJob: 1,
+    currentEditedEducation: 1,
     jobExperience: [
       {
         city: "",
@@ -61,20 +62,7 @@ export const useTemplateData = () => {
         workDesc: "",
       },
     ],
-    education: [
-      {
-        city: "",
-        country: "",
-        degree: "",
-        endMonth: "",
-        endYear: "",
-        graduated: false,
-        startMonth: "",
-        startYear: "",
-        schoolName: "",
-        state: "",
-      },
-    ],
+    education: [],
     skills: [""],
     bio: "",
     selectedTemplate: "",

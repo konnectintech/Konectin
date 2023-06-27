@@ -48,6 +48,10 @@ input[type="tel"]:-webkit-autofill {
   -webkit-background-clip: unset;
 }
 
+.input-container {
+  @apply p-4 mb-6 text-[11px] w-full text-primary-200 border border-neutral-500 outline-0 rounded-[4px] bg-neutral-1000;
+}
+
 .underdash {
   position: relative;
 }

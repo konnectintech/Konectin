@@ -5,7 +5,7 @@ import HighSchool from "./high-school";
 import AddType from "./addType";
 import SelectEducation from "./selectEducation";
 
-const Education = ({ data, onInputChange, template }) => {
+const Education = ({ data, template }) => {
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -21,7 +21,7 @@ const Education = ({ data, onInputChange, template }) => {
           </div>
         }
       >
-        <Route path="/" element={<AddType />} />
+        <Route path="/" element={<AddType data={data} />} />
         <Route path="/select-edu" element={<SelectEducation />} />
         <Route
           element={
@@ -33,23 +33,11 @@ const Education = ({ data, onInputChange, template }) => {
         >
           <Route
             path="/college"
-            element={
-              <College
-                data={data}
-                handleChange={onInputChange}
-                handleBack={handleBack}
-              />
-            }
+            element={<College handleBack={handleBack} />}
           />
           <Route
             path="/high-school"
-            element={
-              <HighSchool
-                data={data}
-                handleChange={onInputChange}
-                handleBack={handleBack}
-              />
-            }
+            element={<HighSchool handleBack={handleBack} />}
           />
         </Route>
       </Route>

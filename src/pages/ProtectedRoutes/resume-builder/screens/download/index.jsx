@@ -10,10 +10,11 @@ const Download = ({ data, template }) => {
     content: () => resumeRef.current,
     pageStyle: `@media print {
       @page {
-        size: 500mm 500mm;
+        size: 560px 560px;
+        margin: 0;
       }
     }`,
-    documentTitle: `${data.basicInfo.firstName} ${data.basicInfo.lastName} Resume`,
+    // documentTitle: `${data.basicInfo.firstName} ${data.basicInfo.lastName} Resume`,
     onPrintError: () => alert("Resume not downloaded"),
     onAfterPrint: () => alert("Resume downloaded"),
   });
