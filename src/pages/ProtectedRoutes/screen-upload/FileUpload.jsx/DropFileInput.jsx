@@ -81,7 +81,7 @@ const DropFileInput = ({ props }) => {
               />
               <div className="flex flex-col justify-between h-[50px]">
                 <span
-                  className="bg-white h-[25px] w-[25px] rounded-full text-black text-lg text-center cursor-pointer absolute top-0 my-auto mr-3 border border-black bottom-0 right-0  transition-all "
+                  className="bg-white h-[35px] w-[35px] rounded-full text-black text-lg text-center cursor-pointer absolute top-0 my-auto mr-3 border border-black bottom-0 right-0  transition-all flex justify-center items-center"
                   onClick={() => fileRemove(item)}
                 >
                   x

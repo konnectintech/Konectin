@@ -28,7 +28,6 @@ const AIStarter = () => {
     },
     {
       element: TemplateSelector,
-      link: "/template-selector",
     },
   ];
 

@@ -1,0 +1,17 @@
+.doughnut--progressBar::before{
+  content:"";
+  position:absolute;
+  width:90%;
+  height:90%;
+  display:flex;
+  border-radius:50%;
+  background:#403580;
+}
+
+.progressBar{
+    position:relative;
+    width:25rem;
+    height:0.625rem;
+    border-radius:300px;
+    background-color:;
+}
