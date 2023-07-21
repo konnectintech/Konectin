@@ -27,7 +27,7 @@ import Faq from "./pages/DefaultRoutes/faq/Faq";
 import Contact from "./pages/DefaultRoutes/contact/Contact";
 import ForgetPassword from "./pages/sign/login/forgetPassword";
 import ResumeUpload from "./pages/ProtectedRoutes/resume-builder/screen-upload";
-import DashBoard from "./pages/ProtectedRoutes/dashboard";
+// import DashBoard from "./pages/ProtectedRoutes/dashboard";
 // import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
 
 function App() {
