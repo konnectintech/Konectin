@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
-import ImageConfig from "../ImageConfig";
-// import Progress from "./Progress";
+import ImageConfig from "../imageConfig";
+import Progress from "./progress";
 import { FiUploadCloud } from "react-icons/fi";
 
 const DropFileInput = ({ props }) => {
@@ -14,13 +14,13 @@ const DropFileInput = ({ props }) => {
 
   const onDrop = () => wrapperRef.current.classList.remove("dragover");
 
-  // const [uploadPercentage, setUploadPercentage] = useState(0);
+  const [uploadPercentage, setUploadPercentage] = useState(0);
 
-  // const filePercentages = (percentage) => {
-  //   // setUploadPercentage(percentage);
+  const filePercentages = (percentage) => {
+    // setUploadPercentage(percentage);
 
-  //   setUploadPercentage(parseInt(Math.round(percentage)));
-  // };
+    setUploadPercentage(parseInt(Math.round(percentage)));
+  };
 
   const onFileDrop = (e) => {
     // setFile(e.target.files[0]);
@@ -86,7 +86,7 @@ const DropFileInput = ({ props }) => {
                 {/* displaying file name, progress bar and file size in Bytes */}
                 <p className="text-sm">{item.name}</p>
                 {/* <Progress percentage={uploadPercentage} /> */}
-                {/* <Progress percentage={filePercentages()} /> */}
+                <Progress percentage={filePercentages(uploadPercentage)} />
                 <p className="text-sm">{item.size}B</p>
               </div>
             </div>

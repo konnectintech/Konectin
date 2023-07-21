@@ -17,30 +17,35 @@ function Feeds() {
   const [isLoading, setLoading] = useState(true);
   const [trendingBlogs, setTrendingBlogs] = useState([]);
 
+  const read_token = import.meta.env.VITE_READ_TOKEN;
+
   async function getAllBlogs() {
     try {
       const response = await axios.get(
-        "https://konectin-backend-hj09.onrender.com/user/getAllBlogs"
+        `https://api.buttercms.com/v2/posts?auth_token=${read_token}`
       );
-      const blogs = response.data.blogs;
+      const blogs = response.data.data;
       setAllBlogs(blogs);
       setLoading(false);
     } catch (err) {
       console.log(err);
+      alert(err.message + ", Please reload the page");
     }
   }
 
   useEffect(() => {
     getAllBlogs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (isLoading) {
       const preloader = new Array(6).fill({
+        seo_title: "Loading contents",
+        author: { first_name: "Konectin" },
+        tags: [{ slug: "1 min read" }],
         title: "Loading contents",
-        readingTime: "1 min read",
-        category: ["career", "start-up", "soft-skill"],
-        updatedAt: new Date().getDate(),
+        updated: new Date().getDate(),
         blurred: true,
       });
 
@@ -51,36 +56,17 @@ function Feeds() {
   let params = useParams();
 
   useEffect(() => {
-    const category =
-      params.feed.charAt(0).toUpperCase() +
-      params.feed.slice(1, params.feed.length);
-    if (category === "All") {
+    if (params.feed === "all") {
       setNewBlogs(allBlogs);
     } else {
       const currentFeed = allBlogs.filter((blog) =>
-        blog.category.includes(category)
+        blog.categories.some((cat) => cat.slug === params.feed)
       );
+
       setNewBlogs(currentFeed);
     }
 
-    let readArray = allBlogs.map((blog) => {
-      return blog.numOfReads;
-    });
-
-    // Get highest read ranking
-    const highestRead = readArray
-      .sort(function (a, b) {
-        return b - a;
-      })
-      .slice(0, 3);
-
-    // Get first 3 blogs with highest read ranking
-    let filteredBlog = allBlogs.filter((blog) => {
-      return highestRead.some((num) => blog.numOfReads === num);
-    });
-
-    filteredBlog = filteredBlog.reverse().splice(0, 3);
-    setTrendingBlogs(filteredBlog);
+    setTrendingBlogs(allBlogs.reverse());
   }, [params, allBlogs]);
 
   return (

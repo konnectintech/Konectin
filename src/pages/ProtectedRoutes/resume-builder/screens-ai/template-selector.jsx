@@ -27,7 +27,7 @@ const TemplateSelector = ({ data }) => {
         </p>
       </div>
 
-      <section className="flex flex-col items-center gap-10 mt-3 lg:mt-6 lg:mx-16 pb-12">
+      <section className="flex flex-col w-full items-center gap-10 mt-3 lg:mt-6 lg:mx-16 pb-12">
         <TemplateOption sectionName="modern" />
         <TemplateOption sectionName="artistic" />
         <Link

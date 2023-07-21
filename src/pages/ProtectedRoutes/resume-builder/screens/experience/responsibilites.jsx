@@ -53,9 +53,9 @@ const Responsibilities = ({ data, jobArray, handleInputChange }) => {
         more is too much.
       </p>
       <div className="w-full">
-        <section className="w-full h-[400px] flex justify-between mt-6">
+        <section className="w-full flex gap-4 justify-between mt-6">
           <div className="w-full md:w-1/2">
-            <p className="font-bold text-neutral-300 text-sm mb-3">
+            <p className="font-bold text-neutral-300 text-sm mb-3 capitalize">
               {data?.jobTitle} | {data?.company}
             </p>
             <div className="h-full">
@@ -80,11 +80,11 @@ const Responsibilities = ({ data, jobArray, handleInputChange }) => {
             </div>
           </div>
           <div className="w-1/2 hidden md:block">
-            <p className=" font-semibold text-neutral-300 text-xs mb-3 mt-1 ml-6 ">
+            <p className="font-semibold text-neutral-300 text-xs mb-3 mt-1">
               Let’s help your refine your job responsibilities with our top AI
               powered tool
             </p>
-            <div className="h-full ml-6 border border-neutral-500 rounded-lg">
+            <div className="overflow-hidden border border-neutral-500 rounded-lg pb-4">
               <Suggestions
                 jobTitle={responsibility}
                 handleChange={(value) => setResponsibility(value)}
@@ -103,7 +103,7 @@ const Responsibilities = ({ data, jobArray, handleInputChange }) => {
           </button>
           <button
             onClick={handleSubmit}
-            className="w-full md:w-fit max-w-xs border border-neutral-500 rounded-lg text-sm text-neutral-1000 py-3 px-[4.5rem] bg-[#332A66]"
+            className="w-full md:w-fit max-w-xs border border-neutral-500 rounded-lg text-sm text-neutral-1000 py-3 px-[4.5rem] bg-primary-600"
           >
             Continue
           </button>

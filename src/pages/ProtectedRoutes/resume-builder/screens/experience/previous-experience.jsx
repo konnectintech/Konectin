@@ -107,7 +107,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
             </select>
           </div>
           {!data?.current && (
-            <div className="flex">
+            <div className="flex gap-4">
               <select
                 name="endMonth"
                 value={data?.endMonth}
@@ -149,7 +149,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
               </select>
             </div>
           )}
-          <div className="flex items-center">
+          <div className="flex gap-2 items-center">
             <input
               id="checkbox"
               type="checkbox"
@@ -161,7 +161,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
             />
             <label
               htmlFor="checkbox"
-              className="ml-2 mt-[2px] text-sm font-light text-neutral-300"
+              className="text-sm font-light text-neutral-300"
             >
               I currently work here
             </label>

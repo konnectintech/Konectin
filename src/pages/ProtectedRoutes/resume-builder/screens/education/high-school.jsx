@@ -68,20 +68,21 @@ function HighSchool({ handleBack }) {
   };
 
   return (
-    <section className="mt-12 flex justify-between items-center gap-10">
+    <section className="flex flex-col gap-10">
       <div className="mx-auto">
         <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
           Add High School
         </h2>
 
-        <div className="w-full mt-12">
+        <div className="w-full mt-6">
           <input
-            className="input-container"
             type="text"
-            placeholder="High School Name"
             name="schoolName"
+            value={education.schoolName}
             onChange={(e) => handleChange(e.target.name, e.target.value)}
             onInput={(e) => handleChange(e.target.name, e.target.value)}
+            className="input-container"
+            placeholder="High School Name"
           />
           <div className="flex gap-4">
             <input
@@ -89,6 +90,7 @@ function HighSchool({ handleBack }) {
               type="text"
               placeholder="Country"
               name="country"
+              value={education.country}
               onChange={(e) => handleChange(e.target.name, e.target.value)}
               onInput={(e) => handleChange(e.target.name, e.target.value)}
             />
@@ -96,11 +98,20 @@ function HighSchool({ handleBack }) {
               type="text"
               placeholder="State / Province"
               name="state"
+              value={education.state}
               onChange={(e) => handleChange(e.target.name, e.target.value)}
               onInput={(e) => handleChange(e.target.name, e.target.value)}
               className="input-container"
             />
-            <input type="text" className="input-container" placeholder="City" />
+            <input
+              type="text"
+              className="input-container"
+              placeholder="City"
+              name="city"
+              value={education.city}
+              onChange={(e) => handleChange(e.target.name, e.target.value)}
+              onInput={(e) => handleChange(e.target.name, e.target.value)}
+            />
           </div>
 
           <input
@@ -118,6 +129,7 @@ function HighSchool({ handleBack }) {
               type="text"
               placeholder="Month"
               name="month"
+              value={education.month}
               onChange={(e) => handleChange(e.target.name, e.target.value)}
               onInput={(e) => handleChange(e.target.name, e.target.value)}
             />
@@ -125,23 +137,28 @@ function HighSchool({ handleBack }) {
               className="input-container"
               type="text"
               name="year"
+              value={education.year}
               onChange={(e) => handleChange(e.target.name, e.target.value)}
               onInput={(e) => handleChange(e.target.name, e.target.value)}
               placeholder="Year"
             />
           </div>
           <div>
-            <input
-              className="input-container"
-              type="text"
-              name="relevantCourse"
-              placeholder="Relevant Course"
-              onChange={(e) => handleChange(e.target.name, e.target.value)}
-              onInput={(e) => handleChange(e.target.name, e.target.value)}
-            />
+            {education.relevantCourses.map((course, index) => (
+              <input
+                key={course + index}
+                className="input-container"
+                type="text"
+                name="relevantCourse"
+                placeholder="Relevant Course"
+                value={course}
+                onChange={(e) => handleChange(e.target.name, e.target.value)}
+                onInput={(e) => handleChange(e.target.name, e.target.value)}
+              />
+            ))}
             <button className="flex items-center gap-3 border-none outline-none mb-6">
-              <div className="bg-primary-400 text-neutral-1000 p-1 border rounded-full">
-                <FaPlus size="0.8rem" />
+              <div className="bg-primary-400 text-neutral-1000 w-6 h-6 flex items-center justify-center rounded-full">
+                <FaPlus size="0.7rem" />
               </div>
               <span className="font-extrabold text-sm text-neutral-400">
                 Add Relevant Course
@@ -149,14 +166,18 @@ function HighSchool({ handleBack }) {
             </button>
           </div>
           <div>
-            <input
-              className="input-container"
-              type="text"
-              placeholder="Award/Honour"
-            />
+            {education.awards.map((award, index) => (
+              <input
+                key={award + index}
+                className="input-container"
+                type="text"
+                placeholder="Award/Honour"
+                value={award}
+              />
+            ))}
             <button className="flex items-center gap-3 border-none outline-none mb-6">
-              <div className="bg-primary-400 p-1 border rounded-full">
-                <FaPlus size="0.8rem" />
+              <div className="bg-primary-400 text-neutral-1000 w-6 h-6 flex items-center justify-center rounded-full">
+                <FaPlus size="0.7rem" />
               </div>
               <span className="font-extrabold text-sm text-neutral-400">
                 Add Award/Honour
@@ -165,6 +186,7 @@ function HighSchool({ handleBack }) {
           </div>
         </div>
       </div>
+
       <div className="max-w-xl flex flex-col max-md:justify-center mt-16 gap-5 md:flex-row">
         <button
           onClick={handleBack}

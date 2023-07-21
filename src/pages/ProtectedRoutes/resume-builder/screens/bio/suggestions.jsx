@@ -76,7 +76,7 @@ const Suggestions = ({ jobTitle, handleChange, handleAddSuggestion }) => {
         <p className="text-[#3f4044] font-extralight tracking-[-0.01em] text-sm">
           Showing 3 results for <span className="font-bold">{jobTitle}</span>
         </p>
-        <div className="border border-[#b2b3b48a] overflow-y-auto rounded h-full">
+        <div className="bg-neutral-1000 border border-[#b2b3b48a] overflow-y-auto rounded h-full">
           {responsibilities_suggestions.map((item, index) => {
             return (
               <div

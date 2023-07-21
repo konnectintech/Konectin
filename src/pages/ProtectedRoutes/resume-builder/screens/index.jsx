@@ -12,6 +12,7 @@ import Bio from "./bio";
 import Preview from "./preview";
 import Download from "./download";
 import { TemplateOne } from "../resume-templates/template-1";
+import { TemplateTwo } from "../resume-templates/template-2";
 
 const Builder = () => {
   const { templateData, onInputChange, setTemplateData } = useTemplateContext();
@@ -21,7 +22,7 @@ const Builder = () => {
       case "modern_template_1":
         return <TemplateOne data={templateData} />;
       case "modern_template_2":
-        return <img src={ResumeTemplateSampleImage} alt="resume template" />;
+        return <TemplateTwo data={templateData} />;
       default:
         return <img src={ResumeTemplateSampleImage} alt="resume template" />;
     }
@@ -37,7 +38,8 @@ const Builder = () => {
     ) {
       navigate("/resume/ai");
     }
-  }, [templateData, navigate, pathname]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
 
   const component_list = [
     {
@@ -73,7 +75,7 @@ const Builder = () => {
   return (
     <main
       style={{
-        backgroundImage: `linear-gradient(rgba(249, 249, 249, 0.81), rgba(249, 249, 249, 0.81)), url("${builderBg}")`,
+        backgroundImage: `linear-gradient(rgba(249, 249, 249, 0.81), rgba(249, 249, 249, 0.91)), url("${builderBg}")`,
         backgroundSize: "cover",
       }}
     >

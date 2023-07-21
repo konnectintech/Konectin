@@ -3,38 +3,48 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 function BlogCard({
-  article: { image, title, _id, readingTime, updatedAt, blurred },
+  article: {
+    featured_image,
+    title,
+    seo_title,
+    author,
+    categories,
+    slug,
+    tags,
+    updated,
+    blurred,
+  },
 }) {
   const param = useParams();
 
   return (
     <Link
-      to={blurred ? param : `/blog/${title.split(" ").join("-") + "/" + _id}`}
+      to={blurred ? param : `/blog/${categories[0]?.slug}/${slug}/`}
       className={`${
         blurred && "animate-pulse"
-      } blog-card overflow-hidden rounded-md text-xs w-full h-full flex flex-col justify-between`}
+      } blog-card overflow-hidden rounded-md text-xs w-full flex flex-col justify-between`}
     >
-      <div className="bg-neutral-500 min-h-[150px] overflow-hidden">
+      <div className="bg-neutral-700 overflow-hidden flex-1 max-h-[265px]">
         <LazyLoadImage
+          wrapperClassName="inline-x"
           effect="blur"
-          className="w-full hover:scale-105 transistion-all duration-300"
-          src={image}
+          className="bg-contain w-full h-full aspect-square hover:scale-105 transistion-all duration-300"
+          src={featured_image}
           alt={title}
         />
       </div>
 
       <div
         className={`${
-          blurred ? "blurry-text" : ""
-        } bg-white px-3 py-4 flex flex-col justify-between gap-2`}
+          blurred ? "blurry-text" : "mb-auto"
+        } bg-white px-3 py-4 flex max-h-[115px] h-full flex-col justify-between`}
       >
-        <hgroup>
-          <h2>{title}</h2>
-          <h3 className="mt-1">Konectin</h3>
-        </hgroup>
+        <h2 title={seo_title}>{title}</h2>
+        <h3 className="my-auto">{author?.first_name}</h3>
+
         <div className="flex items-center justify-between w-full text-xs">
-          <span>{readingTime}</span>
-          <span>{new Date(updatedAt).toDateString()}</span>
+          <span>{tags[0].slug.split("-").join(" ")}</span>
+          <span>{new Date(updated).toDateString()}</span>
         </div>
       </div>
     </Link>

@@ -5,7 +5,7 @@ import { konectinIcon } from "../../assets";
 import "../header/header.css";
 import { useLocalStorage } from "../../middleware/storage";
 
-function ResumeInfoHeader() {
+function ResumeHeader() {
   const [locationNo, setLocationNo] = useLocalStorage("crStage", 1);
 
   const [isOpen, setToggle] = useState(false);
@@ -62,7 +62,7 @@ function ResumeInfoHeader() {
 
   return (
     <>
-      <header className="relative navbar-change bg-white">
+      <header className="relative blog-bar bg-white">
         <nav className="w-11/12 mx-auto max-w-screen-2xl flex justify-between items-center gap-6 lg:gap-16 py-4">
           <Link to="/" className="relative z-30 nav-icon block">
             <img src={konectinIcon} alt="Konectin Logo" />
@@ -81,7 +81,8 @@ function ResumeInfoHeader() {
           {/* Desktop and Tab View  */}
           <nav className="hidden transistion-all md:flex md:gap-3 lg:gap-6 flex-row text-sm">
             {links.map((link, index) => (
-              <div
+              <Link
+                to={link.path}
                 key={index}
                 className={`flex cursor-pointer items-center gap-2 text-sm ${
                   locationNo >= link.no
@@ -108,7 +109,7 @@ function ResumeInfoHeader() {
                     }`}
                   />
                 )}
-              </div>
+              </Link>
             ))}
           </nav>
 
@@ -140,11 +141,16 @@ function ResumeInfoHeader() {
         </nav>
       </header>
 
-      <nav className="absolute w-full top-24 flex flex-row justify-center gap-4 mx-auto md:hidden px-4">
+      <nav className="absolute w-full top-24 flex flex-row justify-center gap-6 mx-auto md:hidden px-4">
         {links.map((link, index) => (
-          <div
+          <Link
+            to={link.path}
             key={index}
-            className={`flex cursor-pointer w-full items-center gap-2 text-sm ${
+            className={`${
+              link.no <= links.length - 1
+                ? "flex cursor-pointer items-center gap-2 text-sm"
+                : ""
+            } ${
               locationNo >= link.no
                 ? "text-secondary-500 font-semibold"
                 : "text-secondary-300 font-medium"
@@ -168,11 +174,11 @@ function ResumeInfoHeader() {
                 }`}
               />
             )}
-          </div>
+          </Link>
         ))}
       </nav>
     </>
   );
 }
 
-export default ResumeInfoHeader;
+export default ResumeHeader;

@@ -46,7 +46,7 @@ export const useTemplateData = () => {
       zipCode: "",
     },
     currentEditedJob: 1,
-    currentEditedEducation: 1,
+    currentEditedEducation: 0,
     jobExperience: [
       {
         city: "",

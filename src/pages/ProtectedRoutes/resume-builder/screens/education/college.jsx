@@ -140,8 +140,8 @@ function College({ handleBack }) {
 
             <div className="flex gap-4">
               <select
-                value={education.graduationMonth}
-                name="grauationMonth"
+                value={education.month}
+                name="month"
                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                 onInput={(e) => handleChange(e.target.name, e.target.value)}
                 className="input-container"
@@ -154,8 +154,8 @@ function College({ handleBack }) {
                 ))}
               </select>
               <select
-                value={education.graduationYear}
-                name="graduationYear"
+                value={education.year}
+                name="year"
                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                 onInput={(e) => handleChange(e.target.name, e.target.value)}
                 className="input-container"

@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { countries } from "../../../../../assets/data/countries";
-import JobTitleInput from "../../../../../components/jobTitleInput";
 import { Link } from "react-router-dom";
 
 const BasicInformation = ({ data, onInputChange, template }) => {
@@ -8,8 +7,6 @@ const BasicInformation = ({ data, onInputChange, template }) => {
     fullName,
     firstName,
     lastName,
-    profession,
-    phoneNumber,
     city,
     country,
     state,
@@ -18,7 +15,7 @@ const BasicInformation = ({ data, onInputChange, template }) => {
   } = data?.basicInfo;
 
   const form_classes =
-    "p-4 mb-6 text-[11px] w-full text-[#8C8C8F] border border-[#b2b3b48a] outline-0 rounded-[4px] bg-[#f9f9f9]";
+    "p-4 mb-6 text-[11px] w-full text-[#8C8C8F] border border-neutral-500 outline-0 rounded-[4px] bg-[#f9f9f9]";
 
   const navigate = useNavigate();
 
@@ -28,7 +25,7 @@ const BasicInformation = ({ data, onInputChange, template }) => {
   };
 
   const handleSubmit = () => {
-    if (fullName && profession && email && country) {
+    if (fullName && state && email && country) {
       if (Object.keys(data.jobExperience).length <= 1) {
         navigate("employment-experience");
         return;
@@ -65,19 +62,13 @@ const BasicInformation = ({ data, onInputChange, template }) => {
               className={`${form_classes}`}
             />
           </div>
-          <JobTitleInput
-            title={profession}
-            handleInputChange={onInputChange}
-            section="basicInfo"
-            subsection="profession"
-          />
-          <input
+          {/* <input
             className={form_classes}
             type="text"
             placeholder="Phone"
             value={phoneNumber}
             onChange={(e) => handleInputChange(e, "phoneNumber")}
-          />
+          /> */}
           <div className="flex">
             <select
               value={country}
@@ -131,7 +122,7 @@ const BasicInformation = ({ data, onInputChange, template }) => {
             </Link>
             <button
               onClick={handleSubmit}
-              className="w-full border border-[#b2b3b48a] rounded-lg text-sm text-white py-3 px-6 bg-primary-500"
+              className="w-full border border-neutral-500 rounded-lg text-sm text-white py-3 px-6 bg-primary-500"
             >
               Continue
             </button>

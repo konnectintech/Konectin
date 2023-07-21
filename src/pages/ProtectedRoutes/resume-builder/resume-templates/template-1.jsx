@@ -87,7 +87,9 @@ export const TemplateOne = ({ data }) => {
                   edu.state === "" &&
                   edu.country === ""
                     ? "Connecticut Carpenters Apprenticeship, Charter Oak State College, New Britain"
-                    : `${edu.degree}, ${edu.schoolName} | ${edu.state}, ${edu.country}`}
+                    : `${edu.degree ? `${edu.degree} , ` : ""}${
+                        edu.schoolName
+                      } | ${edu.state}, ${edu.country}`}
                 </p>
                 <p className="text-[10px] text-neutral-500">
                   {edu.startMonth === "" && edu.startYear === ""
