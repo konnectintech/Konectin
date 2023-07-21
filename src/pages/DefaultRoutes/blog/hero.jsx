@@ -17,9 +17,9 @@ function HeroSection({ isLoading }) {
         </h1>
         <p>Career talks, discussions, posts and articles.</p>
       </div>
-      <div className="bg-neutral-500">
+      <div className="bg-neutral-900">
         <LazyLoadImage
-          className="block"
+          className="block h-full w-full bg-cover"
           effect="blur"
           src={blogHero}
           alt=" Welcome to Konectin Blog"

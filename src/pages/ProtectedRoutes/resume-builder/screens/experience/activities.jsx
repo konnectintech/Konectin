@@ -20,7 +20,7 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
       <h2 className="-mt-6 max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
         Work Experience
       </h2>
-      <p className="text-[#66666a] text-sm tracking-[-0.01rem] my-3 max-w-2xl">
+      <p className="text-neutral-300 text-sm tracking-[-0.01rem] my-3 max-w-2xl">
         Add, edit or delete your work experience.
       </p>
       {templateData.jobExperience.map((data, index) => (
@@ -29,7 +29,7 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
           className="w-full flex flex-col items-start mx-auto mb-4"
         >
           <div className="flex flex-col md:justify-between md:flex-row ">
-            <p className="font-bold text-[#66666a] text-sm mb-4">
+            <p className="font-bold text-neutral-300 capitalize text-sm mb-4">
               {data.company} |{" "}
               <span className="font-medium">
                 {data.city && `${data.city}, `}
@@ -37,12 +37,12 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
               </span>
             </p>
           </div>
-          <div className="border border-[#b2b3b48a] rounded-lg bg-white p-4">
-            <div className="flex justify-between">
-              <h3 className="font-extrabold text-[#66666a] text-lg">
+          <div className="border border-neutral-500 rounded-lg bg-white p-4">
+            <div className="flex justify-between gap-3">
+              <h3 className="font-extrabold text-neutral-300 text-lg capitalize">
                 {data.jobTitle}
               </h3>
-              <div>
+              <div className="space-x-2 text-neutral-400">
                 <button
                   onClick={() => {
                     setTemplateData((prev) => ({
@@ -52,9 +52,8 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
 
                     navigate("/resume/builder/employment-experience");
                   }}
-                  className="mr-3"
                 >
-                  <FaPen color="#b2b3b4" size="1rem" />
+                  <FaPen size="1rem" />
                 </button>
                 <button
                   onClick={() => {
@@ -65,24 +64,24 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
                       : deleteExperience(index);
                   }}
                 >
-                  <FaTrash color="#b2b3b4" size="1rem" />
+                  <FaTrash size="1rem" />
                 </button>
               </div>
             </div>
-            <p className="font-light text-[#66666a] text-sm leading-3 mt-3">
+            <p className="font-light text-neutral-300 text-sm leading-3 mt-3">
               {data.startMonth} {data.startYear} -
               {data.current ? " Present" : ` ${data.endMonth} ${data.endYear}`}
             </p>
-            <div className="text-[#8C8C8F] text-xs job-desc px-4 mt-3">
+            <div className="text-neutral-400 text-xs job-desc px-4 mt-3">
               <div
                 dangerouslySetInnerHTML={{
                   __html: data.workDesc,
                 }}
               />
             </div>
-            <button className="text-[#b2b3b4] text-xs font-extralight flex items-center mt-4">
+            <button className="text-neutral-500 text-xs font-extralight flex items-center mt-4">
               Show more
-              <FaCaretDown className="ml-1" color="#b2b3b4" size="0.5rem" />
+              <FaCaretDown className="ml-1" size="0.5rem" />
             </button>
           </div>
         </section>
@@ -92,10 +91,10 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
         className="flex items-center border-none outline-none cursor-pointer"
         onClick={addCompany}
       >
-        <div className="bg-primary-400 p-2 border rounded-full">
-          <FaPlus color="#f5f5f5" size="0.6rem" />
+        <div className="bg-primary-400 text-neutral-1000 p-2 border rounded-full">
+          <FaPlus size="0.6rem" />
         </div>
-        <span className=" ml-3 font-extrabold text-sm text-[#8c8c8f]">
+        <span className=" ml-3 font-extrabold text-sm text-neutral-400">
           Add Company
         </span>
       </div>
@@ -103,14 +102,14 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
       <div className="max-w-xl w-full flex flex-col max-md:justify-center mt-6 gap-5 md:flex-row">
         <button
           onClick={goBack}
-          className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm py-3 px-[4.5rem]"
+          className="w-full md:w-fit max-w-xs border border-neutral-500 rounded-lg text-sm py-3 px-[4.5rem]"
         >
           Back
         </button>
         <button
           onClick={() => navigate("/resume/builder/education")}
           type="submit"
-          className="w-full md:w-fit max-w-xs border border-[#b2b3b48a] rounded-lg text-sm text-[#f5f5f5] py-3 px-[4.5rem] bg-primary-500"
+          className="w-full md:w-fit max-w-xs border border-neutral-500 rounded-lg text-sm text-neutral-1000 py-3 px-[4.5rem] bg-primary-500"
         >
           Continue
         </button>

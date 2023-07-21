@@ -1,6 +1,7 @@
 import Select, { components } from "react-select";
 import * as BsIcon from "react-icons/bs";
-import { jobs } from "../assets/data/job";
+import professions from "professions";
+import { useEffect, useState } from "react";
 
 const DropdownIndicator = (props) => {
   return (
@@ -14,6 +15,14 @@ const DropdownIndicator = (props) => {
 };
 
 function JobTitleInput({ title, handleInputChange, section, subsection }) {
+  const [professionOption, setProfessionOption] = useState([]);
+
+  useEffect(() => {
+    professions.map((obj) =>
+      setProfessionOption((prev) => [...prev, { label: obj, value: obj }])
+    );
+  }, []);
+
   const handleChange = (opt) => {
     handleInputChange({
       section: section,
@@ -58,7 +67,7 @@ function JobTitleInput({ title, handleInputChange, section, subsection }) {
           display: state.isFocused ? "flex" : "none",
         }),
       }}
-      options={jobs}
+      options={professionOption}
       onChange={(opt) => handleChange(opt)}
       theme={(theme) => ({
         ...theme,

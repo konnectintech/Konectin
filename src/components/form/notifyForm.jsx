@@ -27,7 +27,7 @@ function NotifyForm({ handleSubmit, formFor }) {
     handleSubmit(formResult);
     setTimeout(() => {
       setMail({
-        email: "",
+        [formFor]: "",
         formValids: { emailValid: false },
         formErrors: { emailError: "" },
       });
@@ -42,7 +42,7 @@ function NotifyForm({ handleSubmit, formFor }) {
       >
         <input
           className="outline-0 border-0 text-sm md:text-md flex-1 text-primary-900"
-          id="email"
+          id={formFor}
           name="email"
           type="email"
           placeholder="Enter your email address"

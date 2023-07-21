@@ -1,13 +1,9 @@
-import React from 'react'
-
-const Contact = () => {
+function Contact() {
   return (
     <div>
-      <div className='h-screen'>
-        Contact
-      </div>
+      <div className="h-screen">Contact</div>
     </div>
-  )
+  );
 }
 
-export default Contact
+export default Contact;

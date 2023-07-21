@@ -43,9 +43,17 @@ input:-webkit-autofill {
   -webkit-background-clip: text;
 }
 
+input {
+  font-family: "Avenir", sans-serif;
+}
+
 input[type="tel"]:-webkit-autofill {
   outline: 1px solid #fd853c;
   -webkit-background-clip: unset;
+}
+
+.input-container {
+  @apply p-4 mb-6 text-[11px] w-full text-primary-200 border border-neutral-500 outline-0 rounded-[4px] bg-neutral-1000;
 }
 
 .underdash {
@@ -74,8 +82,7 @@ input[type="tel"]:-webkit-autofill {
 h1,
 h2,
 h3,
-h4,
-input {
+h4 {
   font-family: "Merriweather", sans-serif;
 }
 

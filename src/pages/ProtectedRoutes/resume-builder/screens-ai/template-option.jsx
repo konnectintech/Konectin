@@ -53,12 +53,19 @@ const TemplateOption = ({ sectionName }) => {
   ];
 
   return (
-    <div className="flex flex-col items-start justify-start gap-4">
+    <div className="flex flex-col items-start w-full max-w-[1000px] justify-start gap-4">
       <h3 className="text-xl lg:text-2xl font-bold capitalize">
         {sectionName}
       </h3>
-      <div className="lg:w-[800px] md:w-[550px] w-[270px] lg:h-[400px]">
-        <Swiper spaceBetween={20} slidesPerView={2.7}>
+      <div className="max-w-[100%] mx-auto">
+        <Swiper
+          spaceBetween={20}
+          slidesPerView={1.7}
+          breakpoints={{
+            640: { slidesPerView: 2.5 },
+            1024: { slidesPerView: 2.7 },
+          }}
+        >
           {template_images
             .filter((record) => record.category === sectionName)
             .map((item, index) => {

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
-import ImageConfig from "../ImageConfig";
-// import Progress from "./Progress";
+import ImageConfig from "../imageConfig";
+import Progress from "./progress";
 import { FiUploadCloud } from "react-icons/fi";
 
 const DropFileInput = ({ props }) => {
@@ -14,13 +14,13 @@ const DropFileInput = ({ props }) => {
 
   const onDrop = () => wrapperRef.current.classList.remove("dragover");
 
-  // const [uploadPercentage, setUploadPercentage] = useState(0);
+  const [uploadPercentage, setUploadPercentage] = useState(0);
 
-  // const filePercentages = (percentage) => {
-  //   // setUploadPercentage(percentage);
+  const filePercentages = (percentage) => {
+    // setUploadPercentage(percentage);
 
-  //   setUploadPercentage(parseInt(Math.round(percentage)));
-  // };
+    setUploadPercentage(parseInt(Math.round(percentage)));
+  };
 
   const onFileDrop = (e) => {
     // setFile(e.target.files[0]);
@@ -46,12 +46,9 @@ const DropFileInput = ({ props }) => {
         onDragEnter={onDragEnter}
         onDragLeave={onDragLeave}
         onDrop={onDrop}
-        className="drop-file-input bg-[#F1F1F2] flex flex-col items-center justify-center m-auto border border-dashed border-[#b2b3b48a] rounded-lg w-4/6 h-[300px] md:h-[370px]"
+        className="drop-file-input bg-[#F1F1F2] flex flex-col items-center justify-center m-auto border border-dashed border-neutral-500 rounded-lg w-4/6 h-[300px] md:h-[370px]"
       >
-        <div
-          // onClick={toggleEducation}
-          className="flex  flex-col items-center border-none outline-none ml-3 text-center text-sm text-[#B3AECC]"
-        >
+        <div className="flex flex-col items-center border-none outline-none ml-3 text-center text-sm text-[#B3AECC]">
           <FiUploadCloud className="text-[#B3AECC] text-4xl mb-4" size="6rem" />
           <span className=" ">Drag & Drop your files here</span>
           <span className="py-4"> OR </span>
@@ -89,7 +86,7 @@ const DropFileInput = ({ props }) => {
                 {/* displaying file name, progress bar and file size in Bytes */}
                 <p className="text-sm">{item.name}</p>
                 {/* <Progress percentage={uploadPercentage} /> */}
-                {/* <Progress percentage={filePercentages()} /> */}
+                <Progress percentage={filePercentages(uploadPercentage)} />
                 <p className="text-sm">{item.size}B</p>
               </div>
             </div>

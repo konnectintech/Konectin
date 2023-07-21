@@ -1,5 +1,5 @@
 import React from "react";
-import DropFileInput from "./FileUpload.jsx/DropFileInput";
+import DropFileInput from "./file-upload/dropFileInput";
 import { useNavigate } from "react-router-dom";
 
 const UploadFiles = () => {
@@ -12,6 +12,7 @@ const UploadFiles = () => {
     console.log("submit");
     navigate("scan-resume");
   };
+
   return (
     <>
       <div className="bg-white py-8 flex flex-col justify-center items-start">

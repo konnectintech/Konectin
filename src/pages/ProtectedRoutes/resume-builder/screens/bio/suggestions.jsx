@@ -1,6 +1,8 @@
+import professions from "professions";
 import * as BsIcon from "react-icons/bs";
-import { jobs } from "../../../../../assets/data/job";
-import Select, { components } from "react-select";
+import { useState, useEffect } from "react";
+import Creatable from "react-select/creatable";
+import { components } from "react-select";
 
 const DropdownIndicator = (props) => {
   return (
@@ -18,10 +20,18 @@ const responsibilities_suggestions = [
 ];
 
 const Suggestions = ({ jobTitle, handleChange, handleAddSuggestion }) => {
+  const [professionOption, setProfessionOption] = useState([]);
+
+  useEffect(() => {
+    professions.map((obj) =>
+      setProfessionOption((prev) => [...prev, { label: obj, value: obj }])
+    );
+  }, []);
+
   return (
     <div>
       <div className="flex position relative items-center">
-        <Select
+        <Creatable
           className="text-[11px] w-full text-[#8C8C8F] border border-[#b2b3b48a] outline-0 rounded-t-[4px] bg-[#f9f9f9]"
           placeholder="Type your job responsibility"
           components={{ DropdownIndicator }}
@@ -50,7 +60,7 @@ const Suggestions = ({ jobTitle, handleChange, handleAddSuggestion }) => {
               display: state.isFocused ? "flex" : "none",
             }),
           }}
-          options={jobs}
+          options={professionOption}
           onChange={(opt) => handleChange(opt.value)}
           theme={(theme) => ({
             ...theme,
@@ -66,7 +76,7 @@ const Suggestions = ({ jobTitle, handleChange, handleAddSuggestion }) => {
         <p className="text-[#3f4044] font-extralight tracking-[-0.01em] text-sm">
           Showing 3 results for <span className="font-bold">{jobTitle}</span>
         </p>
-        <div className="border border-[#b2b3b48a] overflow-y-auto rounded h-[17rem]">
+        <div className="bg-neutral-1000 border border-[#b2b3b48a] overflow-y-auto rounded h-full">
           {responsibilities_suggestions.map((item, index) => {
             return (
               <div
