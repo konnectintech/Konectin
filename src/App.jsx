@@ -79,7 +79,7 @@ function App() {
               </RequireAuth>
             }
           >
-            <Route path="/dashboard/*" element={<DashBoard />} />
+            {/* <Route path="/dashboard/*" element={<DashBoard />} /> */}
           </Route>
         </Route>
       </Routes>
