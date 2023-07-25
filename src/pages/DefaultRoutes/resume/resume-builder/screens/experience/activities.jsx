@@ -38,7 +38,7 @@ const JobActivities = ({ addCompany, goBack, deleteExperience, template }) => {
                 </span>
               </p>
             </div>
-            <div className="border border-neutral-500 rounded-lg bg-white p-4">
+            <div className="border w-full border-neutral-500 rounded-lg bg-white p-4">
               <div className="flex justify-between gap-3">
                 <h3 className="font-extrabold text-neutral-300 text-lg capitalize">
                   {data.jobTitle}

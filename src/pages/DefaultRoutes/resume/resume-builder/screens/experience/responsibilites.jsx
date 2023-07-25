@@ -92,7 +92,7 @@ const Responsibilities = ({ data, jobArray, handleInputChange }) => {
               Let’s help your refine your job responsibilities with our top AI
               powered tool
             </p>
-            <div className="overflow-hidden border border-neutral-500 rounded-lg pb-4">
+            <div className="overflow-hidden pb-4">
               <Suggestions
                 jobTitle={responsibility}
                 handleChange={(value) => setResponsibility(value)}

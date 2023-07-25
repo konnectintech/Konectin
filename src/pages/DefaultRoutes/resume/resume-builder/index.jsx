@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as BsIcon from "react-icons/bs";
-import { createResume, uploadResume, BuilderBg } from "../../../../assets";
+import { createResume, uploadResume } from "../../../../assets";
 
 const BuilderOption = ({
   title,
@@ -50,14 +50,7 @@ const Options = () => {
   };
 
   return (
-    <main
-      className=""
-      style={{
-        backgroundImage: `linear-gradient(rgba(249, 249, 249, 0.81), rgba(249, 249, 249, 0.81)), url("${BuilderBg}")`,
-        backgroundSize: "cover",
-      }}
-    >
-      <div />
+    <>
       <section className="w-11/12 h-full mx-auto max-w-screen-xl flex flex-col justify-center items-center gap-8">
         <h1 className="text-2xl md:text-3xl lg:text-4xl text-center leading-tight font-semibold md:leading-snug">
           Ready to take your career to the next level?
@@ -90,7 +83,7 @@ const Options = () => {
           Next
         </Link>
       </section>
-    </main>
+    </>
   );
 };
 

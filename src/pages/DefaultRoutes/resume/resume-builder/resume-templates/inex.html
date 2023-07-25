@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: "Merriweather", sans-serif;
+    }
+
+    .doc-body {
+      position: relative;
+    }
+
+    .parent-container {
+      position: relative;
+      width: 100%;
+      max-width: 560px;
+      min-width: 460px;
+      height: 570px;
+      display: flex;
+      display: -webkit-box;
+      align-items: items-stretch;
+      background: white;
+    }
+
+    .top-head {
+      max-width: 560px;
+      height: 10px;
+    }
+
+    .main-content {
+      height: max-content;
+      gap: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      width: 66.666667%;
+      padding: 1rem 1.5rem;
+    }
+
+    .side-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      background: #332A66;
+      width: 33.333333%;
+      height: 200%;
+      padding: 1rem 1.5rem;
+    }
+
+
+    .top-head .side-content {
+      height: 10px;
+      padding: 0;
+    }
+
+    .sub-section {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .capitalize {
+      text-transform: capitalize;
+    }
+
+    .font-black {
+      font-weight: 900;
+    }
+
+    .headings {
+      font-size: 14px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .smallest-text {
+      font-size: 10px;
+    }
+
+    .text-white {
+      --tw-text-opacity: 1;
+      color: rgb(255 255 255 / var(--tw-text-opacity));
+    }
+
+    .text-neutral-200 {
+      --tw-text-opacity: 1;
+      color: rgb(63 64 68 / var(--tw-text-opacity));
+    }
+
+    .text-neutral-300 {
+      --tw-text-opacity: 1;
+      color: rgb(102 102 106 / var(--tw-text-opacity));
+    }
+
+    .text-neutral-500 {
+      --tw-text-opacity: 1;
+      color: rgb(178 179 180 / var(--tw-text-opacity));
+    }
+
+    .leading-relaxed {
+      line-height: 1.625;
+    }
+
+    .leading-4 {
+      line-height: 1rem;
+    }
+
+    .leading-8 {
+      line-height: 2rem
+        /* 32px */
+      ;
+    }
+
+    .list-none div ul,
+    .list-none {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .small-text {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      font-weight: bold;
+    }
+
+    .job-desc {
+      padding-left: 1.5rem
+      ;
+    }
+
+    .skillbar {
+      height: 3px;
+      width: 72.666667%;
+      background: rgb(229 231 235 / 1);
+      border-radius: 6px;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="parent-container overflow-y-scroll no-scrollbar pointer-events-none">
+    <div class="main-content">
+      <section class="sub-section">
+        <h2 class="capitalize font-black text-sm">Your Name
+        </h2>
+        <p class="smallest-text capitalize text-neutral-300">
+          Your Profession
+        </p>
+      </section>
+
+      <section>
+        <h3 class="headings">Profile</h3>
+        <div class="smallest-text leading-relaxed list-none text-neutral-300">
+          <div>
+            <ul>
+              <li>
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ducimus cupiditate soluta eum alias quo
+                consectetur, laudantium, accusantium, eveniet dolore accusamus labore est. Non dolorem iusto culpa
+                officiis ipsam! Quia!"
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3 class="headings">Employment History</h3>
+        <div class="sub-section">
+          <div key={index} class="sub-section">
+            <p class="small-text text-neutral-200">Carpenter, Konectin | Lagos, Nigeria
+            </p>
+            <span class="smallest-text text-neutral-500">November 2022 - Present
+            </span>
+            <div class="job-desc smallest-text">
+              <ul>
+                <li>
+                  Compiled Lists to describe product/service
+                  offerings.
+                </li>
+                <li>
+                  Directed hiring, training and performance
+                  evaluations of marketing staff.
+                </li>
+                <li>
+                  Developed pricing strategies to balance firm
+                  objectives and customer satisfaction.
+                </li>
+              </ul>
+            </div>
+      </section>
+      <section>
+        <h3 class="headings">Education</h3>
+        <div class="sub-section">
+          <div>
+            <p class="small-text text-neutral-200">Connecticut Carpenters Apprenticeship, Charter Oak State
+              College, New Britain
+            </p>
+            <p class="smallest-text text-neutral-500">November 2022 - Present
+            </p>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h3 class="headings">Reference</h3>
+      </section>
+    </div>
+
+    <div class="side-content">
+      <section class="details">
+        <h6 class="text-white text-sm leading-8">
+          Details
+        </h6>
+        <p class="text-neutral-500 smallest-text leading-4">Your address
+        </p>
+        <p class="text-neutral-500 smallest-text leading-4">Your phone number
+        </p>
+        <p class="text-neutral-500 smallest-text leading-4">Your mail
+        </p>
+      </section>
+
+      <section class="skills">
+        <h6 class="text-white text-sm leading-8">Skills</h6>
+        <ul class="text-neutral-500 smallest-text capitalize list-none sub-section">
+          <li>Skill 1
+            <div class="skillbar"></div>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</body>
+
+</html>

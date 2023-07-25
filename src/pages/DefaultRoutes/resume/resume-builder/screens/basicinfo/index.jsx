@@ -36,7 +36,7 @@ const BasicInformation = ({ data, onInputChange, template }) => {
   };
 
   return (
-    <div className="max-w-6xl flex flex-col md:flex-row justify-between self-center mx-auto gap-10">
+    <div className="max-w-6xl flex flex-col md:flex-row items-start justify-between self-center mx-auto gap-10">
       <div className="flex flex-col justify-center">
         <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
           Basic Information
@@ -112,13 +112,13 @@ const BasicInformation = ({ data, onInputChange, template }) => {
             onChange={(e) => handleInputChange(e, "email")}
             placeholder="Email*"
           />
-
-          <NavigationButton
-            back="/resume/ai/template-selector"
-            cont={handleSubmit}
-          />
         </div>
+        <NavigationButton
+          back="/resume/ai/template-selector"
+          cont={handleSubmit}
+        />
       </div>
+
       <div className="max-md:hidden">{template()}</div>
     </div>
   );
