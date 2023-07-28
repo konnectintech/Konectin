@@ -60,7 +60,7 @@ const JobActivities = ({ addCompany, goBack, deleteExperience, template }) => {
                     onClick={() => {
                       templateData.jobExperience.length <= 1
                         ? alert(
-                            "You can't delete the last experience edit it instead"
+                            "You can't delete the last experience, edit it instead"
                           )
                         : deleteExperience(index);
                     }}

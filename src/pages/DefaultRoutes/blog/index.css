@@ -1,9 +1,3 @@
-.blog-grid-system {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  @apply lg:grid-cols-3 !important;
-}
-
 .blog-card {
   background-color: #fff;
 }
@@ -68,10 +62,35 @@ article h3 {
   @apply text-base;
 }
 
-@media only screen and (min-width: 360px) {
-  .blog-grid-system {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  }
+article img {
+  @apply block w-full;
+}
+
+article br {
+  @apply hidden;
+}
+
+article > ul,
+article > ol {
+  @apply m-0;
+  padding-inline-start: 1rem !important;
+}
+
+article > ol {
+  @apply list-decimal;
+}
+
+article > ul {
+  @apply list-disc;
+}
+
+article > ul > li,
+article > ol > li {
+  margin: 0 !important;
+}
+
+article > ol > li > * {
+  margin: 0 !important;
 }
 
 @media only screen and (min-width: 560px) {

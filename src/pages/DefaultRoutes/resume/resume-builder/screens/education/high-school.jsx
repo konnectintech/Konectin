@@ -8,6 +8,7 @@ import NavigationButton from "../navigationButton";
 function HighSchool() {
   const { templateData, setTemplateData } = useTemplateContext();
   const currentEditedEducation = templateData.currentEditedEducation;
+
   const [education, setEducation] = useState(
     templateData.education[currentEditedEducation - 1]
   );
@@ -30,6 +31,13 @@ function HighSchool() {
     setEducation((prev) => ({
       ...prev,
       [name]: value,
+    }));
+  };
+
+  const handleArrayChange = (sub, index, value) => {
+    setEducation((prev) => ({
+      ...prev,
+      [sub]: prev[sub].map((obj, id) => (id === index ? value : obj)),
     }));
   };
 
@@ -115,20 +123,11 @@ function HighSchool() {
             />
           </div>
 
-          <input
-            className="input-container"
-            type="text"
-            placeholder="Graduated?"
-            name="graduated"
-            onChange={(e) => handleChange(e.target.name, e.target.value)}
-            onInput={(e) => handleChange(e.target.name, e.target.value)}
-          />
-
           <div className="flex gap-4">
             <input
               className="input-container"
               type="text"
-              placeholder="Month"
+              placeholder="Graduation Month"
               name="month"
               value={education.month}
               onChange={(e) => handleChange(e.target.name, e.target.value)}
@@ -141,7 +140,7 @@ function HighSchool() {
               value={education.year}
               onChange={(e) => handleChange(e.target.name, e.target.value)}
               onInput={(e) => handleChange(e.target.name, e.target.value)}
-              placeholder="Year"
+              placeholder="Graduation Year"
             />
           </div>
           <div>
@@ -153,11 +152,23 @@ function HighSchool() {
                 name="relevantCourse"
                 placeholder="Relevant Course"
                 value={course}
-                onChange={(e) => handleChange(e.target.name, e.target.value)}
-                onInput={(e) => handleChange(e.target.name, e.target.value)}
+                onChange={(e) =>
+                  handleArrayChange("relevantCourses", index, e.target.value)
+                }
+                onInput={(e) =>
+                  handleArrayChange("relevantCourses", index, e.target.value)
+                }
               />
             ))}
-            <button className="flex items-center gap-3 border-none outline-none mb-6">
+            <button
+              onClick={() =>
+                setEducation((prev) => ({
+                  ...prev,
+                  relevantCourses: [...prev.relevantCourses, ""],
+                }))
+              }
+              className="flex items-center gap-3 border-none outline-none mb-6"
+            >
               <div className="bg-primary-400 text-neutral-1000 w-6 h-6 flex items-center justify-center rounded-full">
                 <FaPlus size="0.7rem" />
               </div>
@@ -174,9 +185,23 @@ function HighSchool() {
                 type="text"
                 placeholder="Award/Honour"
                 value={award}
+                onChange={(e) =>
+                  handleArrayChange("awards", index, e.target.value)
+                }
+                onInput={(e) =>
+                  handleArrayChange("awards", index, e.target.value)
+                }
               />
             ))}
-            <button className="flex items-center gap-3 border-none outline-none mb-6">
+            <button
+              onClick={() =>
+                setEducation((prev) => ({
+                  ...prev,
+                  awards: [...prev.awards, ""],
+                }))
+              }
+              className="flex items-center gap-3 border-none outline-none mb-6"
+            >
               <div className="bg-primary-400 text-neutral-1000 w-6 h-6 flex items-center justify-center rounded-full">
                 <FaPlus size="0.7rem" />
               </div>

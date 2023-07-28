@@ -103,8 +103,8 @@ const Bio = ({ data, template, onInputChange }) => {
       </div>
 
       <Link
-        onClick={() => navigate("/resume/builder/preview")}
-        className="text-[#FC670B] text-sm font-extralight tracking-[0.02rem] underline mx-auto mt-8"
+        to="/resume/builder/preview"
+        className="text-secondary-600 text-sm font-extralight tracking-[0.02rem] underline mx-auto mt-8"
       >
         Skip this step
       </Link>

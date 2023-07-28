@@ -15,7 +15,6 @@ function EducationOption({ title, link }) {
               city: "",
               country: "",
               degree: "",
-              graduated: false,
               month: "",
               schoolName: "",
               state: "",
@@ -25,7 +24,6 @@ function EducationOption({ title, link }) {
               awards: [""],
               city: "",
               country: "",
-              graduated: false,
               month: "",
               schoolName: "",
               state: "",
@@ -41,7 +39,7 @@ function EducationOption({ title, link }) {
   return (
     <div
       onClick={handleEducation}
-      className="w-full h-[300px] mt-4 mx-auto rounded bg-neutral-200 text-neutral-600 flex flex-col justify-center items-center"
+      className="w-full h-[300px] mt-4 mx-auto rounded bg-neutral-200 text-neutral-600 flex flex-col justify-center items-center cursor-pointer"
     >
       <h3 className="font-bold text-2xl mb-2 text-neutral-1000">{title}</h3>
     </div>

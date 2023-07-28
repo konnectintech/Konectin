@@ -37,14 +37,22 @@ function BlogCard({
       <div
         className={`${
           blurred ? "blurry-text" : "mb-auto"
-        } bg-white px-3 py-4 flex max-h-[115px] h-full flex-col justify-between`}
+        } bg-white px-3 py-4 flex flex-col gap-3 justify-between`}
       >
-        <h2 title={seo_title}>{title}</h2>
+        <h2 className="truncate text-base" title={seo_title}>
+          {title}
+        </h2>
         <h3 className="my-auto">{author?.first_name}</h3>
 
-        <div className="flex items-center justify-between w-full text-xs">
+        <div className="flex items-center justify-between w-full text-xs text-neutral-400 font-medium">
           <span>{tags[0].slug.split("-").join(" ")}</span>
-          <span>{new Date(updated).toDateString()}</span>
+          <span>
+            {new Date(updated).toLocaleString("en-GB", {
+              day: "numeric",
+              year: "numeric",
+              month: "short",
+            })}
+          </span>
         </div>
       </div>
     </Link>

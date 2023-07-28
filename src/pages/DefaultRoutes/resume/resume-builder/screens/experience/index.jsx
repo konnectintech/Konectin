@@ -5,41 +5,62 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import JobActivities from "./activities";
 import Responsibilities from "./responsibilites";
 import PreviousExperience from "./previous-experience";
-import { useLocalStorage } from "../../../../../../middleware/storage";
 import { useTemplateContext } from "../../../../../../middleware/resume";
 
 const EmploymentExperience = ({ data, template }) => {
   const navigate = useNavigate();
   const { setTemplateData } = useTemplateContext();
 
-  // Get a replica of the template data and store it as a separate Local State
-  const [jobExperienceArray, setJobExperienceArray] = useLocalStorage(
-    "jobExpr",
-    data.jobExperience
-  );
+  useEffect(() => {
+    if (data.currentEditedJob === 0) {
+      setTemplateData((prev) => ({
+        ...prev,
+        jobExperience: [
+          {
+            city: "",
+            company: "",
+            country: "",
+            current: false,
+            endMonth: "",
+            endYear: "",
+            jobTitle: "",
+            startMonth: "",
+            startYear: "",
+            state: "",
+            workDesc: "",
+          },
+        ],
+        currentEditedJob: 1,
+      }));
+    }
+  }, []);
 
   // Set the job Experience being edited to the exact one using the currentEditedJob state
   const [jobExperience, setJobExperience] = useState(
-    jobExperienceArray[data.currentEditedJob - 1]
+    data.jobExperience[data.currentEditedJob - 1]
   );
 
-  // A re-effect to update the job Experience according to the exact jb being edited whenever the currentEditedjob is updated
+  // A re-effect to update the job Experience according to the exact job being edited whenever the currentEditedjob is updated
   useEffect(() => {
-    setJobExperience(jobExperienceArray[data.currentEditedJob - 1]);
+    if (data.jobExperience) {
+      setJobExperience(data.jobExperience[data.currentEditedJob - 1]);
+    }
   }, [data.currentEditedJob]);
 
+  // Updates the storage whenever job experience data changes
   useEffect(() => {
-    setJobExperienceArray((prev) =>
-      Object.values(prev).map((obj, id) => {
+    setTemplateData((prev) => ({
+      ...prev,
+      jobExperience: Object.values(prev.jobExperience).map((obj, id) => {
         if (id === data.currentEditedJob - 1) {
           return jobExperience;
         }
         return obj;
-      })
-    );
+      }),
+    }));
   }, [jobExperience]);
 
-  // Handles all changes in the input field of the form and updates the jobExperienceArray
+  // Updates the job experience data whenever inputs changes
   const handleStateChange = (name, value) => {
     setJobExperience((prev) => ({
       ...prev,
@@ -49,25 +70,24 @@ const EmploymentExperience = ({ data, template }) => {
 
   // add another empty valued object into the jobExperience and navigates to the first job field
   const addWorkExperience = () => {
-    setJobExperienceArray([
-      ...jobExperienceArray,
-      {
-        city: "",
-        company: "",
-        country: "",
-        current: false,
-        endMonth: "",
-        endYear: "",
-        jobTitle: "",
-        startMonth: "",
-        startYear: "",
-        state: "",
-        workDesc: "",
-      },
-    ]);
-
     setTemplateData((prev) => ({
       ...prev,
+      jobExperience: [
+        ...data.jobExperience,
+        {
+          city: "",
+          company: "",
+          country: "",
+          current: false,
+          endMonth: "",
+          endYear: "",
+          jobTitle: "",
+          startMonth: "",
+          startYear: "",
+          state: "",
+          workDesc: "",
+        },
+      ],
       currentEditedJob: prev.currentEditedJob + 1,
     }));
 
@@ -77,12 +97,7 @@ const EmploymentExperience = ({ data, template }) => {
   // Controls the activities go back functions
   const goBack = () => {
     // if the array contains more than one object it goes to the basicInfo page otherwise goes to the job responsibility page
-    if (Object.keys(jobExperienceArray).length <= 1) {
-      setTemplateData((prev) => ({
-        ...prev,
-        currentEditedJob: prev.currentEditedJob,
-      }));
-
+    if (Object.keys(data.jobExperience).length <= 1) {
       navigate("/resume/builder/employment-experience/responsibilities");
       return;
     }
@@ -93,8 +108,16 @@ const EmploymentExperience = ({ data, template }) => {
   // Controls the previous experience page go back functions
   const handleBack = () => {
     // if the array contains more than one object it goes to the job activities page and set the array back to the normal otherwise goes to the basicInfo page
-    if (Object.keys(jobExperienceArray).length >= 2) {
-      setJobExperienceArray(data.jobExperience);
+    if (Object.keys(data.jobExperience).length >= 2) {
+      if (jobExperience.workDesc.length <= 28) {
+        data.jobExperience.splice(data.jobExperience.length - 1, 1);
+
+        setTemplateData((prev) => ({
+          ...prev,
+          jobExperience: data.jobExperience,
+        }));
+      }
+
       navigate("/resume/builder/employment-experience/job-activities");
       return;
     }
@@ -103,13 +126,12 @@ const EmploymentExperience = ({ data, template }) => {
   };
 
   const handleDelete = (index) => {
-    jobExperienceArray.splice(index, 1);
+    data.jobExperience.splice(index, 1);
+
     setTemplateData((prev) => ({
       ...prev,
-      jobExperience: jobExperienceArray,
+      jobExperience: data.jobExperience,
     }));
-
-    setJobExperienceArray(jobExperienceArray);
   };
 
   const employment_components = [
@@ -127,7 +149,6 @@ const EmploymentExperience = ({ data, template }) => {
           element={
             <route.element
               data={jobExperience}
-              jobArray={jobExperienceArray}
               handleInputChange={handleStateChange}
               addCompany={addWorkExperience}
               goBack={goBack}

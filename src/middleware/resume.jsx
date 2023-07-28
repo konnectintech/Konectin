@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect } from "react";
 // import axios from "axios";
 import { useLocalStorage } from "./storage";
 
@@ -33,6 +33,13 @@ export { useTemplateContext, TemplateProvider };
 
 export const useTemplateData = () => {
   const [templateData, setTemplateData] = useLocalStorage("templateData", {
+    completed: {
+      basic_info: false,
+      work_history: false,
+      education: false,
+      skills: false,
+      bio: false,
+    },
     basicInfo: {
       city: "",
       country: "",
@@ -45,25 +52,11 @@ export const useTemplateData = () => {
       state: "",
       zipCode: "",
     },
-    currentEditedJob: 1,
+    currentEditedJob: 0,
     currentEditedEducation: 0,
-    jobExperience: [
-      {
-        city: "",
-        company: "",
-        country: "",
-        current: false,
-        endMonth: "",
-        endYear: "",
-        jobTitle: "",
-        startMonth: "",
-        startYear: "",
-        state: "",
-        workDesc: "",
-      },
-    ],
+    jobExperience: [],
     education: [],
-    skills: [""],
+    skills: [],
     bio: "",
     selectedTemplate: "",
   });
@@ -82,7 +75,101 @@ export const useTemplateData = () => {
     }
   };
 
-  const onSectionComplete = (section, values) => {};
+  useEffect(() => {
+    if (
+      templateData.basicInfo.firstName === "" ||
+      templateData.basicInfo.lastName === "" ||
+      templateData.basicInfo.state === "" ||
+      templateData.basicInfo.email === "" ||
+      templateData.basicInfo.country === ""
+    ) {
+      setTemplateData((prev) => ({
+        ...prev,
+        completed: { ...prev.completed, basic_info: false },
+      }));
+    } else {
+      setTemplateData((prev) => ({
+        ...prev,
+        completed: { ...prev.completed, basic_info: true },
+      }));
+    }
+
+    if (templateData.currentEditedJob >= 1) {
+      const jobArray =
+        templateData.jobExperience[templateData.currentEditedJob - 1];
+
+      if (
+        jobArray.jobTitle === "" ||
+        jobArray.company === "" ||
+        jobArray.workDesc.length <= 30 ||
+        jobArray.startMonth === "" ||
+        jobArray.startYear === "" ||
+        (!jobArray.current &&
+          (jobArray.endMonth === "" || jobArray.endYear === ""))
+      ) {
+        setTemplateData((prev) => ({
+          ...prev,
+          completed: { ...prev.completed, work_history: false },
+        }));
+      } else {
+        setTemplateData((prev) => ({
+          ...prev,
+          completed: { ...prev.completed, work_history: true },
+        }));
+      }
+    }
+
+    if (templateData.currentEditedEducation >= 1) {
+      const eduArray =
+        templateData.education[templateData.currentEditedJob - 1];
+
+      if (eduArray.schoolName === "" || eduArray.country === "") {
+        setTemplateData((prev) => ({
+          ...prev,
+          completed: { ...prev.completed, education: false },
+        }));
+      } else {
+        setTemplateData((prev) => ({
+          ...prev,
+          completed: { ...prev.completed, education: true },
+        }));
+      }
+    }
+
+    if (templateData.skills.length <= 0) {
+      setTemplateData((prev) => ({
+        ...prev,
+        completed: { ...prev.completed, skills: false },
+      }));
+    } else {
+      setTemplateData((prev) => ({
+        ...prev,
+        completed: { ...prev.completed, skills: true },
+      }));
+    }
+
+    if (templateData.bio.length <= 30) {
+      setTemplateData((prev) => ({
+        ...prev,
+        completed: { ...prev.completed, bio: false },
+      }));
+    } else {
+      setTemplateData((prev) => ({
+        ...prev,
+        completed: { ...prev.completed, bio: true },
+      }));
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    templateData.basicInfo,
+    templateData.skills,
+    templateData.jobExperience,
+    templateData.education,
+    templateData.bio,
+  ]);
+
+  const onSectionComplete = () => {};
 
   const finalizeData = (section, values) => {};
 

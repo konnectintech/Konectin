@@ -1,6 +1,54 @@
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import BlogCard from "../../../components/blogCard";
 
-function BlogSection({ data }) {
+function BlogSection() {
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+
+  const read_token = import.meta.env.VITE_READ_TOKEN;
+
+  async function getAllBlogs() {
+    try {
+      const response = await axios.get(
+        `https://api.buttercms.com/v2/posts?auth_token=${read_token}`
+      );
+      const blogs = response.data.data;
+      const shuffled = blogs
+        .map((value) => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
+      setBlogPosts(shuffled.slice(0, 3));
+
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      // alert(err.message + ", Please reload the page");
+    }
+  }
+
+  useEffect(() => {
+    getAllBlogs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (isLoading) {
+      const preloader = new Array(3).fill({
+        seo_title: "Loading contents",
+        author: { first_name: "Konectin" },
+        tags: [{ slug: "1 min read" }],
+        title: "Loading contents",
+        updated: new Date().getDate(),
+        blurred: true,
+      });
+
+      setBlogPosts(preloader);
+    }
+  }, [isLoading]);
+
   return (
     <div className="flex flex-col gap-8 items-center">
       <div className="header--text text-center">
@@ -12,31 +60,9 @@ function BlogSection({ data }) {
           so much more.
         </p>
       </div>
-      <div className="grid md:grid-cols-3 gap-6">
-        {data?.map((blog, index) => (
-          <div
-            key={index}
-            className="bg-white rounded-xl overflow-hidden flex flex-col gap-3 pb-4"
-          >
-            <div className="bg-neutral-1000 overflow-hidden">
-              <img
-                className="w-full hover:scale-105 duration-300"
-                src={blog.image}
-                alt={blog.title}
-              />
-            </div>
-
-            <h2 className="px-4 text-xl font-medium mb-3">{blog.title}</h2>
-
-            <div className="px-4 text-neutral-300 justify-self-end mt-auto">
-              <div className="flex gap-2 items-center mt-auto">
-                <img src={blog.info.bloggerImage} alt={blog.info.bloggerName} />
-                <small>{blog.info.bloggerName}</small>
-                <div className="w-2 h-2 rounded-xl bg-red-500"></div>
-                <small>{blog.info.date}</small>
-              </div>
-            </div>
-          </div>
+      <div className="blog-grid-system gap-3 justify-center">
+        {blogPosts.map((blog, index) => (
+          <BlogCard key={index} article={blog} />
         ))}
       </div>
       <Link

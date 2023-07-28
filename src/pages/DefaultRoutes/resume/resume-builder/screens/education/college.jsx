@@ -128,17 +128,6 @@ function College() {
               />
             </div>
 
-            <div className="input-container flex justify-between items-center">
-              <label>Graduated?</label>
-              <input
-                type="checkbox"
-                value={education.graduated}
-                name="graduated"
-                onChange={(e) => handleChange(e.target.name, e.target.value)}
-                onInput={(e) => handleChange(e.target.name, e.target.value)}
-              />
-            </div>
-
             <div className="flex gap-4">
               <select
                 value={education.month}

@@ -124,7 +124,7 @@ const Skills = ({ data, template, updateResume }) => {
             <div className="bg-primary-400 text-neutral-1000 w-6 h-6 flex items-center justify-center rounded-full">
               <FaPlus size="0.6rem" />
             </div>
-            <span className="font-extrabold text-sm">Add another skill</span>
+            <span className="font-extrabold text-sm">Add a skill</span>
           </div>
         </div>
 
@@ -134,7 +134,7 @@ const Skills = ({ data, template, updateResume }) => {
         />
 
         <Link
-          to="/resume/builder/preview"
+          to="/resume/builder/bio"
           className="text-secondary-600 text-sm font-extralight tracking-[0.02rem] underline mx-auto mt-8"
         >
           Skip this step

@@ -1,14 +1,11 @@
 import { useRef, useState, useEffect } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { useNavigate } from "react-router-dom";
-import { useTemplateContext } from "../../../../../../middleware/resume";
 import Suggestions from "../../../../../../components/suggestions";
 import NavigationButton from "../navigationButton";
 
-const Responsibilities = ({ data, jobArray, handleInputChange }) => {
+const Responsibilities = ({ data, handleInputChange }) => {
   const [responsibility, setResponsibility] = useState(data?.jobTitle);
-
-  const { setTemplateData } = useTemplateContext();
 
   const [editorValue, setEditorValue] = useState(data?.workDesc);
 
@@ -36,10 +33,6 @@ const Responsibilities = ({ data, jobArray, handleInputChange }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setTemplateData((prev) => ({
-      ...prev,
-      jobExperience: jobArray,
-    }));
 
     navigate("/resume/builder/employment-experience/job-activities");
   };

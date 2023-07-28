@@ -4,9 +4,18 @@ import { Link, useLocation } from "react-router-dom";
 import { konectinIcon } from "../../assets";
 import "../header/header.css";
 import { useLocalStorage } from "../../middleware/storage";
+import { useTemplateContext } from "../../middleware/resume";
 
 function ResumeHeader() {
-  const [locationNo, setLocationNo] = useLocalStorage("crStage", 1);
+  const [locationNo, setLoc] = useLocalStorage("crStage", 1);
+  const { templateData } = useTemplateContext();
+  const [completed, setCompleted] = useState({
+    basic_info: false,
+    work_history: false,
+    education: false,
+    skills: false,
+    bio: false,
+  });
 
   const [isOpen, setToggle] = useState(false);
   const navLinks = [
@@ -17,10 +26,15 @@ function ResumeHeader() {
     { name: "About Us", link: "/about" },
   ];
 
+  const { pathname } = useLocation();
+
   const [links] = useState([
-    { path: "/resume/builder/", text: "basic info", no: 1 },
+    { path: "/resume/builder", text: "basic info", no: 1 },
     {
-      path: "/resume/builder/employment-experience",
+      path:
+        Object.keys(templateData.jobExperience).length <= 1
+          ? "/resume/builder/employment-experience"
+          : "/resume/builder/employment-experience/job-activities",
       text: "work history",
       no: 2,
     },
@@ -39,22 +53,17 @@ function ResumeHeader() {
       text: "bio",
       no: 5,
     },
-    { path: "/resume/builder/download", text: "finalize", no: 6 },
+    { path: "#", text: "finalize", no: 6 },
   ]);
 
-  const { pathname } = useLocation();
+  useEffect(() => {
+    Object.values(completed).map((value, i) => value && setLoc(i + 2));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [completed]);
 
   useEffect(() => {
-    for (let i = 0; i < links.length; i++) {
-      if (
-        (links[i].path === "/resume/builder/employment-experience" &&
-          pathname.includes("/resume/builder/employment-experience")) ||
-        links[i].path === pathname
-      ) {
-        setLocationNo(links[i].no);
-      }
-    }
-  }, [pathname, links, setLocationNo]);
+    setCompleted(templateData.completed);
+  }, [templateData]);
 
   const toggle = () => {
     setToggle(!isOpen);
@@ -82,17 +91,32 @@ function ResumeHeader() {
           <nav className="hidden transistion-all md:flex md:gap-3 lg:gap-6 flex-row text-sm">
             {links.map((link, index) => (
               <Link
-                to={link.path}
+                to={
+                  completed[link.text.split(" ").join("_")] ||
+                  locationNo >= link.no
+                    ? link.path
+                    : "#"
+                }
                 key={index}
                 className={`flex cursor-pointer items-center gap-2 text-sm ${
-                  locationNo >= link.no
+                  completed[link.text.split(" ").join("_")] ||
+                  (link.text === "finalize" &&
+                    (pathname === "/resume/builder/preview" ||
+                      pathname === "/resume/builder/download"))
+                    ? "text-success-400 font-semibold"
+                    : locationNo >= link.no
                     ? "text-secondary-500 font-semibold"
                     : "text-secondary-300 font-medium"
                 }`}
               >
                 <span
                   className={`max-md:hidden circle-orange ${
-                    locationNo >= link.no
+                    completed[link.text.split(" ").join("_")] ||
+                    (link.text === "finalize" &&
+                      (pathname === "/resume/builder/preview" ||
+                        pathname === "/resume/builder/download"))
+                      ? "text-success-400 border-success-400"
+                      : locationNo >= link.no
                       ? "text-secondary-500 border-secondary-500"
                       : "text-secondary-300 border-secondary-300"
                   }`}
@@ -103,7 +127,9 @@ function ResumeHeader() {
                 {link.no <= links.length - 1 && (
                   <span
                     className={`nav-dotted-line max-xl:hidden relative rounded-xl block w-6 h-0.5 ${
-                      locationNo >= link.no
+                      completed[link.text.split(" ").join("_")]
+                        ? "bg-success-400"
+                        : locationNo >= link.no
                         ? "bg-secondary-500"
                         : "bg-secondary-300 inactive"
                     }`}

@@ -10,7 +10,7 @@ export const TemplateOne = ({ data }) => {
 
   useEffect(() => {
     const pageContainer = page.current;
-    setPageMax(Math.ceil(pageContainer.clientHeight / 810));
+    setPageMax(Math.ceil(pageContainer.clientHeight / 640));
   }, []);
 
   const nextPage = () => {
@@ -23,7 +23,7 @@ export const TemplateOne = ({ data }) => {
 
   useEffect(() => {
     parentPage.current.scrollTo({
-      top: (pageNumber - 1) * 805,
+      top: (pageNumber - 1) * 635,
     });
   }, [pageNumber]);
 
@@ -63,7 +63,7 @@ export const TemplateOne = ({ data }) => {
                 .parent-container {
                   position: relative;
                   width: 100%;
-                  max-width: 560px;
+                  max-width: 515px;
                   min-width: 460px;
                   height: 810px;
                   display: flex;
@@ -102,7 +102,7 @@ export const TemplateOne = ({ data }) => {
                   background: #332A66;
                   width: 33.333333%;
                   height: ${pageMax * 100}%;
-                  padding: 1rem 1.5rem;
+                  padding: 1rem;
                 }
 
                 .side-content > section {
@@ -203,7 +203,7 @@ export const TemplateOne = ({ data }) => {
 
                 .skillbar {
                   height: 3px;
-                  width: 72.666667%;
+                  width: 100%;
                   background-color: rgb(229, 231, 235);
                   border-radius: 6px;
                   margin-top: 4px;
@@ -212,159 +212,199 @@ export const TemplateOne = ({ data }) => {
                 .mb-2 {
                   margin-bottom: 0.5rem;
                 }
+
+                .ps-4 {
+                  padding-inline-start: 1rem/* 16px */;
+                }
             `}
             </style>
           </div>
 
           <div
             ref={parentPage}
-            className="parent-container overflow-y-scroll no-scrollbar pointer-events-none"
+            className="parent-container !h-[640px] !w-full overflow-y-scroll no-scrollbar pointer-events-none"
           >
             <div ref={page} className="main-content">
               <section className="sub-section">
                 <h2 className="capitalize font-black headings">
-                  {data?.basicInfo.firstName && data?.basicInfo.lastName
+                  {data.basicInfo.firstName && data.basicInfo.lastName
                     ? `${data.basicInfo.firstName} ${data.basicInfo.lastName}`
-                    : data?.basicInfo.firstName
-                    ? `${data.basicInfo.firstName}`
-                    : data?.basicInfo.lastName
-                    ? `${data.basicInfo.lastName}`
+                    : data.basicInfo.firstName
+                    ? data.basicInfo.firstName
+                    : data.basicInfo.lastName
+                    ? data.basicInfo.lastName
                     : "Your Name"}
                 </h2>
                 <p className="smallest-text capitalize text-neutral-300">
-                  {data?.basicInfo.profession
+                  {data.basicInfo.profession
                     ? data.basicInfo.profession
                     : "Your Profession"}
                 </p>
               </section>
 
-              <section>
-                <h3 className="headings">Profile</h3>
-                <div className="smallest-text leading-relaxed list-none text-neutral-300">
-                  {data?.bio ? (
+              {data.bio && (
+                <section>
+                  <h3 className="headings">Profile</h3>
+                  <div className="smallest-text leading-relaxed list-none text-neutral-300">
                     <div dangerouslySetInnerHTML={{ __html: data.bio }} />
-                  ) : (
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ducimus cupiditate soluta eum alias quo consectetur, laudantium, accusantium, eveniet dolore accusamus labore est. Non dolorem iusto culpa officiis ipsam! Quia!"
-                  )}
-                </div>
-              </section>
+                  </div>
+                </section>
+              )}
 
-              <section>
-                <h3 className="headings">Employment History</h3>
-                <div className="sub-section">
-                  {data?.jobExperience.map((experience, index) => (
-                    <div key={index} className="sub-section">
-                      <p className="small-text font-semibold text-neutral-200">
-                        {experience.jobTitle === "" &&
-                        experience.company === "" &&
-                        (experience.state === "") & (experience.country === "")
-                          ? "Carpenter, Konectin | Lagos, Nigeria"
-                          : `${experience.jobTitle}, ${experience.company} | ${experience.state}
-                , ${experience.country}`}
-                      </p>
-                      <span className="smallest-text text-neutral-500">
-                        {experience.startMonth === "" &&
-                        experience.startYear === ""
-                          ? "November 2022 - Present"
-                          : `${experience.startMonth} ${experience.startYear} - `}
-                        {experience.current
-                          ? "Present"
-                          : `${experience.endMonth} ${experience.endYear}`}
-                      </span>
-                      <div className="job-desc smallest-text">
-                        {experience.workDesc === "" ? (
-                          <ul>
-                            <li>
-                              Compiled Lists to describe product/service
-                              offerings.
-                            </li>
-                            <li>
-                              Directed hiring, training and performance
-                              evaluations of marketing staff.
-                            </li>
-                            <li>
-                              Developed pricing strategies to balance firm
-                              objectives and customer satisfaction.
-                            </li>
-                          </ul>
-                        ) : (
-                          <div
-                            dangerouslySetInnerHTML={{
-                              __html: experience.workDesc,
-                            }}
-                          />
-                        )}
+              {!data.currentEditedJob <= 0 && (
+                <section>
+                  <h3 className="headings">Employment History</h3>
+                  <div className="sub-section">
+                    {data.jobExperience.map((experience, index) => (
+                      <div key={index} className="sub-section">
+                        <p className="small-text font-semibold text-neutral-200">
+                          {experience.jobTitle && experience.jobTitle}
+
+                          {experience.jobTitle && experience.company && ", "}
+
+                          {experience.company && experience.company}
+
+                          {((experience.company && experience.state) ||
+                            (experience.company && experience.country) ||
+                            (experience.jobTitle && experience.country)) &&
+                            " | "}
+
+                          {experience.city && experience.city}
+
+                          {experience.city && experience.state && " "}
+
+                          {experience.state && experience.state}
+
+                          {experience.state && experience.country && ", "}
+
+                          {experience.country && experience.country}
+                        </p>
+                        <span className="smallest-text text-neutral-500">
+                          {experience.startMonth !== "" &&
+                            experience.startMonth}
+
+                          {experience.startMonth !== "" &&
+                            experience.startYear !== "" &&
+                            ` ${experience.startYear}`}
+
+                          {experience.current
+                            ? " - Present"
+                            : ` - ${experience.endMonth} ${experience.endYear}`}
+                        </span>
+                        <div className="job-desc smallest-text">
+                          {experience.workDesc !== "" && (
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html: experience.workDesc,
+                              }}
+                            />
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
-              <section>
-                <h3 className="headings">Education</h3>
-                <div className="sub-section">
-                  {data?.education.map((edu, index) => (
-                    <div key={index}>
-                      <p className="small-text text-neutral-200">
-                        {edu.degree === "" &&
-                        edu.schoolName === "" &&
-                        edu.state === "" &&
-                        edu.country === ""
-                          ? "Connecticut Carpenters Apprenticeship, Charter Oak State College, New Britain"
-                          : `${edu.degree ? `${edu.degree} , ` : ""}${
-                              edu.schoolName
-                            } | ${edu.state}, ${edu.country}`}
-                      </p>
-                      <p className="smallest-text text-neutral-500">
-                        {edu.startMonth === "" && edu.startYear === ""
-                          ? "November 2022 - "
-                          : `${edu.startMonth} ${edu.startYear} - `}
-                        {edu.graduated
-                          ? `${edu.endMonth} ${edu.endYear}`
-                          : "Present"}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </section>
-              <section>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {data.education.length >= 1 && (
+                <section>
+                  <h3 className="headings">Education</h3>
+                  <div className="sub-section">
+                    {data.education.map((edu, index) => (
+                      <div key={index}>
+                        <p className="small-text text-neutral-200">
+                          {edu.degree && edu.degree}
+                          {edu.degree && edu.schoolName && ", "}
+
+                          {edu.schoolName && edu.schoolName}
+                          {((edu.schoolName && edu.state) ||
+                            (edu.schoolName && edu.country)) &&
+                            " | "}
+
+                          {edu.state && edu.state}
+                          {edu.state && edu.country && ", "}
+
+                          {edu.country && edu.country}
+                        </p>
+
+                        <ul className="text-neutral-200 smallest-text capitalize list-disc ps-4 sub-section">
+                          {edu.relevantCourses.map(
+                            (item, index) =>
+                              item !== "" && <li key={index}>{item}</li>
+                          )}
+                        </ul>
+
+                        <p className="smallest-text text-neutral-500">
+                          {edu.month && `Graduated ${edu.month}`}
+
+                          {edu.month && edu.year && ` ${edu.year}`}
+
+                          {!edu.month && edu.year && "Currently pursuing"}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {/* <section>
                 <h3 className="headings">Reference</h3>
-              </section>
+              </section> */}
             </div>
 
             <div className="side-content">
-              <section className="details">
-                <h6 className="text-white text-sm leading-8">Details</h6>
-                <p className="text-neutral-500 smallest-text leading-4">
-                  {data?.basicInfo.state === "" &&
-                  data?.basicInfo.country === ""
-                    ? "Your address"
-                    : `${data.basicInfo.state}, ${data.basicInfo.country}`}
-                </p>
-                <p className="text-neutral-500 smallest-text leading-4">
-                  {data?.basicInfo.phoneNumber === ""
-                    ? "Your phone number"
-                    : data.basicInfo.phoneNumber}
-                </p>
-                <p className="text-neutral-500 smallest-text leading-4">
-                  {data?.basicInfo.email === ""
-                    ? "Your mail"
-                    : data.basicInfo.email}
-                </p>
-              </section>
+              {(data.basicInfo.state ||
+                data.basicInfo.country ||
+                data.basicInfo.email ||
+                data.basicInfo.city ||
+                data.basicInfo.zipCode) && (
+                <section className="details">
+                  <h6 className="text-white text-sm leading-8">Details</h6>
 
-              <section className="skills">
-                <h6 className="text-white text-sm leading-8">Skills</h6>
-                <ul className="text-neutral-500 smallest-text capitalize list-none sub-section">
-                  {data?.skills.map((item, index) => {
-                    return (
+                  {(data.basicInfo.state || data.basicInfo.country) && (
+                    <p className="text-neutral-500 smallest-text leading-4">
+                      {data.basicInfo.zipCode && data.basicInfo.zipCode}
+
+                      {data.basicInfo.zipCode && data.basicInfo.city && ", "}
+
+                      {data.basicInfo.city && data.basicInfo.city}
+
+                      {(data.basicInfo.zipCode || data.basicInfo.city) &&
+                        data.basicInfo.state && <br />}
+
+                      {data.basicInfo.state && data.basicInfo.state}
+
+                      {data.basicInfo.state && data.basicInfo.country && ", "}
+
+                      {data.basicInfo.country && data.basicInfo.country}
+                    </p>
+                  )}
+                  {/* <p className="text-neutral-500 smallest-text leading-4">
+                  {data.basicInfo.phoneNumber === ""
+                  ? "Your phone number"
+                  : data.basicInfo.phoneNumber}
+                </p> */}
+                  {data.basicInfo.email && (
+                    <p className="text-neutral-500 smallest-text leading-4">
+                      {data.basicInfo.email}
+                    </p>
+                  )}
+                </section>
+              )}
+
+              {data.skills.length >= 1 && (
+                <section className="skills">
+                  <h6 className="text-white text-sm leading-8">Skills</h6>
+                  <ul className="text-neutral-500 smallest-text capitalize list-none sub-section">
+                    {data.skills.map((item, index) => (
                       <li key={index} className="mb-2">
                         {item === "" ? `Skill ${index + 1}` : item}
                         <div className="skillbar" />
                       </li>
-                    );
-                  })}
-                </ul>
-              </section>
+                    ))}
+                  </ul>
+                </section>
+              )}
             </div>
           </div>
         </div>

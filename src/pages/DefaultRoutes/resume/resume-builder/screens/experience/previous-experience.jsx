@@ -1,3 +1,4 @@
+import * as FaIcon from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { months } from "../../../../../..//assets/data/months";
 import { years } from "../../../../../../assets/data/years";
@@ -20,7 +21,7 @@ const PreviousExperience = ({
   };
 
   return (
-    <div className="max-w-6xl flex flex-col md:flex-row items-start justify-between self-center mx-auto gap-10">
+    <div className="max-w-6xl flex flex-col lg:flex-row items-start justify-between self-center mx-auto gap-10">
       <div className="flex flex-col justify-center">
         <h2 className="text-xl md:max-w-[30ch] md:text-2xl leading-tight font-semibold md:leading-snug">
           What recent employment experience do you have?
@@ -175,22 +176,20 @@ const PreviousExperience = ({
                 </select>
               </div>
             )}
-            <div className="flex gap-2 items-center">
-              <input
-                id="checkbox"
-                type="checkbox"
-                name="current"
-                value={data?.current}
-                onChange={(e) =>
-                  handleInputChange(e.target.name, e.target.checked)
-                }
-              />
-              <label
-                htmlFor="checkbox"
-                className="text-sm font-light text-neutral-300"
+            <div
+              className="flex gap-2 items-center cursor-pointer"
+              onClick={() => handleInputChange("current", !data.current)}
+            >
+              <div
+                className={`w-3 h-[12.99px] rounded-sm border-[1.5px] border-primary-600 flex items-center justify-center ${
+                  data.current ? "bg-primary-400" : "bg-white"
+                }`}
               >
+                {data.current && <FaIcon.FaCheck size=".4rem" color="#fff" />}
+              </div>
+              <span className="text-sm font-light text-neutral-300">
                 I currently work here
-              </label>
+              </span>
             </div>
           </div>
 
@@ -211,7 +210,7 @@ const PreviousExperience = ({
         </div>
       </div>
 
-      <div className="max-md:hidden">{template()}</div>
+      <div className="max-lg:hidden">{template()}</div>
     </div>
   );
 };

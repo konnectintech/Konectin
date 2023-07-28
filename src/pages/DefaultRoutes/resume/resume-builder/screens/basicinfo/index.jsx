@@ -2,20 +2,9 @@ import { useNavigate } from "react-router-dom";
 import NavigationButton from "../navigationButton";
 import { countries } from "../../../../../../assets/data/countries";
 
-const BasicInformation = ({ data, onInputChange, template }) => {
-  const {
-    fullName,
-    firstName,
-    lastName,
-    city,
-    country,
-    state,
-    zipCode,
-    email,
-  } = data?.basicInfo;
-
-  const form_classes =
-    "p-4 mb-6 text-[11px] w-full text-[#8C8C8F] border border-neutral-500 outline-0 rounded-[4px] bg-[#f9f9f9]";
+const BasicInformation = ({ data, onInputChange, template, setCompleted }) => {
+  const { firstName, lastName, city, country, state, zipCode, email } =
+    data?.basicInfo;
 
   const navigate = useNavigate();
 
@@ -25,7 +14,7 @@ const BasicInformation = ({ data, onInputChange, template }) => {
   };
 
   const handleSubmit = () => {
-    if (fullName && state && email && country) {
+    if (firstName && lastName && state && email && country) {
       if (Object.keys(data.jobExperience).length <= 1) {
         navigate("employment-experience");
         return;
@@ -36,8 +25,8 @@ const BasicInformation = ({ data, onInputChange, template }) => {
   };
 
   return (
-    <div className="max-w-6xl flex flex-col md:flex-row items-start justify-between self-center mx-auto gap-10">
-      <div className="flex flex-col justify-center">
+    <div className="max-w-6xl flex flex-col lg:flex-row items-start justify-between self-center mx-auto gap-10">
+      <div className="flex flex-col justify-center w-full">
         <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
           Basic Information
         </h2>
@@ -46,9 +35,9 @@ const BasicInformation = ({ data, onInputChange, template }) => {
         </p>
 
         <div className="w-full">
-          <div className="flex">
+          <div className="flex gap-4">
             <input
-              className={`mr-4 ${form_classes}`}
+              className="input-container"
               type="text"
               value={firstName}
               onChange={(e) => handleInputChange(e, "firstName")}
@@ -59,21 +48,37 @@ const BasicInformation = ({ data, onInputChange, template }) => {
               placeholder="Last Name"
               value={lastName}
               onChange={(e) => handleInputChange(e, "lastName")}
-              className={`${form_classes}`}
+              className="input-container"
             />
           </div>
           {/* <input
-            className={form_classes}
+            className="input-container"
             type="text"
             placeholder="Phone"
             value={phoneNumber}
             onChange={(e) => handleInputChange(e, "phoneNumber")}
           /> */}
-          <div className="flex">
+          <div className="flex gap-4">
+            <input
+              value={city}
+              onChange={(e) => handleInputChange(e, "city")}
+              className="input-container"
+              type="text"
+              placeholder="City"
+            />
+            <input
+              className="input-container"
+              type="text"
+              value={state}
+              onChange={(e) => handleInputChange(e, "state")}
+              placeholder="State / Province"
+            />
+          </div>
+          <div className="flex gap-4">
             <select
               value={country}
               onChange={(e) => handleInputChange(e, "country")}
-              className={`${form_classes} mr-4`}
+              className="input-container"
             >
               {countries.map((country) => (
                 <option key={country.code} value={country.name}>
@@ -82,23 +87,7 @@ const BasicInformation = ({ data, onInputChange, template }) => {
               ))}
             </select>
             <input
-              value={city}
-              onChange={(e) => handleInputChange(e, "city")}
-              className={form_classes}
-              type="text"
-              placeholder="City"
-            />
-          </div>
-          <div className="flex">
-            <input
-              className={`${form_classes} mr-4`}
-              type="text"
-              value={state}
-              onChange={(e) => handleInputChange(e, "state")}
-              placeholder="State / Province"
-            />
-            <input
-              className={form_classes}
+              className="input-container"
               type="text"
               value={zipCode}
               onChange={(e) => handleInputChange(e, "zipCode")}
@@ -106,7 +95,7 @@ const BasicInformation = ({ data, onInputChange, template }) => {
             />
           </div>
           <input
-            className={form_classes}
+            className="input-container"
             type="email"
             value={email}
             onChange={(e) => handleInputChange(e, "email")}
@@ -119,7 +108,7 @@ const BasicInformation = ({ data, onInputChange, template }) => {
         />
       </div>
 
-      <div className="max-md:hidden">{template()}</div>
+      <div className="max-lg:hidden">{template()}</div>
     </div>
   );
 };

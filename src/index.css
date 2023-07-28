@@ -53,7 +53,7 @@ input[type="tel"]:-webkit-autofill {
 }
 
 .input-container {
-  @apply p-4 mb-6 text-[11px] w-full text-primary-200 border border-neutral-500 outline-0 rounded-[4px] bg-neutral-1000;
+  @apply p-4 mb-6 text-[11px] w-full text-primary-400 border border-neutral-500 outline-0 rounded-[4px] bg-neutral-1000;
 }
 
 .underdash {
@@ -109,6 +109,19 @@ select.select-wrapper::after {
   padding-left: 1rem !important;
 }
 
+.blog-grid-system {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  @apply lg:grid-cols-3 max-w-screen-xl !important;
+}
+
+@media only screen and (min-width: 360px) {
+  .blog-grid-system {
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
 .bg-primary-200 {
   background-color: #b3aecc;
 }
@@ -124,6 +137,10 @@ select.select-wrapper::after {
 .nav-dotted-line::after {
   content: "";
   @apply rounded-full absolute left-full -top-1/2 -translate-y-1/3 w-[10px] h-[10px] bg-secondary-500;
+}
+
+.nav-dotted-line.bg-success-400::after {
+  background-color: #249108;
 }
 
 .inactive.nav-dotted-line::after {

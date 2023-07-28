@@ -33,6 +33,8 @@ function Feeds() {
     }
   }
 
+  let params = useParams();
+
   useEffect(() => {
     getAllBlogs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -53,25 +55,30 @@ function Feeds() {
     }
   }, [isLoading]);
 
-  let params = useParams();
-
   useEffect(() => {
     if (params.feed === "all") {
       setNewBlogs(allBlogs);
     } else {
-      const currentFeed = allBlogs.filter((blog) =>
-        blog.categories.some((cat) => cat.slug === params.feed)
+      const currentFeed = allBlogs.filter(
+        (blog) =>
+          blog.categories &&
+          blog.categories.some((cat) => cat.name === params.feed)
       );
 
       setNewBlogs(currentFeed);
     }
 
-    setTrendingBlogs(allBlogs.reverse());
+    const shuffled = allBlogs
+      .map((value) => ({ value, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ value }) => value);
+
+    setTrendingBlogs(shuffled.slice(0, 3));
   }, [params, allBlogs]);
 
   return (
     <div
-      className={`w-11/12 mx-auto max-w-screen-lg flex flex-col gap-10 ${
+      className={`w-11/12 mx-auto flex flex-col gap-10 ${
         isLoading && "text-neutral-500"
       }`}
     >
