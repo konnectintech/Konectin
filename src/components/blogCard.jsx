@@ -24,7 +24,7 @@ function BlogCard({
         blurred && "animate-pulse"
       } blog-card overflow-hidden rounded-md text-xs w-full flex flex-col justify-between`}
     >
-      <div className="bg-neutral-700 overflow-hidden flex-1 max-h-[265px]">
+      <div className="bg-neutral-700 overflow-hidden flex-1 max-h-[240px]">
         <LazyLoadImage
           wrapperClassName="inline-x"
           effect="blur"

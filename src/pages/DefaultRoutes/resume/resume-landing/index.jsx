@@ -12,7 +12,7 @@ function ResumeBuilder() {
       <HeroSection />
       <SliderSection data={SliderData} />
       <CTASection />
-      <section className="w-11/12 mx-auto max-w-screen-2xl flex flex-col gap-16">
+      <section className="w-11/12 mx-auto max-w-screen-lg flex flex-col gap-16">
         <TipSection />
         <TestimonialSection data={ResumeReview} />
         <FAQSection data={FAQ} />

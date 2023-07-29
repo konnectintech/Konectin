@@ -15,7 +15,7 @@ function SliderSection({ data }) {
   }, [currentTemplate, data.length]);
 
   return (
-    <section className="w-11/12 mx-auto max-w-screen-xl flex flex-col gap-16">
+    <section className="w-11/12 mx-auto max-w-screen-lg flex flex-col gap-16">
       <div className="flex flex-col gap-12">
         <div className="flex items-center justify-between text-center gap-2 w-full max-w-screen-lg mx-auto">
           {data.map((template, index) => (
