@@ -178,14 +178,14 @@ const PreviousExperience = ({
             )}
             <div
               className="flex gap-2 items-center cursor-pointer"
-              onClick={() => handleInputChange("current", !data.current)}
+              onClick={() => handleInputChange("current", !data?.current)}
             >
               <div
                 className={`w-3 h-[12.99px] rounded-sm border-[1.5px] border-primary-600 flex items-center justify-center ${
-                  data.current ? "bg-primary-400" : "bg-white"
+                  data?.current ? "bg-primary-400" : "bg-white"
                 }`}
               >
-                {data.current && <FaIcon.FaCheck size=".4rem" color="#fff" />}
+                {data?.current && <FaIcon.FaCheck size=".4rem" color="#fff" />}
               </div>
               <span className="text-sm font-light text-neutral-300">
                 I currently work here

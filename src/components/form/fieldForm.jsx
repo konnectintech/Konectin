@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import * as MdIcons from "react-icons/md";
-import { googleIcon } from "../../assets";
-import { CustomButton } from "../button";
+import { CustomButton, MicrosoftLog } from "../button";
 import { ErrorModal } from "./modal";
 import { validateField, validateForm } from "./validator";
 
@@ -61,7 +60,7 @@ function FieldForm({ handleSubmit, params, formFor, errorMessage, children }) {
       const value = formReq.get(name);
       formArray[name] = value;
     }
-    handleSubmit(formArray);
+    handleSubmit(formArray, "normal");
   };
 
   return (
@@ -117,14 +116,16 @@ function FieldForm({ handleSubmit, params, formFor, errorMessage, children }) {
       </div>
       {children}
       <div className="text-center flex flex-col gap-2">
-        <CustomButton disabled={!formValid} primary={true} colorType="primary">
+        <CustomButton
+          type="submit"
+          disabled={!formValid}
+          primary={true}
+          colorType="primary"
+        >
           {formFor}
         </CustomButton>
         or
-        <CustomButton>
-          <img src={googleIcon} alt="continue with google" /> Continue with
-          Google
-        </CustomButton>
+        <MicrosoftLog />
       </div>
     </form>
   );

@@ -123,7 +123,7 @@ export const useTemplateData = () => {
       const eduArray =
         templateData.education[templateData.currentEditedJob - 1];
 
-      if (eduArray.schoolName === "" || eduArray.country === "") {
+      if (eduArray?.schoolName === "" || eduArray?.country === "") {
         setTemplateData((prev) => ({
           ...prev,
           completed: { ...prev.completed, education: false },

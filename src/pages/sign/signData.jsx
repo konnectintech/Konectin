@@ -11,7 +11,7 @@ export const signUpForm = [
       />
     ),
     legend: "Full Name",
-    placeholder: "e.g John Doe John",
+    placeholder: "John Doe John",
     type: "text",
   },
   {
@@ -24,7 +24,7 @@ export const signUpForm = [
       />
     ),
     legend: "E-mail",
-    placeholder: "e.g JohnDaneJohn@gmail.com",
+    placeholder: "JohnDaneJohn@gmail.com",
     type: "email",
   },
   {
@@ -66,7 +66,7 @@ export const loginForm = [
       />
     ),
     legend: "Email",
-    placeholder: "e.g JohnDoe122@gmail.com",
+    placeholder: "JohnDoe122@gmail.com",
     type: "email",
   },
   {

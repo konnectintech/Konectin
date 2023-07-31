@@ -32,7 +32,7 @@ function ResumeHeader() {
     { path: "/resume/builder", text: "basic info", no: 1 },
     {
       path:
-        Object.keys(templateData.jobExperience).length <= 1
+        Object.keys(templateData.jobExperience).length <= 0
           ? "/resume/builder/employment-experience"
           : "/resume/builder/employment-experience/job-activities",
       text: "work history",

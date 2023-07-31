@@ -144,7 +144,7 @@ function HighSchool() {
             />
           </div>
           <div>
-            {education.relevantCourses.map((course, index) => (
+            {education?.relevantCourses.map((course, index) => (
               <input
                 key={course + index}
                 className="input-container"
@@ -178,7 +178,7 @@ function HighSchool() {
             </button>
           </div>
           <div>
-            {education.awards.map((award, index) => (
+            {education?.awards.map((award, index) => (
               <input
                 key={award + index}
                 className="input-container"

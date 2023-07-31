@@ -10,8 +10,10 @@ import BlogComment from "./comments";
 function BlogContent() {
   const [blog, setBlog] = useState({});
   const [isLoading, setLoading] = useState({ post: true, related: true });
+
   const [similarContent, setSimilarContent] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+
   const [isFull, setOpen] = useState(false);
   const { title } = useParams();
 
@@ -112,11 +114,11 @@ function BlogContent() {
     }
   }, [isLoading]);
 
-  const [cardsPerPage, setCards] = useState(6);
+  const [cardsPerPage, setCards] = useState(similarContent.length <= 5 ? 3 : 6);
 
   useEffect(() => {
-    setCards(isFull ? 3 : 6);
-  }, [isFull]);
+    setCards(isFull ? 3 : similarContent.length <= 5 ? 3 : 6);
+  }, [isFull, similarContent]);
 
   const currentSimilarContent = similarContent.slice(
     currentPage * cardsPerPage - cardsPerPage,

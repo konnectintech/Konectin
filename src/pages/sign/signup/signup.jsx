@@ -1,10 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FieldForm } from "../../../components/form";
 import { useAuth } from "../../../middleware/auth";
 import { signUpForm } from "../signData";
 import Agreement from "./agreement";
 import Preloader from "../../../components/preloader";
+import { InteractionRequiredAuthError } from "@azure/msal-browser";
+import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 
 function SignUp() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -17,7 +20,32 @@ function SignUp() {
     }
   }, [agreed]);
 
-  let { signUp } = useAuth();
+  const navigate = useNavigate();
+  const { instance } = useMsal();
+  const { signUp, setPreviousLog, previousLog } = useAuth();
+  const isUserAuthenticated = useIsAuthenticated();
+
+  useEffect(() => {
+    if (!isUserAuthenticated) {
+      instance
+        .ssoSilent({
+          scopes: ["user.read"],
+          loginHint: previousLog.username,
+        })
+        .then((res) => {
+          instance.setActiveAccount(res.account);
+          setPreviousLog(res.account);
+          navigate("/blog/all");
+        })
+        .catch((err) => {
+          if (err instanceof InteractionRequiredAuthError) {
+            instance.loginPopup({
+              scopes: ["user.read"],
+            });
+          }
+        });
+    }
+  }, []);
 
   // handle sign up
   const handleSignUp = async (data) => {

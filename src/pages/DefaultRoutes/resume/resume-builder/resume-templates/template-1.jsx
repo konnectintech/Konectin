@@ -310,36 +310,36 @@ export const TemplateOne = ({ data }) => {
                 <section>
                   <h3 className="headings">Education</h3>
                   <div className="sub-section">
-                    {data.education.map((edu, index) => (
+                    {data?.education.map((edu, index) => (
                       <div key={index}>
                         <p className="small-text text-neutral-200">
-                          {edu.degree && edu.degree}
-                          {edu.degree && edu.schoolName && ", "}
+                          {edu?.degree && edu?.degree}
+                          {edu?.degree && edu?.schoolName && ", "}
 
-                          {edu.schoolName && edu.schoolName}
-                          {((edu.schoolName && edu.state) ||
-                            (edu.schoolName && edu.country)) &&
+                          {edu?.schoolName && edu?.schoolName}
+                          {((edu?.schoolName && edu?.state) ||
+                            (edu?.schoolName && edu?.country)) &&
                             " | "}
 
-                          {edu.state && edu.state}
-                          {edu.state && edu.country && ", "}
+                          {edu?.state && edu?.state}
+                          {edu?.state && edu?.country && ", "}
 
-                          {edu.country && edu.country}
+                          {edu?.country && edu?.country}
                         </p>
 
                         <ul className="text-neutral-200 smallest-text capitalize list-disc ps-4 sub-section">
-                          {edu.relevantCourses.map(
+                          {edu?.relevantCourses?.map(
                             (item, index) =>
                               item !== "" && <li key={index}>{item}</li>
                           )}
                         </ul>
 
                         <p className="smallest-text text-neutral-500">
-                          {edu.month && `Graduated ${edu.month}`}
+                          {edu?.month && `Graduated ${edu?.month}`}
 
-                          {edu.month && edu.year && ` ${edu.year}`}
+                          {edu?.month && edu?.year && ` ${edu?.year}`}
 
-                          {!edu.month && edu.year && "Currently pursuing"}
+                          {!edu?.month && edu?.year && "Currently pursuing"}
                         </p>
                       </div>
                     ))}

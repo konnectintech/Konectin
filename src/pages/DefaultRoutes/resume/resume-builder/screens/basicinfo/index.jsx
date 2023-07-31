@@ -15,7 +15,7 @@ const BasicInformation = ({ data, onInputChange, template, setCompleted }) => {
 
   const handleSubmit = () => {
     if (firstName && lastName && state && email && country) {
-      if (Object.keys(data.jobExperience).length <= 1) {
+      if (Object.keys(data.jobExperience).length <= 0) {
         navigate("employment-experience");
         return;
       }
