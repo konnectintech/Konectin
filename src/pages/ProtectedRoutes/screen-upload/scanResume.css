@@ -1,3 +1,7 @@
+.doughnut--progressBar{
+  background: conic-gradient(#FC670B 87.5deg, #fff 0deg)
+}
+
 .doughnut--progressBar::before{
   content:"";
   position:absolute;
@@ -15,3 +19,4 @@
     border-radius:300px;
     background-color:;
 }
+
