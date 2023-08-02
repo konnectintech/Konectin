@@ -129,7 +129,7 @@ const Skills = ({ data, template, updateResume }) => {
         </div>
 
         <NavigationButton
-          back="/resume/builder/education"
+          back={() => navigate("/resume/builder/education")}
           cont={handleSubmit}
         />
 

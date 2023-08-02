@@ -97,7 +97,7 @@ const Bio = ({ data, template, onInputChange }) => {
 
       <div className="mt-12 w-full">
         <NavigationButton
-          back="/resume/builder/skills"
+          back={() => navigate("/resume/builder/skills")}
           cont={() => navigate("/resume/builder/preview")}
         />
       </div>

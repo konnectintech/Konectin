@@ -4,6 +4,7 @@ import { months } from "../../../../../..//assets/data/months";
 import { years } from "../../../../../../assets/data/years";
 import { countries } from "../../../../../../assets/data/countries";
 import JobTitleInput from "../../../../../../components/jobTitleInput";
+import NavigationButton from "../navigationButton";
 
 const PreviousExperience = ({
   data,
@@ -181,7 +182,7 @@ const PreviousExperience = ({
               onClick={() => handleInputChange("current", !data?.current)}
             >
               <div
-                className={`w-3 h-[12.99px] rounded-sm border-[1.5px] border-primary-600 flex items-center justify-center ${
+                className={`w-5 h-5 rounded-sm border-[1.5px] border-primary-600 flex items-center justify-center ${
                   data?.current ? "bg-primary-400" : "bg-white"
                 }`}
               >
@@ -193,19 +194,8 @@ const PreviousExperience = ({
             </div>
           </div>
 
-          <div className="w-full flex flex-col justify-center md:justify-between mt-6 gap-5 md:flex-row">
-            <button
-              onClick={handleBack}
-              className="border border-neutral-500 rounded-lg text-sm py-3 px-16"
-            >
-              Back
-            </button>
-            <button
-              onClick={handleSubmit}
-              className="border border-neutral-500 rounded-lg text-sm text-neutral-1000 py-3 px-16 bg-primary-600"
-            >
-              Continue
-            </button>
+          <div className="mt-16">
+            <NavigationButton back={handleBack} cont={handleSubmit} />
           </div>
         </div>
       </div>

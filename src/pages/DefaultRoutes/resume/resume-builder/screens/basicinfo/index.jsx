@@ -103,7 +103,7 @@ const BasicInformation = ({ data, onInputChange, template, setCompleted }) => {
           />
         </div>
         <NavigationButton
-          back="/resume/ai/template-selector"
+          back={() => navigate("/resume/ai/template-selector")}
           cont={handleSubmit}
         />
       </div>

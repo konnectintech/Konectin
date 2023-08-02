@@ -98,7 +98,7 @@ const Responsibilities = ({ data, handleInputChange }) => {
 
         <div className="w-full mt-16">
           <NavigationButton
-            back="/resume/builder/employment-experience/"
+            back={() => navigate("/resume/builder/employment-experience/")}
             cont={handleSubmit}
           />
         </div>

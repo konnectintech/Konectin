@@ -84,13 +84,6 @@ const Download = ({ data, template }) => {
             >
               Download PDF
             </button>
-            {/* <button
-            onClick={handlePrint}
-            type="submit"
-            className="rounded-lg text-sm text-neutral-900 py-3 px-[4.5rem] bg-primary-500"
-          >
-            Download
-          </button> */}
             <Link
               to="/resume/builder/preview"
               className="text-center rounded-lg text-sm py-3 px-[4.5rem] border border-neutral-500"

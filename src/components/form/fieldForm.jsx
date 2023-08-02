@@ -72,7 +72,7 @@ function FieldForm({ handleSubmit, params, formFor, errorMessage, children }) {
       <div className="flex flex-col gap-4">
         {params?.map((formField, index) => (
           <div key={index}>
-            <fieldset className="border border-secondary-300 rounded-md cursor-pointer relative">
+            <fieldset className="border border-[#DC7957] rounded-md cursor-pointer relative">
               <legend className="ml-4 px-1">{formField.legend}</legend>
               <input
                 className="w-full text-xs bg-transparent border-0 outline-0 px-4 pt-2 pb-3"

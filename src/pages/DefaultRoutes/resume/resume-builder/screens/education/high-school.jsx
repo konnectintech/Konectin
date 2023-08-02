@@ -70,6 +70,18 @@ function HighSchool() {
   //   setEducation(list);
   // };
 
+  const cancelEdu = () => {
+    templateData.education.splice(currentEditedEducation - 1, 1);
+
+    setTemplateData((prev) => ({
+      ...prev,
+      education: templateData.education,
+      currentEditedEducation: Object.keys(templateData.education).length - 1,
+    }));
+
+    navigate("/resume/builder/education/select-edu");
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -213,10 +225,7 @@ function HighSchool() {
         </div>
       </div>
 
-      <NavigationButton
-        back="/resume/builder/experience/select-edu"
-        cont={handleSubmit}
-      />
+      <NavigationButton back={cancelEdu} cont={handleSubmit} />
     </section>
   );
 }

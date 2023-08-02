@@ -43,6 +43,9 @@ module.exports = {
         success: {
           400: "#249108",
         },
+        error: {
+          500: "#f11010",
+        },
       },
       screens: {
         xxs: "375px",

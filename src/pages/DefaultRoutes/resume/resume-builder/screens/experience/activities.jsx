@@ -2,6 +2,7 @@ import { FaPlus, FaPen, FaTrash, FaCaretDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useTemplateContext } from "../../../../../../middleware/resume";
 import { useEffect } from "react";
+import NavigationButton from "../navigationButton";
 
 const JobActivities = ({ addCompany, goBack, deleteExperience, template }) => {
   const { templateData, setTemplateData } = useTemplateContext();
@@ -102,21 +103,13 @@ const JobActivities = ({ addCompany, goBack, deleteExperience, template }) => {
           </span>
         </div>
 
-        <div className="w-full flex flex-col justify-center md:justify-between mt-6 gap-5 md:flex-row">
-          <button
-            onClick={goBack}
-            className="border border-neutral-500 rounded-lg text-sm py-3 px-16"
-          >
-            Back
-          </button>
-          <button
-            onClick={() => navigate("/resume/builder/education")}
-            type="submit"
-            className="w-full md:w-fit max-w-xs border border-neutral-500 rounded-lg text-sm text-neutral-1000 py-3 px-16 bg-primary-500"
-          >
-            Continue
-          </button>
+        <div className="mt-6">
+          <NavigationButton
+            back={goBack}
+            cont={() => navigate("/resume/builder/education")}
+          />
         </div>
+
         <button
           onClick={() => navigate("/resume/builder/education")}
           className="text-secondary-500 text-sm font-extralight tracking-[0.02rem] underline mt-8"
