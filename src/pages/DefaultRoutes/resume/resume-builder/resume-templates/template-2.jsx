@@ -300,6 +300,7 @@ export const TemplateTwo = ({ data }) => {
               {data.education.length >= 1 && (
                 <section>
                   <h3 className="contact-header">Education</h3>
+
                   <div className="details smallest-text text-white">
                     {data?.education.map((edu, index) => (
                       <div className="sub-section" key={index}>
