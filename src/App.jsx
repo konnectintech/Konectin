@@ -33,7 +33,7 @@ import ForgetPassword from "./pages/sign/login/forgetPassword";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/konectin">
       <Routes>
         <Route
           element={
