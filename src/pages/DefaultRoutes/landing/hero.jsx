@@ -8,7 +8,7 @@ function HeroSection() {
         <h1 className="text-4xl lg:text-6xl xl:text-7xl font-medium leading-tight">
           Take a step <br /> Closer to your <br />{" "}
           <font className="underdash">
-            dream <font className="text-secondary-600">Job</font>
+            dream <font className="text-secondary-600">Jobs</font>
           </font>
         </h1>
         <p className="max-w-md md:max-w-lg md:mt-4">
