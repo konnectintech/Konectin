@@ -37,7 +37,7 @@ function HighSchool() {
   const handleArrayChange = (sub, index, value) => {
     setEducation((prev) => ({
       ...prev,
-      [sub]: prev[sub].map((obj, id) => (id === index ? value : obj)),
+      [sub]: prev[sub].map((obj, id) => (id === index ? { name: value } : obj)),
     }));
   };
 
@@ -156,14 +156,14 @@ function HighSchool() {
             />
           </div>
           <div>
-            {education?.relevantCourses.map((course, index) => (
+            {education.relevantCourses.map((course, index) => (
               <input
                 key={course + index}
                 className="input-container"
                 type="text"
                 name="relevantCourse"
                 placeholder="Relevant Course"
-                value={course}
+                value={course.name}
                 onChange={(e) =>
                   handleArrayChange("relevantCourses", index, e.target.value)
                 }
@@ -196,7 +196,7 @@ function HighSchool() {
                 className="input-container"
                 type="text"
                 placeholder="Award/Honour"
-                value={award}
+                value={award.name}
                 onChange={(e) =>
                   handleArrayChange("awards", index, e.target.value)
                 }

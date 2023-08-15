@@ -7,7 +7,7 @@ import Responsibilities from "./responsibilites";
 import PreviousExperience from "./previous-experience";
 import { useTemplateContext } from "../../../../../../middleware/resume";
 
-const EmploymentExperience = ({ data, template }) => {
+const EmploymentExperience = ({ data }) => {
   const navigate = useNavigate();
   const { setTemplateData } = useTemplateContext();
 
@@ -154,7 +154,6 @@ const EmploymentExperience = ({ data, template }) => {
               goBack={goBack}
               handleBack={handleBack}
               deleteExperience={handleDelete}
-              template={template}
             />
           }
         />

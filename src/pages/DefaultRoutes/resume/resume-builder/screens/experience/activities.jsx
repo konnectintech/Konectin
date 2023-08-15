@@ -1,11 +1,14 @@
-import { FaPlus, FaPen, FaTrash, FaCaretDown } from "react-icons/fa";
+import { FaPlus, FaPen, FaTrash, FaCaretDown, FaCaretUp } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useTemplateContext } from "../../../../../../middleware/resume";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import NavigationButton from "../navigationButton";
+import SelectedTemplates from "../../resume-templates";
 
-const JobActivities = ({ addCompany, goBack, deleteExperience, template }) => {
+const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
   const { templateData, setTemplateData } = useTemplateContext();
+  const [showMore, setShowMore] = useState(-1);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -76,16 +79,34 @@ const JobActivities = ({ addCompany, goBack, deleteExperience, template }) => {
                   ? " Present"
                   : ` ${data.endMonth} ${data.endYear}`}
               </p>
-              <div className="text-neutral-400 text-xs job-desc px-4 mt-3">
+              <div
+                className={`text-neutral-400 text-xs ${
+                  showMore === index ? "line-clamp-none" : "line-clamp-4"
+                } job-desc mt-3`}
+              >
                 <div
                   dangerouslySetInnerHTML={{
                     __html: data.workDesc,
                   }}
                 />
               </div>
-              <button className="text-neutral-500 text-xs font-extralight flex items-center mt-4">
-                Show more
-                <FaCaretDown className="ml-1" size="0.5rem" />
+              <button
+                onClick={() =>
+                  setShowMore((prev) => (prev === index ? -1 : index))
+                }
+                className="text-neutral-500 text-xs font-extralight flex items-center mt-4"
+              >
+                {showMore === index ? (
+                  <>
+                    Show less
+                    <FaCaretUp className="ml-1" size="0.5rem" />
+                  </>
+                ) : (
+                  <>
+                    Show more
+                    <FaCaretDown className="ml-1" size="0.5rem" />
+                  </>
+                )}
               </button>
             </div>
           </section>
@@ -118,7 +139,9 @@ const JobActivities = ({ addCompany, goBack, deleteExperience, template }) => {
         </button>
       </div>
 
-      <div className="max-md:hidden">{template()}</div>
+      <div className="max-md:hidden">
+        <SelectedTemplates data={templateData} />
+      </div>
     </div>
   );
 };

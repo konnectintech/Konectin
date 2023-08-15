@@ -5,14 +5,12 @@ import { years } from "../../../../../../assets/data/years";
 import { countries } from "../../../../../../assets/data/countries";
 import JobTitleInput from "../../../../../../components/jobTitleInput";
 import NavigationButton from "../navigationButton";
+import SelectedTemplates from "../../resume-templates";
+import { useTemplateContext } from "../../../../../../middleware/resume";
 
-const PreviousExperience = ({
-  data,
-  handleBack,
-  handleInputChange,
-  template,
-}) => {
+const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
   const navigate = useNavigate();
+  const { templateData } = useTemplateContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -200,7 +198,9 @@ const PreviousExperience = ({
         </div>
       </div>
 
-      <div className="max-lg:hidden">{template()}</div>
+      <div className="max-lg:hidden">
+        <SelectedTemplates data={templateData} />
+      </div>
     </div>
   );
 };

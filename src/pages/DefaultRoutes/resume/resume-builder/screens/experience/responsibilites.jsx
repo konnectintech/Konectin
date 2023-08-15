@@ -1,16 +1,14 @@
-import { useRef, useState, useEffect } from "react";
-import { Editor } from "@tinymce/tinymce-react";
 import { useNavigate } from "react-router-dom";
-import Suggestions from "../../../../../../components/suggestions";
+import { Editor } from "@tinymce/tinymce-react";
 import NavigationButton from "../navigationButton";
+import { useRef, useState, useEffect } from "react";
+import { AzureKeyCredential, OpenAIClient } from "@azure/openai";
+import Suggestions from "../../../../../../components/suggestions";
 
 const Responsibilities = ({ data, handleInputChange }) => {
   const [responsibility, setResponsibility] = useState(data?.jobTitle);
-
   const [editorValue, setEditorValue] = useState(data?.workDesc);
-
   const [dirty, setDirty] = useState(false);
-
   const editorRef = useRef(null);
   const navigate = useNavigate();
 
@@ -25,6 +23,11 @@ const Responsibilities = ({ data, handleInputChange }) => {
     };
   }, [editorValue, handleInputChange]);
 
+  const handleEditorChange = (content) => {
+    setEditorValue(content);
+    editorRef.current.setDirty(true);
+  };
+
   const handleAddSuggestion = (value) => {
     const content = editorRef.current.getContent();
     setEditorValue(`${content} <ul><li>${value}</li></ul>`);
@@ -37,12 +40,42 @@ const Responsibilities = ({ data, handleInputChange }) => {
     navigate("/resume/builder/employment-experience/job-activities");
   };
 
-  const suggestions = [
-    "To seek and maintain full-time position that offers professional challenges utilizing interpersonal skills, excellent time management and problem-solving skills.",
-    "To seek and maintain full-time position that offers professional challenges utilizing interpersonal skills, excellent time management and problem-solving skills.",
-    "To seek and maintain full-time position that offers professional challenges utilizing interpersonal skills, excellent time management and problem-solving skills.",
-    "To seek and maintain full-time position that offers professional challenges utilizing interpersonal skills, excellent time management and problem-solving skills.",
-  ];
+  const [suggestions, setSuggestion] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const azureApiKey = import.meta.env.VITE_OPENAI_KEY;
+
+  const getJobResponsibilities = async () => {
+    setLoading(true);
+    const messages = [
+      {
+        role: "user",
+        content: `List 10 job responsibilities of a/an ${responsibility} in an unordered list type`,
+      },
+    ];
+
+    try {
+      const client = new OpenAIClient(
+        "https://azure-openai-konectin.openai.azure.com/",
+        new AzureKeyCredential(azureApiKey)
+      );
+      const deploymentId = "Konectin-1";
+      const result = await client.getChatCompletions(deploymentId, messages);
+
+      const correctedResponse = result.choices[0].message.content.split("- ");
+      correctedResponse.splice(0, 1);
+
+      setSuggestion(correctedResponse);
+    } catch (err) {
+      console.error("The sample encountered an error:", err);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    getJobResponsibilities();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [responsibility]);
 
   return (
     <div className="mt-4 max-w-6xl flex flex-col justify-center items-start mx-auto">
@@ -73,7 +106,9 @@ const Responsibilities = ({ data, handleInputChange }) => {
                   content_style:
                     "body { font-family: Merriweather, Arial, sans-serif; font-size: 12px }",
                 }}
-                initialValue={editorValue}
+                initialValue=""
+                value={editorValue}
+                onEditorChange={handleEditorChange}
                 onDirty={() => setDirty(true)}
               />
 
@@ -90,6 +125,7 @@ const Responsibilities = ({ data, handleInputChange }) => {
                 jobTitle={responsibility}
                 handleChange={(value) => setResponsibility(value)}
                 handleAddSuggestion={handleAddSuggestion}
+                loading={loading}
                 responsibilities={suggestions}
               />
             </div>

@@ -66,7 +66,7 @@ const StartBuilder = () => {
 
   return (
     <section className="flex flex-col relative">
-      <div className="w-9/12 mx-auto max-w-screen-xl flex flex-col justify-center items-center gap-8 m-8 py-24 px-7 border border-secondary-700 rounded-xl bg-neutral-1000 md:w-6/12">
+      <div className="w-9/12 min-w-fit mx-auto max-w-screen-xl flex flex-col justify-center items-center gap-8 m-8 py-24 px-7 border border-secondary-700 rounded-xl bg-neutral-1000 md:w-6/12">
         <h1 className="text-[20px] md:text-[28px] leading-tight font-semibold md:leading-snug">
           Create New Resume?
         </h1>

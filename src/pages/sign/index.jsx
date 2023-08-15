@@ -26,7 +26,7 @@ function Sign() {
       <div className="lg:hidden bg-primary-700 w-full text-center text-white py-6">
         <div className="flex gap-4 items-center justify-center mb-6">
           <a
-            href="https://twitter.com/konectin_you?t=LyVvMn4twNiZjYGU6F48pg&s=09"
+            href="http://www.twitter.com/KonectinInc"
             target="_blank"
             rel="noreferrer"
             className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg"
@@ -34,7 +34,7 @@ function Sign() {
             <FaIcon.FaTwitter size="1.1rem" />
           </a>
           <a
-            href="/"
+            href="https://web.facebook.com/people/Konectin-Inc/100091305090654/"
             target="_blank"
             rel="noreferrer"
             className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg"
@@ -42,7 +42,7 @@ function Sign() {
             <FaIcon.FaFacebookF size="1rem" />
           </a>
           <a
-            href="https://linkedin.com/company/konectin/"
+            href="https://www.linkedin.com/company/konectin/"
             target="_blank"
             rel="noreferrer"
             className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-secondaryBg"

@@ -23,10 +23,12 @@ const TemplateSelector = ({ data }) => {
 
   const startBuilding = () => {
     const user = JSON.parse(localStorage.getItem("user"));
+    const stage = JSON.parse(localStorage.getItem("crStage"));
+
     if (user === null) {
       setPopUp(true);
     } else {
-      navigate("/resume/builder");
+      navigate(stage === 6 ? "/resume/builder/preview" : "/resume/builder");
     }
   };
 
