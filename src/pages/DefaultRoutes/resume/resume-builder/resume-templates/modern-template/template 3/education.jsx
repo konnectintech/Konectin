@@ -32,7 +32,7 @@ function Education({ currentEditedEducation, education }) {
                 )}
               </ul>
 
-              <ul className="capitalize list-none ps-4 sub-section">
+              <ul className="capitalize list-none sub-section">
                 {edu?.awards?.map(
                   (item, index) =>
                     item.name !== "" && <li key={index}>{item.name}</li>
