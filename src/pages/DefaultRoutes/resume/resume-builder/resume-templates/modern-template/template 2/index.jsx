@@ -196,7 +196,7 @@ function TemplateTwo(data) {
             ref={parentPage}
             className="parent-container !h-full max-h-[640px] !w-full overflow-y-scroll no-scrollbar pointer-events-none"
           >
-            <div ref={page} className="h-max">
+            <div ref={page} className="h-max w-full">
               <BasicInfo data={data?.basicInfo} />
               <div className="dataset-container mt-4">
                 <Profile data={data?.bio} />

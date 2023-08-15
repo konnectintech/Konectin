@@ -204,6 +204,10 @@ function TemplateOne(data) {
                 .doc-body .ps-4 {
                   padding-left: 1rem/* 16px */;
                 }
+                
+                .doc-body .w-full {
+                  width: 100%;
+                }
             `}
             </style>
           </div>
@@ -213,7 +217,7 @@ function TemplateOne(data) {
             ref={parentPage}
             className="parent-container !h-full max-h-[640px] !w-full overflow-y-scroll no-scrollbar pointer-events-none"
           >
-            <div ref={page} className="real-content h-full">
+            <div ref={page} className="real-content h-full w-full">
               <BasicInfo data={data?.basicInfo} />
               <Contacts data={data?.basicInfo} />
               <Profile data={data?.bio} />
