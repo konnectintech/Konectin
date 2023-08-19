@@ -1,14 +1,4 @@
-import {
-  card1Image,
-  card2Image,
-  cardImage,
-  fileIcon,
-  guardIcon,
-  person1Icon,
-  personIcon,
-  shakeIcon,
-  starIcon,
-} from "../../../assets";
+import { fileIcon, guardIcon, shakeIcon, starIcon } from "../../../assets";
 
 export const RecruitersGain = [
   {
@@ -34,35 +24,5 @@ export const RecruitersGain = [
     logo: guardIcon,
     paragraph:
       "We build relationships between Jobseekers and employers strictly based on trust and transparency. Our recruiters are assured on the validity and responsibility of any job seeker they are matched with...",
-  },
-];
-
-export const BlogData = [
-  {
-    title: "5 advantages of Creating a well written cover letter",
-    image: cardImage,
-    info: {
-      bloggerName: "Imran Ujih",
-      bloggerImage: person1Icon,
-      date: "June 2022",
-    },
-  },
-  {
-    title: "Check out these tips to help you with creative block",
-    image: card1Image,
-    info: {
-      bloggerName: "John Doe",
-      bloggerImage: personIcon,
-      date: "June 2022",
-    },
-  },
-  {
-    title: "10 ways to be prominent on LinkedIn",
-    image: card2Image,
-    info: {
-      bloggerName: "John Doe",
-      bloggerImage: personIcon,
-      date: "June 2022",
-    },
   },
 ];

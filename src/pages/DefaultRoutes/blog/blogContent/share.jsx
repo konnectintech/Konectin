@@ -7,7 +7,7 @@ function Share() {
       <div className="flex flex-wrap gap-3 items-center mt-2">
         <a
           className="px-6 py-2 text-white bg-primary-500 rounded-md flex gap-2 items-center"
-          href="gmal"
+          href="gmail"
           target="_blank"
         >
           <SlIcons.SlSocialGoogle size="1rem" />

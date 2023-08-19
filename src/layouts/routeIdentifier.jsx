@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
+import ScrollToTop from "../components/scrollToTop";
 
 function RouteIdentifier() {
   const { pathname } = useLocation();
@@ -13,7 +14,12 @@ function RouteIdentifier() {
     document.title = `Konectin | ${title}`;
   }, [pathname]);
 
-  return <Outlet />;
+  return (
+    <>
+      <ScrollToTop />
+      <Outlet />
+    </>
+  );
 }
 
 export default RouteIdentifier;

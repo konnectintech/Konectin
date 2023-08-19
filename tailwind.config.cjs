@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         neutral: {
+          grey: "#8D8D8D",
           100: "#191A1F",
           200: "#3F4044",
           300: "#66666A",
@@ -38,6 +39,9 @@ module.exports = {
           800: "#973E07",
           900: "#652904",
           1000: "#321502",
+        },
+        success: {
+          400: "#249108",
         },
       },
       screens: {

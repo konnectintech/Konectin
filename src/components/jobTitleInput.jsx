@@ -1,6 +1,8 @@
-import Select, { components } from "react-select";
+import { components } from "react-select";
+import Creatable from "react-select/creatable";
 import * as BsIcon from "react-icons/bs";
-import { jobs } from "../assets/data/job";
+import professions from "professions";
+import { useEffect, useState } from "react";
 
 const DropdownIndicator = (props) => {
   return (
@@ -14,6 +16,14 @@ const DropdownIndicator = (props) => {
 };
 
 function JobTitleInput({ title, handleInputChange, section, subsection }) {
+  const [professionOption, setProfessionOption] = useState([]);
+
+  useEffect(() => {
+    professions.map((obj) =>
+      setProfessionOption((prev) => [...prev, { label: obj, value: obj }])
+    );
+  }, []);
+
   const handleChange = (opt) => {
     handleInputChange({
       section: section,
@@ -23,7 +33,7 @@ function JobTitleInput({ title, handleInputChange, section, subsection }) {
   };
 
   return (
-    <Select
+    <Creatable
       className="mb-6 text-[11px] w-full text-[#8C8C8F] border border-[#b2b3b48a] outline-0 rounded-[4px] bg-[#f9f9f9]"
       placeholder="Job Title"
       components={{ DropdownIndicator }}
@@ -58,7 +68,7 @@ function JobTitleInput({ title, handleInputChange, section, subsection }) {
           display: state.isFocused ? "flex" : "none",
         }),
       }}
-      options={jobs}
+      options={professionOption}
       onChange={(opt) => handleChange(opt)}
       theme={(theme) => ({
         ...theme,

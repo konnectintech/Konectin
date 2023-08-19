@@ -4,7 +4,7 @@ import HeroSection from "./hero";
 import RecruiterSection from "./recruiters";
 import SignPrompt from "./signPrompt";
 import NewsLetter from "./newsletter";
-import { BlogData, RecruitersGain } from "./data";
+import { RecruitersGain } from "./data";
 import MapSection from "../../../components/map";
 
 function Landing() {
@@ -15,7 +15,7 @@ function Landing() {
         <SignPrompt />
         <RecruiterSection data={RecruitersGain} />
         <AboutSection />
-        <BlogSection data={BlogData} />
+        <BlogSection />
       </section>
 
       <MapSection />

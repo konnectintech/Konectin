@@ -81,8 +81,7 @@ function Header() {
           {links.map((link, index) => (
             <NavLink
               className={({ isActive }) =>
-                (isActive && pathname.split("/")[1] === "blog") ||
-                (isActive && pathname.split("/")[1] === "blog") ||
+                (link.link === "/blog" && pathname.split("/")[1] === "blog") ||
                 isActive
                   ? "py-1 border-b border-secondary-600"
                   : "py-1 hover:border-b border-secondary-600"

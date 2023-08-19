@@ -1,17 +1,56 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { createContext, useContext } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "./storage";
+import { EventType, PublicClientApplication } from "@azure/msal-browser";
+import {
+  MsalProvider,
+  useIsAuthenticated,
+  useMsal,
+  useMsalAuthentication,
+} from "@azure/msal-react";
+import { useEffect } from "react";
 
 // Create a Authenication Hook
 const AuthContext = createContext();
-
 const useAuthContext = () => useContext(AuthContext);
 
-const AuthProvider = ({ children }) => {
-  const auth = useAuth();
+const pca = new PublicClientApplication({
+  auth: {
+    clientId: "c2b4e277-e8b3-438c-9a65-22e774e10990",
+    authority:
+      "https://login.microsoftonline.com/ab112dcd-2c77-436d-b233-5e194a097e40",
+    redirectUri: "/",
+  },
+  cache: {
+    cacheLocation: "localStorage",
+    storeAuthStateInCookie: true,
+  },
+  system: {
+    loggerOptions: {
+      logLevel: 3 /* LogLevel.Verbose */, // Set the logging level to verbose so we
+    },
+  },
+});
 
+pca.addEventCallback((event) => {
+  if (event.eventType === EventType.LOGIN_SUCCESS) {
+    pca.setActiveAccount(event.payload.account);
+  }
+});
+
+const SubProvider = ({ children }) => {
+  const auth = useAuth();
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
+};
+
+const AuthProvider = ({ children }) => {
+  return (
+    <MsalProvider instance={pca}>
+      <SubProvider>{children}</SubProvider>
+    </MsalProvider>
+  );
 };
 
 export { useAuthContext, AuthProvider };
@@ -31,7 +70,39 @@ export const RequireAuth = ({ children }) => {
 // Create User logged Hook
 export const useAuth = () => {
   const [user, setUser] = useLocalStorage("user", null);
+  const [previousLog, setPreviousLog] = useLocalStorage("previous_user", "");
+  const [userType, setUserType] = useLocalStorage("userType", "");
+  const isUserAuthenticated = useIsAuthenticated();
+  const { instance } = useMsal();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isUserAuthenticated) {
+      const currentAccount = instance.getActiveAccount();
+      setPreviousLog(currentAccount);
+    }
+  }, [instance]);
+
+  const { result, error } = useMsalAuthentication();
+
+  useEffect(() => {
+    if (!previousLog) {
+      return;
+    }
+
+    if (!error) {
+      console.log(error);
+      return;
+    }
+
+    if (result) {
+      const loggedUser = axios.get("https://graph.mircosoft.com/v1.0/me", {
+        headers: { Authorization: `Bearer ${result.accessToken}` },
+      });
+
+      setUser(loggedUser);
+    }
+  }, [previousLog, error, result]);
 
   // const getUser = async (data) => {
   //   try {
@@ -44,25 +115,26 @@ export const useAuth = () => {
   //   }
   // };
 
-  const signIn = async (data, loader, setError) => {
-    try {
-      let authresult = await axios.post(
-        "https://konectin-backend-hj09.onrender.com/user/login",
-        data
-      );
+  const signIn = async (data, loader, setError, log) => {
+    if (log === "normal") {
+      try {
+        let authresult = await axios.post(
+          "https://konectin-backend-hj09.onrender.com/user/login",
+          data
+        );
 
-      const userData = { ...authresult.data.data };
-      console.log(authresult);
-      userData.token = authresult.data.token;
+        const userData = { ...authresult.data.data };
+        console.log(authresult);
+        userData.token = authresult.data.token;
 
-      setUser(userData);
-      loader(false);
-      setTimeout(() => {
+        setUser(userData);
+        setUserType(log);
+        loader(false);
         navigate("/blog/all");
-      }, 1000);
-    } catch (err) {
-      loader(false);
-      setError(err.response.data.message);
+      } catch (err) {
+        loader(false);
+        setError(err.response.data.message);
+      }
     }
   };
 
@@ -85,8 +157,20 @@ export const useAuth = () => {
   };
 
   const signOut = () => {
-    setUser(null);
+    if (userType === "normal") {
+      setUser(null);
+    } else if (userType === "microsoft") {
+      instance.logoutPopup();
+    }
   };
 
-  return { user, signIn, signUp, signOut };
+  return {
+    user,
+    setPreviousLog,
+    setUserType,
+    previousLog,
+    signIn,
+    signUp,
+    signOut,
+  };
 };

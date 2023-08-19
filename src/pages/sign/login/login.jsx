@@ -1,10 +1,13 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useAuth } from "../../../middleware/auth";
+/* eslint-disable react-hooks/exhaustive-deps */
 import { loginForm } from "../signData";
+import { Link, useNavigate } from "react-router-dom";
+import * as FaIcon from "react-icons/fa";
+import { useIsAuthenticated, useMsal } from "@azure/msal-react";
+import { useState, useEffect } from "react";
+import { useAuth } from "../../../middleware/auth";
 import { FieldForm } from "../../../components/form/";
 import Preloader from "../../../components/preloader";
-import * as FaIcon from "react-icons/fa";
+import { InteractionRequiredAuthError } from "@azure/msal-browser";
 
 export function RememberMe() {
   const [agreed, setAgreed] = useState(false);
@@ -44,11 +47,36 @@ function Login() {
   const [isloading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const { signIn } = useAuth();
+  const navigate = useNavigate();
+  const { instance } = useMsal();
+  const { signIn, setPreviousLog, previousLog } = useAuth();
+  const isUserAuthenticated = useIsAuthenticated();
 
-  const handleSubmit = (data) => {
+  useEffect(() => {
+    if (!isUserAuthenticated) {
+      instance
+        .ssoSilent({
+          scopes: ["user.read"],
+          loginHint: previousLog.username,
+        })
+        .then((res) => {
+          instance.setActiveAccount(res.account);
+          setPreviousLog(res.account);
+          navigate("/blog/all");
+        })
+        .catch((err) => {
+          if (err instanceof InteractionRequiredAuthError) {
+            instance.loginPopup({
+              scopes: ["user.read"],
+            });
+          }
+        });
+    }
+  }, []);
+
+  const handleSubmit = (data, logType) => {
     setLoading(true);
-    signIn(data, setLoading, setErrorMessage);
+    signIn(data, setLoading, setErrorMessage, logType);
   };
 
   return (

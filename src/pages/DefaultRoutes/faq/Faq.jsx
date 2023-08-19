@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { arrowUp, arrowDown } from "../../../assets";
-import { FAQ } from "../resume/resumeData";
+import { FAQ } from "../resume/resume-landing/resumeData";
 
 function Faq() {
   const [isOpen, setOpen] = useState();

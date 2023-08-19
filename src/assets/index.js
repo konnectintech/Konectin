@@ -5,6 +5,7 @@ import calendarIcon from "./icons/calendar.svg";
 import contactIcon from "./icons/contact.svg";
 import fileIcon from "./icons/file.svg";
 import googleIcon from "./icons/google.svg";
+import microsoftIcon from "./icons/microsoft.svg";
 import guardIcon from "./icons/guard.svg";
 import konectinLogo from "./icons/konectin.png";
 import konectinIcon from "./icons/konectin.svg";
@@ -136,6 +137,7 @@ export {
   notifyError,
   likeIcon,
   dislikeIcon,
+  microsoftIcon,
 
   // Sign Images
   signImage,

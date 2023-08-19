@@ -1,32 +1,34 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ProtectedRoutes from "./pages/ProtectedRoutes";
-import { AuthProvider, RequireAuth } from "./middleware/auth";
-// import DashBoard from "./pages/ProtectedRoutes/DashBoard";
-import Options from "./pages/ProtectedRoutes/resume-builder";
-import StartBuilder from "./pages/ProtectedRoutes/resume-builder/start";
-import Builder from "./pages/ProtectedRoutes/resume-builder/screens";
+import { AuthProvider } from "./middleware/auth";
 
-import Sign from "./pages/sign";
-import Login from "./pages/sign/login/login";
-import SignUp from "./pages/sign/signup/signup";
-
+import ResumeRoutes from "./layouts/resumeRoutes";
 import DefaultRoutes from "./pages/DefaultRoutes";
+import ProtectedRoutes from "./pages/ProtectedRoutes";
+
+import Options from "./pages/DefaultRoutes/resume/resume-builder";
+import ResumeBuilder from "./pages/DefaultRoutes/resume/resume-landing";
+import Builder from "./pages/DefaultRoutes/resume/resume-builder/screens";
+import StartBuilder from "./pages/DefaultRoutes/resume/resume-builder/start";
+import AIStarter from "./pages/DefaultRoutes/resume/resume-builder/screens-ai";
+import ResumeUpload from "./pages/DefaultRoutes/resume/resume-builder/screen-upload";
+
 import Landing from "./pages/DefaultRoutes/landing";
 import Internship from "./pages/DefaultRoutes/internship";
-import ResumeBuilder from "./pages/DefaultRoutes/resume";
 import About from "./pages/DefaultRoutes/about";
 import Blog from "./pages/DefaultRoutes/blog";
 import BlogContent from "./pages/DefaultRoutes/blog/blogContent";
 import Feeds from "./pages/DefaultRoutes/blog/feeds";
-import AIStarter from "./pages/ProtectedRoutes/resume-builder/screens-ai";
 import RouteIdentifier from "./layouts/routeIdentifier";
 import VerifyMail from "./pages/sign/signup/verifyMail";
 import TermsAndCondition from "./pages/DefaultRoutes/terms/TermsAndConditions";
 import Faq from "./pages/DefaultRoutes/faq/Faq";
 import Contact from "./pages/DefaultRoutes/contact/Contact";
+
+import Sign from "./pages/sign";
+import Login from "./pages/sign/login/login";
+import SignUp from "./pages/sign/signup/signup";
 import ForgetPassword from "./pages/sign/login/forgetPassword";
-import ResumeRoutes from "./pages/ResumeRoutes";
-import ResUploadStarter from "./pages/ProtectedRoutes/screen-upload";
+// import DashBoard from "./pages/ProtectedRoutes/dashboard";
 // import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
 
 function App() {
@@ -68,16 +70,10 @@ function App() {
             <Route path="/resume/options" element={<Options />} />
             <Route path="/resume/start" element={<StartBuilder />} />
             <Route path="/resume/builder/*" element={<Builder />} />
-            <Route path="/resume/upload/*" element={<ResUploadStarter />} />
+            <Route path="/resume/upload/*" element={<ResumeUpload />} />
           </Route>
 
-          <Route
-            element={
-              <RequireAuth>
-                <ProtectedRoutes />
-              </RequireAuth>
-            }
-          >
+          <Route element={<ProtectedRoutes />}>
             {/* <Route path="/dashboard/*" element={<DashBoard />} /> */}
           </Route>
         </Route>
