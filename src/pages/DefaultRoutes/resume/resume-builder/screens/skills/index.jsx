@@ -55,7 +55,7 @@ const Skills = ({ data, updateResume }) => {
           Try to add 6-10 skills that are relevant to your desired job.
         </p>
 
-        <div className="max-w-sm">
+        <div className="max-w-sm pb-12">
           <DragDropContext onDragEnd={handleDrop}>
             <Droppable droppableId="list-container">
               {(provided) => (
@@ -119,7 +119,7 @@ const Skills = ({ data, updateResume }) => {
             </Droppable>
           </DragDropContext>
           <div
-            className="flex gap-2 items-center cursor-pointer text-neutral-400"
+            className="flex gap-2 mt-2 items-center cursor-pointer text-neutral-400"
             onClick={addSkill}
           >
             <div className="bg-primary-400 text-neutral-1000 w-6 h-6 flex items-center justify-center rounded-full">

@@ -26,17 +26,17 @@ function AddType({ data }) {
           </span>
         </div>
       </Link>
-      <div className="w-full flex flex-col mt-12 gap-5 justify-between md:flex-row">
+      <div className="w-full flex -col mt-12 gap-5 justify-between flex-row">
         <Link
           to="/resume/builder/employment-experience/job-activities"
-          className="w-fit border border-neutral-500 rounded-lg text-sm py-3 px-[4.5rem]"
+          className="w-fit border border-neutral-500 rounded-lg text-sm py-3 px-8 sm:px-[4.5rem]"
         >
           Back
         </Link>
-        {data.currentEditedEducation >= 2 && (
+        {data.currentEditedEducation >= 1 && (
           <Link
             to="/resume/builder/skills"
-            className="w-full md:w-fit max-w-xs bg-primary-600 text-white rounded-lg text-sm py-3 px-[4.5rem]"
+            className="w-fit max-w-xs bg-primary-600 text-white rounded-lg text-sm py-3 px-8 sm:px-[4.5rem]"
           >
             Go to Skills
           </Link>
