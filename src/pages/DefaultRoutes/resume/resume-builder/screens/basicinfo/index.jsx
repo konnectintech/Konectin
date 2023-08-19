@@ -4,8 +4,16 @@ import SelectedTemplates from "../../resume-templates";
 import { countries } from "../../../../../../assets/data/countries";
 
 const BasicInformation = ({ data, onInputChange }) => {
-  const { firstName, lastName, city, country, state, zipCode, email } =
-    data?.basicInfo;
+  const {
+    firstName,
+    lastName,
+    city,
+    country,
+    phoneNumber,
+    state,
+    zipCode,
+    email,
+  } = data?.basicInfo;
 
   const navigate = useNavigate();
 
@@ -52,13 +60,13 @@ const BasicInformation = ({ data, onInputChange }) => {
               className="input-container"
             />
           </div>
-          {/* <input
+          <input
             className="input-container"
             type="text"
             placeholder="Phone"
             value={phoneNumber}
             onChange={(e) => handleInputChange(e, "phoneNumber")}
-          /> */}
+          />
           <div className="flex gap-4">
             <input
               value={city}

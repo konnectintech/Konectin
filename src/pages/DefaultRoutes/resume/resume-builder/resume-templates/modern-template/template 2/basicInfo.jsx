@@ -28,6 +28,7 @@ function BasicInfo({ data }) {
         data.country ||
         data.email ||
         data.city ||
+        data.phoneNumber ||
         data.zipCode) && (
         <p>
           {/* Address */}

@@ -1,6 +1,11 @@
 function Contacts({ data }) {
   return (
-    (data.state || data.country || data.email || data.city || data.zipCode) && (
+    (data.state ||
+      data.country ||
+      data.email ||
+      data.phoneNumber ||
+      data.city ||
+      data.zipCode) && (
       <section className="contacts">
         <p>
           {data.zipCode && data.zipCode}&#160; {data.city && data.city}

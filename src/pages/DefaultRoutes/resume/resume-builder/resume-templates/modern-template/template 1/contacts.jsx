@@ -1,6 +1,11 @@
 function Contacts({ data }) {
   return (
-    (data.state || data.country || data.email || data.city || data.zipCode) && (
+    (data.state ||
+      data.country ||
+      data.email ||
+      data.phoneNumber ||
+      data.city ||
+      data.zipCode) && (
       <section className="section">
         <div className="side-content">
           <h2>Contacts</h2>
