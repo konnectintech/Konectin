@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { comingSoon, internHero } from "../../../assets";
+import { comingSoon, internHero, konectinLogo } from "../../../assets";
 import NotifyForm from "../../../components/form/notifyForm";
 import { NotifyModal } from "../../../components/form/modal";
 import { useNavigate } from "react-router-dom";
@@ -13,13 +13,16 @@ function Internship() {
     p1: "",
     p2: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (data) => {
+    setLoading(true);
     try {
       await axios.post(
         "https://konectin-backend-hj09.onrender.com/user/internshipMail",
         { email: data }
       );
+
       const newState = {
         error: true,
         header: (
@@ -61,12 +64,21 @@ function Internship() {
       };
       setState(newState);
     }
+    setLoading(false);
   };
 
   const navigate = useNavigate();
 
   return (
     <section className="min-h-[70vh]">
+      {loading && (
+        <div className="fixed no-scrollbar w-full h-screen top-0 left-0 z-[100] flex">
+          <div className="bg-neutral-100 opacity-70 absolute w-full h-full"></div>
+          <div className="animate-pulse m-auto bg-white p-4 rounded-full">
+            <img src={konectinLogo} alt="" />
+          </div>
+        </div>
+      )}
       <div className="w-11/12 mx-auto max-w-screen-2xl min-h-[70vh] flex flex-col md:gap-16 lg:gap-48 md:flex-row items-center py-32">
         <div className="flex flex-col gap-6 font-semibold w-full my-auto md:w-9/12 lg:w-6/12">
           <div>
@@ -93,7 +105,11 @@ function Internship() {
         </picture>
       </div>
       {state.header && (
-        <div className="fixed top-0 w-full h-full z-50 bg-neutral-500 flex items-center justify-center">
+        <div className="fixed top-0 w-full h-full z-50 flex items-center justify-center">
+          <div
+            onClick={() => setState((prev) => ({ ...prev, header: "" }))}
+            className="bg-neutral-100 opacity-70 absolute w-full h-full"
+          />
           <NotifyModal
             error={state.error}
             header={state.header}

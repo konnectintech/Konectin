@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { newsletterBg } from "../../../assets";
+import { konectinLogo, newsletterBg } from "../../../assets";
 import { NotifyForm } from "../../../components/form";
 import { NotifyModal } from "../../../components/form/modal";
 
@@ -11,8 +11,10 @@ function NewsLetter() {
     p1: "",
     p2: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleNewsLetter = async (data) => {
+    setLoading(true);
     try {
       await axios.post(
         "https://konectin-backend-hj09.onrender.com/user/subscribeMail",
@@ -45,6 +47,7 @@ function NewsLetter() {
       };
       setState(newState);
     }
+    setLoading(false);
   };
 
   const handleClick = () => {
@@ -58,6 +61,14 @@ function NewsLetter() {
 
   return (
     <section className="relative w-11/12 xs:w-10/12 md:w-8/12 max-w-screen-md h-[40vh] min-h-[395px] mx-auto mt-16">
+      {loading && (
+        <div className="fixed no-scrollbar w-full h-screen top-0 left-0 z-[100] flex">
+          <div className="bg-neutral-100 opacity-70 absolute w-full h-full"></div>
+          <div className="animate-pulse m-auto bg-white p-4 rounded-full">
+            <img src={konectinLogo} alt="" />
+          </div>
+        </div>
+      )}
       <div className="absolute z-10 w-full left-1/2 h-[340px] -translate-x-1/2">
         <img
           className="w-full h-full max-h-[340px]"
@@ -79,7 +90,11 @@ function NewsLetter() {
       </div>
 
       {state.header && (
-        <div className="fixed top-0 left-0 w-full h-full z-50 bg-neutral-500 flex items-center justify-center">
+        <div className="fixed top-0 left-0 w-full h-full z-50 flex items-center justify-center">
+          <div
+            onClick={() => setState((prev) => ({ ...prev, header: "" }))}
+            className="bg-neutral-100 opacity-70 absolute w-full h-full"
+          />
           <NotifyModal
             error={state.error}
             header={state.header}
