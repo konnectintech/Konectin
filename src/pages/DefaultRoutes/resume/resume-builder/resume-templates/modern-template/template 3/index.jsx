@@ -6,18 +6,22 @@ import Education from "./education";
 import Skills from "./skills";
 import Experience from "./experience";
 import Contacts from "./contacts";
+import { useLocation } from "react-router-dom";
 
 function TemplateThree(data) {
   const page = useRef(null);
   const parentPage = useRef(null);
+  const { pathname } = useLocation();
 
   const [pageMax, setPageMax] = useState(1);
   const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     const pageContainer = page.current;
-    setPageMax(Math.ceil(pageContainer.clientHeight / 640));
-  }, [data]);
+    const pageX = Math.ceil(pageContainer.clientHeight / 640);
+    setPageMax(pageX);
+    setPageNumber(pageX);
+  }, [pathname, data]);
 
   const nextPage = () => {
     if (pageNumber !== pageMax) setPageNumber((prev) => prev + 1);
