@@ -42,9 +42,11 @@ const Responsibilities = ({ data, handleInputChange }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (editorValue.length <= 30) {
+    const wordCount = editorRef.current.plugins.wordcount.getCount();
+
+    if (wordCount <= 30) {
       setDirty(true);
-      setErrorMessage("You have to write at least 30 chars");
+      setErrorMessage("You have to write at least 30 words");
     } else {
       navigate("/resume/builder/employment-experience/job-activities");
     }
