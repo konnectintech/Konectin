@@ -5,8 +5,9 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { FaTrash, FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import NavigationButton from "../navigationButton";
+import SelectedTemplates from "../../resume-templates";
 
-const Skills = ({ data, template, updateResume }) => {
+const Skills = ({ data, updateResume }) => {
   const [skillList, setSkillList] = useState(data.skills);
   const navigate = useNavigate();
 
@@ -129,7 +130,7 @@ const Skills = ({ data, template, updateResume }) => {
         </div>
 
         <NavigationButton
-          back="/resume/builder/education"
+          back={() => navigate("/resume/builder/education")}
           cont={handleSubmit}
         />
 
@@ -141,7 +142,9 @@ const Skills = ({ data, template, updateResume }) => {
         </Link>
       </div>
 
-      <div className="max-md:hidden">{template()}</div>
+      <div className="max-md:hidden">
+        <SelectedTemplates data={data} />
+      </div>
     </div>
   );
 };

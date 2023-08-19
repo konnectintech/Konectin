@@ -17,20 +17,22 @@ function Feeds() {
   const [isLoading, setLoading] = useState(true);
   const [trendingBlogs, setTrendingBlogs] = useState([]);
 
-  const read_token = import.meta.env.VITE_READ_TOKEN;
-
   async function getAllBlogs() {
+    setLoading(true);
     try {
-      const response = await axios.get(
-        `https://api.buttercms.com/v2/posts?auth_token=${read_token}`
-      );
-      const blogs = response.data.data;
-      setAllBlogs(blogs);
-      setLoading(false);
+      console.log("Getting blog");
+      // const response = await axios.get(
+      //   `https://api.buttercms.com/v2/posts?auth_token=${read_token}`
+      // );
+      // const blogs = response.data.data;
+      // setAllBlogs(blogs);
+      // setLoading(false);
     } catch (err) {
       console.log(err);
       alert(err.message + ", Please reload the page");
     }
+
+    setLoading(false);
   }
 
   let params = useParams();

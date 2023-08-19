@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import NavigationButton from "../navigationButton";
+import SelectedTemplates from "../../resume-templates";
 import { countries } from "../../../../../../assets/data/countries";
 
-const BasicInformation = ({ data, onInputChange, template, setCompleted }) => {
+const BasicInformation = ({ data, onInputChange }) => {
   const { firstName, lastName, city, country, state, zipCode, email } =
     data?.basicInfo;
 
@@ -103,12 +104,14 @@ const BasicInformation = ({ data, onInputChange, template, setCompleted }) => {
           />
         </div>
         <NavigationButton
-          back="/resume/ai/template-selector"
+          back={() => navigate("/resume/ai/template-selector")}
           cont={handleSubmit}
         />
       </div>
 
-      <div className="max-lg:hidden">{template()}</div>
+      <div className="max-lg:hidden">
+        <SelectedTemplates data={data} />
+      </div>
     </div>
   );
 };

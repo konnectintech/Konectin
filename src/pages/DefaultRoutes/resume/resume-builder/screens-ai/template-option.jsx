@@ -1,9 +1,6 @@
 import * as BsIcon from "react-icons/bs";
+import { template_images } from "../../../../../assets/resume";
 import { useTemplateContext } from "../../../../../middleware/resume";
-import {
-  ResumeTemplateSample1Image,
-  ResumeTemplateSampleImage,
-} from "../../../../../assets";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -17,40 +14,24 @@ const TemplateOption = ({ sectionName }) => {
     onInputChange({ section: "selectedTemplate", values: value });
   };
 
-  const template_images = [
-    {
-      img: ResumeTemplateSample1Image,
-      category: "modern",
-    },
-    {
-      img: ResumeTemplateSampleImage,
-      category: "modern",
-    },
-    {
-      img: ResumeTemplateSample1Image,
-      category: "modern",
-    },
-    {
-      img: ResumeTemplateSampleImage,
-      category: "modern",
-    },
-    {
-      img: ResumeTemplateSample1Image,
-      category: "artistic",
-    },
-    {
-      img: ResumeTemplateSample1Image,
-      category: "artistic",
-    },
-    {
-      img: ResumeTemplateSampleImage,
-      category: "artistic",
-    },
-    {
-      img: ResumeTemplateSampleImage,
-      category: "artistic",
-    },
-  ];
+  // const template_images = [
+  //   {
+  //     img: templateDesign1,
+  //     category: "modern",
+  //   },
+  //   {
+  //     img: ResumeTemplateSample1Image,
+  //     category: "artistic",
+  //   },
+  //   {
+  //     img: ResumeTemplateSampleImage,
+  //     category: "artistic",
+  //   },
+  //   {
+  //     img: ResumeTemplateSampleImage,
+  //     category: "artistic",
+  //   },
+  // ];
 
   return (
     <div className="flex flex-col items-start w-full max-w-[1000px] justify-start gap-4">
@@ -59,11 +40,11 @@ const TemplateOption = ({ sectionName }) => {
       </h3>
       <div className="max-w-[100%] mx-auto">
         <Swiper
-          spaceBetween={20}
+          spaceBetween={10}
           slidesPerView={1.7}
           breakpoints={{
             640: { slidesPerView: 2.5 },
-            1024: { slidesPerView: 2.7 },
+            1024: { slidesPerView: 4 },
           }}
         >
           {template_images
@@ -73,15 +54,15 @@ const TemplateOption = ({ sectionName }) => {
                 <SwiperSlide className="cursor-pointer ml-2 flex justify-center items-center text-center">
                   <div
                     className={`
-          ${
-            templateData.selectedTemplate ===
-            `${sectionName}_template_${index + 1}`
-              ? "absolute w-full h-full top-0 bg-neutral-100 bg-opacity-60"
-              : "-top-full"
-          } left-0 duration-500 flex items-center justify-center`}
+                                ${
+                                  templateData.selectedTemplate ===
+                                  `${sectionName}_${index + 1}`
+                                    ? "absolute w-full h-full top-0 bg-neutral-100 bg-opacity-60"
+                                    : "-top-full"
+                                } left-0 duration-500 flex items-center justify-center`}
                   >
                     {templateData.selectedTemplate ===
-                      `${sectionName}_template_${index + 1}` && (
+                      `${sectionName}_${index + 1}` && (
                       <BsIcon.BsCheckCircle
                         size="1.2rem"
                         className="absolute text-neutral-700 bg-primary-400 rounded-full"
@@ -90,11 +71,9 @@ const TemplateOption = ({ sectionName }) => {
                   </div>
                   <img
                     src={item.img}
-                    alt={`${sectionName}_template_${index + 1}`}
+                    alt={`${sectionName}_${index + 1}`}
                     className="w-full h-full"
-                    onClick={() =>
-                      handleSelect(`${sectionName}_template_${index + 1}`)
-                    }
+                    onClick={() => handleSelect(`${sectionName}_${index + 1}`)}
                   />
                 </SwiperSlide>
               );

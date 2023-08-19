@@ -21,7 +21,7 @@ function HeroSection() {
           </div>
           <Link
             to="/signup"
-            className="w-fit py-2 px-8 bg-secondary-600 text-center rounded-sm"
+            className="w-fit py-2 px-8 text-white bg-secondary-600 text-center rounded-sm"
           >
             Join Us
           </Link>

@@ -102,10 +102,8 @@ export const useTemplateData = () => {
         jobArray.jobTitle === "" ||
         jobArray.company === "" ||
         jobArray.workDesc.length <= 30 ||
-        jobArray.startMonth === "" ||
         jobArray.startYear === "" ||
-        (!jobArray.current &&
-          (jobArray.endMonth === "" || jobArray.endYear === ""))
+        (!jobArray.current && jobArray.endYear === "")
       ) {
         setTemplateData((prev) => ({
           ...prev,

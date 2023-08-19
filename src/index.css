@@ -103,7 +103,7 @@ select.select-wrapper::after {
 }
 
 .job-desc ul {
-  @apply list-disc;
+  @apply list-disc pl-4;
 }
 
 .css-art2ul-ValueContainer2 {

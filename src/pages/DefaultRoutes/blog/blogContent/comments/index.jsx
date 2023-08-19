@@ -1,10 +1,10 @@
 import axios from "axios";
+import { Link } from "react-router-dom";
+import ShowComments from "./showComments";
+import * as TbIcons from "react-icons/tb";
 import { useEffect, useState } from "react";
 import { userIcon } from "../../../../../assets";
 import { useLocalStorage } from "../../../../../middleware/storage";
-import ShowComments from "./showComments";
-import * as TbIcons from "react-icons/tb";
-import { Link } from "react-router-dom";
 
 function BlogComment({ blogID }) {
   const [user] = useLocalStorage("user");

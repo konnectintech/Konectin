@@ -3,8 +3,9 @@ import { useState } from "react";
 import { saveAs } from "file-saver";
 import { Link } from "react-router-dom";
 import { konectinLogo } from "../../../../../../assets";
+import SelectedTemplates from "../../resume-templates";
 
-const Download = ({ data, template }) => {
+const Download = ({ data }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isloading, setLoading] = useState(false);
 
@@ -70,7 +71,7 @@ const Download = ({ data, template }) => {
           Download Resume
         </h2>
         <div className="w-full flex flex-col md:flex-row items-center ljustify-center gap-10">
-          <>{template()}</>
+          <SelectedTemplates data={data} />
           <div className="max-w-xl flex flex-col max-md:justify-center mt-16 gap-5">
             {errorMessage && (
               <p className="text-red-500 text-xs translate-y-4">
@@ -84,13 +85,6 @@ const Download = ({ data, template }) => {
             >
               Download PDF
             </button>
-            {/* <button
-            onClick={handlePrint}
-            type="submit"
-            className="rounded-lg text-sm text-neutral-900 py-3 px-[4.5rem] bg-primary-500"
-          >
-            Download
-          </button> */}
             <Link
               to="/resume/builder/preview"
               className="text-center rounded-lg text-sm py-3 px-[4.5rem] border border-neutral-500"

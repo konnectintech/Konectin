@@ -21,13 +21,13 @@ function EducationOption({ title, link }) {
               year: "",
             }
           : {
-              awards: [""],
+              awards: [{ name: "" }],
               city: "",
               country: "",
               month: "",
               schoolName: "",
               state: "",
-              relevantCourses: [""],
+              relevantCourses: [{ name: "" }],
               year: "",
             },
       ],

@@ -8,7 +8,7 @@ function ResumeFooter() {
         <div className="w-full text-center text-white pb-10 md:py-6 md:flex justify-between items-center">
           <div className="flex gap-4 items-center justify-center mb-6 md:mb-0">
             <a
-              href="https://twitter.com/konectin_you?t=LyVvMn4twNiZjYGU6F48pg&s=09"
+              href="http://www.twitter.com/KonectinInc"
               target="_blank"
               rel="noreferrer"
               className="w-10 h-10 flex items-center justify-center rounded-full border-2"
@@ -16,7 +16,7 @@ function ResumeFooter() {
               <FaIcon.FaTwitter size="1.1rem" />
             </a>
             <a
-              href="/"
+              href="https://web.facebook.com/people/Konectin-Inc/100091305090654/"
               target="_blank"
               rel="noreferrer"
               className="w-10 h-10 flex items-center justify-center rounded-full border-2"
@@ -24,7 +24,7 @@ function ResumeFooter() {
               <FaIcon.FaFacebookF size="1rem" />
             </a>
             <a
-              href="https://linkedin.com/company/konectin/"
+              href="https://www.linkedin.com/company/konectin/"
               target="_blank"
               rel="noreferrer"
               className="w-10 h-10 flex items-center justify-center rounded-full border-2"

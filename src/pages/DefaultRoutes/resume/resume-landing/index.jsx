@@ -8,7 +8,7 @@ import CTASection from "../../../../components/cta";
 
 function ResumeBuilder() {
   return (
-    <main className="flex flex-col gap-2 bg-neutral-1000 text-neutral-100 relative">
+    <main className="flex flex-col bg-neutral-1000 text-neutral-100 relative">
       <HeroSection />
       <SliderSection data={SliderData} />
       <CTASection />

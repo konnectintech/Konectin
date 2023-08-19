@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as BsIcon from "react-icons/bs";
 import { createResume, uploadResume } from "../../../../assets";
+import StartBuilder from "./start";
 
 const BuilderOption = ({
   title,
@@ -44,46 +45,62 @@ const BuilderOption = ({
 
 const Options = () => {
   const [choice, setChoice] = useState("");
+  const [editable, setEditable] = useState(false);
 
   const handleChoice = (choice) => {
     setChoice(choice);
+    // const post_url = "/user/resume?userId=6450e3d8418498f2c9878379";
+    // const get_url =
+    //   "/user/getResume?userId=6450e3d8418498f2c9878379&resumeId=64ae5b4688421fb58e3c4c9d";
+    // const update_url =
+    //   "/user/updateResume?userId=6450e3d8418498f2c9878379&resumeId=64ae5b4688421fb58e3c4c9d";
   };
 
-  return (
-    <>
-      <section className="w-11/12 h-full mx-auto max-w-screen-xl flex flex-col justify-center items-center gap-8">
-        <h1 className="text-2xl md:text-3xl lg:text-4xl text-center leading-tight font-semibold md:leading-snug">
-          Ready to take your career to the next level?
-        </h1>
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-4">
-          <BuilderOption
-            title="Create new resume"
-            description="We will guide you on building a resume and getting started."
-            selector="ai"
-            image={createResume}
-            choice={choice}
-            handleChoice={handleChoice}
-          />
+  useEffect(() => {
+    const stage = JSON.parse(localStorage.getItem("crStage"));
 
-          <BuilderOption
-            title="Upload a resume"
-            description="We access your existing resume and make neccessary adjustments."
-            image={uploadResume}
-            selector="upload"
-            choice={choice}
-            handleChoice={handleChoice}
-          />
-        </div>
-        <Link
-          to={choice ? `/resume/${choice}` : "#"}
-          className={`duration-500 px-12 py-3 rounded-md text-[#fff] mt-6${
-            choice ? " bg-primary-600" : " bg-primary-200"
-          }`}
-        >
-          Next
-        </Link>
-      </section>
-    </>
+    if (stage === null) {
+      setEditable(false);
+    } else {
+      setEditable(true);
+    }
+  }, []);
+
+  return editable ? (
+    <StartBuilder />
+  ) : (
+    <section className="w-11/12 h-full mx-auto max-w-screen-xl flex flex-col justify-center items-center gap-8">
+      <h1 className="text-2xl md:text-3xl lg:text-4xl text-center leading-tight font-semibold md:leading-snug">
+        Ready to take your career to the next level?
+      </h1>
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-4">
+        <BuilderOption
+          title="Create new resume"
+          description="We will guide you on building a resume and getting started."
+          selector="ai"
+          image={createResume}
+          choice={choice}
+          handleChoice={handleChoice}
+        />
+
+        <BuilderOption
+          title="Upload a resume"
+          description="We access your existing resume and make neccessary adjustments."
+          image={uploadResume}
+          selector="upload"
+          choice={choice}
+          handleChoice={handleChoice}
+        />
+      </div>
+      <Link
+        to={choice ? `/resume/${choice}` : "#"}
+        className={`duration-500 px-12 py-3 rounded-md text-[#fff] mt-6${
+          choice ? " bg-primary-600" : " bg-primary-200"
+        }`}
+      >
+        Next
+      </Link>
+    </section>
   );
 };
 

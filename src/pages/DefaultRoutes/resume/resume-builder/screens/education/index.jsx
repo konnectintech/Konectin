@@ -4,8 +4,9 @@ import College from "./college";
 import HighSchool from "./high-school";
 import AddType from "./addType";
 import SelectEducation from "./selectEducation";
+import SelectedTemplates from "../../resume-templates";
 
-const Education = ({ data, template }) => {
+const Education = ({ data }) => {
   return (
     <Routes>
       <Route
@@ -21,7 +22,9 @@ const Education = ({ data, template }) => {
           element={
             <>
               <Outlet />
-              <div className="max-md:hidden">{template()}</div>
+              <div className="max-md:hidden">
+                <SelectedTemplates data={data} />
+              </div>
             </>
           }
         >

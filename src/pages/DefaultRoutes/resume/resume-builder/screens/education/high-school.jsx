@@ -37,7 +37,7 @@ function HighSchool() {
   const handleArrayChange = (sub, index, value) => {
     setEducation((prev) => ({
       ...prev,
-      [sub]: prev[sub].map((obj, id) => (id === index ? value : obj)),
+      [sub]: prev[sub].map((obj, id) => (id === index ? { name: value } : obj)),
     }));
   };
 
@@ -69,6 +69,18 @@ function HighSchool() {
   //   list.splice(index, 1);
   //   setEducation(list);
   // };
+
+  const cancelEdu = () => {
+    templateData.education.splice(currentEditedEducation - 1, 1);
+
+    setTemplateData((prev) => ({
+      ...prev,
+      education: templateData.education,
+      currentEditedEducation: Object.keys(templateData.education).length - 1,
+    }));
+
+    navigate("/resume/builder/education/select-edu");
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -144,14 +156,14 @@ function HighSchool() {
             />
           </div>
           <div>
-            {education?.relevantCourses.map((course, index) => (
+            {education.relevantCourses.map((course, index) => (
               <input
                 key={course + index}
                 className="input-container"
                 type="text"
                 name="relevantCourse"
                 placeholder="Relevant Course"
-                value={course}
+                value={course.name}
                 onChange={(e) =>
                   handleArrayChange("relevantCourses", index, e.target.value)
                 }
@@ -184,7 +196,7 @@ function HighSchool() {
                 className="input-container"
                 type="text"
                 placeholder="Award/Honour"
-                value={award}
+                value={award.name}
                 onChange={(e) =>
                   handleArrayChange("awards", index, e.target.value)
                 }
@@ -213,10 +225,7 @@ function HighSchool() {
         </div>
       </div>
 
-      <NavigationButton
-        back="/resume/builder/experience/select-edu"
-        cont={handleSubmit}
-      />
+      <NavigationButton back={cancelEdu} cont={handleSubmit} />
     </section>
   );
 }
