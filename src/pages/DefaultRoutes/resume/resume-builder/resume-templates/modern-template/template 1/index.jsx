@@ -85,7 +85,7 @@ function TemplateOne(data) {
                   background: white;
                 }
 
-                .doc-body p, .doc-body span, .doc-body  ul li {
+                .doc-body p, .doc-body a, .doc-body span, .doc-body  ul li {
                   color: #7a7a7a;
                 }
 

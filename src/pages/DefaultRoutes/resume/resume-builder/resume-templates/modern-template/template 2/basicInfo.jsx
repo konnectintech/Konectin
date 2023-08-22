@@ -43,9 +43,13 @@ function BasicInfo({ data }) {
               (data.state || data.country || data.city || data.zipCode))) &&
             ", "}
           {/* Email */}
-          {data.email && data.email}
+          {data.email && (
+            <a href={`mailto:${data.phoneNumber}`}>{data.email}</a>
+          )}
           {data.email && data.phoneNumber && ", "}
-          {data.phoneNumber && data.phoneNumber}
+          {data.phoneNumber && (
+            <a href={`tel:${data.phoneNumber}`}>{data.phoneNumber}</a>
+          )}
         </p>
       )}
     </section>

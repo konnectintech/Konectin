@@ -1,3 +1,5 @@
+import * as CiIcons from "react-icons/ci";
+
 function Contacts({ data }) {
   return (
     (data.state ||
@@ -11,12 +13,21 @@ function Contacts({ data }) {
           <h2>Contacts</h2>
         </div>
 
-        <div className="main-content">
-          <ul className="sub-section list-disc ps-4">
+        <div className="main-content pt-4">
+          <div className="sub-section">
+            {/* Email */}
+            {data.email && (
+              <div className="contacts">
+                <CiIcons.CiMail />
+                <a href={`mailto:${data.email}`}>{data.email}</a>
+              </div>
+            )}
+
             {/* Address */}
             {(data.state || data.country || data.city || data.zipCode) && (
-              <div>
-                <li>
+              <div className="contacts">
+                <CiIcons.CiLocationOn />
+                <span>
                   {data.zipCode && data.zipCode}
 
                   {data.zipCode && data.city && ", "}
@@ -30,23 +41,17 @@ function Contacts({ data }) {
                   {data.state && data.country && ", "}
 
                   {data.country && data.country}
-                </li>
+                </span>
               </div>
             )}
 
-            {/* Email */}
-            {data.email && (
-              <li>
-                <a href={`mailto:${data.email}`}>{data.email}</a>
-              </li>
-            )}
-
             {data.phoneNumber && (
-              <li>
+              <div className="contacts">
+                <CiIcons.CiPhone />
                 <a href={`tel:${data.phoneNumber}`}>{data.phoneNumber}</a>
-              </li>
+              </div>
             )}
-          </ul>
+          </div>
         </div>
       </section>
     )
