@@ -1,4 +1,4 @@
-function Contacts({ data }) {
+function Contacts ({ data }) {
   return (
     (data.state || data.country || data.email || data.city || data.zipCode) && (
       <section className="section">

@@ -1,5 +1,5 @@
 import React from "react";
-import scanImage from "../../../assets/images/scan.gif";
+import scanImage from "../../../../../assets/images/scan.gif";
 import "./scanResume.css";
 import {  Circle } from "rc-progress";
 import { useState, useEffect } from "react";
