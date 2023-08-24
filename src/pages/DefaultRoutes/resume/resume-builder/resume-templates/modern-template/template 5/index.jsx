@@ -7,7 +7,7 @@ import Education from "./education";
 import Experience from "./experience";
 import Skills from "./skills";
 
-function TemplateOne(data) {
+function TemplateFive(data) {
   const page = useRef(null);
   const parentPage = useRef(null);
 
@@ -260,4 +260,4 @@ function TemplateOne(data) {
   );
 }
 
-export default TemplateOne;
+export default TemplateFive;
