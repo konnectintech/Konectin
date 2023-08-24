@@ -1,4 +1,4 @@
-function Contacts({ data }) {
+function Contacts ({ data }) {
   return (
     (data.state ||
       data.country ||

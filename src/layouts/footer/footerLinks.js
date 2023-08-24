@@ -24,7 +24,7 @@ export const FooterLinks = [
   {
     head: "Legal",
     sublinks: [
-      { link: "/terms", name: "Privacy Policy" },
+      { link: "/policy", name: "Privacy Policy" },
       { link: "/terms", name: "Terms and Conditions" },
     ],
   },

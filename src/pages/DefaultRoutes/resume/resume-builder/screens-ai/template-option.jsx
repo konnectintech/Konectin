@@ -51,10 +51,7 @@ const TemplateOption = ({ sectionName }) => {
             .filter((record) => record.category === sectionName)
             .map((item, index) => {
               return (
-                <SwiperSlide
-                  key={index}
-                  className="cursor-pointer flex justify-center items-center text-center"
-                >
+                <SwiperSlide className="cursor-pointer ml-2 flex justify-center items-center text-center">
                   <div
                     className={`
                                 ${
