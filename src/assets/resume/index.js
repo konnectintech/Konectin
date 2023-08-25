@@ -8,4 +8,8 @@ export const template_images = [
   { img: templateDesign2, category: "modern" },
   { img: templateDesign3, category: "modern" },
   { img: templateDesign4, category: "modern" },
+  { img: templateDesign4, category: "artistic" },
+  { img: templateDesign3, category: "artistic" },
+  { img: templateDesign3, category: "artistic" },
+  { img: templateDesign3, category: "artistic" },
 ];

@@ -1,9 +1,12 @@
+
+import { TemplateOne, TemplateTwo, TemplateThree, TemplateFour } from "./modern-template";
 import {
-  TemplateOne,
-  TemplateTwo,
-  TemplateThree,
-  TemplateFour,
-} from "./modern-template";
+  TemplateOneA,
+  TemplateTwoA,
+  TemplateThreeA,
+  TemplateFourA,
+} from "./artistic-templates";
+
 
 export const modernTemplates = [
   TemplateOne,
@@ -12,4 +15,9 @@ export const modernTemplates = [
   TemplateFour,
 ];
 
-export const artisticTemplates = [TemplateOne, TemplateTwo];
+export const artisticTemplates = [
+  TemplateOneA,
+  TemplateTwoA,
+  TemplateThreeA,
+  TemplateFourA,
+];
