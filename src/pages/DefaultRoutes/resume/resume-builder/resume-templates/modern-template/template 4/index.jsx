@@ -6,8 +6,9 @@ import Education from "./education";
 import Skills from "./skills";
 import Experience from "./experience";
 import { useLocation } from "react-router-dom";
+import Contacts from "./contacts";
 
-function TemplateTwo(data) {
+function TemplateFour(data) {
   const page = useRef(null);
   const parentPage = useRef(null);
   const { pathname } = useLocation();
@@ -46,12 +47,12 @@ function TemplateTwo(data) {
         }
     `}
       </style>
-      <div className="parent-container top-head no-scrollbar">
-        <div className="side-content"></div>
-        <div className="main-content"></div>
-      </div>
-
       <div id="template">
+        <div className="parent-container top-head no-scrollbar">
+          <div className="side-content"></div>
+          <div className="main-content"></div>
+        </div>
+
         <div className="doc-body">
           <div>
             <style>
@@ -76,7 +77,7 @@ function TemplateTwo(data) {
                 .doc-body .parent-container {
                   position: relative;
                   width: 100%;
-                  max-width: 590px;
+                  max-width: 560px;
                   min-width: 460px;
                   height: 810px;
                   display: flex;
@@ -107,28 +108,24 @@ function TemplateTwo(data) {
                   font-size: 13px;
                   font-weight: 700;
                   line-height: 15px;
+                  color: #fff;
                 }
 
                 .doc-body h3 {
                   font-weight: 600;
                   line-height: 18px;
                 }
-
-                .dataset-container > section {
-                  padding: 10px 0;
-                  border-top: 1px solid rgb(219, 219, 219);
-                }
             
                 .doc-body .top-head {
-                  max-width: 590px;
+                  max-width: 560px;
                   height: 20px;
                 }
 
                 .doc-body .section {
-                  display: flex;
                   display: -webkit-box;
+                  display: flex;
                   align-items: start;
-                  width: 90%;
+                  width: 100%;
                   margin: 0px auto;
                 }
             
@@ -136,19 +133,39 @@ function TemplateTwo(data) {
                   height: max-content;
                   display: flex;
                   flex-direction: column;
-                  width: 77%;
-                  padding: 0 0 0 1rem;
+                  width: 71%;
+                  padding: 0 20px 0 16px;
                 }
             
                 .doc-body .side-content {
                   display: flex;
                   flex-direction: column;
-                  width: 23%;
+                  width: 27%;
+                  background: #212121;
+                }
+                
+                .doc-body .side-content h2, .doc-body .side-content span {
+                  padding: 16px 20px;
                 }
 
+                .doc-body .side-content span {
+                  padding-top: 0;
+                  padding-bottom: 0;
+                }
+                
                 .doc-body .sub-section {
                   display: flex;
                   flex-direction: column;
+                }
+                
+                .doc-body .dark-m {
+                  position: absolute;
+                  width: 163.2px;
+                  height: ${pageMax * 100}%;
+                  min-height: 842px;
+                  top: -8px;
+                  left: -12px;
+                  background: #212121;
                 }
 
                 .doc-body .sub-section > div, .doc-body .sub-section > p {
@@ -188,12 +205,36 @@ function TemplateTwo(data) {
                   margin-top: 0.5rem/* 8px */;
                 }
 
+                .doc-body .pt-2 {
+                  padding-top: 0.5rem/* 8px */;
+                }
+
+                .doc-body .pt-4 {
+                  padding-top: 16px;
+                }
+
                 .doc-body .w-full {
                   width: 100%;
                 }
                 
                 .doc-body .ps-4 {
                   padding-left: 1rem/* 16px */;
+                }
+                
+                .doc-body .page {
+                  position: relative;
+                }
+                
+                .doc-body .contacts {
+                  display: -webkit-box;
+                  display: flex;
+                  width: 100%;
+                }
+
+                .doc-body .contacts svg {
+                  display: block;
+                  margin-top: 2px;
+                  margin-right: 5px;
                 }
                 `}
             </style>
@@ -203,23 +244,23 @@ function TemplateTwo(data) {
             ref={parentPage}
             className="parent-container !h-full max-h-[640px] !w-full overflow-y-scroll no-scrollbar pointer-events-none"
           >
-            <div ref={page} className="h-max w-full">
+            <div className="dark-m !min-h-[640px] !top-0 !left-0 !w-[27%]" />
+            <div ref={page} className="h-max w-full page">
               <BasicInfo data={data?.basicInfo} />
-              <div className="dataset-container mt-4">
-                <Profile data={data?.bio} />
-                <Education data={data} />
-                <Experience data={data} />
-                <Skills data={data?.skills} />
-              </div>
+              <Contacts data={data?.basicInfo} />
+              <Profile data={data?.bio} />
+              <Education data={data} />
+              <Experience data={data} />
+              <Skills data={data?.skills} />
             </div>
             <div className="adjuster" />
           </div>
         </div>
-      </div>
 
-      <div className="parent-container top-head no-scrollbar">
-        <div className="side-content"></div>
-        <div className="main-content"></div>
+        <div className="parent-container top-head no-scrollbar">
+          <div className="side-content"></div>
+          <div className="main-content"></div>
+        </div>
       </div>
 
       <div className="flex w-full justify-end items-center gap-2 !mt-4 text-neutral-300">
@@ -241,4 +282,4 @@ function TemplateTwo(data) {
   );
 }
 
-export default TemplateTwo;
+export default TemplateFour;

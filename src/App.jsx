@@ -21,6 +21,7 @@ import Feeds from "./pages/DefaultRoutes/blog/feeds";
 import RouteIdentifier from "./layouts/routeIdentifier";
 import VerifyMail from "./pages/sign/signup/verifyMail";
 import TermsAndCondition from "./pages/DefaultRoutes/terms/TermsAndConditions";
+import PrivacyPolicy from "./pages/DefaultRoutes/policy/PrivacyPolicy";
 import Faq from "./pages/DefaultRoutes/faq/Faq";
 import Contact from "./pages/DefaultRoutes/contact/Contact";
 
@@ -28,6 +29,7 @@ import Sign from "./pages/sign";
 import Login from "./pages/sign/login/login";
 import SignUp from "./pages/sign/signup/signup";
 import ForgetPassword from "./pages/sign/login/forgetPassword";
+
 // import DashBoard from "./pages/ProtectedRoutes/dashboard";
 // import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
 
@@ -54,6 +56,7 @@ function App() {
             <Route path="/internship" element={<Internship />} />
             <Route path="/resume" element={<ResumeBuilder />} />
             <Route path="/terms" element={<TermsAndCondition />} />
+            <Route path="/policy" element={<PrivacyPolicy/>} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/contact-us" element={<Contact />} />
             {/* <Route path="/admin" element={<Admin />} /> */}
