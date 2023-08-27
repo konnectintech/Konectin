@@ -1,11 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { FaPlus } from "react-icons/fa";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTemplateContext } from "../../../../../../middleware/resume";
-import { useState, useEffect } from "react";
+
+import { FaPlus } from "react-icons/fa";
+import DatePicker from "react-multi-date-picker";
 import NavigationButton from "../navigationButton";
+import {
+  CountrySelect,
+  CitySelect,
+  StateSelect,
+} from "react-country-state-city";
+import "react-country-state-city/dist/react-country-state-city.css";
 
 function HighSchool() {
+  const [countryid, setCountryid] = useState(0);
+  const [stateid, setStateid] = useState(0);
+
   const { templateData, setTemplateData } = useTemplateContext();
   const currentEditedEducation = templateData.currentEditedEducation;
 
@@ -106,53 +117,68 @@ function HighSchool() {
             placeholder="High School Name"
           />
           <div className="flex gap-4">
-            <input
-              className="input-container"
-              type="text"
-              placeholder="Country"
-              name="country"
-              value={education.country}
-              onChange={(e) => handleChange(e.target.name, e.target.value)}
-              onInput={(e) => handleChange(e.target.name, e.target.value)}
+            <CountrySelect
+              showFlag={false}
+              containerClassName="input-container"
+              onTextChange={(e) => handleChange("country", e.target.value)}
+              onChange={(e) => {
+                setCountryid(e.id);
+                handleChange("country", e.name);
+              }}
+              placeHolder={education.country ? education.country : "Country"}
             />
-            <input
-              type="text"
-              placeholder="State / Province"
-              name="state"
-              value={education.state}
-              onChange={(e) => handleChange(e.target.name, e.target.value)}
-              onInput={(e) => handleChange(e.target.name, e.target.value)}
-              className="input-container"
+            <StateSelect
+              containerClassName="input-container"
+              countryid={countryid}
+              onTextChange={(e) => handleChange("state", e.target.value)}
+              onChange={(e) => {
+                setStateid(e.id);
+                handleChange("state", e.name);
+              }}
+              placeHolder={education.state ? education.state : "State"}
             />
-            <input
-              type="text"
-              className="input-container"
-              placeholder="City"
-              name="city"
-              value={education.city}
-              onChange={(e) => handleChange(e.target.name, e.target.value)}
-              onInput={(e) => handleChange(e.target.name, e.target.value)}
+            <CitySelect
+              containerClassName="input-container"
+              countryid={countryid}
+              stateid={stateid}
+              onTextChange={(e) => handleChange("city", e.target.value)}
+              onChange={(e) => {
+                handleChange("city", e.name);
+              }}
+              placeHolder={education.city ? education.city : "Country"}
             />
           </div>
 
           <div className="flex gap-4">
-            <input
-              className="input-container"
-              type="text"
+            <DatePicker
+              format="MMMM"
+              arrow={false}
+              buttons={false}
+              onlyMonthPicker
+              containerClassName="w-full"
+              inputClass="input-container"
               placeholder="Graduation Month"
-              name="month"
-              value={education.month}
-              onChange={(e) => handleChange(e.target.name, e.target.value)}
-              onInput={(e) => handleChange(e.target.name, e.target.value)}
+              className="bg-primary-600 text-white"
+              onChange={(e) => {
+                const date = e.toDate();
+                handleChange(
+                  "month",
+                  date.toLocaleString("default", { month: "long" })
+                );
+              }}
             />
-            <input
-              className="input-container"
-              type="text"
-              name="year"
-              value={education.year}
-              onChange={(e) => handleChange(e.target.name, e.target.value)}
-              onInput={(e) => handleChange(e.target.name, e.target.value)}
+            <DatePicker
+              arrow={false}
+              onlyYearPicker
+              containerClassName="w-full"
+              inputClass="input-container"
               placeholder="Graduation Year"
+              className="bg-primary-600 text-white"
+              onChange={(e) => {
+                const date = e.toDate();
+                handleChange("year", date.getFullYear());
+              }}
+              maxDate={new Date()}
             />
           </div>
           <div>

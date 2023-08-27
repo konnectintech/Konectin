@@ -119,7 +119,7 @@
 }
 
 .overflow-y-auto::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
 }
 
 .overflow-y-auto::-webkit-scrollbar-track {

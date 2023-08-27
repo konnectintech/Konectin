@@ -48,7 +48,9 @@ function Contacts({ data }) {
             {data.phoneNumber && (
               <div className="contacts">
                 <CiIcons.CiPhone />
-                <a href={`tel:${data.phoneNumber}`}>{data.phoneNumber}</a>
+                <a href={`tel:${data.phoneCode}${data.phoneNumber}`}>
+                  +{data.phoneCode} {data.phoneNumber}
+                </a>
               </div>
             )}
           </div>

@@ -36,8 +36,6 @@ function Skills({ data }) {
             .skill-year {
               font-size: 10px;
             }
-            
-    
           `}
         </style>
         <div className="skill-section">
@@ -45,7 +43,7 @@ function Skills({ data }) {
           <div className="skill-detail">
             {data.map((item, index) => (
               <div key={index} className="mb-2">
-                {item === "" ? `Skill ${index + 1}` : item}
+                <h3>{item.name === "" ? `Skill ${index + 1}` : item.name}</h3>
               </div>
             ))}
           </div>

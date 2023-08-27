@@ -67,12 +67,18 @@ function Contacts({ data }) {
                 </div>
                 <div className="">{data?.email}</div>
               </div>
-              <div className="item">
+
+              <a
+                className="item"
+                href={`tel:${data.phoneCode}${data.phoneNumber}`}
+              >
                 <div className="icon">
                   <AiOutlinePhone fill="#ffffff" />
                 </div>
-                <div className="">{data?.phoneNumber}</div>
-              </div>
+                <div>
+                  +{data.phoneCode} {data.phoneNumber}
+                </div>
+              </a>
             </div>
           </div>
         </div>

@@ -17,7 +17,7 @@ function Education({ data }) {
 
                   {edu?.year && edu?.year}
 
-                  {!edu?.month && !edu?.year && "Currently pursuing"}
+                  {!edu?.month && !edu?.year && "Pursuing"}
                 </span>
               </div>
 
