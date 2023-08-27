@@ -65,18 +65,27 @@ function Contacts({ data }) {
           </style>
           <div className="content">
             <div className="sub_content">
-              <div className="item">
-                <div className="icon">
-                  <AiOutlineMail />
+              {data?.email && (
+                <div className="item">
+                  <div className="icon">
+                    <AiOutlineMail />
+                  </div>
+                  <div className="">
+                    <a href={`mailto:${data.email}`}>{data.email}</a>
+                  </div>
                 </div>
-                <div className="">{data?.email}</div>
-              </div>
-              <div className="item">
-                <div className="icon">
-                  <AiOutlinePhone />
+              )}
+
+              {data?.phoneNumber && (
+                <div className="item">
+                  <div className="icon">
+                    <AiOutlinePhone />
+                  </div>
+                  <div className="">
+                    <a href={`tel:${data.phoneNumber}`}>{data.phoneNumber}</a>
+                  </div>
                 </div>
-                <div className="">{data?.phoneNumber}</div>
-              </div>
+              )}
             </div>
           </div>
         </div>

@@ -52,13 +52,17 @@ function Contacts({ data }) {
                 <div className="icon">
                   <AiOutlineMail />
                 </div>
-                <div className="">{data?.email}</div>
+                <div className="">
+                  <a href={`mailto:${data.email}`}>{data?.email}</a>
+                </div>
               </div>
               <div className="item">
                 <div className="icon">
                   <AiOutlinePhone />
                 </div>
-                <div className="">{data?.phoneNumber}</div>
+                <div className="">
+                  <a href={`tel:${data.phoneNumber}`}>{data.phoneNumber}</a>
+                </div>
               </div>
             </div>
           </div>
