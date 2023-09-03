@@ -39,9 +39,9 @@ function SignUp() {
         })
         .catch((err) => {
           if (err instanceof InteractionRequiredAuthError) {
-            instance.loginPopup({
-              scopes: ["user.read"],
-            });
+            // instance.loginPopup({
+            //   scopes: ["user.read"],
+            // });
           }
         });
     }
