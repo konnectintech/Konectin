@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { loginForm } from "../signData";
+import { loginForm, resetPasswordForm } from "../signData";
 import { Link, useNavigate } from "react-router-dom";
 import * as FaIcon from "react-icons/fa";
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
@@ -43,7 +43,7 @@ export function RememberMe() {
   );
 }
 
-function Login() {
+function ResetPassword() {
   const [isloading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -75,37 +75,29 @@ function Login() {
   }, []);
 
   const handleSubmit = (data, logType) => {
-    setLoading(true);
-    signIn(data, setLoading, setErrorMessage, logType);
+    // setLoading(true);
+    // signIn(data, setLoading, setErrorMessage, logType);
   };
 
   return (
-    <>
-      {isloading && <Preloader />}
-      <div>
-        <h1 className="text-4xl">Welcome back...</h1>
-        <p>Continue from where you stopped</p>
+    <div className="auth-body items-start lg:w-6/12 w-full sm:min-w-[500px] flex-1">
+      <div className="p-6 lg:pr-16 max-w-[600px] min-h-[80vh] lg:p-0 mx-auto flex flex-col gap-4 items-start justify-center">
+        {isloading && <Preloader />}
+        <div>
+          <h1 className="text-4xl">Create New Password...</h1>
+          <p>Let's help you get your account back</p>
+        </div>
+        <div className="w-full flex flex-col items-stretch text-xs md:text-sm">
+          <FieldForm
+            handleSubmit={handleSubmit}
+            params={resetPasswordForm}
+            formFor="Reset Password"
+            errorMessage={errorMessage}
+          ></FieldForm>
+        </div>
       </div>
-      <div className="w-full flex flex-col items-stretch text-xs md:text-sm">
-        <FieldForm
-          handleSubmit={handleSubmit}
-          params={loginForm}
-          formFor="Sign in"
-          errorMessage={errorMessage}
-        >
-          <RememberMe />
-        </FieldForm>
-
-        {/* Log In Link */}
-        <p className="self-center mt-6">
-          You don't have an account?{" "}
-          <Link to="/signup" className="text-secondary-600 hover:underline">
-            Sign Up
-          </Link>
-        </p>
-      </div>
-    </>
+    </div>
   );
 }
 
-export default Login;
+export default ResetPassword;

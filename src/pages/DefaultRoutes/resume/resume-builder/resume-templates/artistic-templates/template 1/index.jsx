@@ -86,6 +86,24 @@ function TemplateOneA(data) {
                   color: #7a7a7a;
                 }
 
+                .doc-body .top-head {
+                  max-width: 560px;
+                  height: 10px;
+                  background:#ffffff
+                }
+
+                .doc-body .parent-container {
+                  position: relative;
+                  width: 100%;
+                  max-width: 560px;
+                  min-width: 460px;
+                  height: 810px;
+                  display: flex;
+                  align-items: stretch;
+                  background: white;
+                }
+
+
                 .doc-body h1,
                 .doc-body h2,
                 .doc-body h3,
@@ -110,7 +128,7 @@ function TemplateOneA(data) {
 
                 .doc-body h3 {
                   font-weight: 700;
-                  line-height: 10px;
+                  line-height: 15px;
                   text-transform:capitalize;
                 }
                 
@@ -141,6 +159,10 @@ function TemplateOneA(data) {
             <div className="adjuster" />
           </div>
         </div>
+      </div>
+
+      <div className="top-head no-scrollbar">
+        <div className="main-content"></div>
       </div>
 
       <div className="flex w-full justify-end items-center gap-2 !mt-4 text-neutral-300">

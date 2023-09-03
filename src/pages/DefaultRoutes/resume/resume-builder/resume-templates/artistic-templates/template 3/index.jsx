@@ -122,9 +122,13 @@ function TemplateThreeA(data) {
                 }
 
                 .section-column-left {
-                  background:#000000;
                   padding:5px;
-                  width:40%
+                  width:40%;
+                  display: flex;
+                  flex-direction: column;
+                  background: #212121;
+                  
+                }
                 }
 
                 .section-column-right {
