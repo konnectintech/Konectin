@@ -2,11 +2,12 @@ function Experience({ jobExperience, currentEditedJob }) {
   return (
     currentEditedJob >= 1 && (
       <section className="section">
-        <div className="side-content">
-          <h2>Employment</h2>
-        </div>
+        
+       
+        
 
-        <div className="main-content">
+        <div className="main-section">
+        <h2>Employment</h2>
           <div className="sub-section">
             {jobExperience.map((experience, index) => (
               <div key={index} className="sub-section">

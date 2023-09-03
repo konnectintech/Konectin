@@ -9,6 +9,7 @@ const Responsibilities = ({ data, handleInputChange }) => {
   const [responsibility, setResponsibility] = useState(data?.jobTitle);
   const [editorValue, setEditorValue] = useState(data?.workDesc);
   const [dirty, setDirty] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const editorRef = useRef(null);
   const navigate = useNavigate();
 
@@ -26,18 +27,29 @@ const Responsibilities = ({ data, handleInputChange }) => {
   const handleEditorChange = (content) => {
     setEditorValue(content);
     editorRef.current.setDirty(true);
+    setDirty(true);
+    setErrorMessage("You have unsaved content!");
   };
 
   const handleAddSuggestion = (value) => {
     const content = editorRef.current.getContent();
     setEditorValue(`${content} <ul><li>${value}</li></ul>`);
     editorRef.current.setDirty(true);
+    setDirty(true);
+    setErrorMessage("You have unsaved content!");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    navigate("/resume/builder/employment-experience/job-activities");
+    const wordCount = editorRef.current.plugins.wordcount.getCount();
+
+    if (wordCount <= 30) {
+      setDirty(true);
+      setErrorMessage("You have to write at least 30 words");
+    } else {
+      navigate("/resume/builder/employment-experience/job-activities");
+    }
   };
 
   const [suggestions, setSuggestion] = useState([]);
@@ -111,8 +123,6 @@ const Responsibilities = ({ data, handleInputChange }) => {
                 onEditorChange={handleEditorChange}
                 onDirty={() => setDirty(true)}
               />
-
-              {dirty && <p>You have unsaved content!</p>}
             </div>
           </div>
           <div className="w-1/2 hidden md:block">
@@ -133,6 +143,9 @@ const Responsibilities = ({ data, handleInputChange }) => {
         </section>
 
         <div className="w-full mt-16">
+          {dirty && (    
+            <p className="ml-auto w-max text-error-500">{errorMessage}</p>
+          )}
           <NavigationButton
             back={() => navigate("/resume/builder/employment-experience/")}
             cont={handleSubmit}

@@ -42,11 +42,11 @@ export function NotifyModal({
   children,
 }) {
   return (
-    <div className="relative w-10/12 py-10 transition ease-in-out duration-300 flex flex-col md:flex-row px-6 gap-6 items-center text-white">
+    <div className="relative w-10/12 max-w-screen-md py-8 transition ease-in-out duration-300 flex flex-col md:flex-row px-6 md:px-16 gap-6 md:gap-12 items-center text-white min-h-[70vh]">
       <div className="absolute top-0 left-0 w-full h-full">
         <img className="w-full h-full" src={modalBackground} alt="background" />
       </div>
-      <div className="relative z-10 w-1/2 md:w-3/12">
+      <div className="relative z-10 w-1/2 md:w-4/12">
         {!error ? (
           <img className="w-full" src={notifySuccess} alt="error" />
         ) : (
@@ -59,7 +59,7 @@ export function NotifyModal({
         <p>{paragraph2}</p>
         <div
           onClick={() => click()}
-          className="cursor-pointer text-neutral-100 bg-secondary-500 w-fit px-10 py-1 rounded-md"
+          className="cursor-pointer bg-secondary-500 w-fit px-10 py-4 rounded-md"
         >
           {children ? children : "Go back home"}
         </div>

@@ -177,14 +177,24 @@ function ResumeHeader() {
                 ? "flex cursor-pointer items-center gap-2 text-sm"
                 : ""
             } ${
-              locationNo >= link.no
+              completed[link.text.split(" ").join("_")] ||
+              (link.text === "finalize" &&
+                (pathname === "/resume/builder/preview" ||
+                  pathname === "/resume/builder/download"))
+                ? "text-success-400 font-semibold"
+                : locationNo >= link.no
                 ? "text-secondary-500 font-semibold"
                 : "text-secondary-300 font-medium"
             }`}
           >
             <span
               className={`circle-orange ${
-                locationNo >= link.no
+                completed[link.text.split(" ").join("_")] ||
+                (link.text === "finalize" &&
+                  (pathname === "/resume/builder/preview" ||
+                    pathname === "/resume/builder/download"))
+                  ? "text-success-400 border-success-400"
+                  : locationNo >= link.no
                   ? "text-secondary-500 border-secondary-500"
                   : "text-secondary-300 border-secondary-300"
               }`}
@@ -194,7 +204,9 @@ function ResumeHeader() {
             {link.no <= links.length - 1 && (
               <span
                 className={`nav-dotted-line relative rounded-xl hidden xxs:block w-4 sm:w-6 h-0.5 ${
-                  locationNo >= link.no
+                  completed[link.text.split(" ").join("_")]
+                    ? "bg-success-400"
+                    : locationNo >= link.no
                     ? "bg-secondary-500"
                     : "bg-secondary-300 inactive"
                 }`}

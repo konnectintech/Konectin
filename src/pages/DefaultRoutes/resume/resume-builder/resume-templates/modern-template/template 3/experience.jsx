@@ -14,7 +14,7 @@ function Experience({ jobExperience, currentEditedJob }) {
                   </>
                 )}
 
-                {experience.current ? "Present" : `${experience.endYear}`}
+                {experience.current ? "Now" : `${experience.endYear}`}
               </span>
               <div>
                 <h3>

@@ -2,7 +2,7 @@ import {
   TemplateOne,
   TemplateTwo,
   TemplateThree,
-  TemplateFor,
+  TemplateFour,
   TemplateFive,
 } from "./modern-template";
 
@@ -10,8 +10,8 @@ export const modernTemplates = [
   TemplateOne,
   TemplateTwo,
   TemplateThree,
-  TemplateFor,
+  TemplateFour,
   TemplateFive,
-];
+]; 
 
 export const artisticTemplates = [TemplateOne, TemplateTwo];

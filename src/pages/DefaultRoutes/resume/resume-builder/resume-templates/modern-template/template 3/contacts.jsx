@@ -1,6 +1,11 @@
 function Contacts({ data }) {
   return (
-    (data.state || data.country || data.email || data.city || data.zipCode) && (
+    (data.state ||
+      data.country ||
+      data.email ||
+      data.phoneNumber ||
+      data.city ||
+      data.zipCode) && (
       <section className="contacts">
         <p>
           {data.zipCode && data.zipCode}&#160; {data.city && data.city}
@@ -10,9 +15,11 @@ function Contacts({ data }) {
           {data.country && data.country}
         </p>
 
-        {data.email && <p>{data.email}</p>}
+        {data.email && <a href={`mailto:${data.email}`}>{data.email}</a>}
 
-        {data.phoneNumber && <p>{data.phoneNumber}</p>}
+        {data.phoneNumber && (
+          <a href={`tel:${data.phoneNumber}`}>{data.phoneNumber}</a>
+        )}
       </section>
     )
   );

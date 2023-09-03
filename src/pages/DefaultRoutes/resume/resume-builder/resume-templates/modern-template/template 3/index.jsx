@@ -6,18 +6,22 @@ import Education from "./education";
 import Skills from "./skills";
 import Experience from "./experience";
 import Contacts from "./contacts";
+import { useLocation } from "react-router-dom";
 
 function TemplateThree(data) {
   const page = useRef(null);
   const parentPage = useRef(null);
+  const { pathname } = useLocation();
 
   const [pageMax, setPageMax] = useState(1);
   const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     const pageContainer = page.current;
-    setPageMax(Math.ceil(pageContainer.clientHeight / 640));
-  }, []);
+    const pageX = Math.ceil(pageContainer.clientHeight / 640);
+    setPageMax(pageX);
+    setPageNumber(pageX);
+  }, [pathname, data]);
 
   const nextPage = () => {
     if (pageNumber !== pageMax) setPageNumber((prev) => prev + 1);
@@ -29,12 +33,20 @@ function TemplateThree(data) {
 
   useEffect(() => {
     parentPage.current.scrollTo({
-      top: (pageNumber - 1) * 635,
+      top: (pageNumber - 1) * 640,
     });
   }, [pageNumber]);
 
   return (
     <div className="doc-body">
+      <style>
+        {`
+          .doc-body .adjuster {
+            width: 1px;
+            height: ${pageMax * 640}px;
+          }
+      `}
+      </style>
       <div className="parent-container top-head no-scrollbar">
         <div className="side-content"></div>
         <div className="main-content"></div>
@@ -71,15 +83,10 @@ function TemplateThree(data) {
                   display: flex;
                   align-items: stretch;
                   background: white;
-                  padding: 0 1.5rem;
+                  padding: 0 19.5px;
                 }
 
-                .doc-body .adjuster {
-                  width: 1px;
-                  height: ${pageMax * 640}px;
-                }
-
-                .doc-body p, .doc-body span, .doc-body  ul li {
+                .doc-body p, .doc-body a, .doc-body span, .doc-body  ul li {
                   color: #7a7a7a;
                 }
 
@@ -118,7 +125,7 @@ function TemplateThree(data) {
 
                 .doc-body .top-head {
                   max-width: 560px;
-                  height: 20px;
+                  height: 10px;
                 }
 
                 .doc-body .section {
@@ -133,16 +140,23 @@ function TemplateThree(data) {
                   height: 100%;
                   display: flex;
                   flex-direction: column;
-                  width: 269px;
+                  width: 260px;
                   padding-right: 1rem;
+                }
+                
+                .doc-body .section .main-content {
                   border-right: 1px solid rgb(219, 219, 219);
                 }
                 
                 .doc-body .side-content {
                   display: flex;
                   flex-direction: column;
-                  width: 269px;
+                  width: 260px;
                   padding-left: 1rem;
+                }
+                
+                .doc-body .section .side-content {
+                  border-left: 1px solid rgb(219, 219, 219);
                 }
 
                 .doc-body .sub-section > div, .doc-body .sub-section > p {
@@ -157,16 +171,18 @@ function TemplateThree(data) {
                 }
 
                 .doc-body .temp-head {
-                  width: 100%;
-                  margin-top: 10px;
+                  width: 525px;
+                  margin-top: 20px;
                   display: -webkit-box;
                   padding-bottom: 20px;
                   border-bottom: 1px solid rgb(219, 219, 219);
                 }
 
+                .doc-body .temp-head section:first-child {
+                  width: 60%;
+                }
+
                 .doc-body .temp-head .contacts {
-                  width: 45%;
-                  margin-left: auto;
                   text-align: left;
                 }
 
@@ -223,6 +239,7 @@ function TemplateThree(data) {
                 }
                 
                 .doc-body .half-pass span {
+                  display: block;
                   width: max-content;
                   margin-right: 12px;
                 }

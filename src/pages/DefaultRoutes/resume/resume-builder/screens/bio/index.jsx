@@ -12,6 +12,7 @@ const Bio = ({ data, onInputChange }) => {
   );
   const [editorValue, setEditorValue] = useState(data?.bio);
   const [dirty, setDirty] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const editorRef = useRef(null);
   const navigate = useNavigate();
@@ -31,6 +32,19 @@ const Bio = ({ data, onInputChange }) => {
     const content = editorRef.current.getContent();
     setEditorValue(`${content} <ul><li>${value}</li></ul>`);
     editorRef.current.setDirty(true);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const wordCount = editorRef.current.plugins.wordcount.getCount();
+
+    if (wordCount <= 30) {
+      setDirty(true);
+      setErrorMessage("You have to write at least 30 words");
+    } else {
+      navigate("/resume/builder/preview");
+    }
   };
 
   const [suggestions, setSuggestion] = useState([]);
@@ -133,8 +147,6 @@ const Bio = ({ data, onInputChange }) => {
                 value={editorValue}
                 onDirty={() => setDirty(true)}
               />
-
-              {dirty && <p>You have unsaved content!</p>}
             </div>
           </div>
           <div className="max-lg:hidden">
@@ -144,9 +156,12 @@ const Bio = ({ data, onInputChange }) => {
       </div>
 
       <div className="mt-12 w-full">
+        {dirty && (
+          <p className="ml-auto w-max text-error-500">{errorMessage}</p>
+        )}
         <NavigationButton
           back={() => navigate("/resume/builder/skills")}
-          cont={() => navigate("/resume/builder/preview")}
+          cont={handleSubmit}
         />
       </div>
 

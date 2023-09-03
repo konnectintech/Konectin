@@ -1,9 +1,9 @@
 function BasicInfo({ data }) {
   return (
     <section className="section">
+      <div className="side-content"></div>
 
       <div className="main-content sub-section">
-        <p>{data.profession ? data.profession : "Your Profession"}</p>
         <h1 className="capitalize">
           {data.firstName && data.lastName
             ? `${data.firstName} ${data.lastName}`
@@ -13,7 +13,7 @@ function BasicInfo({ data }) {
             ? data.lastName
             : "Your Name"}
         </h1>
-        
+        <p>{data.profession ? data.profession : "Your Profession"}</p>
       </div>
     </section>
   );

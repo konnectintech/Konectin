@@ -1,17 +1,14 @@
 function Contacts ({ data }) {
   return (
     (data.state || data.country || data.email || data.city || data.zipCode) && (
-      <section className="section">
-        <div className="side-content">
-          <h2>Contacts</h2>
-        </div>
+      <section className="section pb-4 underline__bottom">
 
-        <div className="main-content">
-          <ul className="sub-section list-disc ps-4">
+        <div className="pl-4 separated-div ">
+          <div className=" list-none ">
             {/* Address */}
             {(data.state || data.country || data.city || data.zipCode) && (
               <div>
-                <li>
+               
                   {data.zipCode && data.zipCode}
 
                   {data.zipCode && data.city && ", "}
@@ -25,7 +22,7 @@ function Contacts ({ data }) {
                   {data.state && data.country && ", "}
 
                   {data.country && data.country}
-                </li>
+                
               </div>
             )}
 
@@ -41,7 +38,18 @@ function Contacts ({ data }) {
                 <li>{data.phoneNumber}</li>
               </div>
             )}
-          </ul>
+          </div>
+          <div className="sub-section toLowerCase ml-md">
+            <p>
+              {data.firstName && data.lastName
+              ? `${data.firstName}${data.lastName}portfolio`
+              : data.firstName
+              ? data.firstName
+              : data.lastName
+              ? data.lastName
+              : "Your Name"}
+            </p>
+          </div>
         </div>
       </section>
     )

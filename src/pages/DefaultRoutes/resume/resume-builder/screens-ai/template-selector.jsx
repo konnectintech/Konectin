@@ -72,7 +72,7 @@ const TemplateSelector = ({ data }) => {
         <TemplateOption sectionName="artistic" />
         <div
           onClick={() => startBuilding()}
-          className="self-end bg-primary-500 rounded-md py-3 px-14 text-white"
+          className="self-end cursor-pointer bg-primary-500 rounded-md py-3 px-14 text-white"
         >
           Continue
         </div>

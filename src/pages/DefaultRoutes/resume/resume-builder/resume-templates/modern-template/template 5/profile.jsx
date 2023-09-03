@@ -1,15 +1,13 @@
 function Profile({ data }) {
   return (
     data && (
-      <section className="section">
-        <div className="side-content">
+      <section className="section py-4 underline__bottom">
+        <div>
           <h2>Profile</h2>
-        </div>
-
-        <div className="main-content">
-          <div className="leading-relaxed list-none">
-            <div dangerouslySetInnerHTML={{ __html: data }} />
-          </div>
+          <div
+            className="sub-content"
+            dangerouslySetInnerHTML={{ __html: data }}
+          />
         </div>
       </section>
     )

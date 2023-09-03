@@ -5,18 +5,22 @@ import Profile from "./profile";
 import Education from "./education";
 import Skills from "./skills";
 import Experience from "./experience";
+import { useLocation } from "react-router-dom";
 
 function TemplateTwo(data) {
   const page = useRef(null);
   const parentPage = useRef(null);
+  const { pathname } = useLocation();
 
   const [pageMax, setPageMax] = useState(1);
   const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     const pageContainer = page.current;
-    setPageMax(Math.ceil(pageContainer.clientHeight / 640));
-  }, []);
+    const pageX = Math.ceil(pageContainer.clientHeight / 640);
+    setPageMax(pageX);
+    setPageNumber(pageX);
+  }, [pathname, data]);
 
   const nextPage = () => {
     if (pageNumber !== pageMax) setPageNumber((prev) => prev + 1);
@@ -28,12 +32,20 @@ function TemplateTwo(data) {
 
   useEffect(() => {
     parentPage.current.scrollTo({
-      top: (pageNumber - 1) * 635,
+      top: (pageNumber - 1) * 640,
     });
   }, [pageNumber]);
 
   return (
     <div className="doc-body">
+      <style>
+        {`
+        .doc-body .adjuster {
+          width: 1px;
+          height: ${pageMax * 640}px;
+        }
+    `}
+      </style>
       <div className="parent-container top-head no-scrollbar">
         <div className="side-content"></div>
         <div className="main-content"></div>
@@ -72,12 +84,7 @@ function TemplateTwo(data) {
                   background: white;
                 }
 
-                .doc-body .adjuster {
-                  width: 1px;
-                  height: ${pageMax * 640}px;
-                }
-
-                .doc-body p, .doc-body span, .doc-body  ul li {
+                .doc-body p, .doc-body a, .doc-body span, .doc-body  ul li {
                   color: #7a7a7a;
                 }
 
