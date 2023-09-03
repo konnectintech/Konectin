@@ -5,7 +5,7 @@ const TermsAndCondition = () => {
   return (
     <div className="pt-20 pb-8 bg-neutral-500 grid grid-cols-1 md:grid-cols-[250px,4fr] grid-rows-[6%,1fr] ">
       {/* Sidebar section */}
-      <section className="py-8 lg:py-16 lg:px-8 px-16 text-2xl bg-neutral-1000 md:max-h-[10%] md:row-span-full ">
+      <section className="py-8 lg:py-16 lg:px-8 px-16 text-2xl bg-red-500 md:max-h-[10%] md:row-span-full sticky min-h-[40vh] ">
         <h5 className="  font-bold mb-3 ">Table Of Contents</h5>
         <div className="flex flex-col">
           <Link

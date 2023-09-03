@@ -48,6 +48,7 @@ export const useTemplateData = () => {
       firstName: "",
       lastName: "",
       phoneNumber: "",
+      phoneCode: "",
       profession: "",
       state: "",
       zipCode: "",

@@ -29,6 +29,7 @@ import Sign from "./pages/sign";
 import Login from "./pages/sign/login/login";
 import SignUp from "./pages/sign/signup/signup";
 import ForgetPassword from "./pages/sign/login/forgetPassword";
+import ResetPassword from "./pages/sign/login/resetPassword";
 
 // import DashBoard from "./pages/ProtectedRoutes/dashboard";
 // import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
@@ -50,13 +51,14 @@ function App() {
           </Route>
           <Route path="/forgot-password" element={<ForgetPassword />} />
           <Route path="/verify-mail" element={<VerifyMail />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
 
           <Route element={<DefaultRoutes />}>
             <Route path="/" element={<Landing />} />
             <Route path="/internship" element={<Internship />} />
             <Route path="/resume" element={<ResumeBuilder />} />
             <Route path="/terms" element={<TermsAndCondition />} />
-            <Route path="/policy" element={<PrivacyPolicy/>} />
+            <Route path="/policy" element={<PrivacyPolicy />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/contact-us" element={<Contact />} />
             {/* <Route path="/admin" element={<Admin />} /> */}

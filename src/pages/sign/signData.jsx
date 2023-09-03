@@ -83,3 +83,32 @@ export const loginForm = [
     type: "password",
   },
 ];
+
+export const resetPasswordForm = [
+  {
+    id: "password",
+    icon: (
+      <MdIcons.MdPerson
+        className="absolute -translate-y-1/2 top-1/2 right-3 pb-2"
+        color="#242424"
+        size="1.7rem"
+      />
+    ),
+    legend: "New Password",
+    placeholder: "Minimum of 8 characters",
+    type: "password",
+  },
+  {
+    id: "confirmPassword",
+    icon: (
+      <MdIcons.MdLock
+        className="absolute -translate-y-1/2 top-1/2 right-3 pb-1"
+        color="#242424"
+        size="1.5rem"
+      />
+    ),
+    legend: "Confirm Password",
+    placeholder: "Enter Password again",
+    type: "password",
+  },
+];

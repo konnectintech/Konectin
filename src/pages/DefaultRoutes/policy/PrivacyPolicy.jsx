@@ -3,7 +3,7 @@ import { Link } from "react-scroll";
 
 function PrivacyPolicy() {
   return (
-    <div className="pt-20 pb-8 bg-neutral-500 grid grid-cols-1 md:grid-cols-[250px,4fr] grid-rows-[12%,1fr] ">
+    <div className="pt-20 pb-8 bg-neutral grid grid-cols-1 md:grid-cols-[250px,4fr] grid-rows-[12%,1fr] ">
       {/* Sidebar section */}
       <section className="py-8 lg:py-16 px-8  bg-neutral-1000 md:max-h-[55%] md:row-span-full ">
         <h5 className=" text-xl font-bold mb-3 ">Table Of Contents</h5>
@@ -70,7 +70,9 @@ function PrivacyPolicy() {
         <div className="mt-6" id="provideFeedback">
           {/* Provide Feedback */}
           <>
-            <h5 className="mt-8 text-xl font-bold font-[Merriweather] ">How To Provide Feedback</h5>
+            <h5 className="mt-8 text-xl font-bold font-[Merriweather] ">
+              How To Provide Feedback
+            </h5>
             <p className="text-xl font-medium my-4 font-[Avenir]">
               There are several ways you can provide feedback on our online
               platform:
@@ -78,7 +80,8 @@ function PrivacyPolicy() {
             <div className="p-2 bg-primary-300 w-full">1. Contact us</div>
             <p className="my-4 font-[Avenir]">
               You can contact our customer support team directly through our
-              website or by emailing <b>Konectincompany@gmail.com</b> to share your feedback.
+              website or by emailing <b>Konectincompany@gmail.com</b> to share
+              your feedback.
             </p>
             <div className="p-2 bg-primary-300 w-full">2. Surveys</div>
             <p className="my-4 font-[Avenir]">
@@ -96,7 +99,9 @@ function PrivacyPolicy() {
         <div className="" id="handleFeedback">
           {/* Handle Feedback */}
           <>
-            <h5 className="mt-8 text-xl font-bold font-[Merriweather] ">How We Handle Feedback</h5>
+            <h5 className="mt-8 text-xl font-bold font-[Merriweather] ">
+              How We Handle Feedback
+            </h5>
             <p className="text-xl font-medium my-4 font-[Avenir]">
               We take all feedback seriously and use it to improve our platform.
               Here's how we handle feedback:

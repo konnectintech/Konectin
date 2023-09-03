@@ -36,8 +36,21 @@ function Skills({ data }) {
           <div className="separated-div list-none skills">
             {data.map((item, index) => (
               <div key={index} className="mb-2 separated-div">
+<<<<<<< HEAD
                 <h3>{item === "" ? `Skill ${index + 1}` : item}</h3>
                 <span>Expert</span>
+=======
+                <h3>{item.name === "" ? `Skill ${index + 1}` : item.name}</h3>
+                {item.lvl !== "" && (
+                  <span>
+                    {item.lvl <= 70 && item.lvl > 40
+                      ? "Proficient"
+                      : item.lvl <= 40
+                      ? "Novice"
+                      : "Expert"}
+                  </span>
+                )}
+>>>>>>> 5822cfa0a6b144e9a98bb71a8ed78e805a414b19
               </div>
             ))}
           </div>

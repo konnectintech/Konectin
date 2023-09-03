@@ -17,7 +17,11 @@ function Education({ data }) {
 
                   {edu?.year && edu?.year}
 
+<<<<<<< HEAD
                   {!edu?.month && !edu?.year && "Currently pursuing"}
+=======
+                  {!edu?.month && !edu?.year && "Pursuing"}
+>>>>>>> 5822cfa0a6b144e9a98bb71a8ed78e805a414b19
                 </span>
               </div>
 

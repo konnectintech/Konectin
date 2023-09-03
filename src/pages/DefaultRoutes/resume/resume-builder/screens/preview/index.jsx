@@ -24,7 +24,7 @@ const Preview = ({ data }) => {
           </Link>
           <div className="max-w-xl w-full flex flex-col justify-center mt-8 lg:mt-16 md:mt-8 gap-5 md:flex-row mx-auto">
             <Link
-              to="/resume/builder/skills"
+              to="/resume/builder/bio"
               className="w-full text-center max-w-xs border border-neutral-500 rounded-lg text-sm py-3 px-3"
             >
               Back

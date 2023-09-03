@@ -42,6 +42,14 @@ const Bio = ({ data, onInputChange }) => {
     if (wordCount <= 30) {
       setDirty(true);
       setErrorMessage("You have to write at least 30 words");
+<<<<<<< HEAD
+=======
+      return;
+    }
+
+    if (dirty) {
+      setErrorMessage("You have unsaved content!");
+>>>>>>> 5822cfa0a6b144e9a98bb71a8ed78e805a414b19
     } else {
       navigate("/resume/builder/preview");
     }
@@ -87,7 +95,9 @@ const Bio = ({ data, onInputChange }) => {
 
       setSuggestion(correctedResponse);
     } catch (err) {
-      console.error("The sample encountered an error:", err);
+      setSuggestion({
+        error: "The sample encountered an error: Please refresh the page",
+      });
     }
     setLoading(false);
   };
@@ -140,11 +150,14 @@ const Bio = ({ data, onInputChange }) => {
                   content_style:
                     "body { font-family: Merriweather, Arial, sans-serif; font-size: 12px }",
                 }}
+                initialValue=""
+                value={editorValue}
                 onEditorChange={() => {
                   setEditorValue(editorRef.current.getContent());
+                  editorRef.current.setDirty(true);
                   setDirty(true);
+                  setErrorMessage("You have unsaved content!");
                 }}
-                value={editorValue}
                 onDirty={() => setDirty(true)}
               />
             </div>

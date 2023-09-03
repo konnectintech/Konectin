@@ -47,6 +47,14 @@ const Responsibilities = ({ data, handleInputChange }) => {
     if (wordCount <= 30) {
       setDirty(true);
       setErrorMessage("You have to write at least 30 words");
+<<<<<<< HEAD
+=======
+      return;
+    }
+
+    if (dirty) {
+      setErrorMessage("You have unsaved content!");
+>>>>>>> 5822cfa0a6b144e9a98bb71a8ed78e805a414b19
     } else {
       navigate("/resume/builder/employment-experience/job-activities");
     }
@@ -143,7 +151,11 @@ const Responsibilities = ({ data, handleInputChange }) => {
         </section>
 
         <div className="w-full mt-16">
+<<<<<<< HEAD
           {dirty && (    
+=======
+          {dirty && (
+>>>>>>> 5822cfa0a6b144e9a98bb71a8ed78e805a414b19
             <p className="ml-auto w-max text-error-500">{errorMessage}</p>
           )}
           <NavigationButton

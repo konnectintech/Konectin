@@ -102,6 +102,8 @@ import arrowDown from "./icons/P1-Lighticons-line-291.png";
 
 // About Us Images
 import AboutHeroImage from "./images/about hero.png";
+import MustafaIcon from "./images/mustafa.png";
+import DavidIcon from "./images/david.png";
 import AboutProfileImage from "./images/about profile.png";
 import OurVisionImage from "./images/vision.png";
 
@@ -212,4 +214,6 @@ export {
   variant3Icon,
   variant4Icon,
   variant5Icon,
+  MustafaIcon,
+  DavidIcon,
 };
