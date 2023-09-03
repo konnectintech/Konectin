@@ -56,10 +56,7 @@ function Contacts({ data }) {
                   <a href={`mailto:${data.email}`}>{data?.email}</a>
                 </div>
               </div>
-              <a
-                className="item"
-                href={`tel:${data.phoneCode}${data.phoneNumber}`}
-              >
+              <div className="item">
                 <div className="icon">
                   <AiOutlinePhone fill="#ffffff" />
                 </div>
