@@ -18,7 +18,9 @@ function Contacts({ data }) {
         {data.email && <a href={`mailto:${data.email}`}>{data.email}</a>}
 
         {data.phoneNumber && (
-          <a href={`tel:${data.phoneNumber}`}>{data.phoneNumber}</a>
+          <a href={`tel:${data.phoneCode}${data.phoneNumber}`}>
+            +{data.phoneCode} {data.phoneNumber}
+          </a>
         )}
       </section>
     )

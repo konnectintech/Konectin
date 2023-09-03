@@ -48,7 +48,9 @@ function BasicInfo({ data }) {
           )}
           {data.email && data.phoneNumber && ", "}
           {data.phoneNumber && (
-            <a href={`tel:${data.phoneNumber}`}>{data.phoneNumber}</a>
+            <a href={`tel:${data.phoneCode}${data.phoneNumber}`}>
+              +{data.phoneCode} {data.phoneNumber}
+            </a>
           )}
         </p>
       )}

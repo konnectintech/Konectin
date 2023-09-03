@@ -9,7 +9,6 @@ function SelectedTemplates({ data }) {
     templateType === "modern"
       ? modernTemplates.filter((_, index) => index === templateIndex - 1)
       : artisticTemplates.filter((_, index) => index === templateIndex - 1);
-  console.log("ExactTemplate", ExactTemplate);
 
   return ExactTemplate(data);
 }

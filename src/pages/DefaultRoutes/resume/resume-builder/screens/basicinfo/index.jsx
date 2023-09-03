@@ -1,7 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import NavigationButton from "../navigationButton";
 import SelectedTemplates from "../../resume-templates";
-import { countries } from "../../../../../../assets/data/countries";
+import {
+  CitySelect,
+  CountrySelect,
+  StateSelect,
+} from "react-country-state-city";
+import "react-country-state-city/dist/react-country-state-city.css";
+import { useEffect, useState } from "react";
 
 const BasicInformation = ({ data, onInputChange }) => {
   const {
@@ -15,21 +21,45 @@ const BasicInformation = ({ data, onInputChange }) => {
     email,
   } = data?.basicInfo;
 
+  const [countryid, setCountryid] = useState(0);
+  const [code, setCode] = useState("");
+  const [stateid, setStateid] = useState(0);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    onInputChange({
+      section: "basicInfo",
+      subsection: "phoneCode",
+      values: code,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [code]);
 
   const handleInputChange = (event, name) => {
     const { value } = event.target;
     onInputChange({ section: "basicInfo", subsection: name, values: value });
   };
 
+  const handleSelectChange = (event, section) => {
+    const { name } = event;
+    onInputChange({ section: "basicInfo", subsection: section, values: name });
+  };
+
   const handleSubmit = () => {
-    if (firstName && lastName && state && email && country) {
-      if (Object.keys(data.jobExperience).length <= 0) {
-        navigate("employment-experience");
+    if (firstName && lastName && city && state && email && country) {
+      const jobArray = Object.entries(data.jobExperience)[0];
+      if (Object.keys(data.jobExperience).length >= 1) {
+        if (jobArray[1].company === "" || jobArray[1].workDesc.length <= 28) {
+          navigate("employment-experience");
+          return;
+        }
+
+        navigate("/resume/builder/employment-experience/job-activities");
         return;
       }
 
-      navigate("/resume/builder/employment-experience/job-activities");
+      navigate("employment-experience");
     }
   };
 
@@ -60,49 +90,72 @@ const BasicInformation = ({ data, onInputChange }) => {
               className="input-container"
             />
           </div>
-          <input
-            className="input-container"
-            type="text"
-            placeholder="Phone"
-            value={phoneNumber}
-            onChange={(e) => handleInputChange(e, "phoneNumber")}
-          />
           <div className="flex gap-4">
-            <input
-              value={city}
-              onChange={(e) => handleInputChange(e, "city")}
-              className="input-container"
-              type="text"
-              placeholder="City"
+            <CitySelect
+              containerClassName="input-container"
+              countryid={countryid}
+              stateid={stateid}
+              onTextChange={(e) => handleInputChange(e, "city")}
+              onChange={(e) => {
+                handleSelectChange(e, "city");
+              }}
+              placeHolder="Select City"
             />
-            <input
-              className="input-container"
-              type="text"
-              value={state}
-              onChange={(e) => handleInputChange(e, "state")}
-              placeholder="State / Province"
+            <StateSelect
+              containerClassName="input-container"
+              countryid={countryid}
+              onTextChange={(e) => handleInputChange(e, "state")}
+              onChange={(e) => {
+                setStateid(e.id);
+                handleSelectChange(e, "state");
+              }}
+              placeHolder="Select State"
             />
           </div>
           <div className="flex gap-4">
-            <select
-              value={country}
-              onChange={(e) => handleInputChange(e, "country")}
-              className="input-container"
-            >
-              {countries.map((country) => (
-                <option key={country.code} value={country.name}>
-                  {country.name}
-                </option>
-              ))}
-            </select>
+            <CountrySelect
+              showFlag={false}
+              containerClassName="input-container"
+              onTextChange={(e) => handleInputChange(e, "country")}
+              onChange={(e) => {
+                setCountryid(e.id);
+                setCode(e.phone_code);
+                handleSelectChange(e, "country");
+              }}
+              placeHolder="Select Country"
+            />
             <input
               className="input-container"
-              type="text"
+              type="tel"
+              minLength="4"
+              maxLength="6"
               value={zipCode}
               onChange={(e) => handleInputChange(e, "zipCode")}
               placeholder="Zip Code"
             />
           </div>
+
+          <input
+            className="input-container"
+            type="text"
+            placeholder="Phone"
+            minLength="12"
+            maxLength="12"
+            value={phoneNumber}
+            onChange={(e) => {
+              e.target.value = e.target.value
+                .replace(/[^0-9]/g, "")
+                .replace(/(\d{3})(\d{3})(\d{4})/, "$1 $2 $3")
+                .trim();
+
+              onInputChange({
+                section: "basicInfo",
+                subsection: "phoneNumber",
+                values: e.target.value,
+              });
+            }}
+          />
+
           <input
             className="input-container"
             type="email"

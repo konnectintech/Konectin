@@ -16,7 +16,7 @@ function Skills({ data }) {
         <div className="separated-div list-none skills">
           {data.map((item, index) => (
             <div key={index}>
-              <h4>{item === "" ? `Skill ${index + 1}` : item}</h4>
+              <h4>{item.name === "" ? `Skill ${index + 1}` : item.name}</h4>
             </div>
           ))}
         </div>

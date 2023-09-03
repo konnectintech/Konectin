@@ -53,8 +53,40 @@ input[type="tel"]:-webkit-autofill {
   -webkit-background-clip: unset;
 }
 
+.stdropdown-container {
+  border: none !important;
+}
+
+.stsearch-box {
+  padding: 0 !important;
+}
+
+.stsearch-box input {
+  border: none !important;
+  outline: none !important;
+  padding: 0 !important;
+  background: transparent;
+}
+
 .input-container {
   @apply p-4 mb-6 text-[11px] w-full text-primary-400 border border-neutral-500 outline-0 rounded-[4px] bg-neutral-1000;
+}
+
+.rmdp-year-picker,
+.rmdp-month-picker {
+  background-color: inherit;
+}
+
+.rmdp-day,
+.rmdp-week-day,
+.rmdp-header-values {
+  color: inherit;
+}
+
+.rmdp-day.rmdp-selected span:not(.highlight) {
+  background-color: #fff;
+  box-shadow: none;
+  color: #000;
 }
 
 .underdash {
@@ -85,21 +117,6 @@ h2,
 h3,
 h4 {
   font-family: "Merriweather", sans-serif;
-}
-
-select.select-wrapper {
-  position: relative;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-select.select-wrapper::after {
-  content: "";
-  font-size: 1rem;
-  top: 6px;
-  right: 10px;
-  position: absolute;
 }
 
 .job-desc ul {
@@ -199,5 +216,3 @@ select.select-wrapper::after {
 .drop-file-preview p {
   font-weight: 500;
 }
-
-

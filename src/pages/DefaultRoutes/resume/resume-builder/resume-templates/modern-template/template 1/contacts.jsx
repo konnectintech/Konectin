@@ -1,4 +1,4 @@
-function Contacts ({ data }) {
+function Contacts({ data }) {
   return (
     (data.state ||
       data.country ||
@@ -43,7 +43,9 @@ function Contacts ({ data }) {
 
             {data.phoneNumber && (
               <li>
-                <a href={`tel:${data.phoneNumber}`}>{data.phoneNumber}</a>
+                <a href={`tel:${data.phoneCode}${data.phoneNumber}`}>
+                  +{data.phoneCode} {data.phoneNumber}
+                </a>
               </li>
             )}
           </ul>

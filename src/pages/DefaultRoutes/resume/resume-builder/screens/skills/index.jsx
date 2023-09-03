@@ -12,7 +12,7 @@ const Skills = ({ data, updateResume }) => {
   const navigate = useNavigate();
 
   const addSkill = () => {
-    setSkillList([...skillList, ""]);
+    setSkillList([...skillList, { name: "", lvl: "" }]);
   };
 
   const removeSkill = (index) => {
@@ -53,6 +53,8 @@ const Skills = ({ data, updateResume }) => {
         </h2>
         <p className="font-extralight text-neutral-300 text-sm tracking-[-0.01rem] mt-3 mb-5max-w-2xl">
           Try to add 6-10 skills that are relevant to your desired job.
+          <br />
+          Leave expertise field blank if not wanted
         </p>
 
         <div className="max-w-sm pb-12">
@@ -72,43 +74,59 @@ const Skills = ({ data, updateResume }) => {
                     >
                       {(provided) => (
                         <div
-                          className="flex w-full justify-between items-center rounded-lg border border-neutral-500 font-extralight text-neutral-400 mb-4 text-sm py-3 px-2 bg-white"
+                          className="flex gap-2 items-stretch justify-between font-extralight text-neutral-400 mb-4 text-sm capitalize"
                           ref={provided.innerRef}
                           {...provided.dragHandleProps}
                           {...provided.draggableProps}
                         >
-                          <div className="flex items-center">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth={1.5}
-                              stroke="currentColor"
-                              className="w-3 h-6 mr-3"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M3.75 9h16.5m-16.5 6.75h16.5"
-                              />
-                            </svg>
-                            <input
-                              type="text"
-                              value={skill}
-                              onChange={(e) =>
-                                setSkillList((prev) =>
-                                  prev.map((obj, id) =>
-                                    id === index ? e.target.value : obj
+                          <div className="flex w-full justify-between items-center rounded-lg border border-neutral-500 py-3 px-2 bg-white">
+                            <div className="flex items-center">
+                              =
+                              <input
+                                type="text"
+                                value={skill.name}
+                                onChange={(e) =>
+                                  setSkillList((prev) =>
+                                    prev.map((obj, id) =>
+                                      id === index
+                                        ? { ...obj, name: e.target.value }
+                                        : obj
+                                    )
                                   )
-                                )
-                              }
-                              className="text-sm w-full capitalize text-neutral-400 outline-none"
+                                }
+                                className="w-full outline-none pl-3"
+                              />
+                            </div>
+                            <FaTrash
+                              className="cursor-pointer"
+                              onClick={() => removeSkill(index)}
                             />
                           </div>
-                          <FaTrash
-                            className="cursor-pointer"
-                            onClick={() => removeSkill(index)}
-                          />
+                          <div className="flex justify-center items-center rounded-lg border border-neutral-500 py-3 px-2 bg-white">
+                            <input
+                              type="text"
+                              value={skill.lvl}
+                              placeholder="0-100"
+                              onChange={(e) => {
+                                const replaced =
+                                  e.target.value <= 100
+                                    ? e.target.value.replace(/[^0-9]/, "")
+                                    : e.target.value.replace(/[1-9][0-9]/, "");
+
+                                e.target.value = replaced.trim();
+
+                                setSkillList((prev) =>
+                                  prev.map((obj, id) =>
+                                    id === index
+                                      ? { ...obj, lvl: e.target.value }
+                                      : obj
+                                  )
+                                );
+                              }}
+                              maxLength="3"
+                              className="text-center w-[30px] outline-none"
+                            />
+                          </div>
                         </div>
                       )}
                     </Draggable>

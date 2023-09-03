@@ -47,6 +47,11 @@ const Responsibilities = ({ data, handleInputChange }) => {
     if (wordCount <= 30) {
       setDirty(true);
       setErrorMessage("You have to write at least 30 words");
+      return;
+    }
+
+    if (dirty) {
+      setErrorMessage("You have unsaved content!");
     } else {
       navigate("/resume/builder/employment-experience/job-activities");
     }
