@@ -30,7 +30,7 @@ const Bio = ({ data, onInputChange }) => {
 
   const handleAddSuggestion = (value) => {
     const content = editorRef.current.getContent();
-    setEditorValue(`${content} <ul><li>${value}</li></ul>`);
+    setEditorValue(`${content} ${value.content}`);
     editorRef.current.setDirty(true);
   };
 
@@ -57,20 +57,20 @@ const Bio = ({ data, onInputChange }) => {
 
   const azureApiKey = import.meta.env.VITE_OPENAI_KEY;
 
-  const getJobProfile = async () => {
+  const getJobProfile = async (n) => {
     setLoading(true);
     const messages = [
       {
         role: "user",
-        content: `Using list type, generate 5 professional biography for ${
+        content: `Using Google XYZ Formula, generate professional biography for ${
           data.basicInfo.firstName
         } ${data.basicInfo.lastName}, ${responsibility} at ${
           data.jobExperience[0].company
         }. Highlight ${data.basicInfo.firstName} ${
           data.basicInfo.lastName
         }'s key skills in ${data.skills.map(
-          (skill) => `${skill} `
-        )}, experience, and accomplishments in 5 of sentences/paragraphs`,
+          (skill) => `${skill.name} `
+        )}, experience, and accomplishments using about 5 personality associated with ${responsibility}. Keep it concise and aim for about 50-100 words. Use keywords to enhance discoverability and proof read for accuracy.`,
       },
     ];
 
@@ -79,28 +79,33 @@ const Bio = ({ data, onInputChange }) => {
         "https://azure-openai-konectin.openai.azure.com/",
         new AzureKeyCredential(azureApiKey)
       );
-      const deploymentId = "Konectin-1";
+      const deploymentId = "35Turbo";
       const result = await client.getChatCompletions(deploymentId, messages);
 
-      const unorderedResponse = result.choices[0].message.content.replace(
-        /\d+\./g,
-        "- "
-      );
-
-      let correctedResponse = unorderedResponse.split("-  ");
-      correctedResponse.splice(0, 1);
-
-      setSuggestion(correctedResponse);
+      const replica = suggestions;
+      replica.splice(n, 1, { content: result.choices[0].message.content });
+      setSuggestion(replica);
     } catch (err) {
-      setSuggestion({
-        error: "The sample encountered an error: Please refresh the page",
-      });
+      console.log(err);
     }
     setLoading(false);
   };
 
   useEffect(() => {
-    getJobProfile();
+    if (loading) {
+      const preloader = new Array(5).fill({
+        content:
+          "Streamlined financial reporting process, reducing monthly close time by 20%, and ensuring accuracy of financial statements.",
+        loading,
+      });
+      setSuggestion(preloader);
+    }
+  }, [loading]);
+
+  useEffect(() => {
+    for (let i = 0; i <= 5; i++) {
+      getJobProfile(i);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [responsibility]);
 

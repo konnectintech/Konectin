@@ -33,7 +33,7 @@ const Responsibilities = ({ data, handleInputChange }) => {
 
   const handleAddSuggestion = (value) => {
     const content = editorRef.current.getContent();
-    setEditorValue(`${content} <ul><li>${value}</li></ul>`);
+    setEditorValue(`${content} <ul><li>${value.content}</li></ul>`);
     editorRef.current.setDirty(true);
     setDirty(true);
     setErrorMessage("You have unsaved content!");
@@ -62,12 +62,12 @@ const Responsibilities = ({ data, handleInputChange }) => {
 
   const azureApiKey = import.meta.env.VITE_OPENAI_KEY;
 
-  const getJobResponsibilities = async () => {
+  const getJobResponsibilities = async (n) => {
     setLoading(true);
     const messages = [
       {
         role: "user",
-        content: `List 10 job responsibilities of a/an ${responsibility} in an unordered list type`,
+        content: `List a job responsibility of a/an ${responsibility}. Start with strong action verbs, quantifying achievements with metrics. Tailor ${responsibility} to match the job description. Be clear and concise, proof read for error. Make it within 15-17 words`,
       },
     ];
 
@@ -76,21 +76,33 @@ const Responsibilities = ({ data, handleInputChange }) => {
         "https://azure-openai-konectin.openai.azure.com/",
         new AzureKeyCredential(azureApiKey)
       );
-      const deploymentId = "Konectin-1";
+      const deploymentId = "35Turbo";
       const result = await client.getChatCompletions(deploymentId, messages);
 
-      const correctedResponse = result.choices[0].message.content.split("- ");
-      correctedResponse.splice(0, 1);
-
-      setSuggestion(correctedResponse);
+      const replica = suggestions;
+      replica.splice(n, 1, { content: result.choices[0].message.content });
+      setSuggestion(replica);
     } catch (err) {
-      console.error("The sample encountered an error:", err);
+      console.log(err);
     }
     setLoading(false);
   };
 
   useEffect(() => {
-    getJobResponsibilities();
+    if (loading) {
+      const preloader = new Array(5).fill({
+        content:
+          "Streamlined financial reporting process, reducing monthly close time by 20%, and ensuring accuracy of financial statements.",
+        loading,
+      });
+      setSuggestion(preloader);
+    }
+  }, [loading]);
+
+  useEffect(() => {
+    for (let i = 0; i <= 5; i++) {
+      getJobResponsibilities(i);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [responsibility]);
 

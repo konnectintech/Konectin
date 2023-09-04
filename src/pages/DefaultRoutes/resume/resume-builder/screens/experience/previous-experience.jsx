@@ -1,23 +1,30 @@
 import * as FaIcon from "react-icons/fa";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import JobTitleInput from "../../../../../../components/jobTitleInput";
+import DatePicker from "react-multi-date-picker";
+import { MdArrowDropDown } from "react-icons/md";
 import NavigationButton from "../navigationButton";
 import SelectedTemplates from "../../resume-templates";
+import JobTitleInput from "../../../../../../components/jobTitleInput";
 import { useTemplateContext } from "../../../../../../middleware/resume";
-import {
-  CountrySelect,
-  CitySelect,
-  StateSelect,
-} from "react-country-state-city";
-import DatePicker from "react-multi-date-picker";
-import { useState } from "react";
-
-// Imported CSS
-import "react-country-state-city/dist/react-country-state-city.css";
+import { GetCountries, GetState, GetCity } from "react-country-state-city";
 
 const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
+  const [showCountry, setShowCountry] = useState(false);
+  const [showState, setShowState] = useState(false);
+  const [showCity, setShowCity] = useState(false);
+
   const [countryid, setCountryid] = useState(0);
-  const [stateid, setStateid] = useState(0);
+
+  const [countriesList, setCountriesList] = useState([]);
+  const [stateList, setStateList] = useState([]);
+  const [cityList, setCityList] = useState([]);
+
+  useEffect(() => {
+    GetCountries().then((result) => {
+      setCountriesList(result);
+    });
+  }, []);
 
   const navigate = useNavigate();
   const { templateData } = useTemplateContext();
@@ -56,38 +63,125 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
               placeholder="Company / Organization Name"
             />
             <div className="flex gap-4">
-              <CountrySelect
-                showFlag={false}
-                containerClassName="input-container"
-                onTextChange={(e) =>
-                  handleInputChange("country", e.target.value)
-                }
-                onChange={(e) => {
-                  setCountryid(e.id);
-                  handleInputChange("country", e.name);
-                }}
-                placeHolder={data?.country ? data.country : "Country"}
-              />
-              <StateSelect
-                containerClassName="input-container"
-                countryid={countryid}
-                onTextChange={(e) => handleInputChange("state", e.target.value)}
-                onChange={(e) => {
-                  setStateid(e.id);
-                  handleInputChange("state", e.name);
-                }}
-                placeHolder={data?.state ? data.state : "State"}
-              />
-              <CitySelect
-                containerClassName="input-container"
-                countryid={countryid}
-                stateid={stateid}
-                onTextChange={(e) => handleInputChange("city", e.target.value)}
-                onChange={(e) => {
-                  handleInputChange("city", e.name);
-                }}
-                placeHolder={data?.city ? data.city : "City"}
-              />
+              {/* Country  */}
+              <div className="input-container relative">
+                <div
+                  onClick={() => setShowCountry((prev) => !prev)}
+                  className="cursor-pointer flex gap-2 items-center w-full"
+                >
+                  <input
+                    readOnly
+                    placeholder="Enter Country"
+                    className="bg-transparent outline-none border-none w-full h-full"
+                    value={data?.country}
+                  />
+                  <MdArrowDropDown size="1.5rem" />
+                </div>
+                {showCountry && (
+                  <div className="absolute flex flex-col bg-neutral-1000 left-0 border overflow-y-auto h-[30vh] top-full w-full">
+                    {countriesList.map((item, index) => (
+                      <div
+                        className="w-full py-3 px-6 cursor-pointer hover:bg-purple-400 hover:text-white"
+                        key={index}
+                        onClick={() => {
+                          setShowCountry((prev) => !prev);
+                          handleInputChange("country", item.name);
+                          setCountryid(item.id);
+                          GetState(item.id).then((result) => {
+                            setStateList(result);
+                          });
+                        }}
+                      >
+                        {item.name}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div className="input-container relative">
+                {stateList.length <= 0 ? (
+                  <input
+                    onInput={(e) => handleInputChange("state", e.target.value)}
+                    onChange={(e) => handleInputChange("state", e.target.value)}
+                    placeholder="Enter State"
+                    className="bg-transparent outline-none border-none w-full h-full"
+                    value={data?.state}
+                  />
+                ) : (
+                  <div
+                    onClick={() => setShowState((prev) => !prev)}
+                    className="cursor-pointer flex gap-2 items-center w-full"
+                  >
+                    <input
+                      readOnly
+                      className="bg-transparent outline-none border-none w-full h-full"
+                      value={data?.state}
+                    />
+                    <MdArrowDropDown size="1.5rem" />
+                  </div>
+                )}
+
+                {showState && (
+                  <div className="absolute flex flex-col bg-neutral-1000 left-0 border overflow-y-auto h-[30vh] top-full w-full">
+                    {stateList.map((item, index) => (
+                      <div
+                        className="w-full py-3 px-6 cursor-pointer hover:bg-purple-400 hover:text-white"
+                        key={index}
+                        onClick={() => {
+                          setShowState((prev) => !prev);
+                          handleInputChange("state", item.name);
+                          GetCity(countryid, item.id).then((result) => {
+                            setCityList(result);
+                          });
+                        }}
+                      >
+                        {item.name}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div className="input-container relative">
+                {cityList.length <= 0 ? (
+                  <input
+                    onInput={(e) => handleInputChange("city", e.target.value)}
+                    onChange={(e) => handleInputChange("city", e.target.value)}
+                    placeholder="Enter City"
+                    className="bg-transparent outline-none border-none w-full h-full"
+                    value={data?.city}
+                  />
+                ) : (
+                  <div
+                    onClick={() => setShowCity((prev) => !prev)}
+                    className="cursor-pointer flex gap-2 items-center w-full"
+                  >
+                    <input
+                      readOnly
+                      className="bg-transparent outline-none border-none w-full h-full"
+                      value={data?.city}
+                    />
+                    <MdArrowDropDown size="1.5rem" />
+                  </div>
+                )}
+                {showCity && (
+                  <div className="absolute flex flex-col bg-neutral-1000 left-0 border overflow-y-auto h-[30vh] top-full w-full">
+                    {cityList.map((item, index) => (
+                      <div
+                        className="w-full py-3 px-6 cursor-pointer hover:bg-purple-400 hover:text-white"
+                        key={index}
+                        onClick={() => {
+                          setShowCity((prev) => !prev);
+                          handleInputChange("city", item.name);
+                        }}
+                      >
+                        {item.name}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
 
             <div className="flex gap-4">

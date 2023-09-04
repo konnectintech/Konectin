@@ -13,6 +13,8 @@ import {
   variantIcon,
   MustafaIcon,
   DavidIcon,
+  FounderIcon,
+  MichaelIcon,
 } from "../../../assets";
 
 export const Values = [
@@ -54,6 +56,36 @@ export const Values = [
 ];
 
 export const TeamData = [
+  {
+    name: "Michael Fadehan",
+    image: FounderIcon,
+    title: "CEO and Founder",
+    contact: {
+      twitter: "https://twitter.com/michaelfadehan/",
+      instagram: "https://www.instagram.com/michael_fadehan?utm_source=qr",
+      linkedin: "https://www.linkedin.com/in/michael-fadehan. ",
+    },
+    bio: (
+      <div>
+        <p>
+          Meet Michael Fadehan, the visionary founder and driving force behind
+          Konectin Inc. Hailing proudly from Nigeria, Michael's profound love
+          for Africa and unwavering commitment to his fellow Africans has been
+          the cornerstone of his journey. With extensive experience in the tech
+          industry, he has established himself as a leading expert in career
+          development.
+        </p>
+        <p className="mt-4">
+          Fueled by an innate passion for guiding individuals toward their
+          educational and professional dreams, Michael launched Konectin with
+          the resolute mission of transforming the career development
+          experience. His innovative approach seamlessly melds cutting-edge
+          technology with personalized guidance, creating a dynamic platform
+          that empowers professionals and students across the continent
+        </p>
+      </div>
+    ),
+  },
   {
     name: "Mustafa Abdulasis",
     image: MustafaIcon,
@@ -105,41 +137,45 @@ export const TeamData = [
     ),
   },
   {
-    name: "Michael Fadehan",
-    image: person5Icon,
-    profile: AboutProfileImage,
-    title: "Founder",
-    contact: {
-      twitter: "https://twitter.com/michaelfadehan/",
-      instagram: "https://www.instagram.com/michael_fadehan?utm_source=qr",
-      linkedin: "https://www.linkedin.com/in/michael-fadehan. ",
-    },
+    name: "Ajayi Michael",
+    image: MichaelIcon,
+    title: "Lead Engineer",
     bio: (
       <div>
         <p>
-          Meet Michael Fadehan, the visionary founder and driving force behind
-          Konectin Inc. Hailing proudly from Nigeria, Michael's profound love
-          for Africa and unwavering commitment to his fellow Africans has been
-          the cornerstone of his journey. With extensive experience in the tech
-          industry, he has established himself as a leading expert in career
-          development.
+          Ajayi Michael is a proficient and innovative web developer who
+          translates digital ideas into captivating online experiences. With a
+          strong passion for coding and a keen eye for design, Ajayi has
+          established himself as a tech-savvy problem solver in the
+          ever-evolving landscape of web development. Armed with a deep
+          understanding of front-end and back-end technologies, he crafts
+          seamless, user-centric websites that seamlessly blend functionality
+          with aesthetics.
         </p>
         <p className="mt-4">
-          Fueled by an innate passion for guiding individuals toward their
-          educational and professional dreams, Michael launched Konectin with
-          the resolute mission of transforming the career development
-          experience. His innovative approach seamlessly melds cutting-edge
-          technology with personalized guidance, creating a dynamic platform
-          that empowers professionals and students across the continent
+          His journey began with a fascination for how websites work, which led
+          him to pursue formal education in computer science and subsequently
+          delve into the world of programming. Ajayi's commitment to staying
+          abreast of the latest industry trends empowers him to create
+          cutting-edge websites that not only meet clients' objectives but also
+          exceed their expectations.
+        </p>
+        <p className="mt-4">
+          Beyond his technical prowess, Ajayi is known for his collaborative and
+          communicative approach. He thrives in team environments, valuing the
+          exchange of ideas that lead to the creation of superior web solutions.
+          His methodical problem-solving skills enable him to troubleshoot
+          complex issues efficiently, ensuring the optimal performance of
+          websites even in challenging scenarios. With an unwavering dedication
+          to enhancing user experiences, Ajayi stays attuned to user feedback
+          and behavior, refining his designs to provide seamless navigation and
+          engagement. Whether it's crafting e-commerce platforms that drive
+          conversions or developing interactive web applications, Ajayi
+          Michael's portfolio showcases his diverse skill set and unwavering
+          commitment to pushing the boundaries of web development.
         </p>
       </div>
     ),
-  },
-  {
-    name: "Jane Cooper",
-    image: person5Icon,
-    profile: AboutProfileImage,
-    title: "Founder",
     contact: { twitter: "/", instagram: "/", linkedin: "/" },
   },
   {
