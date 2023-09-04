@@ -110,7 +110,7 @@ const Bio = ({ data, onInputChange }) => {
   }, [responsibility]);
 
   return (
-    <div className="mt-8 flex flex-col justify-between items-start mx-auto">
+    <div className="flex flex-col justify-between items-start mx-auto">
       <div className="w-full flex flex-col justify-center items-center mx-auto ">
         <div className="flex flex-col self-start">
           <h2 className="max-w-[30ch] text-3xl leading-tight font-semibold md:leading-snug">

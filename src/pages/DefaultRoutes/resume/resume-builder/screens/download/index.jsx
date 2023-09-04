@@ -70,8 +70,12 @@ const Download = ({ data }) => {
         <h2 className="max-w-[30ch] text-3xl leading-tight font-semibold md:leading-snug mb-8">
           Download Resume
         </h2>
-        <div className="w-full flex flex-col md:flex-row items-center ljustify-center gap-10">
-          <SelectedTemplates data={data} />
+        <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-10">
+          <div className="w-[200px] max-h-[360px] sm:max-h-[300px] md:w-fit md:max-h-full flex items-center justify-center">
+            <div className="scale-[60%] sm:scale-[50%] md:scale-100 mt-10">
+              <SelectedTemplates data={data} />
+            </div>
+          </div>
           <div className="max-w-xl flex flex-col max-md:justify-center mt-16 gap-5">
             {errorMessage && (
               <p className="text-red-500 text-xs translate-y-4">
