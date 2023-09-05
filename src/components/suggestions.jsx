@@ -86,9 +86,7 @@ const Suggestions = ({
         ) : (
           <div className="bg-neutral-1000 border border-[#b2b3b48a] overflow-y-auto rounded h-full max-h-[300px] min-h-[200px]">
             {responsibilities.map((item, index) => {
-<<<<<<< HEAD
-              return (
-=======
+                
               return item.error ? (
                 <div
                   key={index}
@@ -99,7 +97,6 @@ const Suggestions = ({
                   </p>
                 </div>
               ) : (
->>>>>>> 5822cfa0a6b144e9a98bb71a8ed78e805a414b19
                 <div
                   key={index}
                   className="p-5 w-full flex gap-4 items-start border-b border-[#b2b3b48a]"

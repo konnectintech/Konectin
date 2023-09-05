@@ -43,13 +43,9 @@ function Contacts({ data }) {
 
             {data.phoneNumber && (
               <li>
-<<<<<<< HEAD
-                <a href={`tel:${data.phoneNumber}`}>{data.phoneNumber}</a>
-=======
                 <a href={`tel:${data.phoneCode}${data.phoneNumber}`}>
                   +{data.phoneCode} {data.phoneNumber}
                 </a>
->>>>>>> 5822cfa0a6b144e9a98bb71a8ed78e805a414b19
               </li>
             )}
           </ul>

@@ -20,13 +20,10 @@ const BasicInformation = ({ data, onInputChange }) => {
     zipCode,
     email,
   } = data?.basicInfo;
-<<<<<<< HEAD
-=======
 
   const [countryid, setCountryid] = useState(0);
   const [code, setCode] = useState("");
   const [stateid, setStateid] = useState(0);
->>>>>>> 5822cfa0a6b144e9a98bb71a8ed78e805a414b19
 
   const navigate = useNavigate();
 
@@ -93,16 +90,6 @@ const BasicInformation = ({ data, onInputChange }) => {
               className="input-container"
             />
           </div>
-<<<<<<< HEAD
-          <input
-            className="input-container"
-            type="text"
-            placeholder="Phone"
-            value={phoneNumber}
-            onChange={(e) => handleInputChange(e, "phoneNumber")}
-          />
-=======
->>>>>>> 5822cfa0a6b144e9a98bb71a8ed78e805a414b19
           <div className="flex gap-4">
             <CitySelect
               containerClassName="input-container"
