@@ -33,11 +33,13 @@ const BuilderOption = ({
           <h3 className="font-bold text-2xl mb-2">{title}</h3>
           <p className="text-[12px] text-center">{description}</p>
         </div>
-        <BsIcon.BsCheckCircle
+        <div
           className={`${
             selector === choice ? "opacity-100" : "hidden"
-          } mt-auto mb-6 duration-500`}
-        />
+          } bg-success-400 rounded-full h-[20px] w-[20px] text-[16px] flex items-center justify-center mt-auto mb-6 duration-500`}
+        >
+          <BsIcon.BsCheck />
+        </div>
       </div>
     </div>
   );

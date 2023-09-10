@@ -12,7 +12,7 @@ function TeamCollapsedCard({ data, onCardClick }) {
             >
               <div className="w-[100px] h-[100px] rounded-full overflow-hidden">
                 <img
-                  className="aspect-square object-cover"
+                  className="aspect-square object-cover object-top"
                   src={team.image}
                   alt={team.name}
                 />

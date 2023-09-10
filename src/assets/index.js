@@ -80,6 +80,7 @@ import comingSoon from "./images/coming soon.png";
 import modalBackground from "./images/modal background.png";
 
 // Resume Builder Images
+import botIcon from "./images/bot/bot.svg";
 import card3Image from "./images/card 3.png";
 import uploadResume from "./images/upload resume.png";
 import createResume from "./images/create resume.png";
@@ -102,8 +103,10 @@ import arrowDown from "./icons/P1-Lighticons-line-291.png";
 
 // About Us Images
 import AboutHeroImage from "./images/about hero.png";
-import MustafaIcon from "./images/mustafa.png";
-import DavidIcon from "./images/david.png";
+import MustafaIcon from "./images/team/mustafa.png";
+import DavidIcon from "./images/team/david.png";
+import MichaelIcon from "./images/team/michael.png";
+import FounderIcon from "./images/team/founder.png";
 import AboutProfileImage from "./images/about profile.png";
 import OurVisionImage from "./images/vision.png";
 
@@ -171,6 +174,7 @@ export {
   card3Image,
   createResume,
   uploadResume,
+  botIcon,
 
   //Dashboard Images
   bell,
@@ -216,4 +220,6 @@ export {
   variant5Icon,
   MustafaIcon,
   DavidIcon,
+  MichaelIcon,
+  FounderIcon,
 };

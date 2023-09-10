@@ -66,25 +66,27 @@ const StartBuilder = () => {
 
   return (
     <section className="flex flex-col relative">
-      <div className="w-9/12 min-w-fit mx-auto max-w-screen-xl flex flex-col justify-center items-center gap-8 m-8 py-24 px-7 border border-secondary-700 rounded-xl bg-neutral-1000 md:w-6/12">
+      <div className="w-9/12 min-w-fit mx-auto max-w-screen-xl flex flex-col justify-center items-center gap-8 m-8 py-24 px-7 rounded-xl bg-white md:w-6/12">
         <h1 className="text-[20px] md:text-[28px] leading-tight font-semibold md:leading-snug">
-          Create New Resume?
+          Welcome back{" "}
+          {templateData?.basicInfo?.lastName.charAt(0).toUpperCase() +
+            templateData?.basicInfo?.lastName.slice(1)}
         </h1>
         <p className="md:w-[420px] tracking-wider text-sm text-center text-neutral-400">
-          By selecting create new resume, your content will be permanently
-          deleted.
+          Continue from where you left off. By selecting create new resume, your
+          previous content will be permanently deleted.
         </p>
         <div className="flex flex-col gap-4 md:flex-row">
           <div
             onClick={() => setPopUp(true)}
-            className="bg-error-500 cursor-pointer py-4 px-8 flex items-center justify-center text-sm rounded text-neutral-1000"
+            className="bg-transparent border border-primary-600 cursor-pointer py-4 px-8 flex items-center justify-center text-sm rounded text-primary-600"
           >
             CREATE NEW RESUME
           </div>
 
           <div
             onClick={() => handleContinueEdit()}
-            className="bg-neutral-1000 cursor-pointer border border-primary-400 py-4 px-8 flex items-center justify-center text-sm rounded text-primary-600"
+            className="text-white cursor-pointer py-4 px-8 flex items-center justify-center text-sm rounded bg-primary-600"
           >
             CONTINUE EDITING
           </div>

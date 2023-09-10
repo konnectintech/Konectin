@@ -1,13 +1,9 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { MdArrowDropDown } from "react-icons/md";
 import NavigationButton from "../navigationButton";
 import SelectedTemplates from "../../resume-templates";
-import {
-  CitySelect,
-  CountrySelect,
-  StateSelect,
-} from "react-country-state-city";
-import "react-country-state-city/dist/react-country-state-city.css";
-import { useEffect, useState } from "react";
+import { GetCountries, GetState, GetCity } from "react-country-state-city";
 
 const BasicInformation = ({ data, onInputChange }) => {
   const {
@@ -21,9 +17,22 @@ const BasicInformation = ({ data, onInputChange }) => {
     email,
   } = data?.basicInfo;
 
-  const [countryid, setCountryid] = useState(0);
   const [code, setCode] = useState("");
-  const [stateid, setStateid] = useState(0);
+  const [showCountry, setShowCountry] = useState(false);
+  const [showState, setShowState] = useState(false);
+  const [showCity, setShowCity] = useState(false);
+
+  const [countryid, setCountryid] = useState(0);
+
+  const [countriesList, setCountriesList] = useState([]);
+  const [stateList, setStateList] = useState([]);
+  const [cityList, setCityList] = useState([]);
+
+  useEffect(() => {
+    GetCountries().then((result) => {
+      setCountriesList(result);
+    });
+  }, []);
 
   const navigate = useNavigate();
 
@@ -91,39 +100,6 @@ const BasicInformation = ({ data, onInputChange }) => {
             />
           </div>
           <div className="flex gap-4">
-            <CitySelect
-              containerClassName="input-container"
-              countryid={countryid}
-              stateid={stateid}
-              onTextChange={(e) => handleInputChange(e, "city")}
-              onChange={(e) => {
-                handleSelectChange(e, "city");
-              }}
-              placeHolder="Select City"
-            />
-            <StateSelect
-              containerClassName="input-container"
-              countryid={countryid}
-              onTextChange={(e) => handleInputChange(e, "state")}
-              onChange={(e) => {
-                setStateid(e.id);
-                handleSelectChange(e, "state");
-              }}
-              placeHolder="Select State"
-            />
-          </div>
-          <div className="flex gap-4">
-            <CountrySelect
-              showFlag={false}
-              containerClassName="input-container"
-              onTextChange={(e) => handleInputChange(e, "country")}
-              onChange={(e) => {
-                setCountryid(e.id);
-                setCode(e.phone_code);
-                handleSelectChange(e, "country");
-              }}
-              placeHolder="Select Country"
-            />
             <input
               className="input-container"
               type="tel"
@@ -133,6 +109,127 @@ const BasicInformation = ({ data, onInputChange }) => {
               onChange={(e) => handleInputChange(e, "zipCode")}
               placeholder="Zip Code"
             />
+            <div className="input-container relative">
+              {cityList.length <= 0 ? (
+                <input
+                  onInput={(e) => handleInputChange(e, "city")}
+                  onChange={(e) => handleInputChange(e, "city")}
+                  placeholder="Enter City"
+                  className="bg-transparent outline-none border-none w-full h-full"
+                  value={city}
+                />
+              ) : (
+                <div
+                  onClick={() => setShowCity((prev) => !prev)}
+                  className="cursor-pointer flex gap-2 items-center w-full"
+                >
+                  <input
+                    readOnly
+                    className="bg-transparent outline-none border-none w-full h-full"
+                    value={city}
+                  />
+                  <MdArrowDropDown size="1.5rem" />
+                </div>
+              )}
+              {showCity && (
+                <div className="absolute flex flex-col bg-neutral-1000 left-0 border overflow-y-auto h-[30vh] top-full w-full">
+                  {cityList.map((item, index) => (
+                    <div
+                      className="w-full py-3 px-6 cursor-pointer hover:bg-purple-400 hover:text-white"
+                      key={index}
+                      onClick={() => {
+                        setShowCity((prev) => !prev);
+                        handleSelectChange(item, "city");
+                      }}
+                    >
+                      {item.name}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="input-container relative">
+              {stateList.length <= 0 ? (
+                <input
+                  onInput={(e) => handleInputChange(e, "state")}
+                  onChange={(e) => handleInputChange(e, "state")}
+                  placeholder="Enter State"
+                  className="bg-transparent outline-none border-none w-full h-full"
+                  value={state}
+                />
+              ) : (
+                <div
+                  onClick={() => setShowState((prev) => !prev)}
+                  className="cursor-pointer flex gap-2 items-center w-full"
+                >
+                  <input
+                    readOnly
+                    className="bg-transparent outline-none border-none w-full h-full"
+                    value={state}
+                  />
+                  <MdArrowDropDown size="1.5rem" />
+                </div>
+              )}
+
+              {showState && (
+                <div className="absolute flex flex-col bg-neutral-1000 left-0 border overflow-y-auto h-[30vh] top-full w-full">
+                  {stateList.map((item, index) => (
+                    <div
+                      className="w-full py-3 px-6 cursor-pointer hover:bg-purple-400 hover:text-white"
+                      key={index}
+                      onClick={() => {
+                        setShowState((prev) => !prev);
+                        handleSelectChange(item, "state");
+                        GetCity(countryid, item.id).then((result) => {
+                          setCityList(result);
+                        });
+                      }}
+                    >
+                      {item.name}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Country  */}
+            <div className="input-container relative">
+              <div
+                onClick={() => setShowCountry((prev) => !prev)}
+                className="cursor-pointer flex gap-2 items-center w-full"
+              >
+                <input
+                  readOnly
+                  className="bg-transparent outline-none border-none w-full h-full"
+                  value={country}
+                />
+                <MdArrowDropDown size="1.5rem" />
+              </div>
+              {showCountry && (
+                <div className="absolute flex flex-col bg-neutral-1000 left-0 border overflow-y-auto h-[30vh] top-full w-full">
+                  {countriesList.map((item, index) => (
+                    <div
+                      className="w-full py-3 px-6 cursor-pointer hover:bg-purple-400 hover:text-white"
+                      key={index}
+                      onClick={() => {
+                        setShowCountry((prev) => !prev);
+                        setCode(item.phone_code);
+                        handleSelectChange(item, "country");
+                        setCountryid(item.id);
+                        GetState(item.id).then((result) => {
+                          setStateList(result);
+                        });
+                      }}
+                    >
+                      {item.name}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
           <input
