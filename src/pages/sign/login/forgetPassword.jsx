@@ -30,22 +30,9 @@ function ForgetPassword() {
         "https://konectin-backend-hj09.onrender.com/user/forgotPassword",
         { email: formResult }
       );
+      localStorage.setItem("forgetPasswordEmail", JSON.stringify(formResult));
       setLoading(false);
-      const newState = {
-        error: true,
-        header: (
-          <>
-            <font className="font-bold text-[18px] text-secondary-600">
-              Congratulations,
-            </font>{" "}
-            Password Reset Email Sent 🎉
-          </>
-        ),
-        p1: "We've sent a magic email to reset your password.",
-        p2: "Check your inbox (and spam folder) and you'll be back to enjoying our service in no time. You rock!😎",
-        button: "Got it",
-      };
-      setState(newState);
+      navigate("/reset-password");
     } catch (err) {
       setLoading(false);
       const newState = {
@@ -63,6 +50,7 @@ function ForgetPassword() {
       setState(newState);
     }
   };
+
   return (
     <section className="bg-[#F5F5F5]">
       <div className="mx-auto max-w-screen-xl flex flex-col md:flex-row min-h-screen gap-8 lg:gap-16 justify-between ">

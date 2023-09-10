@@ -1,47 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { loginForm, resetPasswordForm } from "../signData";
 import { Link, useNavigate } from "react-router-dom";
-import * as FaIcon from "react-icons/fa";
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../../middleware/auth";
-import { FieldForm } from "../../../components/form/";
 import Preloader from "../../../components/preloader";
 import { InteractionRequiredAuthError } from "@azure/msal-browser";
-
-export function RememberMe() {
-  const [agreed, setAgreed] = useState(false);
-
-  return (
-    <div className="w-full flex justify-between items-center">
-      <div className="flex gap-2 items-center">
-        <div
-          className={
-            agreed
-              ? "w-5 h-5 cursor-pointer rounded-sm bg-primary-600 flex items-center justify-center"
-              : "w-5 h-5 cursor-pointer bg-white rounded-sm border border-primary-600"
-          }
-          onClick={() => {
-            setAgreed((prev) => !prev);
-          }}
-        >
-          {agreed ? <FaIcon.FaCheck size=".6rem" color="#fff" /> : null}
-        </div>
-        <div
-          className="cursor-pointer select-none"
-          onClick={() => {
-            setAgreed((prev) => !prev);
-          }}
-        >
-          Remember me
-        </div>
-      </div>
-      <Link to="/forgot-password" className="text-secondary-600">
-        Forget password?
-      </Link>
-    </div>
-  );
-}
+import { CustomButton } from "../../../components/button";
+import { konectinIcon } from "../../../assets";
+import { ErrorModal, NotifyModal } from "../../../components/form/modal";
+import * as MdIcons from "react-icons/md";
+import axios from "axios";
 
 function ResetPassword() {
   const [isloading, setLoading] = useState(false);
@@ -49,8 +17,19 @@ function ResetPassword() {
 
   const navigate = useNavigate();
   const { instance } = useMsal();
-  const { signIn, setPreviousLog, previousLog } = useAuth();
+  const { setPreviousLog, previousLog } = useAuth();
   const isUserAuthenticated = useIsAuthenticated();
+  const [code, setCode] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isCodeValid, setIsCodeValid] = useState(false);
+  const [state, setState] = useState({
+    error: false,
+    header: "",
+    p1: "",
+    p2: "",
+    button: "",
+  });
 
   useEffect(() => {
     if (!isUserAuthenticated) {
@@ -74,27 +53,315 @@ function ResetPassword() {
     }
   }, []);
 
-  const handleSubmit = (data, logType) => {
-    // setLoading(true);
-    // signIn(data, setLoading, setErrorMessage, logType);
+  const [error, setError] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setError("");
+    if (!password || !confirmPassword) {
+      setError("All fields are required");
+      return;
+    }
+
+    if (password.length < 8) {
+      setError("Enter minimum of 8 characters");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError("Password do not match");
+      return;
+    }
+    setLoading(true);
+    const email = JSON.parse(localStorage.getItem("forgetPasswordEmail"));
+
+    const url = `https://konectin-backend-hj09.onrender.com/user/resetPassword`;
+
+    axios
+      .post(url, { OTP: code, password, confirmPassword, email })
+      .then(async (res) => {
+        const status = res.status;
+        if (status === 200) {
+          setLoading(false);
+
+          localStorage.setItem("forgetPasswordEmail", null);
+
+          const newState = {
+            error: false,
+            header: (
+              <>
+                <font className="font-bold text-[18px] text-secondary-600">
+                  Congratulations,
+                </font>{" "}
+                Password Reset Successfully 🎉
+              </>
+            ),
+            p1: "You have successfully reset your password.",
+            p2: "Your new password has been set, and you can now log in with confidence. Please make sure to keep your new password secure and do not share it with anyone.",
+            button: "Continue",
+          };
+          setState(newState);
+        } else {
+          setLoading(false);
+          setErrorMessage(res.data.message);
+          console.log(res);
+        }
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+        setErrorMessage(err.response.data.message);
+      });
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    const formReq = new FormData(event.target);
+    const value = formReq.get("code");
+
+    const url = `https://konectin-backend-hj09.onrender.com/user/verify-otp`;
+
+    setLoading(true);
+
+    axios
+      .post(url, { OTP: value })
+      .then(async (res) => {
+        const status = res.status;
+        if (status === 200) {
+          setLoading(false);
+          setIsCodeValid(true);
+        } else {
+          setLoading(false);
+          setErrorMessage(res.data.message);
+          console.log(res);
+        }
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+        setErrorMessage(err.response.data.message);
+      });
+  };
+
+  const resendCode = async () => {
+    const email = JSON.parse(localStorage.getItem("forgetPasswordEmail"));
+    setLoading(true);
+
+    try {
+      await axios.post(
+        "https://konectin-backend-hj09.onrender.com/user/forgotPassword",
+        { email }
+      );
+      setLoading(false);
+      setErrorMessage("");
+      setCode("");
+    } catch (err) {
+      setLoading(false);
+      setErrorMessage(err.response.data.message);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setCode(e.target.value);
+  };
+
+  const [passType, setPassType] = useState({
+    password: "password",
+    confirm_password: "password",
+  });
+
+  const togglePassType = (type) => {
+    setPassType((prev) => ({
+      ...prev,
+      [type]: prev[type] === "password" ? "text" : "password",
+    }));
   };
 
   return (
-    <div className="auth-body items-start lg:w-6/12 w-full sm:min-w-[500px] flex-1">
-      <div className="p-6 lg:pr-16 max-w-[600px] min-h-[80vh] lg:p-0 mx-auto flex flex-col gap-4 items-start justify-center">
+    <div className=" bg-neutral-800 auth-body flex items-center w-full sm:min-w-[500px] flex-1">
+      <div className="p-6  max-w-[600px] min-h-[80vh] lg:p-0 mx-auto flex flex-col gap-4 items-start justify-center">
         {isloading && <Preloader />}
-        <div>
-          <h1 className="text-4xl">Create New Password...</h1>
-          <p>Let's help you get your account back</p>
-        </div>
-        <div className="w-full flex flex-col items-stretch text-xs md:text-sm">
-          <FieldForm
-            handleSubmit={handleSubmit}
-            params={resetPasswordForm}
-            formFor="Reset Password"
-            errorMessage={errorMessage}
-          ></FieldForm>
-        </div>
+        {!isCodeValid ? (
+          <section className=" max-w-md mx-auto text-center space-y-10">
+            <Link
+              to="/"
+              className="w-fit mx-auto flex justify-center relative z-5"
+            >
+              <img src={konectinIcon} alt="Konectin Icon" />
+            </Link>
+
+            <div className="space-y-2 text-sm">
+              <div className="text-secondary-500">You are almost there!</div>
+              <h1 className="text-2xl font-semibold">Reset your password</h1>
+
+              {errorMessage && <ErrorModal text={errorMessage} />}
+
+              <div>Provide the six digit code sent to your email</div>
+              <form onSubmit={submitHandler} className="pb-4 relative z-10">
+                <input
+                  className={`${
+                    errorMessage.length > 0
+                      ? "outline-red-500 outline outline-2"
+                      : ""
+                  } p-2 text-center rounded-md outline-secondary-500 focus:outline`}
+                  type="tel"
+                  name="code"
+                  value={code}
+                  maxLength="6"
+                  minLength="6"
+                  onInput={handleInputChange}
+                  required
+                />
+                <div className="mt-2 mb-6">
+                  Didn't get a verification code?{" "}
+                  <font
+                    onClick={resendCode}
+                    className="text-secondary-500 text-semibold cursor-pointer"
+                  >
+                    Resend code
+                  </font>
+                </div>
+                <CustomButton
+                  type="submit"
+                  disabled={code.length !== 6}
+                  primary={true}
+                  colorType="primary"
+                >
+                  Reset Password
+                </CustomButton>
+              </form>
+
+              <div>
+                Question?{" "}
+                <a
+                  className="text-secondary-500"
+                  href="mailto:konectin.inc@mail.com"
+                >
+                  konectin.inc@mail.com
+                </a>
+              </div>
+            </div>
+          </section>
+        ) : (
+          <>
+            <div>
+              <h1 className="text-4xl">Create New Password...</h1>
+              <p>Let's help you get your account back</p>
+            </div>
+
+            <div className="w-full flex flex-col items-stretch text-xs md:text-sm">
+              <form
+                onSubmit={handleSubmit}
+                className="w-full flex flex-col mt-2 items-stretch text-xs md:text-sm gap-6"
+              >
+                {errorMessage && <ErrorModal text={errorMessage} />}
+                <div className="flex flex-col gap-4">
+                  <fieldset className="border border-[#DC7957] rounded-md cursor-pointer relative">
+                    <legend className="ml-4 px-1">New Password</legend>
+                    <input
+                      className="w-full text-xs bg-transparent border-0 outline-0 px-4 pt-2 pb-3"
+                      id={"password"}
+                      name={"password"}
+                      type={passType["password"]}
+                      placeholder={"Minimum of 8 characters"}
+                      value={password}
+                      onChange={(event) => setPassword(event.target.value)}
+                      onInput={(event) => setPassword(event.target.value)}
+                    />
+                    <label
+                      onClick={() => togglePassType("password")}
+                      className="cursor-pointer"
+                      htmlFor={"password"}
+                    >
+                      {passType["password"] === "password" ? (
+                        <MdIcons.MdLockOpen
+                          className="absolute -translate-y-1/2 top-1/2 right-3 pb-1"
+                          color="#242424"
+                          size="1.5rem"
+                        />
+                      ) : (
+                        <MdIcons.MdLock
+                          className="absolute -translate-y-1/2 top-1/2 right-3 pb-1"
+                          color="#242424"
+                          size="1.5rem"
+                        />
+                      )}
+                    </label>
+                  </fieldset>
+
+                  <fieldset className="border border-[#DC7957] rounded-md cursor-pointer relative">
+                    <legend className="ml-4 px-1">Confirm Password</legend>
+                    <input
+                      className="w-full text-xs bg-transparent border-0 outline-0 px-4 pt-2 pb-3"
+                      id={"confirmPassword"}
+                      name={"confirmPassword"}
+                      type={passType["confirm_password"]}
+                      placeholder={"Minimum of 8 characters"}
+                      value={confirmPassword}
+                      onChange={(event) =>
+                        setConfirmPassword(event.target.value)
+                      }
+                      onInput={(event) =>
+                        setConfirmPassword(event.target.value)
+                      }
+                    />
+                    <label
+                      onClick={() => togglePassType("confirm_password")}
+                      className="cursor-pointer"
+                      htmlFor={"confirmPassword"}
+                    >
+                      {passType["confirm_password"] === "password" ? (
+                        <MdIcons.MdLockOpen
+                          className="absolute -translate-y-1/2 top-1/2 right-3 pb-1"
+                          color="#242424"
+                          size="1.5rem"
+                        />
+                      ) : (
+                        <MdIcons.MdLock
+                          className="absolute -translate-y-1/2 top-1/2 right-3 pb-1"
+                          color="#242424"
+                          size="1.5rem"
+                        />
+                      )}
+                    </label>
+                  </fieldset>
+                  {error && (
+                    <p className="text-start w-full text-red-500 mt-1 cursor-text bg-transparent">
+                      {error}
+                    </p>
+                  )}
+                </div>
+                <div className="text-center flex flex-col gap-2">
+                  <CustomButton
+                    type="submit"
+                    disabled={
+                      !password ||
+                      !confirmPassword ||
+                      password !== confirmPassword
+                    }
+                    primary={true}
+                    colorType="primary"
+                  >
+                    Reset Password
+                  </CustomButton>
+                </div>
+              </form>
+            </div>
+            {state.header && (
+              <div className="fixed top-0 w-full h-full z-50 bg-neutral-500 flex items-center justify-center">
+                <NotifyModal
+                  error={state.error}
+                  header={state.header}
+                  paragraph1={state.p1}
+                  paragraph2={state.p2}
+                  click={() => navigate("/login")}
+                >
+                  {state.button}
+                </NotifyModal>
+              </div>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
