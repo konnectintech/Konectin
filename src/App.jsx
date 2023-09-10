@@ -16,8 +16,8 @@ import Landing from "./pages/DefaultRoutes/landing";
 import Internship from "./pages/DefaultRoutes/internship";
 import About from "./pages/DefaultRoutes/about";
 import Blog from "./pages/DefaultRoutes/blog";
-import BlogContent from "./pages/DefaultRoutes/blog/blogContent";
-import Feeds from "./pages/DefaultRoutes/blog/feeds";
+// import BlogContent from "./pages/DefaultRoutes/blog/blogContent";
+// import Feeds from "./pages/DefaultRoutes/blog/feeds";
 import RouteIdentifier from "./layouts/routeIdentifier";
 import VerifyMail from "./pages/sign/signup/verifyMail";
 import TermsAndCondition from "./pages/DefaultRoutes/terms/TermsAndConditions";
@@ -30,6 +30,7 @@ import Login from "./pages/sign/login/login";
 import SignUp from "./pages/sign/signup/signup";
 import ForgetPassword from "./pages/sign/login/forgetPassword";
 import ResetPassword from "./pages/sign/login/resetPassword";
+import ErrorPage from "./pages/404";
 
 // import DashBoard from "./pages/ProtectedRoutes/dashboard";
 // import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
@@ -63,8 +64,8 @@ function App() {
             <Route path="/contact-us" element={<Contact />} />
             {/* <Route path="/admin" element={<Admin />} /> */}
             <Route path="/blog/" element={<Blog />}>
-              <Route path="/blog/:feed" element={<Feeds />} />
-              <Route path="/blog/:feed/:title" element={<BlogContent />} />
+              <Route path="/blog/:feed" element={<ErrorPage />} />
+              {/* <Route path="/blog/:feed/:title" element={<BlogContent />} /> */}
             </Route>
             <Route path="/about" element={<About />} />
           </Route>

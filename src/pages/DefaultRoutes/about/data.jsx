@@ -118,7 +118,11 @@ export const TeamData = [
     name: "David Joseph",
     image: DavidIcon,
     title: "Chief Technical Officer (C.T.O)",
-    contact: { twitter: "/", instagram: "/", linkedin: "/" },
+    contact: {
+      twitter: "https://x.com/david_uxdesigns?t=EpvFNjIGE0JAuVzm7weiDw&s=09",
+      instagram: "https://instagram.com/david_uxdesigns?utm_source=qr",
+      linkedin: "http://www.linkedin.com/in/davidowoniyijoseph",
+    },
     bio: (
       <div>
         <p>

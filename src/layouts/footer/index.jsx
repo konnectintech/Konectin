@@ -8,7 +8,7 @@ import {
 } from "../../assets";
 import { FooterLinks } from "./footerLinks";
 
-function Footer () {
+function Footer() {
   return (
     <footer className="bg-primary-600 pt-16 pb-8 px-8 text-xs text-gray-200">
       <div className="w-11/12 mx-auto max-w-screen-2xl flex flex-col justify-between items-center gap-8">
@@ -28,7 +28,7 @@ function Footer () {
                 <span>+2347061855058</span>
               </a>
               <a
-                href="mailto:info@konectinyou.onmicrosoft.com"
+                href="mailto:info@konectin.org"
                 className="flex gap-4 items-center"
               >
                 <img
@@ -36,7 +36,7 @@ function Footer () {
                   src={mailIcon}
                   alt="Konectin mail"
                 />
-                <span>info@konectinyou.onmicrosoft.com</span>
+                <span>info@konectin.org</span>
               </a>
               <a
                 href="https://goo.gl/maps/NgacMSABpsAZ2jHRA"
