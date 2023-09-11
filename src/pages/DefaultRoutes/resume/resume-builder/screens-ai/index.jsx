@@ -11,8 +11,8 @@ const AIStarter = () => {
   const handleInputChange = (input) => (e) => {
     onInputChange({
       section: "basicInfo",
-      values: e.target.value,
       subsection: input,
+      values: e.target.value,
     });
   };
 

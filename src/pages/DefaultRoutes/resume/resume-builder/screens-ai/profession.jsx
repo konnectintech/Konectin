@@ -1,8 +1,12 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { TypeAnimation } from "react-type-animation";
+import JobTitleInput from "../../../../../components/jobTitleInput";
+import { useTemplateContext } from "../../../../../middleware/resume";
 
-const Profession = ({ data, handleChange }) => {
+const Profession = ({ data }) => {
+  const { onInputChange } = useTemplateContext();
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
@@ -22,6 +26,12 @@ const Profession = ({ data, handleChange }) => {
     }
     navigate("/resume/ai/template-selector");
   };
+
+  useEffect(() => {
+    if (data.profession.length !== 0) {
+    }
+  });
+
   return (
     <>
       <h2 className="text-2xl lg:text-3xl font-extrabold text-center">
@@ -33,26 +43,32 @@ const Profession = ({ data, handleChange }) => {
       </h2>
 
       <p className="font-bold text-center">
-        {" "}
-        What best describes your profession??
+        <TypeAnimation
+          cursor={false}
+          sequence={["What best describes your profession?", 1000]}
+        />
       </p>
 
       <form
         onSubmit={handleSubmit}
         className="flex position relative items-center min-w-[320px] max-w-[722px]"
       >
-        <input
-          type="text"
-          placeholder="Enter your full profession"
-          value={data.profession}
-          onChange={handleChange("profession")}
-          className="w-full border-b border-[#b2b3b48a] rounded-lg p-6 text-[11px]  text-[#8C8C8F] tracking-wide outline-none"
+        <JobTitleInput
+          title={data.profession}
+          handleInputChange={({ section, subsection, values }) =>
+            onInputChange({
+              section: section,
+              subsection: subsection,
+              values: values,
+            })
+          }
+          section="basicInfo"
+          subsection="profession"
         />
-        <p className="absolute -bottom-5 text-sm text-[#F11010]">{error}</p>
-
+        <p className="absolute -bottom-5 text-sm text-error-500">{error}</p>
         <button
           onClick={handleSubmit}
-          className="absolute right-10 text-[#403580] text-sm "
+          className="absolute -bottom-5 text-primary-600 text-sm text-center w-full"
         >
           Press Enter
         </button>
