@@ -75,6 +75,7 @@ export const useAuth = () => {
   const isUserAuthenticated = useIsAuthenticated();
   const { instance } = useMsal();
   const navigate = useNavigate();
+  const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   useEffect(() => {
     if (isUserAuthenticated) {
@@ -118,13 +119,9 @@ export const useAuth = () => {
   const signIn = async (data, loader, setError, log) => {
     if (log === "normal") {
       try {
-        let authresult = await axios.post(
-          "https://konectin-backend-hj09.onrender.com/user/login",
-          data
-        );
+        let authresult = await axios.post(`${url}/login`, data);
 
         const userData = { ...authresult.data.data };
-        console.log(authresult);
         userData.token = authresult.data.token;
 
         setUser(userData);
@@ -132,6 +129,7 @@ export const useAuth = () => {
         loader(false);
         navigate("/blog/all");
       } catch (err) {
+        console.log(err);
         loader(false);
         setError(err.response.data.message);
       }
@@ -140,10 +138,7 @@ export const useAuth = () => {
 
   const signUp = async (data, loader, setError) => {
     try {
-      const res = await axios.post(
-        "https://konectin-backend-hj09.onrender.com/user/register",
-        data
-      );
+      const res = await axios.post(`${url}/register`, data);
       const userData = res.data.user;
       setUser(userData);
       loader(false);
