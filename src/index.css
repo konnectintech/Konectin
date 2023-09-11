@@ -215,3 +215,9 @@ h4 {
 .drop-file-preview p {
   font-weight: 500;
 }
+
+/* Terms and Condition  */
+.terms ul.list-decimal > .space-y-2 > li.text-sm,
+.merri {
+  font-family: "Merriweather", sans-serif;
+}

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import * as FaIcon from "react-icons/fa";
+import img from "../../../assets/images/contact-us-img.png"
 
 function Contact() {
   const [topicsCLicked, SetTopicsCLicked] = useState(false);
-  const handleTopicCliked = () => {
-    SetTopicsCLicked(true);
+  const handleTopicClicked = () => {
+    SetTopicsCLicked(!topicsCLicked);
   };
 
   return (
@@ -19,7 +20,7 @@ function Contact() {
         </p>
       </div>
       <div className="flex justify-center pb-24 ">
-        <div className="grid grid-cols-1 z-50 lg:grid-cols-2 w-[90%] mt-[-70px] justify-between">
+        <div className="grid grid-cols-1 z-50 lg:grid-cols-2 w-[90%] mt-[-70px] justify-between gap-6 lg:gap-1 ">
           <div className="shadow-2xl bg-white z-50  p-16">
             <p className="font-[Avenir] text-lg font-black">
               Kindly select a topic for discussion:
@@ -31,7 +32,7 @@ function Contact() {
                     ? `border-neutral-grey font-medium text-sm border rounded-full py-[.65rem] px-4 opacity-25`
                     : `border-neutral-grey font-medium text-sm border rounded-full py-[.65rem] px-4 `
                 }
-                onClick={handleTopicCliked}
+                onClick={handleTopicClicked}
               >
                 Account setup
               </button>
@@ -41,7 +42,7 @@ function Contact() {
                     ? `border-neutral-grey font-medium text-sm border rounded-full py-[.65rem] px-4 opacity-25`
                     : `border-neutral-grey font-medium text-sm border rounded-full py-[.65rem] px-4 `
                 }
-                onClick={handleTopicCliked}
+                onClick={handleTopicClicked}
               >
                 Job search
               </button>
@@ -51,7 +52,7 @@ function Contact() {
                     ? `border-neutral-grey font-medium text-sm border rounded-full py-[.65rem] px-4 opacity-25`
                     : `border-neutral-grey font-medium text-sm border rounded-full py-[.65rem] px-4 `
                 }
-                onClick={handleTopicCliked}
+                onClick={handleTopicClicked}
               >
                 Resume building
               </button>
@@ -61,7 +62,7 @@ function Contact() {
                     ? `border-neutral-grey font-medium text-sm border rounded-full py-[.65rem] px-4 opacity-25`
                     : `border-neutral-grey font-medium text-sm border rounded-full py-[.65rem] px-4 `
                 }
-                onClick={handleTopicCliked}
+                onClick={handleTopicClicked}
               >
                 Profile optimization
               </button>
@@ -71,7 +72,7 @@ function Contact() {
                     ? `border-neutral-grey font-medium text-sm border rounded-full py-[.65rem] px-4 opacity-25`
                     : `border-neutral-grey font-medium text-sm border rounded-full py-[.65rem] px-4 `
                 }
-                onClick={handleTopicCliked}
+                onClick={handleTopicClicked}
               >
                 Job application status
               </button>
@@ -81,7 +82,7 @@ function Contact() {
                     ? `border-neutral-grey font-medium text-sm border rounded-full py-[.65rem] px-4 opacity-25`
                     : `border-neutral-grey font-medium text-sm border rounded-full py-[.65rem] px-4 `
                 }
-                onClick={handleTopicCliked}
+                onClick={handleTopicClicked}
               >
                 Interview preparation
               </button>
@@ -91,7 +92,7 @@ function Contact() {
                     ? `border-neutral-grey font-medium text-sm border rounded-full py-[.65rem] px-4 opacity-25 `
                     : `border-neutral-grey font-medium text-sm border rounded-full py-[.65rem] px-4 `
                 }
-                onClick={handleTopicCliked}
+                onClick={handleTopicClicked}
               >
                 Networking
               </button>
@@ -101,7 +102,8 @@ function Contact() {
                     ? `border-neutral-grey font-medium text-sm border rounded-full py-[.65rem] px-4 opacity-25 `
                     : `border-neutral-grey font-medium text-sm border rounded-full py-[.65rem] px-4`
                 }
-                onClick={handleTopicCliked}
+                onClick={handleTopicClicked}
+                
               >
                 Career advice
               </button>
@@ -113,7 +115,7 @@ function Contact() {
             <input
               className="py-3 px-8 placeholder:text-sm font-normal  w-full mt-4 outline-none rounded border "
               type="text"
-              placeholder="Enter a topic like “Account setup”"
+              placeholder="Enter a topic like “Account setup” "
             />
 
             {topicsCLicked && (
@@ -137,7 +139,7 @@ function Contact() {
             {topicsCLicked && (
               <>
                 <h2 className="font-[Avenir] text-lg font-black">
-                  Or simply state what you require help with
+                  Kindly provide us with additional information to assist you better
                 </h2>
                 <input
                   className="py-3 px-8 placeholder:text-sm font-normal  w-full mt-4 outline-none rounded border "
@@ -147,10 +149,28 @@ function Contact() {
               </>
             )}
 
+            {topicsCLicked && (
+              <div>
+                <h1 className="my-4">Attach files (optional)</h1>
+                <div className="flex justify-center items-center p-12 rounded-md border-dashed border-2 border-primary-300 mb-4 ">
+                  <input type="file" name="" id="" />
+                </div>
+              </div>
+            )}
+
+            <section className="flex flex-col md:flex-row justify-between items-center w-3/4 md:w-1/2 lg:w-[65%] mt-4  font-[Avenir]">
+              <button className="py-3 px-5 bg-neutral-900 text-sm ">
+                SEND US A MESSAGE
+              </button>
+              <h2>or</h2>
+              <button className="py-3 px-5 border-primary-600 border text-sm">
+                START A LIVE CHAT
+              </button>
+            </section>
+
             <h2 className="font-[Avenir] text-lg font-black mt-4">
               Contact us via email or social media for further assistance.
-            </h2>
-
+            </h2> 
             <div className="w-full text-center text-primary-600 pb-10 md:py-6 md:flex justify-between items-center ">
               <div className="flex gap-4 items-center justify-center mb-6 md:mb-0">
                 <a
@@ -179,27 +199,10 @@ function Contact() {
                 </a>
               </div>
             </div>
-
-            {topicsCLicked && (
-              <div>
-                <h1 className="mb-4">Attach files (optional)</h1>
-                <div className="flex justify-center items-center p-12 rounded-md border-dashed border-2 border-primary-300 mb-4 ">
-                  <input type="file" name="" id="" />
-                </div>
-              </div>
-            )}
-
-            <section className="flex flex-col md:flex-row justify-between items-center w-full lg:w-3/4  font-[Avenir]">
-              <button className="py-4 px-5 bg-neutral-900 text-sm ">
-                SEND US A MESSAGE
-              </button>
-              <h2>or</h2>
-              <button className="py-4 px-5 border-primary-600 border text-sm">
-                START A LIVE CHAT
-              </button>
-            </section>
           </div>
-          <div className=" w-full">2</div>
+          <div className=" flex items-center md:items-start justify-center w-full">
+            <img src={img} alt="Group of people" className="h-[200px] w-[200px] md:h-[400px] md:w-[400px]" />
+          </div>
         </div>
       </div>
     </div>
