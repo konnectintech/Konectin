@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTemplateContext } from "../../../../../middleware/resume";
+import { TypeAnimation } from "react-type-animation";
 
 const Username = ({ data, handleChange }) => {
   const [error, setError] = useState("");
+  const [text, setText] = useState(false);
   const { setTemplateData } = useTemplateContext();
 
   const navigate = useNavigate();
@@ -38,15 +40,28 @@ const Username = ({ data, handleChange }) => {
   return (
     <>
       <h2 className="text-2xl  lg:text-3xl font-extrabold text-center">
-        Hi! Welcome to <span className="text-[#FC670B]">Konectin</span> Resume
-        Builder
+        Hi! Welcome to <span className="text-secondary-600">Konectin </span>
+        Resume Builder
       </h2>
-      <p className="text-center text-sm text-[#3F4044] font-medium">
-        My name is Jane, and I will be walking you through building your
-        professional resume.
+      <p className="text-center text-sm text-neutral-200 font-medium">
+        <TypeAnimation
+          cursor={false}
+          speed={75}
+          sequence={[
+            "My name is Jane, and I will be walking you through building your professional resume.",
+            1000,
+            () => setText(true),
+          ]}
+        />
       </p>
-
-      <p className=" font-bold text-center">May I know your name?</p>
+      {text && (
+        <p className="font-bold text-center">
+          <TypeAnimation
+            cursor={false}
+            sequence={["May I know your name?", 1000]}
+          />
+        </p>
+      )}
 
       <form
         id="form-resume-name"

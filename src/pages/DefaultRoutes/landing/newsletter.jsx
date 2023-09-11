@@ -12,20 +12,18 @@ function NewsLetter() {
     p2: "",
   });
   const [loading, setLoading] = useState(false);
+  const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   const handleNewsLetter = async (data) => {
     setLoading(true);
     try {
-      await axios.post(
-        "https://konectin-backend-hj09.onrender.com/user/subscribeMail",
-        { email: data }
-      );
+      await axios.post(`${url}/subscribeMail`, { email: data });
       const newState = {
-        error: true,
+        error: false,
         header: (
           <>
             <font className="font-bold text-[18px]">Congratulations</font>,
-            you're ow part of the{" "}
+            you're now part of the{" "}
             <font className="text-secondary-600">Konectin</font> family 🎉
           </>
         ),
@@ -34,6 +32,7 @@ function NewsLetter() {
       };
       setState(newState);
     } catch (err) {
+      console.log(err);
       const newState = {
         error: true,
         header: (

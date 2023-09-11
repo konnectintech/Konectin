@@ -31,6 +31,8 @@ function ResetPassword() {
     button: "",
   });
 
+  const parseURL = import.meta.env.VITE_CLIENT_SERVER_URL;
+
   useEffect(() => {
     if (!isUserAuthenticated) {
       instance
@@ -54,6 +56,7 @@ function ResetPassword() {
   }, []);
 
   const [error, setError] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -74,8 +77,7 @@ function ResetPassword() {
     }
     setLoading(true);
     const email = JSON.parse(localStorage.getItem("forgetPasswordEmail"));
-
-    const url = `https://konectin-backend-hj09.onrender.com/user/resetPassword`;
+    const url = `${parseURL}/resetPassword`;
 
     axios
       .post(url, { OTP: code, password, confirmPassword, email })
@@ -119,7 +121,7 @@ function ResetPassword() {
     const formReq = new FormData(event.target);
     const value = formReq.get("code");
 
-    const url = `https://konectin-backend-hj09.onrender.com/user/verify-otp`;
+    const url = `${parseURL}/verify-otp`;
 
     setLoading(true);
 
@@ -148,10 +150,7 @@ function ResetPassword() {
     setLoading(true);
 
     try {
-      await axios.post(
-        "https://konectin-backend-hj09.onrender.com/user/forgotPassword",
-        { email }
-      );
+      await axios.post(`${parseURL}/forgotPassword`, { email });
       setLoading(false);
       setErrorMessage("");
       setCode("");

@@ -13,6 +13,7 @@ function VerifyMail() {
   const [modal, popModal] = useState("");
 
   const navigate = useNavigate();
+  const parseURL = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   const handleInputChange = (e) => {
     // let value = e.target.value.replace(/[^0-9.]/g, "");
@@ -21,7 +22,7 @@ function VerifyMail() {
 
   const resendCode = () => {
     const user = JSON.parse(localStorage.getItem("User"));
-    const url = `https://konectin-backend-hj09.onrender.com/user/requestEmail?userId=${user._id}`;
+    const url = `${parseURL}/requestEmail?userId=${user._id}`;
 
     setLoading(true);
     axios

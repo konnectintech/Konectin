@@ -7,6 +7,7 @@ import { konectinIcon } from "../../../../../assets";
 import { Link } from "react-router-dom";
 import { FieldForm } from "../../../../../components/form";
 import { loginForm } from "../../../../sign/signData";
+import { TypeAnimation } from "react-type-animation";
 
 const TemplateSelector = ({ data }) => {
   const [popUp, setPopUp] = useState(false);
@@ -56,14 +57,19 @@ const TemplateSelector = ({ data }) => {
     <>
       <div>
         <h2 className="text-2xl max-w-lg leading-snug lg:text-3xl font-extrabold text-center">
-          Select a Resume Template for a{" "}
+          Select a Resume Template for a/an{" "}
           <span className="text-secondary-500 capitalize">
             {data.profession}
           </span>
         </h2>
         <p className="text-center text-sm text-[#3F4044] font-medium mt-3">
-          I have listed below some resume templates which resonates with your
-          profession
+          <TypeAnimation
+            cursor={false}
+            sequence={[
+              "I have listed below some resume templates which resonates with your profession",
+              1000,
+            ]}
+          />
         </p>
       </div>
 

@@ -5,15 +5,16 @@ import { backgroundVideo } from "../../assets/data";
 function ErrorPage() {
   return (
     <section className="flex flex-col justify-center items-center py-24">
-      <section className="w-full h-full relative">
+      <section className="w-full h-full relative overflow-hidden flex justify-center items-center">
         <video
           className="absolute object-cover w-full h-full left-0 top-0"
-          src={backgroundVideo}
           autoPlay
           loop
           muted
-        ></video>
-        <h1 className="w-full h-full text-[100px] font-black tracking-[2rem] mix-blend-multiply">
+        >
+          <source src={backgroundVideo} type="video/mp4"></source>
+        </video>
+        <h1 className="w-full relative bg-[#F1F1F2] text-black h-full text-[100px] font-black tracking-[2rem] mix-blend-lighten">
           OOPS!
         </h1>
       </section>

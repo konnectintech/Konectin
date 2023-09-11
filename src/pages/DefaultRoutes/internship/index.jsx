@@ -14,17 +14,16 @@ function Internship() {
     p2: "",
   });
   const [loading, setLoading] = useState(false);
+  const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   const handleSubmit = async (data) => {
     setLoading(true);
+
     try {
-      await axios.post(
-        "https://konectin-backend-hj09.onrender.com/user/internshipMail",
-        { email: data }
-      );
+      await axios.post(`${url}/internshipMail`, { email: data });
 
       const newState = {
-        error: true,
+        error: false,
         header: (
           <>
             <font className="font-bold text-[18px]">Congratulations</font>,
@@ -45,23 +44,44 @@ function Internship() {
       };
       setState(newState);
     } catch (err) {
-      const newState = {
-        error: true,
-        header: (
-          <>
-            <font className="text-secondary-600">Oops!</font> Something went
-            wrong 🥴
-          </>
-        ),
-        p1: (
-          <>
-            Don't worry, our team of tech wizards is on it. Please try again
-            later or contact our support team at{" "}
-            <font className="text-secondary-600">support@konectin.com.</font> 😎
-          </>
-        ),
-        p2: "In the meantime, keep working hard and don't forget to smile 🙂 - your dream internship is just around the corner! 👍",
-      };
+      let newState;
+      if (err.response.data.message === "You already subscribed") {
+        newState = {
+          error: false,
+          header: (
+            <>
+              Dear <font className="text-secondary-600">Friend,</font> You have
+              previously subscribed to our newsletter
+            </>
+          ),
+          p1: (
+            <>
+              <font className="text-secondary-600">Thanks</font> for putting us
+              in mind and trying to subscribe again 😎
+            </>
+          ),
+          p2: "However you can always refer us to your friends and family to also enjoy our benefits 👍",
+        };
+      } else {
+        newState = {
+          error: true,
+          header: (
+            <>
+              <font className="text-secondary-600">Oops!</font> Something went
+              wrong 🥴
+            </>
+          ),
+          p1: (
+            <>
+              Don't worry, our team of tech wizards is on it. Please try again
+              later or contact our support team at{" "}
+              <font className="text-secondary-600">info@konectin.org.</font> 😎
+            </>
+          ),
+          p2: "In the meantime, keep working hard and don't forget to smile 🙂 - your dream internship is just around the corner! 👍",
+        };
+      }
+
       setState(newState);
     }
     setLoading(false);

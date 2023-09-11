@@ -48,7 +48,7 @@ export function NotifyModal({
       </div>
       <div className="relative z-10 w-1/2 md:w-4/12">
         {!error ? (
-          <img className="w-full" src={notifySuccess} alt="error" />
+          <img className="w-full" src={notifySuccess} alt="success" />
         ) : (
           <img className="w-full" src={notifyError} alt="error" />
         )}

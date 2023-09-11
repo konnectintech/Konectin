@@ -1,5 +1,5 @@
 import AboutSection from "./about";
-import BlogSection from "./blog";
+// import BlogSection from "./blog";
 import HeroSection from "./hero";
 import RecruiterSection from "./recruiters";
 import SignPrompt from "./signPrompt";
@@ -15,7 +15,7 @@ function Landing() {
         <SignPrompt />
         <RecruiterSection data={RecruitersGain} />
         <AboutSection />
-        <BlogSection />
+        {/* <BlogSection /> */}
       </section>
 
       <MapSection />

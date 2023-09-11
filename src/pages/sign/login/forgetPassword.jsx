@@ -18,6 +18,7 @@ function ForgetPassword() {
     button: "",
   });
   const navigate = useNavigate();
+  const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -26,10 +27,7 @@ function ForgetPassword() {
     setLoading(true);
 
     try {
-      await axios.post(
-        "https://konectin-backend-hj09.onrender.com/user/forgotPassword",
-        { email: formResult }
-      );
+      await axios.post(`${url}/forgotPassword`, { email: formResult });
       localStorage.setItem("forgetPasswordEmail", JSON.stringify(formResult));
       setLoading(false);
       navigate("/reset-password");
@@ -53,7 +51,7 @@ function ForgetPassword() {
 
   return (
     <section className="bg-[#F5F5F5]">
-      <div className="mx-auto max-w-screen-xl flex flex-col md:flex-row min-h-screen gap-8 lg:gap-16 justify-between ">
+      <div className="mx-auto max-w-screen-xl flex flex-col md:flex-row min-h-screen gap-8 lg:gap-16 justify-between lg:px-32">
         {isloading && <Preloader />}
         <div className="hidden h-screen md:w-11/12 md:block relative lg:w-auto">
           <img
