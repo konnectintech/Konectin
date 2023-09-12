@@ -24,7 +24,7 @@ function FAQSection({ data }) {
             </div>
             <div className="flex flex-col gap-2">
               <div className="cursor-pointer select-none text-md font-semibold">
-                {accordion.question}?
+                {accordion.question}
               </div>
               {isOpen === index && (
                 <div className="text-sm w-[80%]">{accordion.answer}</div>
