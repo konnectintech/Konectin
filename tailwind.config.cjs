@@ -47,6 +47,9 @@ module.exports = {
           500: "#f11010",
         },
       },
+      fonts:{
+
+      },
       screens: {
         xxs: "375px",
         sm: "475px",
