@@ -140,6 +140,10 @@ function ForgetPassword() {
             <FaIcon.FaLinkedinIn size="1rem" />
           </a>
         </div>
+        <p className="mb-4 md:mb-0">A product of konectin</p>
+        <p>
+          &copy; {new Date().getFullYear()} Konectin Inc. All rights reserved
+        </p>
       </div>
       {state.header && (
         <div className="fixed top-0 left-0 w-full h-full z-50 bg-neutral-500 flex items-center justify-center">
