@@ -16,12 +16,12 @@ export function CustomButton({
       type={type ? type : ""}
       disabled={disabled}
       onClick={onClick}
-      className={`w-full ${
+      className={`w-full py-3 ${
         primary
-          ? `py-3 bg-${colorType}-${
+          ? `bg-${colorType}-${
               disabled ? 200 : 600
             } text-center rounded-sm text-white`
-          : "py-2 bg-transparent flex gap-2 items-center justify-center text-black-500 border-primary-800 border rounded-md"
+          : "bg-transparent flex gap-2 items-center justify-center text-black-500 border-primary-800 border rounded-md"
       }`}
     >
       {children}

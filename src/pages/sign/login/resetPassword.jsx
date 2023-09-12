@@ -23,7 +23,7 @@ function ResetPassword() {
   const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [isCodeValid, setIsCodeValid] = useState(true);
+  const [isCodeValid, setIsCodeValid] = useState(false);
   const [state, setState] = useState({
     error: false,
     header: "",
@@ -178,7 +178,7 @@ function ResetPassword() {
   };
 
   return (
-    <div className="bg-[#F5F5F5] flex items-center w-full sm:min-w-[500px]">
+    <div className="bg-[#F5F5F5] flex items-center w-full sm:min-w-[500px] flex-1">
       {!isCodeValid ? (
         <div className="p-6 max-w-[600px] min-h-[80vh] lg:p-0 mx-auto flex flex-col gap-4 items-start justify-center">
           {isloading && <Preloader />}
@@ -221,23 +221,29 @@ function ResetPassword() {
                     Resend code
                   </font>
                 </div>
-                <CustomButton
-                  type="submit"
-                  disabled={code.length !== 6}
-                  primary={true}
-                  colorType="primary"
-                >
-                  Reset Password
-                </CustomButton>
+                <div className="space-y-3">
+                  <CustomButton
+                    type="submit"
+                    disabled={code.length !== 6}
+                    primary={true}
+                    colorType="primary"
+                  >
+                    Verify
+                  </CustomButton>
+
+                  <CustomButton onClick={() => navigate("/login")}>
+                    Back to sign in
+                  </CustomButton>
+                </div>
               </form>
 
               <div>
                 Question?{" "}
                 <a
                   className="text-secondary-500"
-                  href="mailto:konectin.inc@mail.com"
+                  href="mailto:info@konectin.org"
                 >
-                  konectin.inc@mail.com
+                  info@konectin.org
                 </a>
               </div>
             </div>

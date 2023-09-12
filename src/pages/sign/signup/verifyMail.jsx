@@ -139,11 +139,8 @@ function VerifyMail() {
 
           <div>
             Question?{" "}
-            <a
-              className="text-secondary-500"
-              href="mailto:konectin.inc@mail.com"
-            >
-              konectin.inc@mail.com
+            <a className="text-secondary-500" href="mailto:info@konectin.org">
+              info@konectin.org
             </a>
           </div>
         </div>
