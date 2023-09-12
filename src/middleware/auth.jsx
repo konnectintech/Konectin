@@ -127,7 +127,7 @@ export const useAuth = () => {
         setUser(userData);
         setUserType(log);
         loader(false);
-        navigate("/blog/all");
+        navigate("/resume/options");
       } catch (err) {
         console.log(err);
         loader(false);

@@ -347,7 +347,7 @@ function ResetPassword() {
               </form>
             </div>
             {state.header && (
-              <div className="fixed top-0 w-full h-full z-50 bg-neutral-500 flex items-center justify-center">
+              <div className="fixed top-0 left-0 w-full h-full z-50 bg-neutral-500 flex items-center justify-center">
                 <NotifyModal
                   error={state.error}
                   header={state.header}

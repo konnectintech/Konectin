@@ -62,7 +62,7 @@ function Login() {
         .then((res) => {
           instance.setActiveAccount(res.account);
           setPreviousLog(res.account);
-          navigate("/blog/all");
+          navigate("/resume/options");
         })
         .catch((err) => {
           if (err instanceof InteractionRequiredAuthError) {
