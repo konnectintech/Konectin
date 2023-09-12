@@ -98,8 +98,8 @@ function ForgetPassword() {
                   disabled={!mail}
                   className={`${
                     mail
-                      ? "bg-purple-500 hover:bg-purple-700"
-                      : "bg-purple-200 hover:bg-purple-300"
+                      ? "bg-primary-500 hover:bg-primary-700"
+                      : "bg-primary-200 hover:bg-primary-300"
                   } px-2 text-sm md:text-md sm:px-6 py-3 text-white text-center rounded-md`}
                 >
                   Reset Password
