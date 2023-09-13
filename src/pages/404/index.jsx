@@ -14,14 +14,14 @@ function ErrorPage() {
         >
           <source src={backgroundVideo} type="video/mp4"></source>
         </video>
-        <h1 className="w-full relative bg-[#F1F1F2] text-black h-full text-[100px] font-black tracking-[2rem] mix-blend-lighten">
+        <h1 className="w-full relative bg-[#F1F1F2] text-black text-[90px] font-black tracking-[1rem] md:tracking-[2rem] mix-blend-lighten">
           OOPS!
         </h1>
       </section>
       <div>
         <h2 className="text-2xl md:text-4xl">404 - PAGE NOT FOUND</h2>
         <p className="py-6">
-          The page you are looking for might have been remoeved <br /> had its
+          The page you are looking for might have been removed <br /> had its
           name changed or is temporarily unavailable.
         </p>
         <Link

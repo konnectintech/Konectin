@@ -3,7 +3,7 @@ import { Link } from "react-scroll";
 
 function PrivacyPolicy() {
   return (
-    <div className="pt-20 max-md:pb-16 bg-neutral grid grid-cols-1 md:grid-cols-[250px,4fr] grid-rows-[12%,1fr]">
+    <div className="min-h-screen pt-20 max-md:pb-16 bg-neutral grid grid-cols-1 md:grid-cols-[250px,4fr] grid-rows-[12%,1fr]">
       {/* Sidebar section */}
       <section className="py-8 lg:py-16 px-8 bg-neutral-1000 md:row-span-full">
         <h5 className="text-xl font-bold mb-3">Table Of Contents</h5>

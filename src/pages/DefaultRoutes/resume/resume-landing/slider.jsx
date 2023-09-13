@@ -36,8 +36,8 @@ function SliderSection({ data }) {
               <small
                 className={
                   currentTemplate === index
-                    ? "small w-[130px] sm:w-[150px]"
-                    : "small w-[100px] sm:w-[130px]"
+                    ? "small w-[120px] sm:w-[150px]"
+                    : "small w-[90px] sm:w-[120px]"
                 }
               >
                 {template.title}

@@ -7,6 +7,8 @@ import fileIcon from "./icons/file.svg";
 import googleIcon from "./icons/google.svg";
 import microsoftIcon from "./icons/microsoft.svg";
 import guardIcon from "./icons/guard.svg";
+import chevronDownArrow from "./icons/chevron-down.svg";
+import chevronUpArrow from "./icons/chevron-up.svg";
 import konectinLogo from "./icons/konectin.png";
 import konectinIcon from "./icons/konectin.svg";
 import errorTriangle from "./icons/alert-triangle.svg";
@@ -30,6 +32,9 @@ import variant4Icon from "./icons/variant (4).svg";
 import variant5Icon from "./icons/variant (5).svg";
 import teamIcon from "./icons/team.svg";
 import userIcon from "./icons/user.svg";
+import communityIcon from "./icons/community.svg";
+import targetIcon from "./icons/target.svg";
+import productIcon from "./icons/product.svg";
 import likeIcon from "./icons/like.svg";
 import dislikeIcon from "./icons/dislike.svg";
 import bookmarkIcon from "./icons/bookmark.svg";
@@ -137,8 +142,13 @@ export {
   person5Icon,
   teamIcon,
   userIcon,
+  communityIcon,
+  productIcon,
+  targetIcon,
   bookmarkIcon,
   notifySuccess,
+  chevronUpArrow,
+  chevronDownArrow,
   notifyError,
   likeIcon,
   dislikeIcon,
