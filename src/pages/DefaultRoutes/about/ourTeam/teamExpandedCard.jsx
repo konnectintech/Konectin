@@ -21,30 +21,36 @@ function TeamExpandedCard({ data, selected, onClose }) {
                   </div>
 
                   <div className="flex gap-4 items-center justify-center text-white mb-auto">
-                    <a
-                      target="_blank"
-                      rel="noreferrer"
-                      href={team.contact.twitter}
-                      className="w-7 h-7 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 border-secondary-600"
-                    >
-                      <FaIcon.FaTwitter className="text-xs md:text-md" />
-                    </a>
-                    <a
-                      target="_blank"
-                      rel="noreferrer"
-                      href={team.contact.instagram}
-                      className="w-7 h-7 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 border-secondary-600"
-                    >
-                      <FaIcon.FaInstagram className="text-xs md:text-md" />
-                    </a>
-                    <a
-                      target="_blank"
-                      rel="noreferrer"
-                      href={team.contact.linkedin}
-                      className="w-7 h-7 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 border-secondary-600"
-                    >
-                      <FaIcon.FaLinkedinIn className="text-xs md:text-md" />
-                    </a>
+                    {team.contact.twitter && (
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={team.contact.twitter}
+                        className="w-7 h-7 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 border-secondary-600"
+                      >
+                        <FaIcon.FaTwitter className="text-xs md:text-md" />
+                      </a>
+                    )}
+                    {team.contact.instagram && (
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={team.contact.instagram}
+                        className="w-7 h-7 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 border-secondary-600"
+                      >
+                        <FaIcon.FaInstagram className="text-xs md:text-md" />
+                      </a>
+                    )}
+                    {team.contact.linkedin && (
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={team.contact.linkedin}
+                        className="w-7 h-7 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 border-secondary-600"
+                      >
+                        <FaIcon.FaLinkedinIn className="text-xs md:text-md" />
+                      </a>
+                    )}
                   </div>
                 </div>
 

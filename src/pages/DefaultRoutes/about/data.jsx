@@ -1,5 +1,4 @@
 import {
-  AboutProfileImage,
   bulbIcon,
   calendarIcon,
   person5Icon,
@@ -15,6 +14,7 @@ import {
   DavidIcon,
   FounderIcon,
   MichaelIcon,
+  AfolabiIcon,
 } from "../../../assets";
 
 export const Values = [
@@ -90,7 +90,9 @@ export const TeamData = [
     name: "Mustafa Abdulasis",
     image: MustafaIcon,
     title: "Chief Operations Officer (C.O.O)",
-    contact: { twitter: "/", instagram: "/", linkedin: "/" },
+    contact: {
+      linkedin: "https://www.linkedin.com/in/mustafa-abdulasis",
+    },
     bio: (
       <div>
         <p>
@@ -180,13 +182,41 @@ export const TeamData = [
         </p>
       </div>
     ),
-    contact: { twitter: "/", instagram: "/", linkedin: "/" },
+    contact: {
+      twitter: "https://twitter.com/Michaelajayi150",
+      instagram: "https://www.instagram.com/the_dev.io/",
+      linkedin: "https://www.linkedin.com/in/ajayi-michael-692bb6203/",
+    },
   },
   {
-    name: "Jane Cooper",
-    image: person5Icon,
-    profile: AboutProfileImage,
-    title: "Founder",
-    contact: { twitter: "/", instagram: "/", linkedin: "/" },
+    name: "Olawole Afolabi",
+    image: AfolabiIcon,
+    title: "Lead Designer",
+    bio: (
+      <div>
+        <p>
+          Olawole Afolabi is a visionary web designer whose creative prowess has
+          redefined digital aesthetics. With a background rooted in graphic
+          design and a relentless passion for user-centric design principles,
+          Olawole brings a unique blend of artistry and technical expertise to
+          every project.
+        </p>
+        <p className="mt-4">
+          His journey into the world of web design began with a fascination for
+          the fusion of form and function, and since then, he has consistently
+          delivered visually stunning and highly intuitive websites that leave a
+          lasting impact. Olawole's innovative design solutions are not only
+          visually captivating but also strategically crafted to elevate user
+          experiences, making him a sought-after talent in the ever-evolving
+          digital landscape.
+        </p>
+        <p className="mt-4">
+          His commitment to staying on the cutting edge of design trends ensures
+          that his work consistently sets new standards for creativity and
+          usability in web design.
+        </p>
+      </div>
+    ),
+    contact: {},
   },
 ];
