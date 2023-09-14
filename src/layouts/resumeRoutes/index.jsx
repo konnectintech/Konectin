@@ -13,7 +13,7 @@ function ResumeRoutes() {
       <main
         className=""
         style={{
-          backgroundImage: `linear-gradient(rgba(249, 249, 249, 0.81), rgba(249, 249, 249, 0.81)), url("${BuilderBg}")`,
+          backgroundImage: `linear-gradient(rgba(249, 249, 249, 0.9), rgba(249, 249, 249, 0.9)), url("${BuilderBg}")`,
           backgroundSize: "cover",
         }}
       >
