@@ -21,16 +21,19 @@ const BasicInformation = ({ data, onInputChange }) => {
   const [showCountry, setShowCountry] = useState(false);
   const [showState, setShowState] = useState(false);
   const [showCity, setShowCity] = useState(false);
+  const [countryInput, setCountryInput] = useState("");
 
   const [countryid, setCountryid] = useState(0);
 
   const [countriesList, setCountriesList] = useState([]);
   const [stateList, setStateList] = useState([]);
   const [cityList, setCityList] = useState([]);
+  const [filteredCountries, setFilteredCountries] = useState(countriesList);
 
   useEffect(() => {
     GetCountries().then((result) => {
       setCountriesList(result);
+      setFilteredCountries(result);
     });
   }, []);
 
@@ -48,6 +51,15 @@ const BasicInformation = ({ data, onInputChange }) => {
   const handleInputChange = (event, name) => {
     const { value } = event.target;
     onInputChange({ section: "basicInfo", subsection: name, values: value });
+  };
+
+  const handleCountryInput = (input) => {
+    setShowCountry(true);
+    setCountryInput(input);
+    const filtered = countriesList.filter((country) =>
+      country.name.toLowerCase().includes(input.toLowerCase())
+    );
+    setFilteredCountries(filtered);
   };
 
   const handleSelectChange = (event, section) => {
@@ -202,15 +214,15 @@ const BasicInformation = ({ data, onInputChange }) => {
                 className="cursor-pointer flex gap-2 items-center w-full"
               >
                 <input
-                  readOnly
                   className="bg-transparent outline-none border-none w-full h-full"
-                  value={country}
+                  value={countryInput}
+                  onChange={(e) => handleCountryInput(e.target.value)}
                 />
                 <MdArrowDropDown size="1.5rem" />
               </div>
               {showCountry && (
                 <div className="absolute flex flex-col bg-neutral-1000 left-0 border overflow-y-auto h-[30vh] top-full w-full">
-                  {countriesList.map((item, index) => (
+                  {filteredCountries.map((item, index) => (
                     <div
                       className="w-full py-3 px-6 cursor-pointer hover:bg-purple-400 hover:text-white"
                       key={index}
@@ -219,6 +231,7 @@ const BasicInformation = ({ data, onInputChange }) => {
                         setCode(item.phone_code);
                         handleSelectChange(item, "country");
                         setCountryid(item.id);
+                        setCountryInput(item.name);
                         GetState(item.id).then((result) => {
                           setStateList(result);
                         });
