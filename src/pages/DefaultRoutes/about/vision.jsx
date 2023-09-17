@@ -11,9 +11,11 @@ function Vision() {
               Our <font className="text-secondary-600">Vision</font>
             </h1>
             <p className="text-sm max-w-md leading-normal">
-              At Konectin, we believe in a world where everyone can find their
-              dream career and unlock their full potential. Our vision is to to
-              provide a platform that would connect recruiters and job seekers.
+              We believe in a world where the hiring process is innovative,
+              revolutionized, seamless and made efficient for every
+              professional. Our vision is to ensure that every job seeker,
+              recruiter and intern on our platform has a flawless and
+              hassle-free experience in ensuring achievable targets.
             </p>
           </div>
           <Link

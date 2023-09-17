@@ -80,8 +80,8 @@ function NewsLetter() {
           Subscribe to our newsletter
         </h1>
         <p className="text-xs xxs:text-sm sm:text-md">
-          Stay updated on our latest news. We promise only valuable mails and we
-          will not spam you with irrelevant content.
+          Stay up-to-date with Konectin's latest news by subscribing to our
+          newsletter. Our emails are valuable and spam-free.
         </p>
         <div className="w-full sm:w-10/12 max-w-screen-md rounded-lg mx-auto flex gap-2 items-center justify-center pl-4 sm:pl-8 pr-2 sm:pr-4 py-1 md:py-3 bg-white mt-10">
           <NotifyForm handleSubmit={handleNewsLetter} formFor="Subscribe" />

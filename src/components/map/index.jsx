@@ -6,11 +6,12 @@ function MapSection() {
       <div className="flex flex-col gap-8 items-center">
         <div className="w-10/12 mx-auto max-w-screen-lg text-center">
           <h1 className="text-3xl mb-2">
-            What others have <font className="text-secondary-600">gained</font>
+            How Others Have{" "}
+            <font className="text-secondary-600">Benefited</font>
           </h1>
           <p>
-            Read all about how Konectin has impacted other job seekers,
-            recruiters and helped them achieve their goals.
+            Delve into the success stories of job seekers and recruiters who
+            have leveraged Konectin's innovative features to their advantage.
           </p>
         </div>
       </div>

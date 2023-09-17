@@ -2,27 +2,27 @@ import { fileIcon, guardIcon, shakeIcon, starIcon } from "../../../assets";
 
 export const RecruitersGain = [
   {
-    title: "Build a unique resume...",
+    title: "A unique resume builder",
     logo: fileIcon,
     paragraph:
-      "We offer jobseekers the oppurtinity to create world class resume’s with our unique resume builder. A well built resume provides a solid foundation to kickstart your career and stand out from the rest...",
+      "Create a long lasting first impression in the minds of recruiters. Make an attractive presentation of your skills and experiences to a vast number of employers all over the world and get hired now.",
   },
   {
-    title: "Connect directly with recruiters...",
+    title: "Connect directly with recruiters",
     logo: starIcon,
     paragraph:
-      "At Konectin, we make the communications and dealings between you and your potential employer as transparent as possible. You are also updated on the status of your applications regularly...",
+      "Discover millions of incredible opportunities and connect with recruiters that yearn for talents like yours. Every of your dealings with your potential employers are made as transparent as possible.",
   },
   {
     title: "Hire qualified candidates...",
     logo: shakeIcon,
     paragraph:
-      "At Konectin, we match recruiters with the best of talent out there on all levels of career; Internships, entry level, mid level and senior level. Our job seekers are verified and proven to be efficient ...",
+      "At Konectin we help to provide you with the right candidates, be it job seekers or interns who are skilled in diverse fields. Take this step to connect with skilled experts and advance in your career.",
   },
   {
     title: "Hundred percent trust...",
     logo: guardIcon,
     paragraph:
-      "We build relationships between Jobseekers and employers strictly based on trust and transparency. Our recruiters are assured on the validity and responsibility of any job seeker they are matched with...",
+      "Incorporated in Delaware, USA, we assure you of a glitch free experience. You can be assured of validity and transparency in every of your dealings with your potential employers or candidates.",
   },
 ];

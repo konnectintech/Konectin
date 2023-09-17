@@ -11,9 +11,8 @@ function HeroSection() {
             Step up your job search with a Perfect Resume
           </h1>
           <p className="text-start text-neutral-300 max-w-md md:max-w-lg">
-            Get matched easily with recruiters who see value in your experience
-            amidst other great Career oppurtunities. We offer you the best
-            possible start to your new Career...
+            Stand out from the crowd and build an exquisite resume that gets you
+            the attention of world-class recruiters.
           </p>
           <Link to="/signup" className="w-56 md:w-72">
             <CustomButton primary colorType="secondary">
