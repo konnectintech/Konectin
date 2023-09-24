@@ -191,32 +191,33 @@ export const TeamData = [
   {
     name: "Olawole Afolabi",
     image: AfolabiIcon,
-    title: "Lead Designer",
+    title: "Lead Product Designer",
     bio: (
       <div>
         <p>
-          Olawole Afolabi is a visionary web designer whose creative prowess has
-          redefined digital aesthetics. With a background rooted in graphic
-          design and a relentless passion for user-centric design principles,
-          Olawole brings a unique blend of artistry and technical expertise to
-          every project.
+          Olawole holds a Bachelor's degree in Civil Engineering and has over 4
+          years of experience specializing in UX design. He has worked with top
+          FinTech companies in Nigeria and has a proven track record of helping
+          start-ups and enterprise companies build outstanding products that
+          balance business needs with user needs. His expertise lies in leading
+          projects from inception to completion, collaborating effectively with
+          stakeholders, and using various methodologies and tools to bring
+          designs to life.
         </p>
         <p className="mt-4">
-          His journey into the world of web design began with a fascination for
-          the fusion of form and function, and since then, he has consistently
-          delivered visually stunning and highly intuitive websites that leave a
-          lasting impact. Olawole's innovative design solutions are not only
-          visually captivating but also strategically crafted to elevate user
-          experiences, making him a sought-after talent in the ever-evolving
-          digital landscape.
-        </p>
-        <p className="mt-4">
-          His commitment to staying on the cutting edge of design trends ensures
-          that his work consistently sets new standards for creativity and
-          usability in web design.
+          At Konectin Inc, Olawole is the Lead Product Designer, where he
+          thrives in cross-functional teams. He gathers insights and builds
+          consensus around design solutions that meet both user and business
+          goals. Olawole stays at the forefront of the industry, continuously
+          exploring new approaches to improve the design process and deliver
+          impactful results
         </p>
       </div>
     ),
-    contact: {},
+    contact: {
+      twitter: "https://twitter.com/OlawoleAfolabi2",
+      instagram: "https://www.instagram.com/realdapo/",
+      linkedin: "https://www.linkedin.com/in/olawole-afolabi",
+    },
   },
 ];
