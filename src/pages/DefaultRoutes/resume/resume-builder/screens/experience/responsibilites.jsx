@@ -152,7 +152,7 @@ const Responsibilities = ({ data, handleInputChange }) => {
                 jobTitle={responsibility}
                 handleChange={(value) => setResponsibility(value)}
                 handleAddSuggestion={handleAddSuggestion}
-                loading={loading}
+                selected={editorValue}
                 responsibilities={suggestions}
               />
             </div>

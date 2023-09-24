@@ -130,7 +130,7 @@ const Bio = ({ data, onInputChange }) => {
               jobTitle={responsibility}
               handleChange={(value) => setResponsibility(value)}
               handleAddSuggestion={handleAddSuggestion}
-              loading={loading}
+              selected={editorValue}
               responsibilities={suggestions}
             />
           </div>
