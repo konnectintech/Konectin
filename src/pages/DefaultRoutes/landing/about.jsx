@@ -12,13 +12,12 @@ function AboutSection() {
           <p>A brief Introduction to Konectin.</p>
         </div>
         <p>
-          At Konectin, We aim to create a friendly and transparent relationship
-          between employers and employee. <br /> We guide job seekers on getting
-          started in their careers at all levels, provide oppurtunities from
-          internships to job openings, career talks, articles and blog posts.{" "}
-          <br /> We also provide a comprehensive and user friendly resume
-          builder to help you create that resume that will land you your dream
-          job...
+          At Konectin, we're dedicated to empowering you throughout your career
+          journey. We provide a range of resources, including internships, job
+          postings, career talks, and blog posts, to help you succeed. Plus, our
+          user-friendly resume builder makes it easy to showcase your skills and
+          experience. Join us today to take the first step towards your dream
+          job!
         </p>
         <Link
           to="/about"

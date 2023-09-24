@@ -56,8 +56,9 @@ function BlogSection() {
           <font className="text-secondary-600">Konectin</font> Blog
         </h1>
         <p>
-          Career talk, tips and advice, articles around the employment world and
-          so much more.
+          Konectin provides career talks, tips, advice and articles on
+          employment trends to help you succeed. Join us now to access these
+          resources.
         </p>
       </div>
       <div className="blog-grid-system gap-3 justify-center">

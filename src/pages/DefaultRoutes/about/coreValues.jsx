@@ -8,9 +8,11 @@ function CoreValues({ data }) {
           </h2>
         </div>
         <p className="w-10/12 text-center mx-auto font-semibold text-[15px] mt-4">
-          At <font className="text-primary-600">Konectin</font>, our mission is
-          to connect talented job seekers with top employers from around the
-          world. We are driven by 5 core values:
+          At <font className="text-primary-600">Konectin</font>, Our mission is
+          in alignment with our values and reflects all that we aim to achieve.
+          At our company, we are dedicated to ensuring a user-friendly and
+          top-tier experience for all our customers. Below are 5 core values we
+          are driven by:
         </p>
       </div>
 

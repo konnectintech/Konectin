@@ -16,9 +16,10 @@ function TipSection() {
             Choose from our professional template
           </h1>
           <p className="w-10/12 text-neutral-300 mb-2">
-            At konectin, we believe that first impresions matter, that’s why we
-            make sure you put your best foot forward with eye-catching resume
-            designs that stand out from the rest.
+            Do you worry about how your resume should look? At Konectin, we have
+            structured amazing templates to ease you of the stress of worrying
+            about how your resume should appear. We have a wide array of
+            organized and professional templates you can choose from.
           </p>
           <ResumeButton />
         </div>
@@ -44,12 +45,13 @@ function TipSection() {
         </div>
         <div className="flex flex-col gap-1 w-11/12">
           <h1 className="text-2xl font-semibold mb-2 md:text-3xl md:leading-relaxed">
-            Follow useful tips from industry experts
+            Follow <font className="text-secondary-600">useful tips</font> from
+            industry experts around the globe
           </h1>
           <p className="text-neutral-300 mb-2">
-            At konectin, we believe that first impresions matter, that’s why we
-            make sure you put your best foot forward with eye-catching resume
-            designs that stand out from the rest
+            Enter your email below to stay up-to-date with helpful information
+            that has been tested and trusted to give you desired results in your
+            career.
           </p>
           <ResumeButton />
         </div>

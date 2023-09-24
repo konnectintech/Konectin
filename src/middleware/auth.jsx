@@ -18,9 +18,8 @@ const useAuthContext = () => useContext(AuthContext);
 
 const pca = new PublicClientApplication({
   auth: {
-    clientId: "c2b4e277-e8b3-438c-9a65-22e774e10990",
-    authority:
-      "https://login.microsoftonline.com/ab112dcd-2c77-436d-b233-5e194a097e40",
+    clientId: "fafebde3-1871-43ee-afb0-34374edaa6b1",
+    authority: "https://login.microsoftonline.com/common/",
     redirectUri: "/",
   },
   cache: {

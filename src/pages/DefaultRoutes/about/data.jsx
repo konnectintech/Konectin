@@ -20,37 +20,37 @@ import {
 export const Values = [
   {
     icon: shakeCircleIcon,
-    name: "Respect",
+    name: "Customer Obsessed",
     rep: person5Icon,
-    text: "Respect is a core value guiding us to treat all with dignity. We foster inclusivity, where individuals are valued and heard. Our commitment to respect creates a culture of collaboration with colleagues, customers, and partners.",
+    text: "We make your expectations the focus of our work and deliver products and services that meet your satisfaction as well as provide solutions to your evolving needs. We put you first.",
     variant: variantIcon,
   },
   {
     icon: speakerIcon,
-    name: "Communication",
+    name: "Transparency",
     rep: person5Icon,
-    text: "We prioritize transparency, honesty, and clarity in all interactions, with customers, team members, and stakeholders. Our commitment to communication fosters strong relationships and drives positive outcomes.",
+    text: "Every one of our dealings with job seekers, employers, and interns is made as transparent as possible. This improves communication between our company and our clients, as well as between job seekers and employers, thereby resulting in collaborative growth.",
     variant: variant2Icon,
   },
   {
     icon: calendarIcon,
-    name: "Responsibility",
+    name: "Accountability",
     rep: person5Icon,
-    text: "We own our actions and decisions, holding ourselves accountable for delivering on commitments. Our integrity and purpose are upheld as we take responsibility for our work and impact on others.",
+    text: "We are willing to take full responsibility for every one of our actions. We hold ourselves answerable for issues encountered and pledge to take corrective actions for any error, to better improve customers' experience.",
     variant: variant3Icon,
   },
   {
     icon: teamIcon,
     name: "Teamwork",
     rep: person5Icon,
-    text: "We achieve our best results by working together. Through collaboration and support, every voice is heard and contributes to our success. By empowering each other and promoting growth, we maximize our potential as a team.",
+    text: "At Konectin, we have a team of seasoned staff who work tirelessly and collaboratively to achieve a common goal. We combine efforts to deliver all our customers with a top-notch experience that brings their dreams to the limelight.",
     variant: variant4Icon,
   },
   {
     icon: bulbIcon,
     name: "Innovation",
     rep: person5Icon,
-    text: "We continuously challenge ourselves to be better and explore new frontiers. Our commitment to creativity and curiosity drives us to innovate and deliver greater value to our customers while remaining ahead in our industry",
+    text: "At our company, we never stop seeking edge-cutting ideas and innovations that provide exclusive opportunities for every professional in various fields of the job market. Our commitment to creativity and curiosity drives us to innovate and deliver great value to our customers while remaining ahead in our industry.",
     variant: variant5Icon,
   },
 ];
@@ -191,32 +191,33 @@ export const TeamData = [
   {
     name: "Olawole Afolabi",
     image: AfolabiIcon,
-    title: "Lead Designer",
+    title: "Lead Product Designer",
     bio: (
       <div>
         <p>
-          Olawole Afolabi is a visionary web designer whose creative prowess has
-          redefined digital aesthetics. With a background rooted in graphic
-          design and a relentless passion for user-centric design principles,
-          Olawole brings a unique blend of artistry and technical expertise to
-          every project.
+          Olawole holds a Bachelor's degree in Civil Engineering and has over 4
+          years of experience specializing in UX design. He has worked with top
+          FinTech companies in Nigeria and has a proven track record of helping
+          start-ups and enterprise companies build outstanding products that
+          balance business needs with user needs. His expertise lies in leading
+          projects from inception to completion, collaborating effectively with
+          stakeholders, and using various methodologies and tools to bring
+          designs to life.
         </p>
         <p className="mt-4">
-          His journey into the world of web design began with a fascination for
-          the fusion of form and function, and since then, he has consistently
-          delivered visually stunning and highly intuitive websites that leave a
-          lasting impact. Olawole's innovative design solutions are not only
-          visually captivating but also strategically crafted to elevate user
-          experiences, making him a sought-after talent in the ever-evolving
-          digital landscape.
-        </p>
-        <p className="mt-4">
-          His commitment to staying on the cutting edge of design trends ensures
-          that his work consistently sets new standards for creativity and
-          usability in web design.
+          At Konectin Inc, Olawole is the Lead Product Designer, where he
+          thrives in cross-functional teams. He gathers insights and builds
+          consensus around design solutions that meet both user and business
+          goals. Olawole stays at the forefront of the industry, continuously
+          exploring new approaches to improve the design process and deliver
+          impactful results
         </p>
       </div>
     ),
-    contact: {},
+    contact: {
+      twitter: "https://twitter.com/OlawoleAfolabi2",
+      instagram: "https://www.instagram.com/realdapo/",
+      linkedin: "https://www.linkedin.com/in/olawole-afolabi",
+    },
   },
 ];

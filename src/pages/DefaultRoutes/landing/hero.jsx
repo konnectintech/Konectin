@@ -12,9 +12,10 @@ function HeroSection() {
           </font>
         </h1>
         <p className="max-w-md md:max-w-lg md:mt-4">
-          Get matched easily with recruiters who see value in your experience
-          amidst other great Career oppurtunities. We offer you the best
-          possible start to your new Career...
+          Land your dream job with Konectin! Get access to the greatest career
+          opportunities by connecting with recruiters that value your
+          experience. Join us today to take the first step towards a fulfilling
+          career
         </p>
         <div className="w-48 md:w-60">
           <Link

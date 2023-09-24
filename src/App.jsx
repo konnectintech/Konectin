@@ -61,7 +61,7 @@ function App() {
             <Route path="/terms" element={<TermsAndCondition />} />
             <Route path="/policy" element={<PrivacyPolicy />} />
             <Route path="/faq" element={<Faq />} />
-            <Route path="/contact-us" element={<Contact />} />
+            <Route path="/contact" element={<Contact />} />
             {/* <Route path="/admin" element={<Admin />} /> */}
             <Route path="/blog/" element={<Blog />}>
               <Route path="/blog/:feed" element={<ErrorPage />} />
