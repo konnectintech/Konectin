@@ -20,7 +20,7 @@ const pca = new PublicClientApplication({
   auth: {
     clientId: "fafebde3-1871-43ee-afb0-34374edaa6b1",
     authority: "https://login.microsoftonline.com/common/",
-    redirectUri: "/",
+    redirectUri: "/login",
   },
   cache: {
     cacheLocation: "localStorage",
@@ -36,6 +36,7 @@ const pca = new PublicClientApplication({
 pca.addEventCallback((event) => {
   if (event.eventType === EventType.LOGIN_SUCCESS) {
     pca.setActiveAccount(event.payload.account);
+    localStorage.setItem("");
   }
 });
 
@@ -79,6 +80,7 @@ export const useAuth = () => {
   useEffect(() => {
     if (isUserAuthenticated) {
       const currentAccount = instance.getActiveAccount();
+
       setPreviousLog(currentAccount);
     }
   }, [instance]);

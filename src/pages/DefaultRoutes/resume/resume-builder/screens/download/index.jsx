@@ -12,7 +12,7 @@ const Download = ({ data }) => {
   const handleDownload = async () => {
     const doc = document.getElementById("template");
     setLoading(true);
-    const { _id } = localStorage.getItem("user");
+    const { _id } = JSON.parse(localStorage.getItem("user"));
     const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
     try {
