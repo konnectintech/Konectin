@@ -17,9 +17,10 @@ const Download = ({ data }) => {
 
     try {
       let res = await axios.post(
-        `https://konectin-backend-hj09.onrender.com/createPdf?userId=${_id}`,
+        `https://konectin-backend-hj09.onrender.com/user/createPdf?userId=${_id}`,
         {
-          html: `<!DOCTYPE html>
+          html: `
+              <!DOCTYPE html>
                 <html lang="en">
                   <head>
                     <meta charset="UTF-8" />
