@@ -21,7 +21,8 @@ function VerifyMail() {
   };
 
   const resendCode = () => {
-    const user = JSON.parse(localStorage.getItem("User"));
+    const user = JSON.parse(localStorage.getItem("user"));
+
     const url = `${parseURL}/requestEmail?userId=${user._id}`;
 
     setLoading(true);
