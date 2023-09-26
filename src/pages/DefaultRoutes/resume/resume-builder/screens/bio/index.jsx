@@ -37,7 +37,9 @@ const Bio = ({ data, onInputChange }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const wordCount = editorRef.current.plugins.wordcount.getCount();
+    const wordCount = editorRef
+      ? editorRef.current.plugins.wordcount.getCount()
+      : 0;
 
     if (wordCount <= 30) {
       setDirty(true);
