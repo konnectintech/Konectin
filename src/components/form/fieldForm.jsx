@@ -16,10 +16,11 @@ function FieldForm({ handleSubmit, params, formFor, errorMessage, children }) {
   const [formValid, setFormValid] = useState(false);
 
   useEffect(() => {
+    const promptMail = sessionStorage.getItem("mail") || "";
     for (let i = 0; i < params.length; i++) {
       setMail((prev) => ({
         ...prev,
-        [params[i].id]: "",
+        [params[i].id]: params[i].id === "email" ? promptMail : "",
         formErrors: {
           ...prev.formErrors,
           [`${params[i].id}Error`]: "",
