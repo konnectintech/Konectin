@@ -24,10 +24,6 @@ function Skills({ data }) {
               color: #333333;
             }
             
-            .skill-detail {
-              
-            }
-            
             .skill-item {
               -webkit-flex-basis: 50%; /* WebKit-based browsers */
               flex-basis: 50%;
@@ -45,8 +41,6 @@ function Skills({ data }) {
             .skill-year {
               font-size: 10px;
             }
-            
-    
           `}
         </style>
         <div className="skill-section">
@@ -54,7 +48,7 @@ function Skills({ data }) {
           <div className="skill-detail">
             {data.map((item, index) => (
               <div key={index} className="mb-2">
-                {item === "" ? `Skill ${index + 1}` : item}
+                {item.name === "" ? `Skill ${index + 1}` : item.name}
               </div>
             ))}
           </div>

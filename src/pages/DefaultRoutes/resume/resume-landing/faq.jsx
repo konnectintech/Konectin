@@ -8,7 +8,6 @@ function FAQSection({ data }) {
   };
   return (
     <div className="flex flex-col gap-8">
-      
       <h1 className="text-2xl font-semibold mb-2 md:text-3xl md:leading-relaxed">
         <font className="text-secondary-600">Konectin</font> Resume Builder FAQ
       </h1>
@@ -19,7 +18,7 @@ function FAQSection({ data }) {
             onClick={() => handleFAQ(index)}
             key={index}
           >
-            <div className="w-5 h-5 cursor-pointer rounded-sm flex items-center justify-center text-center border-2 border-black text-xl font-semibold px-2">
+            <div className="w-5 h-5 cursor-pointer rounded-sm flex items-center justify-center text-center border-2 border-black text-xl font-semibold px-2 pt-0.5">
               {isOpen !== index ? "+" : "-"}
             </div>
             <div className="flex flex-col gap-2">

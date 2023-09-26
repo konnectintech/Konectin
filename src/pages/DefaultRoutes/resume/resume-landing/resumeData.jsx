@@ -3,14 +3,11 @@ import {
   person2Icon,
   person3Icon,
   person4Icon,
-  ResumeTemplateCrossImage,
 } from "../../../../assets";
 
 export const SliderData = [
   {
-    body: "At konectin, we believe that first impresions matter, that’s why we make sure you put your best foot forward with eye-catching resume designs that stand out from the rest",
     button: "Build resume now",
-    image: ResumeTemplateCrossImage,
     title: (
       <>
         Create <font className="text-secondary-600">eye-catching resume</font>{" "}
@@ -18,11 +15,9 @@ export const SliderData = [
       </>
     ),
     type: "Resume Builder",
+    id: "#",
   },
   {
-    body: "At konectin, we believe that first impresions matter, that’s why we make sure you put your best foot forward with eye-catching resume designs that stand out from the rest",
-    button: "Build resume now",
-    image: ResumeTemplateCrossImage,
     title: (
       <>
         <font className="text-secondary-600">Designed specifically</font> for
@@ -30,11 +25,9 @@ export const SliderData = [
       </>
     ),
     type: "Resume Templates",
+    id: "resume_templates",
   },
   {
-    body: "At konectin, we believe that first impresions matter, that’s why we make sure you put your best foot forward with eye-catching resume designs that stand out from the rest",
-    button: "Build resume now",
-    image: ResumeTemplateCrossImage,
     title: (
       <>
         Follow <font className="text-secondary-600">useful tips</font> from
@@ -42,36 +35,37 @@ export const SliderData = [
       </>
     ),
     type: "Resume Examples",
+    id: "resume_examples",
   },
 ];
 
 export const ResumeReview = [
   {
     star: 5,
-    text: "Moderate children at of outweigh it. Unsatiable it considered invitation he travelling insensible. Consulted admitting oh mr up as described.",
-    name: "Jane Cooper",
-    location: "Los Angeles, CA",
+    text: "The Konectin Resume Builder is a game-changer. I was struggling with creating a professional resume, but this tool made it so easy. The AI suggestions were spot on and helped me highlight my skills and experiences effectively. I highly recommend it.",
+    name: "Olumide Adeyemi",
+    location: "Lagos, Nigeria",
     image: person2Icon,
   },
   {
     star: 5,
-    text: "The and collecting motionless difficulty son. His hearing staying ten colonel met. Sex drew six easy four dear cold",
-    name: "Robert Fox",
-    location: "New York, NY",
+    text: "I've used several resume builders before, but none compares to Konectin's. The user interface is intuitive and the AI recommendations are incredibly helpful. It's clear that a lot of thought went into designing this tool. I was able to craft a resume that truly represents my professional journey.",
+    name: "Ama Agyeiwaa",
+    location: "Accra, Ghana",
     image: person3Icon,
   },
   {
     star: 5,
-    text: "Sociable on as carriage my position weddings raillery consider. Peculiar trifling absolute and wandered vicinity property yet.",
-    name: "Leslie Alexander",
-    location: "Bufallo, NJ",
+    text: "Konectin's Resume Builder is a lifesaver. As a recent graduate, I had no idea how to structure my resume. The AI tool guided me through the process and even suggested ways to phrase my limited experience to make it more appealing to employers. I'm very impressed.",
+    name: "Kamau Njoroge",
+    location: "Nairobi, Kenya",
     image: person4Icon,
   },
   {
     star: 5,
-    text: "Sociable on as carriage my position weddings raillery consider. Peculiar trifling absolute and wandered vicinity property yet.",
-    name: "Kogberegbe Samoski",
-    location: "Lagos, NG",
+    text: "I used Konectin's Resume Builder to update my resume and was blown away by the experience. The AI gave me insightful tips on how to improve my resume and make it stand out. I love that it's tailored to the African job market. Great job, Konectin team!",
+    name: "Tewodros Kebede",
+    location: "Addis Ababa, Ethiopia",
     image: person1Icon,
   },
 ];

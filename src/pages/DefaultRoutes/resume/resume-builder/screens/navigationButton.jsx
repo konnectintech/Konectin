@@ -3,7 +3,7 @@ function NavigationButton({ back, cont }) {
     <div className="w-full flex justify-between gap-4 mt-auto">
       <button
         onClick={back}
-        className="border border-primary-200 rounded-lg text-sm py-3 px-10 sm:px-16 bg-transparent"
+        className="border bg-neutral-1000 border-primary-200 rounded-lg text-sm py-3 px-10 sm:px-16 -transparent"
       >
         Back
       </button>

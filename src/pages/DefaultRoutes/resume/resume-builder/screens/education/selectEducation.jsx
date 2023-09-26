@@ -46,7 +46,7 @@ function EducationOption({ title, link }) {
   );
 }
 
-function SelectEducation() {
+function SelectEducation({ data }) {
   return (
     <div className="w-full mx-auto flex flex-col justify-center gap-12">
       <div className="flex justify-center">
@@ -61,11 +61,19 @@ function SelectEducation() {
 
       <div className="max-w-xl w-full flex flex-col gap-5 md:flex-row">
         <Link
-          to="/resume/builder/education"
+          to="/resume/builder/employment-experience/job-activities"
           className="w-full md:w-fit max-w-xs border border-neutral-500 rounded-lg text-sm py-3 px-[4.5rem]"
         >
           Back
         </Link>
+        {data.currentEditedEducation >= 1 && (
+          <Link
+            to="/resume/builder/skills"
+            className="w-fit max-w-xs bg-primary-600 text-white rounded-lg text-sm py-3 px-8 sm:px-[4.5rem]"
+          >
+            Go to Skills
+          </Link>
+        )}
       </div>
     </div>
   );

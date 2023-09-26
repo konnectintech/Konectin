@@ -20,7 +20,7 @@ export function CustomButton({
         primary
           ? `bg-${colorType}-${
               disabled ? 200 : 600
-            } text-center rounded-sm text-white`
+            } hover:shadow-xl text-center rounded-sm text-white`
           : "bg-transparent flex gap-2 items-center justify-center text-black-500 border-primary-800 border rounded-md"
       }`}
     >
@@ -33,7 +33,7 @@ export function ResumeButton() {
   return (
     <Link
       to="/resume/options"
-      className="self-start px-6 py-2 bg-white flex gap-2 items-center justify-center text-primary-500 border-primary-500 border rounded-sm"
+      className="self-start px-6 py-2 bg-white flex gap-2 items-center justify-center text-primary-500 border-primary-500 border rounded-sm hover:bg-primary-500 hover:text-white"
     >
       Build resume now
     </Link>

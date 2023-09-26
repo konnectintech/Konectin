@@ -96,10 +96,11 @@ function HighSchool() {
     setTemplateData((prev) => ({
       ...prev,
       education: templateData.education,
-      currentEditedEducation: Object.keys(templateData.education).length - 1,
+      currentEditedEducation:
+        currentEditedEducation - 1 <= 0 ? 0 : currentEditedEducation - 1,
     }));
 
-    navigate("/resume/builder/education/select-edu");
+    navigate("/resume/builder/education/");
   };
 
   const handleSubmit = (event) => {
@@ -141,10 +142,10 @@ function HighSchool() {
                 <MdArrowDropDown size="1.5rem" />
               </div>
               {showCountry && (
-                <div className="absolute flex flex-col bg-neutral-1000 left-0 border overflow-y-auto h-[30vh] top-full w-full">
+                <div className="absolute flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto h-[30vh] top-full w-full">
                   {countriesList.map((item, index) => (
                     <div
-                      className="w-full py-3 px-6 cursor-pointer hover:bg-purple-400 hover:text-white"
+                      className="w-full py-3 px-6 cursor-pointer hover:bg-primary-400"
                       key={index}
                       onClick={() => {
                         setShowCountry((prev) => !prev);
@@ -186,10 +187,10 @@ function HighSchool() {
               )}
 
               {showState && (
-                <div className="absolute flex flex-col bg-neutral-1000 left-0 border overflow-y-auto h-[30vh] top-full w-full">
+                <div className="absolute flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto h-[30vh] top-full w-full">
                   {stateList.map((item, index) => (
                     <div
-                      className="w-full py-3 px-6 cursor-pointer hover:bg-purple-400 hover:text-white"
+                      className="w-full py-3 px-6 cursor-pointer hover:bg-primary-400"
                       key={index}
                       onClick={() => {
                         setShowState((prev) => !prev);
@@ -229,10 +230,10 @@ function HighSchool() {
                 </div>
               )}
               {showCity && (
-                <div className="absolute flex flex-col bg-neutral-1000 left-0 border overflow-y-auto h-[30vh] top-full w-full">
+                <div className="absolute flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto h-[30vh] top-full w-full">
                   {cityList.map((item, index) => (
                     <div
-                      className="w-full py-3 px-6 cursor-pointer hover:bg-purple-400 hover:text-white"
+                      className="w-full py-3 px-6 cursor-pointer hover:bg-primary-400"
                       key={index}
                       onClick={() => {
                         setShowCity((prev) => !prev);

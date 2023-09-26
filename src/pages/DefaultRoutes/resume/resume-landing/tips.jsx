@@ -10,7 +10,10 @@ import "./index.css";
 function TipSection() {
   return (
     <>
-      <div className="flex flex-col gap-10 md:flex-row items-center justify-between text-xm">
+      <div
+        id="resume_templates"
+        className="flex flex-col gap-10 md:flex-row items-center justify-between text-xm"
+      >
         <div className="flex w-full md:w-7/12 lg:w-8/12 flex-col gap-4 text-start items-start justify-center">
           <h1 className="text-2xl font-semibold md:text-3xl md:leading-relaxed">
             Choose from our professional template
@@ -39,7 +42,10 @@ function TipSection() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-8 md:flex-row md:justify-between md:items-center">
+      <div
+        id="resume_examples"
+        className="flex flex-col gap-8 md:flex-row md:justify-between md:items-center"
+      >
         <div className="w-3/4 md:w-full">
           <img src={card3Image} alt="useful tips" />
         </div>

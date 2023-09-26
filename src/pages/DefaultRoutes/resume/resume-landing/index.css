@@ -24,3 +24,7 @@
 
   animation: slideAnimation linear infinite;
 }
+
+.resume-section {
+  scroll-behavior: smooth;
+}

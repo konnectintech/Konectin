@@ -71,11 +71,11 @@ function Contact() {
               />
 
               {topicsCLicked && (
-                <div className=" font-[Avenir] py-8 ">
+                <div className="font-[Avenir] py-8">
                   <h2 className="font-black">Helpful resources</h2>
                   <Link
                     to="/faq"
-                    className=" py-1 text-secondary-500 text-xs block "
+                    className="py-1 text-secondary-500 text-xs block"
                   >
                     Tips for job search success -
                   </Link>
@@ -87,13 +87,13 @@ function Contact() {
                   </Link>
                   <Link
                     to="/faq"
-                    className=" py-1 text-secondary-500 text-xs block "
+                    className="py-1 text-secondary-500 text-xs block"
                   >
                     Strategies for networking -
                   </Link>
                   <Link
                     to="/faq"
-                    className=" py-1 text-secondary-500 text-xs block "
+                    className="py-1 text-secondary-500 text-xs block"
                   >
                     Troubleshooting common account issues -
                   </Link>
@@ -106,7 +106,7 @@ function Contact() {
                   better
                 </h2>
                 <input
-                  className=" p-1 lg:py-3 lg:px-8 placeholder:text-xs font-normal  w-full mt-4 outline-none rounded border "
+                  className="p-1 lg:py-3 lg:px-8 placeholder:text-xs font-normal  w-full mt-4 outline-none rounded border"
                   type="text"
                   placeholder="Tell us what you need help with"
                 />
@@ -123,14 +123,14 @@ function Contact() {
 
               <section className="flex flex-col md:flex-row gap-2 lg:gap-0 justify-between items-center w-3/4 md:w-[55%] lg:w-[65%] mt-4  font-[Avenir]">
                 <button
-                  className="p-2 py-3 lg:px-5 bg-neutral-900 text-xs "
+                  className="p-2 py-3 lg:px-5 bg-neutral-900 text-xs hover:bg-primary-600 hover:text-white"
                   onClick={handleTopicClicked}
                 >
                   SEND US A MESSAGE
                 </button>
                 <h2>or</h2>
                 <button
-                  className="p-2 py-3 lg:px-5 border-primary-600 border text-xs"
+                  className="p-2 py-3 lg:px-5 border-primary-600 border text-xs hover:bg-primary-600 hover:text-white"
                   onClick={(e) => e.preventDefault()}
                 >
                   START A LIVE CHAT

@@ -127,16 +127,11 @@ function TemplateThreeA(data) {
                   display: flex;
                   flex-direction: column;
                   background: #212121;
-                  
-                }
                 }
 
                 .section-column-right {
                   width:60%
                 }
-                
-                
-              
             `}
             </style>
           </div>

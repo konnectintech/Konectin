@@ -36,7 +36,6 @@ const pca = new PublicClientApplication({
 pca.addEventCallback((event) => {
   if (event.eventType === EventType.LOGIN_SUCCESS) {
     pca.setActiveAccount(event.payload.account);
-    localStorage.setItem("");
   }
 });
 
@@ -78,11 +77,13 @@ export const useAuth = () => {
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   useEffect(() => {
-    if (isUserAuthenticated) {
-      const currentAccount = instance.getActiveAccount();
+    const currentAccount = instance.getActiveAccount();
 
+    if (isUserAuthenticated) {
       setPreviousLog(currentAccount);
     }
+
+    console.log(instance, currentAccount);
   }, [instance]);
 
   const { result, error } = useMsalAuthentication();
@@ -98,7 +99,8 @@ export const useAuth = () => {
     }
 
     if (result) {
-      const loggedUser = axios.get("https://graph.mircosoft.com/v1.0/me", {
+      console.log(result);
+      const loggedUser = axios.get("https://graph.microsoft.com/v1.0/me", {
         headers: { Authorization: `Bearer ${result.accessToken}` },
       });
 

@@ -1,4 +1,5 @@
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function TestimonialSection({ data }) {
   return (
@@ -32,8 +33,12 @@ function TestimonialSection({ data }) {
           ))}
         </div>
         <small className="w-3/4 mt-3 text-neutral-200">
-          Contact our Customer Support if you have any question(s) or encounter
-          any issue. We are always ready to help.
+          Contact our{" "}
+          <Link className="text-secondary-600 underline" to="/">
+            Customer Supports
+          </Link>{" "}
+          if you have any question(s) or encounter any issue. We are always
+          ready to help.
         </small>
       </div>
     </div>
