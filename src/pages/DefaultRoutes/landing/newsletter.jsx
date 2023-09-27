@@ -1,8 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { konectinLogo, newsletterBg } from "../../../assets";
 import { NotifyForm } from "../../../components/form";
 import { NotifyModal } from "../../../components/form/modal";
+import SectionWrapper from "../../../components/animation/sectionWrapper";
+import { textVariantUp } from "../../../utils/motion";
 
 function NewsLetter() {
   const [state, setState] = useState({
@@ -68,14 +71,20 @@ function NewsLetter() {
           </div>
         </div>
       )}
-      <div className="absolute z-10 w-full left-1/2 h-[340px] -translate-x-1/2">
+      <motion.div
+        variants={textVariantUp()}
+        className="absolute z-10 w-full h-[340px]"
+      >
         <img
           className="w-full h-full max-h-[340px]"
           src={newsletterBg}
           alt="Newsletter"
         />
-      </div>
-      <div className="relative z-30 text-center pt-8 text-white px-4">
+      </motion.div>
+      <motion.div
+        variants={textVariantUp()}
+        className="relative z-30 text-center pt-8 text-white px-4"
+      >
         <h1 className="text-lg xxs:text-2xl sm:text-3xl mb-3">
           Subscribe to our newsletter
         </h1>
@@ -86,7 +95,7 @@ function NewsLetter() {
         <div className="w-full sm:w-10/12 max-w-screen-md rounded-lg mx-auto flex gap-2 items-center justify-center pl-4 sm:pl-8 pr-2 sm:pr-4 py-1 md:py-3 bg-white mt-10">
           <NotifyForm handleSubmit={handleNewsLetter} formFor="Subscribe" />
         </div>
-      </div>
+      </motion.div>
 
       {state.header && (
         <div className="fixed top-0 left-0 w-full h-full z-50 flex items-center justify-center">
@@ -107,4 +116,4 @@ function NewsLetter() {
   );
 }
 
-export default NewsLetter;
+export default SectionWrapper(NewsLetter, "newsletter");
