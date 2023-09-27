@@ -1,4 +1,3 @@
-import * as BsIcon from "react-icons/bs";
 import { template_images } from "../../../../../assets/resume";
 import { useTemplateContext } from "../../../../../middleware/resume";
 
@@ -14,6 +13,7 @@ import * as FaIcon from "react-icons/fa";
 import axios from "axios";
 import { konectinIcon } from "../../../../../assets";
 import { loginForm } from "../../../../sign/signData";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const TemplateOption = ({ sectionName }) => {
   const { templateData, onInputChange } = useTemplateContext();
@@ -58,25 +58,6 @@ const TemplateOption = ({ sectionName }) => {
     }
   };
 
-  // const template_images = [
-  //   {
-  //     img: templateDesign1,
-  //     category: "modern",
-  //   },
-  //   {
-  //     img: ResumeTemplateSample1Image,
-  //     category: "artistic",
-  //   },
-  //   {
-  //     img: ResumeTemplateSampleImage,
-  //     category: "artistic",
-  //   },
-  //   {
-  //     img: ResumeTemplateSampleImage,
-  //     category: "artistic",
-  //   },
-  // ];
-
   return (
     <div className="flex flex-col items-start w-full max-w-[1000px] justify-start gap-4">
       <h3 className="text-xl lg:text-2xl font-bold capitalize">
@@ -99,7 +80,7 @@ const TemplateOption = ({ sectionName }) => {
                   key={item.category + index}
                   className="cursor-pointer ml-2 flex justify-center items-center text-center group"
                 >
-                  <img
+                  <LazyLoadImage
                     src={item.img}
                     alt={`${sectionName}_${index + 1}`}
                     className="w-full h-full"
@@ -110,16 +91,15 @@ const TemplateOption = ({ sectionName }) => {
                                 ${
                                   templateData.selectedTemplate ===
                                   `${sectionName}_${index + 1}`
-                                    ? "absolute w-full h-full top-0 bg-neutral-100 bg-opacity-60"
+                                    ? "absolute w-full h-full top-0 bg-primary-300 bg-opacity-60"
                                     : "-top-full"
                                 } left-0 duration-500 flex items-center justify-center`}
                   >
                     {templateData.selectedTemplate ===
                       `${sectionName}_${index + 1}` && (
-                      <BsIcon.BsCheckCircle
-                        size="1.2rem"
-                        className="absolute text-neutral-700 bg-primary-400 rounded-full"
-                      />
+                      <div className="bg-primary-600 text-white text-xs px-2 py-2 rounded absolute">
+                        Selected
+                      </div>
                     )}
                   </div>
                   <div
