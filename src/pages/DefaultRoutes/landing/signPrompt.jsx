@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { MicrosoftLog } from "../../../components/button";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import SectionWrapper from "../../../components/animation/sectionWrapper";
+import { slideIn } from "../../../utils/motion";
 
 function SignPrompt() {
   const [mail, setMail] = useState("");
@@ -12,7 +14,10 @@ function SignPrompt() {
 
   return (
     <div className="text-sm">
-      <div className="border border-gray-400 rounded-lg p-3 xs:p-6 flex flex-col md:flex-row gap-3 xs:gap-6 items-center justify-between">
+      <motion.div
+        variants={slideIn("up", "spring", 0, 1)}
+        className="border border-gray-400 rounded-lg p-3 xs:p-6 flex flex-col md:flex-row gap-3 xs:gap-6 items-center justify-between"
+      >
         <input
           className="w-full md:flex-1 bg-neutral-1000 border border-gray-400 outline-0 px-4 xs:px-6 py-3 rounded-lg"
           type="email"
@@ -34,7 +39,7 @@ function SignPrompt() {
             <MicrosoftLog />
           </div>
         </div>
-      </div>
+      </motion.div>
       <div className="text-right mt-2">
         Have an account already?{" "}
         <Link to="/login" className="text-secondary-600">
@@ -45,4 +50,4 @@ function SignPrompt() {
   );
 }
 
-export default SignPrompt;
+export default SectionWrapper(SignPrompt, "sign-prompt", 0.7);

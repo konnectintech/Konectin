@@ -2,6 +2,9 @@ import { useState } from "react";
 import { ResumeButton } from "../../../../components/button";
 import { Link } from "react-scroll";
 import { ResumeTemplateCrossImage } from "../../../../assets";
+import { motion } from "framer-motion";
+import { slideIn, textVariantUp } from "../../../../utils/motion";
+import SectionWrapper from "../../../../components/animation/sectionWrapper";
 
 function SliderSection({ data }) {
   const [currentTemplate, setTemplate] = useState(0);
@@ -9,7 +12,10 @@ function SliderSection({ data }) {
   return (
     <section className="w-11/12 mx-auto max-w-screen-lg -translate-y-6 flex flex-col gap-16">
       <div className="flex flex-col gap-12">
-        <div className="flex items-center justify-between text-center gap-2 w-full max-w-screen-lg mx-auto">
+        <motion.div
+          variants={textVariantUp()}
+          className="flex items-center justify-between text-center gap-2 w-full max-w-screen-lg mx-auto"
+        >
           {data.map((template, index) => (
             <Link
               key={index}
@@ -55,27 +61,36 @@ function SliderSection({ data }) {
               ></div>
             </Link>
           ))}
-        </div>
+        </motion.div>
 
         <div className="flex flex-col gap-8 md:flex-row md:justify-between md:items-center lg:justify-center">
-          <img
+          <motion.img
+            variants={slideIn("ltr", "spring", 0.1, 1.5)}
             className="w-3/4 md:w-1/2 lg:max-w-xl mr-auto lg:mx-0"
             src={ResumeTemplateCrossImage}
             alt="resume template"
           />
 
           <div className="flex flex-col gap-8">
-            <h1 className="text-2xl font-semibold md:text-3xl md:leading-relaxed lg:text-4xl max-w-md">
+            <motion.h1
+              variants={textVariantUp(0.4)}
+              className="text-2xl font-semibold md:text-3xl md:leading-relaxed lg:text-4xl max-w-md"
+            >
               {data[0].title}
-            </h1>
+            </motion.h1>
 
-            <p className="w-9/12 text-neutral-300">
+            <motion.p
+              variants={textVariantUp(0.6)}
+              className="w-9/12 text-neutral-300"
+            >
               At konectin, we believe that first impresions matter, that’s why
               we make sure you put your best foot forward with eye-catching
               resume designs that stand out from the rest
-            </p>
+            </motion.p>
 
-            <ResumeButton />
+            <motion.div variants={textVariantUp(0.8)} className="w-fit">
+              <ResumeButton />
+            </motion.div>
           </div>
         </div>
       </div>
@@ -83,4 +98,4 @@ function SliderSection({ data }) {
   );
 }
 
-export default SliderSection;
+export default SectionWrapper(SliderSection, "slider-section");

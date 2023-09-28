@@ -82,8 +82,6 @@ export const useAuth = () => {
     if (isUserAuthenticated) {
       setPreviousLog(currentAccount);
     }
-
-    console.log(instance, currentAccount);
   }, [instance]);
 
   const { result, error } = useMsalAuthentication();
