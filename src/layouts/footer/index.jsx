@@ -25,7 +25,7 @@ function Footer() {
                   src={contactIcon}
                   alt="Phone call"
                 />
-                <span>+2347061855058</span>
+                <span>+234 706 185 5058</span>
               </a>
               <a
                 href="mailto:info@konectin.org"
