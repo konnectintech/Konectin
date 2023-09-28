@@ -37,8 +37,7 @@ function HeroSection() {
       </div>
       <motion.div
         variants={slideIn("rtl", "spring", 0.1, 1)}
-        className="w-full md:w-1/2 
-        sm:[--left-right:150%] [--left-right:-150%]"
+        className="w-full md:w-1/2 sm:[--left-right:150%] [--left-right:-150%]"
       >
         <img src={heroImage} alt="Get started with Konectin" />
       </motion.div>

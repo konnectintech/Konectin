@@ -10,7 +10,7 @@ const SectionWrapper = (Component, idName, amount) =>
         whileInView="show"
         viewport={{ once: true, amount: amount ? amount : 0.25 }}
       >
-        <span className="hash-span" id={idName}>
+        <span className="absolute" id={idName}>
           &nbsp;
         </span>
         <Component {...props} />
