@@ -93,7 +93,7 @@ function Internship() {
   const navigate = useNavigate();
 
   return (
-    <section className="min-h-[70vh]">
+    <section className="min-h-[70vh] overflow-hidden">
       {loading && (
         <div className="fixed no-scrollbar w-full h-screen top-0 left-0 z-[100] flex">
           <div className="bg-neutral-100 opacity-70 absolute w-full h-full"></div>
