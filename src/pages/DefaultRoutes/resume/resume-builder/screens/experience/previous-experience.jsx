@@ -1,5 +1,5 @@
 import * as FaIcon from "react-icons/fa";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import DatePicker from "react-multi-date-picker";
 import { MdArrowDropDown } from "react-icons/md";
@@ -19,6 +19,8 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
   const [countriesList, setCountriesList] = useState([]);
   const [stateList, setStateList] = useState([]);
   const [cityList, setCityList] = useState([]);
+
+  const jobTitleRef = useRef(null)
 
   useEffect(() => {
     GetCountries().then((result) => {
@@ -52,7 +54,9 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
               }
               section="jobExperience"
               subsection="jobTitle"
+              ref={jobTitleRef}
             />
+            
             <input
               className="input-container"
               type="text"

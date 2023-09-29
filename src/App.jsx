@@ -76,7 +76,7 @@ function App() {
             <Route path="/resume/options" element={<Options />} />
             <Route path="/resume/start" element={<StartBuilder />} />
             <Route path="/resume/builder/*" element={<Builder />} />
-            <Route path="/resume/upload/*" element={<ResumeUpload />} />
+            {/* <Route path="/resume/upload/*" element={<ResumeUpload />} /> */}
           </Route>
 
           <Route element={<ProtectedRoutes />}>

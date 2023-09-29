@@ -1,11 +1,12 @@
 import { useState } from "react";
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import * as FaIcon from "react-icons/fa";
 import img from "../../../assets/images/Group 48095546.png";
 import { Link } from "react-router-dom";
-import { useFormik } from "formik";
+
 
 function Contact() {
   const [topicsCLicked, SetTopicsCLicked] = useState(false);
@@ -70,18 +71,18 @@ function Contact() {
   return (
     <div>
       <div className=" mt-20 pt-16 pb-40 px-16 lg:px-24 bg-primary-700 ">
-        <h1 className=" font-[Merriweather] text-3xl lg:text-6xl font-bold text-primary-100 mb-2">
+        <h1 className="text-3xl lg:text-6xl font-bold text-primary-100 mb-2">
           Contact US
         </h1>
-        <p className="font-[Avenir] font-bold text-lg lg:text-2xl text-primary-100 ">
+        <p className="font-bold text-lg lg:text-2xl text-primary-100 ">
           Requests, error reports, suggestions, and questions. - we’re here to
           assist.
         </p>
       </div>
       <div className="flex justify-center pb-24 ">
         <div className="grid grid-cols-1 z-50 lg:grid-cols-2 w-[90%] mt-[-70px] justify-between gap-6 lg:gap-1 ">
-          <div className="shadow-2xl bg-white z-50  p-8 lg:p-16">
-            <h2 className="font-[Avenir] text-lg font-black">
+          <div className="shadow-2xl bg-white z-50 p-8 lg:p-14">
+            <h2 className="text-lg font-black">
               Kindly select a topic for discussion:
             </h2>
             <div className="py-4 flex gap-1 lg:gap-4 mb-2 flex-wrap">
@@ -112,7 +113,7 @@ function Contact() {
             </div>
 
             <form ref={form} onSubmit={sendEmail}>
-              <h2 className="font-[Avenir] text-lg font-black">
+              <h2 className="text-lg font-black">
                 Or simply state what you require help with
               </h2>
               <input
@@ -131,7 +132,7 @@ function Contact() {
               ) : null}
 
               {topicsCLicked && (
-                <div className=" font-[Avenir] py-8 ">
+                <div className=" py-8 ">
                   <h2 className="font-black">Helpful resources</h2>
                   <Link
                     to="/faq"
@@ -161,7 +162,7 @@ function Contact() {
               )}
 
               <>
-                <h2 className="font-[Avenir] text-lg font-black mt-4">
+                <h2 className="text-lg font-black mt-4">
                   Enter your Email address
                 </h2>
                 <input
@@ -181,12 +182,12 @@ function Contact() {
               </>
 
               <>
-                <h2 className="font-[Avenir] text-lg font-black mt-4">
+                <h2 className="text-lg font-black mt-4">
                   Kindly provide us with additional information to assist you
                   better
                 </h2>
                 <input
-                  className=" py-2 px-4 lg:py-3 lg:px-8 placeholder:text-xs font-normal  w-full mt-4 outline-none rounded border min-h-[60px] "
+                  className="py-3 px-8 placeholder:text-xs font-normal  w-full mt-4 outline-none rounded border "
                   type="text"
                   name="message"
                   placeholder="Tell us what you need help with"
@@ -204,21 +205,21 @@ function Contact() {
               {topicsCLicked && (
                 <div>
                   <h1 className="my-4">Attach files (optional)</h1>
-                  <div className="flex justify-center items-center p-12 rounded-md border-dashed border-2 border-primary-300 mb-4 ">
+                  <div className="flex justify-center items-center py-3 px-4 rounded-md border-dashed border-2 border-primary-300 mb-4 max-w-[350px]">
                     <input type="file" name="" id="" />
                   </div>
                 </div>
               )}
 
-              <section className="flex flex-col md:flex-row gap-2 justify-between items-start lg:items-center w-3/4 md:w-[55%] lg:w-[70%] mt-4">
+              <section className="flex flex-col md:flex-row gap-2 justify-between items-start md:items-center max-w-[150px] md:max-w-[350px] lg:max-w-[350px] md:min-w-[300px]  mt-6">
                 <button
-                  className="p-2  lg:py-3  bg-neutral-900 text-xs "
+                  className="p-2 py-3 lg:px-5 bg-neutral-900 text-xs "
                   type="submit"
                   onClick={sendEmail}
                 >
                   SEND US A MESSAGE
                 </button>
-                <h2 className="ml-16 lg:ml-0">or</h2>
+                <p className="self-center -ml-6 md:ml-0 uppercase text-xs my-2 md:my-0 font-bold">or</p>
                 <div>
                   <a
                     href="https://wa.link/jbbtji"
@@ -232,10 +233,10 @@ function Contact() {
               </section>
             </form>
 
-            <h2 className="font-[Avenir] text-lg font-black mt-4">
+            <h2 className="text-lg font-black mt-4">
               Contact us via email or social media for further assistance.
             </h2>
-            <div className="w-full text-center text-primary-600 pb-10 md:py-6 md:flex justify-between items-center ">
+            <div className="w-full text-center text-primary-600 pb-10 md:py-6 md:flex justify-between items-center mt-4 md:mt-0 ">
               <div className="flex gap-4 items-center justify-center mb-6 md:mb-0">
                 <a
                   href="http://www.twitter.com/KonectinInc"
