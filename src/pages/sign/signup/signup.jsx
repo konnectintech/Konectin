@@ -26,7 +26,7 @@ function SignUp() {
   const isUserAuthenticated = useIsAuthenticated();
 
   useEffect(() => {
-    if (!isUserAuthenticated) {
+    if (!isUserAuthenticated && previousLog) {
       instance
         .ssoSilent({
           scopes: ["user.read"],
@@ -52,6 +52,7 @@ function SignUp() {
     if (agreed) {
       setLoading(true);
       signUp(data, setLoading, setErrorMessage);
+      sessionStorage.setItem("mail", "");
     } else {
       setErrorMessage(
         "Please read and agree with our terms and condition to continue"

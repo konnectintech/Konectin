@@ -65,7 +65,7 @@
   visibility: visible;
 }
 
-.selector-grid .selectors .variant {
+/* .selector-grid .selectors .variant {
   animation: visibility 5s linear backwards;
 }
 
@@ -78,14 +78,14 @@
     visibility: hidden;
     opacity: 1;
   }
-}
+} */
 
 .selector-grid .selector1 .variant {
   width: 70%;
-  transform: translateX(-15px);
+  /* transform: translateX(-15px); */
 }
 
-.selector-grid .selector2 .variant {
+/* .selector-grid .selector2 .variant {
   transform: translateX(-25px);
   animation-delay: 1s;
   animation-duration: 4s;
@@ -107,7 +107,7 @@
   transform: translateX(10px);
   animation-delay: 4s;
   animation-duration: 1s;
-}
+} */
 
 .selector-grid:has(.selector1:hover) + .custom-grid .tab1,
 .selector-grid:has(.selector2:hover) + .custom-grid .tab2,

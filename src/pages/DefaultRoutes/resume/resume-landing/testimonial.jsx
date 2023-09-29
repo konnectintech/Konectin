@@ -1,15 +1,23 @@
+import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { slideIn, textVariantUp } from "../../../../utils/motion";
+import SectionWrapper from "../../../../components/animation/sectionWrapper";
 
 function TestimonialSection({ data }) {
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-2xl font-semibold mb-2 md:text-3xl leading-relaxed">
+      <motion.h1
+        variants={textVariantUp()}
+        className="text-2xl font-semibold mb-2 md:text-3xl leading-relaxed"
+      >
         Loved & used by individuals <br /> across the globe.
-      </h1>
+      </motion.h1>
       <div className="flex flex-col gap-2">
         <div className="grid sm:grid-cols-2 bg-white md:grid-cols-3 md:bg-neutral-1000 lg:grid-cols-4 lg:bg-white gap-2 shadow-lg">
           {data?.map((review, index) => (
-            <div
+            <motion.div
+              variants={slideIn("ltr", "spring", 0.2, 1.2 * index)}
               className="flex flex-col justify-between gap-4 bg-neutral-1000 px-4 py-6"
               key={index}
             >
@@ -28,16 +36,20 @@ function TestimonialSection({ data }) {
                   <small className="text-neutral-300">{review.location}</small>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
         <small className="w-3/4 mt-3 text-neutral-200">
-          Contact our Customer Support if you have any question(s) or encounter
-          any issue. We are always ready to help.
+          Contact our{" "}
+          <Link className="text-secondary-600 underline" to="/">
+            Customer Supports
+          </Link>{" "}
+          if you have any question(s) or encounter any issue. We are always
+          ready to help.
         </small>
       </div>
     </div>
   );
 }
 
-export default TestimonialSection;
+export default SectionWrapper(TestimonialSection, "testimonial");

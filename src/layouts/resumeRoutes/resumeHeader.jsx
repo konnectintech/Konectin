@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaCheck, FaTimes } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { konectinIcon } from "../../assets";
 import "../header/header.css";
@@ -115,13 +115,17 @@ function ResumeHeader() {
                     (link.text === "finalize" &&
                       (pathname === "/resume/builder/preview" ||
                         pathname === "/resume/builder/download"))
-                      ? "text-success-400 border-success-400"
+                      ? "bg-success-400"
                       : locationNo >= link.no
                       ? "text-secondary-500 border-secondary-500"
                       : "text-secondary-300 border-secondary-300"
                   }`}
                 >
-                  {link.no}
+                  {completed[link.text.split(" ").join("_")] ? (
+                    <FaCheck color="white" />
+                  ) : (
+                    link.no
+                  )}
                 </span>
                 <span className="flex-1 uppercase">{link.text}</span>
                 {link.no <= links.length - 1 && (
@@ -193,13 +197,17 @@ function ResumeHeader() {
                 (link.text === "finalize" &&
                   (pathname === "/resume/builder/preview" ||
                     pathname === "/resume/builder/download"))
-                  ? "text-success-400 border-success-400"
+                  ? "bg-success-400"
                   : locationNo >= link.no
                   ? "text-secondary-500 border-secondary-500"
                   : "text-secondary-300 border-secondary-300"
               }`}
             >
-              {link.no}
+              {completed[link.text.split(" ").join("_")] ? (
+                <FaCheck color="white" />
+              ) : (
+                link.no
+              )}
             </span>
             {link.no <= links.length - 1 && (
               <span

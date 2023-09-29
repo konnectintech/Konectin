@@ -21,7 +21,7 @@ function VerifyMail() {
   };
 
   const resendCode = () => {
-    const user = JSON.parse(localStorage.getItem("User"));
+    const user = JSON.parse(localStorage.getItem("user"));
     const url = `${parseURL}/requestEmail?userId=${user._id}`;
 
     setLoading(true);
@@ -63,7 +63,7 @@ function VerifyMail() {
         if (status === 200) {
           setLoading(false);
           let userUpdate = { ...user, isEmailVerified: true };
-          localStorage.setItem("User", JSON.stringify(userUpdate));
+          localStorage.setItem("user", JSON.stringify(userUpdate));
           popModal("You have been verified");
           setTimeout(() => {
             popModal("");

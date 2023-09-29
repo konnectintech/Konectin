@@ -88,6 +88,16 @@ input[type="tel"]:-webkit-autofill {
   color: #000;
 }
 
+.rmdp-day.rmdp-today span {
+  background-color: #fc670b;
+  color: #fff;
+}
+
+.rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
+  background-color: #fec29d;
+  color: #fff;
+}
+
 .underdash {
   position: relative;
 }

@@ -12,14 +12,15 @@ const Download = ({ data }) => {
   const handleDownload = async () => {
     const doc = document.getElementById("template");
     setLoading(true);
-    const { _id } = localStorage.getItem("user");
-    const url = import.meta.env.VITE_CLIENT_SERVER_URL;
+    const { _id } = JSON.parse(localStorage.getItem("user"));
+    // const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
     try {
       let res = await axios.post(
-        `${url}/createPdf?userId=${_id}`,
+        `https://konectin-backend-hj09.onrender.com/user/createPdf?userId=${_id}`,
         {
-          html: `<!DOCTYPE html>
+          html: `
+              <!DOCTYPE html>
                 <html lang="en">
                   <head>
                     <meta charset="UTF-8" />

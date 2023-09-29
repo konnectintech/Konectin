@@ -21,12 +21,14 @@ const BasicInformation = ({ data, onInputChange }) => {
   const [showCountry, setShowCountry] = useState(false);
   const [showState, setShowState] = useState(false);
   const [showCity, setShowCity] = useState(false);
+  const [countryInput, setCountryInput] = useState("");
 
   const [countryid, setCountryid] = useState(0);
 
   const [countriesList, setCountriesList] = useState([]);
   const [stateList, setStateList] = useState([]);
   const [cityList, setCityList] = useState([]);
+  const [filteredCountries, setFilteredCountries] = useState(countriesList);
 
   // Input Reference
   const firstNameRef = useRef(null);
@@ -71,6 +73,7 @@ const BasicInformation = ({ data, onInputChange }) => {
   useEffect(() => {
     GetCountries().then((result) => {
       setCountriesList(result);
+      setFilteredCountries(result);
     });
     // console.log(allInputs)
   }, []);
@@ -102,6 +105,15 @@ const BasicInformation = ({ data, onInputChange }) => {
       }
     })
 
+  };
+
+  const handleCountryInput = (input) => {
+    setShowCountry(true);
+    setCountryInput(input);
+    const filtered = countriesList.filter((country) =>
+      country.name.toLowerCase().includes(input.toLowerCase())
+    );
+    setFilteredCountries(filtered);
   };
 
   const handleSelectChange = (event, section) => {
@@ -252,10 +264,10 @@ const BasicInformation = ({ data, onInputChange }) => {
                 </div>
               )}
               {showCity && (
-                <div className="absolute flex flex-col bg-neutral-1000 left-0 border overflow-y-auto h-[30vh] top-full w-full">
+                <div className="absolute flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto h-[30vh] top-full w-full">
                   {cityList.map((item, index) => (
                     <div
-                      className="w-full py-3 px-6 cursor-pointer hover:bg-purple-400 hover:text-white"
+                      className="w-full py-3 px-6 cursor-pointer hover:bg-primary-400"
                       key={index}
                       onClick={() => {
                         setShowCity((prev) => !prev);
@@ -306,10 +318,10 @@ const BasicInformation = ({ data, onInputChange }) => {
               )}
 
               {showState && (
-                <div className="absolute flex flex-col bg-neutral-1000 left-0 border overflow-y-auto h-[30vh] top-full w-full">
+                <div className="absolute flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto h-[30vh] top-full w-full">
                   {stateList.map((item, index) => (
                     <div
-                      className="w-full py-3 px-6 cursor-pointer hover:bg-purple-400 hover:text-white"
+                      className="w-full py-3 px-6 cursor-pointer hover:bg-primary-400"
                       key={index}
                       onClick={() => {
                         setShowState((prev) => !prev);
@@ -352,16 +364,17 @@ const BasicInformation = ({ data, onInputChange }) => {
                 </h1>
               </div>
               {showCountry && (
-                <div className="absolute flex flex-col bg-neutral-1000 left-0 border overflow-y-auto h-[30vh] top-full w-full">
-                  {countriesList.map((item, index) => (
+                <div className="absolute flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto h-[30vh] top-full w-full">
+                  {filteredCountries.map((item, index) => (
                     <div
-                      className="w-full py-3 px-6 cursor-pointer hover:bg-purple-400 hover:text-white"
+                      className="w-full py-3 px-6 cursor-pointer hover:bg-primary-400"
                       key={index}
                       onClick={() => {
                         setShowCountry((prev) => !prev);
                         setCode(item.phone_code);
                         handleSelectChange(item, "country");
                         setCountryid(item.id);
+                        setCountryInput(item.name);
                         GetState(item.id).then((result) => {
                           setStateList(result);
                         });

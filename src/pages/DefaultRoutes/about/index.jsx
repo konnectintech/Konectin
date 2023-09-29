@@ -10,7 +10,7 @@ import Team from "./ourTeam/ourTeam";
 
 function About() {
   return (
-    <main className="flex flex-col bg-neutral-1000 text-neutral-100 relative">
+    <main className="flex flex-col bg-neutral-1000 overflow-hidden text-neutral-100 relative">
       <HeroSection />
       <CoreValues data={Values} />
       <CTASection />

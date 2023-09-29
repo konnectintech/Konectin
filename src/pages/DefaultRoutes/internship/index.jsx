@@ -5,6 +5,9 @@ import NotifyForm from "../../../components/form/notifyForm";
 import { NotifyModal } from "../../../components/form/modal";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
+import { motion } from "framer-motion";
+import SectionWrapper from "../../../components/animation/sectionWrapper";
+import { slideIn, textVariantUp } from "../../../utils/motion";
 
 function Internship() {
   const [state, setState] = useState({
@@ -90,7 +93,7 @@ function Internship() {
   const navigate = useNavigate();
 
   return (
-    <section className="min-h-[70vh]">
+    <section className="min-h-[70vh] overflow-hidden">
       {loading && (
         <div className="fixed no-scrollbar w-full h-screen top-0 left-0 z-[100] flex">
           <div className="bg-neutral-100 opacity-70 absolute w-full h-full"></div>
@@ -108,22 +111,35 @@ function Internship() {
               }}
               className="image-move mb-3"
             ></div>
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl leading-tight">
+            <motion.h1
+              variants={textVariantUp()}
+              className="text-4xl lg:text-5xl xl:text-6xl leading-tight"
+            >
               <font className="text-secondary-500">Konectin</font> Internship
-            </h1>
+            </motion.h1>
           </div>
-          <p className="text-3xl xl:text-4xl">
+          <motion.p
+            variants={textVariantUp(0.4)}
+            className="text-3xl xl:text-4xl"
+          >
             Get Notified When <br /> We Launch
-          </p>
-          <div className="w-full max-w-[550px] border border-primary-100 rounded-md pl-3 pr-2 py-3">
+          </motion.p>
+          <motion.div
+            variants={textVariantUp(0.6)}
+            className="w-full max-w-[550px] border border-primary-100 rounded-md pl-3 pr-2 py-3"
+          >
             <NotifyForm handleSubmit={handleSubmit} formFor="Notify Me" />
-          </div>
+          </motion.div>
         </div>
 
-        <picture className="hidden md:block">
+        <motion.picture
+          variants={slideIn("rtl", "spring", 0.1, 1)}
+          className="hidden md:block sm:[--left-right:150%] [--left-right:-150%]"
+        >
           <img src={internHero} alt="Konectin Internship" />
-        </picture>
+        </motion.picture>
       </div>
+
       {state.header && (
         <div className="fixed top-0 w-full h-full z-50 flex items-center justify-center">
           <div
@@ -143,4 +159,4 @@ function Internship() {
   );
 }
 
-export default Internship;
+export default SectionWrapper(Internship, "internship");

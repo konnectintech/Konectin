@@ -1,26 +1,29 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ResumeButton } from "../../../../components/button";
+import { Link } from "react-scroll";
+import { ResumeTemplateCrossImage } from "../../../../assets";
+import { motion } from "framer-motion";
+import { slideIn, textVariantUp } from "../../../../utils/motion";
+import SectionWrapper from "../../../../components/animation/sectionWrapper";
 
 function SliderSection({ data }) {
   const [currentTemplate, setTemplate] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTemplate((prev) => (prev < data.length - 1 ? prev + 1 : 0));
-    }, 7000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [currentTemplate, data.length]);
-
   return (
     <section className="w-11/12 mx-auto max-w-screen-lg -translate-y-6 flex flex-col gap-16">
       <div className="flex flex-col gap-12">
-        <div className="flex items-center justify-between text-center gap-2 w-full max-w-screen-lg mx-auto">
+        <motion.div
+          variants={textVariantUp()}
+          className="flex items-center justify-between text-center gap-2 w-full max-w-screen-lg mx-auto"
+        >
           {data.map((template, index) => (
-            <div
+            <Link
               key={index}
+              to={template.id}
+              spy={true}
+              smooth={true}
+              offset={-75}
+              duration={(index + 1) * 250}
               onClick={() => setTemplate(index)}
               className={`${
                 currentTemplate === index
@@ -30,7 +33,11 @@ function SliderSection({ data }) {
               `}
               aria-current={currentTemplate === index ? "page" : undefined}
             >
-              <h4 className="text-[10px] sm:text-xs font-medium">
+              <h4
+                className={`${
+                  currentTemplate === index ? "font-bold" : "font-medium"
+                } text-[10px] sm:text-xs`}
+              >
                 {template.type}
               </h4>
               <small
@@ -52,39 +59,43 @@ function SliderSection({ data }) {
                   mx-auto h-[1px] mt-2
                   `}
               ></div>
-            </div>
+            </Link>
           ))}
-        </div>
+        </motion.div>
 
-        {data.map((template, index) => (
-          <div
-            key={index}
-            className={
-              currentTemplate === index
-                ? "flex flex-col gap-8 md:flex-row md:justify-between md:items-center lg:justify-center"
-                : "hidden"
-            }
-          >
-            <img
-              className="w-3/4 md:w-1/2 lg:max-w-xl mr-auto lg:mx-0"
-              src={template.image}
-              alt={template.type}
-            />
+        <div className="flex flex-col gap-8 md:flex-row md:justify-between md:items-center lg:justify-center">
+          <motion.img
+            variants={slideIn("ltr", "spring", 0.1, 1.5)}
+            className="w-3/4 md:w-1/2 lg:max-w-xl mr-auto lg:mx-0"
+            src={ResumeTemplateCrossImage}
+            alt="resume template"
+          />
 
-            <div className="flex flex-col gap-8">
-              <h1 className="text-2xl font-semibold md:text-3xl md:leading-relaxed lg:text-4xl max-w-md">
-                {template.title}
-              </h1>
+          <div className="flex flex-col gap-8">
+            <motion.h1
+              variants={textVariantUp(0.4)}
+              className="text-2xl font-semibold md:text-3xl md:leading-relaxed lg:text-4xl max-w-md"
+            >
+              {data[0].title}
+            </motion.h1>
 
-              <p className="w-9/12 text-neutral-300">{template.body}</p>
+            <motion.p
+              variants={textVariantUp(0.6)}
+              className="w-9/12 text-neutral-300"
+            >
+              At konectin, we believe that first impresions matter, that’s why
+              we make sure you put your best foot forward with eye-catching
+              resume designs that stand out from the rest
+            </motion.p>
 
+            <motion.div variants={textVariantUp(0.8)} className="w-fit">
               <ResumeButton />
-            </div>
+            </motion.div>
           </div>
-        ))}
+        </div>
       </div>
     </section>
   );
 }
 
-export default SliderSection;
+export default SectionWrapper(SliderSection, "slider-section");

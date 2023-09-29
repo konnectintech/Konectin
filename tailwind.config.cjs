@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  mode: "jit",
   theme: {
     extend: {
       colors: {
@@ -44,7 +45,7 @@ module.exports = {
           400: "#249108",
         },
         error: {
-          500: "#f11010",
+          500: "#F11010",
         },
       },
       screens: {

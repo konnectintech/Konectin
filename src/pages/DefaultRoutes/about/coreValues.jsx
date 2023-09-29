@@ -1,25 +1,45 @@
+import { motion } from "framer-motion";
+import SectionWrapper from "../../../components/animation/sectionWrapper";
+import { textVariantUp } from "../../../utils/motion";
+
 function CoreValues({ data }) {
   return (
     <section className="w-11/12 mx-auto max-w-screen-2xl flex flex-col gap-8 -translate-y-12">
       <div className="headings">
-        <div className="bg-primary-600 text-center py-2 text-white">
+        <motion.div
+          variants={textVariantUp()}
+          className="bg-primary-600 text-center py-2 text-white"
+        >
           <h2 className="text-2xl uppercase">
             Our <font className="text-secondary-600">Core Values</font>
           </h2>
-        </div>
-        <p className="w-10/12 text-center mx-auto font-semibold text-[15px] mt-4">
+        </motion.div>
+        <motion.p
+          variants={textVariantUp(0.2)}
+          className="w-10/12 text-center mx-auto font-semibold text-[15px] mt-4"
+        >
           At <font className="text-primary-600">Konectin</font>, Our mission is
           in alignment with our values and reflects all that we aim to achieve.
           At our company, we are dedicated to ensuring a user-friendly and
           top-tier experience for all our customers. Below are 5 core values we
           are driven by:
-        </p>
+        </motion.p>
       </div>
 
       <div className="selector-grid">
         {data?.map((selector, index) => (
           <div key={index} className={`selectors selector${index + 1}`}>
-            <img
+            <motion.img
+              initial={{ opacity: 0 }}
+              whileInView={{
+                opacity: 1,
+                transition: {
+                  type: "spring",
+                  duration: 1.4,
+                  delay: index * 0.9 + 0.2,
+                },
+              }}
+              viewport={{ once: true, amount: 0.5 }}
               className="variant"
               src={selector.variant}
               alt={selector.name}
@@ -53,4 +73,4 @@ function CoreValues({ data }) {
   );
 }
 
-export default CoreValues;
+export default SectionWrapper(CoreValues, "core-values");

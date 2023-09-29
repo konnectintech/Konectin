@@ -42,7 +42,9 @@ const Responsibilities = ({ data, handleInputChange }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const wordCount = editorRef.current.plugins.wordcount.getCount();
+    const wordCount = editorRef
+      ? editorRef.current.plugins.wordcount.getCount()
+      : 0;
 
     if (wordCount <= 30) {
       setDirty(true);
@@ -152,7 +154,7 @@ const Responsibilities = ({ data, handleInputChange }) => {
                 jobTitle={responsibility}
                 handleChange={(value) => setResponsibility(value)}
                 handleAddSuggestion={handleAddSuggestion}
-                loading={loading}
+                selected={editorValue}
                 responsibilities={suggestions}
               />
             </div>

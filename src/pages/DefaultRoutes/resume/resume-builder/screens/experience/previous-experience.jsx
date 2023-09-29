@@ -34,6 +34,8 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    console.log(data);
+
     // handleSubmit(formArray); Sends data to backend then
     navigate("/resume/builder/employment-experience/responsibilities");
   };
@@ -69,37 +71,53 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
             <div className="flex gap-4">
               {/* Country  */}
               <div className="input-container relative">
-                <div
-                  onClick={() => setShowCountry((prev) => !prev)}
-                  className="cursor-pointer flex gap-2 items-center w-full"
-                >
+                {countriesList.length >= 2 ? (
+                  <>
+                    <div
+                      onClick={() => setShowCountry((prev) => !prev)}
+                      className="cursor-pointer flex gap-2 items-center w-full"
+                    >
+                      <input
+                        readOnly
+                        placeholder="Enter Country"
+                        className="bg-transparent outline-none border-none w-full h-full"
+                        value={data.country ? data.country : "Enter Country"}
+                      />
+                      <MdArrowDropDown size="1.5rem" />
+                    </div>
+                    {showCountry && (
+                      <div className="absolute flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto h-[30vh] top-full w-full">
+                        {countriesList.map((item, index) => (
+                          <div
+                            className="w-full py-3 px-6 cursor-pointer hover:bg-primary-400"
+                            key={index}
+                            onClick={() => {
+                              setShowCountry((prev) => !prev);
+                              handleInputChange("country", item.name);
+                              setCountryid(item.id);
+                              GetState(item.id).then((result) => {
+                                setStateList(result);
+                              });
+                            }}
+                          >
+                            {item.name}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : (
                   <input
-                    readOnly
+                    onInput={(e) =>
+                      handleInputChange("country", e.target.value)
+                    }
+                    onChange={(e) =>
+                      handleInputChange("country", e.target.value)
+                    }
                     placeholder="Enter Country"
                     className="bg-transparent outline-none border-none w-full h-full"
                     value={data?.country}
                   />
-                  <MdArrowDropDown size="1.5rem" />
-                </div>
-                {showCountry && (
-                  <div className="absolute flex flex-col bg-neutral-1000 left-0 border overflow-y-auto h-[30vh] top-full w-full">
-                    {countriesList.map((item, index) => (
-                      <div
-                        className="w-full py-3 px-6 cursor-pointer hover:bg-purple-400 hover:text-white"
-                        key={index}
-                        onClick={() => {
-                          setShowCountry((prev) => !prev);
-                          handleInputChange("country", item.name);
-                          setCountryid(item.id);
-                          GetState(item.id).then((result) => {
-                            setStateList(result);
-                          });
-                        }}
-                      >
-                        {item.name}
-                      </div>
-                    ))}
-                  </div>
                 )}
               </div>
 
@@ -120,17 +138,17 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
                     <input
                       readOnly
                       className="bg-transparent outline-none border-none w-full h-full"
-                      value={data?.state}
+                      value={data.state ? data.state : "Enter State"}
                     />
                     <MdArrowDropDown size="1.5rem" />
                   </div>
                 )}
 
                 {showState && (
-                  <div className="absolute flex flex-col bg-neutral-1000 left-0 border overflow-y-auto h-[30vh] top-full w-full">
+                  <div className="absolute flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto h-[30vh] top-full w-full">
                     {stateList.map((item, index) => (
                       <div
-                        className="w-full py-3 px-6 cursor-pointer hover:bg-purple-400 hover:text-white"
+                        className="w-full py-3 px-6 cursor-pointer hover:bg-primary-400"
                         key={index}
                         onClick={() => {
                           setShowState((prev) => !prev);
@@ -170,10 +188,10 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
                   </div>
                 )}
                 {showCity && (
-                  <div className="absolute flex flex-col bg-neutral-1000 left-0 border overflow-y-auto h-[30vh] top-full w-full">
+                  <div className="absolute flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto h-[30vh] top-full w-full">
                     {cityList.map((item, index) => (
                       <div
-                        className="w-full py-3 px-6 cursor-pointer hover:bg-purple-400 hover:text-white"
+                        className="w-full py-3 px-6 cursor-pointer hover:bg-primary-400"
                         key={index}
                         onClick={() => {
                           setShowCity((prev) => !prev);

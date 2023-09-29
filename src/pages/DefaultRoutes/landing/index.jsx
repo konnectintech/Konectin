@@ -9,7 +9,7 @@ import MapSection from "../../../components/map";
 
 function Landing() {
   return (
-    <main className="bg-neutral-1000">
+    <main className="bg-neutral-1000 over overflow-hidden ">
       <section className="w-11/12 mx-auto max-w-screen-2xl flex flex-col gap-16">
         <HeroSection />
         <SignPrompt />

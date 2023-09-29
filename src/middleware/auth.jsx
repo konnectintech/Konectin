@@ -20,7 +20,7 @@ const pca = new PublicClientApplication({
   auth: {
     clientId: "fafebde3-1871-43ee-afb0-34374edaa6b1",
     authority: "https://login.microsoftonline.com/common/",
-    redirectUri: "/",
+    redirectUri: "/login",
   },
   cache: {
     cacheLocation: "localStorage",
@@ -77,8 +77,9 @@ export const useAuth = () => {
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   useEffect(() => {
+    const currentAccount = instance.getActiveAccount();
+
     if (isUserAuthenticated) {
-      const currentAccount = instance.getActiveAccount();
       setPreviousLog(currentAccount);
     }
   }, [instance]);
@@ -96,7 +97,8 @@ export const useAuth = () => {
     }
 
     if (result) {
-      const loggedUser = axios.get("https://graph.mircosoft.com/v1.0/me", {
+      console.log(result);
+      const loggedUser = axios.get("https://graph.microsoft.com/v1.0/me", {
         headers: { Authorization: `Bearer ${result.accessToken}` },
       });
 

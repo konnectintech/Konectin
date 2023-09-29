@@ -136,7 +136,7 @@ function Contact() {
                   <h2 className="font-black">Helpful resources</h2>
                   <Link
                     to="/faq"
-                    className=" py-1 text-secondary-500 text-xs block "
+                    className="py-1 text-secondary-500 text-xs block"
                   >
                     Tips for job search success -
                   </Link>
@@ -148,13 +148,13 @@ function Contact() {
                   </Link>
                   <Link
                     to="/faq"
-                    className=" py-1 text-secondary-500 text-xs block "
+                    className="py-1 text-secondary-500 text-xs block"
                   >
                     Strategies for networking -
                   </Link>
                   <Link
                     to="/faq"
-                    className=" py-1 text-secondary-500 text-xs block "
+                    className="py-1 text-secondary-500 text-xs block"
                   >
                     Troubleshooting common account issues -
                   </Link>

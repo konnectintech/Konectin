@@ -53,7 +53,7 @@ function Login() {
   const isUserAuthenticated = useIsAuthenticated();
 
   useEffect(() => {
-    if (!isUserAuthenticated) {
+    if (!isUserAuthenticated && previousLog) {
       instance
         .ssoSilent({
           scopes: ["user.read"],

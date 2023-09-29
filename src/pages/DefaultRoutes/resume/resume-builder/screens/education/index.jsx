@@ -2,7 +2,6 @@ import { Outlet, Route, Routes } from "react-router-dom";
 
 import College from "./college";
 import HighSchool from "./high-school";
-import AddType from "./addType";
 import SelectEducation from "./selectEducation";
 import SelectedTemplates from "../../resume-templates";
 
@@ -16,8 +15,7 @@ const Education = ({ data }) => {
           </div>
         }
       >
-        <Route path="/" element={<AddType data={data} />} />
-        <Route path="/select-edu" element={<SelectEducation />} />
+        <Route path="/" element={<SelectEducation data={data} />} />
         <Route
           element={
             <>

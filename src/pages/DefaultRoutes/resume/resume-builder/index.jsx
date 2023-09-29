@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import * as BsIcon from "react-icons/bs";
 import { createResume, uploadResume } from "../../../../assets";
 import StartBuilder from "./start";
+import { useNavigate } from "react-router";
 
 const BuilderOption = ({
   title,
@@ -48,14 +49,11 @@ const BuilderOption = ({
 const Options = () => {
   const [choice, setChoice] = useState("");
   const [editable, setEditable] = useState(false);
+  const navigate = useNavigate();
 
   const handleChoice = (choice) => {
     setChoice(choice);
-    // const post_url = "/user/resume?userId=6450e3d8418498f2c9878379";
-    // const get_url =
-    //   "/user/getResume?userId=6450e3d8418498f2c9878379&resumeId=64ae5b4688421fb58e3c4c9d";
-    // const update_url =
-    //   "/user/updateResume?userId=6450e3d8418498f2c9878379&resumeId=64ae5b4688421fb58e3c4c9d";
+    navigate(`/resume/${choice}`);
   };
 
   useEffect(() => {
@@ -94,14 +92,14 @@ const Options = () => {
           handleChoice={handleChoice}
         />
       </div>
-      <Link
+      {/* <Link
         to={choice ? `/resume/${choice}` : "#"}
         className={`duration-500 px-12 py-3 rounded-md text-[#fff] mt-6${
           choice ? " bg-primary-600" : " bg-primary-200"
         }`}
       >
         Next
-      </Link>
+      </Link> */}
     </section>
   );
 };
