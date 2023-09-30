@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import * as FaIcons from "react-icons/fa";
+import * as MdIcons from "react-icons/md";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { konectinIcon } from "../../assets";
 import "./header.css";
+import { useAuth } from "../../middleware/auth";
 
 function Header() {
   const [offset, setOffset] = useState({
@@ -20,6 +22,7 @@ function Header() {
   ];
 
   const { pathname } = useLocation();
+  const { user } = useAuth();
 
   const handleScroll = () => {
     const { prevScrollpos } = offset;
@@ -71,9 +74,12 @@ function Header() {
           className="md:hidden relative z-30 cursor-pointer"
         >
           {isOpen ? (
-            <FaTimes size="1.5rem" color="#fff" />
+            <FaIcons.FaTimes size="1.5rem" color="#fff" />
           ) : (
-            <FaBars size="1.5rem" color={offset?.darken ? "#fff" : "#332a66"} />
+            <FaIcons.FaBars
+              size="1.5rem"
+              color={offset?.darken ? "#fff" : "#332a66"}
+            />
           )}
         </nav>
 
@@ -120,16 +126,40 @@ function Header() {
         </nav>
 
         <nav className="hidden lg:block">
-          <Link
-            to="/login"
-            className={`w-full text-sm px-6 py-2 text-black-500 border-secondary-500 border rounded-sm ${
-              offset.darken
-                ? "hover:text-neutral-100 hover:bg-white"
-                : "hover:text-white hover:bg-secondary-500"
-            } transistion duration-500`}
-          >
-            Log In
-          </Link>
+          {user ? (
+            <div className="flex items-center cursor-pointer gap-2 text-xs text-neutral-400">
+              <div
+                className={`w-10 h-10 rounded-md flex items-center justify-center ${
+                  offset.darken
+                    ? "bg-white text-primary-700"
+                    : "text-white bg-primary-700"
+                }`}
+              >
+                <MdIcons.MdPerson size="1.5rem" />
+              </div>
+              <div>
+                <h3
+                  className={`${
+                    offset.darken ? "text-white" : "text-neutral-100"
+                  } text-base`}
+                >
+                  {user.fullname}
+                </h3>
+                <p>{user.email}</p>
+              </div>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className={`w-full text-sm px-6 py-2 text-black-500 border-secondary-500 border rounded-sm ${
+                offset.darken
+                  ? "hover:text-neutral-100 hover:bg-white"
+                  : "hover:text-white hover:bg-secondary-500"
+              } transistion duration-500`}
+            >
+              Log In
+            </Link>
+          )}
         </nav>
       </nav>
     </header>
