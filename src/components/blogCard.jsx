@@ -4,13 +4,11 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 
 function BlogCard({
   article: {
-    featured_image,
-    title,
-    seo_title,
-    author,
-    categories,
-    slug,
-    tags,
+    id,
+    featuredImage,
+    htmlTitle,
+    authorName,
+    tagIds,
     updated,
     blurred,
   },
@@ -19,7 +17,7 @@ function BlogCard({
 
   return (
     <Link
-      to={blurred ? param : `/blog/${categories[0]?.slug}/${slug}/`}
+      to={blurred ? param : `/blog/${tagIds[0]}/${id}/`}
       className={`${
         blurred && "animate-pulse"
       } blog-card overflow-hidden rounded-md text-xs w-full flex flex-col justify-between`}
@@ -29,8 +27,8 @@ function BlogCard({
           wrapperClassName="inline-x"
           effect="blur"
           className="bg-contain w-full h-full aspect-square hover:scale-105 transistion-all duration-300"
-          src={featured_image}
-          alt={title}
+          src={featuredImage}
+          alt={htmlTitle}
         />
       </div>
 
@@ -39,13 +37,13 @@ function BlogCard({
           blurred ? "blurry-text" : "mb-auto"
         } bg-white px-3 py-4 flex flex-col gap-3 justify-between`}
       >
-        <h2 className="truncate text-base" title={seo_title}>
-          {title}
+        <h2 className="truncate text-base" title={htmlTitle}>
+          {htmlTitle}
         </h2>
-        <h3 className="my-auto">{author?.first_name}</h3>
+        <h3 className="my-auto">{authorName}</h3>
 
         <div className="flex items-center justify-between w-full text-xs text-neutral-400 font-medium">
-          <span>{tags[0].slug.split("-").join(" ")}</span>
+          {/* <span>{tags[0].slug.split("-").join(" ")}</span> */}
           <span>
             {new Date(updated).toLocaleString("en-GB", {
               day: "numeric",
