@@ -3,8 +3,10 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { konectinIcon } from "../../assets";
 import "./header.css";
+import { useAuth } from "../../middleware/auth";
 
 function Header() {
+  const { user, signOut } = useAuth();
   const [offset, setOffset] = useState({
     prevScrollpos: window.pageYOffset,
     visible: true,
@@ -120,16 +122,25 @@ function Header() {
         </nav>
 
         <nav className="hidden lg:block">
-          <Link
-            to="/login"
-            className={`w-full text-sm px-6 py-2 text-black-500 border-secondary-500 border rounded-sm ${
-              offset.darken
-                ? "hover:text-neutral-100 hover:bg-white"
-                : "hover:text-white hover:bg-secondary-500"
-            } transistion duration-500`}
-          >
-            Log In
-          </Link>
+          {user ? (
+            <div
+              onClick={signOut}
+              className="cursor-pointer text-secondary-500 text-medium"
+            >
+              Log out
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className={`w-full text-sm px-6 py-2 text-black-500 border-secondary-500 border rounded-sm ${
+                offset.darken
+                  ? "hover:text-neutral-100 hover:bg-white"
+                  : "hover:text-white hover:bg-secondary-500"
+              } transistion duration-500`}
+            >
+              Log In
+            </Link>
+          )}
         </nav>
       </nav>
     </header>

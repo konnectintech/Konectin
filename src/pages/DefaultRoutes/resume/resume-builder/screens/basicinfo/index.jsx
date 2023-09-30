@@ -103,8 +103,7 @@ const BasicInformation = ({ data, onInputChange }) => {
           current.style.display = "block";
         }
       }
-    })
-
+    });
   };
 
   const handleCountryInput = (input) => {
@@ -126,7 +125,7 @@ const BasicInformation = ({ data, onInputChange }) => {
         let current = msg.current;
         current.style.display = "none";
       }
-    })
+    });
   };
 
   const handleSubmit = () => {

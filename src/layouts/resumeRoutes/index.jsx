@@ -1,11 +1,21 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
 import ResumeHeader from "./resumeHeader";
 import Header from "../header";
 import ResumeFooter from "./resumeFooter";
 import { BuilderBg } from "../../assets";
+import { useAuth } from "../../middleware/auth";
+import { useEffect } from "react";
 
 function ResumeRoutes() {
   const { pathname } = useLocation();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [navigate, user]);
 
   return (
     <>
