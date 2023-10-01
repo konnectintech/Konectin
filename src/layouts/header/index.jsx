@@ -23,7 +23,6 @@ function Header() {
   ];
 
   const { pathname } = useLocation();
-  const { user } = useAuth();
 
   const handleScroll = () => {
     const { prevScrollpos } = offset;
