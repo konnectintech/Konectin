@@ -57,7 +57,7 @@ function BlogContent() {
     //     console.log(err);
     //   }
     // }
-    const storedID = JSON.parse(sessionStorage.getItem(id)) || "";
+    // const storedID = JSON.parse(sessionStorage.getItem(id));
 
     async function getBlog() {
       try {
@@ -65,20 +65,17 @@ function BlogContent() {
         const { posts } = response.data;
         // addAsRead();
         setBlog(posts);
-        sessionStorage.setItem(id, JSON.stringify(posts));
+        // sessionStorage.setItem(id, JSON.stringify(posts));
+        setLoading((prev) => ({ ...prev, post: false }));
       } catch (err) {
         console.log(err);
       }
     }
-    if (storedID) {
-      setBlog(storedID);
-    } else {
-      getBlog();
-    }
 
+    getBlog();
     setOpen(false);
-    setLoading((prev) => ({ ...prev, post: false }));
-  }, [id, url]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   // useEffect(() => {
   //   getRelatedBlogs(blog);

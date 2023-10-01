@@ -96,6 +96,7 @@ function BlogComment({ blogID }) {
           <form onSubmit={handleSubmit} className="flex-1 relative">
             <textarea
               id="generatedID"
+              name="generatedID"
               type="text"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
