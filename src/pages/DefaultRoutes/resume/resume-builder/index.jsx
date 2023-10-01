@@ -53,7 +53,10 @@ const Options = () => {
 
   const handleChoice = (choice) => {
     setChoice(choice);
-    navigate(`/resume/${choice}`);
+
+    if (choice === "ai") {
+      navigate(`/resume/${choice}`);
+    }
   };
 
   useEffect(() => {
@@ -84,8 +87,12 @@ const Options = () => {
         />
 
         <BuilderOption
-          title="Upload a resume"
-          description="We access your existing resume and make neccessary adjustments."
+          title={choice === "upload" ? "Coming soon" : "Upload a resume"}
+          description={
+            choice === "upload"
+              ? "We have our developers working on this. We should have it running as soon as possible"
+              : "We access your existing resume and make neccessary adjustments."
+          }
           image={uploadResume}
           selector="upload"
           choice={choice}

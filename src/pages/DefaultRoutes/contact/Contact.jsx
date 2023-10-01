@@ -7,7 +7,6 @@ import * as FaIcon from "react-icons/fa";
 import img from "../../../assets/images/Group 48095546.png";
 import { Link } from "react-router-dom";
 
-
 function Contact() {
   const [topicsCLicked, SetTopicsCLicked] = useState(false);
 
@@ -29,8 +28,7 @@ function Contact() {
       email: "",
       message: "",
     },
-    onSubmit: (values) => {
-    },
+    onSubmit: (values) => {},
     validationSchema,
   });
 
@@ -44,12 +42,13 @@ function Contact() {
       formik.values.message &&
       isEmpty
     ) {
-
-      emailjs.sendForm(
+      emailjs
+        .sendForm(
           "service_pxhna2k",
           "template_jrgtxtl",
           form.current,
-          "02ug9Lx-dB3lcnHWp")
+          "02ug9Lx-dB3lcnHWp"
+        )
         .then(
           (result) => {
             console.log(result.text);
@@ -89,18 +88,18 @@ function Contact() {
               <button className={topicsBtnStyle} onClick={handleTopicClicked}>
                 Account setup
               </button>
-              <button className={topicsBtnStyle} onClick={handleTopicClicked}>
+              {/* <button className={topicsBtnStyle} onClick={handleTopicClicked}>
                 Job search
-              </button>
+              </button> */}
               <button className={topicsBtnStyle} onClick={handleTopicClicked}>
                 Resume building
               </button>
               <button className={topicsBtnStyle} onClick={handleTopicClicked}>
                 Profile optimization
               </button>
-              <button className={topicsBtnStyle} onClick={handleTopicClicked}>
+              {/* <button className={topicsBtnStyle} onClick={handleTopicClicked}>
                 Job application status
-              </button>
+              </button> */}
               <button className={topicsBtnStyle} onClick={handleTopicClicked}>
                 Interview preparation
               </button>
@@ -213,19 +212,21 @@ function Contact() {
 
               <section className="flex flex-col md:flex-row gap-2 justify-between items-start md:items-center max-w-[150px] md:max-w-[350px] lg:max-w-[350px] md:min-w-[300px]  mt-6">
                 <button
-                  className="p-2 py-3 lg:px-5 bg-neutral-900 text-xs "
+                  className="p-2 py-3 lg:px-5 bg-neutral-900 hover:text-white hover:bg-primary-600 text-xs"
                   type="submit"
                   onClick={sendEmail}
                 >
                   SEND US A MESSAGE
                 </button>
-                <p className="self-center -ml-6 md:ml-0 uppercase text-xs my-2 md:my-0 font-bold">or</p>
+                <p className="self-center -ml-6 md:ml-0 uppercase text-xs my-2 md:my-0 font-bold">
+                  or
+                </p>
                 <div>
                   <a
                     href="https://wa.link/jbbtji"
                     target="_blank"
                     rel="noreferrer"
-                    className="p-2 py-3 lg:px-5 border-primary-600 border text-xs"
+                    className="p-2 py-3 lg:px-5 border-primary-600 hover:text-white hover:bg-primary-600 border text-xs"
                   >
                     START A LIVE CHAT
                   </a>

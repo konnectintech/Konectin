@@ -1,8 +1,8 @@
-
+import axios from "axios";
+import Feed from "./feed";
+import HeroSection from "../hero";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import HeroSection from "../hero";
-import Feed from "./feed";
 
 function Feeds() {
   const feedList = [
@@ -16,17 +16,14 @@ function Feeds() {
   const [allBlogs, setAllBlogs] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [trendingBlogs, setTrendingBlogs] = useState([]);
+  const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   async function getAllBlogs() {
     setLoading(true);
     try {
-      console.log("Getting blog");
-      // const response = await axios.get(
-      //   `https://api.buttercms.com/v2/posts?auth_token=${read_token}`
-      // );
-      // const blogs = response.data.data;
-      // setAllBlogs(blogs);
-      // setLoading(false);
+      const response = await axios.get(`${url}/getAllBlogs`);
+      const { blogs } = response.data;
+      setAllBlogs(blogs.results);
     } catch (err) {
       console.log(err);
       alert(err.message + ", Please reload the page");
