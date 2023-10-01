@@ -148,11 +148,12 @@ function Header() {
                 </h3>
                 <p>{user.email}</p>
               </div>
-                  <div
-              onClick={signOut}
-              className="cursor-pointer text-secondary-500 text-medium"
-            >
-              Log out</div>
+              <div
+                onClick={signOut}
+                className="cursor-pointer text-secondary-500 text-medium"
+              >
+                Log out
+              </div>
 
             </div>
           ) : (
