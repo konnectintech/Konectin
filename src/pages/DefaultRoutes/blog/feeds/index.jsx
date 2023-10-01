@@ -24,12 +24,10 @@ function Feeds() {
       const response = await axios.get(`${url}/getAllBlogs`);
       const { blogs } = response.data;
       setAllBlogs(blogs.results);
+      setLoading(false);
     } catch (err) {
       console.log(err);
-      alert(err.message + ", Please reload the page");
     }
-
-    setLoading(false);
   }
 
   let params = useParams();
@@ -43,9 +41,9 @@ function Feeds() {
     if (isLoading) {
       const preloader = new Array(6).fill({
         seo_title: "Loading contents",
-        author: { first_name: "Konectin" },
-        tags: [{ slug: "1 min read" }],
-        title: "Loading contents",
+        authorName: "Konectin",
+        metaDescription: "Loading",
+        htmlTitle: "Loading contents",
         updated: new Date().getDate(),
         blurred: true,
       });

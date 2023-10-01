@@ -87,7 +87,7 @@ function BlogContent() {
 
   useEffect(() => {
     if (isLoading.related) {
-      const preloader = new Array(6).fill({
+      const preloader = new Array(3).fill({
         htmlTitle: "Loading contents",
         authorName: "Konectin",
         metaDescription: "Loading",

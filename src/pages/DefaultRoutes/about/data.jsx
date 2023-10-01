@@ -15,6 +15,10 @@ import {
   FounderIcon,
   MichaelIcon,
   AfolabiIcon,
+  person1Icon,
+  person2Icon,
+  person3Icon,
+  person4Icon,
 } from "../../../assets";
 
 export const Values = [
@@ -28,28 +32,28 @@ export const Values = [
   {
     icon: speakerIcon,
     name: "Transparency",
-    rep: person5Icon,
+    rep: person4Icon,
     text: "Every one of our dealings with job seekers, employers, and interns is made as transparent as possible. This improves communication between our company and our clients, as well as between job seekers and employers, thereby resulting in collaborative growth.",
     variant: variant2Icon,
   },
   {
     icon: calendarIcon,
     name: "Accountability",
-    rep: person5Icon,
+    rep: person1Icon,
     text: "We are willing to take full responsibility for every one of our actions. We hold ourselves answerable for issues encountered and pledge to take corrective actions for any error, to better improve customers' experience.",
     variant: variant3Icon,
   },
   {
     icon: teamIcon,
     name: "Teamwork",
-    rep: person5Icon,
+    rep: person2Icon,
     text: "At Konectin, we have a team of seasoned staff who work tirelessly and collaboratively to achieve a common goal. We combine efforts to deliver all our customers with a top-notch experience that brings their dreams to the limelight.",
     variant: variant4Icon,
   },
   {
     icon: bulbIcon,
     name: "Innovation",
-    rep: person5Icon,
+    rep: person3Icon,
     text: "At our company, we never stop seeking edge-cutting ideas and innovations that provide exclusive opportunities for every professional in various fields of the job market. Our commitment to creativity and curiosity drives us to innovate and deliver great value to our customers while remaining ahead in our industry.",
     variant: variant5Icon,
   },
