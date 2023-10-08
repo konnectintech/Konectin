@@ -1,5 +1,5 @@
 import { useTemplateContext } from "../../../../../middleware/resume";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import BasicInformation from "./basicinfo";
 import EmploymentExperience from "./experience";
 import Education from "./education";
@@ -7,9 +7,20 @@ import Skills from "./skills";
 import Bio from "./bio";
 import Preview from "./preview";
 import Download from "./download";
+import { useAuth } from "../../../../../middleware/auth";
+import { useEffect } from "react";
 
 function Builder() {
   const { templateData, onInputChange, setTemplateData } = useTemplateContext();
+
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/resume/ai");
+    }
+  }, [navigate, user]);
 
   const component_list = [
     {
