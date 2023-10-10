@@ -80,7 +80,6 @@ export const useTemplateData = () => {
     if (
       templateData.basicInfo.firstName === "" ||
       templateData.basicInfo.lastName === "" ||
-      templateData.basicInfo.state === "" ||
       templateData.basicInfo.email === "" ||
       templateData.basicInfo.country === ""
     ) {

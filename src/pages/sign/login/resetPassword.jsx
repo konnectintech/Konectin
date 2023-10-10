@@ -1,10 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Link, useNavigate } from "react-router-dom";
-import { useIsAuthenticated, useMsal } from "@azure/msal-react";
-import { useState, useEffect } from "react";
-import { useAuth } from "../../../middleware/auth";
+import { useState } from "react";
 import Preloader from "../../../components/preloader";
-import { InteractionRequiredAuthError } from "@azure/msal-browser";
 import { CustomButton } from "../../../components/button";
 import { forgotPasswordImage, konectinIcon } from "../../../assets";
 import { ErrorModal, NotifyModal } from "../../../components/form/modal";
@@ -17,9 +14,6 @@ function ResetPassword() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
-  const { instance } = useMsal();
-  const { setPreviousLog, previousLog } = useAuth();
-  const isUserAuthenticated = useIsAuthenticated();
   const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -33,28 +27,6 @@ function ResetPassword() {
   });
 
   const parseURL = import.meta.env.VITE_CLIENT_SERVER_URL;
-
-  useEffect(() => {
-    if (!isUserAuthenticated) {
-      instance
-        .ssoSilent({
-          scopes: ["user.read"],
-          loginHint: previousLog.username,
-        })
-        .then((res) => {
-          instance.setActiveAccount(res.account);
-          setPreviousLog(res.account);
-          navigate("/blog/all");
-        })
-        .catch((err) => {
-          if (err instanceof InteractionRequiredAuthError) {
-            // instance.loginPopup({
-            //   scopes: ["user.read"],
-            // });
-          }
-        });
-    }
-  }, []);
 
   const [error, setError] = useState("");
 

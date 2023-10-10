@@ -15,10 +15,12 @@ function EducationOption({ title, link }) {
               city: "",
               country: "",
               degree: "",
-              month: "",
+              startMonth: "",
+              startYear: "",
               schoolName: "",
               state: "",
-              year: "",
+              endMonth: "",
+              endYear: "",
             }
           : {
               awards: [{ name: "" }],

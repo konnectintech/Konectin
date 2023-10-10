@@ -21,6 +21,7 @@ const TemplateOption = ({ sectionName }) => {
   const navigate = useNavigate();
   const [isloading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   const startBuilding = () => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -41,10 +42,7 @@ const TemplateOption = ({ sectionName }) => {
   const handleSubmit = async (data) => {
     setLoading(true);
     try {
-      let authresult = await axios.post(
-        "https://konectin-backend-hj09.onrender.com/user/login",
-        data
-      );
+      let authresult = await axios.post(`${url}/login`, data);
 
       const userData = { ...authresult.data.data };
       userData.token = authresult.data.token;

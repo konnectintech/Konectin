@@ -61,7 +61,7 @@ function FieldForm({ handleSubmit, params, formFor, errorMessage, children }) {
       const value = formReq.get(name);
       formArray[name] = value;
     }
-    handleSubmit(formArray, "normal");
+    handleSubmit(formArray);
   };
 
   return (

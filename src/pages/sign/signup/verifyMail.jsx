@@ -52,7 +52,7 @@ function VerifyMail() {
     const formReq = new FormData(event.target);
     const value = formReq.get("code");
 
-    const url = `https://konectin-backend-hj09.onrender.com/user/verifyEmail?userId=${user._id}`;
+    const url = `${parseURL}/verifyEmail?userId=${user._id}`;
 
     setLoading(true);
 

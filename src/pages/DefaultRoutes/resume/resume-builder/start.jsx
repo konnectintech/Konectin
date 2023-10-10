@@ -9,7 +9,7 @@ const StartBuilder = () => {
 
   const links = [
     "/resume/builder",
-    Object.keys(templateData.jobExperience).length <= 0
+    Object.keys(templateData.jobExperience).length <= 1
       ? "/resume/builder/employment-experience"
       : "/resume/builder/employment-experience/job-activities",
     "/resume/builder/education",

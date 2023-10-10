@@ -75,7 +75,7 @@ const Suggestions = ({
         <p className="text-neutral-200 font-extralight tracking-[-0.01em] text-sm">
           Showing 3 results for <span className="font-bold">{jobTitle}</span>
         </p>
-        <div className="bg-neutral-1000 border border-neutral-500 overflow-y-auto rounded h-full max-h-[300px] min-h-[200px]">
+        <div className="bg-neutral-1000 border border-neutral-500 overflow-y-auto rounded h-full max-h-[370px] min-h-[200px]">
           {responsibilities.map((item, index) => {
             return item.error ? (
               <div

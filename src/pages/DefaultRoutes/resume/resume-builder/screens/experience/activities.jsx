@@ -35,10 +35,14 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
           >
             <div className="flex flex-col md:justify-between md:flex-row ">
               <p className="font-bold text-neutral-300 capitalize text-sm mb-4">
-                {data.company} |{" "}
+                {data.company}
+                {(data.city || data.state || data.country) && " | "}
                 <span className="font-medium">
-                  {data.city && `${data.city}, `}
+                  {data.city}
+                  {data.city && (data.state || data.country) && ", "}
                   {data.state}
+                  {data.state && data.country && `, `}
+                  {data.country}
                 </span>
               </p>
             </div>

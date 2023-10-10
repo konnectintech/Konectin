@@ -4,13 +4,7 @@ import { createContext, useContext } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "./storage";
 import { EventType, PublicClientApplication } from "@azure/msal-browser";
-import {
-  MsalProvider,
-  useIsAuthenticated,
-  useMsal,
-  useMsalAuthentication,
-} from "@azure/msal-react";
-import { useEffect } from "react";
+import { MsalProvider } from "@azure/msal-react";
 
 // Create a Authenication Hook
 const AuthContext = createContext();
@@ -36,6 +30,7 @@ const pca = new PublicClientApplication({
 pca.addEventCallback((event) => {
   if (event.eventType === EventType.LOGIN_SUCCESS) {
     pca.setActiveAccount(event.payload.account);
+    console.log(event.payload.account);
   }
 });
 
@@ -69,42 +64,8 @@ export const RequireAuth = ({ children }) => {
 // Create User logged Hook
 export const useAuth = () => {
   const [user, setUser] = useLocalStorage("user", null);
-  const [previousLog, setPreviousLog] = useLocalStorage("previous_user", "");
-  const [userType, setUserType] = useLocalStorage("userType", "");
-  const isUserAuthenticated = useIsAuthenticated();
-  const { instance } = useMsal();
   const navigate = useNavigate();
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
-
-  useEffect(() => {
-    const currentAccount = instance.getActiveAccount();
-
-    if (isUserAuthenticated) {
-      setPreviousLog(currentAccount);
-    }
-  }, [instance]);
-
-  const { result, error } = useMsalAuthentication();
-
-  useEffect(() => {
-    if (!previousLog) {
-      return;
-    }
-
-    if (!error) {
-      console.log(error);
-      return;
-    }
-
-    if (result) {
-      console.log(result);
-      const loggedUser = axios.get("https://graph.microsoft.com/v1.0/me", {
-        headers: { Authorization: `Bearer ${result.accessToken}` },
-      });
-
-      setUser(loggedUser);
-    }
-  }, [previousLog, error, result]);
 
   // const getUser = async (data) => {
   //   try {
@@ -117,23 +78,20 @@ export const useAuth = () => {
   //   }
   // };
 
-  const signIn = async (data, loader, setError, log) => {
-    if (log === "normal") {
-      try {
-        let authresult = await axios.post(`${url}/login`, data);
+  const signIn = async (data, loader, setError) => {
+    try {
+      let authresult = await axios.post(`${url}/login`, data);
 
-        const userData = { ...authresult.data.data };
-        userData.token = authresult.data.token;
+      const userData = { ...authresult.data.data };
+      userData.token = authresult.data.token;
 
-        setUser(userData);
-        setUserType(log);
-        loader(false);
-        navigate("/resume/options");
-      } catch (err) {
-        console.log(err);
-        loader(false);
-        setError(err.response.data.message);
-      }
+      setUser(userData);
+      loader(false);
+      navigate("/resume/options");
+    } catch (err) {
+      console.log(err);
+      loader(false);
+      setError(err.response.data.message);
     }
   };
 
@@ -153,18 +111,11 @@ export const useAuth = () => {
   };
 
   const signOut = () => {
-    if (userType === "normal") {
-      setUser(null);
-    } else if (userType === "microsoft") {
-      instance.logoutPopup();
-    }
+    setUser(null);
   };
 
   return {
     user,
-    setPreviousLog,
-    setUserType,
-    previousLog,
     signIn,
     signUp,
     signOut,

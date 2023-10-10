@@ -49,19 +49,18 @@ function Login() {
 
   const navigate = useNavigate();
   const { instance } = useMsal();
-  const { signIn, setPreviousLog, previousLog } = useAuth();
+  const { signIn } = useAuth();
   const isUserAuthenticated = useIsAuthenticated();
 
   useEffect(() => {
-    if (!isUserAuthenticated && previousLog) {
+    if (!isUserAuthenticated) {
       instance
         .ssoSilent({
           scopes: ["user.read"],
-          loginHint: previousLog.username,
+          loginHint: "",
         })
         .then((res) => {
           instance.setActiveAccount(res.account);
-          setPreviousLog(res.account);
           navigate("/resume/options");
         })
         .catch((err) => {
@@ -74,9 +73,9 @@ function Login() {
     }
   }, []);
 
-  const handleSubmit = (data, logType) => {
+  const handleSubmit = (data) => {
     setLoading(true);
-    signIn(data, setLoading, setErrorMessage, logType);
+    signIn(data, setLoading, setErrorMessage);
   };
 
   return (

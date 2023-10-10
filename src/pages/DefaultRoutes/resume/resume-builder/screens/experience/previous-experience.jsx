@@ -1,32 +1,34 @@
 import * as FaIcon from "react-icons/fa";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import DatePicker from "react-multi-date-picker";
-import { MdArrowDropDown } from "react-icons/md";
 import NavigationButton from "../navigationButton";
 import SelectedTemplates from "../../resume-templates";
 import JobTitleInput from "../../../../../../components/jobTitleInput";
 import { useTemplateContext } from "../../../../../../middleware/resume";
-import { GetCountries, GetState, GetCity } from "react-country-state-city";
+import CountryInput from "../../../../../../components/form/countryInput";
+import StateInput from "../../../../../../components/form/stateInput";
+import CityInput from "../../../../../../components/form/cityInput";
+import { verifyExp } from "./verifyExp";
+import { verifyInfo } from "../basicinfo/verifyInfo";
 
 const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
-  const [showCountry, setShowCountry] = useState(false);
-  const [showState, setShowState] = useState(false);
-  const [showCity, setShowCity] = useState(false);
+  const [countryId, setCountryId] = useState(0);
+  const [stateId, setStateId] = useState(0);
 
-  const [countryid, setCountryid] = useState(0);
+  const companyErrorRef = useRef(null);
+  const startMonthRef = useRef(null);
+  const startYearRef = useRef(null);
+  const endMonthRef = useRef(null);
+  const endYearRef = useRef(null);
 
-  const [countriesList, setCountriesList] = useState([]);
-  const [stateList, setStateList] = useState([]);
-  const [cityList, setCityList] = useState([]);
-
-  const jobTitleRef = useRef(null)
-
-  useEffect(() => {
-    GetCountries().then((result) => {
-      setCountriesList(result);
-    });
-  }, []);
+  let allErrMsg = [
+    companyErrorRef,
+    startMonthRef,
+    startYearRef,
+    endMonthRef,
+    endYearRef,
+  ];
 
   const navigate = useNavigate();
   const { templateData } = useTemplateContext();
@@ -34,15 +36,48 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(data);
+    const formHolder = Object.keys(data);
 
-    // handleSubmit(formArray); Sends data to backend then
-    navigate("/resume/builder/employment-experience/responsibilities");
+    formHolder.forEach((holder) => {
+      let errorHolder;
+      switch (holder) {
+        case "city":
+        case "state":
+        case "country":
+          errorHolder = document.getElementById(`${holder}Error`);
+          verifyInfo(data[holder], errorHolder, holder);
+          break;
+        case "jobTitle":
+          errorHolder = document.getElementById(`${holder}Error`);
+          verifyExp(data[holder], errorHolder, holder);
+          break;
+        case "current":
+        case "workDesc":
+          break;
+        default:
+          errorHolder = allErrMsg.filter(
+            (ref) => ref.current.getAttribute("for") === holder
+          );
+          errorHolder = errorHolder[0].current;
+          verifyExp(data[holder], errorHolder, holder);
+          break;
+      }
+    });
+
+    if (
+      data.jobTitle !== "" &&
+      data.company !== "" &&
+      data.country &&
+      (data.startMonth !== "" || data.startYear !== "") &&
+      (data.current || data.endMonth !== "" || data.endYear !== "")
+    ) {
+      navigate("/resume/builder/employment-experience/responsibilities");
+    }
   };
 
   return (
     <div className="max-w-6xl flex flex-col lg:flex-row items-start justify-between self-center mx-auto gap-10">
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center max-lg:w-full">
         <h2 className="text-xl md:max-w-[30ch] md:text-2xl leading-tight font-semibold md:leading-snug">
           What recent employment experience do you have?
         </h2>
@@ -50,230 +85,186 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
         <div className="w-full">
           <div className="mt-6">
             <JobTitleInput
+              auth
               title={data?.jobTitle}
               handleInputChange={({ subsection, values }) =>
                 handleInputChange(subsection, values)
               }
               section="jobExperience"
               subsection="jobTitle"
-              ref={jobTitleRef}
             />
-            
-            <input
-              className="input-container"
-              type="text"
-              name="company"
-              value={data?.company}
-              onChange={(e) => handleInputChange(e.target.name, e.target.value)}
-              onInput={(e) => handleInputChange(e.target.name, e.target.value)}
-              placeholder="Company / Organization Name"
-            />
+
+            <div className="flex flex-col">
+              <input
+                type="text"
+                id="company"
+                name="company"
+                className="input-container"
+                value={data?.company}
+                onChange={(e) => {
+                  handleInputChange(e.target.name, e.target.value);
+                  verifyExp(e.target.value, companyErrorRef, "company");
+                }}
+                onInput={(e) => {
+                  handleInputChange(e.target.name, e.target.value);
+                  verifyExp(e.target.value, companyErrorRef, "company");
+                }}
+                placeholder="Company / Organization Name"
+              />
+              <label
+                className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
+                htmlFor="company"
+                ref={companyErrorRef}
+              ></label>
+            </div>
+
             <div className="flex gap-4">
               {/* Country  */}
-              <div className="input-container relative">
-                {countriesList.length >= 2 ? (
-                  <>
-                    <div
-                      onClick={() => setShowCountry((prev) => !prev)}
-                      className="cursor-pointer flex gap-2 items-center w-full"
-                    >
-                      <input
-                        readOnly
-                        placeholder="Enter Country"
-                        className="bg-transparent outline-none border-none w-full h-full"
-                        value={data.country ? data.country : "Enter Country"}
-                      />
-                      <MdArrowDropDown size="1.5rem" />
-                    </div>
-                    {showCountry && (
-                      <div className="absolute flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto h-[30vh] top-full w-full">
-                        {countriesList.map((item, index) => (
-                          <div
-                            className="w-full py-3 px-6 cursor-pointer hover:bg-primary-400"
-                            key={index}
-                            onClick={() => {
-                              setShowCountry((prev) => !prev);
-                              handleInputChange("country", item.name);
-                              setCountryid(item.id);
-                              GetState(item.id).then((result) => {
-                                setStateList(result);
-                              });
-                            }}
-                          >
-                            {item.name}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <input
-                    onInput={(e) =>
-                      handleInputChange("country", e.target.value)
-                    }
-                    onChange={(e) =>
-                      handleInputChange("country", e.target.value)
-                    }
-                    placeholder="Enter Country"
-                    className="bg-transparent outline-none border-none w-full h-full"
-                    value={data?.country}
-                  />
-                )}
-              </div>
+              <CountryInput
+                handleChange={(name, value) => handleInputChange(name, value)}
+                country={data?.country}
+                setCountryId={setCountryId}
+              />
 
-              <div className="input-container relative">
-                {stateList.length <= 0 ? (
-                  <input
-                    onInput={(e) => handleInputChange("state", e.target.value)}
-                    onChange={(e) => handleInputChange("state", e.target.value)}
-                    placeholder="Enter State"
-                    className="bg-transparent outline-none border-none w-full h-full"
-                    value={data?.state}
-                  />
-                ) : (
-                  <div
-                    onClick={() => setShowState((prev) => !prev)}
-                    className="cursor-pointer flex gap-2 items-center w-full"
-                  >
-                    <input
-                      readOnly
-                      className="bg-transparent outline-none border-none w-full h-full"
-                      value={data.state ? data.state : "Enter State"}
-                    />
-                    <MdArrowDropDown size="1.5rem" />
-                  </div>
-                )}
+              {/* State */}
+              <StateInput
+                countryId={countryId}
+                handleChange={(name, value) => handleInputChange(name, value)}
+                state={data?.state}
+                setStateId={setStateId}
+              />
 
-                {showState && (
-                  <div className="absolute flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto h-[30vh] top-full w-full">
-                    {stateList.map((item, index) => (
-                      <div
-                        className="w-full py-3 px-6 cursor-pointer hover:bg-primary-400"
-                        key={index}
-                        onClick={() => {
-                          setShowState((prev) => !prev);
-                          handleInputChange("state", item.name);
-                          GetCity(countryid, item.id).then((result) => {
-                            setCityList(result);
-                          });
-                        }}
-                      >
-                        {item.name}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <div className="input-container relative">
-                {cityList.length <= 0 ? (
-                  <input
-                    onInput={(e) => handleInputChange("city", e.target.value)}
-                    onChange={(e) => handleInputChange("city", e.target.value)}
-                    placeholder="Enter City"
-                    className="bg-transparent outline-none border-none w-full h-full"
-                    value={data?.city}
-                  />
-                ) : (
-                  <div
-                    onClick={() => setShowCity((prev) => !prev)}
-                    className="cursor-pointer flex gap-2 items-center w-full"
-                  >
-                    <input
-                      readOnly
-                      className="bg-transparent outline-none border-none w-full h-full"
-                      value={data?.city}
-                    />
-                    <MdArrowDropDown size="1.5rem" />
-                  </div>
-                )}
-                {showCity && (
-                  <div className="absolute flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto h-[30vh] top-full w-full">
-                    {cityList.map((item, index) => (
-                      <div
-                        className="w-full py-3 px-6 cursor-pointer hover:bg-primary-400"
-                        key={index}
-                        onClick={() => {
-                          setShowCity((prev) => !prev);
-                          handleInputChange("city", item.name);
-                        }}
-                      >
-                        {item.name}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
+              <CityInput
+                countryId={countryId}
+                stateId={stateId}
+                handleChange={(name, value) => handleInputChange(name, value)}
+                city={data?.city}
+              />
             </div>
 
             <div className="flex gap-4">
-              <DatePicker
-                format="MMMM"
-                arrow={false}
-                buttons={false}
-                onlyMonthPicker
-                placeholder="Start Month"
-                containerClassName="w-full"
-                inputClass="input-container"
-                className="bg-primary-600 text-white"
-                onChange={(e) => {
-                  const date = e.toDate();
-                  handleInputChange(
-                    "startMonth",
-                    date.toLocaleString("default", { month: "long" })
-                  );
-                }}
-              />
-              <DatePicker
-                arrow={false}
-                onlyYearPicker
-                placeholder="Start Year"
-                containerClassName="w-full"
-                inputClass="input-container"
-                className="bg-primary-600 text-white"
-                onChange={(e) => {
-                  const date = e.toDate();
-                  handleInputChange("startYear", date.getFullYear());
-                }}
-                maxDate={new Date()}
-              />
-            </div>
-            {!data?.current && (
-              <div className="flex gap-4">
+              <div className="flex flex-col w-full">
                 <DatePicker
                   format="MMMM"
                   arrow={false}
                   buttons={false}
                   onlyMonthPicker
-                  placeholder="End Month"
-                  containerClassName="w-full"
+                  id="startMonth"
+                  placeholder={
+                    data?.startMonth === "" ? "Start Month" : data?.startMonth
+                  }
+                  value={new Date(`${data?.startMonth} ${data?.startYear}`)}
+                  // containerClassName="w-full"
                   inputClass="input-container"
                   className="bg-primary-600 text-white"
                   onChange={(e) => {
                     const date = e.toDate();
-                    handleInputChange(
-                      "endMonth",
-                      date.toLocaleString("default", { month: "long" })
-                    );
+                    const value = date.toLocaleString("default", {
+                      month: "long",
+                    });
+                    handleInputChange("startMonth", value);
+                    verifyExp(value, startMonthRef, "startMonth");
                   }}
                 />
+
+                <label
+                  className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
+                  htmlFor="startMonth"
+                  ref={startMonthRef}
+                ></label>
+              </div>
+
+              <div className="flex flex-col w-full">
                 <DatePicker
                   arrow={false}
                   onlyYearPicker
-                  placeholder="End Year"
-                  minDate={new Date(`${data?.startMonth} ${data?.startYear}`)}
-                  containerClassName="w-full"
+                  id="startYear"
+                  placeholder={
+                    data?.startYear === "" ? "Start Year" : data?.startYear
+                  }
+                  value={new Date(`${data?.startMonth} ${data?.startYear}`)}
+                  // containerClassName="w-full"
                   inputClass="input-container"
                   className="bg-primary-600 text-white"
                   onChange={(e) => {
                     const date = e.toDate();
-                    handleInputChange("endYear", date.getFullYear());
+                    const value = date.getFullYear();
+                    handleInputChange("startYear", value);
+                    verifyExp(value, startYearRef, "startYear");
                   }}
+                  maxDate={new Date()}
                 />
+                <label
+                  className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
+                  htmlFor="startYear"
+                  ref={startYearRef}
+                ></label>
+              </div>
+            </div>
+            {!data?.current && (
+              <div className="flex gap-4">
+                <div className="flex flex-col w-full">
+                  <DatePicker
+                    format="MMMM"
+                    arrow={false}
+                    buttons={false}
+                    onlyMonthPicker
+                    id="endMonth"
+                    placeholder={
+                      data?.endMonth === "" ? "End Month" : data?.endMonth
+                    }
+                    value={new Date(`${data?.endMonth} ${data?.endYear}`)}
+                    // containerClassName="w-full"
+                    inputClass="input-container"
+                    className="bg-primary-600 text-white"
+                    onChange={(e) => {
+                      const date = e.toDate();
+                      const value = date.toLocaleString("default", {
+                        month: "long",
+                      });
+                      handleInputChange("endMonth", value);
+                      verifyExp(value, endMonthRef, "endMonth");
+                    }}
+                  />
+
+                  <label
+                    className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
+                    htmlFor="endMonth"
+                    ref={endMonthRef}
+                  ></label>
+                </div>
+
+                <div className="flex flex-col w-full">
+                  <DatePicker
+                    arrow={false}
+                    onlyYearPicker
+                    id="endYear"
+                    placeholder={
+                      data?.endYear === "" ? "End Year" : data?.endYear
+                    }
+                    value={new Date(`${data?.endMonth} ${data?.endYear}`)}
+                    minDate={new Date(`${data?.startMonth} ${data?.startYear}`)}
+                    // containerClassName="w-full"
+                    inputClass="input-container"
+                    className="bg-primary-600 text-white"
+                    onChange={(e) => {
+                      const date = e.toDate();
+                      const value = date.getFullYear();
+                      handleInputChange("endYear", value);
+                      verifyExp(value, endYearRef, "endYear");
+                    }}
+                  />
+
+                  <label
+                    className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
+                    htmlFor="endYear"
+                    ref={endYearRef}
+                  ></label>
+                </div>
               </div>
             )}
             <div
-              className="flex gap-2 items-center cursor-pointer"
+              className="w-fit flex gap-2 items-center cursor-pointer"
               onClick={() => handleInputChange("current", !data?.current)}
             >
               <div

@@ -14,7 +14,7 @@
 
 ## Overview
 
-### Konnectin
+### Konectin
 
 Konectin is the perfect platform for business professionals and job seekers to connect with each other. With our easy-to-use tools, you can find the perfect match for your next Business quickly and easily....
 Konectin is the perfect platform for business professionals and job seekers to connect with each other. With our easy-to-use tools, you can find the perfect match for your next Business quickly and easily....

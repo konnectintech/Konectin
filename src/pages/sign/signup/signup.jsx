@@ -22,19 +22,18 @@ function SignUp() {
 
   const navigate = useNavigate();
   const { instance } = useMsal();
-  const { signUp, setPreviousLog, previousLog } = useAuth();
+  const { signUp } = useAuth();
   const isUserAuthenticated = useIsAuthenticated();
 
   useEffect(() => {
-    if (!isUserAuthenticated && previousLog) {
+    if (!isUserAuthenticated) {
       instance
         .ssoSilent({
           scopes: ["user.read"],
-          loginHint: previousLog.username,
+          loginHint: "",
         })
         .then((res) => {
           instance.setActiveAccount(res.account);
-          setPreviousLog(res.account);
           navigate("/blog/all");
         })
         .catch((err) => {
