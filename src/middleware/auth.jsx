@@ -111,6 +111,7 @@ export const useAuth = () => {
   };
 
   const signOut = () => {
+    console.log("User successful logged out");
     setUser(null);
   };
 
