@@ -7,6 +7,7 @@ import "./header.css";
 import { useAuth } from "../../middleware/auth";
 
 function Header() {
+  const { user, signOut } = useAuth();
   const [offset, setOffset] = useState({
     prevScrollpos: window.pageYOffset,
     visible: true,
@@ -22,7 +23,6 @@ function Header() {
   ];
 
   const { pathname } = useLocation();
-  const { user } = useAuth();
 
   const handleScroll = () => {
     const { prevScrollpos } = offset;
@@ -147,6 +147,13 @@ function Header() {
                 </h3>
                 <p>{user.email}</p>
               </div>
+              <div
+                onClick={signOut}
+                className="cursor-pointer text-secondary-500 text-medium"
+              >
+                Log out
+              </div>
+
             </div>
           ) : (
             <Link

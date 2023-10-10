@@ -1,12 +1,23 @@
 import { signImage, konectinIcon } from "../../assets";
 import * as FaIcon from "react-icons/fa";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import "./sign.css";
 import SectionWrapper from "../../components/animation/sectionWrapper";
 import { motion } from "framer-motion";
 import { slideIn } from "../../utils/motion";
+import { useAuth } from "../../middleware/auth";
+import { useEffect } from "react";
 
 function Sign() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/resume/options");
+    }
+  }, [navigate, user]);
+
   return (
     <section className="flex-col lg:flex-row min-h-screen gap-8 lg:gap-16 justify-between bg-neutral-1000 auth-container">
       <motion.div
