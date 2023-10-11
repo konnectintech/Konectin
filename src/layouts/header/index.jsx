@@ -14,6 +14,7 @@ function Header() {
   });
 
   const [isOpen, setToggle] = useState(false);
+  const [tabs, setTabs] = useState(false);
   const links = [
     { name: "Home", link: "/" },
     { name: "Internships", link: "/internship" },
@@ -127,7 +128,10 @@ function Header() {
 
         <nav className="hidden lg:block">
           {user ? (
-            <div className="flex items-center cursor-pointer gap-2 text-xs text-neutral-400">
+            <div
+              onClick={() => setTabs((prev) => !prev)}
+              className="relative flex items-center cursor-pointer gap-2 text-xs text-neutral-400"
+            >
               <div
                 className={`w-10 h-10 rounded-md flex items-center justify-center ${
                   offset.darken
@@ -147,13 +151,47 @@ function Header() {
                 </h3>
                 <p>{user.email}</p>
               </div>
+
               <div
-                onClick={signOut}
-                className="cursor-pointer text-secondary-500 text-medium"
+                className={`${
+                  offset.darken ? "text-white" : "text-primary-600"
+                } ${tabs ? "rotate-0" : "rotate-180"} duration-300`}
               >
-                Log out
+                <MdIcons.MdArrowDropDown size="2rem" />
               </div>
 
+              <div
+                className={`${
+                  tabs && (offset.prevScrollpos <= 50 || offset.darken)
+                    ? "-top-full invisible opacity-0"
+                    : "top-full visible opacity-100"
+                } absolute -right-3 duration-500 border border-primary-200 rounded translate-y-2 bg-primary-600 py-2 space-y-2 min-w-[150px]`}
+              >
+                {/* <div
+                  onClick={signOut}
+                  className="cursor-pointer text-white text-medium py-2 px-4 hover:bg-primary-200"
+                >
+                  View profile
+                </div> */}
+                <Link
+                  to="/resume/start"
+                  className="cursor-pointer block text-white text-medium py-2 px-4 hover:bg-primary-200"
+                >
+                  Build resume
+                </Link>
+                <Link
+                  to="/blog/all"
+                  className="cursor-pointer block text-white text-medium py-2 px-4 hover:bg-primary-200"
+                >
+                  Blog content
+                </Link>
+                <div
+                  onClick={signOut}
+                  className="cursor-pointer text-white text-medium py-2 px-4 hover:bg-primary-200"
+                >
+                  Log out
+                </div>
+              </div>
             </div>
           ) : (
             <Link
