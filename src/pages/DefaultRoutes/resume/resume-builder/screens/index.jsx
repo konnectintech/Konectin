@@ -22,6 +22,12 @@ function Builder() {
     }
   }, [navigate, user]);
 
+  useEffect(() => {
+    if (!templateData) {
+      navigate("/resume/ai");
+    }
+  }, [templateData, navigate]);
+
   const component_list = [
     {
       element: BasicInformation,

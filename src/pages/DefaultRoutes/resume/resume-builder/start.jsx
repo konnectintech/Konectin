@@ -58,6 +58,7 @@ const StartBuilder = () => {
       skills: [],
       bio: "",
       selectedTemplate: "",
+      resumeId: "",
     });
     localStorage.setItem("crStage", null);
 

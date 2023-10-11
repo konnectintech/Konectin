@@ -1,30 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTemplateContext } from "../../../../../../middleware/resume";
 
 import { FaPlus } from "react-icons/fa";
-import { MdArrowDropDown } from "react-icons/md";
 import DatePicker from "react-multi-date-picker";
 import NavigationButton from "../navigationButton";
-import { GetCountries, GetState, GetCity } from "react-country-state-city";
+import CountryInput from "../../../../../../components/form/countryInput";
+import StateInput from "../../../../../../components/form/stateInput";
+import CityInput from "../../../../../../components/form/cityInput";
+import { onSectionComplete, verifyInput } from "../verification";
 
 function HighSchool() {
-  const [showCountry, setShowCountry] = useState(false);
-  const [showState, setShowState] = useState(false);
-  const [showCity, setShowCity] = useState(false);
+  const [countryId, setCountryId] = useState(0);
+  const [stateId, setStateId] = useState(0);
 
-  const [countryid, setCountryid] = useState(0);
+  const schoolRef = useRef(null);
+  const endMonthRef = useRef(null);
+  const endYearRef = useRef(null);
 
-  const [countriesList, setCountriesList] = useState([]);
-  const [stateList, setStateList] = useState([]);
-  const [cityList, setCityList] = useState([]);
-
-  useEffect(() => {
-    GetCountries().then((result) => {
-      setCountriesList(result);
-    });
-  }, []);
+  let allErrMsg = [schoolRef, endMonthRef, endYearRef];
 
   const { templateData, setTemplateData } = useTemplateContext();
   const currentEditedEducation = templateData.currentEditedEducation;
@@ -52,6 +47,33 @@ function HighSchool() {
       ...prev,
       [name]: value,
     }));
+
+    let errorHolder;
+    switch (name) {
+      case "city":
+      case "state":
+      case "country":
+        errorHolder = document.getElementById(`${name}Error`);
+        verifyInput(value, errorHolder, name);
+        break;
+      case "current":
+        break;
+      case "endMonth":
+      case "endYear":
+        errorHolder = allErrMsg.filter((ref) => {
+          return ref.current.getAttribute("for") === name;
+        });
+        errorHolder = errorHolder[0].current;
+        verifyInput(value, errorHolder, name);
+        break;
+      default:
+        errorHolder = allErrMsg.filter(
+          (ref) => ref.current.getAttribute("for") === name
+        );
+        errorHolder = errorHolder[0].current;
+        verifyInput(value, errorHolder, name);
+        break;
+    }
   };
 
   const handleArrayChange = (sub, index, value) => {
@@ -105,8 +127,48 @@ function HighSchool() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    onSectionComplete(templateData);
 
-    navigate("/resume/builder/skills");
+    const formHolder = Object.keys(education);
+
+    formHolder.forEach((holder) => {
+      let errorHolder;
+      switch (holder) {
+        case "city":
+        case "state":
+        case "country":
+          errorHolder = document.getElementById(`${holder}Error`);
+          verifyInput(education[holder], errorHolder, holder);
+          break;
+        case "relevantCourses":
+        case "awards":
+          break;
+        case "endMonth":
+        case "endYear":
+          errorHolder = allErrMsg.filter(
+            (ref) => ref.current.getAttribute("for") === holder
+          );
+          errorHolder = errorHolder[0].current;
+          verifyInput(education[holder], errorHolder, holder);
+          break;
+        default:
+          errorHolder = allErrMsg.filter(
+            (ref) => ref.current.getAttribute("for") === holder
+          );
+
+          errorHolder = errorHolder[0].current;
+          verifyInput(education[holder], errorHolder, holder);
+          break;
+      }
+    });
+
+    if (
+      education.schoolName !== "" &&
+      education.country &&
+      (education.endMonth !== "" || education.endYear !== "")
+    ) {
+      navigate("/resume/builder/skills");
+    }
   };
 
   return (
@@ -117,168 +179,108 @@ function HighSchool() {
         </h2>
 
         <div className="w-full mt-6">
-          <input
-            type="text"
-            name="schoolName"
-            value={education.schoolName}
-            onChange={(e) => handleChange(e.target.name, e.target.value)}
-            onInput={(e) => handleChange(e.target.name, e.target.value)}
-            className="input-container"
-            placeholder="High School Name"
-          />
-          <div className="flex gap-4">
-            {/* Country  */}
-            <div className="input-container relative">
-              <div
-                onClick={() => setShowCountry((prev) => !prev)}
-                className="cursor-pointer flex gap-2 items-center w-full"
-              >
-                <input
-                  readOnly
-                  placeholder="Enter Country"
-                  className="bg-transparent outline-none border-none w-full h-full"
-                  value={education.country}
-                />
-                <MdArrowDropDown size="1.5rem" />
-              </div>
-              {showCountry && (
-                <div className="absolute flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto h-[30vh] top-full w-full">
-                  {countriesList.map((item, index) => (
-                    <div
-                      className="w-full py-3 px-6 cursor-pointer hover:bg-primary-400"
-                      key={index}
-                      onClick={() => {
-                        setShowCountry((prev) => !prev);
-                        handleChange("country", item.name);
-                        setCountryid(item.id);
-                        GetState(item.id).then((result) => {
-                          setStateList(result);
-                        });
-                      }}
-                    >
-                      {item.name}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <div className="input-container relative">
-              {stateList.length <= 0 ? (
-                <input
-                  onInput={(e) => handleChange("state", e.target.value)}
-                  onChange={(e) => handleChange("state", e.target.value)}
-                  placeholder="Enter State"
-                  className="bg-transparent outline-none border-none w-full h-full"
-                  value={education.state}
-                />
-              ) : (
-                <div
-                  onClick={() => setShowState((prev) => !prev)}
-                  className="cursor-pointer flex gap-2 items-center w-full"
-                >
-                  <input
-                    readOnly
-                    className="bg-transparent outline-none border-none w-full h-full"
-                    value={education.state}
-                  />
-                  <MdArrowDropDown size="1.5rem" />
-                </div>
-              )}
-
-              {showState && (
-                <div className="absolute flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto h-[30vh] top-full w-full">
-                  {stateList.map((item, index) => (
-                    <div
-                      className="w-full py-3 px-6 cursor-pointer hover:bg-primary-400"
-                      key={index}
-                      onClick={() => {
-                        setShowState((prev) => !prev);
-                        handleChange("state", item.name);
-                        GetCity(countryid, item.id).then((result) => {
-                          setCityList(result);
-                        });
-                      }}
-                    >
-                      {item.name}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <div className="input-container relative">
-              {cityList.length <= 0 ? (
-                <input
-                  onInput={(e) => handleChange("city", e.target.value)}
-                  onChange={(e) => handleChange("city", e.target.value)}
-                  placeholder="Enter City"
-                  className="bg-transparent outline-none border-none w-full h-full"
-                  value={education.city}
-                />
-              ) : (
-                <div
-                  onClick={() => setShowCity((prev) => !prev)}
-                  className="cursor-pointer flex gap-2 items-center w-full"
-                >
-                  <input
-                    readOnly
-                    className="bg-transparent outline-none border-none w-full h-full"
-                    value={education.city}
-                  />
-                  <MdArrowDropDown size="1.5rem" />
-                </div>
-              )}
-              {showCity && (
-                <div className="absolute flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto h-[30vh] top-full w-full">
-                  {cityList.map((item, index) => (
-                    <div
-                      className="w-full py-3 px-6 cursor-pointer hover:bg-primary-400"
-                      key={index}
-                      onClick={() => {
-                        setShowCity((prev) => !prev);
-                        handleChange("city", item.name);
-                      }}
-                    >
-                      {item.name}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+          <div className="flex flex-col">
+            <input
+              type="text"
+              id="schoolName"
+              name="schoolName"
+              className="input-container"
+              value={education.schoolName}
+              onChange={(e) => handleChange(e.target.name, e.target.value)}
+              onInput={(e) => handleChange(e.target.name, e.target.value)}
+              placeholder="High School Name"
+            />
+            <label
+              className="-mt-5 text-xs pl-4 text-error-500 hidden"
+              htmlFor="schoolName"
+              ref={schoolRef}
+            ></label>
           </div>
 
           <div className="flex gap-4">
-            <DatePicker
-              format="MMMM"
-              arrow={false}
-              buttons={false}
-              onlyMonthPicker
-              containerClassName="w-full"
-              inputClass="input-container"
-              placeholder="Graduation Month"
-              className="bg-primary-600 text-white"
-              onChange={(e) => {
-                const date = e.toDate();
-                handleChange(
-                  "month",
-                  date.toLocaleString("default", { month: "long" })
-                );
-              }}
+            {/* Country  */}
+            <CountryInput
+              handleChange={(name, value) => handleChange(name, value)}
+              country={education.country}
+              setCountryId={setCountryId}
             />
-            <DatePicker
-              arrow={false}
-              onlyYearPicker
-              containerClassName="w-full"
-              inputClass="input-container"
-              placeholder="Graduation Year"
-              className="bg-primary-600 text-white"
-              onChange={(e) => {
-                const date = e.toDate();
-                handleChange("year", date.getFullYear());
-              }}
-              maxDate={new Date()}
+
+            {/* State */}
+            <StateInput
+              countryId={countryId}
+              handleChange={(name, value) => handleChange(name, value)}
+              state={education.state}
+              setStateId={setStateId}
             />
+
+            <CityInput
+              countryId={countryId}
+              stateId={stateId}
+              handleChange={(name, value) => handleChange(name, value)}
+              city={education.city}
+            />
+          </div>
+
+          <div className="flex gap-4">
+            <div className="flex flex-col w-full">
+              <DatePicker
+                format="MMMM"
+                arrow={false}
+                buttons={false}
+                onlyMonthPicker
+                id="endMonth"
+                placeholder={
+                  education.endMonth === ""
+                    ? "Graduation Month"
+                    : education.endMonth
+                }
+                value={new Date(`${education.endMonth} ${education.endYear}`)}
+                // containerClassName="w-full"
+                inputClass="input-container"
+                className="bg-primary-600 text-white"
+                onChange={(e) => {
+                  const date = e.toDate();
+                  handleChange(
+                    "endMonth",
+                    date.toLocaleString("default", { month: "long" })
+                  );
+                }}
+              />
+
+              <label
+                className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
+                htmlFor="endMonth"
+                ref={endMonthRef}
+              ></label>
+            </div>
+
+            <div className="flex flex-col w-full">
+              <DatePicker
+                arrow={false}
+                onlyYearPicker
+                id="endYear"
+                placeholder={
+                  education.endYear === ""
+                    ? "Graduation Year"
+                    : education.endYear
+                }
+                value={new Date(`${education.endMonth} ${education.endYear}`)}
+                maxDate={new Date()}
+                // containerClassName="w-full"
+                inputClass="input-container"
+                className="bg-primary-600 text-white"
+                onChange={(e) => {
+                  const date = e.toDate();
+                  handleChange("endYear", date.getFullYear());
+                }}
+              />
+
+              <label
+                className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
+                htmlFor="endYear"
+                ref={endYearRef}
+              ></label>
+            </div>
           </div>
           <div>
             {education.relevantCourses.map((course, index) => (

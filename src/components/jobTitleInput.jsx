@@ -3,7 +3,7 @@ import Creatable from "react-select/creatable";
 import * as BsIcon from "react-icons/bs";
 import professions from "professions";
 import { useEffect, useRef, useState } from "react";
-import { verifyExp } from "../pages/DefaultRoutes/resume/resume-builder/screens/experience/verifyExp";
+import { verifyInput } from "../pages/DefaultRoutes/resume/resume-builder/screens/verification";
 
 const DropdownIndicator = (props) => {
   return (
@@ -48,7 +48,7 @@ function JobTitleInput({
     });
 
     if (auth) {
-      verifyExp(opt, errorMessage.current, "jobTitle");
+      verifyInput(opt, errorMessage.current, "jobTitle");
     }
   };
 

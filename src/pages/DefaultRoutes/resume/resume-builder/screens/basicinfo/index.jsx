@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavigationButton from "../navigationButton";
 import SelectedTemplates from "../../resume-templates";
-import { verifyInfo } from "./verifyInfo";
 import CountryInput from "../../../../../../components/form/countryInput";
 import StateInput from "../../../../../../components/form/stateInput";
 import CityInput from "../../../../../../components/form/cityInput";
+import { onSectionComplete, verifyInput } from "../verification";
 
 const BasicInformation = ({ data, onInputChange }) => {
   const {
@@ -58,7 +58,7 @@ const BasicInformation = ({ data, onInputChange }) => {
       (ref) => ref.current.getAttribute("for") === name.toLowerCase()
     );
     errorHolder = errorHolder[0].current;
-    verifyInfo(value, errorHolder, name);
+    verifyInput(value, errorHolder, name);
   };
 
   const handleCCSChange = (name, value) => {
@@ -66,6 +66,8 @@ const BasicInformation = ({ data, onInputChange }) => {
   };
 
   const handleSubmit = () => {
+    onSectionComplete(data);
+
     const formHolder = Object.keys(data.basicInfo);
 
     formHolder.forEach((holder) => {
@@ -79,14 +81,14 @@ const BasicInformation = ({ data, onInputChange }) => {
         case "state":
         case "country":
           errorHolder = document.getElementById(`${holder}Error`);
-          verifyInfo(data.basicInfo[holder], errorHolder, holder);
+          verifyInput(data.basicInfo[holder], errorHolder, holder);
           break;
         default:
           errorHolder = allErrMsg.filter(
             (ref) => ref.current.getAttribute("for") === holder.toLowerCase()
           );
           errorHolder = errorHolder[0].current;
-          verifyInfo(data.basicInfo[holder], errorHolder, holder);
+          verifyInput(data.basicInfo[holder], errorHolder, holder);
           break;
       }
     });

@@ -9,9 +9,7 @@ import NavigationButton from "../navigationButton";
 import CountryInput from "../../../../../../components/form/countryInput";
 import CityInput from "../../../../../../components/form/cityInput";
 import StateInput from "../../../../../../components/form/stateInput";
-import { verifyInfo } from "../basicinfo/verifyInfo";
-import { verifyExp } from "../experience/verifyExp";
-import { verifyEd } from "./verifyEd";
+import { onSectionComplete, verifyInput } from "../verification";
 
 function College() {
   const [countryId, setCountryId] = useState(0);
@@ -81,7 +79,7 @@ function College() {
       case "state":
       case "country":
         errorHolder = document.getElementById(`${name}Error`);
-        verifyInfo(value, errorHolder, name);
+        verifyInput(value, errorHolder, name);
         break;
       case "current":
         break;
@@ -93,14 +91,14 @@ function College() {
           return ref.current.getAttribute("for") === name;
         });
         errorHolder = errorHolder[0].current;
-        verifyExp(value, errorHolder, name);
+        verifyInput(value, errorHolder, name);
         break;
       default:
         errorHolder = allErrMsg.filter(
           (ref) => ref.current.getAttribute("for") === name
         );
         errorHolder = errorHolder[0].current;
-        verifyEd(value, errorHolder, name);
+        verifyInput(value, errorHolder, name);
         break;
     }
   };
@@ -150,6 +148,8 @@ function College() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    onSectionComplete(templateData);
+
     const formHolder = Object.keys(education);
 
     formHolder.forEach((holder) => {
@@ -159,7 +159,7 @@ function College() {
         case "state":
         case "country":
           errorHolder = document.getElementById(`${holder}Error`);
-          verifyInfo(education[holder], errorHolder, holder);
+          verifyInput(education[holder], errorHolder, holder);
           break;
         case "current":
           break;
@@ -169,7 +169,7 @@ function College() {
             (ref) => ref.current.getAttribute("for") === holder
           );
           errorHolder = errorHolder[0].current;
-          verifyExp(education[holder], errorHolder, holder);
+          verifyInput(education[holder], errorHolder, holder);
           break;
         case "endMonth":
         case "endYear":
@@ -180,7 +180,7 @@ function College() {
               (ref) => ref.current.getAttribute("for") === holder
             );
             errorHolder = errorHolder[0].current;
-            verifyExp(education[holder], errorHolder, holder);
+            verifyInput(education[holder], errorHolder, holder);
             break;
           }
         default:
@@ -189,7 +189,7 @@ function College() {
           );
 
           errorHolder = errorHolder[0].current;
-          verifyEd(education[holder], errorHolder, holder);
+          verifyInput(education[holder], errorHolder, holder);
           break;
       }
     });
@@ -218,11 +218,11 @@ function College() {
           <div className="mt-6">
             <div className="flex flex-col">
               <input
+                type="text"
+                id="schoolName"
+                name="schoolName"
                 className="input-container"
                 value={education.schoolName}
-                name="schoolName"
-                id="schoolName"
-                type="text"
                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                 onInput={(e) => handleChange(e.target.name, e.target.value)}
                 placeholder="College / University Name"

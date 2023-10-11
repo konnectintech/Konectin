@@ -129,7 +129,9 @@ function Header() {
         <nav className="hidden lg:block">
           {user ? (
             <div
-              onClick={() => setTabs((prev) => !prev)}
+              onClick={() => {
+                setTabs((prev) => !prev);
+              }}
               className="relative flex items-center cursor-pointer gap-2 text-xs text-neutral-400"
             >
               <div
@@ -163,8 +165,8 @@ function Header() {
               <div
                 className={`${
                   tabs && (offset.prevScrollpos <= 50 || offset.darken)
-                    ? "-top-full invisible opacity-0"
-                    : "top-full visible opacity-100"
+                    ? "top-full visible opacity-100"
+                    : "-top-full invisible opacity-0"
                 } absolute -right-3 duration-500 border border-primary-200 rounded translate-y-2 bg-primary-600 py-2 space-y-2 min-w-[150px]`}
               >
                 {/* <div

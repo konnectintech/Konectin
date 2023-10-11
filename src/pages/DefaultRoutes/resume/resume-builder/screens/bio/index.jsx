@@ -5,6 +5,7 @@ import Suggestions from "../../../../../../components/suggestions";
 import NavigationButton from "../navigationButton";
 import SelectedTemplates from "../../resume-templates";
 import { AzureKeyCredential, OpenAIClient } from "@azure/openai";
+import { onSectionComplete } from "../verification";
 
 const Bio = ({ data, onInputChange }) => {
   const [responsibility, setResponsibility] = useState(
@@ -36,6 +37,8 @@ const Bio = ({ data, onInputChange }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    onSectionComplete(data);
 
     const wordCount = editorRef
       ? editorRef.current.plugins.wordcount.getCount()

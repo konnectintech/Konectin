@@ -1,10 +1,33 @@
-export function verifyExp(data, errorRef, holder) {
-  const container = document.getElementById(holder);
+import axios from "axios";
+
+export const onSectionComplete = async (template) => {
+  const url = import.meta.env.VITE_CLIENT_SERVER_URL;
+
+  try {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      await axios.put(
+        `${url}/updateResume?userId=${user._id}&resumeId=${template._id}`,
+        template
+      );
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export function verifyInput(data, errorRef, holder) {
+  const container = document.getElementById(holder.toLowerCase());
 
   switch (holder) {
+    case "firstName":
+    case "lastName":
+    case "email":
+    case "country":
     case "jobTitle":
     case "company":
-    case "country":
+    case "schoolName":
+    case "degree":
       if (data === "") {
         container.style.borderColor = "#F11010";
         errorRef.style.display = "block";
@@ -27,6 +50,10 @@ export function verifyExp(data, errorRef, holder) {
         errorRef.style.display = "none";
       }
       break;
+    case "fullName":
+    case "phoneCode":
+    case "profession":
+      return null;
     default:
       if (data.length >= 1 && data.length < 3) {
         container.style.borderColor = "#F11010";
@@ -36,5 +63,6 @@ export function verifyExp(data, errorRef, holder) {
         container.style.borderColor = "initial";
         errorRef.style.display = "none";
       }
+      break;
   }
 }

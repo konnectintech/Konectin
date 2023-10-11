@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "./storage";
 import { EventType, PublicClientApplication } from "@azure/msal-browser";
@@ -78,6 +78,31 @@ export const useAuth = () => {
   //   }
   // };
 
+  useEffect(() => {
+    if (user && user._id) {
+      getUserResumes(user._id);
+    }
+  }, [user]);
+
+  const getUserResumes = async (id) => {
+    try {
+      const response = await axios.get(`${url}/getResumes?userId=${id}`);
+      const resumes = response.data.cvs;
+      const templateData = JSON.parse(localStorage.getItem("templateData"));
+
+      if (resumes.length >= 1 && !templateData) {
+        const lastResume = resumes.slice(-1);
+        if (!lastResume.isCompleted) {
+          localStorage.setItem("templateData", JSON.stringify(lastResume));
+        }
+      }
+
+      setUser((prev) => ({ ...prev, cvs: resumes, isLogged: true }));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const signIn = async (data, loader, setError) => {
     try {
       let authresult = await axios.post(`${url}/login`, data);
@@ -89,7 +114,6 @@ export const useAuth = () => {
       loader(false);
       navigate("/resume/options");
     } catch (err) {
-      console.log(err);
       loader(false);
       setError(err.response.data.message);
     }
@@ -111,7 +135,8 @@ export const useAuth = () => {
   };
 
   const signOut = () => {
-    console.log("User successful logged out");
+    localStorage.removeItem("templateData");
+    localStorage.removeItem("crStage");
     setUser(null);
   };
 

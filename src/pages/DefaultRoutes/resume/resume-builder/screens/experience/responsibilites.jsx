@@ -4,6 +4,8 @@ import NavigationButton from "../navigationButton";
 import { useRef, useState, useEffect } from "react";
 import { AzureKeyCredential, OpenAIClient } from "@azure/openai";
 import Suggestions from "../../../../../../components/suggestions";
+import { onSectionComplete } from "../verification";
+import { useTemplateContext } from "../../../../../../middleware/resume";
 
 const Responsibilities = ({ data, handleInputChange }) => {
   const [responsibility, setResponsibility] = useState(data?.jobTitle);
@@ -39,8 +41,11 @@ const Responsibilities = ({ data, handleInputChange }) => {
     setErrorMessage("You have unsaved content!");
   };
 
+  const { templateData } = useTemplateContext();
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    onSectionComplete(templateData);
 
     const wordCount = editorRef
       ? editorRef.current.plugins.wordcount.getCount()

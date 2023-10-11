@@ -1,6 +1,5 @@
 import { template_images } from "../../../../../assets/resume";
 import { useTemplateContext } from "../../../../../middleware/resume";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -16,27 +15,37 @@ import { loginForm } from "../../../../sign/signData";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const TemplateOption = ({ sectionName }) => {
-  const { templateData, onInputChange } = useTemplateContext();
+  const { templateData, setTemplateData } = useTemplateContext();
   const [popUp, setPopUp] = useState(false);
   const navigate = useNavigate();
   const [isloading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
-  const startBuilding = () => {
+  const handleSelect = (value) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const stage = JSON.parse(localStorage.getItem("crStage"));
 
     if (user === null) {
       setPopUp(true);
     } else {
-      navigate(stage === 6 ? "/resume/builder/preview" : "/resume/builder");
-    }
-  };
+      async function createResume() {
+        try {
+          const response = await axios.post(
+            `${url}/resume?userId=${user._id}`,
+            templateData
+          );
+          const resume = response.data.cv;
+          setTemplateData({ ...resume, selectedTemplate: value });
 
-  const handleSelect = (value) => {
-    onInputChange({ section: "selectedTemplate", values: value });
-    startBuilding();
+          navigate(stage === 6 ? "/resume/builder/preview" : "/resume/builder");
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
+      createResume();
+    }
   };
 
   const handleSubmit = async (data) => {

@@ -4,6 +4,7 @@ import { useTemplateContext } from "../../../../../../middleware/resume";
 import { useEffect, useState } from "react";
 import NavigationButton from "../navigationButton";
 import SelectedTemplates from "../../resume-templates";
+import { onSectionComplete } from "../verification";
 
 const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
   const { templateData, setTemplateData } = useTemplateContext();
@@ -131,7 +132,10 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
         <div className="mt-6">
           <NavigationButton
             back={goBack}
-            cont={() => navigate("/resume/builder/education")}
+            cont={() => {
+              onSectionComplete(templateData);
+              navigate("/resume/builder/education");
+            }}
           />
         </div>
 

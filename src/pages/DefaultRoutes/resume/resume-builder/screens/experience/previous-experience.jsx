@@ -9,8 +9,7 @@ import { useTemplateContext } from "../../../../../../middleware/resume";
 import CountryInput from "../../../../../../components/form/countryInput";
 import StateInput from "../../../../../../components/form/stateInput";
 import CityInput from "../../../../../../components/form/cityInput";
-import { verifyExp } from "./verifyExp";
-import { verifyInfo } from "../basicinfo/verifyInfo";
+import { onSectionComplete, verifyInput } from "../verification";
 
 const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
   const [countryId, setCountryId] = useState(0);
@@ -35,6 +34,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    onSectionComplete(templateData);
 
     const formHolder = Object.keys(data);
 
@@ -45,11 +45,11 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
         case "state":
         case "country":
           errorHolder = document.getElementById(`${holder}Error`);
-          verifyInfo(data[holder], errorHolder, holder);
+          verifyInput(data[holder], errorHolder, holder);
           break;
         case "jobTitle":
           errorHolder = document.getElementById(`${holder}Error`);
-          verifyExp(data[holder], errorHolder, holder);
+          verifyInput(data[holder], errorHolder, holder);
           break;
         case "current":
         case "workDesc":
@@ -59,7 +59,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
             (ref) => ref.current.getAttribute("for") === holder
           );
           errorHolder = errorHolder[0].current;
-          verifyExp(data[holder], errorHolder, holder);
+          verifyInput(data[holder], errorHolder, holder);
           break;
       }
     });
@@ -103,11 +103,11 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
                 value={data?.company}
                 onChange={(e) => {
                   handleInputChange(e.target.name, e.target.value);
-                  verifyExp(e.target.value, companyErrorRef, "company");
+                  verifyInput(e.target.value, companyErrorRef, "company");
                 }}
                 onInput={(e) => {
                   handleInputChange(e.target.name, e.target.value);
-                  verifyExp(e.target.value, companyErrorRef, "company");
+                  verifyInput(e.target.value, companyErrorRef, "company");
                 }}
                 placeholder="Company / Organization Name"
               />
@@ -163,7 +163,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
                       month: "long",
                     });
                     handleInputChange("startMonth", value);
-                    verifyExp(value, startMonthRef, "startMonth");
+                    verifyInput(value, startMonthRef, "startMonth");
                   }}
                 />
 
@@ -190,7 +190,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
                     const date = e.toDate();
                     const value = date.getFullYear();
                     handleInputChange("startYear", value);
-                    verifyExp(value, startYearRef, "startYear");
+                    verifyInput(value, startYearRef, "startYear");
                   }}
                   maxDate={new Date()}
                 />
@@ -223,7 +223,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
                         month: "long",
                       });
                       handleInputChange("endMonth", value);
-                      verifyExp(value, endMonthRef, "endMonth");
+                      verifyInput(value, endMonthRef, "endMonth");
                     }}
                   />
 
@@ -251,7 +251,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
                       const date = e.toDate();
                       const value = date.getFullYear();
                       handleInputChange("endYear", value);
-                      verifyExp(value, endYearRef, "endYear");
+                      verifyInput(value, endYearRef, "endYear");
                     }}
                   />
 

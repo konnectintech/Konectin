@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { MdArrowDropDown } from "react-icons/md";
 import { GetState } from "react-country-state-city/dist/cjs";
-import { verifyInfo } from "../../pages/DefaultRoutes/resume/resume-builder/screens/basicinfo/verifyInfo";
+import { verifyInput } from "../../pages/DefaultRoutes/resume/resume-builder/screens/verification";
 
 function StateInput({ countryId, handleChange, state, setStateId }) {
   const [stateList, setStateList] = useState([]);
@@ -22,12 +22,12 @@ function StateInput({ countryId, handleChange, state, setStateId }) {
 
     handleChange("state", input);
 
-    verifyInfo(input, errorMessage.current, "state");
+    verifyInput(input, errorMessage.current, "state");
   };
 
   const handleSelectChange = (name) => {
     handleChange("state", name);
-    verifyInfo(name, errorMessage.current, "state");
+    verifyInput(name, errorMessage.current, "state");
   };
 
   return (

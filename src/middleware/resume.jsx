@@ -60,6 +60,7 @@ export const useTemplateData = () => {
     skills: [],
     bio: "",
     selectedTemplate: "",
+    _id: "",
   });
 
   const onInputChange = ({ section, subsection, values }) => {
@@ -167,15 +168,12 @@ export const useTemplateData = () => {
     templateData.bio,
   ]);
 
-  const onSectionComplete = () => {};
-
   const finalizeData = (section, values) => {};
 
   return {
     templateData,
     setTemplateData,
     onInputChange,
-    onSectionComplete,
     finalizeData,
   };
 };

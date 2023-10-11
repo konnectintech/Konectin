@@ -6,6 +6,7 @@ import { FaTrash, FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import NavigationButton from "../navigationButton";
 import SelectedTemplates from "../../resume-templates";
+import { onSectionComplete } from "../verification";
 
 const Skills = ({ data, updateResume }) => {
   const [skillList, setSkillList] = useState(data.skills);
@@ -42,6 +43,7 @@ const Skills = ({ data, updateResume }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    onSectionComplete(data);
     navigate("/resume/builder/bio");
   };
 
