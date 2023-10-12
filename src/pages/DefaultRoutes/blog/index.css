@@ -19,29 +19,25 @@
   text-shadow: 0 0 10px #58595a;
 }
 
-article div,
-article p {
-  margin: 8px 0 !important;
+.blog-article {
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-article > strong {
-  @apply text-sm;
-  margin: 3px 0 !important;
+.blog-article * {
+  margin: 12px 0 !important;
 }
 
-article a {
-  @apply text-blue-600;
-}
-
-article blockquote {
+.blog-article blockquote {
   background: #f9f9f9;
-  border-left: 5px solid #ccc;
+  border-left: 15px solid #8c86b3;
+  font-size: 17px;
   /* margin: 1.5em 10px; */
-  padding: 0.5em 10px;
+  padding: 20px;
   /* quotes: "\201C""\201D""\2018""\2019"; */
 }
 
-/* article blockquote:before {
+/* .blog-article blockquote:before {
   color: #ccc;
   content: open-quote;
   font-size: 4em;
@@ -49,48 +45,55 @@ article blockquote {
   margin-right: 0.25em;
   vertical-align: -0.4em;
 } */
-
-article blockquote p {
-  display: inline;
+.blog-article h1,
+.blog-article h2,
+.blog-article h3,
+.blog-article h4,
+.blog-article h5,
+.blog-article h6,
+.blog-article strong {
+  font-weight: bold;
 }
 
-article h1 {
-  @apply text-lg;
-  margin: 3px 0 !important;
-}
-article h3 {
-  @apply text-base;
+.blog-article h1 {
+  font-size: 32px;
 }
 
-article img {
-  @apply block w-full;
+.blog-article h2 {
+  font-size: 26px;
 }
 
-article br {
-  @apply hidden;
+.blog-article h3 {
+  font-size: 22px;
 }
 
-article > ul,
-article > ol {
-  @apply m-0;
-  padding-inline-start: 1rem !important;
+.blog-article h3 {
+  font-size: 22px;
 }
 
-article > ol {
-  @apply list-decimal;
+.blog-article h4 {
+  font-size: 20px;
 }
 
-article > ul {
-  @apply list-disc;
+.blog-article h5 {
+  font-size: 18px;
 }
 
-article > ul > li,
-article > ol > li {
-  margin: 0 !important;
+.blog-article h6 {
+  font-size: 15px;
 }
 
-article > ol > li > * {
-  margin: 0 !important;
+.blog-article ul {
+  list-style-type: disc;
+  padding-inline-start: 30px;
+}
+
+.blog-article a {
+  color: #332a66;
+}
+
+.blog-article a:hover {
+  color: #8c86b3;
 }
 
 @media only screen and (min-width: 560px) {

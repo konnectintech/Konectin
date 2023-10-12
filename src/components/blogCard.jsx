@@ -8,6 +8,7 @@ function BlogCard({
     featuredImage,
     htmlTitle,
     authorName,
+    metaDescription,
     tagIds,
     updated,
     blurred,
@@ -40,10 +41,10 @@ function BlogCard({
         <h2 className="truncate text-base" title={htmlTitle}>
           {htmlTitle}
         </h2>
-        <h3 className="my-auto">{authorName}</h3>
+        <h3 className="my-auto">Konectin</h3>
 
         <div className="flex items-center justify-between w-full text-xs text-neutral-400 font-medium">
-          {/* <span>{tags[0].slug.split("-").join(" ")}</span> */}
+          <span>{metaDescription}</span>
           <span>
             {new Date(updated).toLocaleString("en-GB", {
               day: "numeric",

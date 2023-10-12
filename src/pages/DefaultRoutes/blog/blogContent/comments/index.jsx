@@ -11,26 +11,26 @@ function BlogComment({ blogID }) {
   const [comment, setComment] = useState("");
   const [error, setError] = useState("");
   const [comments, setComments] = useState([]);
+  const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   useEffect(() => {
     const getComments = async (blogID) => {
       try {
-        let authresult = await axios.get(
-          `https://konectin-backend-hj09.onrender.com/user/getComments?blogId=${blogID}`
-        );
-        setComments(authresult.data.comments);
+        let response = await axios.get(`${url}/getComments?blogId=${blogID}`);
+        console.log(response.data);
+        setComments(response.data.comments);
       } catch (err) {
-        setError("Please check internet connection");
+        console.error(err);
       }
     };
 
     getComments(blogID);
-  }, [blogID, comments]);
+  }, [blogID, comments, url]);
 
   const postComment = async (postID, comment) => {
     try {
-      await axios.post(
-        `https://konectin-backend-hj09.onrender.com/user/commentPost?userId=${user._id}&postId=${postID}`,
+      const response = await axios.post(
+        `${url}/commentPost?userId=${user._id}&blogId=${postID}`,
         { comment: comment },
         {
           headers: {
@@ -39,23 +39,24 @@ function BlogComment({ blogID }) {
         }
       );
 
+      console.log(response);
+
       setError("");
-      setComments((prev) => [
-        ...prev,
-        {
-          _id: "644b6bac767db54595809066",
-          userId: user._id,
-          postId: postID,
-          comment: comment,
-          createdAt: "2023-04-19T23:06:53.794+00:00",
-          updatedAt: "2023-04-19T23:06:53.794+00:00",
-          __v: 0,
-        },
-      ]);
-      setComment("");
+      // setComments((prev) => [
+      //   ...prev,
+      //   {
+      //     _id: response.data.comment.id,
+      //     userId: user._id,
+      //     postId: postID,
+      //     comment: comment,
+      //     createdAt: "2023-04-19T23:06:53.794+00:00",
+      //     updatedAt: "2023-04-19T23:06:53.794+00:00",
+      //     __v: 0,
+      //   },
+      // ]);
     } catch (err) {
       setError(
-        <p className="text-red-500">
+        <p className="text-error-500">
           You have to be logged in to comment.{" "}
           <Link className="text-primary-500" to="/login">
             Click here to log in
@@ -89,7 +90,7 @@ function BlogComment({ blogID }) {
         <div className="flex items-center gap-2">
           <label
             htmlFor="generatedID"
-            className="rounded-full bg-secondary-200 flex items-center justify-center w-8 h-8"
+            className="rounded-full bg-secondary-600 flex items-center justify-center w-8 h-8"
           >
             <img src={userIcon} className="w-4 h-4" alt="You" />
           </label>
@@ -102,7 +103,7 @@ function BlogComment({ blogID }) {
               onChange={(e) => setComment(e.target.value)}
               onInput={(e) => setComment(e.target.value)}
               placeholder="Add a comment..."
-              className="md:h-10 pl-4 pr-8 py-3 text-xs w-full rounded-md outline-0 border border-secondary-200 md:no-scrollbar"
+              className="md:h-10 pl-4 pr-8 py-3 text-xs w-full rounded-md outline-0 border border-secondary-600 md:no-scrollbar"
             />
             <button
               type="submit"

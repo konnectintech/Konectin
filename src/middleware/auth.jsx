@@ -79,7 +79,7 @@ export const useAuth = () => {
   // };
 
   useEffect(() => {
-    if (user && user._id) {
+    if (user && user._id && !user.cvs) {
       getUserResumes(user._id);
     }
   }, [user]);

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import BlogCard from "../../../../components/blogCard";
 import Pagination from "../../../../components/pagination";
 import "../index.css";
@@ -16,6 +16,7 @@ function BlogContent() {
 
   const [isFull, setOpen] = useState(false);
   const { id } = useParams();
+  const { pathname } = useLocation();
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   const paginate = (pageNumber) => {
@@ -63,9 +64,8 @@ function BlogContent() {
       try {
         const response = await axios.get(`${url}/getBlog?blogId=${id}`);
         const { posts } = response.data;
-        // addAsRead();
+
         setBlog(posts);
-        // sessionStorage.setItem(id, JSON.stringify(posts));
         setLoading((prev) => ({ ...prev, post: false }));
       } catch (err) {
         console.log(err);
@@ -134,21 +134,26 @@ function BlogContent() {
           >
             {blog.htmlTitle}
           </h1>
-          <p>{blog.authorName}</p>
+          <p>
+            {/* {blog.authorName} */}
+            Konectin
+          </p>
           <p>{blog.metaDescription}</p>
         </div>
         <div className="max-w-screen-md w-full mx-auto">
           <div className="w-full bg-neutral-700 overflow-hidden rounded-t-2xl">
             <img
-              className="object-contai w-full max-h-[550px] mx-auto"
+              className="w-full max-h-[550px] mx-auto"
               src={blog.featuredImage}
               alt={blog.htmlTitle}
             />
           </div>
-          <div className="text-start text-xs leading-normal bg-white py-8 rounded-b-md">
+          <div className="text-start text-xs leading-normal bg-white pt-4 pb-8 rounded-b-md">
             <div className="flex flex-wrap w-10/12 mx-auto">
               <article
-                className={!isFull ? "line-clamp-[14]" : ""}
+                className={
+                  !isFull ? "line-clamp-[14] blog-article" : "blog-article"
+                }
                 dangerouslySetInnerHTML={{
                   __html: blog.rssBody,
                 }}
@@ -166,7 +171,7 @@ function BlogContent() {
             </div>
             {isFull && (
               <div className="w-10/12 mx-auto">
-                <Share />
+                <Share pathname={pathname} {...blog} />
                 <BlogComment blogID={blog.id} />
               </div>
             )}
