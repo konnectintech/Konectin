@@ -1,13 +1,11 @@
-import { useNavigate } from "react-router-dom";
 import { artisticTemplates, modernTemplates } from "./data";
 
 function SelectedTemplates({ data }) {
   const { selectedTemplate } =
     JSON.parse(localStorage.getItem("templateData")) || "";
-  const navigate = useNavigate();
 
   if (!selectedTemplate) {
-    navigate("/resume/ai");
+    window.location.href = "/resume/ai";
     return;
   }
 

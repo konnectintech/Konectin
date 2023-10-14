@@ -42,7 +42,8 @@ pca.addEventCallback((event) => {
         user.token = response.data.token;
 
         localStorage.getItem("user", JSON.stringify(user));
-        window.open("https://konectin.org/resume/options", "_self");
+
+        window.location.href = "/resume/options";
       })
       .catch((err) => console.error(err));
   }
@@ -105,8 +106,10 @@ export const useAuth = () => {
       const templateData = JSON.parse(localStorage.getItem("templateData"));
 
       if (resumes.length >= 1 && !templateData) {
-        const lastResume = resumes.slice(-1);
-        if (!lastResume.isCompleted) {
+        const lastResume = resumes.slice(-1)[0];
+        const { currentStage } = lastResume;
+
+        if (currentStage >= 1 && currentStage < 6) {
           localStorage.setItem("templateData", JSON.stringify(lastResume));
         }
       }

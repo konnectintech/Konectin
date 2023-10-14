@@ -70,7 +70,7 @@ function CountryInput({ setCode, handleChange, country, setCountryId }) {
               key={index}
               onClick={() => {
                 setShowCountry((prev) => !prev);
-                setCode && setCode(item.phone_code);
+                setCode && setCode(`${item.phone_code}`);
                 handleSelectChange(item.name);
                 setCountryId(item.id);
               }}

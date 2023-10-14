@@ -1,26 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTemplateContext } from "../../../../../middleware/resume";
 import { TypeAnimation } from "react-type-animation";
 
-const Username = ({ data, handleChange }) => {
+const Username = ({ data }) => {
+  const [name, setName] = useState("");
   const [error, setError] = useState("");
   const [text, setText] = useState(false);
+
   const { setTemplateData } = useTemplateContext();
+
+  useEffect(() => {
+    if (data.firstName !== "" || data.lastName !== "")
+      setName(`${data.firstName} ${data.lastName}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const navigate = useNavigate();
 
+  const handleChange = (e) => {
+    let { value } = e.target;
+
+    setName(value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!data.fullName || data.fullName.length < 2) {
+    if (!name || name.length < 2) {
       setError("Please enter a valid name");
       return;
     }
 
-    if (
-      data.fullName.split(" ").length < 2 ||
-      data.fullName.split(" ")[1].length < 2
-    ) {
+    if (name.split(" ").length < 2 || name.split(" ")[1].length < 2) {
       setError("Please your full name");
       return;
     }
@@ -29,8 +40,8 @@ const Username = ({ data, handleChange }) => {
       ...prev,
       basicInfo: {
         ...prev.basicInfo,
-        firstName: data.fullName.split(" ")[0],
-        lastName: data.fullName.split(" ")[1],
+        firstName: name.split(" ")[0],
+        lastName: name.split(" ")[1],
       },
     }));
 
@@ -70,14 +81,14 @@ const Username = ({ data, handleChange }) => {
         <input
           type="text"
           placeholder="Enter your full name"
-          value={data.fullName}
-          onChange={handleChange("fullName")}
-          className="w-full border-b border-[#b2b3b48a] rounded-lg p-6 text-[11px]  text-[#8C8C8F] tracking-wide outline-none"
+          value={name}
+          onChange={handleChange}
+          className="w-full border-b border-neutral-500 rounded-lg p-6 text-[11px] text-neutral-400 tracking-wide outline-none"
         />
-        <p className="absolute -bottom-7 text-sm text-[#F11010]">{error}</p>
+        <p className="absolute -bottom-7 text-sm text-error-500">{error}</p>
         <button
           onClick={handleSubmit}
-          className="absolute right-10 text-[#403580] text-sm "
+          className="absolute right-10 text-primary-500 text-sm"
         >
           Press Enter
         </button>

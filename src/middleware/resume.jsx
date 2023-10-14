@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect } from "react";
 import { useLocalStorage } from "./storage";
 
 const TemplateContext = createContext();
+
 const useTemplateContext = () => useContext(TemplateContext);
 
 const TemplateProvider = ({ children }) => {
@@ -44,7 +45,6 @@ export const useTemplateData = () => {
       city: "",
       country: "",
       email: "",
-      fullName: "",
       firstName: "",
       lastName: "",
       phoneNumber: "",
@@ -60,7 +60,7 @@ export const useTemplateData = () => {
     skills: [],
     bio: "",
     selectedTemplate: "",
-    _id: "",
+    currentStage: 0,
   });
 
   const onInputChange = ({ section, subsection, values }) => {

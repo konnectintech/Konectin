@@ -3,12 +3,21 @@ import axios from "axios";
 export const onSectionComplete = async (template) => {
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
+  const duplicateData = { ...template };
+
+  delete duplicateData.completed;
+  delete duplicateData._id;
+  delete duplicateData.userId;
+  delete duplicateData.__v;
+
+  console.log(duplicateData);
+
   try {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       await axios.put(
         `${url}/updateResume?userId=${user._id}&resumeId=${template._id}`,
-        template
+        duplicateData
       );
     }
   } catch (err) {
@@ -18,8 +27,6 @@ export const onSectionComplete = async (template) => {
 
 export function verifyInput(data, errorRef, holder) {
   const container = document.getElementById(holder);
-
-  console.log(container, holder, errorRef);
 
   switch (holder) {
     case "firstName":

@@ -24,7 +24,7 @@ const TemplateOption = ({ sectionName }) => {
 
   const handleSelect = (value) => {
     const user = JSON.parse(localStorage.getItem("user"));
-    const stage = JSON.parse(localStorage.getItem("crStage"));
+    const { currentStage } = templateData;
 
     if (user === null) {
       setPopUp(true);
@@ -32,6 +32,7 @@ const TemplateOption = ({ sectionName }) => {
       async function createResume() {
         try {
           const response = await axios.post(`${url}/resume?userId=${user._id}`);
+
           const resume = response.data.cv;
           setTemplateData((prev) => ({
             ...prev,
@@ -45,7 +46,7 @@ const TemplateOption = ({ sectionName }) => {
         }
       }
 
-      if (stage === 6) {
+      if (currentStage === 6) {
         setTemplateData((prev) => ({
           ...prev,
           selectedTemplate: value,

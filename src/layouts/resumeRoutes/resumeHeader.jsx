@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { FaBars, FaCheck, FaTimes } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { konectinIcon } from "../../assets";
-import "../header/header.css";
-import { useLocalStorage } from "../../middleware/storage";
 import { useTemplateContext } from "../../middleware/resume";
+import "../header/header.css";
 
 function ResumeHeader() {
-  const [locationNo, setLoc] = useLocalStorage("crStage", 1);
-  const { templateData } = useTemplateContext();
+  const { templateData, setTemplateData } = useTemplateContext();
+  const { currentStage } = templateData;
+  const locationNo = currentStage;
+
   const [completed, setCompleted] = useState({
     basic_info: false,
     work_history: false,
@@ -57,7 +58,10 @@ function ResumeHeader() {
   ]);
 
   useEffect(() => {
-    Object.values(completed).map((value, i) => value && setLoc(i + 2));
+    Object.values(completed).map(
+      (value, i) =>
+        value && setTemplateData((prev) => ({ ...prev, currentStage: i + 2 }))
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [completed]);
 

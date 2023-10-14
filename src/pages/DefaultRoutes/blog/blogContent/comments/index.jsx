@@ -90,7 +90,7 @@ function BlogComment({ blogID }) {
         <div className="flex items-center gap-2">
           <label
             htmlFor="generatedID"
-            className="rounded-full bg-secondary-600 flex items-center justify-center w-8 h-8"
+            className="rounded-full bg-secondary-300 flex items-center justify-center w-8 h-8"
           >
             <img src={userIcon} className="w-4 h-4" alt="You" />
           </label>
@@ -103,7 +103,7 @@ function BlogComment({ blogID }) {
               onChange={(e) => setComment(e.target.value)}
               onInput={(e) => setComment(e.target.value)}
               placeholder="Add a comment..."
-              className="md:h-10 pl-4 pr-8 py-3 text-xs w-full rounded-md outline-0 border border-secondary-600 md:no-scrollbar"
+              className="md:h-10 pl-4 pr-8 py-3 text-xs w-full rounded-md outline-0 border border-secondary-300 md:no-scrollbar"
             />
             <button
               type="submit"
@@ -111,7 +111,7 @@ function BlogComment({ blogID }) {
                 comment.length >= 1 ? "opacity-100" : "opacity-0"
               } absolute transistion-opacity duration-500 translate-y-1/2 right-3`}
             >
-              <TbIcons.TbSend className="text-secondary-400" size="1.2rem" />
+              <TbIcons.TbSend className="text-secondary-500" size="1.2rem" />
             </button>
           </form>
         </div>

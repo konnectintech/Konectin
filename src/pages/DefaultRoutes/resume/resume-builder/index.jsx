@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
 import * as BsIcon from "react-icons/bs";
 import { createResume, uploadResume } from "../../../../assets";
 import StartBuilder from "./start";
@@ -60,9 +59,10 @@ const Options = () => {
   };
 
   useEffect(() => {
-    const stage = JSON.parse(localStorage.getItem("crStage"));
+    const { currentStage } =
+      JSON.parse(localStorage.getItem("templateData")) || "";
 
-    if (stage === null) {
+    if (currentStage === null || currentStage === 0) {
       setEditable(false);
     } else {
       setEditable(true);

@@ -21,10 +21,11 @@ const StartBuilder = () => {
   const navigate = useNavigate();
 
   const handleContinueEdit = () => {
-    const stage = parseInt(localStorage.getItem("crStage"));
+    const { currentStage } =
+      JSON.parse(localStorage.getItem("templateData")) || "";
 
     for (let index = 1; index <= links.length; index++) {
-      if (index === stage) {
+      if (index === currentStage) {
         navigate(links[index - 1]);
       }
     }
@@ -43,7 +44,6 @@ const StartBuilder = () => {
         city: "",
         country: "",
         email: "",
-        fullName: "",
         firstName: "",
         lastName: "",
         phoneNumber: "",
@@ -58,9 +58,8 @@ const StartBuilder = () => {
       skills: [],
       bio: "",
       selectedTemplate: "",
-      resumeId: "",
+      currentStage: 0,
     });
-    localStorage.setItem("crStage", null);
 
     navigate("/resume/ai");
   };

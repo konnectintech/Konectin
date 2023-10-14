@@ -1,23 +1,28 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { commentIcon, shareIcon, userIcon } from "../../../../../assets";
+import { commentIcon, shareIcon } from "../../../../../assets";
 import * as BiIcons from "react-icons/bi";
+import ReactTimeAgo from "react-time-ago";
+import SubComments from "./subComments";
 
 function ShowComments({ commentArr }) {
   const [comments, setComments] = useState([]);
   const [allComments, setAllComments] = useState([]);
+  const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   useEffect(() => {
     commentArr.map(async (comment) => {
-      let res = await getUser(comment);
-      setAllComments((prev) => {
-        if (prev.some((data) => data._id === comment._id)) {
-          return prev;
-        } else {
-          return [...prev, { ...comment, fullname: res.data.user.fullname }];
-        }
+      axios.get(`${url}/getUser?userId=${comment.userId}`).then((res) => {
+        setAllComments((prev) => {
+          if (prev.some((data) => data._id === comment._id)) {
+            return prev;
+          } else {
+            return [...prev, { ...comment, fullname: res.data.user.fullname }];
+          }
+        });
       });
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [commentArr]);
 
   useEffect(() => {
@@ -25,24 +30,22 @@ function ShowComments({ commentArr }) {
     setComments(splicedComments);
   }, [allComments]);
 
-  const getUser = (comment) => {
-    return axios.get(
-      `https://konectin-backend-hj09.onrender.com/user/getUser?userId=${comment.userId}`
-    );
-  };
-
   // const likeComment = (data) => {};
 
   return (
     <>
-      <div className="flex flex-col gap-4 overflow-y-auto h-[320px] scrollbar-hide">
+      <div className="flex flex-col gap-4 overflow-y-auto max-h-[320px] scrollbar-hide">
         {comments.map((comment, index) => (
           <div
             key={index}
             className="flex items-start gap-2 border-b border-neutral-700 pb-4"
           >
-            <div className="rounded-full bg-secondary-200 flex items-center justify-center w-8 h-8">
-              <img src={userIcon} className="w-4 h-4" alt="You" />
+            <div className="rounded-full bg-secondary-300 flex items-center justify-center w-8 h-8">
+              {/* <img src={userIcon} className="w-4 h-4" alt="You" /> */}
+              <h3 className="text-capitalize text-white">
+                {comment?.fullname.split(" ")[0].charAt(0)}
+                {comment?.fullname.split(" ")[1].charAt(0)}
+              </h3>
             </div>
             <div className="flex flex-col">
               <hgroup className="flex items-center gap-2">
@@ -51,11 +54,11 @@ function ShowComments({ commentArr }) {
                   {comment?.fullname.split(" ")[1].charAt(0)}
                 </h3>
                 <h6 className="text-[8px] text-neutral-500">
-                  {Math.floor(
-                    (new Date() - new Date(comment.updatedAt)) /
-                      (1000 * 60 * 60 * 24)
-                  )}{" "}
-                  days
+                  <ReactTimeAgo
+                    date={comment.updatedAt}
+                    locale="en-US"
+                    timeStyle="twitter"
+                  />
                 </h6>
               </hgroup>
 
@@ -63,7 +66,9 @@ function ShowComments({ commentArr }) {
 
               <ul className="text-[9px] text-neutral-500 list-disc flex space-x-4 relative left-4 mt-1">
                 <li>
-                  <span className="relative -left-1">0 reply</span>
+                  <span className="relative -left-1">
+                    {comment.reply.length} reply
+                  </span>
                 </li>
                 <li>
                   <span className="relative -left-1">0 shares</span>
@@ -89,6 +94,14 @@ function ShowComments({ commentArr }) {
                   className="cursor-pointer"
                 />
               </div>
+
+              {comment.reply.length >= 1 && (
+                <div className="mt-4">
+                  {comment.reply.map((comment, index) => (
+                    <SubComments comment={comment} index={index} />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         ))}

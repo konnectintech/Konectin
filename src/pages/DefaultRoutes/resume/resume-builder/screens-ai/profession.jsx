@@ -12,7 +12,7 @@ const Profession = ({ data }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!data.fullName) {
+    if (!data.firstName || !data.lastName) {
       navigate("/resume/ai/");
       return;
     }
@@ -36,10 +36,7 @@ const Profession = ({ data }) => {
     <>
       <h2 className="text-2xl lg:text-3xl font-extrabold text-center">
         It's Nice to Meet You
-        <span className="text-secondary-500 capitalize">
-          {" "}
-          {data.fullName.split(" ")[1]}
-        </span>
+        <span className="text-secondary-500 capitalize"> {data.lastName}</span>
       </h2>
 
       <p className="font-bold text-center">
