@@ -19,6 +19,8 @@ export const onSectionComplete = async (template) => {
 export function verifyInput(data, errorRef, holder) {
   const container = document.getElementById(holder.toLowerCase());
 
+  console.log(container, holder, errorRef);
+
   switch (holder) {
     case "firstName":
     case "lastName":

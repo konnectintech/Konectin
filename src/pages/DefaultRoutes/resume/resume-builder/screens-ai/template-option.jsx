@@ -31,20 +31,29 @@ const TemplateOption = ({ sectionName }) => {
     } else {
       async function createResume() {
         try {
-          const response = await axios.post(
-            `${url}/resume?userId=${user._id}`,
-            templateData
-          );
+          const response = await axios.post(`${url}/resume?userId=${user._id}`);
           const resume = response.data.cv;
-          setTemplateData({ ...resume, selectedTemplate: value });
+          setTemplateData((prev) => ({
+            ...prev,
+            ...resume,
+            selectedTemplate: value,
+          }));
 
-          navigate(stage === 6 ? "/resume/builder/preview" : "/resume/builder");
+          navigate("/resume/builder");
         } catch (err) {
           console.error(err);
         }
       }
 
-      createResume();
+      if (stage === 6) {
+        setTemplateData((prev) => ({
+          ...prev,
+          selectedTemplate: value,
+        }));
+        navigate("/resume/builder/preview");
+      } else {
+        createResume();
+      }
     }
   };
 

@@ -103,11 +103,19 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
                 value={data?.company}
                 onChange={(e) => {
                   handleInputChange(e.target.name, e.target.value);
-                  verifyInput(e.target.value, companyErrorRef, "company");
+                  verifyInput(
+                    e.target.value,
+                    companyErrorRef.current,
+                    "company"
+                  );
                 }}
                 onInput={(e) => {
                   handleInputChange(e.target.name, e.target.value);
-                  verifyInput(e.target.value, companyErrorRef, "company");
+                  verifyInput(
+                    e.target.value,
+                    companyErrorRef.current,
+                    "company"
+                  );
                 }}
                 placeholder="Company / Organization Name"
               />
@@ -163,7 +171,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
                       month: "long",
                     });
                     handleInputChange("startMonth", value);
-                    verifyInput(value, startMonthRef, "startMonth");
+                    verifyInput(value, startMonthRef.current, "startMonth");
                   }}
                 />
 
@@ -190,7 +198,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
                     const date = e.toDate();
                     const value = date.getFullYear();
                     handleInputChange("startYear", value);
-                    verifyInput(value, startYearRef, "startYear");
+                    verifyInput(value, startYearRef.current, "startYear");
                   }}
                   maxDate={new Date()}
                 />
@@ -223,7 +231,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
                         month: "long",
                       });
                       handleInputChange("endMonth", value);
-                      verifyInput(value, endMonthRef, "endMonth");
+                      verifyInput(value, endMonthRef.current, "endMonth");
                     }}
                   />
 
@@ -251,7 +259,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
                       const date = e.toDate();
                       const value = date.getFullYear();
                       handleInputChange("endYear", value);
-                      verifyInput(value, endYearRef, "endYear");
+                      verifyInput(value, endYearRef.current, "endYear");
                     }}
                   />
 

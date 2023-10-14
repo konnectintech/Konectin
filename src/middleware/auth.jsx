@@ -28,9 +28,23 @@ const pca = new PublicClientApplication({
 });
 
 pca.addEventCallback((event) => {
+  const url = import.meta.env.VITE_CLIENT_SERVER_URL;
+
   if (event.eventType === EventType.LOGIN_SUCCESS) {
     pca.setActiveAccount(event.payload.account);
-    console.log(event.payload.account);
+
+    let { name, username } = event.payload.account;
+
+    axios
+      .post(`${url}/microsoft/login`, { name, username })
+      .then((response) => {
+        const user = { ...response.data.data };
+        user.token = response.data.token;
+
+        localStorage.getItem("user", JSON.stringify(user));
+        window.open("https://konectin.org/resume/options", "_self");
+      })
+      .catch((err) => console.error(err));
   }
 });
 

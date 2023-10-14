@@ -17,7 +17,6 @@ function BlogComment({ blogID }) {
     const getComments = async (blogID) => {
       try {
         let response = await axios.get(`${url}/getComments?blogId=${blogID}`);
-        console.log(response.data);
         setComments(response.data.comments);
       } catch (err) {
         console.error(err);
@@ -25,7 +24,7 @@ function BlogComment({ blogID }) {
     };
 
     getComments(blogID);
-  }, [blogID, comments, url]);
+  }, [blogID, url]);
 
   const postComment = async (postID, comment) => {
     try {
@@ -41,7 +40,7 @@ function BlogComment({ blogID }) {
 
       console.log(response);
 
-      setError("");
+      // setError("");
       // setComments((prev) => [
       //   ...prev,
       //   {
@@ -55,6 +54,7 @@ function BlogComment({ blogID }) {
       //   },
       // ]);
     } catch (err) {
+      console.error(err);
       setError(
         <p className="text-error-500">
           You have to be logged in to comment.{" "}
