@@ -17,7 +17,7 @@ export const onSectionComplete = async (template) => {
 };
 
 export function verifyInput(data, errorRef, holder) {
-  const container = document.getElementById(holder.toLowerCase());
+  const container = document.getElementById(holder);
 
   console.log(container, holder, errorRef);
 

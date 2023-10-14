@@ -55,7 +55,7 @@ const BasicInformation = ({ data, onInputChange }) => {
 
     // OnChange Input Field Validation
     let errorHolder = allErrMsg.filter(
-      (ref) => ref.current.getAttribute("for") === name.toLowerCase()
+      (ref) => ref.current.getAttribute("for") === name
     );
     errorHolder = errorHolder[0].current;
     verifyInput(value, errorHolder, name);
@@ -85,7 +85,7 @@ const BasicInformation = ({ data, onInputChange }) => {
           break;
         default:
           errorHolder = allErrMsg.filter(
-            (ref) => ref.current.getAttribute("for") === holder.toLowerCase()
+            (ref) => ref.current.getAttribute("for") === holder
           );
           errorHolder = errorHolder[0].current;
           verifyInput(data.basicInfo[holder], errorHolder, holder);
@@ -127,14 +127,14 @@ const BasicInformation = ({ data, onInputChange }) => {
                 className="input-container"
                 type="text"
                 name="firstname"
-                id="firstname"
+                id="firstName"
                 value={firstName}
                 onChange={(e) => handleInputChange(e, "firstName", "firstname")}
                 placeholder="First Name"
               />
               <label
                 className="-mt-5 text-xs pl-4 text-error-500 hidden"
-                htmlFor="firstname"
+                htmlFor="firstName"
                 ref={firstNameErrMsg}
               ></label>
             </div>
@@ -147,11 +147,11 @@ const BasicInformation = ({ data, onInputChange }) => {
                 onChange={(e) => handleInputChange(e, "lastName", "lastname")}
                 className="input-container"
                 name="lastname"
-                id="lastname"
+                id="lastName"
               />
               <label
                 className="-mt-5 text-xs pl-4 text-error-500 hidden"
-                htmlFor="lastname"
+                htmlFor="lastName"
                 ref={lastNameErrMsg}
               ></label>
             </div>
@@ -168,11 +168,11 @@ const BasicInformation = ({ data, onInputChange }) => {
                 onChange={(e) => handleInputChange(e, "zipCode", "zipcode")}
                 placeholder="Zip Code"
                 name="zipcode"
-                id="zipcode"
+                id="zipCode"
               />
               <label
                 className="-mt-5 text-xs pl-4 text-error-500 hidden"
-                htmlFor="zipcode"
+                htmlFor="zipCode"
                 ref={zipCodeErrMsg}
               ></label>
             </div>
@@ -213,7 +213,7 @@ const BasicInformation = ({ data, onInputChange }) => {
               maxLength="12"
               value={phoneNumber}
               name="phonenumber"
-              id="phonenumber"
+              id="phoneNumber"
               onChange={(e) => {
                 e.target.value = e.target.value
                   .replace(/[^0-9]/g, "")
@@ -231,7 +231,7 @@ const BasicInformation = ({ data, onInputChange }) => {
             />
             <label
               className="-mt-5 text-xs pl-4 text-error-500 hidden"
-              htmlFor="phonenumber"
+              htmlFor="phoneNumber"
               ref={phoneNumberErrMsg}
             ></label>
           </div>
