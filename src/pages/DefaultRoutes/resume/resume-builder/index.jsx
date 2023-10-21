@@ -3,6 +3,7 @@ import * as BsIcon from "react-icons/bs";
 import { createResume, uploadResume } from "../../../../assets";
 import StartBuilder from "./start";
 import { useNavigate } from "react-router";
+import { FaChevronRight } from "react-icons/fa";
 
 const BuilderOption = ({
   title,
@@ -98,6 +99,12 @@ const Options = () => {
           choice={choice}
           handleChoice={handleChoice}
         />
+      </div>
+      <div className="text-2xl font-medium flex items-center gap-4">
+        I Want to build a Cover Letter
+        <span className="font-bold text-secondary-600 flex items-center gap-2">
+          Cover Letter <FaChevronRight className="text-sm" />
+        </span>
       </div>
       {/* <Link
         to={choice ? `/resume/${choice}` : "#"}

@@ -95,6 +95,12 @@ import ResumeTemplateSampleImage from "./images/resume template.png";
 import BuilderBg from "./images/builder-bg.png";
 import ResumeTemplateSample1Image from "./images/resume template 1.png";
 import ResumeCTAImage from "./images/cta.png";
+import basicInfo from "./icons/basic_info.svg";
+import workExpirience from "./icons/work_experience.svg";
+import education from "./icons/education.svg";
+import skill from "./icons/skill.svg";
+import bio from "./icons/bio.svg";
+import finalize from "./icons/finalize.svg";
 
 // Blog Images
 import shareIcon from "./icons/share.svg";
@@ -186,6 +192,12 @@ export {
   createResume,
   uploadResume,
   botIcon,
+  basicInfo,
+  workExpirience,
+  education,
+  skill,
+  bio,
+  finalize,
 
   //Dashboard Images
   bell,
