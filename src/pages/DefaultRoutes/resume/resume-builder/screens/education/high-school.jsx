@@ -1,25 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 import { useTemplateContext } from "../../../../../../middleware/resume";
 
 import { FaPlus } from "react-icons/fa";
-import DatePicker from "react-multi-date-picker";
 import NavigationButton from "../navigationButton";
+import { onSectionComplete, verifyInput } from "../verification";
 import CountryInput from "../../../../../../components/form/countryInput";
 import StateInput from "../../../../../../components/form/stateInput";
 import CityInput from "../../../../../../components/form/cityInput";
-import { onSectionComplete, verifyInput } from "../verification";
+import DateSelector from "../../../../../../components/form/dateSelector";
 
 function HighSchool() {
   const [countryId, setCountryId] = useState(0);
   const [stateId, setStateId] = useState(0);
 
   const schoolRef = useRef(null);
-  const endMonthRef = useRef(null);
-  const endYearRef = useRef(null);
-
-  let allErrMsg = [schoolRef, endMonthRef, endYearRef];
 
   const { templateData, setTemplateData } = useTemplateContext();
   const currentEditedEducation = templateData.currentEditedEducation;
@@ -53,25 +49,15 @@ function HighSchool() {
       case "city":
       case "state":
       case "country":
+      case "endMonth":
+      case "endYear":
         errorHolder = document.getElementById(`${name}Error`);
         verifyInput(value, errorHolder, name);
         break;
       case "current":
         break;
-      case "endMonth":
-      case "endYear":
-        errorHolder = allErrMsg.filter((ref) => {
-          return ref.current.getAttribute("for") === name;
-        });
-        errorHolder = errorHolder[0].current;
-        verifyInput(value, errorHolder, name);
-        break;
       default:
-        errorHolder = allErrMsg.filter(
-          (ref) => ref.current.getAttribute("for") === name
-        );
-        errorHolder = errorHolder[0].current;
-        verifyInput(value, errorHolder, name);
+        verifyInput(value, schoolRef.current, name);
         break;
     }
   };
@@ -137,27 +123,16 @@ function HighSchool() {
         case "city":
         case "state":
         case "country":
+        case "endMonth":
+        case "endYear":
           errorHolder = document.getElementById(`${holder}Error`);
           verifyInput(education[holder], errorHolder, holder);
           break;
         case "relevantCourses":
         case "awards":
           break;
-        case "endMonth":
-        case "endYear":
-          errorHolder = allErrMsg.filter(
-            (ref) => ref.current.getAttribute("for") === holder
-          );
-          errorHolder = errorHolder[0].current;
-          verifyInput(education[holder], errorHolder, holder);
-          break;
         default:
-          errorHolder = allErrMsg.filter(
-            (ref) => ref.current.getAttribute("for") === holder
-          );
-
-          errorHolder = errorHolder[0].current;
-          verifyInput(education[holder], errorHolder, holder);
+          verifyInput(education[holder], schoolRef.current, holder);
           break;
       }
     });
@@ -222,65 +197,25 @@ function HighSchool() {
           </div>
 
           <div className="flex gap-4">
-            <div className="flex flex-col w-full">
-              <DatePicker
-                format="MMMM"
-                arrow={false}
-                buttons={false}
-                onlyMonthPicker
-                id="endMonth"
-                placeholder={
-                  education.endMonth === ""
-                    ? "Graduation Month"
-                    : education.endMonth
-                }
-                value={new Date(`${education.endMonth} ${education.endYear}`)}
-                // containerClassName="w-full"
-                inputClass="input-container"
-                className="bg-primary-600 text-white"
-                onChange={(e) => {
-                  const date = e.toDate();
-                  handleChange(
-                    "endMonth",
-                    date.toLocaleString("default", { month: "long" })
-                  );
-                }}
-              />
+            {/* End Month */}
+            <DateSelector
+              monthPicker
+              handleDataChange={(name, value) => handleChange(name, value)}
+              id="endMonth"
+              year={education.endYear}
+              month={education.endMonth}
+              placeholder="End Month"
+            />
 
-              <label
-                className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
-                htmlFor="endMonth"
-                ref={endMonthRef}
-              ></label>
-            </div>
-
-            <div className="flex flex-col w-full">
-              <DatePicker
-                arrow={false}
-                onlyYearPicker
-                id="endYear"
-                placeholder={
-                  education.endYear === ""
-                    ? "Graduation Year"
-                    : education.endYear
-                }
-                value={new Date(`${education.endMonth} ${education.endYear}`)}
-                maxDate={new Date()}
-                // containerClassName="w-full"
-                inputClass="input-container"
-                className="bg-primary-600 text-white"
-                onChange={(e) => {
-                  const date = e.toDate();
-                  handleChange("endYear", date.getFullYear());
-                }}
-              />
-
-              <label
-                className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
-                htmlFor="endYear"
-                ref={endYearRef}
-              ></label>
-            </div>
+            {/* End Year */}
+            <DateSelector
+              handleDataChange={(name, value) => handleChange(name, value)}
+              id="endYear"
+              year={education.endYear}
+              month={education.endMonth}
+              placeholder="End Year"
+              maxDate
+            />
           </div>
           <div>
             {education.relevantCourses.map((course, index) => (

@@ -2,35 +2,62 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { commentIcon, shareIcon } from "../../../../../assets";
 import * as BiIcons from "react-icons/bi";
+import * as TbIcons from "react-icons/tb";
 import ReactTimeAgo from "react-time-ago";
 import SubComments from "./subComments";
 
-function ShowComments({ commentArr }) {
+function ShowComments({ commentArr, user }) {
   const [comments, setComments] = useState([]);
+  const [subComment, setSubComment] = useState([]);
   const [allComments, setAllComments] = useState([]);
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   useEffect(() => {
-    commentArr.map(async (comment) => {
-      axios.get(`${url}/getUser?userId=${comment.userId}`).then((res) => {
-        setAllComments((prev) => {
-          if (prev.some((data) => data._id === comment._id)) {
-            return prev;
-          } else {
-            return [...prev, { ...comment, fullname: res.data.user.fullname }];
-          }
-        });
-      });
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [commentArr]);
+    let arr = commentArr;
 
-  useEffect(() => {
-    const splicedComments = allComments.slice(0, 3);
-    setComments(splicedComments);
-  }, [allComments]);
+    const getUser = async (comment) => {
+      console.log(comment);
+      try {
+        let res = await axios.get(
+          `https://konectin-backend-hj09.onrender.com/user/getUser?userId=${comment.userId}`
+        );
+        return { ...comment, fullname: res.data.user.fullname };
+      } catch (err) {
+        console.error(err);
+      }
+      console.log("Ran sucessfully");
+    };
+
+    arr.map((comment) => {
+      setSubComment((prevSub) => [...prevSub, { content: "", isReply: false }]);
+
+      if (comment.fullname) {
+        return comment;
+      }
+
+      return getUser(comment);
+    });
+
+    // console.log(arr);
+    setComments(arr);
+  }, [commentArr, url]);
 
   // const likeComment = (data) => {};
+  const handleSubmit = (e, id) => {
+    e.preventDefault();
+    if (user?._id) {
+      // You have to be loggged in to post
+      axios.post(
+        `${url}/replyComment?userId=${user._id}&commentId=${id}`,
+        { comment: subComment },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+    }
+  };
 
   return (
     <>
@@ -47,20 +74,20 @@ function ShowComments({ commentArr }) {
                 {comment?.fullname.split(" ")[1].charAt(0)}
               </h3>
             </div>
-            <div className="flex flex-col">
-              <hgroup className="flex items-center gap-2">
+            <div className="flex flex-col relative overflow-hidden w-full">
+              <div className="flex items-center gap-2">
                 <h3 className="text-[13px] font-semibold">
                   {comment?.fullname.split(" ")[0]}.{" "}
                   {comment?.fullname.split(" ")[1].charAt(0)}
                 </h3>
                 <h6 className="text-[8px] text-neutral-500">
                   <ReactTimeAgo
-                    date={comment.updatedAt}
+                    date={new Date(comment.updatedAt)}
                     locale="en-US"
                     timeStyle="twitter"
                   />
                 </h6>
-              </hgroup>
+              </div>
 
               <p className="text-[11px] text-neutral-300">{comment.comment}</p>
 
@@ -80,6 +107,17 @@ function ShowComments({ commentArr }) {
 
               <div className="flex text-lg text-primary-500 gap-2 mt-1">
                 <img
+                  onClick={() =>
+                    setSubComment((prev) =>
+                      prev.map((content, id) => {
+                        if (index === id) {
+                          return { ...content, isReply: !content.isReply };
+                        } else {
+                          return content;
+                        }
+                      })
+                    )
+                  }
                   className="w-[17px] cursor-pointer"
                   src={commentIcon}
                   alt="comment"
@@ -102,6 +140,74 @@ function ShowComments({ commentArr }) {
                   ))}
                 </div>
               )}
+
+              <div className="relative">
+                <form
+                  onSubmit={(e) => handleSubmit(e, comment._id)}
+                  className={`${
+                    subComment[index].isReply
+                      ? "opacity-100 relative left-0"
+                      : "opacity-0 absolute left-full"
+                  } transition-all duration-500 flex-1 my-2`}
+                >
+                  <input
+                    id="subComment"
+                    name="subComment"
+                    type="text"
+                    value={
+                      subComment[index].content ? subComment[index].content : ""
+                    }
+                    onChange={(e) =>
+                      setSubComment((content, i) => {
+                        if (index === i) {
+                          return { ...content, content: e.target.value };
+                        }
+                        return content;
+                      })
+                    }
+                    onInput={(e) =>
+                      setSubComment((content, i) => {
+                        if (index === i) {
+                          return { ...content, content: e.target.value };
+                        }
+                        return content;
+                      })
+                    }
+                    placeholder="Add a comment..."
+                    className="pl-4 pr-8 py-3 text-xs w-full rounded-md outline-0 border border-secondary-300"
+                  />
+                  <button
+                    type="submit"
+                    className={`${
+                      subComment.length >= 1
+                        ? "opacity-100 right-9"
+                        : "opacity-0 right-3"
+                    } absolute duration-500 translate-y-1/2`}
+                  >
+                    <TbIcons.TbSend
+                      className="text-secondary-500"
+                      size="1.2rem"
+                    />
+                  </button>
+                  <button className="absolute translate-y-1/2 right-3">
+                    <TbIcons.TbX
+                      onClick={() =>
+                        setSubComment((prev) =>
+                          prev.map((content, id) => {
+                            if (index === id) {
+                              return { ...content, isReply: !content.isReply };
+                            } else {
+                              return content;
+                            }
+                          })
+                        )
+                      }
+                      className="text-error-500"
+                      size="1.3rem"
+                    />
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         ))}

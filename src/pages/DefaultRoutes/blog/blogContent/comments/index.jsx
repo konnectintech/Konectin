@@ -4,10 +4,9 @@ import ShowComments from "./showComments";
 import * as TbIcons from "react-icons/tb";
 import { useEffect, useState } from "react";
 import { userIcon } from "../../../../../assets";
-import { useLocalStorage } from "../../../../../middleware/storage";
 
 function BlogComment({ blogID }) {
-  const [user] = useLocalStorage("user");
+  const user = JSON.parse(localStorage.getItem("user")) || "";
   const [comment, setComment] = useState("");
   const [error, setError] = useState("");
   const [comments, setComments] = useState([]);
@@ -38,31 +37,23 @@ function BlogComment({ blogID }) {
         }
       );
 
-      console.log(response);
+      setError("");
+      setComments((prev) => [
+        {
+          _id: response.data.comment,
+          userId: user._id,
+          postId: postID,
+          comment: comment,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        ...prev,
+      ]);
 
-      // setError("");
-      // setComments((prev) => [
-      //   ...prev,
-      //   {
-      //     _id: response.data.comment.id,
-      //     userId: user._id,
-      //     postId: postID,
-      //     comment: comment,
-      //     createdAt: "2023-04-19T23:06:53.794+00:00",
-      //     updatedAt: "2023-04-19T23:06:53.794+00:00",
-      //     __v: 0,
-      //   },
-      // ]);
+      setComment("");
     } catch (err) {
       console.error(err);
-      setError(
-        <p className="text-error-500">
-          You have to be logged in to comment.{" "}
-          <Link className="text-primary-500" to="/login">
-            Click here to log in
-          </Link>
-        </p>
-      );
+      setError(<p className="text-error-500">Server Error. Try again later</p>);
     }
   };
 
@@ -71,7 +62,6 @@ function BlogComment({ blogID }) {
     if (user?._id) {
       // You have to be loggged in to post
       postComment(blogID, comment);
-      setError("");
     } else {
       setError(
         <p className="text-red-500">
@@ -109,7 +99,7 @@ function BlogComment({ blogID }) {
               type="submit"
               className={`${
                 comment.length >= 1 ? "opacity-100" : "opacity-0"
-              } absolute transistion-opacity duration-500 translate-y-1/2 right-3`}
+              } absolute transition-opacity duration-500 translate-y-1/2 right-3`}
             >
               <TbIcons.TbSend className="text-secondary-500" size="1.2rem" />
             </button>
@@ -120,7 +110,7 @@ function BlogComment({ blogID }) {
 
       <div>
         {comments.length >= 1 ? (
-          <ShowComments commentArr={comments} />
+          <ShowComments user={user} commentArr={comments} />
         ) : (
           <p>Be the first to comment on this post</p>
         )}

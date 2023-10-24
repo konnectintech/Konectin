@@ -172,13 +172,13 @@ function BlogContent() {
             {isFull && (
               <div className="w-10/12 mx-auto">
                 <Share pathname={pathname} {...blog} />
-                <BlogComment blogID={blog.id} />
+                {/* <BlogComment blogID={blog.id} /> */}
               </div>
             )}
           </div>
         </div>
       </div>
-      <div>
+      {/* <div>
         <p className="font-semibold text-xl mb-6">Related articles</p>
         <div
           className={`grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch ${
@@ -197,7 +197,7 @@ function BlogContent() {
           currentPage={currentPage}
           paginate={paginate}
         />
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import { MdArrowDropDown } from "react-icons/md";
 import { GetState } from "react-country-state-city/dist/cjs";
 import { verifyInput } from "../../pages/DefaultRoutes/resume/resume-builder/screens/verification";
 
@@ -45,11 +44,10 @@ function StateInput({ countryId, handleChange, state, setStateId }) {
             onChange={(e) => handleStateInput(e.target.value)}
             onInput={(e) => handleStateInput(e.target.value)}
           />
-          {stateList.length >= 1 && <MdArrowDropDown size="1.5rem" />}
         </div>
         <label
           id="stateError"
-          className="absolute mt-[2.4rem] text-error-500 hidden"
+          className="absolute mt-8 text-error-500 hidden"
           ref={errorMessage}
         ></label>
       </div>
