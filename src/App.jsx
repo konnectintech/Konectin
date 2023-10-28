@@ -30,7 +30,7 @@ import Login from "./pages/sign/login/login";
 import SignUp from "./pages/sign/signup/signup";
 import ForgetPassword from "./pages/sign/login/forgetPassword";
 import ResetPassword from "./pages/sign/login/resetPassword";
-// import ErrorPage from "./pages/404";
+import ErrorPage from "./pages/404";
 
 // import DashBoard from "./pages/ProtectedRoutes/dashboard";
 // import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
@@ -45,6 +45,7 @@ function App() {
               <RouteIdentifier />
             </AuthProvider>
           }
+          errorElement={<ErrorPage />}
         >
           <Route element={<Sign />}>
             <Route path="/login" element={<Login />} />
@@ -55,6 +56,7 @@ function App() {
           <Route path="/reset-password" element={<ResetPassword />} />
 
           <Route element={<DefaultRoutes />}>
+            <Route path="*" element={<ErrorPage />} />
             <Route path="/" element={<Landing />} />
             <Route path="/internship" element={<Internship />} />
             <Route path="/resume" element={<ResumeBuilder />} />

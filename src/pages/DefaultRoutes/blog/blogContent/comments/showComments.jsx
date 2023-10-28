@@ -1,63 +1,79 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { commentIcon, shareIcon } from "../../../../../assets";
+import { commentIcon, shareIcon, userIcon } from "../../../../../assets";
 import * as BiIcons from "react-icons/bi";
 import * as TbIcons from "react-icons/tb";
 import ReactTimeAgo from "react-time-ago";
 import SubComments from "./subComments";
 
-function ShowComments({ commentArr, user }) {
+function ShowComments({ commentArr, user, changeComment }) {
   const [comments, setComments] = useState([]);
   const [subComment, setSubComment] = useState([]);
-  const [allComments, setAllComments] = useState([]);
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   useEffect(() => {
-    let arr = commentArr;
-
-    const getUser = async (comment) => {
-      console.log(comment);
-      try {
-        let res = await axios.get(
-          `https://konectin-backend-hj09.onrender.com/user/getUser?userId=${comment.userId}`
-        );
-        return { ...comment, fullname: res.data.user.fullname };
-      } catch (err) {
-        console.error(err);
-      }
-      console.log("Ran sucessfully");
-    };
-
-    arr.map((comment) => {
+    for (let i = 0; i < commentArr.length; i++) {
       setSubComment((prevSub) => [...prevSub, { content: "", isReply: false }]);
+    }
 
-      if (comment.fullname) {
-        return comment;
-      }
-
-      return getUser(comment);
-    });
-
-    // console.log(arr);
-    setComments(arr);
+    setComments(commentArr.slice(0, 3));
   }, [commentArr, url]);
 
-  // const likeComment = (data) => {};
   const handleSubmit = (e, id) => {
     e.preventDefault();
+
     if (user?._id) {
-      // You have to be loggged in to post
-      axios.post(
-        `${url}/replyComment?userId=${user._id}&commentId=${id}`,
-        { comment: subComment },
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
+      axios
+        .post(
+          `${url}/replyComment?userId=${user._id}&commentId=${id}`,
+          { comment: subComment },
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        )
+        .then((res) => {
+          changeComment((prev) =>
+            prev.map((comment, i) => {
+              if (i === id) {
+                return {
+                  ...comment,
+                  reply: [
+                    ...comment.reply,
+                    {
+                      _id: res.data.comment,
+                      userId: user._id,
+                      fullname: user.fullname,
+                      commentId: id,
+                      comment: comment,
+                      likes: 0,
+                      createdAt: new Date(),
+                      updatedAt: new Date(),
+                    },
+                  ],
+                };
+              }
+
+              return comment;
+            })
+          );
+        })
+        .catch((err) => console.error(err));
     }
   };
+
+  // const likeComment = () => {
+  //   axios.post(
+  //     `${url}/likePost?blogId=644070859d8fa0026dc5db65&userId=64b7e9ff8d2155c76034175a`,
+  //     { comment: subComment },
+  //     {
+  //       headers: {
+  //         Authorization: `Bearer ${user.token}`,
+  //       },
+  //     }
+  //   );
+  // };
 
   return (
     <>
@@ -68,17 +84,22 @@ function ShowComments({ commentArr, user }) {
             className="flex items-start gap-2 border-b border-neutral-700 pb-4"
           >
             <div className="rounded-full bg-secondary-300 flex items-center justify-center w-8 h-8">
-              {/* <img src={userIcon} className="w-4 h-4" alt="You" /> */}
-              <h3 className="text-capitalize text-white">
-                {comment?.fullname.split(" ")[0].charAt(0)}
-                {comment?.fullname.split(" ")[1].charAt(0)}
-              </h3>
+              {comment.fullname !== "" ? (
+                <h3 className="text-capitalize text-white">
+                  {comment.fullname.split(" ")[0].charAt(0)}
+                  {comment.fullname.split(" ")[1].charAt(0)}
+                </h3>
+              ) : (
+                <img src={userIcon} className="w-4 h-4" alt="You" />
+              )}
             </div>
             <div className="flex flex-col relative overflow-hidden w-full">
               <div className="flex items-center gap-2">
                 <h3 className="text-[13px] font-semibold">
-                  {comment?.fullname.split(" ")[0]}.{" "}
-                  {comment?.fullname.split(" ")[1].charAt(0)}
+                  {comment.fullname !== ""
+                    ? `${comment.fullname.split(" ")[0]}. 
+                  ${comment.fullname.split(" ")[1].charAt(0)}`
+                    : "Unknown User"}
                 </h3>
                 <h6 className="text-[8px] text-neutral-500">
                   <ReactTimeAgo
@@ -101,7 +122,9 @@ function ShowComments({ commentArr, user }) {
                   <span className="relative -left-1">0 shares</span>
                 </li>
                 <li>
-                  <span className="relative -left-1">0 likes</span>
+                  <span className="relative -left-1">
+                    {comment.likes} likes
+                  </span>
                 </li>
               </ul>
 
@@ -212,10 +235,10 @@ function ShowComments({ commentArr, user }) {
           </div>
         ))}
       </div>
-      {allComments.length > comments.length ? (
-        <p onClick={() => setComments(allComments)}>Show more</p>
-      ) : allComments.length >= 6 && allComments.length === comments.length ? (
-        <p onClick={() => setComments(allComments.slice(0, 3))}>Show less</p>
+      {commentArr.length > comments.length ? (
+        <p onClick={() => setComments(commentArr)}>Show more</p>
+      ) : commentArr.length >= 4 ? (
+        <p onClick={() => setComments(commentArr.slice(0, 3))}>Show less</p>
       ) : null}
     </>
   );

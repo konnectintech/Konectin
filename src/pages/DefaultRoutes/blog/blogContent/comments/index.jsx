@@ -16,7 +16,51 @@ function BlogComment({ blogID }) {
     const getComments = async (blogID) => {
       try {
         let response = await axios.get(`${url}/getComments?blogId=${blogID}`);
-        setComments(response.data.comments);
+        let arr = response.data.comments;
+
+        for (let i = 0; i < arr.length; i++) {
+          let comment = arr[i];
+
+          if (comment.fullname) {
+            arr[i] = comment;
+          }
+
+          axios
+            .get(`${url}/getUser?userId=${comment.userId}`)
+            .then((res) => {
+              arr[i] = { ...comment, fullname: res.data.user.fullname };
+
+              if (comment.reply.length >= 1) {
+                let replies = comment.reply;
+
+                for (let i = 0; i < replies.length; i++) {
+                  let reply = replies[i];
+
+                  if (reply.fullname) {
+                    replies[i] = reply;
+                  }
+
+                  axios
+                    .get(`${url}/getUser?userId=${reply.userId}`)
+                    .then((res) => {
+                      arr[i] = {
+                        ...comment,
+                        reply: { ...reply, fullname: res.data.user.fullname },
+                      };
+                    });
+                }
+              }
+
+              setComments((prev) => [
+                ...prev,
+                { ...comment, fullname: res.data.user.fullname },
+              ]);
+            })
+            .catch((err) => {
+              console.error(err);
+              arr[i] = comment;
+            });
+        }
       } catch (err) {
         console.error(err);
       }
@@ -42,8 +86,11 @@ function BlogComment({ blogID }) {
         {
           _id: response.data.comment,
           userId: user._id,
-          postId: postID,
+          fullname: user.fullname,
+          blogId: postID,
           comment: comment,
+          likes: 0,
+          reply: [],
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -110,7 +157,11 @@ function BlogComment({ blogID }) {
 
       <div>
         {comments.length >= 1 ? (
-          <ShowComments user={user} commentArr={comments} />
+          <ShowComments
+            user={user}
+            commentArr={comments}
+            changeComment={setComments}
+          />
         ) : (
           <p>Be the first to comment on this post</p>
         )}

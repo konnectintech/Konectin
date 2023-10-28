@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
@@ -24,42 +25,8 @@ function BlogContent() {
     setCurrentPage(pageNumber);
   };
 
-  // async function getRelatedBlogs(key) {
-  //   try {
-  //     const response = await axios.get(
-  //       `https://api.buttercms.com/v2/posts?auth_token=${read_token}`
-  //     );
-
-  //     const blogs = response.data.data;
-
-  //     const relatedBlogs = blogs.filter((blog) =>
-  //       blog.categories.some((cat) =>
-  //         key.categories.some(
-  //           (cat2) => cat.name === cat2.name && key.title !== blog.title
-  //         )
-  //       )
-  //     );
-
-  //     setSimilarContent(relatedBlogs);
-  //     setLoading((prev) => ({ ...prev, related: false }));
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
-
+  // Get the blog on page load
   useEffect(() => {
-    // Add Read by Our Backend
-    // async function addAsRead() {
-    //   try {
-    //     await axios.put(
-    //       `https://konectin-backend-hj09.onrender.com/user/updateNumOfReads?blogId=${blogID}`
-    //     );
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // }
-    // const storedID = JSON.parse(sessionStorage.getItem(id));
-
     async function getBlog() {
       try {
         const response = await axios.get(`${url}/getBlog?blogId=${id}`);
@@ -74,13 +41,30 @@ function BlogContent() {
 
     getBlog();
     setOpen(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  // useEffect(() => {
-  //   getRelatedBlogs(blog);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [blog]);
+  // Get similar contents
+  useEffect(() => {
+    async function getRelatedBlogs(main) {
+      try {
+        const response = await axios.get(`${url}/getAllBlogs`);
+        const { results } = response.data.blogs;
+
+        const relatedBlogs = results.filter((blog) =>
+          blog.tagIds.some((tag) =>
+            main.tagIds.includes(tag) && blog.id !== main.id ? true : false
+          )
+        );
+
+        setSimilarContent(relatedBlogs);
+        setLoading((prev) => ({ ...prev, related: false }));
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    getRelatedBlogs(blog);
+  }, [blog]);
 
   useEffect(() => {
     if (isLoading.related) {
@@ -172,13 +156,13 @@ function BlogContent() {
             {isFull && (
               <div className="w-10/12 mx-auto">
                 <Share pathname={pathname} {...blog} />
-                {/* <BlogComment blogID={blog.id} /> */}
+                <BlogComment blogID={blog.id} />
               </div>
             )}
           </div>
         </div>
       </div>
-      {/* <div>
+      <div>
         <p className="font-semibold text-xl mb-6">Related articles</p>
         <div
           className={`grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch ${
@@ -197,7 +181,7 @@ function BlogContent() {
           currentPage={currentPage}
           paginate={paginate}
         />
-      </div> */}
+      </div>
     </div>
   );
 }
