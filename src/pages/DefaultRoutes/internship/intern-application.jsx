@@ -75,7 +75,7 @@ function InternApplication() {
     // submit form data to backend
     if (user._id) {
       axios
-        .post(`${url}/subscribeIntern?userId=${user._id}`, {})
+        .post(`${url}/subscribeIntern?userId=${user._id}`, form)
         .then((res) => {
           setLoading(false);
           setMessage("success");
