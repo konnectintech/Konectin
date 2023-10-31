@@ -5,6 +5,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { konectinIcon } from "../../assets";
 import "./header.css";
 import { useAuth } from "../../middleware/auth";
+import InternAnimation from "../../utils/intern-animation";
 
 function Header() {
   const { user, signOut } = useAuth();
@@ -209,6 +210,8 @@ function Header() {
           )}
         </nav>
       </nav>
+      {pathname.includes("/intern-application") &&
+        (offset.prevScrollpos <= 50 || offset.darken) && <InternAnimation />}
     </header>
   );
 }

@@ -1,6 +1,7 @@
 // Icons
 import bulbIcon from "./icons/bulb.svg";
 import blurImage from "./icons/blur.svg";
+import successIcon from "./icons/success.svg";
 import calendarIcon from "./icons/calendar.svg";
 import contactIcon from "./icons/contact.svg";
 import fileIcon from "./icons/file.svg";
@@ -133,6 +134,7 @@ export {
   shakeIcon,
   shakeCircleIcon,
   speakerIcon,
+  successIcon,
   starIcon,
   heroDash,
   personIcon,
