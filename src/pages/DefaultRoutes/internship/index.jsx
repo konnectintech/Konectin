@@ -4,39 +4,13 @@ import { motion } from "framer-motion";
 import SectionWrapper from "../../../components/animation/sectionWrapper";
 import { slideIn, textVariantUp } from "../../../utils/motion";
 import { Link } from "react-router-dom";
-import { useSessionStorage } from "../../../middleware/storage";
 
 function Internship() {
-  const [form, setForm] = useSessionStorage("internData", {
-    basicDetails: {
-      fullName: "",
-      email: "",
-      country_code: "",
-      phone_number: "",
-      country: "",
-      gender: "",
-      ageRange: "",
-    },
-    upload: [],
-    education: {
-      name: "",
-      options: {
-        option1: "",
-        option2: "",
-        option3: "",
-      },
-    },
-    internType: {
-      type: "",
-      field: "",
-    },
-  });
-
   return (
     <section className="min-h-[70vh] overflow-hidden">
       <div className="w-11/12 mx-auto max-w-screen-2xl min-h-[70vh] flex flex-col md:gap-16 lg:gap-48 md:flex-row items-center py-32">
         <div className="flex flex-col gap-6 w-full my-auto md:w-9/12 lg:w-6/12">
-          <div data-set={form} data-control={setForm}>
+          <div>
             <motion.p
               variants={textVariantUp()}
               className="text-primary-600 flex gap-2 items-center"

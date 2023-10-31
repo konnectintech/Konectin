@@ -38,7 +38,7 @@ function UploadResume({ data, updateForm }) {
         Build resume now
       </Link>
 
-      {data.length === 0 && Object.keys(data[0]).length === 0 && (
+      {(data.length === 0 || Object.keys(data[0]).length === 0) && (
         <div className="border-2 border-dashed min-h-[300px] flex flex-col items-center justify-center gap-3">
           <h3 className="text-xl font-semibold">Upload your existing resume</h3>
           <div className="text-center relative">
