@@ -88,7 +88,10 @@ function BasicDetails({ data, updateForm }) {
               {countriesList.map((country) => (
                 <div
                   key={country.phone_code}
-                  onClick={() => handleChange()}
+                  onClick={() => {
+                    handleChange(country.phone_code, "country_code");
+                    setShowData((prev) => ({ ...prev, code: !prev.code }));
+                  }}
                   className="flex gap-1 py-3 px-4 cursor-pointer hover:bg-neutral-200"
                 >
                   <span>{country.iso2}</span>
@@ -172,7 +175,10 @@ function BasicDetails({ data, updateForm }) {
             {countriesList.map((country) => (
               <div
                 key={country.name}
-                onClick={() => handleChange(country.name, "country")}
+                onClick={() => {
+                  handleChange(country.name, "country");
+                  setShowData((prev) => ({ ...prev, country: !prev.country }));
+                }}
                 className="flex gap-1 py-3 px-4 cursor-pointer hover:bg-neutral-200"
               >
                 <span>{country.iso2}</span>

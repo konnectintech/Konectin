@@ -151,7 +151,7 @@ function InternApplication() {
           </motion.p>
           <motion.form
             onSubmit={handleSubmit}
-            className="overflow-y-auto md:max-h-[420px] text-sm pr-6 space-y-4 intern-form flex flex-col"
+            className="overflow-y-auto overflow-x-hidden md:max-h-[420px] text-sm pr-6 space-y-4 intern-form flex flex-col"
             variants={textVariantUp(0.6)}
           >
             <div>
