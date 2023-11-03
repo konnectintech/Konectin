@@ -5,6 +5,8 @@ import fileDefault from "../../../../assets/images/file-blank-solid-240.png";
 import fileCSS from "../../../../assets/images/file-css-solid-240.png";
 import filePdf from "../../../../assets/images/file-pdf-solid-240.png";
 import filePng from "../../../../assets/images/file-png-solid-240.png";
+import { useState } from "react";
+import axios from "axios";
 
 const ImageConfig = {
   default: fileDefault,
@@ -13,14 +15,30 @@ const ImageConfig = {
   css: fileCSS,
 };
 
-function UploadResume({ data, updateForm }) {
+function UploadResume({ updateForm }) {
+  const [file, setFile] = useState(null);
+  const [message, setMessage] = useState(null);
+  const [progress, setProgress] = useState({ started: false, percent: 0 });
   const wrapperRef = useRef(null);
 
   const onFileDrop = (e) => {
-    const newFile = e.target.files[0];
-    if (newFile) {
-      updateForm([newFile]);
-    }
+    const resume = e.target.files[0];
+    const fd = new FormData();
+    fd.append("file", resume);
+
+    setMessage("Uploading...");
+    setProgress((prev) => ({ ...prev, started: true }));
+
+    axios
+      .post(``, fd, {
+        onUploadProgress: (event) => {
+          setProgress((prev) => ({ ...prev, percent: event.progress * 100 }));
+        },
+        headers: { "Custom-Header": "value" },
+      })
+      .then((res) => updateForm(res.data.url));
+
+    setFile(resume);
   };
 
   // const fileRemove = (file) => {
@@ -38,10 +56,13 @@ function UploadResume({ data, updateForm }) {
         Build resume now
       </Link>
 
-      {(data.length === 0 || Object.keys(data[0]).length === 0) && (
-        <div className="border-2 border-dashed min-h-[300px] flex flex-col items-center justify-center gap-3">
+      {file === null && (
+        <div
+          id="upload"
+          className="border-2 border-dashed min-h-[300px] flex flex-col items-center justify-center gap-3 px-4 text-center"
+        >
           <h3 className="text-xl font-semibold">Upload your existing resume</h3>
-          <div className="text-center relative">
+          <div className="relative">
             File can exist as a PNG, JPEG or DOC.{" "}
             <span
               onClick={() => wrapperRef.current.click()}
@@ -53,7 +74,6 @@ function UploadResume({ data, updateForm }) {
               type="file"
               value=""
               ref={wrapperRef}
-              placeholder="Upload here"
               className="invisible absolute outline-0 border-0"
               onChange={onFileDrop}
             />
@@ -61,45 +81,46 @@ function UploadResume({ data, updateForm }) {
         </div>
       )}
 
-      {data.length > 0 && Object.keys(data[0]).length > 0 && (
+      {file && (
         <div className="mt-3 w-full">
-          {/* displaying static image from imageConfig.js */}
-          {data.map((item, index) => (
+          <>
             <div
-              key={index}
-              className="relative flex p-4 my-4 rounded-md bg-white shadow-md"
+              // key={index}
+              className="relative flex gap-2 p-4 my-4 rounded-md bg-white shadow-md"
             >
               <img
-                className="w-[50px] h-[50px] mr-5"
+                className="w-[50px] h-[50px]"
                 src={
-                  ImageConfig[item.type.split("/")[1]] || ImageConfig["default"]
+                  ImageConfig[file.type.split("/")[1]] || ImageConfig["default"]
                 }
                 alt=""
               />
               <div className="flex flex-col justify-between h-[50px]">
-                {/* <span
-                  className="bg-white h-5 w-5 rounded-full text-black text-center cursor-pointer absolute top-0 my-auto mr-3 border border-black bottom-0 right-0  transition-all flex justify-center items-center"
-                  onClick={() => fileRemove(item)}
-                >
-                  x
-                </span> */}
                 {/* displaying file name, progress bar and file size in Bytes */}
-                <p className="text-sm">{item.name}</p>
-                {/* <Progress percentage={filePercentages(uploadPercentage)} /> */}
+                <p className="text-sm">{file.name}</p>
                 <p className="text-sm">
-                  {item.size > 1024 * 1024 * 1024
+                  {file.size > 1024 * 1024 * 1024
                     ? "Too large data"
-                    : item.size > 1024 * 1024
-                    ? `${Math.floor(item.size / (1024 * 1024))} MB`
-                    : item.size > 1024
-                    ? `${Math.floor(item.size / 1024)} KB`
-                    : `${item.size} B`}
+                    : file.size > 1024 * 1024
+                    ? `${Math.floor(file.size / (1024 * 1024))} MB`
+                    : file.size > 1024
+                    ? `${Math.floor(file.size / 1024)} KB`
+                    : `${file.size} B`}
                 </p>
+                {progress.started && (
+                  <progress max={100} value={progress.percent}></progress>
+                )}
+                {message && <span>{message}</span>}
               </div>
             </div>
-          ))}
+            <p className="text-sm">Upload complete</p>
+          </>
         </div>
       )}
+      <label
+        id="uploadError"
+        className="-mt-1 text-xs text-error-500 hidden"
+      ></label>
     </div>
   );
 }

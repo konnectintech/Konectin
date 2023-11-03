@@ -28,13 +28,13 @@ function InternApplication() {
     basicDetails: {
       fullName: "",
       email: "",
-      country_code: "",
-      phone_number: "",
+      countryCode: "",
+      phoneNumber: "",
       country: "",
       gender: "",
       ageRange: "",
     },
-    upload: [],
+    upload: "",
     education: {
       name: "",
       options: {
@@ -60,41 +60,138 @@ function InternApplication() {
   };
 
   const handleUpload = (value) => {
-    console.log(value);
     setForm({
       ...form,
       upload: value,
     });
   };
 
+  const checkVerification = () => {
+    let valid = true;
+
+    let formStore = Object.keys(form);
+
+    formStore.forEach((state) => {
+      let stateStore = Object.keys(form[state]);
+      let errorMessage =
+        state === "internType"
+          ? "Select an option"
+          : "Input field not filled yet";
+
+      if (state === "education") {
+        if (form.education.name !== "") {
+          Object.keys(form.education.options).forEach((holder) => {
+            const data = form.education.options[holder];
+            const errorRef = document.getElementById(`${holder}Error`);
+            const container = document.getElementById(holder);
+
+            if (data === "") {
+              container.style.borderColor = "#F11010";
+              errorRef.style.display = "block";
+              errorRef.innerHTML = errorMessage;
+              valid = false;
+            } else {
+              container.style.borderColor = "initial";
+              errorRef.style.display = "none";
+            }
+          });
+        }
+        return;
+      }
+
+      if (state === "upload") {
+        const errorRef = document.getElementById("uploadError");
+        const container = document.getElementById("upload");
+
+        if (form.upload === "") {
+          container.style.borderColor = "#F11010";
+          errorRef.style.display = "block";
+          errorRef.innerHTML = "Upload a resume or build one";
+          valid = false;
+        } else {
+          container.style.borderColor = "initial";
+          errorRef.style.display = "none";
+        }
+        return;
+      }
+
+      stateStore.forEach((holder) => {
+        const data = form[state][holder];
+        const errorRef = document.getElementById(`${holder}Error`);
+        const container = document.getElementById(holder);
+
+        switch (holder) {
+          case "email":
+            const isValid = data.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
+              ? true
+              : false;
+            if (data === "") {
+              container.style.borderColor = "#F11010";
+              errorRef.style.display = "block";
+              errorRef.innerHTML = errorMessage;
+              valid = false;
+            } else if (isValid === false) {
+              container.style.borderColor = "#F11010";
+              errorRef.style.display = "block";
+              errorRef.innerHTML = "Email address is not valid";
+              valid = false;
+            } else {
+              container.style.borderColor = "initial";
+              errorRef.style.display = "none";
+            }
+            break;
+          default:
+            if (data === "") {
+              container.style.borderColor = "#F11010";
+              errorRef.style.display = "block";
+              errorRef.innerHTML = errorMessage;
+              valid = false;
+            } else {
+              container.style.borderColor = "initial";
+              errorRef.style.display = "none";
+            }
+            break;
+        }
+      });
+    });
+
+    return valid;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setLoading(true);
-    const url = import.meta.env.VITE_CLIENT_SERVER_URL;
-    // submit form data to backend
-    if (user._id) {
-      axios
-        .post(`${url}/subscribeIntern?userId=${user._id}`, form)
-        .then((res) => {
-          setLoading(false);
-          setMessage("success");
+    const isValid = checkVerification();
 
-          setTimeout(() => {
-            setMessage("");
-          }, 1000);
-        })
-        .catch((err) => {
-          console.warn(err);
-          setLoading(false);
-          setMessage("error");
+    if (isValid) {
+      setLoading(true);
+      const url = import.meta.env.VITE_CLIENT_SERVER_URL;
+      // submit form data to backend
+      if (user._id) {
+        axios
+          .post(`${url}/subscribeIntern?userId=${user._id}`, form, {
+            headers: { Authorization: `Bearer ${user.token}` },
+          })
+          .then((res) => {
+            setLoading(false);
+            setMessage("success");
 
-          setTimeout(() => {
-            setMessage("");
-          }, 1000);
-        });
-    } else {
-      navigate("/login");
+            setTimeout(() => {
+              setMessage("");
+            }, 1000);
+          })
+          .catch((err) => {
+            console.warn(err);
+            setLoading(false);
+            setMessage("error");
+
+            setTimeout(() => {
+              setMessage("");
+            }, 1000);
+          });
+      } else {
+        navigate("/login");
+      }
     }
   };
 
@@ -180,7 +277,7 @@ function InternApplication() {
               </p>
 
               <div className="flex flex-col gap-2 mt-3">
-                <UploadResume data={form.upload} updateForm={handleUpload} />
+                <UploadResume updateForm={handleUpload} />
               </div>
             </div>
 

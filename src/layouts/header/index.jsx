@@ -9,6 +9,7 @@ import InternAnimation from "../../utils/intern-animation";
 
 function Header() {
   const { user, signOut } = useAuth();
+
   const [offset, setOffset] = useState({
     prevScrollpos: window.pageYOffset,
     visible: true,
