@@ -105,9 +105,9 @@ function BasicDetails({ data, updateForm }) {
           >
             <input
               className="input-container !mb-0"
-              value={data?.countryCode}
+              value={data?.country_code}
               name="country_code"
-              id="countryCode"
+              id="country_code"
               placeholder="Country Code*"
               readOnly={countriesList.length >= 1 ? true : false}
               onChange={(e) => {
@@ -142,7 +142,7 @@ function BasicDetails({ data, updateForm }) {
                 <div
                   key={country.phone_code + country.iso2}
                   onClick={() => {
-                    handleChange(`+${country.phone_code}`, "countryCode");
+                    handleChange(`+${country.phone_code}`, "country_code");
                     setShowData((prev) => ({ ...prev, code: !prev.code }));
                   }}
                   className="flex gap-1 py-3 px-4 cursor-pointer hover:bg-neutral-200"
@@ -157,7 +157,8 @@ function BasicDetails({ data, updateForm }) {
             </div>
           )}
           <label
-            id="countryCodeError"
+            id="country_codeError"
+            htmlFor="country_code"
             className="-mt-1 text-xs text-error-500 hidden"
           ></label>
         </div>
@@ -169,16 +170,16 @@ function BasicDetails({ data, updateForm }) {
             placeholder="Phone Number*"
             minLength="12"
             maxLength="12"
-            value={data?.phoneNumber}
-            name="phonenumber"
-            id="phoneNumber"
+            value={data?.phone_number}
+            name="phone_number"
+            id="phone_number"
             onChange={(e) => {
               e.target.value = e.target.value
                 .replace(/[^0-9]/g, "")
                 .replace(/(\d{3})(\d{3})(\d{4})/, "$1 $2 $3")
                 .trim();
 
-              handleChange(e.target.value, "phoneNumber");
+              handleChange(e.target.value, "phone_number");
             }}
             onInput={(e) => {
               e.target.value = e.target.value
@@ -186,13 +187,13 @@ function BasicDetails({ data, updateForm }) {
                 .replace(/(\d{3})(\d{3})(\d{4})/, "$1 $2 $3")
                 .trim();
 
-              handleChange(e.target.value, "phoneNumber");
+              handleChange(e.target.value, "phone_number");
             }}
           />
           <label
-            id="phoneNumberError"
+            id="phone_numberError"
             className="mt-1 text-xs text-error-500 hidden"
-            htmlFor="phoneNumber"
+            htmlFor="phone_number"
           ></label>
         </div>
       </div>
@@ -256,6 +257,7 @@ function BasicDetails({ data, updateForm }) {
         )}
         <label
           id="countryError"
+          htmlFor="country"
           className="-mt-1 text-xs text-error-500 hidden"
         ></label>
       </div>
@@ -316,6 +318,7 @@ function BasicDetails({ data, updateForm }) {
         )}
         <label
           id="genderError"
+          htmlFor="gender"
           className="-mt-1 text-xs text-error-500 hidden"
         ></label>
       </div>
@@ -379,6 +382,7 @@ function BasicDetails({ data, updateForm }) {
         )}
         <label
           id="ageRangeError"
+          htmlFor="ageRange"
           className="-mt-1 text-xs text-error-500 hidden"
         ></label>
       </div>

@@ -28,8 +28,8 @@ function InternApplication() {
     basicDetails: {
       fullName: "",
       email: "",
-      countryCode: "",
-      phoneNumber: "",
+      country_code: "",
+      phone_number: "",
       country: "",
       gender: "",
       ageRange: "",
@@ -60,6 +60,18 @@ function InternApplication() {
   };
 
   const handleUpload = (value) => {
+    const errorRef = document.getElementById("uploadError");
+    const container = document.getElementById("upload");
+
+    if (value === "") {
+      container.style.borderColor = "#F11010";
+      errorRef.style.display = "block";
+      errorRef.innerHTML = "Upload a resume or build one";
+    } else {
+      container.style.borderColor = "initial";
+      errorRef.style.display = "none";
+    }
+
     setForm({
       ...form,
       upload: value,
@@ -95,23 +107,27 @@ function InternApplication() {
               errorRef.style.display = "none";
             }
           });
+        } else {
+          const duplicate = form;
+          delete duplicate.education;
+          setForm(duplicate);
         }
         return;
       }
 
       if (state === "upload") {
-        // const errorRef = document.getElementById("uploadError");
-        // const container = document.getElementById("upload");
+        const errorRef = document.getElementById("uploadError");
+        const container = document.getElementById("upload");
 
-        // if (form.upload === "") {
-        //   container.style.borderColor = "#F11010";
-        //   errorRef.style.display = "block";
-        //   errorRef.innerHTML = "Upload a resume or build one";
-        //   valid = false;
-        // } else {
-        //   container.style.borderColor = "initial";
-        //   errorRef.style.display = "none";
-        // }
+        if (form.upload === "") {
+          container.style.borderColor = "#F11010";
+          errorRef.style.display = "block";
+          errorRef.innerHTML = "Upload a resume or build one";
+          valid = false;
+        } else {
+          container.style.borderColor = "initial";
+          errorRef.style.display = "none";
+        }
         return;
       }
 
@@ -165,7 +181,7 @@ function InternApplication() {
 
     if (isValid) {
       setLoading(true);
-      const url = "https://konectin-backend-hj09.onrender.com/user";
+      const url = import.meta.env.VITE_CLIENT_SERVER_URL;
       // submit form data to backend
       if (user._id) {
         axios
@@ -176,7 +192,7 @@ function InternApplication() {
 
             setTimeout(() => {
               setMessage("");
-            }, 100);
+            }, 3000);
           })
           .catch((err) => {
             console.warn(err);
@@ -185,7 +201,7 @@ function InternApplication() {
 
             setTimeout(() => {
               setMessage("");
-            }, 1500);
+            }, 3000);
           });
       } else {
         navigate("/login");
