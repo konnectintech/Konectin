@@ -27,7 +27,13 @@ function InternType({ data, updateForm }) {
 
   return (
     <>
-      <div className="flex flex-col gap-2 min-w-[160px] relative">
+      <div
+        onMouseLeave={() =>
+          showData.type &&
+          setShowData((prev) => ({ ...prev, type: !prev.type }))
+        }
+        className="flex flex-col gap-2 min-w-[160px] relative"
+      >
         <div
           onClick={() => setShowData((prev) => ({ ...prev, type: !prev.type }))}
           className="flex items-center relative cursor-pointer"
@@ -50,12 +56,7 @@ function InternType({ data, updateForm }) {
           />
         </div>
         {showData.type && (
-          <div
-            onMouseLeave={() =>
-              setShowData((prev) => ({ ...prev, type: !prev.type }))
-            }
-            className="bg-neutral-100 w-full text-white py-1 rounded flex flex-col"
-          >
+          <div className="bg-neutral-100 w-full text-white py-1 rounded flex flex-col">
             {typeList.map((type) => (
               <div
                 key={type}
@@ -86,7 +87,13 @@ function InternType({ data, updateForm }) {
           className="-mt-1 text-xs text-error-500 hidden"
         ></label>
       </div>
-      <div className="flex flex-col gap-2 min-w-[160px] relative">
+      <div
+        onMouseLeave={() =>
+          showData.field &&
+          setShowData((prev) => ({ ...prev, field: !prev.field }))
+        }
+        className="flex flex-col gap-2 min-w-[160px] relative"
+      >
         <div
           onClick={() =>
             setShowData((prev) => ({ ...prev, field: !prev.field }))
@@ -109,12 +116,7 @@ function InternType({ data, updateForm }) {
           />
         </div>
         {showData.field && (
-          <div
-            onMouseLeave={() =>
-              setShowData((prev) => ({ ...prev, field: !prev.field }))
-            }
-            className="bg-neutral-100 w-full text-white py-1 rounded flex flex-col"
-          >
+          <div className="bg-neutral-100 w-full text-white py-1 rounded flex flex-col">
             {fieldList.map((field) => (
               <div
                 key={field}

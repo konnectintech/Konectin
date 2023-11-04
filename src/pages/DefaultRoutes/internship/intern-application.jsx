@@ -182,8 +182,9 @@ function InternApplication() {
     if (isValid) {
       setLoading(true);
       const url = import.meta.env.VITE_CLIENT_SERVER_URL;
+
       // submit form data to backend
-      if (user._id) {
+      if (user?._id) {
         axios
           .post(`${url}/subscribeIntern?userId=${user._id}`, form)
           .then((res) => {
@@ -265,7 +266,7 @@ function InternApplication() {
           </motion.p>
           <motion.form
             onSubmit={handleSubmit}
-            className="overflow-y-auto overflow-x-hidden md:max-h-[420px] text-sm pr-6 space-y-4 intern-form flex flex-col"
+            className="overflow-y-auto overflow-x-hidden md:max-h-[440px] text-sm pr-6 space-y-4 intern-form flex flex-col"
             variants={textVariantUp(0.6)}
           >
             <div>
@@ -333,13 +334,9 @@ function InternApplication() {
 
         <motion.picture
           variants={slideIn("rtl", "spring", 0.1, 1)}
-          className="hidden md:block pt-12 sm:[--left-right:150%] [--left-right:-150%] relative w-7/12 min-h-[70vh]"
+          className="hidden md:block pt-12 sm:[--left-right:150%] [--left-right:-150%] relative w-7/12 max-h-[420px]"
         >
-          <img
-            className="absolute right-0 top-0"
-            src={happyTeam}
-            alt="Konectin Internship Lady"
-          />
+          <img src={happyTeam} alt="Konectin Internship" />
         </motion.picture>
       </div>
     </section>

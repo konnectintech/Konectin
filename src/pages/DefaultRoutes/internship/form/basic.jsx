@@ -96,7 +96,13 @@ function BasicDetails({ data, updateForm }) {
         ></label>
       </div>
       <div className="flex max-sm:flex-col gap-2">
-        <div className="flex flex-col gap-2 sm:min-w-[140px] sm:!w-fit relative">
+        <div
+          onMouseLeave={() =>
+            showData.code &&
+            setShowData((prev) => ({ ...prev, code: !prev.code }))
+          }
+          className="flex flex-col gap-2 sm:min-w-[140px] sm:!w-fit relative"
+        >
           <div
             onClick={() =>
               setShowData((prev) => ({ ...prev, code: !prev.code }))
@@ -132,12 +138,7 @@ function BasicDetails({ data, updateForm }) {
           </div>
 
           {showData.code && countriesList.length >= 1 && (
-            <div
-              onMouseLeave={() =>
-                setShowData((prev) => ({ ...prev, code: !prev.code }))
-              }
-              className="bg-neutral-100 absolute top-full translate-y-2 w-full max-h-48 z-10 overflow-y-auto text-white py-1 rounded flex flex-col"
-            >
+            <div className="bg-neutral-100 absolute top-full translate-y-2 w-full max-h-48 z-10 overflow-y-auto text-white py-1 rounded flex flex-col">
               {countriesList.map((country) => (
                 <div
                   key={country.phone_code + country.iso2}
@@ -198,7 +199,13 @@ function BasicDetails({ data, updateForm }) {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 min-w-[160px] relative">
+      <div
+        onMouseLeave={() =>
+          showData.country &&
+          setShowData((prev) => ({ ...prev, country: !prev.country }))
+        }
+        className="flex flex-col gap-2 min-w-[160px] relative"
+      >
         <div
           onClick={() =>
             setShowData((prev) => ({ ...prev, country: !prev.country }))
@@ -234,12 +241,7 @@ function BasicDetails({ data, updateForm }) {
           )}
         </div>
         {showData.country && countriesList.length >= 1 && (
-          <div
-            onMouseLeave={() =>
-              setShowData((prev) => ({ ...prev, country: !prev.country }))
-            }
-            className="bg-neutral-100 absolute top-full w-full max-h-48 z-10 overflow-y-auto text-white py-1 rounded flex flex-col"
-          >
+          <div className="bg-neutral-100 w-full max-h-48 z-10 overflow-y-auto text-white py-1 rounded flex flex-col">
             {countriesList.map((country) => (
               <div
                 key={country.name}
@@ -262,7 +264,13 @@ function BasicDetails({ data, updateForm }) {
         ></label>
       </div>
 
-      <div className="flex flex-col gap-2 min-w-[160px] relative">
+      <div
+        onMouseLeave={() =>
+          showData.gender &&
+          setShowData((prev) => ({ ...prev, gender: !prev.gender }))
+        }
+        className="flex flex-col gap-2 min-w-[160px] relative"
+      >
         <div
           onClick={() =>
             setShowData((prev) => ({ ...prev, gender: !prev.gender }))
@@ -285,12 +293,7 @@ function BasicDetails({ data, updateForm }) {
           />
         </div>
         {showData.gender && (
-          <div
-            onMouseLeave={() =>
-              setShowData((prev) => ({ ...prev, gender: !prev.gender }))
-            }
-            className="bg-neutral-100 absolute top-full translate-y-1 w-full max-h-48 z-10 overflow-y-auto text-white py-1 rounded flex flex-col"
-          >
+          <div className="bg-neutral-100 w-full max-h-48 z-10 overflow-y-auto text-white py-1 rounded flex flex-col">
             {genderList.map((gender) => (
               <div
                 key={gender}
@@ -323,7 +326,13 @@ function BasicDetails({ data, updateForm }) {
         ></label>
       </div>
 
-      <div className="flex flex-col gap-2 min-w-[160px] relative">
+      <div
+        onMouseLeave={() =>
+          showData.ageRange &&
+          setShowData((prev) => ({ ...prev, ageRange: !prev.ageRange }))
+        }
+        className="flex flex-col gap-2 min-w-[160px] relative"
+      >
         <div
           onClick={() =>
             setShowData((prev) => ({ ...prev, ageRange: !prev.ageRange }))
@@ -346,12 +355,7 @@ function BasicDetails({ data, updateForm }) {
           />
         </div>
         {showData.ageRange && (
-          <div
-            onMouseLeave={() =>
-              setShowData((prev) => ({ ...prev, ageRange: !prev.ageRange }))
-            }
-            className="bg-neutral-100 absolute top-full translate-y-1 w-full z-10 overflow-y-auto text-white py-1 rounded flex flex-col"
-          >
+          <div className="bg-neutral-100 w-full z-10 overflow-y-auto text-white py-1 rounded flex flex-col">
             {ageRange.map((age) => (
               <div
                 key={age}

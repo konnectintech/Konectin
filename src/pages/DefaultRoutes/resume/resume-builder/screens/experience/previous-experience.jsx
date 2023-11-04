@@ -49,13 +49,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
       }
     });
 
-    if (
-      data.jobTitle !== "" &&
-      data.company !== "" &&
-      data.country &&
-      (data.startMonth !== "" || data.startYear !== "") &&
-      (data.current || data.endMonth !== "" || data.endYear !== "")
-    ) {
+    if (data.jobTitle !== "" && data.company !== "" && data.country) {
       navigate("/resume/builder/employment-experience/responsibilities");
     }
   };
