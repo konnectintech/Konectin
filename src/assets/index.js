@@ -84,6 +84,7 @@ import side1Image from "./images/side details 1.png";
 import internHero from "./images/internship hero.png";
 import comingSoon from "./images/coming soon.png";
 import modalBackground from "./images/modal background.png";
+import happyTeam from "./images/happyTeam.png";
 
 // Resume Builder Images
 import botIcon from "./images/bot/bot.svg";
@@ -176,6 +177,7 @@ export {
   internHero,
   comingSoon,
   modalBackground,
+  happyTeam,
 
   // Resume Images
   ResumeCTAImage,

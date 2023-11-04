@@ -18,6 +18,8 @@ function BlogComment({ blogID }) {
         let response = await axios.get(`${url}/getComments?blogId=${blogID}`);
         let arr = response.data.comments;
 
+        console.log(arr);
+
         for (let i = 0; i < arr.length; i++) {
           let comment = arr[i];
 

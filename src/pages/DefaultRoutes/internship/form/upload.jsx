@@ -28,15 +28,22 @@ function UploadResume({ updateForm }) {
 
     setMessage("Uploading...");
     setProgress((prev) => ({ ...prev, started: true }));
+    const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
     axios
-      .post(``, fd, {
+      .post(`${url}/uploadFile`, fd, {
         onUploadProgress: (event) => {
           setProgress((prev) => ({ ...prev, percent: event.progress * 100 }));
         },
-        headers: { "Custom-Header": "value" },
       })
-      .then((res) => updateForm(res.data.url));
+      .then((res) => {
+        updateForm(res.data.url);
+        setMessage("Upload complete");
+      })
+      .catch((err) => {
+        console.error(err);
+        setMessage("Upload failed... Refresh and try again");
+      });
 
     setFile(resume);
   };
@@ -59,7 +66,8 @@ function UploadResume({ updateForm }) {
       {file === null && (
         <div
           id="upload"
-          className="border-2 border-dashed min-h-[300px] flex flex-col items-center justify-center gap-3 px-4 text-center"
+          onClick={() => wrapperRef.current.click()}
+          className="border-2 border-dashed min-h-[300px] cursor-pointer flex flex-col items-center justify-center gap-3 px-4 text-center"
         >
           <h3 className="text-xl font-semibold">Upload your existing resume</h3>
           <div className="relative">
@@ -95,7 +103,7 @@ function UploadResume({ updateForm }) {
                 }
                 alt=""
               />
-              <div className="flex flex-col justify-between h-[50px]">
+              <div className="flex flex-col justify-between">
                 {/* displaying file name, progress bar and file size in Bytes */}
                 <p className="text-sm">{file.name}</p>
                 <p className="text-sm">
@@ -108,12 +116,15 @@ function UploadResume({ updateForm }) {
                     : `${file.size} B`}
                 </p>
                 {progress.started && (
-                  <progress max={100} value={progress.percent}></progress>
+                  <progress
+                    className="h-2"
+                    max={100}
+                    value={progress.percent}
+                  ></progress>
                 )}
-                {message && <span>{message}</span>}
               </div>
             </div>
-            <p className="text-sm">Upload complete</p>
+            {message && <p className="text-sm">{message}</p>}
           </>
         </div>
       )}

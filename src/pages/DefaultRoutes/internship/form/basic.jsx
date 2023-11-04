@@ -130,8 +130,14 @@ function BasicDetails({ data, updateForm }) {
               />
             )}
           </div>
+
           {showData.code && countriesList.length >= 1 && (
-            <div className="bg-neutral-100 absolute top-full translate-y-2 w-full max-h-48 z-10 overflow-y-auto text-white py-1 rounded flex flex-col">
+            <div
+              onMouseLeave={() =>
+                setShowData((prev) => ({ ...prev, code: !prev.code }))
+              }
+              className="bg-neutral-100 absolute top-full translate-y-2 w-full max-h-48 z-10 overflow-y-auto text-white py-1 rounded flex flex-col"
+            >
               {countriesList.map((country) => (
                 <div
                   key={country.phone_code + country.iso2}
@@ -227,7 +233,12 @@ function BasicDetails({ data, updateForm }) {
           )}
         </div>
         {showData.country && countriesList.length >= 1 && (
-          <div className="bg-neutral-100 absolute top-full w-full max-h-48 z-10 overflow-y-auto text-white py-1 rounded flex flex-col">
+          <div
+            onMouseLeave={() =>
+              setShowData((prev) => ({ ...prev, country: !prev.country }))
+            }
+            className="bg-neutral-100 absolute top-full w-full max-h-48 z-10 overflow-y-auto text-white py-1 rounded flex flex-col"
+          >
             {countriesList.map((country) => (
               <div
                 key={country.name}
@@ -272,7 +283,12 @@ function BasicDetails({ data, updateForm }) {
           />
         </div>
         {showData.gender && (
-          <div className="bg-neutral-100 absolute top-full translate-y-1 w-full max-h-48 z-10 overflow-y-auto text-white py-1 rounded flex flex-col">
+          <div
+            onMouseLeave={() =>
+              setShowData((prev) => ({ ...prev, gender: !prev.gender }))
+            }
+            className="bg-neutral-100 absolute top-full translate-y-1 w-full max-h-48 z-10 overflow-y-auto text-white py-1 rounded flex flex-col"
+          >
             {genderList.map((gender) => (
               <div
                 key={gender}
@@ -327,7 +343,12 @@ function BasicDetails({ data, updateForm }) {
           />
         </div>
         {showData.ageRange && (
-          <div className="bg-neutral-100 absolute top-full translate-y-1 w-full z-10 overflow-y-auto text-white py-1 rounded flex flex-col">
+          <div
+            onMouseLeave={() =>
+              setShowData((prev) => ({ ...prev, ageRange: !prev.ageRange }))
+            }
+            className="bg-neutral-100 absolute top-full translate-y-1 w-full z-10 overflow-y-auto text-white py-1 rounded flex flex-col"
+          >
             {ageRange.map((age) => (
               <div
                 key={age}

@@ -50,7 +50,12 @@ function InternType({ data, updateForm }) {
           />
         </div>
         {showData.type && (
-          <div className="bg-neutral-100 w-full text-white py-1 rounded flex flex-col">
+          <div
+            onMouseLeave={() =>
+              setShowData((prev) => ({ ...prev, type: !prev.type }))
+            }
+            className="bg-neutral-100 w-full text-white py-1 rounded flex flex-col"
+          >
             {typeList.map((type) => (
               <div
                 key={type}
@@ -104,7 +109,12 @@ function InternType({ data, updateForm }) {
           />
         </div>
         {showData.field && (
-          <div className="bg-neutral-100 w-full text-white py-1 rounded flex flex-col">
+          <div
+            onMouseLeave={() =>
+              setShowData((prev) => ({ ...prev, field: !prev.field }))
+            }
+            className="bg-neutral-100 w-full text-white py-1 rounded flex flex-col"
+          >
             {fieldList.map((field) => (
               <div
                 key={field}

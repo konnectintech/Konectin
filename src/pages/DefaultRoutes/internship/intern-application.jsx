@@ -2,7 +2,7 @@ import "./index.css";
 import { motion } from "framer-motion";
 import BasicDetails from "./form/basic";
 import {
-  internHero,
+  happyTeam,
   konectinLogo,
   notifyError,
   successIcon,
@@ -100,18 +100,18 @@ function InternApplication() {
       }
 
       if (state === "upload") {
-        const errorRef = document.getElementById("uploadError");
-        const container = document.getElementById("upload");
+        // const errorRef = document.getElementById("uploadError");
+        // const container = document.getElementById("upload");
 
-        if (form.upload === "") {
-          container.style.borderColor = "#F11010";
-          errorRef.style.display = "block";
-          errorRef.innerHTML = "Upload a resume or build one";
-          valid = false;
-        } else {
-          container.style.borderColor = "initial";
-          errorRef.style.display = "none";
-        }
+        // if (form.upload === "") {
+        //   container.style.borderColor = "#F11010";
+        //   errorRef.style.display = "block";
+        //   errorRef.innerHTML = "Upload a resume or build one";
+        //   valid = false;
+        // } else {
+        //   container.style.borderColor = "initial";
+        //   errorRef.style.display = "none";
+        // }
         return;
       }
 
@@ -165,20 +165,18 @@ function InternApplication() {
 
     if (isValid) {
       setLoading(true);
-      const url = import.meta.env.VITE_CLIENT_SERVER_URL;
+      const url = "https://konectin-backend-hj09.onrender.com/user";
       // submit form data to backend
       if (user._id) {
         axios
-          .post(`${url}/subscribeIntern?userId=${user._id}`, form, {
-            headers: { Authorization: `Bearer ${user.token}` },
-          })
+          .post(`${url}/subscribeIntern?userId=${user._id}`, form)
           .then((res) => {
             setLoading(false);
             setMessage("success");
 
             setTimeout(() => {
               setMessage("");
-            }, 1000);
+            }, 100);
           })
           .catch((err) => {
             console.warn(err);
@@ -187,7 +185,7 @@ function InternApplication() {
 
             setTimeout(() => {
               setMessage("");
-            }, 1000);
+            }, 1500);
           });
       } else {
         navigate("/login");
@@ -207,7 +205,10 @@ function InternApplication() {
       )}
       {message !== "" && (
         <div className="fixed no-scrollbar w-full h-screen top-0 left-0 z-[100] flex">
-          <div className="bg-neutral-100 opacity-70 absolute w-full h-full"></div>
+          <div
+            onClick={() => setMessage("")}
+            className="bg-neutral-100 opacity-70 absolute w-full h-full"
+          ></div>
           <div className="w-2/4 min-w-[280px] max-w-[500px] m-auto relative z-10 bg-neutral-100 rounded-lg h-[80vh] max-h-[450px] flex items-center justify-center flex-col gap-6 p-8 text-white">
             <div>
               <img
@@ -231,7 +232,7 @@ function InternApplication() {
           </div>
         </div>
       )}
-      <div className="w-11/12 mx-auto max-w-screen-2xl min-h-[70vh] flex flex-col md:gap-16 lg:gap-48 md:flex-row items-start py-32">
+      <div className="w-11/12 mx-auto max-w-screen-2xl min-h-[70vh] flex flex-col md:gap-4 lg:gap-8 md:flex-row items-start py-32">
         <div className="flex flex-col gap-6 w-full my-auto pt-12 md:w-10/12 lg:w-8/12">
           <motion.h1
             variants={textVariantUp()}
@@ -316,9 +317,13 @@ function InternApplication() {
 
         <motion.picture
           variants={slideIn("rtl", "spring", 0.1, 1)}
-          className="hidden md:block pt-12 sm:[--left-right:150%] [--left-right:-150%]"
+          className="hidden md:block pt-12 sm:[--left-right:150%] [--left-right:-150%] relative w-7/12 min-h-[70vh]"
         >
-          <img src={internHero} alt="Konectin Internship" />
+          <img
+            className="absolute right-0 top-0"
+            src={happyTeam}
+            alt="Konectin Internship Lady"
+          />
         </motion.picture>
       </div>
     </section>
