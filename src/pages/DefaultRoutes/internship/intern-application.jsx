@@ -249,7 +249,7 @@ function InternApplication() {
         </div>
       )}
       <div className="w-11/12 mx-auto max-w-screen-2xl min-h-[70vh] flex flex-col md:gap-4 lg:gap-8 md:flex-row items-start py-32">
-        <div className="flex flex-col gap-6 w-full my-auto pt-12 md:w-10/12 lg:w-8/12">
+        <div className="flex flex-col gap-6 w-full pt-12 md:w-10/12 lg:w-8/12">
           <motion.h1
             variants={textVariantUp()}
             className="text-4xl font-semibold !leading-tight mt-2"
