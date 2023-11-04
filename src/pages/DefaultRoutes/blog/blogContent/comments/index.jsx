@@ -4,10 +4,9 @@ import ShowComments from "./showComments";
 import * as TbIcons from "react-icons/tb";
 import { useEffect, useState } from "react";
 import { userIcon } from "../../../../../assets";
-import { useLocalStorage } from "../../../../../middleware/storage";
 
 function BlogComment({ blogID }) {
-  const [user] = useLocalStorage("user");
+  const user = JSON.parse(localStorage.getItem("user")) || "";
   const [comment, setComment] = useState("");
   const [error, setError] = useState("");
   const [comments, setComments] = useState([]);
@@ -17,7 +16,51 @@ function BlogComment({ blogID }) {
     const getComments = async (blogID) => {
       try {
         let response = await axios.get(`${url}/getComments?blogId=${blogID}`);
-        setComments(response.data.comments);
+        let arr = response.data.comments;
+
+        for (let i = 0; i < arr.length; i++) {
+          let comment = arr[i];
+
+          if (comment.fullname) {
+            arr[i] = comment;
+          }
+
+          axios
+            .get(`${url}/getUser?userId=${comment.userId}`)
+            .then((res) => {
+              arr[i] = { ...comment, fullname: res.data.user.fullname };
+
+              if (comment.reply.length >= 1) {
+                let replies = comment.reply;
+
+                for (let i = 0; i < replies.length; i++) {
+                  let reply = replies[i];
+
+                  if (reply.fullname) {
+                    replies[i] = reply;
+                  }
+
+                  axios
+                    .get(`${url}/getUser?userId=${reply.userId}`)
+                    .then((res) => {
+                      arr[i] = {
+                        ...comment,
+                        reply: { ...reply, fullname: res.data.user.fullname },
+                      };
+                    });
+                }
+              }
+
+              setComments((prev) => [
+                ...prev,
+                { ...comment, fullname: res.data.user.fullname },
+              ]);
+            })
+            .catch((err) => {
+              console.error(err);
+              arr[i] = comment;
+            });
+        }
       } catch (err) {
         console.error(err);
       }
@@ -38,31 +81,26 @@ function BlogComment({ blogID }) {
         }
       );
 
-      console.log(response);
+      setError("");
+      setComments((prev) => [
+        {
+          _id: response.data.comment,
+          userId: user._id,
+          fullname: user.fullname,
+          blogId: postID,
+          comment: comment,
+          likes: 0,
+          reply: [],
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        ...prev,
+      ]);
 
-      // setError("");
-      // setComments((prev) => [
-      //   ...prev,
-      //   {
-      //     _id: response.data.comment.id,
-      //     userId: user._id,
-      //     postId: postID,
-      //     comment: comment,
-      //     createdAt: "2023-04-19T23:06:53.794+00:00",
-      //     updatedAt: "2023-04-19T23:06:53.794+00:00",
-      //     __v: 0,
-      //   },
-      // ]);
+      setComment("");
     } catch (err) {
       console.error(err);
-      setError(
-        <p className="text-error-500">
-          You have to be logged in to comment.{" "}
-          <Link className="text-primary-500" to="/login">
-            Click here to log in
-          </Link>
-        </p>
-      );
+      setError(<p className="text-error-500">Server Error. Try again later</p>);
     }
   };
 
@@ -71,7 +109,6 @@ function BlogComment({ blogID }) {
     if (user?._id) {
       // You have to be loggged in to post
       postComment(blogID, comment);
-      setError("");
     } else {
       setError(
         <p className="text-red-500">
@@ -109,7 +146,7 @@ function BlogComment({ blogID }) {
               type="submit"
               className={`${
                 comment.length >= 1 ? "opacity-100" : "opacity-0"
-              } absolute transistion-opacity duration-500 translate-y-1/2 right-3`}
+              } absolute transition-opacity duration-500 translate-y-1/2 right-3`}
             >
               <TbIcons.TbSend className="text-secondary-500" size="1.2rem" />
             </button>
@@ -120,7 +157,11 @@ function BlogComment({ blogID }) {
 
       <div>
         {comments.length >= 1 ? (
-          <ShowComments commentArr={comments} />
+          <ShowComments
+            user={user}
+            commentArr={comments}
+            changeComment={setComments}
+          />
         ) : (
           <p>Be the first to comment on this post</p>
         )}

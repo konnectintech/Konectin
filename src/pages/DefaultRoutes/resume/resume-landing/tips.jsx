@@ -61,7 +61,7 @@ function TipSection() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.5 }}
-        className="flex flex-col gap-8 md:flex-row md:justify-between md:items-center"
+        className="flex flex-col gap-8 mt-10 md:flex-row md:justify-between md:items-center"
       >
         <motion.div
           variants={slideIn("ltr", "spring", 0.1, 1.2)}

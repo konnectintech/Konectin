@@ -1,4 +1,3 @@
-import { MdArrowDropDown } from "react-icons/md";
 import { useState, useEffect, useRef } from "react";
 import { GetCountries } from "react-country-state-city/dist/cjs";
 import { verifyInput } from "../../pages/DefaultRoutes/resume/resume-builder/screens/verification";
@@ -52,11 +51,10 @@ function CountryInput({ setCode, handleChange, country, setCountryId }) {
             onChange={(e) => handleCountryInput(e.target.value)}
             onInput={(e) => handleCountryInput(e.target.value)}
           />
-          {countriesList.length >= 1 && <MdArrowDropDown size="1.5rem" />}
         </div>
         <label
           id="countryError"
-          className="absolute mt-[2.4rem] text-error-500 hidden"
+          className="absolute mt-8 text-error-500 hidden"
           ref={errorMessage}
         >
           Country required
