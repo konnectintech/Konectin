@@ -26,18 +26,18 @@ function Education({ data, updateForm }) {
   return (
     <div className="flex flex-col gap-2 min-w-[160px]">
       <div className="relative">
-        <div
-          onClick={() => setShow((prev) => !prev)}
-          className="flex items-center relative cursor-pointer"
-        >
+        <div className="flex items-center relative cursor-pointer">
           <input
             className="input-container !mb-0"
             value={data?.name}
             name="education"
             placeholder="What best describes your current educational status?"
+            onFocus={() => setShow(true)}
+            onBlur={() => setShow(false)}
             readOnly
           />
           <MdArrowDropDown
+            onClick={() => setShow((prev) => !prev)}
             className={`${
               show ? "rotate-180" : "rotate-0"
             } absolute right-2 duration-300 text-neutral-300`}

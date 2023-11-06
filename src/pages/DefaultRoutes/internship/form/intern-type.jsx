@@ -27,28 +27,24 @@ function InternType({ data, updateForm }) {
 
   return (
     <>
-      <div
-        onMouseLeave={() =>
-          showData.type &&
-          setShowData((prev) => ({ ...prev, type: !prev.type }))
-        }
-        className="flex flex-col gap-2 min-w-[160px] relative"
-      >
-        <div
-          onClick={() => setShowData((prev) => ({ ...prev, type: !prev.type }))}
-          className="flex items-center relative cursor-pointer"
-        >
+      <div className="flex flex-col gap-2 min-w-[160px] relative">
+        <div className="flex items-center relative cursor-pointer">
           <input
             className="input-container !mb-0"
             value={data?.type}
             name="type"
             id="type"
             placeholder="What type of internship are you interested in?*"
+            onFocus={() => setShowData((prev) => ({ ...prev, type: true }))}
+            onBlur={() => setShowData((prev) => ({ ...prev, type: false }))}
             readOnly
             // onChange={(e) => handleCountryInput(e.target.value)}
             // onInput={(e) => handleCountryInput(e.target.value)}
           />
           <MdArrowDropDown
+            onClick={() =>
+              setShowData((prev) => ({ ...prev, type: !prev.type }))
+            }
             className={`${
               showData.type ? "rotate-180" : "rotate-0"
             } absolute right-2 duration-300 text-neutral-300`}
@@ -87,28 +83,22 @@ function InternType({ data, updateForm }) {
           className="-mt-1 text-xs text-error-500 hidden"
         ></label>
       </div>
-      <div
-        onMouseLeave={() =>
-          showData.field &&
-          setShowData((prev) => ({ ...prev, field: !prev.field }))
-        }
-        className="flex flex-col gap-2 min-w-[160px] relative"
-      >
-        <div
-          onClick={() =>
-            setShowData((prev) => ({ ...prev, field: !prev.field }))
-          }
-          className="flex items-center relative cursor-pointer"
-        >
+      <div className="flex flex-col gap-2 min-w-[160px] relative">
+        <div className="flex items-center relative cursor-pointer">
           <input
             className="input-container !mb-0"
             value={data?.field}
             name="field"
             id="field"
             placeholder="Preferred Field/Department for Internship?*"
+            onFocus={() => setShowData((prev) => ({ ...prev, field: true }))}
+            onBlur={() => setShowData((prev) => ({ ...prev, field: false }))}
             readOnly
           />
           <MdArrowDropDown
+            onClick={() =>
+              setShowData((prev) => ({ ...prev, field: !prev.field }))
+            }
             className={`${
               showData.field ? "rotate-180" : "rotate-0"
             } absolute right-2 duration-300 text-neutral-300`}
