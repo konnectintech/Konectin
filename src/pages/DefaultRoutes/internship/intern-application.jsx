@@ -271,10 +271,18 @@ function InternApplication() {
             }
 
             setError(errState);
+            setForm({
+              ...form,
+              ongoing: "intern",
+            });
             setLoading(false);
             setMessage("error");
           });
       } else {
+        setForm({
+          ...form,
+          ongoing: "intern",
+        });
         navigate("/login");
       }
     }

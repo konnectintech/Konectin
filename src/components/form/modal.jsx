@@ -43,7 +43,7 @@ export function NotifyModal({
   intern,
 }) {
   return (
-    <div className="relative w-10/12 max-w-screen-md py-8 transition ease-in-out duration-300 flex flex-col md:flex-row px-6 md:px-16 gap-6 md:gap-12 items-center text-white min-h-[70vh] max-md:max-h-[70vh]">
+    <div className="relative w-10/12 max-w-screen-md py-8 transition ease-in-out duration-300 flex flex-col md:flex-row px-6 md:px-16 gap-6 md:gap-12 items-center text-white md:min-h-[70vh] max-md:max-h-[430px]">
       <div
         className={`absolute top-0 left-0 w-full h-full ${
           intern && "grayscale contrast-200"

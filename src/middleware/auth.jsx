@@ -81,6 +81,7 @@ export const useAuth = () => {
   const [user, setUser] = useLocalStorage("user", null);
   const navigate = useNavigate();
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
+  const { ongoing } = JSON.parse(sessionStorage.getItem("internData")) || "";
 
   // const getUser = async (data) => {
   //   try {
@@ -129,7 +130,9 @@ export const useAuth = () => {
 
       setUser(userData);
       loader(false);
-      navigate("/resume/options");
+
+      if (ongoing) navigate("/internship/intern-application");
+      else navigate("/resume/options");
     } catch (err) {
       loader(false);
       setError(err.response.data.message);

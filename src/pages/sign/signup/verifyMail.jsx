@@ -76,7 +76,11 @@ function VerifyMail() {
           popModal("You have been verified");
           setTimeout(() => {
             popModal("");
-            if (location.state.from === "intern")
+
+            const { ongoing } =
+              JSON.parse(sessionStorage.getItem("internData")) || "";
+
+            if (location.state.from === "intern" || ongoing)
               navigate("/internship/intern-application");
             else navigate("/resume/options");
           }, 2000);

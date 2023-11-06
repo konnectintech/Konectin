@@ -28,6 +28,15 @@
   margin: 12px 0 !important;
 }
 
+.blog-article h1,
+.blog-article h2,
+.blog-article h3,
+.blog-article h4,
+.blog-article p,
+span {
+  font-family: "Merriweather", sans-serif !important;
+}
+
 .blog-article blockquote {
   background: #f9f9f9;
   border-left: 15px solid #8c86b3;
