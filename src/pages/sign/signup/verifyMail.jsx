@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { konectinIcon } from "../../../assets";
 import { CustomButton } from "../../../components/button";
 import { ErrorModal, SuccessModal } from "../../../components/form/modal";
 import Preloader from "../../../components/preloader";
+import { useEffect } from "react";
 
 function VerifyMail() {
   const [code, setCode] = useState("");
@@ -13,6 +14,14 @@ function VerifyMail() {
   const [modal, popModal] = useState("");
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.from == null) {
+      navigate("/signup", { replace: true });
+    }
+  }, [location, navigate]);
+
   const parseURL = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   const handleInputChange = (e) => {
@@ -31,7 +40,7 @@ function VerifyMail() {
         const status = res.status;
         if (status === 200) {
           setLoading(false);
-          popModal("A code has been resent to your mail");
+          popModal("A code has been sent to your mail");
           setTimeout(() => {
             popModal("");
           }, 2000);
@@ -67,7 +76,9 @@ function VerifyMail() {
           popModal("You have been verified");
           setTimeout(() => {
             popModal("");
-            navigate("/resume/options");
+            if (location.state.from === "intern")
+              navigate("/internship/intern-application");
+            else navigate("/resume/options");
           }, 2000);
         } else {
           setLoading(false);
@@ -91,7 +102,7 @@ function VerifyMail() {
         </Link>
 
         <SuccessModal
-          text="You have been verified"
+          text={modal}
           popModal={modal}
           closeModal={() => popModal(false)}
         />

@@ -32,6 +32,14 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
         case "city":
         case "state":
         case "country":
+        case "startMonth":
+        case "startYear":
+          errorHolder = document.getElementById(`${holder}Error`);
+          verifyInput(data[holder], errorHolder, holder);
+          break;
+        case "endMonth":
+        case "endYear":
+          if (data.current) break;
           errorHolder = document.getElementById(`${holder}Error`);
           verifyInput(data[holder], errorHolder, holder);
           break;
@@ -49,7 +57,13 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
       }
     });
 
-    if (data.jobTitle !== "" && data.company !== "" && data.country) {
+    if (
+      data.jobTitle !== "" &&
+      data.company !== "" &&
+      data.country &&
+      (data.startMonth !== "" || data.startYear !== "") &&
+      (data.current || data.endMonth !== "" || data.endYear !== "")
+    ) {
       navigate("/resume/builder/employment-experience/responsibilities");
     }
   };

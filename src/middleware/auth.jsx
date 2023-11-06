@@ -143,7 +143,7 @@ export const useAuth = () => {
       setUser(userData);
       loader(false);
       setTimeout(() => {
-        navigate("/verify-mail");
+        navigate("/verify-mail", { state: { from: "sign-up" } });
       }, 1000);
     } catch (err) {
       loader(false);

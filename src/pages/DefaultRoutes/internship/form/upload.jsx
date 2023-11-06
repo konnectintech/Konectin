@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import fileDefault from "../../../../assets/images/file-blank-solid-240.png";
 import fileCSS from "../../../../assets/images/file-css-solid-240.png";
@@ -15,11 +15,13 @@ const ImageConfig = {
   css: fileCSS,
 };
 
-function UploadResume({ updateForm }) {
+function UploadResume({ setUpdate, updateForm }) {
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState(null);
   const [progress, setProgress] = useState({ started: false, percent: 0 });
+
   const wrapperRef = useRef(null);
+  const navigate = useNavigate();
 
   const onFileDrop = (e) => {
     const resume = e.target.files[0];
@@ -56,12 +58,15 @@ function UploadResume({ updateForm }) {
 
   return (
     <div className="space-y-3">
-      <Link
-        to="/resume/options"
+      <div
+        onClick={() => {
+          setUpdate();
+          navigate("/resume/options");
+        }}
         className="w-fit self-start px-6 py-3 flex gap-2 items-center justify-center rounded bg-primary-500 text-white"
       >
         Build resume now
-      </Link>
+      </div>
       <div id="upload">
         {file === null && (
           <div

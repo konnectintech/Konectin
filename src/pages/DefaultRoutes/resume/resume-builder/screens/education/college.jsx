@@ -157,7 +157,10 @@ function College() {
       education.schoolName !== "" &&
       education.degree !== "" &&
       education.country &&
-      (education.startMonth !== "" || education.startYear !== "")
+      (education.startMonth !== "" || education.startYear !== "") &&
+      (education.current ||
+        education.endMonth !== "" ||
+        education.endYear !== "")
     ) {
       navigate("/resume/builder/skills");
     }
