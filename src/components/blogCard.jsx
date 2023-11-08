@@ -27,7 +27,7 @@ function BlogCard({
         <LazyLoadImage
           wrapperClassName="inline-x"
           effect="blur"
-          className="bg-contain w-full h-full aspect-square hover:scale-105 transistion-all duration-300"
+          className="bg-contain w-full h-full aspect-square hover:scale-105 duration-1000"
           src={featuredImage}
           alt={htmlTitle}
         />
@@ -38,10 +38,12 @@ function BlogCard({
           blurred ? "blurry-text" : "mb-auto"
         } bg-white px-3 py-4 flex flex-col gap-3 justify-between`}
       >
-        <h2 className="truncate text-base" title={htmlTitle}>
-          {htmlTitle}
-        </h2>
-        <h3 className="my-auto">Konectin</h3>
+        <div className="space-y-1">
+          <h2 className="truncate text-base font-semibold" title={htmlTitle}>
+            {htmlTitle}
+          </h2>
+          <h3 className="text-secondary-600">Konectin</h3>
+        </div>
 
         <div className="flex items-center justify-between w-full text-xs text-neutral-400 font-medium">
           <span>{metaDescription}</span>

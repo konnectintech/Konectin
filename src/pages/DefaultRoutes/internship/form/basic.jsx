@@ -97,15 +97,18 @@ function BasicDetails({ data, updateForm }) {
       </div>
       <div className="flex max-sm:flex-col gap-2">
         <div className="flex flex-col gap-2 sm:min-w-[140px] sm:!w-fit relative">
-          <div className="flex items-center relative cursor-pointer">
+          <div
+            onClick={() =>
+              setShowData((prev) => ({ ...prev, code: !prev.code }))
+            }
+            className="flex items-center relative cursor-pointer"
+          >
             <input
               className="input-container !mb-0"
               value={data?.country_code}
               name="country_code"
               id="country_code"
               placeholder="Country Code*"
-              onFocus={() => setShowData((prev) => ({ ...prev, code: true }))}
-              onBlur={() => setShowData((prev) => ({ ...prev, code: false }))}
               readOnly={countriesList.length >= 1 ? true : false}
               onChange={(e) => {
                 if (countriesList.length <= 0) {
@@ -120,9 +123,6 @@ function BasicDetails({ data, updateForm }) {
             />
             {countriesList.length >= 1 && (
               <MdArrowDropDown
-                onClick={() =>
-                  setShowData((prev) => ({ ...prev, code: !prev.code }))
-                }
                 className={`${
                   showData.code ? "rotate-180" : "rotate-0"
                 } absolute right-2 duration-300 text-neutral-300`}
@@ -194,7 +194,12 @@ function BasicDetails({ data, updateForm }) {
       </div>
 
       <div className="flex flex-col gap-2 min-w-[160px] relative">
-        <div className="flex items-center relative cursor-pointer">
+        <div
+          onClick={() =>
+            setShowData((prev) => ({ ...prev, country: !prev.country }))
+          }
+          className="flex items-center relative cursor-pointer"
+        >
           <input
             className="input-container !mb-0"
             value={data?.country}
@@ -202,8 +207,6 @@ function BasicDetails({ data, updateForm }) {
             id="country"
             placeholder="Country of Residence*"
             readOnly={countriesList.length >= 1 ? true : false}
-            onFocus={() => setShowData((prev) => ({ ...prev, country: true }))}
-            onBlur={() => setShowData((prev) => ({ ...prev, country: false }))}
             onChange={(e) => {
               if (countriesList.length <= 0) {
                 handleChange(e.target.value, "country");
@@ -218,9 +221,6 @@ function BasicDetails({ data, updateForm }) {
 
           {countriesList.length >= 1 && (
             <MdArrowDropDown
-              onClick={() =>
-                setShowData((prev) => ({ ...prev, country: !prev.country }))
-              }
               className={`${
                 showData.country ? "rotate-180" : "rotate-0"
               } absolute right-2 duration-300 text-neutral-300`}
@@ -253,21 +253,22 @@ function BasicDetails({ data, updateForm }) {
       </div>
 
       <div className="flex flex-col gap-2 min-w-[160px] relative">
-        <div className="flex items-center relative cursor-pointer">
+        <div
+          onClick={() =>
+            setShowData((prev) => ({ ...prev, gender: !prev.gender }))
+          }
+          className="flex items-center relative cursor-pointer"
+        >
           <input
             className="input-container !mb-0"
             value={data?.gender}
             name="gender"
             id="gender"
             placeholder="Gender*"
-            onFocus={() => setShowData((prev) => ({ ...prev, gender: true }))}
             onBlur={() => setShowData((prev) => ({ ...prev, gender: false }))}
             readOnly
           />
           <MdArrowDropDown
-            onClick={() =>
-              setShowData((prev) => ({ ...prev, gender: !prev.gender }))
-            }
             className={`${
               showData.gender ? "rotate-180" : "rotate-0"
             } absolute right-2 duration-300 text-neutral-300`}
@@ -309,21 +310,22 @@ function BasicDetails({ data, updateForm }) {
       </div>
 
       <div className="flex flex-col gap-2 min-w-[160px] relative">
-        <div className="flex items-center relative cursor-pointer">
+        <div
+          onClick={() =>
+            setShowData((prev) => ({ ...prev, ageRange: !prev.ageRange }))
+          }
+          className="flex items-center relative cursor-pointer"
+        >
           <input
             className="input-container !mb-0"
             value={data?.ageRange}
             name="ageRange"
             id="ageRange"
             placeholder="Age Range*"
-            onFocus={() => setShowData((prev) => ({ ...prev, ageRange: true }))}
             onBlur={() => setShowData((prev) => ({ ...prev, ageRange: false }))}
             readOnly
           />
           <MdArrowDropDown
-            onClick={() =>
-              setShowData((prev) => ({ ...prev, ageRange: !prev.ageRange }))
-            }
             className={`${
               showData.ageRange ? "rotate-180" : "rotate-0"
             } absolute right-2 duration-300 text-neutral-300`}

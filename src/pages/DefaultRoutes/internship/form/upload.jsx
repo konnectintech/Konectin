@@ -30,7 +30,7 @@ function UploadResume({ data, setUpdate, updateForm, handleChange }) {
       fd.append("file", resume);
       setFiles((prev) => [
         ...prev,
-        { resume: resume, started: true, percent: 0, message: "Uploading" },
+        { resume: resume, started: true, percent: 0, message: "Uploading..." },
       ]);
 
       axios
@@ -65,13 +65,13 @@ function UploadResume({ data, setUpdate, updateForm, handleChange }) {
           );
         })
         .catch((err) => {
-          console.error(err);
+          console.log(err);
           setFiles((prev) =>
             prev.map((item, i) => {
               if (i === id) {
                 return {
                   ...item,
-                  message: `Upload failed... ${err.response.message}`,
+                  message: `Upload failed...`,
                 };
               } else {
                 return item;

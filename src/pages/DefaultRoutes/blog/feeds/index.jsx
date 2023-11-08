@@ -7,9 +7,9 @@ import { Link, useParams } from "react-router-dom";
 function Feeds() {
   const feedList = [
     { name: "All articles", link: "all" },
-    { name: "Career", link: "career" },
-    { name: "Start ups", link: "start-up" },
-    { name: "soft skills", link: "soft-skills" },
+    { name: "Career", link: "76622502648" },
+    { name: "Start ups", link: "81404868843" },
+    { name: "soft skills", link: "76622502649" },
   ];
 
   const [newBlogs, setNewBlogs] = useState([]);
@@ -57,9 +57,7 @@ function Feeds() {
       setNewBlogs(allBlogs);
     } else {
       const currentFeed = allBlogs.filter(
-        (blog) =>
-          blog.categories &&
-          blog.categories.some((cat) => cat.name === params.feed)
+        (blog) => blog.tagIds && blog.tagIds.includes(parseInt(params.feed))
       );
 
       setNewBlogs(currentFeed);
@@ -81,7 +79,7 @@ function Feeds() {
     >
       <HeroSection isLoading={isLoading} />
       <div className="flex flex-col gap-8">
-        <div className="flex gap-6 text-sm sm:text-md sm:gap-8 items-center">
+        <div className="flex text-sm sm:text-md items-center">
           {feedList.map((feedItem, index) => (
             <Link
               key={index}
@@ -91,9 +89,9 @@ function Feeds() {
                   isLoading
                     ? "text-neutral-500"
                     : params.feed === feedItem.link
-                    ? "border-b-2 border-secondary-600"
+                    ? "text-white bg-primary-500 rounded-full"
                     : "text-neutral-200"
-                } capitalize`}
+                } capitalize px-5 py-1`}
             >
               {feedItem.name}
             </Link>

@@ -102,9 +102,9 @@ import ResumeCTAImage from "./images/cta.png";
 import shareIcon from "./icons/share.svg";
 import commentIcon from "./icons/comment.svg";
 import blogHero from "./images/blog hero.png";
-import BlogCTAImage from "./images/cta 1.png";
-import BlogCTA1Image from "./images/cta 2.png";
-import BlogCTA2Image from "./images/cta 3.png";
+import BlogCTAImage from "./images/flyer 3.png";
+import BlogCTA1Image from "./images/flyer.png";
+import BlogCTA2Image from "./images/flyer 2.png";
 import arrowUp from "./icons/P1-Lighticons-line-292.png";
 import arrowDown from "./icons/P1-Lighticons-line-291.png";
 
