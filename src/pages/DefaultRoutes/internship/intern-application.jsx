@@ -42,7 +42,7 @@ function InternApplication() {
       gender: "",
       ageRange: "",
     },
-    upload: "",
+    upload: { resumes: [], portfolio: "" },
     education: {
       name: "",
       options: {
@@ -80,10 +80,10 @@ function InternApplication() {
       errorRef.style.display = "none";
     }
 
-    setForm({
-      ...form,
-      upload: value,
-    });
+    setForm((prev) => ({
+      ...prev,
+      upload: { ...prev.upload, resumes: value },
+    }));
   };
 
   const checkVerification = () => {
@@ -127,7 +127,7 @@ function InternApplication() {
         const errorRef = document.getElementById("uploadError");
         const container = document.getElementById("upload");
 
-        if (form.upload === "") {
+        if (form.upload.resumes.length === 0) {
           container.style.borderColor = "#F11010";
           errorRef.style.display = "block";
           errorRef.innerHTML = "Upload a resume or build one";
@@ -366,7 +366,7 @@ function InternApplication() {
           </motion.p>
           <motion.form
             onSubmit={handleSubmit}
-            className="overflow-y-auto overflow-x-hidden md:max-h-[440px] text-sm pr-6 space-y-4 intern-form flex flex-col"
+            className="overflow-y-auto overflow-x-hidden md:max-h-[440px] text-sm md:pr-6 space-y-4 intern-form flex flex-col"
             variants={textVariantUp(0.6)}
           >
             <div>
@@ -396,6 +396,7 @@ function InternApplication() {
 
               <div className="flex flex-col gap-2 mt-3">
                 <UploadResume
+                  data={form.upload}
                   updateForm={handleUpload}
                   setUpdate={() =>
                     setForm({
@@ -403,6 +404,7 @@ function InternApplication() {
                       ongoing: "intern",
                     })
                   }
+                  handleChange={handleChange}
                 />
               </div>
             </div>
