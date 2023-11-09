@@ -366,7 +366,7 @@ function InternApplication() {
           </motion.p>
           <motion.form
             onSubmit={handleSubmit}
-            className="overflow-y-auto overflow-x-hidden md:max-h-[440px] text-sm md:pr-6 space-y-4 intern-form flex flex-col"
+            className="text-sm md:pr-6 space-y-4 intern-form flex flex-col"
             variants={textVariantUp(0.6)}
           >
             <div>
@@ -387,7 +387,7 @@ function InternApplication() {
 
             <div>
               <h2 className="text-lg font-semibold text-primary-600">
-                Build or Upload your Resume*
+                Add your credentials*
               </h2>
               <p className="text-primary-400">
                 Use our AI-powered Resume Builder to create a professional
