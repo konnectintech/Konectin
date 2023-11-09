@@ -396,7 +396,7 @@ function InternApplication() {
 
               <div className="flex flex-col gap-2 mt-3">
                 <UploadResume
-                  data={form.upload}
+                  data={form.upload.resumes}
                   updateForm={handleUpload}
                   setUpdate={() =>
                     setForm({

@@ -20,14 +20,15 @@ function UploadResume({ data, setUpdate, updateForm, handleChange }) {
 
   const wrapperRef = useRef(null);
   const navigate = useNavigate();
-  const url = import.meta.env.VITE_CLIENT_SERVER_URL;
+  const url = import.meta.env.VITE_CLIENT_SERVER_RENDER_URL;
 
   const onFileDrop = (e) => {
     const resumes = e.target.files;
 
     Array.from(resumes).forEach((resume, id) => {
       const fd = new FormData();
-      fd.append("file", resume);
+      fd.append("file", resumes[id]);
+
       setFiles((prev) => [
         ...prev,
         { resume: resume, started: true, percent: 0, message: "Uploading..." },
@@ -39,7 +40,6 @@ function UploadResume({ data, setUpdate, updateForm, handleChange }) {
             setFiles((prev) =>
               prev.map((item, i) => {
                 if (i === id) {
-                  console.log(event.progress);
                   return { ...item, percent: event.progress * 100 };
                 } else {
                   return item;
@@ -65,6 +65,7 @@ function UploadResume({ data, setUpdate, updateForm, handleChange }) {
           );
         })
         .catch((err) => {
+          console.log(data);
           console.log(err);
           setFiles((prev) =>
             prev.map((item, i) => {
@@ -88,9 +89,11 @@ function UploadResume({ data, setUpdate, updateForm, handleChange }) {
     setFiles(updatedList);
     updateForm([]);
 
-    files.forEach((file) => {
-      updateForm([...data, file.url]);
-    });
+    if (files.length >= 1) {
+      files.forEach((file) => {
+        updateForm([...data, file.url]);
+      });
+    }
   };
 
   return (
