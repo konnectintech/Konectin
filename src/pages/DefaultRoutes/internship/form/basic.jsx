@@ -265,7 +265,6 @@ function BasicDetails({ data, updateForm }) {
             name="gender"
             id="gender"
             placeholder="Gender*"
-            onBlur={() => setShowData((prev) => ({ ...prev, gender: false }))}
             readOnly
           />
           <MdArrowDropDown
@@ -281,6 +280,7 @@ function BasicDetails({ data, updateForm }) {
               <div
                 key={gender}
                 onClick={() => {
+                  console.log(gender);
                   handleChange(gender, "gender");
                   setShowData((prev) => ({ ...prev, gender: !prev.gender }));
                 }}
@@ -322,7 +322,6 @@ function BasicDetails({ data, updateForm }) {
             name="ageRange"
             id="ageRange"
             placeholder="Age Range*"
-            onBlur={() => setShowData((prev) => ({ ...prev, ageRange: false }))}
             readOnly
           />
           <MdArrowDropDown
@@ -339,6 +338,7 @@ function BasicDetails({ data, updateForm }) {
                 key={age}
                 onClick={() => {
                   handleChange(age, "ageRange");
+
                   setShowData((prev) => ({
                     ...prev,
                     ageRange: !prev.ageRange,
