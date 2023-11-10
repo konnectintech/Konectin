@@ -12,7 +12,7 @@ function ResumeRoutes() {
   return (
     <>
       {pathname.split("/")[2] === "builder" ? <ResumeHeader /> : <Header />}
-      <div className="flex ">
+      <div className="flex relative px-14 ">
         {pathname.split("/")[2] === "builder" && <ResumeLeftbar />}
         <main
           className=""

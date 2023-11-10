@@ -102,7 +102,7 @@ const Options = () => {
       </div>
       <div className="text-2xl font-medium flex items-center gap-4">
         I Want to build a Cover Letter
-        <span className="font-bold text-secondary-600 flex items-center gap-2">
+        <span className="font-bold text-secondary-600 flex items-center gap-2 cursor-pointer">
           Cover Letter <FaChevronRight className="text-sm" />
         </span>
       </div>

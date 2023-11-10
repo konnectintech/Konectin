@@ -4,6 +4,7 @@ import College from "./college";
 import HighSchool from "./high-school";
 import SelectEducation from "./selectEducation";
 import SelectedTemplates from "../../resume-templates";
+import Other from "./other";
 
 const Education = ({ data }) => {
   return (
@@ -26,7 +27,8 @@ const Education = ({ data }) => {
             </>
           }
         >
-          <Route path="/college" element={<College />} />
+          <Route path="/college" element={<College data={data} />} />
+          <Route path="/other" element={<Other />} />
           <Route path="/high-school" element={<HighSchool />} />
         </Route>
       </Route>

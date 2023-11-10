@@ -1,12 +1,12 @@
 import { FaPlus, FaPen, FaTrash, FaCaretDown, FaCaretUp } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useTemplateContext } from "../../../../../../middleware/resume";
 import { useEffect, useState } from "react";
-import NavigationButton from "../navigationButton";
-import SelectedTemplates from "../../resume-templates";
-import { onSectionComplete } from "../verification";
+import { useTemplateContext } from "../../../../../../../middleware/resume";
+import SelectedTemplates from "../../../resume-templates";
+import NavigationButton from "../../navigationButton";
+import { onSectionComplete } from "../../verification";
 
-const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
+const CollegeList = ({ addCompany, goBack, deleteExperience }) => {
   const { templateData, setTemplateData } = useTemplateContext();
   const [showMore, setShowMore] = useState(-1);
 
@@ -15,7 +15,7 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
   useEffect(() => {
     setTemplateData((prev) => ({
       ...prev,
-      currentEditedJob: Object.keys(templateData.jobExperience).length,
+      currentEditedEducation: Object.keys(templateData.education).length,
     }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -25,19 +25,19 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
       <div className="flex flex-col md:flex-row items-start justify-between self-center  gap-10">
         <div className="mt-8 flex flex-col justify-center">
           <h2 className="-mt-6 max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
-            Work Experience
+            University or college details
           </h2>
           <p className="text-neutral-300 text-sm tracking-[-0.01rem] my-3 max-w-2xl">
-            Add, edit or delete your work experience.
+            Add, edit or delete your education details.
           </p>
-          {templateData.jobExperience.map((data, index) => (
+          {templateData.education.map((data, index) => (
             <section
               key={index}
               className="w-full flex flex-col items-start mx-auto mb-4"
             >
               <div className="flex flex-col md:justify-between md:flex-row ">
                 <p className="font-bold text-neutral-300 capitalize text-sm mb-4">
-                  {data.company}
+                  {data.schoolName}
                   {(data.city || data.state || data.country) && " | "}
                   <span className="font-medium">
                     {data.city}
@@ -51,14 +51,14 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
               <div className="border w-full border-neutral-500 rounded-lg bg-white p-4">
                 <div className="flex justify-between gap-3">
                   <h3 className="font-extrabold text-neutral-300 text-lg capitalize">
-                    {data.jobTitle}
+                    {data.degree}
                   </h3>
                   <div className="space-x-2 text-neutral-400">
                     <button
                       onClick={() => {
                         setTemplateData((prev) => ({
                           ...prev,
-                          currentEditedJob: index + 1,
+                          currentEditedEducation: index + 1,
                         }));
 
                         navigate("/resume/builder/employment-experience");
@@ -68,7 +68,7 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
                     </button>
                     <button
                       onClick={() => {
-                        templateData.jobExperience.length <= 1
+                        templateData.education.length <= 1
                           ? alert(
                               "You can't delete the last experience, edit it instead"
                             )
@@ -156,4 +156,4 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
   );
 };
 
-export default JobActivities;
+export default CollegeList;

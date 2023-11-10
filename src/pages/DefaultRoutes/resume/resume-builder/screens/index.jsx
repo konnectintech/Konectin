@@ -86,10 +86,7 @@ function Builder() {
   return (
     <div className="w-11/12 mx-auto">
       {currentModule === 0 && <WelcomeWalkthrough />}
-      {currentModule === 1 && <ProgressWalkthrough />}
-      {currentModule === 2 && <LeftSidebarWalkthrough />}
       {currentModule === 3 && <TipsWalkthrough />}
-      {currentModule === 4 && <RightSidebarWalkthrough />}
       {currentModule === 5 && <DownloadWalkthrough />}
       {currentModule === 6 && <FinishWalkthrough />}
       <Routes>

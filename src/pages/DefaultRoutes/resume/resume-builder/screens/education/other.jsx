@@ -11,7 +11,7 @@ import CityInput from "../../../../../../components/form/cityInput";
 import StateInput from "../../../../../../components/form/stateInput";
 import { onSectionComplete, verifyInput } from "../verification";
 
-function College() {
+function Other() {
   const [countryId, setCountryId] = useState(0);
   const [stateId, setStateId] = useState(0);
 
@@ -437,4 +437,4 @@ function College() {
   );
 }
 
-export default College;
+export default Other;
