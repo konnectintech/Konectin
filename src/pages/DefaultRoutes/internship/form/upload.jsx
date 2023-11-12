@@ -24,8 +24,13 @@ function UploadResume({ data, setUpdate, updateForm, handleChange }) {
 
   const onFileDrop = (e) => {
     const resumes = e.target.files;
+    let resumeArr = Array.from(resumes);
 
-    Array.from(resumes).forEach((resume, id) => {
+    if (resumeArr.length + files.length >= 3) {
+      resumeArr = resumeArr.splice(0, 2 - files.length);
+    }
+
+    resumeArr.forEach((resume, id) => {
       const fd = new FormData();
       fd.append("file", resumes[id]);
 
@@ -33,6 +38,20 @@ function UploadResume({ data, setUpdate, updateForm, handleChange }) {
         ...prev,
         { resume: resume, started: true, percent: 0, message: "Uploading..." },
       ]);
+
+      if (resume.size > 1024 * 1024 * 2) {
+        setFiles((prev) =>
+          prev.map((item, i) => {
+            if (i === id) {
+              return { ...item, message: "Upload too large" };
+            } else {
+              return item;
+            }
+          })
+        );
+
+        return;
+      }
 
       axios
         .post(`${url}/uploadFile`, fd, {
@@ -65,7 +84,6 @@ function UploadResume({ data, setUpdate, updateForm, handleChange }) {
           );
         })
         .catch((err) => {
-          console.log(data);
           console.log(err);
           setFiles((prev) =>
             prev.map((item, i) => {
@@ -99,15 +117,6 @@ function UploadResume({ data, setUpdate, updateForm, handleChange }) {
   return (
     <div className="space-y-3">
       <div
-        onClick={() => {
-          setUpdate();
-          navigate("/resume/options");
-        }}
-        className="w-fit self-start px-6 py-3 flex gap-2 items-center justify-center rounded bg-primary-500 text-white"
-      >
-        Build resume now
-      </div>
-      <div
         id="upload"
         className="flex flex-col sm:flex-row md:flex-col lg:flex-row justify-between gap-4"
       >
@@ -135,7 +144,7 @@ function UploadResume({ data, setUpdate, updateForm, handleChange }) {
 
         {files.length >= 1 && (
           <div className="space-y-3 c min-w-[200px]">
-            <p className="font-semibold">Uploaded files</p>
+            <p className="font-semibold">Uploaded file(s)</p>
             {files.map((file, index) => (
               <div key={index}>
                 <div className="relative flex gap-2 w-full">
@@ -186,6 +195,19 @@ function UploadResume({ data, setUpdate, updateForm, handleChange }) {
         id="uploadError"
         className="-mt-1 text-xs text-error-500 hidden"
       ></label>
+
+      <h2 className="mt-3 font-semibold">
+        Use our AI-powered Resume Builder to create a professional resume.
+      </h2>
+      <div
+        onClick={() => {
+          setUpdate();
+          navigate("/resume/options");
+        }}
+        className="w-fit self-start px-6 py-3 flex gap-2 items-center justify-center rounded bg-secondary-500 text-white"
+      >
+        Build resume now
+      </div>
 
       <div className="space-y-2">
         <p>Add Portfolio Link / Website / LinkedIn Profile </p>

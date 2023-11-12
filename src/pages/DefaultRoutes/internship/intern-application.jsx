@@ -370,10 +370,8 @@ function InternApplication() {
             variants={textVariantUp(0.6)}
           >
             <div>
-              <h2 className="text-lg font-semibold text-primary-600">
-                Basic Details*
-              </h2>
-              <p className="text-primary-400">
+              <h2 className="text-lg font-semibold">Basic Details*</h2>
+              <p className="text-neutral-200">
                 Input your personal information
               </p>
 
@@ -386,13 +384,19 @@ function InternApplication() {
             </div>
 
             <div>
-              <h2 className="text-lg font-semibold text-primary-600">
-                Add your credentials*
-              </h2>
-              <p className="text-primary-400">
-                Use our AI-powered Resume Builder to create a professional
-                resume.
-              </p>
+              <h2 className="text-lg font-semibold">Add Your Credentials*</h2>
+              <div className="text-neutral-200">
+                Your can upload your resume, cover letter, portfolio,
+                professional certifications and other relevant documents.
+                <h2 className="mt-3 font-semibold">
+                  Upload your documents/credentials*
+                </h2>
+                <span className="text-xs text-neutral-300">
+                  *You can add your resume (required) <br /> *1 additional
+                  document or credential (cover letter, portfolio, professional
+                  certification or other relevant documents) - Optional
+                </span>
+              </div>
 
               <div className="flex flex-col gap-2 mt-3">
                 <UploadResume
@@ -410,10 +414,8 @@ function InternApplication() {
             </div>
 
             <div>
-              <h2 className="text-lg font-semibold text-primary-600">
-                Educational Background
-              </h2>
-              <p className="text-primary-400">
+              <h2 className="text-lg font-semibold">Educational Background</h2>
+              <p className="text-neutral-200">
                 Tell us about your educational background.
               </p>
 
@@ -423,10 +425,8 @@ function InternApplication() {
             </div>
 
             <div>
-              <h2 className="text-lg font-semibold text-primary-600">
-                Internship Type*
-              </h2>
-              <p className="text-primary-400">Select an option.</p>
+              <h2 className="text-lg font-semibold">Internship Type*</h2>
+              <p className="text-neutral-200">Select an option.</p>
 
               <div className="flex flex-col gap-2 mt-3">
                 <InternType data={form?.internType} updateForm={handleChange} />
