@@ -118,7 +118,7 @@ function BlogContent() {
           >
             {blog.htmlTitle}
           </h1>
-          <p>
+          <p className="text-secondary-500">
             {/* {blog.authorName} */}
             Konectin
           </p>

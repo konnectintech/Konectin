@@ -18,8 +18,6 @@ function BlogComment({ blogID }) {
         let response = await axios.get(`${url}/getComments?blogId=${blogID}`);
         let arr = response.data.comments;
 
-        console.log(arr);
-
         for (let i = 0; i < arr.length; i++) {
           let comment = arr[i];
 
@@ -91,7 +89,7 @@ function BlogComment({ blogID }) {
           fullname: user.fullname,
           blogId: postID,
           comment: comment,
-          likes: 0,
+          likes: [],
           reply: [],
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -102,7 +100,7 @@ function BlogComment({ blogID }) {
       setComment("");
     } catch (err) {
       console.error(err);
-      setError(<p className="text-error-500">Server Error. Try again later</p>);
+      setError(<p className="text-error-500">{err.response.data.message}</p>);
     }
   };
 
@@ -129,9 +127,16 @@ function BlogComment({ blogID }) {
         <div className="flex items-center gap-2">
           <label
             htmlFor="generatedID"
-            className="rounded-full bg-secondary-300 flex items-center justify-center w-8 h-8"
+            className="rounded-full bg-neutral-1000 flex items-center justify-center w-8 h-8"
           >
-            <img src={userIcon} className="w-4 h-4" alt="You" />
+            {user?.fullname !== "" ? (
+              <h3 className="text-capitalize text-neutral-100">
+                {user?.fullname.split(" ")[0].charAt(0)}
+                {user?.fullname.split(" ")[1].charAt(0)}
+              </h3>
+            ) : (
+              <img src={userIcon} className="w-4 h-4" alt="You" />
+            )}
           </label>
           <form onSubmit={handleSubmit} className="flex-1 relative">
             <textarea
@@ -142,7 +147,7 @@ function BlogComment({ blogID }) {
               onChange={(e) => setComment(e.target.value)}
               onInput={(e) => setComment(e.target.value)}
               placeholder="Add a comment..."
-              className="md:h-10 pl-4 pr-8 py-3 text-xs w-full rounded-md outline-0 border border-secondary-300 md:no-scrollbar"
+              className="md:h-10 pl-4 pr-8 py-3 text-xs w-full rounded-md outline-0 border bg-neutral-1000 border-neutral-500 md:no-scrollbar"
             />
             <button
               type="submit"
