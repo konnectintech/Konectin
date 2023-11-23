@@ -9,9 +9,19 @@ import Preview from "./preview";
 import Download from "./download";
 import { useAuth } from "../../../../../middleware/auth";
 import { useEffect } from "react";
+import ProgressWalkthrough from "../../../../../components/walkthrough/ProgressWalkthrough";
+import { useWalkthrough } from "../../../../../context/WalkthroughContext";
+import WelcomeWalkthrough from "../../../../../components/walkthrough/WelcomeWalkthrough";
+import LeftSidebarWalkthrough from "../../../../../components/walkthrough/LeftSidebarWalkthrough";
+import TipsWalkthrough from "../../../../../components/walkthrough/TipsWalkthrough";
+import RightSidebarWalkthrough from "../../../../../components/walkthrough/RightSidebarWalkthrough";
+import DownloadWalkthrough from "../../../../../components/walkthrough/DownloadWalkthrough";
+import FinishWalkthrough from "../../../../../components/walkthrough/FinishWalkthrough";
 
 function Builder() {
   const { templateData, onInputChange, setTemplateData } = useTemplateContext();
+
+  const { currentModule } = useWalkthrough();
 
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -75,6 +85,13 @@ function Builder() {
 
   return (
     <div className="w-11/12 mx-auto">
+      {currentModule === 0 && <WelcomeWalkthrough />}
+      {currentModule === 1 && <ProgressWalkthrough />}
+      {currentModule === 2 && <LeftSidebarWalkthrough />}
+      {currentModule === 3 && <TipsWalkthrough />}
+      {currentModule === 4 && <RightSidebarWalkthrough />}
+      {currentModule === 5 && <DownloadWalkthrough />}
+      {currentModule === 6 && <FinishWalkthrough />}
       <Routes>
         {component_list.map((component, index) => (
           <Route
