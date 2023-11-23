@@ -1,4 +1,3 @@
-import { FaTimes } from "react-icons/fa";
 import { useWalkthrough } from "../../context/WalkthroughContext";
 
 function FinishWalkthrough() {
