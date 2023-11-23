@@ -3,7 +3,7 @@ import * as BsIcon from "react-icons/bs";
 import { createResume, uploadResume } from "../../../../assets";
 import StartBuilder from "./start";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
+import { FaChevronRight } from "react-icons/fa";
 
 const BuilderOption = ({
   title,
@@ -70,8 +70,6 @@ const Options = () => {
     }
   }, []);
 
-
-
   return editable ? (
     <StartBuilder />
   ) : (
@@ -102,15 +100,20 @@ const Options = () => {
           handleChoice={handleChoice}
         />
       </div>
-      <span>
+      <div className="text-2xl font-medium flex items-center gap-4">
         I Want to build a Cover Letter
-        <button
-          className="text-secondary-500 ml-2"
-          onClick={() => navigate("/cover-letter")}
-        >
-          Cover Letter &#11106;
-        </button>
-      </span>
+        <span className="font-bold text-secondary-600 flex items-center gap-2">
+          Cover Letter <FaChevronRight className="text-sm" />
+        </span>
+      </div>
+      {/* <Link
+        to={choice ? `/resume/${choice}` : "#"}
+        className={`duration-500 px-12 py-3 rounded-md text-[#fff] mt-6${
+          choice ? " bg-primary-600" : " bg-primary-200"
+        }`}
+      >
+        Next
+      </Link> */}
     </section>
   );
 };

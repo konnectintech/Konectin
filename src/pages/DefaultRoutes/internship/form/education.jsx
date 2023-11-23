@@ -6,6 +6,20 @@ function Education({ data, updateForm }) {
   const [show, setShow] = useState(false);
 
   const handleChange = (value, name) => {
+    Object.keys(value).forEach((holder) => {
+      const data = value[holder];
+      const errorRef = document.getElementById(`${holder}Error`);
+      const container = document.getElementById(holder);
+
+      if (data === "") {
+        container.style.borderColor = "#F11010";
+        errorRef.style.display = "block";
+        errorRef.innerHTML = "Input field not filled yet";
+      } else {
+        container.style.borderColor = "initial";
+        errorRef.style.display = "none";
+      }
+    });
     updateForm("education", name, value);
   };
 
@@ -22,8 +36,6 @@ function Education({ data, updateForm }) {
             name="education"
             placeholder="What best describes your current educational status?"
             readOnly
-            // onChange={(e) => handleCountryInput(e.target.value)}
-            // onInput={(e) => handleCountryInput(e.target.value)}
           />
           <MdArrowDropDown
             className={`${
@@ -33,12 +45,12 @@ function Education({ data, updateForm }) {
           />
         </div>
         {show && (
-          <div className="bg-neutral-100 absolute top-full translate-y-1 w-full z-10 overflow-y-auto text-white py-1 rounded flex flex-col">
+          <div className="bg-neutral-100 w-full z-10 overflow-y-auto text-white py-1 rounded flex flex-col">
             {educationOption.map((education) => (
               <div
                 key={education.name}
                 onClick={() => {
-                  handleChange(education.name, "name");
+                  updateForm("education", "name", education.name);
                   setShow((prev) => !prev);
                 }}
                 className={`${
@@ -64,7 +76,7 @@ function Education({ data, updateForm }) {
       {educationOption.map((education) =>
         data?.name === education.name
           ? Object.keys(education.options).map((option) => (
-              <div key={option} className="flex flex-col gap-2 mt-3">
+              <div key={option} className="flex flex-col gap-2">
                 <div className="flex flex-col">
                   <input
                     className="input-container !mb-0"
@@ -75,7 +87,6 @@ function Education({ data, updateForm }) {
                       data?.options === undefined ? "" : data.options[option]
                     }
                     onChange={(e) => {
-                      console.log(data.options[option]);
                       const newOptions = {
                         ...data.options,
                         [option]: e.target.value,
@@ -92,21 +103,15 @@ function Education({ data, updateForm }) {
                     placeholder={education.options[option]}
                   />
                   <label
-                    className="-mt-5 text-xs pl-4 text-error-500 hidden"
+                    className="mt-1 text-xs text-error-500 hidden"
                     htmlFor={option}
-                    // ref={firstNameErrMsg}
+                    id={`${option}Error`}
                   ></label>
                 </div>
               </div>
             ))
           : null
       )}
-      <label
-        className="absolute mt-8 text-error-500 hidden"
-        // ref={errorMessage}
-      >
-        education required
-      </label>
     </div>
   );
 }

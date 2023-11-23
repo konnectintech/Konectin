@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { GetCountries } from "react-country-state-city";
 import { MdArrowDropDown } from "react-icons/md";
 import { ageRange, genderList } from "./data";
@@ -10,10 +10,9 @@ function BasicDetails({ data, updateForm }) {
     country: false,
     gender: false,
   });
-  const errorMessage = useRef(null);
 
   useEffect(() => {
-    GetCountries({ showFlag: true }).then((result) => {
+    GetCountries().then((result) => {
       let africanCountries = result.filter(
         (item) => item.region.toLowerCase() === "africa"
       );
@@ -22,6 +21,41 @@ function BasicDetails({ data, updateForm }) {
   }, []);
 
   const handleChange = (value, name) => {
+    const errorRef = document.getElementById(`${name}Error`);
+    const container = document.getElementById(name);
+    const errorMessage = "Input field not filled yet";
+
+    switch (name) {
+      case "email":
+        const isValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
+          ? true
+          : false;
+
+        if (value === "") {
+          container.style.borderColor = "#F11010";
+          errorRef.style.display = "block";
+          errorRef.innerHTML = errorMessage;
+        } else if (isValid === false) {
+          container.style.borderColor = "#F11010";
+          errorRef.style.display = "block";
+          errorRef.innerHTML = "Email address is not valid";
+        } else {
+          container.style.borderColor = "initial";
+          errorRef.style.display = "none";
+        }
+        break;
+      default:
+        if (value === "") {
+          container.style.borderColor = "#F11010";
+          errorRef.style.display = "block";
+          errorRef.innerHTML = errorMessage;
+        } else {
+          container.style.borderColor = "initial";
+          errorRef.style.display = "none";
+        }
+        break;
+    }
+
     updateForm("basicDetails", name, value);
   };
 
@@ -39,9 +73,9 @@ function BasicDetails({ data, updateForm }) {
           placeholder="Full Name*"
         />
         <label
-          className="-mt-5 text-xs pl-4 text-error-500 hidden"
+          id="fullNameError"
+          className="mt-1 text-xs text-error-500 hidden"
           htmlFor="fullName"
-          // ref={firstNameErrMsg}
         ></label>
       </div>
       <div className="flex flex-col">
@@ -56,13 +90,13 @@ function BasicDetails({ data, updateForm }) {
           placeholder="Email Address*"
         />
         <label
-          className="-mt-5 mb-4 text-xs pl-4 text-error-500 hidden"
+          id="emailError"
+          className="mt-1 text-xs text-error-500 hidden"
           htmlFor="email"
-          // ref={emailErrMsg}
         ></label>
       </div>
-      <div className="flex gap-2">
-        <div className="flex flex-col gap-2 min-w-[160px] !w-fit relative">
+      <div className="flex max-sm:flex-col gap-2">
+        <div className="flex flex-col gap-2 sm:min-w-[140px] sm:!w-fit relative">
           <div
             onClick={() =>
               setShowData((prev) => ({ ...prev, code: !prev.code }))
@@ -73,43 +107,55 @@ function BasicDetails({ data, updateForm }) {
               className="input-container !mb-0"
               value={data?.country_code}
               name="country_code"
+              id="country_code"
               placeholder="Country Code*"
-              readOnly
+              readOnly={countriesList.length >= 1 ? true : false}
+              onChange={(e) => {
+                if (countriesList.length <= 0) {
+                  handleChange(e.target.value, "country_code");
+                }
+              }}
+              onInput={(e) => {
+                if (countriesList.length <= 0) {
+                  handleChange(e.target.value, "country_code");
+                }
+              }}
             />
-            <MdArrowDropDown
-              className={`${
-                showData.code ? "rotate-180" : "rotate-0"
-              } absolute right-2 duration-300 text-neutral-300`}
-              size="1.5rem"
-            />
+            {countriesList.length >= 1 && (
+              <MdArrowDropDown
+                className={`${
+                  showData.code ? "rotate-180" : "rotate-0"
+                } absolute right-2 duration-300 text-neutral-300`}
+                size="1.5rem"
+              />
+            )}
           </div>
+
           {showData.code && countriesList.length >= 1 && (
             <div className="bg-neutral-100 absolute top-full translate-y-2 w-full max-h-48 z-10 overflow-y-auto text-white py-1 rounded flex flex-col">
               {countriesList.map((country) => (
                 <div
-                  key={country.phone_code}
+                  key={country.phone_code + country.iso2}
                   onClick={() => {
-                    handleChange(country.phone_code, "country_code");
+                    handleChange(`+${country.phone_code}`, "country_code");
                     setShowData((prev) => ({ ...prev, code: !prev.code }));
                   }}
                   className="flex gap-1 py-3 px-4 cursor-pointer hover:bg-neutral-200"
                 >
-                  <span>{country.iso2}</span>
-                  <div className="w-full flex">
-                    <div className="w-[10ch] truncate">{country.name}</div> (+
+                  <span>
+                    (+
                     {country.phone_code})
-                  </div>
+                  </span>
+                  <div className="w-full truncate">{country.name}</div>
                 </div>
               ))}
             </div>
           )}
           <label
-            id="countryError"
-            className="absolute mt-8 text-error-500 hidden"
-            ref={errorMessage}
-          >
-            Country code required
-          </label>
+            id="country_codeError"
+            htmlFor="country_code"
+            className="-mt-1 text-xs text-error-500 hidden"
+          ></label>
         </div>
 
         <div className="flex flex-col w-full">
@@ -119,16 +165,16 @@ function BasicDetails({ data, updateForm }) {
             placeholder="Phone Number*"
             minLength="12"
             maxLength="12"
-            value={data?.phoneNumber}
-            name="phonenumber"
-            id="phoneNumber"
+            value={data?.phone_number}
+            name="phone_number"
+            id="phone_number"
             onChange={(e) => {
               e.target.value = e.target.value
                 .replace(/[^0-9]/g, "")
                 .replace(/(\d{3})(\d{3})(\d{4})/, "$1 $2 $3")
                 .trim();
 
-              handleChange(e.target.value, "phoneNumber");
+              handleChange(e.target.value, "phone_number");
             }}
             onInput={(e) => {
               e.target.value = e.target.value
@@ -136,13 +182,13 @@ function BasicDetails({ data, updateForm }) {
                 .replace(/(\d{3})(\d{3})(\d{4})/, "$1 $2 $3")
                 .trim();
 
-              handleChange(e.target.value, "phoneNumber");
+              handleChange(e.target.value, "phone_number");
             }}
           />
           <label
-            className="-mt-5 text-xs pl-4 text-error-500 hidden"
-            htmlFor="phoneNumber"
-            // ref={phoneNumberErrMsg}
+            id="phone_numberError"
+            className="mt-1 text-xs text-error-500 hidden"
+            htmlFor="phone_number"
           ></label>
         </div>
       </div>
@@ -158,20 +204,32 @@ function BasicDetails({ data, updateForm }) {
             className="input-container !mb-0"
             value={data?.country}
             name="country"
+            id="country"
             placeholder="Country of Residence*"
-            readOnly
-            // onChange={(e) => handleCountryInput(e.target.value)}
-            // onInput={(e) => handleCountryInput(e.target.value)}
+            readOnly={countriesList.length >= 1 ? true : false}
+            onChange={(e) => {
+              if (countriesList.length <= 0) {
+                handleChange(e.target.value, "country");
+              }
+            }}
+            onInput={(e) => {
+              if (countriesList.length <= 0) {
+                handleChange(e.target.value, "country");
+              }
+            }}
           />
-          <MdArrowDropDown
-            className={`${
-              showData.country ? "rotate-180" : "rotate-0"
-            } absolute right-2 duration-300 text-neutral-300`}
-            size="1.5rem"
-          />
+
+          {countriesList.length >= 1 && (
+            <MdArrowDropDown
+              className={`${
+                showData.country ? "rotate-180" : "rotate-0"
+              } absolute right-2 duration-300 text-neutral-300`}
+              size="1.5rem"
+            />
+          )}
         </div>
         {showData.country && countriesList.length >= 1 && (
-          <div className="bg-neutral-100 absolute top-full translate-y-2 w-full max-h-48 z-10 overflow-y-auto text-white py-1 rounded flex flex-col">
+          <div className="bg-neutral-100 w-full max-h-48 z-10 overflow-y-auto text-white py-1 rounded flex flex-col">
             {countriesList.map((country) => (
               <div
                 key={country.name}
@@ -188,11 +246,10 @@ function BasicDetails({ data, updateForm }) {
           </div>
         )}
         <label
-          className="absolute mt-8 text-error-500 hidden"
-          ref={errorMessage}
-        >
-          Country required
-        </label>
+          id="countryError"
+          htmlFor="country"
+          className="-mt-1 text-xs text-error-500 hidden"
+        ></label>
       </div>
 
       <div className="flex flex-col gap-2 min-w-[160px] relative">
@@ -206,10 +263,9 @@ function BasicDetails({ data, updateForm }) {
             className="input-container !mb-0"
             value={data?.gender}
             name="gender"
+            id="gender"
             placeholder="Gender*"
             readOnly
-            // onChange={(e) => handleCountryInput(e.target.value)}
-            // onInput={(e) => handleCountryInput(e.target.value)}
           />
           <MdArrowDropDown
             className={`${
@@ -219,11 +275,12 @@ function BasicDetails({ data, updateForm }) {
           />
         </div>
         {showData.gender && (
-          <div className="bg-neutral-100 absolute top-full translate-y-1 w-full max-h-48 z-10 overflow-y-auto text-white py-1 rounded flex flex-col">
+          <div className="bg-neutral-100 w-full max-h-48 z-10 overflow-y-auto text-white py-1 rounded flex flex-col">
             {genderList.map((gender) => (
               <div
                 key={gender}
                 onClick={() => {
+                  console.log(gender);
                   handleChange(gender, "gender");
                   setShowData((prev) => ({ ...prev, gender: !prev.gender }));
                 }}
@@ -246,11 +303,10 @@ function BasicDetails({ data, updateForm }) {
           </div>
         )}
         <label
-          className="absolute mt-8 text-error-500 hidden"
-          ref={errorMessage}
-        >
-          Gender required
-        </label>
+          id="genderError"
+          htmlFor="gender"
+          className="-mt-1 text-xs text-error-500 hidden"
+        ></label>
       </div>
 
       <div className="flex flex-col gap-2 min-w-[160px] relative">
@@ -264,10 +320,9 @@ function BasicDetails({ data, updateForm }) {
             className="input-container !mb-0"
             value={data?.ageRange}
             name="ageRange"
+            id="ageRange"
             placeholder="Age Range*"
             readOnly
-            // onChange={(e) => handleCountryInput(e.target.value)}
-            // onInput={(e) => handleCountryInput(e.target.value)}
           />
           <MdArrowDropDown
             className={`${
@@ -277,12 +332,13 @@ function BasicDetails({ data, updateForm }) {
           />
         </div>
         {showData.ageRange && (
-          <div className="bg-neutral-100 absolute top-full translate-y-1 w-full z-10 overflow-y-auto text-white py-1 rounded flex flex-col">
+          <div className="bg-neutral-100 w-full z-10 overflow-y-auto text-white py-1 rounded flex flex-col">
             {ageRange.map((age) => (
               <div
                 key={age}
                 onClick={() => {
                   handleChange(age, "ageRange");
+
                   setShowData((prev) => ({
                     ...prev,
                     ageRange: !prev.ageRange,
@@ -307,11 +363,10 @@ function BasicDetails({ data, updateForm }) {
           </div>
         )}
         <label
-          className="absolute mt-8 text-error-500 hidden"
-          ref={errorMessage}
-        >
-          Country code required
-        </label>
+          id="ageRangeError"
+          htmlFor="ageRange"
+          className="-mt-1 text-xs text-error-500 hidden"
+        ></label>
       </div>
     </>
   );

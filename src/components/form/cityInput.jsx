@@ -38,6 +38,7 @@ function CityInput({ countryId, stateId, handleChange, city }) {
         <div className="flex items-center">
           <input
             className="bg-transparent outline-none border-none w-full"
+            id="cities"
             name="city"
             value={city}
             placeholder="Enter City"
@@ -47,6 +48,7 @@ function CityInput({ countryId, stateId, handleChange, city }) {
         </div>
         <label
           id="cityError"
+          htmlFor="cities"
           className="absolute mt-8 text-error-500 hidden"
           ref={errorMessage}
         ></label>

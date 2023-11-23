@@ -25,9 +25,9 @@ function NewsLetter() {
         error: false,
         header: (
           <>
-            <font className="font-bold text-[18px]">Congratulations</font>,
+            <span className="span-bold text-[18px]">Congratulations</span>,
             you're now part of the{" "}
-            <font className="text-secondary-600">Konectin</font> family 🎉
+            <span className="text-secondary-600">Konectin</span> family 🎉
           </>
         ),
         p1: "Thank you for subscribing to our newsletter. Keep an eye on your inbox for the first email from us. Stay tuned for exciting updates! 📩",
@@ -40,7 +40,7 @@ function NewsLetter() {
         error: true,
         header: (
           <>
-            <font className="text-secondary-600">Oops!</font> Something went
+            <span className="text-secondary-600">Oops!</span> Something went
             wrong 🥴
           </>
         ),

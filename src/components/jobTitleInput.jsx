@@ -23,13 +23,15 @@ function JobTitleInput({
   section,
   subsection,
 }) {
+  const [jobTitle, setJobTitle] = useState(title);
   const [professionOption, setProfessionOption] = useState([]);
   const errorMessage = useRef(null);
 
   useEffect(() => {
-    const storedProfession = JSON.parse(sessionStorage.getItem("profession"));
+    const storedProfession =
+      JSON.parse(sessionStorage.getItem("profession")) || [];
 
-    if (storedProfession) {
+    if (storedProfession.length >= 1) {
       storedProfession.map((obj) =>
         setProfessionOption((prev) => [...prev, obj])
       );
@@ -44,8 +46,10 @@ function JobTitleInput({
     handleInputChange({
       section: section,
       subsection: subsection,
-      values: opt.value,
+      values: opt,
     });
+
+    setJobTitle(opt);
 
     if (auth) {
       verifyInput(opt, errorMessage.current, "jobTitle");
@@ -53,10 +57,14 @@ function JobTitleInput({
   };
 
   const handleAddProfession = (opt) => {
-    const storedProfession = JSON.parse(sessionStorage.getItem("profession"));
-    if (storedProfession) {
-      const addedProfession = storedProfession.push({ label: opt, value: opt });
-      sessionStorage.setItem("profession", JSON.stringify(addedProfession));
+    const storedProfession =
+      JSON.parse(sessionStorage.getItem("profession")) || [];
+
+    if (storedProfession.length >= 1) {
+      sessionStorage.setItem(
+        "profession",
+        JSON.stringify([...storedProfession, { label: opt, value: opt }])
+      );
     } else {
       const profession = [{ label: opt, value: opt }];
       sessionStorage.setItem("profession", JSON.stringify(profession));
@@ -72,7 +80,7 @@ function JobTitleInput({
         inputId="jobTitle"
         placeholder="Job Title"
         components={{ DropdownIndicator }}
-        defaultInputValue={title}
+        defaultInputValue={jobTitle}
         styles={{
           control: (base) => ({
             ...base,
@@ -117,6 +125,7 @@ function JobTitleInput({
       />
       <label
         id="jobTitleError"
+        htmlFor="jobTitle"
         className="absolute -mt-5 mb-1 pl-4 text-xs text-error-500 hidden"
         ref={errorMessage}
       ></label>

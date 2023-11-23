@@ -8,14 +8,17 @@ import { TemplateProvider } from "./middleware/resume";
 
 import en from "javascript-time-ago/locale/en.json";
 import ru from "javascript-time-ago/locale/ru.json";
+import { WalkthroughProvider } from "./context/WalkthroughContext";
 
 TimeAgo.addDefaultLocale(en);
 TimeAgo.addLocale(ru);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <TemplateProvider>
-    <CVProvider>
-     <App />
-    </CVProvider>
+    <WalkthroughProvider>
+      <CVProvider>
+        <App />
+      </CVProvider>
+    </WalkthroughProvider>
   </TemplateProvider>
 );

@@ -32,7 +32,6 @@ import variant3Icon from "./icons/variant (3).svg";
 import variant4Icon from "./icons/variant (4).svg";
 import variant5Icon from "./icons/variant (5).svg";
 import teamIcon from "./icons/team.svg";
-import userIcon from "./icons/user.svg";
 import communityIcon from "./icons/community.svg";
 import targetIcon from "./icons/target.svg";
 import productIcon from "./icons/product.svg";
@@ -41,6 +40,14 @@ import dislikeIcon from "./icons/dislike.svg";
 import bookmarkIcon from "./icons/bookmark.svg";
 import notifySuccess from "./icons/notifysuccess.svg";
 import notifyError from "./icons/notifyerror.svg";
+
+// socials
+import SFacebook from "./icons/socials/Facebook.svg";
+import SGoogle from "./icons/socials/google.svg";
+import SInstagram from "./icons/socials/Instagram.svg";
+import SLinkedin from "./icons/socials/Linkedin.svg";
+import STwitter from "./icons/socials/Twitter.svg";
+import SWhatsapp from "./icons/socials/Whatsapp.svg";
 
 // Sign Page Image
 import signImage from "./images/sign image.png";
@@ -84,6 +91,7 @@ import side1Image from "./images/side details 1.png";
 import internHero from "./images/internship hero.png";
 import comingSoon from "./images/coming soon.png";
 import modalBackground from "./images/modal background.png";
+import happyTeam from "./images/happyTeam.png";
 
 // Resume Builder Images
 import botIcon from "./images/bot/bot.svg";
@@ -96,14 +104,21 @@ import ResumeTemplateSampleImage from "./images/resume template.png";
 import BuilderBg from "./images/builder-bg.png";
 import ResumeTemplateSample1Image from "./images/resume template 1.png";
 import ResumeCTAImage from "./images/cta.png";
+import basicInfo from "./icons/basic_info.svg";
+import workExpirience from "./icons/work_experience.svg";
+import education from "./icons/education.svg";
+import skill from "./icons/skill.svg";
+import bio from "./icons/bio.svg";
+import finalize from "./icons/finalize.svg";
 
 // Blog Images
-import shareIcon from "./icons/share.svg";
-import commentIcon from "./icons/comment.svg";
-import blogHero from "./images/blog hero.png";
-import BlogCTAImage from "./images/cta 1.png";
-import BlogCTA1Image from "./images/cta 2.png";
-import BlogCTA2Image from "./images/cta 3.png";
+import blogHero from "./images/blog/hero.jpg";
+import blogHero1 from "./images/blog/hero 1.jpg";
+import blogHero2 from "./images/blog/hero 2.jpg";
+import blogHero3 from "./images/blog/hero 3.jpg";
+import BlogCTAImage from "./images/blog/flyer 3.png";
+import BlogCTA1Image from "./images/blog/flyer.png";
+import BlogCTA2Image from "./images/blog/flyer 2.png";
 import arrowUp from "./icons/P1-Lighticons-line-292.png";
 import arrowDown from "./icons/P1-Lighticons-line-291.png";
 
@@ -144,7 +159,6 @@ export {
   person4Icon,
   person5Icon,
   teamIcon,
-  userIcon,
   communityIcon,
   productIcon,
   targetIcon,
@@ -176,6 +190,7 @@ export {
   internHero,
   comingSoon,
   modalBackground,
+  happyTeam,
 
   // Resume Images
   ResumeCTAImage,
@@ -188,6 +203,12 @@ export {
   createResume,
   uploadResume,
   botIcon,
+  basicInfo,
+  workExpirience,
+  education,
+  skill,
+  bio,
+  finalize,
 
   //Dashboard Images
   bell,
@@ -213,9 +234,10 @@ export {
   cancelIcon,
 
   // Blog Images
-  shareIcon,
-  commentIcon,
   blogHero,
+  blogHero1,
+  blogHero2,
+  blogHero3,
   BlogCTAImage,
   BlogCTA1Image,
   BlogCTA2Image,
@@ -236,4 +258,12 @@ export {
   MichaelIcon,
   AfolabiIcon,
   FounderIcon,
+
+  // socials
+  SFacebook,
+  STwitter,
+  SWhatsapp,
+  SInstagram,
+  SLinkedin,
+  SGoogle,
 };

@@ -32,6 +32,14 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
         case "city":
         case "state":
         case "country":
+        case "startMonth":
+        case "startYear":
+          errorHolder = document.getElementById(`${holder}Error`);
+          verifyInput(data[holder], errorHolder, holder);
+          break;
+        case "endMonth":
+        case "endYear":
+          if (data.current) break;
           errorHolder = document.getElementById(`${holder}Error`);
           verifyInput(data[holder], errorHolder, holder);
           break;

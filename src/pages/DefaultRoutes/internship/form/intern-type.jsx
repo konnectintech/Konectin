@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
 import { fieldList, typeList } from "./data";
 
@@ -8,9 +8,20 @@ function InternType({ data, updateForm }) {
     field: false,
   });
 
-  const errorMessage = useRef(null);
-
   const handleChange = (value, name) => {
+    const errorRef = document.getElementById(`${name}Error`);
+    const container = document.getElementById(name);
+    const errorMessage = "Select an option";
+
+    if (value === "") {
+      container.style.borderColor = "#F11010";
+      errorRef.style.display = "block";
+      errorRef.innerHTML = errorMessage;
+    } else {
+      container.style.borderColor = "initial";
+      errorRef.style.display = "none";
+    }
+
     updateForm("internType", name, value);
   };
 
@@ -25,6 +36,7 @@ function InternType({ data, updateForm }) {
             className="input-container !mb-0"
             value={data?.type}
             name="type"
+            id="type"
             placeholder="What type of internship are you interested in?*"
             readOnly
             // onChange={(e) => handleCountryInput(e.target.value)}
@@ -65,11 +77,9 @@ function InternType({ data, updateForm }) {
           </div>
         )}
         <label
-          className="absolute mt-8 text-error-500 hidden"
-          ref={errorMessage}
-        >
-          Please select an option
-        </label>
+          id="typeError"
+          className="-mt-1 text-xs text-error-500 hidden"
+        ></label>
       </div>
       <div className="flex flex-col gap-2 min-w-[160px] relative">
         <div
@@ -82,10 +92,9 @@ function InternType({ data, updateForm }) {
             className="input-container !mb-0"
             value={data?.field}
             name="field"
+            id="field"
             placeholder="Preferred Field/Department for Internship?*"
             readOnly
-            // onChange={(e) => handleCountryInput(e.target.value)}
-            // onInput={(e) => handleCountryInput(e.target.value)}
           />
           <MdArrowDropDown
             className={`${
@@ -122,11 +131,9 @@ function InternType({ data, updateForm }) {
           </div>
         )}
         <label
-          className="absolute mt-8 text-error-500 hidden"
-          ref={errorMessage}
-        >
-          Please select an option
-        </label>
+          id="fieldError"
+          className="-mt-1 text-xs text-error-500 hidden"
+        ></label>
       </div>
     </>
   );

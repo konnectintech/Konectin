@@ -1,5 +1,5 @@
 import { useState } from "react";
-import BlogCard from "../../../../components/blogCard";
+import BlogCard from "../../../../components/blog/blogCard";
 import Pagination from "../../../../components/pagination";
 
 function Feed({ newBlogs, trendingBlogs, gridNumber }) {
@@ -30,7 +30,7 @@ function Feed({ newBlogs, trendingBlogs, gridNumber }) {
       {trendingBlogs.length >= 1 && (
         <div className="flex flex-col gap-4">
           <h1 className="font-semibold">What's Trending?</h1>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="blog-grid-system gap-4">
             {trendingBlogs.map((trendingCard, index) => (
               <BlogCard key={index} article={trendingCard} />
             ))}
