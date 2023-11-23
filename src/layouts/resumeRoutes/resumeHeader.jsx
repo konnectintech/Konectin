@@ -1,16 +1,12 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { FaBars, FaCheck, FaTimes } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { konectinIcon } from "../../assets";
 import { useTemplateContext } from "../../middleware/resume";
 import "../header/header.css";
-import ProgressWalkthrough from "../../components/walkthrough/ProgressWalkthrough";
-import { useWalkthrough } from "../../context/WalkthroughContext";
 
 function ResumeHeader() {
   const { templateData, setTemplateData } = useTemplateContext();
-  const { currentModule } = useWalkthrough();
   const { currentStage } = templateData;
   const locationNo = currentStage;
 
@@ -77,22 +73,13 @@ function ResumeHeader() {
     setToggle(!isOpen);
   };
 
-  const backgroundColor = (link) =>
-    `${
-      completed[link.text.split(" ").join("_")] ||
-      (link.text === "finalize" &&
-        (pathname === "/resume/builder/preview" ||
-          pathname === "/resume/builder/download"))
-        ? "bg-success-400"
-        : locationNo >= link.no
-        ? "bg-white"
-        : "bg-neutral-400 "
-    }`;
-
   return (
     <>
-      <header className="relative bg-[#191A1F]">
+      <header className="relative blog-bar bg-white">
         <nav className="w-11/12 mx-auto max-w-screen-2xl flex justify-between items-center gap-6 lg:gap-16 py-4">
+          <Link to="/" className="relative z-30 nav-icon block">
+            <img src={konectinIcon} alt="Konectin Logo" />
+          </Link>
           <nav
             onClick={toggle}
             className="md:hidden relative z-30 cursor-pointer"
@@ -105,69 +92,59 @@ function ResumeHeader() {
           </nav>
 
           {/* Desktop and Tab View  */}
-          <nav className="hidden relative md:flex justify-center items-center w-full">
-            <nav className=" transistion-all flex  md:gap-3 lg:gap-6 flex-row text-sm">
-              {links.map((link, index) => (
-                <Link
-                  to={
-                    completed[link.text.split(" ").join("_")] ||
-                    locationNo >= link.no
-                      ? link.path
-                      : "#"
-                  }
-                  key={index}
-                  className={`flex cursor-pointer items-center gap-2 text-sm ${
+          <nav className="hidden transistion-all md:flex md:gap-3 lg:gap-6 flex-row text-sm">
+            {links.map((link, index) => (
+              <Link
+                to={
+                  completed[link.text.split(" ").join("_")] ||
+                  locationNo >= link.no
+                    ? link.path
+                    : "#"
+                }
+                key={index}
+                className={`flex cursor-pointer items-center gap-2 text-sm ${
+                  completed[link.text.split(" ").join("_")] ||
+                  (link.text === "finalize" &&
+                    (pathname === "/resume/builder/preview" ||
+                      pathname === "/resume/builder/download"))
+                    ? "text-success-400 font-semibold"
+                    : locationNo >= link.no
+                    ? "text-secondary-500 font-semibold"
+                    : "text-secondary-300 font-medium"
+                }`}
+              >
+                <span
+                  className={`max-md:hidden circle-orange ${
                     completed[link.text.split(" ").join("_")] ||
                     (link.text === "finalize" &&
                       (pathname === "/resume/builder/preview" ||
                         pathname === "/resume/builder/download"))
-                      ? "text-success-400 font-semibold"
+                      ? "bg-success-400"
                       : locationNo >= link.no
-                      ? "text-white font-semibold"
-                      : "text-neutral-400 font-medium"
+                      ? "text-secondary-500 border-secondary-500"
+                      : "text-secondary-300 border-secondary-300"
                   }`}
                 >
+                  {completed[link.text.split(" ").join("_")] ? (
+                    <FaCheck color="white" />
+                  ) : (
+                    link.no
+                  )}
+                </span>
+                <span className="flex-1 uppercase">{link.text}</span>
+                {link.no <= links.length - 1 && (
                   <span
-                    className={`max-md:hidden circle-orange ${
-                      completed[link.text.split(" ").join("_")] ||
-                      (link.text === "finalize" &&
-                        (pathname === "/resume/builder/preview" ||
-                          pathname === "/resume/builder/download"))
+                    className={`nav-dotted-line max-xl:hidden relative rounded-xl block w-6 h-0.5 ${
+                      completed[link.text.split(" ").join("_")]
                         ? "bg-success-400"
                         : locationNo >= link.no
-                        ? "text-white border-white"
-                        : "text-neutral-400 border-neutral-400"
+                        ? "bg-secondary-500"
+                        : "bg-secondary-300 inactive"
                     }`}
-                  >
-                    {completed[link.text.split(" ").join("_")] ? (
-                      <FaCheck color="white" />
-                    ) : (
-                      link.no
-                    )}
-                  </span>
-                  <span className="flex-1 uppercase">{link.text}</span>
-                  <div className=" flex items-center">
-                    <div className={`${backgroundColor(link)} h-0.5 w-8 `} />
-                    <div
-                      className={`${backgroundColor(
-                        link
-                      )} h-2 w-2 rounded-full`}
-                    />
-                  </div>
-                  {link.no <= links.length - 1 && (
-                    <span
-                      className={`nav-dotted-line max-xl:hidden relative rounded-xl block w-6 h-0.5 ${
-                        completed[link.text.split(" ").join("_")]
-                          ? "bg-success-400"
-                          : locationNo >= link.no
-                          ? "bg-secondary-500"
-                          : "bg-secondary-300 inactive"
-                      }`}
-                    />
-                  )}
-                </Link>
-              ))}
-            </nav>
+                  />
+                )}
+              </Link>
+            ))}
           </nav>
 
           {/* Mobile View  */}

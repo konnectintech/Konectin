@@ -30,8 +30,6 @@ import Login from "./pages/sign/login/login";
 import SignUp from "./pages/sign/signup/signup";
 import ForgetPassword from "./pages/sign/login/forgetPassword";
 import ResetPassword from "./pages/sign/login/resetPassword";
-import Coverletter from "./pages/DefaultRoutes/cover-letter/index";
-// import ErrorPage from "./pages/404";
 import ErrorPage from "./pages/404";
 import InternApplication from "./pages/DefaultRoutes/internship/intern-application";
 
@@ -71,7 +69,6 @@ function App() {
             <Route path="/policy" element={<PrivacyPolicy />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/contact" element={<Contact />} />
-
             {/* <Route path="/admin" element={<Admin />} /> */}
             <Route path="/blog/" element={<Blog />}>
               <Route path="/blog/:feed" element={<Feeds />} />
@@ -80,10 +77,8 @@ function App() {
             <Route path="/about" element={<About />} />
           </Route>
 
-
           {/* Resume Builder Routes */}
           <Route element={<ResumeRoutes />}>
-            <Route path="/cover-letter/*" element={<Coverletter />} />
             <Route path="/resume/ai/*" element={<AIStarter />} />
             <Route path="/resume/options" element={<Options />} />
             <Route path="/resume/start" element={<StartBuilder />} />

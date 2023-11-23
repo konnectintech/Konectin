@@ -71,10 +71,6 @@ input[type="tel"]:-webkit-autofill {
   @apply p-4 mb-6 text-[11px] w-full max-h-[50px] text-primary-400 border border-neutral-500 outline-0 rounded-[4px] bg-neutral-1000 focus:border-primary-500 focus:border-[1.5px];
 }
 
-.coverLetter__input {
-  @apply px-4 py-3 text-[11px] w-full max-h-[50px] text-primary-400 border border-neutral-500 outline-0 bg-neutral-1000 focus:border-primary-500 focus:border-[1.5px]
-}
-
 .input-container:has(input:focus) {
   border-color: #403580;
   border-width: 1.5px;
