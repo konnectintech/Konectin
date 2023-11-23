@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -10,14 +9,14 @@ const ShortBio = ({ data, handleChange, isLogged }) => {
     handleChange({ section: "shortBio", subsection: name, values: value });
   };
 
-  function handleSubmit (e) {
-    e.preventDefault()
+  function handleSubmit(e) {
+    e.preventDefault();
     if (data.length <= 2) {
-      setErrorMessage("Fill in Professional Bio")
+      setErrorMessage("Fill in Professional Bio");
     }
     if (data && data.length >= 2) {
-      setErrorMessage("")
-      navigate("/cover-letter/info-ended")
+      setErrorMessage("");
+      navigate("/cover-letter/info-ended");
     }
   }
 
@@ -58,7 +57,10 @@ const ShortBio = ({ data, handleChange, isLogged }) => {
           />
           <p className="absolute -right-14 bottom-0 inline ">hdhdh</p>
         </div>
-        <label htmlFor="bio" className="text-error-500 block text-sm mt-2 text-left">
+        <label
+          htmlFor="bio"
+          className="text-error-500 block text-sm mt-2 text-left"
+        >
           {errorMessage}
         </label>
         <button

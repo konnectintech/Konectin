@@ -1,16 +1,16 @@
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../middleware/auth";
 import { useCVData } from "../../../middleware/cv";
+import { useEffect } from "react";
+
 import img from "../../../assets/images/bot/bot.svg";
 
 // Routes
 import Start from "./started";
 import JobDetails from "./details";
 import JobDescription from "./description";
-import ShortBio from "./ShortBio";
-import { useEffect } from "react";
+import ShortBio from "./shortBio";
 import Ended from "./ended";
-
 
 function CoverLetter() {
   const { CVData, onInputChange } = useCVData();
@@ -70,6 +70,8 @@ function CoverLetter() {
         }
       }
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigate]);
 
   return (

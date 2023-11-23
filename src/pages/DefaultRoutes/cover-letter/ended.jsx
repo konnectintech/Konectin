@@ -1,14 +1,7 @@
-import React from "react";
-import { useEffect } from "react";
-
-function Ended({data}) {
-    const handleSubmit = () => {
-        console.log("first")
-    }
-
-    useEffect(() => {
-       console.log(data) 
-    },[])
+function Ended({ data }) {
+  const handleSubmit = () => {
+    console.log("first");
+  };
 
   return (
     <div className="flex items-center flex-col">
