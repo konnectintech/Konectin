@@ -46,6 +46,8 @@ function CountryInput({ setCode, handleChange, country, setCountryId }) {
           <input
             className="bg-transparent outline-none border-none w-full h-full"
             value={country}
+            id="countries"
+            autoComplete="country"
             name="country"
             placeholder="Country"
             onChange={(e) => handleCountryInput(e.target.value)}
@@ -53,6 +55,7 @@ function CountryInput({ setCode, handleChange, country, setCountryId }) {
           />
         </div>
         <label
+          htmlFor="countries"
           id="countryError"
           className="absolute mt-8 text-error-500 hidden"
           ref={errorMessage}

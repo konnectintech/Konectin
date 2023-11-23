@@ -1,12 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
+import * as FaIcons from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import BlogCard from "../../../../components/blogCard";
+
+import BlogComment from "../comments";
+import Share from "../../../../components/blog/share";
 import Pagination from "../../../../components/pagination";
+import BlogCard from "../../../../components/blog/blogCard";
+
 import "../index.css";
-import Share from "./share";
-import BlogComment from "./comments";
 
 function BlogContent() {
   const [blog, setBlog] = useState({});
@@ -27,6 +30,8 @@ function BlogContent() {
 
   // Get the blog on page load
   useEffect(() => {
+    setLoading({ post: true, related: true });
+
     async function getBlog() {
       try {
         const response = await axios.get(`${url}/getBlog?blogId=${id}`);
@@ -49,30 +54,23 @@ function BlogContent() {
       try {
         const response = await axios.get(`${url}/getAllBlogs`);
         const { results } = response.data.blogs;
-
         const relatedBlogs = results.filter((blog) =>
           blog.tagIds.some((tag) =>
             main.tagIds.includes(tag) && blog.id !== main.id ? true : false
           )
         );
-
         setSimilarContent(relatedBlogs);
         setLoading((prev) => ({ ...prev, related: false }));
       } catch (err) {
         console.log(err);
       }
     }
-
     getRelatedBlogs(blog);
   }, [blog]);
 
   useEffect(() => {
     if (isLoading.related) {
       const preloader = new Array(3).fill({
-        htmlTitle: "Loading contents",
-        authorName: "Konectin",
-        metaDescription: "Loading",
-        updated: new Date().getDate(),
         blurred: true,
       });
 
@@ -81,7 +79,40 @@ function BlogContent() {
 
     if (isLoading.post) {
       const preloader = {
-        rssBody: `The job interview process can be a nerve-wracking experience, but with the right preparation and mindset, you can increase your chances of success. Whether you are a recent graduate, a seasoned professional, or a career changer, these five essential steps will help you ace your interviews and make a great impression on potential employers. Step 1: Research the Company<br /><p>Many interviewers ask similar questions to get to know you better and evaluate your fit for the position. Prepare answers to questions like "Tell me about yourself", "Why do you want to work here?" and "What are your strengths and weaknesses?"</p><p>Take the time to craft thoughtful and concise responses that highlight your relevant skills and experience. Practice these responses with a friend or family member to help build your confidence and improve your delivery.</p>Step 3: Dress Professionally<br/><p>First impressions count, and how you dress is an important part of that. Make sure you wear clean, professional attire that is appropriate for the company's culture. If you are unsure about the dress code, research the company's website or LinkedIn page for visual cues, or reach out to someone at the company for clarification.</p><p>Remember, your attire should reflect your respect for the company and the interview process. Don't take any chances; dress appropriately, even if the company has a casual dress code.</p>Step 4: Practice Active Listening<br /><p>During the interview, make sure you listen carefully to the interviewer's questions and respond thoughtfully. Avoid interrupting the interviewer and show that you are engaged in the conversation.</p><p>Ask clarifying questions if you are unsure about a question, and take the time to consider your responses before speaking. Show that you are interested in the company and the position by actively listening and responding to the interviewer's questions.</p> Step 5: Follow Up and Reflect<br/><p>After the interview, make sure to send a follow-up email to thank the interviewer for their time and reiterate your interest in the position. This shows that you are professional, courteous, and serious about the opportunity.</p><p>Take the time to reflect on the interview, considering what went well and what you could improve for future interviews. Make note of any additional questions or concerns you may have, and be sure to address them in your follow-up email or in future interviews.</p><p>In conclusion, following these five essential steps will help you prepare for and ace your job interviews. Remember to research the company, prepare answers to common questions, dress professionally, practice active listening, and follow up after the interview. With the right preparation and mindset, you can increase your chances of success and land your dream job.</p>`,
+        rssBody: `
+        <h1 class="blurry-text w-full mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, facere ipsum! Odio dolorum quasi cupiditate accusantium, omnis fuga, qui molestiae possimus nesciunt quisquam magnam? Est placeat quisquam repudiandae facilis vel.</h1>
+        <h1 class="blurry-text w-full"></h1>
+        <h1 class="blurry-text w-11/12"></h1>
+
+        <br />
+
+        <h1 class="blurry-text w-full"></h1>
+        <h1 class="blurry-text w-full"></h1>
+        <h1 class="blurry-text w-full"></h1>
+        <h1 class="blurry-text w-1/4"></h1>
+        
+        <br />
+        
+        <h1 class="blurry-text w-1/3"></h1>
+        
+        <h1 class="blurry-text w-full"></h1>
+        <h1 class="blurry-text w-full"></h1>
+        <h1 class="blurry-text w-full"></h1>
+        <h1 class="blurry-text w-11/12"></h1>
+        <h1 class="blurry-text w-1/2"></h1>
+
+        <br />
+
+        <h1 class="blurry-text w-5/6"></h1>
+        <h1 class="blurry-text w-3/4"></h1>
+        <h1 class="blurry-text w-5/12"></h1>
+        <h1 class="blurry-text w-7/12"></h1>
+        <h1 class="blurry-text w-2/3"></h1>
+        
+        <br />
+
+        <h1 class="blurry-text w-full"></h1>
+        `,
         htmlTitle: "Loading contents",
         authorName: "Konectin",
         metaDescription: "Loading",
@@ -105,35 +136,77 @@ function BlogContent() {
   );
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 w-full">
       <div
         className={`flex flex-col gap-4 pt-8 ${
-          isLoading.post && "blurry-text-md animate-pulse"
+          isLoading.post && "animate-pulse"
         }`}
       >
         <div className="text-sm space-y-2 text-neutral-300 text-center">
           <h1
             title={blog.htmlTitle}
-            className="text-3xl font-semibold mb-1 text-neutral-100"
+            className={`text-3xl !leading-normal font-semibold mb-1 text-neutral-100 max-w-4xl mx-auto ${
+              isLoading.post && "blurry-text w-10/12 h-[26px]"
+            }`}
           >
             {blog.htmlTitle}
           </h1>
-          <p className="text-secondary-500">
+          <p
+            className={`text-secondary-500 ${
+              isLoading.post && "blurry-text w-fit mx-auto px-12"
+            }`}
+          >
             {/* {blog.authorName} */}
             Konectin
           </p>
-          <p>{blog.metaDescription}</p>
+          <p className={isLoading.post && "blurry-text w-fit mx-auto"}>
+            {blog.metaDescription}
+          </p>
         </div>
-        <div className="max-w-screen-md w-full mx-auto">
-          <div className="w-full bg-neutral-700 overflow-hidden rounded-t-2xl">
+        <div className="w-full mx-auto">
+          <div className="w-full bg-neutral-700 h-[550px] overflow-hidden rounded-t-2xl">
             <img
-              className="w-full max-h-[550px] mx-auto"
+              className="w-full h-full mx-auto"
               src={blog.featuredImage}
               alt={blog.htmlTitle}
             />
           </div>
           <div className="text-start text-xs leading-normal bg-white pt-4 pb-8 rounded-b-md">
-            <div className="flex flex-wrap w-10/12 mx-auto">
+            <div className="flex flex-wrap px-6 lg:w-11/12 mx-auto">
+              {/* Like and share */}
+              <div className="font-bold text-primary-500 flex w-full justify-between items-center mb-3">
+                <div className="flex justify-between items-center gap-2">
+                  <div
+                    className={
+                      isLoading.post
+                        ? "blurry-text p-2"
+                        : "bg-neutral-1000 p-2 w-fit"
+                    }
+                  >
+                    <FaIcons.FaEye />
+                  </div>
+                  <div
+                    className={
+                      isLoading.post
+                        ? "blurry-text p-2"
+                        : "bg-neutral-1000 text-neutral-1000 p-2 cursor-pointer w-fit"
+                    }
+                  >
+                    {!isLoading.post && (
+                      <FaIcons.FaHeart
+                        strokeWidth="50px"
+                        className="stroke-primary-500 w-full"
+                      />
+                    )}
+                  </div>
+                </div>
+                <Share
+                  pathname={pathname}
+                  {...blog}
+                  isLoading={isLoading.post}
+                />
+              </div>
+
               <article
                 className={
                   !isFull ? "line-clamp-[14] blog-article" : "blog-article"
@@ -146,7 +219,7 @@ function BlogContent() {
                 <div className="pb-3">
                   <font
                     onClick={() => setOpen((prev) => !prev)}
-                    className="text-primary-500 cursor-pointer"
+                    className="text-secondary-500 cursor-pointer"
                   >
                     {!isFull ? "Read more..." : "Read Less..."}
                   </font>
@@ -154,18 +227,26 @@ function BlogContent() {
               )}
             </div>
             {isFull && (
-              <div className="w-10/12 mx-auto">
-                <Share pathname={pathname} {...blog} />
+              <div className="px-6 lg:w-11/12 mx-auto">
                 <BlogComment blogID={blog.id} />
               </div>
             )}
           </div>
         </div>
       </div>
+
       <div>
-        <p className="font-semibold text-xl mb-6">Related articles</p>
+        <p
+          className={
+            isLoading.related
+              ? "blurry-text w-fit text-xl mb-6"
+              : "font-semibold text-xl mb-6"
+          }
+        >
+          Related articles
+        </p>
         <div
-          className={`grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch ${
+          className={`blog-grid-system gap-4 items-stretch ${
             isLoading.related && "animate-pulse"
           }`}
         >

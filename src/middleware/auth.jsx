@@ -82,6 +82,7 @@ export const useAuth = () => {
   const navigate = useNavigate();
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
   const { ongoing } = JSON.parse(sessionStorage.getItem("internData")) || "";
+  const status = JSON.parse(sessionStorage.getItem("status")) || "";
 
   // const getUser = async (data) => {
   //   try {
@@ -132,6 +133,7 @@ export const useAuth = () => {
       loader(false);
 
       if (ongoing) navigate("/internship/intern-application");
+      else if (status) navigate(status);
       else navigate("/resume/options");
     } catch (err) {
       loader(false);

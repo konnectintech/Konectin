@@ -61,6 +61,7 @@ const Download = ({ data }) => {
         setMessage("");
       }
     } catch (error) {
+      console.log(error);
       setMessage("error");
       setLoading(false);
     }
@@ -116,7 +117,7 @@ const Download = ({ data }) => {
               ) : (
                 <div
                   onClick={() => setMessage("")}
-                  className="text-white bg-secondary-600 px-6 py-3 w-fit rounded mx-auto"
+                  className="text-white bg-secondary-600 px-6 py-3 w-fit rounded mx-auto cursor-pointer"
                 >
                   Try again
                 </div>

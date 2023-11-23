@@ -120,7 +120,7 @@ const BasicInformation = ({ data, onInputChange }) => {
           This information will placed at the top of your resume.
         </p>
 
-        <div className="w-full">
+        <form className="w-full">
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col">
               <input
@@ -242,6 +242,7 @@ const BasicInformation = ({ data, onInputChange }) => {
               type="email"
               value={email}
               name="email"
+              autoComplete="email"
               id="email"
               onChange={(e) => handleInputChange(e, "email")}
               placeholder="Email*"
@@ -252,7 +253,7 @@ const BasicInformation = ({ data, onInputChange }) => {
               ref={emailErrMsg}
             ></label>
           </div>
-        </div>
+        </form>
         <NavigationButton
           back={() => navigate("/resume/ai/template-selector")}
           cont={handleSubmit}
