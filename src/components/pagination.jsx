@@ -28,18 +28,12 @@ function Pagination({ cardsPerPage, totalCards, currentPage, paginate }) {
           return (
             <li
               key={number}
-              className={
-                number === currentPage
-                  ? "font-semibold cursor-pointer"
-                  : "text-neutral-300 cursor-pointer"
-              }
+              onClick={() => paginate(number)}
+              className={`${
+                number === currentPage ? "bg-neutral-700 text-primary-500 " : ""
+              } px-2 cursor-pointer font-semibold`}
             >
-              <span
-                onClick={() => paginate(number)}
-                className="page-link pointer"
-              >
-                {number}
-              </span>
+              {number}
             </li>
           );
         })}

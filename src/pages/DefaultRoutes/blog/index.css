@@ -1,3 +1,9 @@
+.swiper-pagination-bullet-active {
+  width: 16px !important;
+  border-radius: 25% !important;
+  transition-duration: 500ms;
+}
+
 .blog-card {
   background-color: #fff;
 }
@@ -8,15 +14,9 @@
 }
 
 .blurry-text {
+  height: 14px;
   color: transparent !important;
-  text-shadow: 0 0 3.5px #292a2b;
-}
-
-.blurry-text-md div,
-.blurry-text-md div h1,
-.blurry-text-md article {
-  color: transparent !important;
-  text-shadow: 0 0 10px #58595a;
+  background-color: #dadadb;
 }
 
 .blog-article {
@@ -28,6 +28,23 @@
   margin: 12px 0 !important;
 }
 
+.blog-article .blurry-text {
+  margin: 3px 0 !important;
+}
+
+.blog-article h1,
+.blog-article h2,
+.blog-article h3,
+.blog-article h4 {
+  font-family: "Merriweather", sans-serif !important;
+}
+
+.blog-article p,
+.blog-article span {
+  font-size: 14px !important;
+  font-family: "Avenir", sans-serif !important;
+}
+
 .blog-article blockquote {
   background: #f9f9f9;
   border-left: 15px solid #8c86b3;
@@ -37,14 +54,6 @@
   /* quotes: "\201C""\201D""\2018""\2019"; */
 }
 
-/* .blog-article blockquote:before {
-  color: #ccc;
-  content: open-quote;
-  font-size: 4em;
-  line-height: 0.1em;
-  margin-right: 0.25em;
-  vertical-align: -0.4em;
-} */
 .blog-article h1,
 .blog-article h2,
 .blog-article h3,

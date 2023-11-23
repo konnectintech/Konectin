@@ -27,11 +27,6 @@ const Profession = ({ data }) => {
     navigate("/resume/ai/template-selector");
   };
 
-  useEffect(() => {
-    if (data.profession.length !== 0) {
-    }
-  });
-
   return (
     <>
       <h2 className="text-2xl lg:text-3xl font-extrabold text-center">

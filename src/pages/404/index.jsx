@@ -14,7 +14,7 @@ function ErrorPage() {
         >
           <source src={backgroundVideo} type="video/mp4"></source>
         </video>
-        <h1 className="w-full relative bg-[#F1F1F2] text-black text-[90px] font-black tracking-[1rem] md:tracking-[2rem] mix-blend-lighten">
+        <h1 className="w-full text-center relative bg-white text-black text-[90px] font-black tracking-[1rem] md:tracking-[2rem] mix-blend-lighten">
           OOPS!
         </h1>
       </section>

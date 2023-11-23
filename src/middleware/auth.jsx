@@ -81,6 +81,8 @@ export const useAuth = () => {
   const [user, setUser] = useLocalStorage("user", null);
   const navigate = useNavigate();
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
+  const { ongoing } = JSON.parse(sessionStorage.getItem("internData")) || "";
+  const status = JSON.parse(sessionStorage.getItem("status")) || "";
 
   // const getUser = async (data) => {
   //   try {
@@ -129,7 +131,10 @@ export const useAuth = () => {
 
       setUser(userData);
       loader(false);
-      navigate("/resume/options");
+
+      if (ongoing) navigate("/internship/intern-application");
+      else if (status) navigate(status);
+      else navigate("/resume/options");
     } catch (err) {
       loader(false);
       setError(err.response.data.message);
@@ -143,7 +148,7 @@ export const useAuth = () => {
       setUser(userData);
       loader(false);
       setTimeout(() => {
-        navigate("/verify-mail");
+        navigate("/verify-mail", { state: { from: "sign-up" } });
       }, 1000);
     } catch (err) {
       loader(false);
