@@ -10,7 +10,14 @@ import {
   SWhatsapp,
 } from "../../assets";
 
-function Share({ pathname, htmlTitle, rssSummary, isLoading }) {
+function Share({
+  pathname,
+  htmlTitle,
+  rssSummary,
+  isLoading,
+  numOfShares,
+  updateBlogActions,
+}) {
   const [share, setShare] = useState(false);
   const url = `https://konectin.org${pathname}`;
 
@@ -54,6 +61,10 @@ function Share({ pathname, htmlTitle, rssSummary, isLoading }) {
     },
   ];
 
+  const toShared = () => {
+    updateBlogActions((prev) => ({ ...prev, shares: numOfShares + 1 }));
+  };
+
   return (
     <div className="flex gap-3 items-center">
       <div className="overflow-hidden w-fit">
@@ -75,6 +86,7 @@ function Share({ pathname, htmlTitle, rssSummary, isLoading }) {
               target="_blank"
               href={social.url}
               rel="noreferrer"
+              onClick={toShared}
               className="w-[28px] h-[28px] block"
             >
               <img
@@ -91,11 +103,12 @@ function Share({ pathname, htmlTitle, rssSummary, isLoading }) {
         className={
           isLoading
             ? "blurry-text p-2"
-            : "bg-neutral-1000 p-2 cursor-pointer w-fit"
+            : "bg-neutral-1000 p-2 cursor-pointer w-fit flex items-center justify-center gap-1"
         }
         onClick={() => !isLoading && setShare((prev) => !prev)}
       >
         <AiIcons.AiOutlineShareAlt />
+        <p>{numOfShares}</p>
       </div>
     </div>
   );

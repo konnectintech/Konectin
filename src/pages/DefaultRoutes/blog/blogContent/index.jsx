@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import * as FaIcons from "react-icons/fa";
+import * as Io5Icons from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 
-import BlogComment from "../comments";
+import CommentSection from "../comments";
 import Share from "../../../../components/blog/share";
 import Pagination from "../../../../components/pagination";
 import BlogCard from "../../../../components/blog/blogCard";
@@ -13,7 +14,18 @@ import "../index.css";
 
 function BlogContent() {
   const [blog, setBlog] = useState({});
-  const [isLoading, setLoading] = useState({ post: true, related: true });
+  const [liked, setLiked] = useState(false);
+  const [blogActions, setBlogActions] = useState({
+    views: 0,
+    shares: 0,
+    likes: 0,
+  });
+
+  const [isLoading, setLoading] = useState({
+    post: true,
+    actions: true,
+    related: true,
+  });
 
   const [similarContent, setSimilarContent] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,7 +33,9 @@ function BlogContent() {
   const [isFull, setOpen] = useState(false);
   const { id } = useParams();
   const { pathname } = useLocation();
-  const url = import.meta.env.VITE_CLIENT_SERVER_URL;
+
+  const url = import.meta.env.VITE_CLIENT_SERVER_RENDER_URL;
+  const user = JSON.parse(localStorage.getItem("user")) || "";
 
   const paginate = (pageNumber) => {
     window.scrollTo({ top: 1150, left: 0, behavior: "smooth" });
@@ -30,7 +44,7 @@ function BlogContent() {
 
   // Get the blog on page load
   useEffect(() => {
-    setLoading({ post: true, related: true });
+    setLoading({ post: true, related: true, actions: true });
 
     async function getBlog() {
       try {
@@ -38,7 +52,42 @@ function BlogContent() {
         const { posts } = response.data;
 
         setBlog(posts);
+        getBlogActions();
+        addViews();
         setLoading((prev) => ({ ...prev, post: false }));
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    async function addViews() {
+      try {
+        const response = await axios.put(
+          `${url}/updateNumOfReads?blogId=${id}`
+        );
+
+        setBlogActions((prev) => ({
+          ...prev,
+          views: response.data.data.numOfReads,
+        }));
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    async function getBlogActions() {
+      try {
+        const response = await axios.get(`${url}/getBlogActions?blogId=${id}`);
+        const { views, shares, likes } = response.data.data;
+
+        likes.forEach((item) => {
+          if (item === user._id) {
+            setLiked(true);
+          }
+        });
+
+        setBlogActions({ likes: likes.length, views, shares });
+        setLoading((prev) => ({ ...prev, actions: false }));
       } catch (err) {
         console.log(err);
       }
@@ -56,7 +105,9 @@ function BlogContent() {
         const { results } = response.data.blogs;
         const relatedBlogs = results.filter((blog) =>
           blog.tagIds.some((tag) =>
-            main.tagIds.includes(tag) && blog.id !== main.id ? true : false
+            main.tagIds && main.tagIds.includes(tag) && blog.id !== main.id
+              ? true
+              : false
           )
         );
         setSimilarContent(relatedBlogs);
@@ -65,6 +116,7 @@ function BlogContent() {
         console.log(err);
       }
     }
+
     getRelatedBlogs(blog);
   }, [blog]);
 
@@ -135,6 +187,28 @@ function BlogContent() {
     currentPage * cardsPerPage
   );
 
+  const handleLike = async () => {
+    try {
+      await axios.post(
+        `${url}/likePost?blogId=${id}&userId=${user._id}`,
+        {},
+        {
+          headers: {
+            authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+
+      setBlogActions((prev) => ({
+        ...prev,
+        likes: liked ? prev.likes - 1 : prev.likes + 1,
+      }));
+      setLiked((prev) => !prev);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-10 w-full">
       <div
@@ -159,7 +233,9 @@ function BlogContent() {
             {/* {blog.authorName} */}
             Konectin
           </p>
-          <p className={isLoading.post && "blurry-text w-fit mx-auto"}>
+          <p
+            className={isLoading.post ? "blurry-text w-fit mx-auto" : "mx-auto"}
+          >
             {blog.metaDescription}
           </p>
         </div>
@@ -178,32 +254,40 @@ function BlogContent() {
                 <div className="flex justify-between items-center gap-2">
                   <div
                     className={
-                      isLoading.post
+                      isLoading.actions
                         ? "blurry-text p-2"
-                        : "bg-neutral-1000 p-2 w-fit"
+                        : "bg-neutral-1000 p-2 w-fit flex items-center justify-center gap-1"
                     }
                   >
                     <FaIcons.FaEye />
+                    <p>{blogActions.views}</p>
                   </div>
+
                   <div
                     className={
-                      isLoading.post
+                      isLoading.actions
                         ? "blurry-text p-2"
-                        : "bg-neutral-1000 text-neutral-1000 p-2 cursor-pointer w-fit"
+                        : "bg-neutral-1000 p-2 cursor-pointer w-fit flex items-center justify-center gap-1"
                     }
+                    onClick={handleLike}
                   >
-                    {!isLoading.post && (
-                      <FaIcons.FaHeart
-                        strokeWidth="50px"
-                        className="stroke-primary-500 w-full"
+                    {!isLoading.actions && (
+                      <Io5Icons.IoHeartSharp
+                        strokeWidth="25px"
+                        className={`${
+                          liked ? "text-error-500" : "text-neutral-50"
+                        } cursor-pointer stroke-primary-500 text-base md:text-lg`}
                       />
                     )}
+                    <p>{blogActions.likes}</p>
                   </div>
                 </div>
                 <Share
+                  numOfShares={blogActions.shares}
                   pathname={pathname}
                   {...blog}
-                  isLoading={isLoading.post}
+                  updateBlogActions={setBlogActions}
+                  isLoading={isLoading.actions}
                 />
               </div>
 
@@ -228,7 +312,7 @@ function BlogContent() {
             </div>
             {isFull && (
               <div className="px-6 lg:w-11/12 mx-auto">
-                <BlogComment blogID={blog.id} />
+                <CommentSection blogID={blog.id} pathname={pathname} />
               </div>
             )}
           </div>

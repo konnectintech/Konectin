@@ -82,7 +82,7 @@ export const useAuth = () => {
   const navigate = useNavigate();
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
   const { ongoing } = JSON.parse(sessionStorage.getItem("internData")) || "";
-  const status = JSON.parse(sessionStorage.getItem("status")) || "";
+  const status = sessionStorage.getItem("status") || "";
 
   // const getUser = async (data) => {
   //   try {
@@ -132,9 +132,12 @@ export const useAuth = () => {
       setUser(userData);
       loader(false);
 
-      if (ongoing) navigate("/internship/intern-application");
-      else if (status) navigate(status);
-      else navigate("/resume/options");
+      if (ongoing) {
+        navigate("/internship/intern-application");
+      } else if (status !== "") {
+        sessionStorage.removeItem("status");
+        navigate(`${status}`);
+      } else navigate("/resume/options");
     } catch (err) {
       loader(false);
       setError(err.response.data.message);
