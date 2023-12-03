@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
+import { motion } from "framer-motion";
 import * as FaIcons from "react-icons/fa";
 import * as Io5Icons from "react-icons/io5";
 import { useEffect, useState } from "react";
@@ -25,6 +26,7 @@ function BlogContent() {
     post: true,
     actions: true,
     related: true,
+    liked: false,
   });
 
   const [similarContent, setSimilarContent] = useState([]);
@@ -189,6 +191,7 @@ function BlogContent() {
 
   const handleLike = async () => {
     try {
+      setLoading((prev) => ({ ...prev, liked: true }));
       await axios.post(
         `${url}/likePost?blogId=${id}&userId=${user._id}`,
         {},
@@ -199,6 +202,7 @@ function BlogContent() {
         }
       );
 
+      setLoading((prev) => ({ ...prev, liked: false }));
       setBlogActions((prev) => ({
         ...prev,
         likes: liked ? prev.likes - 1 : prev.likes + 1,
@@ -271,14 +275,28 @@ function BlogContent() {
                     }
                     onClick={handleLike}
                   >
-                    {!isLoading.actions && (
-                      <Io5Icons.IoHeartSharp
-                        strokeWidth="25px"
-                        className={`${
-                          liked ? "text-error-500" : "text-neutral-50"
-                        } cursor-pointer stroke-primary-500 text-base md:text-lg`}
-                      />
-                    )}
+                    <motion.div
+                      animate={
+                        isLoading.liked && {
+                          scale: [1, 0.5, 0.5, 1, 1],
+                          rotate: [0, 180, 360, 180, 0],
+                        }
+                      }
+                      transition={{
+                        duration: 1,
+                        ease: "easeInOut",
+                        repeat: Infinity,
+                      }}
+                    >
+                      {!isLoading.actions && (
+                        <Io5Icons.IoHeartSharp
+                          strokeWidth="25px"
+                          className={`${
+                            liked ? "text-error-500" : "text-neutral-50"
+                          } cursor-pointer stroke-primary-500 text-base md:text-lg`}
+                        />
+                      )}
+                    </motion.div>
                     <p>{blogActions.likes}</p>
                   </div>
                 </div>
