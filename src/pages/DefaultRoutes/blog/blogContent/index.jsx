@@ -277,10 +277,10 @@ function BlogContent() {
                   >
                     <motion.div
                       animate={
-                        isLoading.liked && {
+                        isLoading.liked ? {
                           scale: [1, 0.5, 0.5, 1, 1],
                           rotate: [0, 180, 360, 180, 0],
-                        }
+                        } : {}
                       }
                       transition={{
                         duration: 1,
