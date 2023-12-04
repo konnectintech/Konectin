@@ -38,17 +38,19 @@ function CommentSection({ blogID, pathname }) {
           </div>
         )}
         {comments.length >= 1 ? (
-          comments.map((comment, index) => (
-            <CommentDetails
-              key={index}
-              id={index}
-              setLoading={setLoading}
-              comment={comment}
-              pathname={pathname}
-              updateComments={setComments}
-              canReply
-            />
-          ))
+          comments.map((comment, index) => {
+            return (
+              <CommentDetails
+                key={index}
+                id={index}
+                setLoading={setLoading}
+                comment={comment}
+                pathname={pathname}
+                updateComments={setComments}
+                canReply
+              />
+            );
+          })
         ) : (
           <p>Be the first to comment on this post</p>
         )}

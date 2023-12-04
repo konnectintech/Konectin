@@ -1,5 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import ReplyComment from "./replyComment";
 import * as BiIcons from "react-icons/bi";
@@ -20,21 +20,22 @@ function CommentDetails({
   const [liked, setLiked] = useState(false);
   const [replies, setReplies] = useState([]);
   const [openReply, setOpenReply] = useState(false);
-  const [commentRef, setCommentRef] = useState(comment);
 
   const user = JSON.parse(localStorage.getItem("user")) || "";
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
-  useEffect(() => {
-    updateComments((prev) =>
-      prev.map((item, i) => {
-        if (i === id) {
-          return commentRef;
-        }
-        return item;
-      })
-    );
-  }, [commentRef]);
+  const [commentRef, setCommentRef] = useState({
+    _id: "",
+    userId: user._id,
+    fullname: user.fullname,
+    blogId: pathname.split("/")[2],
+    comment: "",
+    likes: [],
+    reply: [],
+    numOfShares: 0,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  });
 
   useEffect(() => {
     axios
@@ -46,26 +47,45 @@ function CommentDetails({
         console.error(err);
         setName("");
       });
-  }, [comment.userId, url]);
+  }, [comment, url]);
 
   useEffect(() => {
-    if (canReply && comment.reply.length >= 1) {
-      for (let i = 0; i < comment.reply.length; i++) {
-        axios
-          .get(`${url}/getComment?commentId=${comment.reply[i]}`)
-          .then((res) => {
-            if (replies.some((reply) => reply._id === comment._id)) return;
-            setReplies((prev) => [...prev, res.data.comment]);
-          });
-      }
-    }
+    setCommentRef(comment);
+    setLiked(false);
 
     comment.likes.forEach((item) => {
-      if (item._id === user._id) {
+      if (item._id === user?._id) {
         setLiked(true);
       }
     });
-  }, []);
+  }, [comment, user]);
+
+  useEffect(() => {
+    if (canReply) {
+      setReplies([]);
+
+      if (comment.reply.length >= 1) {
+        comment.reply.map((id) => {
+          axios.get(`${url}/getComment?commentId=${id}`).then((res) => {
+            setReplies((prev) =>
+              [...prev, res.data.comment]
+                .sort(function (a, b) {
+                  // Convert the date strings to Date objects
+                  let dateA = new Date(a.createdAt);
+                  let dateB = new Date(b.createdAt);
+
+                  // Subtract the dates to get a value that is either negative, positive, or zero
+                  return dateA - dateB;
+                })
+                .reverse()
+            );
+          });
+
+          return id;
+        });
+      }
+    }
+  }, [canReply, comment.reply, url]);
 
   const likeComment = async () => {
     if (user?._id) {
@@ -84,35 +104,60 @@ function CommentDetails({
 
         if (liked) {
           const likes = [];
-
           commentRef.likes.forEach((like) => {
             if (like._id !== user._id) {
               likes.push(like);
             }
           });
-
-          setCommentRef((prev) => ({
-            ...prev,
-            likes: likes,
-          }));
+          updateComments((prev) =>
+            prev.map((item, i) => {
+              if (i === id) {
+                return { ...commentRef, likes: likes };
+              }
+              return item;
+            })
+          );
         } else {
-          setCommentRef((prev) => ({
-            ...prev,
-            likes: [
-              ...commentRef.likes,
-              {
-                email: user.email,
-                fullname: user.fullname,
-                typeOfUser: "Regular",
-                _id: user._id,
-              },
-            ],
-          }));
+          updateComments((prev) =>
+            prev.map((item, i) => {
+              if (i === id) {
+                return {
+                  ...item,
+                  likes: [
+                    ...commentRef.likes,
+                    {
+                      email: user.email,
+                      fullname: user.fullname,
+                      typeOfUser: "Regular",
+                      _id: user._id,
+                    },
+                  ],
+                };
+              }
+              return item;
+            })
+          );
         }
       } catch (err) {
         console.log(err);
       }
     }
+  };
+
+  const updateReplies = (replyID) => {
+    updateComments((prev) =>
+      prev.map((item, i) => {
+        if (i === id) {
+          return {
+            ...item,
+            reply: [...item.reply, replyID],
+          };
+        }
+        return item;
+      })
+    );
+
+    setOpenReply(false);
   };
 
   const shareComment = async () => {
@@ -128,11 +173,14 @@ function CommentDetails({
       await axios
         .patch(`${url}/updateCommentShare?commentId=${comment._id}`)
         .then((res) => {
-          console.log("Shared");
-          setCommentRef((prev) => ({
-            ...prev,
-            numOfShares: prev.numOfShares + 1,
-          }));
+          updateComments((prev) =>
+            prev.map((item, i) => {
+              if (i === id) {
+                return { ...commentRef, numOfShares: item.numOfShares + 1 };
+              }
+              return item;
+            })
+          );
         });
     } catch (err) {
       console.log(err);
@@ -167,7 +215,7 @@ function CommentDetails({
             </h3>
             <h6 className="text-[8px] text-neutral-500">
               <ReactTimeAgo
-                date={new Date(commentRef.updatedAt)}
+                date={new Date(commentRef.createdAt)}
                 locale="en-US"
                 timeStyle="twitter"
               />
@@ -179,9 +227,7 @@ function CommentDetails({
           <ul className="text-[9px] text-neutral-500 list-disc flex space-x-4 relative left-4 mt-1">
             {canReply && (
               <li>
-                <span className="relative -left-1">
-                  {comment.reply.length} reply
-                </span>
+                <span className="relative -left-1">{replies.length} reply</span>
               </li>
             )}
             <li>
@@ -204,13 +250,25 @@ function CommentDetails({
                 className="cursor-pointer"
               />
             )}
-            <Io5Icons.IoHeartSharp
-              onClick={likeComment}
-              strokeWidth="30px"
-              className={`${
-                liked ? "text-error-500" : "text-white"
-              } cursor-pointer stroke-neutral-100`}
-            />
+            <motion.div
+              initial={{ scale: 1, rotate: 0 }}
+              animate={{
+                scale: [1, 0.5, 0.5, 1, 1],
+                rotate: [0, 180, 360, 180, 0],
+              }}
+              transition={{
+                duration: 1,
+                ease: "easeInOut",
+              }}
+            >
+              <Io5Icons.IoHeartSharp
+                onClick={likeComment}
+                strokeWidth="30px"
+                className={`${
+                  liked ? "text-error-500" : "text-white"
+                } cursor-pointer stroke-neutral-100`}
+              />
+            </motion.div>
             <AiIcons.AiOutlineShareAlt
               onClick={shareComment}
               className="cursor-pointer"
@@ -219,12 +277,14 @@ function CommentDetails({
           <div className="mt-4 flex flex-col">
             {canReply &&
               replies.length >= 1 &&
-              replies.map((comment, index) => (
+              replies.map((reply, index) => (
                 <CommentDetails
-                  key={index}
-                  comment={comment}
+                  key={index + reply.comment}
+                  comment={reply}
                   user={user}
-                  updateComments={updateComments}
+                  updateComments={setReplies}
+                  id={index}
+                  pathname={pathname}
                 />
               ))}
           </div>
@@ -233,7 +293,7 @@ function CommentDetails({
 
       {canReply && (
         <ReplyComment
-          updateComment={setReplies}
+          updateReplies={updateReplies}
           isReply={openReply}
           setLoading={setLoading}
           commentId={commentRef._id}

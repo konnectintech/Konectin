@@ -8,7 +8,7 @@ function PostComment({ updateComments, postID, pathname, setLoading }) {
   const [comment, setComment] = useState("");
   const [error, setError] = useState("");
 
-  const url = import.meta.env.VITE_CLIENT_SERVER_URL;
+  const url = import.meta.env.VITE_CLIENT_SERVER_RENDER_URL;
   const user = JSON.parse(localStorage.getItem("user")) || "";
 
   const postComment = async () => {
@@ -25,21 +25,18 @@ function PostComment({ updateComments, postID, pathname, setLoading }) {
       );
 
       setError("");
-      updateComments((prev) => [
-        {
-          _id: response.data.comment,
-          userId: user._id,
-          fullname: user.fullname,
-          blogId: postID,
-          comment: comment,
-          likes: [],
-          reply: [],
-          numOfShares: 0,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        ...prev,
-      ]);
+      updateComments((prev) =>
+        [response.data.comment, ...prev]
+          .sort(function (a, b) {
+            // Convert the date strings to Date objects
+            let dateA = new Date(a.createdAt);
+            let dateB = new Date(b.createdAt);
+
+            // Subtract the dates to get a value that is either negative, positive, or zero
+            return dateA - dateB;
+          })
+          .reverse()
+      );
 
       setLoading(false);
       setComment("");

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function ReplyComment({
   isReply,
   commentId,
-  updateComment,
+  updateReplies,
   pathname,
   setLoading,
 }) {
@@ -32,20 +32,7 @@ function ReplyComment({
           }
         )
         .then((res) => {
-          updateComment((prev) => [
-            {
-              _id: res.data.comment,
-              userId: user._id,
-              fullname: user.fullname,
-              commentId: commentId,
-              comment: content,
-              likes: [],
-              numOfShares: 0,
-              createdAt: new Date(),
-              updatedAt: new Date(),
-            },
-            ...prev,
-          ]);
+          updateReplies(res.data.data._id);
 
           setLoading(false);
           setContent("");

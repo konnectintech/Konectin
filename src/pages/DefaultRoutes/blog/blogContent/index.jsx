@@ -36,7 +36,7 @@ function BlogContent() {
   const { id } = useParams();
   const { pathname } = useLocation();
 
-  const url = import.meta.env.VITE_CLIENT_SERVER_RENDER_URL;
+  const url = import.meta.env.VITE_CLIENT_SERVER_URL;
   const user = JSON.parse(localStorage.getItem("user")) || "";
 
   const paginate = (pageNumber) => {
@@ -190,8 +190,9 @@ function BlogContent() {
   );
 
   const handleLike = async () => {
+    setLoading((prev) => ({ ...prev, liked: !prev.liked }));
+
     try {
-      setLoading((prev) => ({ ...prev, liked: true }));
       await axios.post(
         `${url}/likePost?blogId=${id}&userId=${user._id}`,
         {},
@@ -202,13 +203,18 @@ function BlogContent() {
         }
       );
 
-      setLoading((prev) => ({ ...prev, liked: false }));
+      setLoading((prev) => ({ ...prev, liked: !prev.liked }));
+
+      console.log(isLoading.liked);
+
       setBlogActions((prev) => ({
         ...prev,
         likes: liked ? prev.likes - 1 : prev.likes + 1,
       }));
       setLiked((prev) => !prev);
     } catch (err) {
+      console.log(isLoading.liked);
+      setLoading((prev) => ({ ...prev, liked: !prev.liked }));
       console.log(err);
     }
   };
@@ -276,16 +282,18 @@ function BlogContent() {
                     onClick={handleLike}
                   >
                     <motion.div
+                      initial={{ scale: 1, rotate: 0 }}
                       animate={
-                        isLoading.liked && {
-                          scale: [1, 0.5, 0.5, 1, 1],
-                          rotate: [0, 180, 360, 180, 0],
-                        }
+                        isLoading.liked
+                          ? {
+                              scale: [1, 0.5, 0.5, 1, 1],
+                              rotate: [0, 180, 360, 180, 0],
+                            }
+                          : {}
                       }
                       transition={{
                         duration: 1,
                         ease: "easeInOut",
-                        repeat: Infinity,
                       }}
                     >
                       {!isLoading.actions && (
