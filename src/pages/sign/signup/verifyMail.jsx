@@ -13,6 +13,8 @@ function VerifyMail() {
   const [errorMessage, setErrorMessage] = useState("");
   const [modal, popModal] = useState("");
 
+  const user = JSON.parse(localStorage.getItem("konectin-profiler-user"));
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -30,7 +32,6 @@ function VerifyMail() {
   };
 
   const resendCode = () => {
-    const user = JSON.parse(localStorage.getItem("user"));
     const url = `${parseURL}/requestEmail?userId=${user._id}`;
 
     setLoading(true);
@@ -57,7 +58,6 @@ function VerifyMail() {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    const user = JSON.parse(localStorage.getItem("user"));
     const formReq = new FormData(event.target);
     const value = formReq.get("code");
 
@@ -72,7 +72,10 @@ function VerifyMail() {
         if (status === 200) {
           setLoading(false);
           let userUpdate = { ...user, isEmailVerified: true };
-          localStorage.setItem("user", JSON.stringify(userUpdate));
+          localStorage.setItem(
+            "konectin-profiler-user",
+            JSON.stringify(userUpdate)
+          );
           popModal("You have been verified");
           setTimeout(() => {
             popModal("");

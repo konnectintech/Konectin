@@ -3,6 +3,7 @@ import { useState } from "react";
 import * as BiIcons from "react-icons/bi";
 import * as TbIcons from "react-icons/tb";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../../../middleware/auth";
 
 function ReplyComment({
   isReply,
@@ -11,9 +12,9 @@ function ReplyComment({
   pathname,
   setLoading,
 }) {
-  const [content, setContent] = useState("");
+  const { user } = useAuth();
   const [error, setError] = useState("");
-  const user = JSON.parse(localStorage.getItem("user")) || "";
+  const [content, setContent] = useState("");
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   const handleSubmit = (e) => {

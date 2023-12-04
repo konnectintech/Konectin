@@ -8,20 +8,21 @@ import {
   successIcon,
 } from "../../../../../../assets";
 import SelectedTemplates from "../../resume-templates";
+import { useAuth } from "../../../../../../middleware/auth";
 
 const Download = ({ data }) => {
   const [message, setMessage] = useState("");
   const [isloading, setLoading] = useState(false);
+  const { user } = useAuth();
 
   const handleDownload = async () => {
     const doc = document.getElementById("template");
     setLoading(true);
-    const { _id } = JSON.parse(localStorage.getItem("user"));
     const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
     try {
       let res = await axios.post(
-        `${url}/createPdf?userId=${_id}`,
+        `${url}/createPdf?userId=${user._id}`,
         {
           html: `
               <!DOCTYPE html>

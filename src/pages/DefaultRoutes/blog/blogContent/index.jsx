@@ -12,6 +12,7 @@ import Pagination from "../../../../components/pagination";
 import BlogCard from "../../../../components/blog/blogCard";
 
 import "../index.css";
+import { useAuth } from "../../../../middleware/auth";
 
 function BlogContent() {
   const [blog, setBlog] = useState({});
@@ -29,15 +30,14 @@ function BlogContent() {
     liked: false,
   });
 
-  const [similarContent, setSimilarContent] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const [isFull, setOpen] = useState(false);
   const { id } = useParams();
+  const { user } = useAuth();
   const { pathname } = useLocation();
+  const [isFull, setOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [similarContent, setSimilarContent] = useState([]);
 
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
-  const user = JSON.parse(localStorage.getItem("user")) || "";
 
   const paginate = (pageNumber) => {
     window.scrollTo({ top: 1150, left: 0, behavior: "smooth" });

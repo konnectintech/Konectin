@@ -22,7 +22,7 @@ const StartBuilder = () => {
 
   const handleContinueEdit = () => {
     const { currentStage } =
-      JSON.parse(localStorage.getItem("templateData")) || "";
+      JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
 
     for (let index = 1; index <= links.length; index++) {
       if (index === currentStage) {

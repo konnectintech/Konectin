@@ -41,7 +41,7 @@ pca.addEventCallback((event) => {
         const user = { ...response.data.data };
         user.token = response.data.token;
 
-        localStorage.getItem("user", JSON.stringify(user));
+        localStorage.getItem("konectin-profiler-user", JSON.stringify(user));
 
         window.location.href = "/resume/options";
       })
@@ -76,13 +76,31 @@ export const RequireAuth = ({ children }) => {
   return children;
 };
 
+const parseJwt = (token) => {
+  try {
+    return JSON.parse(atob(token.split(".")[1]));
+  } catch (e) {
+    return null;
+  }
+};
+
 // Create User logged Hook
 export const useAuth = () => {
-  const [user, setUser] = useLocalStorage("user", null);
+  const [user, setUser] = useLocalStorage("konectin-profiler-user", null);
   const navigate = useNavigate();
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
   const { ongoing } = JSON.parse(sessionStorage.getItem("internData")) || "";
   const status = sessionStorage.getItem("status") || "";
+
+  useEffect(() => {
+    if (user !== null) {
+      const decodedJwt = parseJwt(user.token);
+
+      if (decodedJwt.exp * 1000 < Date.now()) {
+        localStorage.setItem("konectin-profiler-user", null);
+      }
+    }
+  }, []);
 
   // const getUser = async (data) => {
   //   try {
@@ -105,14 +123,21 @@ export const useAuth = () => {
     try {
       const response = await axios.get(`${url}/getResumes?userId=${id}`);
       const resumes = response.data.cvs;
-      const templateData = JSON.parse(localStorage.getItem("templateData"));
+      const templateData = JSON.parse(
+        localStorage.getItem("konectin-profiler-data-template")
+      );
 
       if (resumes.length >= 1 && !templateData) {
         const lastResume = resumes.slice(-1)[0];
         const { currentStage } = lastResume;
 
+        console.log(lastResume);
+
         if (currentStage >= 1 && currentStage < 6) {
-          localStorage.setItem("templateData", JSON.stringify(lastResume));
+          localStorage.setItem(
+            "konectin-profiler-data-template",
+            JSON.stringify(lastResume)
+          );
         }
       }
 
@@ -160,8 +185,8 @@ export const useAuth = () => {
   };
 
   const signOut = () => {
-    localStorage.removeItem("templateData");
-    localStorage.removeItem("crStage");
+    localStorage.removeItem("konectin-profiler-data-template");
+    localStorage.removeItem("konectin-profiler-data-crStage");
     setUser(null);
   };
 

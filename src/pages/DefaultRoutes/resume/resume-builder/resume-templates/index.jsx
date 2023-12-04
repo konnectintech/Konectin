@@ -2,7 +2,7 @@ import { artisticTemplates, modernTemplates } from "./data";
 
 function SelectedTemplates({ data }) {
   const { selectedTemplate } =
-    JSON.parse(localStorage.getItem("templateData")) || "";
+    JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
 
   if (!selectedTemplate) {
     window.location.href = "/resume/ai";

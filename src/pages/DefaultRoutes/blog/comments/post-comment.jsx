@@ -3,13 +3,14 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { BiUser } from "react-icons/bi";
 import * as TbIcons from "react-icons/tb";
+import { useAuth } from "../../../../middleware/auth";
 
 function PostComment({ updateComments, postID, pathname, setLoading }) {
-  const [comment, setComment] = useState("");
+  const { user } = useAuth();
   const [error, setError] = useState("");
+  const [comment, setComment] = useState("");
 
   const url = import.meta.env.VITE_CLIENT_SERVER_RENDER_URL;
-  const user = JSON.parse(localStorage.getItem("user")) || "";
 
   const postComment = async () => {
     setLoading(true);

@@ -46,13 +46,13 @@ function JobTitleInput({
     handleInputChange({
       section: section,
       subsection: subsection,
-      values: opt,
+      values: opt.value,
     });
 
-    setJobTitle(opt);
+    setJobTitle(opt.value);
 
     if (auth) {
-      verifyInput(opt, errorMessage.current, "jobTitle");
+      verifyInput(opt.value, errorMessage.current, "jobTitle");
     }
   };
 
