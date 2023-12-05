@@ -83,7 +83,7 @@ function BlogContent() {
         const { views, shares, likes } = response.data.data;
 
         likes.forEach((item) => {
-          if (item === user._id) {
+          if (item === user?._id) {
             setLiked(true);
           }
         });
@@ -194,11 +194,11 @@ function BlogContent() {
 
     try {
       await axios.post(
-        `${url}/likePost?blogId=${id}&userId=${user._id}`,
+        `${url}/likePost?blogId=${id}&userId=${user?._id}`,
         {},
         {
           headers: {
-            authorization: `Bearer ${user.token}`,
+            authorization: `Bearer ${user?.token}`,
           },
         }
       );
