@@ -27,8 +27,8 @@ function CommentDetails({
 
   const [commentRef, setCommentRef] = useState({
     _id: "",
-    userId: user._id,
-    fullname: user.fullname,
+    userId: user?._id,
+    fullname: user?.fullname,
     blogId: pathname.split("/")[2],
     comment: "",
     likes: [],
