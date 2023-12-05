@@ -19,6 +19,7 @@ function ReplyComment({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     setLoading(true);
 
     if (user?._id) {
@@ -46,6 +47,7 @@ function ReplyComment({
           );
         });
     } else {
+      setLoading(false);
       setError(
         <p className="text-red-500">
           You have to be logged in to comment.{" "}
