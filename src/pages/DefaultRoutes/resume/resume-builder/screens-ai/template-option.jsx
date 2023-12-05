@@ -17,7 +17,7 @@ import { useAuth } from "../../../../../middleware/auth";
 
 const TemplateOption = ({ sectionName }) => {
   const { templateData, setTemplateData } = useTemplateContext();
-  const { user, setUser } = useAuth();
+  const { user } = useAuth();
 
   const [popUp, setPopUp] = useState(false);
   const navigate = useNavigate();
@@ -68,7 +68,7 @@ const TemplateOption = ({ sectionName }) => {
       const userData = { ...authresult.data.data };
       userData.token = authresult.data.token;
 
-      setUser(userData);
+      localStorage.setItem("konectin-profiler-user", JSON.stringify(userData));
       setLoading(false);
       navigate("/resume/builder");
     } catch (err) {
