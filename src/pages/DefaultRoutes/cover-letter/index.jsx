@@ -21,13 +21,15 @@ function CoverLetter() {
 
   useEffect(() => {
     const path = pathname.split("/")[2];
-
-    if (user?._id && (CVData.details.fullname === "" || CVData.details.email)) {
+    if (user?._id && CVData.details.fullName === "") {
       onInputChange({
         section: "details",
         subsection: "fullName",
         values: user.fullname,
       });
+    }
+
+    if (user?._id && CVData.details.email === "") {
       onInputChange({
         section: "details",
         subsection: "email",
@@ -110,7 +112,7 @@ function CoverLetter() {
               path="/short-bio"
               element={
                 <ShortBio
-                  data={CVData.description.bio}
+                  data={CVData.bio}
                   handleChange={onInputChange}
                   isLogged={user?.isLogged}
                 />

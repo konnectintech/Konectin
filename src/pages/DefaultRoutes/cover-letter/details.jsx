@@ -1,21 +1,26 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function JobDetails({isLogged, data, handleChange}) {
-  const [errorMessage, setErrorMessage] = useState({ companyName: "", jobPosition: "", email: "", fullName: "" })
+function JobDetails({ isLogged, data, handleChange }) {
+  const [errorMessage, setErrorMessage] = useState({
+    companyName: "",
+    jobPosition: "",
+    email: "",
+    fullName: "",
+  });
 
   const navigate = useNavigate();
 
   const handleInputChange = (name, value) => {
-    handleChange({section: "details", subsection: name, values: value})
-  }
+    handleChange({ section: "details", subsection: name, values: value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const checkMail = data.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
-        ? true
-        : false;
+      ? true
+      : false;
 
     if (!isLogged) {
       if (data.fullName.length <= 2) {
@@ -46,10 +51,21 @@ function JobDetails({isLogged, data, handleChange}) {
         companyName: "Please fill in the company name",
       }));
     }
-
-    if (data.companyName.length >= 2 && data.jobPosition.length >= 2 && data.fullName.length >= 2 && checkMail) {
-      setErrorMessage({ companyName: "", jobPosition: "", email: "", fullName: "" });
+    if (
+      data.companyName.length >= 2 &&
+      data.jobPosition.length >= 2 &&
+      data.fullName.length >= 2 &&
+      checkMail
+    ) {
+      setErrorMessage({
+        companyName: "",
+        jobPosition: "",
+        email: "",
+        fullName: "",
+      });
       navigate("/cover-letter/job-description");
+    } else {
+      console.log(data.fullName);
     }
   };
 
@@ -127,7 +143,7 @@ function JobDetails({isLogged, data, handleChange}) {
                 setErrorMessage((prev) => ({ ...prev, jobPosition: "" }));
               }}
               onInput={(e) => {
-                  handleInputChange("jobPosition", e.target.value);
+                handleInputChange("jobPosition", e.target.value);
                 setErrorMessage((prev) => ({ ...prev, jobPosition: "" }));
               }}
               className="coverLetter__input"
@@ -144,7 +160,7 @@ function JobDetails({isLogged, data, handleChange}) {
               id="companyName"
               value={data.companyName}
               onChange={(e) => {
-                  handleInputChange("companyName", e.target.value);
+                handleInputChange("companyName", e.target.value);
                 setErrorMessage((prev) => ({ ...prev, companyName: "" }));
               }}
               onInput={(e) => {
