@@ -31,7 +31,10 @@ import SignUp from "./pages/sign/signup/signup";
 import ForgetPassword from "./pages/sign/login/forgetPassword";
 import ResetPassword from "./pages/sign/login/resetPassword";
 import DashBoard from "./pages/ProtectedRoutes/DashBoard";
+import Coverletter from "./pages/DefaultRoutes/cover-letter/index";
 // import ErrorPage from "./pages/404";
+import ErrorPage from "./pages/404";
+import InternApplication from "./pages/DefaultRoutes/internship/intern-application";
 
 // import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
 
@@ -45,6 +48,7 @@ function App() {
               <RouteIdentifier />
             </AuthProvider>
           }
+          errorElement={<ErrorPage />}
         >
           <Route element={<Sign />}>
             <Route path="/login" element={<Login />} />
@@ -55,13 +59,19 @@ function App() {
           <Route path="/reset-password" element={<ResetPassword />} />
 
           <Route element={<DefaultRoutes />}>
+            <Route path="*" element={<ErrorPage />} />
             <Route path="/" element={<Landing />} />
             <Route path="/internship" element={<Internship />} />
+            <Route
+              path="/internship/intern-application"
+              element={<InternApplication />}
+            />
             <Route path="/resume" element={<ResumeBuilder />} />
             <Route path="/terms" element={<TermsAndCondition />} />
             <Route path="/policy" element={<PrivacyPolicy />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/contact" element={<Contact />} />
+
             {/* <Route path="/admin" element={<Admin />} /> */}
             <Route path="/blog/" element={<Blog />}>
               <Route path="/blog/:feed" element={<Feeds />} />
@@ -75,6 +85,7 @@ function App() {
 
           {/* Resume Builder Routes */}
           <Route element={<ResumeRoutes />}>
+            <Route path="/cover-letter/*" element={<Coverletter />} />
             <Route path="/resume/ai/*" element={<AIStarter />} />
             <Route path="/resume/options" element={<Options />} />
             <Route path="/resume/start" element={<StartBuilder />} />

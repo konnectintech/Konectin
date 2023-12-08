@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { konectinIcon } from "../../../assets";
 import { CustomButton } from "../../../components/button";
 import { ErrorModal, SuccessModal } from "../../../components/form/modal";
 import Preloader from "../../../components/preloader";
+import { useEffect } from "react";
 
 function VerifyMail() {
   const [code, setCode] = useState("");
@@ -12,7 +13,17 @@ function VerifyMail() {
   const [errorMessage, setErrorMessage] = useState("");
   const [modal, popModal] = useState("");
 
+  const user = JSON.parse(localStorage.getItem("konectin-profiler-user"));
+
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.from == null) {
+      navigate("/signup", { replace: true });
+    }
+  }, [location, navigate]);
+
   const parseURL = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   const handleInputChange = (e) => {
@@ -21,7 +32,6 @@ function VerifyMail() {
   };
 
   const resendCode = () => {
-    const user = JSON.parse(localStorage.getItem("user"));
     const url = `${parseURL}/requestEmail?userId=${user._id}`;
 
     setLoading(true);
@@ -31,7 +41,7 @@ function VerifyMail() {
         const status = res.status;
         if (status === 200) {
           setLoading(false);
-          popModal("A code has been resent to your mail");
+          popModal("A code has been sent to your mail");
           setTimeout(() => {
             popModal("");
           }, 2000);
@@ -48,7 +58,6 @@ function VerifyMail() {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    const user = JSON.parse(localStorage.getItem("user"));
     const formReq = new FormData(event.target);
     const value = formReq.get("code");
 
@@ -63,11 +72,20 @@ function VerifyMail() {
         if (status === 200) {
           setLoading(false);
           let userUpdate = { ...user, isEmailVerified: true };
-          localStorage.setItem("user", JSON.stringify(userUpdate));
+          localStorage.setItem(
+            "konectin-profiler-user",
+            JSON.stringify(userUpdate)
+          );
           popModal("You have been verified");
           setTimeout(() => {
             popModal("");
-            navigate("/resume/options");
+
+            const { ongoing } =
+              JSON.parse(sessionStorage.getItem("internData")) || "";
+
+            if (location.state.from === "intern" || ongoing)
+              navigate("/internship/intern-application");
+            else navigate("/resume/options");
           }, 2000);
         } else {
           setLoading(false);
@@ -91,7 +109,7 @@ function VerifyMail() {
         </Link>
 
         <SuccessModal
-          text="You have been verified"
+          text={modal}
           popModal={modal}
           closeModal={() => popModal(false)}
         />

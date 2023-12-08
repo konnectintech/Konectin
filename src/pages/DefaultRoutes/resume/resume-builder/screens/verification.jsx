@@ -10,10 +10,8 @@ export const onSectionComplete = async (template) => {
   delete duplicateData.userId;
   delete duplicateData.__v;
 
-  console.log(duplicateData);
-
   try {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("konectin-profiler-user"));
     if (user) {
       await axios.put(
         `${url}/updateResume?userId=${user._id}&resumeId=${template._id}`,

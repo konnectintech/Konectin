@@ -19,3 +19,23 @@ export const useLocalStorage = (key, defaultValue) => {
 
   return [value, setValue];
 };
+
+function getSessionStorageValue(key, defaultValue) {
+  const saved = sessionStorage.getItem(key);
+  const initial = JSON.parse(saved);
+  return initial || defaultValue;
+}
+
+export const useSessionStorage = (key, defaultValue) => {
+  const [value, setValue] = useState(() => {
+    return getSessionStorageValue(key, defaultValue);
+  });
+
+  useEffect(() => {
+    if (value !== undefined) {
+      sessionStorage.setItem(key, JSON.stringify(value));
+    }
+  }, [key, value]);
+
+  return [value, setValue];
+};

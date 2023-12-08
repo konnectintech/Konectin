@@ -12,9 +12,12 @@ import axios from "axios";
 import { konectinIcon } from "../../../../../assets";
 import { loginForm } from "../../../../sign/signData";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useAuth } from "../../../../../middleware/auth";
 
 const TemplateOption = ({ sectionName }) => {
   const { templateData, setTemplateData } = useTemplateContext();
+  const { user } = useAuth();
+
   const [popUp, setPopUp] = useState(false);
   const navigate = useNavigate();
   const [isloading, setLoading] = useState(false);
@@ -22,7 +25,6 @@ const TemplateOption = ({ sectionName }) => {
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   const handleSelect = (value) => {
-    const user = JSON.parse(localStorage.getItem("user"));
     const { currentStage } = templateData;
 
     if (user === null) {
@@ -65,7 +67,7 @@ const TemplateOption = ({ sectionName }) => {
       const userData = { ...authresult.data.data };
       userData.token = authresult.data.token;
 
-      localStorage.setItem("user", JSON.stringify(userData));
+      localStorage.setItem("konectin-profiler-user", JSON.stringify(userData));
       setLoading(false);
       navigate("/resume/builder");
     } catch (err) {

@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { MdArrowDropDown } from "react-icons/md";
 import { GetCity } from "react-country-state-city/dist/cjs";
 import { verifyInput } from "../../pages/DefaultRoutes/resume/resume-builder/screens/verification";
 
@@ -39,17 +38,18 @@ function CityInput({ countryId, stateId, handleChange, city }) {
         <div className="flex items-center">
           <input
             className="bg-transparent outline-none border-none w-full"
+            id="cities"
             name="city"
             value={city}
             placeholder="Enter City"
             onChange={(e) => handleCityInput(e.target.value)}
             onInput={(e) => handleCityInput(e.target.value)}
           />
-          {cityList.length >= 1 && <MdArrowDropDown size="1.5rem" />}
         </div>
         <label
           id="cityError"
-          className="absolute mt-[2.3rem] text-error-500 hidden"
+          htmlFor="cities"
+          className="absolute mt-8 text-error-500 hidden"
           ref={errorMessage}
         ></label>
       </div>

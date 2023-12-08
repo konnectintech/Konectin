@@ -1,54 +1,48 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import * as IoIcons from "react-icons/io";
 import { BlogCTA1Image, BlogCTA2Image, BlogCTAImage } from "../../../assets";
 
 function CTASection() {
+  const [cta, setCta] = useState(2);
+
+  const images = [
+    { src: BlogCTAImage, alt: "Get Your Dream Job With The Perfect Resume" },
+    { src: BlogCTA1Image, alt: "Working Together To Keep Konectin Safe" },
+    { src: BlogCTA2Image, alt: "Study and Work" },
+  ];
+
   return (
-    <div className="blog-grid-system w-full max-w-screen-lg mx-auto gap-6">
-      <div className="rounded-md h-full flex flex-col">
-        <img src={BlogCTAImage} alt="Konectin Resume Builder" />
-        <div className="text-sm text-neutral-200 px-2 py-4 bg-white flex flex-col h-full rounded-b-md">
-          <h4>Konectin Resume Builder</h4>
-          <ul className="text-neutral-300 list-disc list-inside mt-4 sm:my-auto">
-            <li>Choose your template</li>
-            <li>Download pdf for free</li>
-            <li>Apply for jobs easily</li>
-          </ul>
-
-          <Link
-            className="mt-6 sm:mt-auto mx-auto py-2 px-10 rounded-sm text-center text-white bg-neutral-400"
-            to="/resume"
-          >
-            Get started
-          </Link>
+    <div className="w-full text-center space-y-4">
+      <p className="text-lg">Related Konectin Products</p>
+      <div className="w-full relative">
+        <div className="w-full flex overflow-hidden gap-2 sm:gap-3 md:gap-6 items-stretch justify-center">
+          {images.map((image, id) => (
+            <img
+              key={id}
+              className={`${
+                id === cta
+                  ? "w-[60%] order-2"
+                  : id === cta + 1 || (id === 0 && cta + 1 >= 3)
+                  ? "order-3 grayscale-[50%] opacity-60"
+                  : "grayscale-[50%] opacity-60"
+              }`}
+              src={image.src}
+              alt={image.alt}
+            />
+          ))}
         </div>
-      </div>
-
-      <div className="rounded-md h-full flex flex-col">
-        <img
-          src={BlogCTA1Image}
-          alt="Stay informed, enlightened and updated with the job and career world."
-        />
-        <div className="text-lg font-medium text-neutral-200 px-2 py-4 bg-white flex flex-col h-full rounded-b-md">
-          <p>
-            Stay informed, enlightened and updated with the job and career
-            world.
-          </p>
-
-          <Link
-            className="mt-6 sm:mt-auto mx-auto py-2 px-10 rounded-sm text-center text-white bg-neutral-400 text-sm"
-            to="/blog/all"
-          >
-            Go to blog
-          </Link>
+        <div
+          className="absolute top-1/2 -translate-y-1/2 left-[6%] md:left-[10%] w-8 h-8 flex items-center justify-center bg-neutral-500 rounded-full hover:bg-white duration-500 cursor-pointer"
+          onClick={() => setCta((prev) => (prev === 0 ? 2 : prev - 1))}
+        >
+          <IoIcons.IoIosArrowBack size="1.3rem" />
         </div>
-      </div>
-
-      <div className="rounded-md h-full flex flex-col">
-        <img
-          className="block w-full h-full"
-          src={BlogCTA2Image}
-          alt="Konectin Resume Builder"
-        />
+        <div
+          className="absolute top-1/2 -translate-y-1/2 right-[6%] md:right-[10%] w-8 h-8 flex items-center justify-center bg-neutral-500 rounded-full hover:bg-white duration-500 cursor-pointer"
+          onClick={() => setCta((prev) => (prev >= 2 ? 0 : prev + 1))}
+        >
+          <IoIcons.IoIosArrowForward size="1rem" />
+        </div>
       </div>
     </div>
   );

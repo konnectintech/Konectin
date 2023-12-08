@@ -1,7 +1,6 @@
 import * as FaIcon from "react-icons/fa";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import DatePicker from "react-multi-date-picker";
 import NavigationButton from "../navigationButton";
 import SelectedTemplates from "../../resume-templates";
 import JobTitleInput from "../../../../../../components/jobTitleInput";
@@ -12,6 +11,7 @@ import CityInput from "../../../../../../components/form/cityInput";
 import { onSectionComplete, verifyInput } from "../verification";
 import ResumeModal from "../../../../../../layouts/resumeRoutes/resumeModal";
 import Responsibilities2 from "./responsibilities2";
+import DateSelector from "../../../../../../components/form/dateSelector";
 
 const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
   const [countryId, setCountryId] = useState(0);
@@ -28,18 +28,6 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
   };
 
   const companyErrorRef = useRef(null);
-  const startMonthRef = useRef(null);
-  const startYearRef = useRef(null);
-  const endMonthRef = useRef(null);
-  const endYearRef = useRef(null);
-
-  let allErrMsg = [
-    companyErrorRef,
-    startMonthRef,
-    startYearRef,
-    endMonthRef,
-    endYearRef,
-  ];
 
   const navigate = useNavigate();
   const { templateData } = useTemplateContext();
@@ -56,6 +44,14 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
         case "city":
         case "state":
         case "country":
+        case "startMonth":
+        case "startYear":
+          errorHolder = document.getElementById(`${holder}Error`);
+          verifyInput(data[holder], errorHolder, holder);
+          break;
+        case "endMonth":
+        case "endYear":
+          if (data.current) break;
           errorHolder = document.getElementById(`${holder}Error`);
           verifyInput(data[holder], errorHolder, holder);
           break;
@@ -67,10 +63,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
         case "workDesc":
           break;
         default:
-          errorHolder = allErrMsg.filter(
-            (ref) => ref.current.getAttribute("for") === holder
-          );
-          errorHolder = errorHolder[0].current;
+          errorHolder = companyErrorRef.current;
           verifyInput(data[holder], errorHolder, holder);
           break;
       }

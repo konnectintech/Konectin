@@ -80,6 +80,7 @@ const Username = ({ data }) => {
       >
         <input
           type="text"
+          id="full name"
           placeholder="Enter your full name"
           value={name}
           onChange={handleChange}

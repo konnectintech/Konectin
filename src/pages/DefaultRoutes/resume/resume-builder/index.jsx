@@ -61,7 +61,7 @@ const Options = () => {
 
   useEffect(() => {
     const { currentStage } =
-      JSON.parse(localStorage.getItem("templateData")) || "";
+      JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
 
     if (currentStage === null || currentStage === 0) {
       setEditable(false);

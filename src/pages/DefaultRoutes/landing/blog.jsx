@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import BlogCard from "../../../components/blogCard";
+import BlogCard from "../../../components/blog/blogCard";
 
 function BlogSection() {
   const [blogPosts, setBlogPosts] = useState([]);

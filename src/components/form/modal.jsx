@@ -40,10 +40,15 @@ export function NotifyModal({
   paragraph2,
   click,
   children,
+  intern,
 }) {
   return (
-    <div className="relative w-10/12 max-w-screen-md py-8 transition ease-in-out duration-300 flex flex-col md:flex-row px-6 md:px-16 gap-6 md:gap-12 items-center text-white min-h-[70vh]">
-      <div className="absolute top-0 left-0 w-full h-full">
+    <div className="relative w-10/12 max-w-screen-md py-8 transition ease-in-out duration-300 flex flex-col md:flex-row px-6 md:px-16 gap-6 md:gap-12 items-center text-white md:min-h-[70vh] max-md:max-h-[430px]">
+      <div
+        className={`absolute top-0 left-0 w-full h-full ${
+          intern && "grayscale contrast-200"
+        }`}
+      >
         <img className="w-full h-full" src={modalBackground} alt="background" />
       </div>
       <div className="relative z-10 w-1/2 md:w-4/12">
@@ -53,13 +58,13 @@ export function NotifyModal({
           <img className="w-full" src={notifyError} alt="error" />
         )}
       </div>
-      <div className="md:w-9/12 relative z-10 flex flex-col gap-4">
+      <div className="max-md:mt-8 md:w-9/12 relative z-10 flex flex-col gap-4">
         <h1 className="text-[17px]">{header}</h1>
         <p>{paragraph1}</p>
         <p>{paragraph2}</p>
         <div
           onClick={() => click()}
-          className="cursor-pointer bg-secondary-500 w-fit px-10 py-4 rounded-md"
+          className="cursor-pointer bg-secondary-500 w-fit px-10 py-3 rounded-md mt-2"
         >
           {children ? children : "Go back home"}
         </div>
