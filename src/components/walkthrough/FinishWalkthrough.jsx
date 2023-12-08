@@ -1,4 +1,5 @@
 import { useWalkthrough } from "../../context/WalkthroughContext";
+import { useEffect } from "react";
 
 function FinishWalkthrough() {
   const {
@@ -9,10 +10,20 @@ function FinishWalkthrough() {
     skipWalkthrough,
   } = useWalkthrough();
 
+  useEffect(() => {
+    // Add 'modal-open' class to the body when the modal is open
+    document.body.classList.add("modal-open");
+
+    // Remove 'modal-open' class from the body when the modal is closed
+    return () => {
+      document.body.classList.remove("modal-open");
+    };
+  }, []);
+
   const array = new Array(totalModules);
   console.log(array);
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
+    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-40 ">
       <div className="relative bg-[#191A1F] py-10 px-14 rounded-lg w-1/2 flex flex-col items-center gap-8 ">
         <h2 className="text-2xl font-bold mt-4 text-secondary-600 w-full ">
           Finish Tour

@@ -1,15 +1,24 @@
 import { FaTimes } from "react-icons/fa";
 import { useWalkthrough } from "../../context/WalkthroughContext";
 import { botIcon } from "../../assets";
+import { useEffect } from "react";
 
 function WelcomeWalkthrough() {
   const { totalModules, currentModule, nextModule, skipWalkthrough } =
     useWalkthrough();
 
-  const array = new Array(totalModules);
-  console.log(array);
+  useEffect(() => {
+    // Add 'modal-open' class to the body when the modal is open
+    document.body.classList.add("modal-open");
+
+    // Remove 'modal-open' class from the body when the modal is closed
+    return () => {
+      document.body.classList.remove("modal-open");
+    };
+  }, []);
+
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-40">
+    <div className="fixed inset-0 flex items-center justify-center z-[110] bg-black bg-opacity-40">
       <div className="relative bg-[#191A1F] p-10 rounded-lg w-1/2 flex flex-col items-center">
         <div className="absolute top-4 right-4">
           <button onClick={skipWalkthrough} className="">

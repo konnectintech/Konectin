@@ -136,7 +136,7 @@ const EmploymentExperience = ({ data }) => {
 
   const employment_components = [
     { element: PreviousExperience, path: "/" },
-    { element: Responsibilities, path: "/responsibilities" },
+    // { element: Responsibilities, path: "/responsibilities" },
     { element: JobActivities, path: "/job-activities" },
   ];
 

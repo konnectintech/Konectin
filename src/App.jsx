@@ -30,12 +30,12 @@ import Login from "./pages/sign/login/login";
 import SignUp from "./pages/sign/signup/signup";
 import ForgetPassword from "./pages/sign/login/forgetPassword";
 import ResetPassword from "./pages/sign/login/resetPassword";
+import DashBoard from "./pages/ProtectedRoutes/DashBoard";
 import Coverletter from "./pages/DefaultRoutes/cover-letter/index";
 // import ErrorPage from "./pages/404";
 import ErrorPage from "./pages/404";
 import InternApplication from "./pages/DefaultRoutes/internship/intern-application";
 
-// import DashBoard from "./pages/ProtectedRoutes/dashboard";
 // import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
 
 function App() {
@@ -78,8 +78,10 @@ function App() {
               <Route path="/blog/:feed/:id" element={<BlogContent />} />
             </Route>
             <Route path="/about" element={<About />} />
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/dashboard/*" element={<DashBoard />} />
+            </Route>
           </Route>
-
 
           {/* Resume Builder Routes */}
           <Route element={<ResumeRoutes />}>
@@ -89,10 +91,6 @@ function App() {
             <Route path="/resume/start" element={<StartBuilder />} />
             <Route path="/resume/builder/*" element={<Builder />} />
             <Route path="/resume/upload/*" element={<ResumeUpload />} />
-          </Route>
-
-          <Route element={<ProtectedRoutes />}>
-            {/* <Route path="/dashboard/*" element={<DashBoard />} /> */}
           </Route>
         </Route>
       </Routes>

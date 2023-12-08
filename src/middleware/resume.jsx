@@ -33,38 +33,40 @@ const TemplateProvider = ({ children }) => {
 export { useTemplateContext, TemplateProvider };
 
 export const useTemplateData = () => {
-  const [templateData, setTemplateData] = useLocalStorage(
-    "konectin-profiler-data-template",
-    {
-      completed: {
-        basic_info: false,
-        work_history: false,
-        education: false,
-        skills: false,
-        bio: false,
-      },
-      basicInfo: {
-        city: "",
-        country: "",
-        email: "",
-        firstName: "",
-        lastName: "",
-        phoneNumber: "",
-        phoneCode: "",
-        profession: "",
-        state: "",
-        zipCode: "",
-      },
-      currentEditedJob: 0,
-      currentEditedEducation: 0,
-      jobExperience: [],
-      education: [],
-      skills: [],
-      bio: "",
-      selectedTemplate: "",
-      currentStage: 0,
-    }
-  );
+  const [templateData, setTemplateData] = useLocalStorage("templateData", {
+    completed: {
+      basic_info: false,
+      work_history: false,
+      education: false,
+      skills: false,
+      bio: false,
+    },
+    basicInfo: {
+      city: "",
+      country: "",
+      email: "",
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      phoneCode: "",
+      profession: "",
+      state: "",
+      zipCode: "",
+    },
+    theme: {
+      color: "blue",
+      font: "",
+    },
+    currentEditedJob: 0,
+    currentEditedEducation: 0,
+    jobExperience: [],
+    education: [],
+    skills: [],
+    additionalInformation: {},
+    bio: "",
+    selectedTemplate: "",
+    currentStage: 0,
+  });
 
   const onInputChange = ({ section, subsection, values }) => {
     if (subsection) {

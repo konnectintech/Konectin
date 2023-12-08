@@ -110,6 +110,17 @@ import education from "./icons/education.svg";
 import skill from "./icons/skill.svg";
 import bio from "./icons/bio.svg";
 import finalize from "./icons/finalize.svg";
+import eye from "./icons/eye.svg";
+import menu from "./icons/menu.svg";
+import page from "./icons/page.svg";
+import profileadd from "./icons/profile-add.svg";
+import style from "./icons/style.svg";
+import tips from "./icons/tips.svg";
+import tips2 from "./icons/tips2.svg";
+import droplet from "./icons/droplet.svg";
+import download from "./icons/download.svg";
+import pdffolder from "./icons/pdffolder.svg";
+import docfolder from "./icons/docfolder.svg";
 
 // Blog Images
 import blogHero from "./images/blog/hero.jpg";
@@ -209,6 +220,17 @@ export {
   skill,
   bio,
   finalize,
+  eye,
+  menu,
+  page,
+  profileadd,
+  style,
+  tips,
+  tips2,
+  droplet,
+  download,
+  docfolder,
+  pdffolder,
 
   //Dashboard Images
   bell,

@@ -91,6 +91,7 @@ function ResumeHeader() {
 
   return (
     <>
+      {currentModule === 1 && <ProgressWalkthrough />}
       <header className="relative bg-[#191A1F]">
         <nav className="w-11/12 mx-auto max-w-screen-2xl flex justify-between items-center gap-6 lg:gap-16 py-4">
           <nav
@@ -154,7 +155,7 @@ function ResumeHeader() {
                       )} h-2 w-2 rounded-full`}
                     />
                   </div>
-                  {link.no <= links.length - 1 && (
+                  {/* {link.no <= links.length - 1 && (
                     <span
                       className={`nav-dotted-line max-xl:hidden relative rounded-xl block w-6 h-0.5 ${
                         completed[link.text.split(" ").join("_")]
@@ -164,7 +165,7 @@ function ResumeHeader() {
                           : "bg-secondary-300 inactive"
                       }`}
                     />
-                  )}
+                  )} */}
                 </Link>
               ))}
             </nav>
