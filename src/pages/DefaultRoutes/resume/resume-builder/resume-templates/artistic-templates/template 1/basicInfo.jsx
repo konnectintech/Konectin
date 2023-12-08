@@ -1,12 +1,14 @@
+import { useTemplateData } from "../../../../../../../middleware/resume";
+
 function BasicInfo({ data }) {
+  const { templateData } = useTemplateData();
   return (
     <section className="section">
       <style>
         {`
    .basic_info {
     padding: 30px;
-    background: -webkit-linear-gradient(180deg, #3F3BF4, #445FF6);
-    background: linear-gradient(180deg, #3F3BF4, #445FF6);
+    background:  ${templateData?.theme?.color};
   }
   
   .basic_info_content {

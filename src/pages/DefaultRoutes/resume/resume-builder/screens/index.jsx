@@ -9,14 +9,12 @@ import Preview from "./preview";
 import Download from "./download";
 import { useAuth } from "../../../../../middleware/auth";
 import { useEffect } from "react";
-import ProgressWalkthrough from "../../../../../components/walkthrough/ProgressWalkthrough";
 import { useWalkthrough } from "../../../../../context/WalkthroughContext";
 import WelcomeWalkthrough from "../../../../../components/walkthrough/WelcomeWalkthrough";
-import LeftSidebarWalkthrough from "../../../../../components/walkthrough/LeftSidebarWalkthrough";
 import TipsWalkthrough from "../../../../../components/walkthrough/TipsWalkthrough";
-import RightSidebarWalkthrough from "../../../../../components/walkthrough/RightSidebarWalkthrough";
 import DownloadWalkthrough from "../../../../../components/walkthrough/DownloadWalkthrough";
 import FinishWalkthrough from "../../../../../components/walkthrough/FinishWalkthrough";
+import AdditionInformation from "./additon_information";
 
 function Builder() {
   const { templateData, onInputChange, setTemplateData } = useTemplateContext();
@@ -60,6 +58,10 @@ function Builder() {
       link: "/bio",
     },
     {
+      element: AdditionInformation,
+      link: "/add_information/*",
+    },
+    {
       element: Preview,
       link: "/preview",
     },
@@ -77,7 +79,11 @@ function Builder() {
       return templateData.completed["work_history"] === true;
     } else if (step === "education/*") {
       return templateData.completed["education"] === true;
-    } else if (step === "preview" || step === "download") {
+    } else if (step === "add_information/*") {
+      return true;
+    } else if (step === "preview") {
+      return true;
+    } else if (step === "download") {
       return true;
     }
     return templateData.completed[step] === true;
@@ -90,27 +96,29 @@ function Builder() {
       {currentModule === 5 && <DownloadWalkthrough />}
       {currentModule === 6 && <FinishWalkthrough />}
       <Routes>
-        {component_list.map((component, index) => (
-          <Route
-            key={component.link}
-            path={component.link}
-            element={
-              index === 0 ||
-              isStepCompleted(component_list[index - 1].link.substring(1)) ? (
-                <component.element
-                  data={templateData}
-                  onInputChange={onInputChange}
-                  updateResume={setTemplateData}
-                />
-              ) : (
-                <Navigate
-                  to={"/resume/builder" + component_list[index - 1].link}
-                  replace
-                />
-              )
-            }
-          />
-        ))}
+        {component_list.map((component, index) => {
+          return (
+            <Route
+              key={component.link}
+              path={component.link}
+              element={
+                index === 0 ||
+                isStepCompleted(component_list[index - 1].link.substring(1)) ? (
+                  <component.element
+                    data={templateData}
+                    onInputChange={onInputChange}
+                    updateResume={setTemplateData}
+                  />
+                ) : (
+                  <Navigate
+                    to={"/resume/builder" + component_list[index - 1].link}
+                    replace
+                  />
+                )
+              }
+            />
+          );
+        })}
       </Routes>
     </div>
   );

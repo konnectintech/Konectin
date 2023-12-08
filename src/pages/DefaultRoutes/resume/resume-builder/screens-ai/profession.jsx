@@ -4,10 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { TypeAnimation } from "react-type-animation";
 import JobTitleInput from "../../../../../components/jobTitleInput";
 import { useTemplateContext } from "../../../../../middleware/resume";
+import CustomSelect from "../../../../../components/select/CustomSelect";
+import professions from "professions";
 
 const Profession = ({ data }) => {
-  const { onInputChange } = useTemplateContext();
+  const { setTemplateData } = useTemplateContext();
   const [error, setError] = useState("");
+  const [selectedProfession, setSelectedProfession] = useState("");
 
   const navigate = useNavigate();
 
@@ -20,6 +23,7 @@ const Profession = ({ data }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!data.profession) {
       setError("Please enter a profession");
       return;
@@ -31,6 +35,17 @@ const Profession = ({ data }) => {
     if (data.profession.length !== 0) {
     }
   });
+
+  const handleSelect = (value) => {
+    setSelectedProfession(value);
+    setTemplateData((prev) => ({
+      ...prev,
+      basicInfo: {
+        ...prev.basicInfo,
+        profession: value,
+      },
+    }));
+  };
 
   return (
     <>
@@ -50,24 +65,17 @@ const Profession = ({ data }) => {
         onSubmit={handleSubmit}
         className="flex position relative items-center min-w-[320px] max-w-[722px]"
       >
-        <JobTitleInput
-          title={data.profession}
-          handleInputChange={({ section, subsection, values }) =>
-            onInputChange({
-              section: section,
-              subsection: subsection,
-              values: values,
-            })
-          }
-          section="basicInfo"
-          subsection="profession"
+        <CustomSelect
+          onChange={handleSelect}
+          value={selectedProfession}
+          options={professions}
         />
         <p className="absolute -bottom-5 text-sm text-error-500">{error}</p>
         <button
           onClick={handleSubmit}
-          className="absolute -bottom-5 text-primary-600 text-sm text-center w-full"
+          className="absolute right-4 bg-primary-500 text-white rounded-md px-6 py-1 text-sm"
         >
-          Press Enter
+          Continue
         </button>
       </form>
     </>

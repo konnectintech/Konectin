@@ -6,7 +6,7 @@ import SelectedTemplates from "../../../resume-templates";
 import NavigationButton from "../../navigationButton";
 import { onSectionComplete } from "../../verification";
 
-const CollegeList = ({ addCompany, goBack, deleteExperience }) => {
+const CollegeList = ({ addCollege, goBack, deleteCollege }) => {
   const { templateData, setTemplateData } = useTemplateContext();
   const [showMore, setShowMore] = useState(-1);
 
@@ -23,7 +23,7 @@ const CollegeList = ({ addCompany, goBack, deleteExperience }) => {
   return (
     <div className="max-w-6xl mx-auto">
       <div className="flex flex-col md:flex-row items-start justify-between self-center  gap-10">
-        <div className="mt-8 flex flex-col justify-center">
+        <div className="flex flex-col justify-center w-full">
           <h2 className="-mt-6 max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
             University or college details
           </h2>
@@ -61,7 +61,7 @@ const CollegeList = ({ addCompany, goBack, deleteExperience }) => {
                           currentEditedEducation: index + 1,
                         }));
 
-                        navigate("/resume/builder/employment-experience");
+                        navigate("/resume/builder/education/college");
                       }}
                     >
                       <FaPen size="1rem" />
@@ -72,7 +72,7 @@ const CollegeList = ({ addCompany, goBack, deleteExperience }) => {
                           ? alert(
                               "You can't delete the last experience, edit it instead"
                             )
-                          : deleteExperience(index);
+                          : deleteCollege(index);
                       }}
                     >
                       <FaTrash size="1rem" />
@@ -120,7 +120,7 @@ const CollegeList = ({ addCompany, goBack, deleteExperience }) => {
 
           <div
             className="flex items-center border-none outline-none cursor-pointer"
-            onClick={addCompany}
+            onClick={addCollege}
           >
             <div className="bg-primary-400 text-neutral-1000 p-2 border rounded-full">
               <FaPlus size="0.6rem" />

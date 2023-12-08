@@ -30,14 +30,14 @@ const College = ({ data }) => {
   }, []);
 
   // Set the job Experience being edited to the exact one using the currentEditedEducation state
-  const [education, seteducation] = useState(
+  const [education, setEducation] = useState(
     data.education[data.currentEditedEducation - 1]
   );
 
   // A re-effect to update the job Experience according to the exact job being edited whenever the currentEditedEducation is updated
   useEffect(() => {
     if (data.education) {
-      seteducation(data.education[data.currentEditedEducation - 1]);
+      setEducation(data.education[data.currentEditedEducatiosn - 1]);
     }
   }, [data.currentEditedEducation]);
 
@@ -56,7 +56,7 @@ const College = ({ data }) => {
 
   // Updates the job experience data whenever inputs changes
   const handleStateChange = (name, value) => {
-    seteducation((prev) => ({
+    setEducation((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -85,14 +85,14 @@ const College = ({ data }) => {
       currentEditedEducation: prev.currentEditedEducation + 1,
     }));
 
-    navigate("/resume/builder/employment-experience/");
+    navigate("/resume/builder/education/");
   };
 
   // Controls the activities go back functions
   const goBack = () => {
     // if the array contains more than one object it goes to the basicInfo page otherwise goes to the job responsibility page
     if (Object.keys(data.education).length <= 1) {
-      navigate("/resume/builder/employment-experience/responsibilities");
+      navigate("/resume/builder/education/college");
       return;
     }
 
@@ -112,7 +112,7 @@ const College = ({ data }) => {
         }));
       }
 
-      navigate("/resume/builder/employment-experience/job-activities");
+      navigate("/resume/builder/education/college/college-list");
       return;
     }
 
@@ -145,10 +145,10 @@ const College = ({ data }) => {
               <route.element
                 data={education}
                 handleInputChange={handleStateChange}
-                addCompany={addEducation}
+                addCollege={addEducation}
                 goBack={goBack}
                 handleBack={handleBack}
-                deleteExperience={handleDelete}
+                deleteCollege={handleDelete}
               />
             }
           />

@@ -10,8 +10,11 @@ import {
 import { FaChevronDown, FaChevronUp, FaPlus } from "react-icons/fa";
 import LeftSidebarWalkthrough from "../../components/walkthrough/LeftSidebarWalkthrough";
 import { useWalkthrough } from "../../context/WalkthroughContext";
+import { useTemplateContext } from "../../middleware/resume";
+import { Link } from "react-router-dom";
 
 function ResumeLeftbar() {
+  const { templateData } = useTemplateContext();
   const { currentModule } = useWalkthrough();
   const [active, setActive] = useState(false);
   return (
@@ -64,12 +67,29 @@ function ResumeLeftbar() {
               </li>
               {active &&
                 item.options &&
-                item.options.map((option) => (
-                  <div className="hidden group-hover:flex px-4 text-sm  gap-2 items-center whitespace-nowrap">
-                    <FaPlus />
-                    {option.label}
-                  </div>
-                ))}
+                item.options.map((option) => {
+                  return (
+                    <div>
+                      {templateData.additionalInformation &&
+                        Object.keys(templateData.additionalInformation).map(
+                          (sectionName) => (
+                            <div key={sectionName}>
+                              <Link
+                                className="capitalize px-4 text-sm cursor-pointer"
+                                to={`/resume/builder/add_information/${sectionName}`}
+                              >
+                                {sectionName}
+                              </Link>
+                            </div>
+                          )
+                        )}
+                      <div className="hidden group-hover:flex px-4 mt-2 font-medium text-sm  gap-2 items-center whitespace-nowrap">
+                        <FaPlus />
+                        {option.label}
+                      </div>
+                    </div>
+                  );
+                })}
             </>
           ))}
         </ul>

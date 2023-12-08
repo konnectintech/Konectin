@@ -21,13 +21,10 @@ const Education = ({ data }) => {
           element={
             <>
               <Outlet />
-              <div className="max-md:hidden">
-                <SelectedTemplates data={data} />
-              </div>
             </>
           }
         >
-          <Route path="/college" element={<College data={data} />} />
+          <Route path="/college/*" element={<College data={data} />} />
           <Route path="/other" element={<Other />} />
           <Route path="/high-school" element={<HighSchool />} />
         </Route>

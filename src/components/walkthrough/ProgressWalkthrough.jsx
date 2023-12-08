@@ -1,5 +1,6 @@
 import { FaTimes } from "react-icons/fa";
 import { useWalkthrough } from "../../context/WalkthroughContext";
+import { useEffect } from "react";
 
 function ProgressWalkthrough() {
   const {
@@ -9,7 +10,15 @@ function ProgressWalkthrough() {
     prevModule,
     skipWalkthrough,
   } = useWalkthrough();
+  useEffect(() => {
+    // Add 'modal-open' class to the body when the modal is open
+    document.body.classList.add("modal-open");
 
+    // Remove 'modal-open' class from the body when the modal is closed
+    return () => {
+      document.body.classList.remove("modal-open");
+    };
+  }, []);
   return (
     <div className="fixed inset-0  z-[100] bg-black bg-opacity-40">
       <div className="absolute top-20 right-1/3 bg-[#191A1F] py-10 px-14 rounded-lg w-1/2 flex flex-col items-center gap-8 ">

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { BsDroplet, BsFonts } from "react-icons/bs";
 import { CgFontHeight } from "react-icons/cg";
+import { useTemplateData } from "../../middleware/resume";
 
 const StyleResume = () => {
+  const { templateData, setTemplateData } = useTemplateData();
   const [selectedFont, setSelectedFont] = useState("Arial");
   const [selectedSize, setSelectedSize] = useState("medium");
   const [selectedColor, setSelectedColor] = useState("");
@@ -13,6 +15,13 @@ const StyleResume = () => {
 
   const handleFontChange = (event) => {
     setSelectedFont(event.target.value);
+    setTemplateData({
+      ...templateData,
+      theme: {
+        ...templateData.theme,
+        font: event.target.value,
+      },
+    });
   };
 
   const handleSizeChange = (size) => {
@@ -21,6 +30,13 @@ const StyleResume = () => {
 
   const handleColorChange = (color) => {
     setSelectedColor(color);
+    setTemplateData({
+      ...templateData,
+      theme: {
+        ...templateData.theme,
+        color,
+      },
+    });
   };
 
   return (
@@ -94,7 +110,7 @@ const StyleResume = () => {
         </div>
       </div>
       <div className="flex justify-end">
-        <botton className="bg-primary-500 text-white rounded whitespace-nowrap text-xs px-4 py-2">
+        <botton className="bg-primary-500 cursor-pointer text-white rounded whitespace-nowrap text-xs px-4 py-2">
           Save Edit
         </botton>
       </div>

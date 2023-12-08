@@ -53,7 +53,7 @@ const Bio = ({ data, onInputChange }) => {
     if (dirty) {
       setErrorMessage("You have unsaved content!");
     } else {
-      navigate("/resume/builder/preview");
+      navigate("/resume/builder/add_information");
     }
   };
 

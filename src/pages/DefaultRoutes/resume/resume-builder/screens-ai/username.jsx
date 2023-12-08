@@ -45,7 +45,7 @@ const Username = ({ data }) => {
       },
     }));
 
-    navigate("profession");
+    navigate("level");
   };
 
   return (

@@ -10,10 +10,22 @@ import CountryInput from "../../../../../../components/form/countryInput";
 import StateInput from "../../../../../../components/form/stateInput";
 import CityInput from "../../../../../../components/form/cityInput";
 import { onSectionComplete, verifyInput } from "../verification";
+import ResumeModal from "../../../../../../layouts/resumeRoutes/resumeModal";
+import Responsibilities2 from "./responsibilities2";
 
 const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
   const [countryId, setCountryId] = useState(0);
   const [stateId, setStateId] = useState(0);
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   const companyErrorRef = useRef(null);
   const startMonthRef = useRef(null);
@@ -336,8 +348,17 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
         </div>
       </div>
       <div className="mt-16">
-        <NavigationButton back={handleBack} cont={handleSubmit} />
+        <NavigationButton back={handleBack} cont={openModal} />
       </div>
+      {isModalOpen && (
+        <ResumeModal onClose={closeModal}>
+          <Responsibilities2
+            data={data}
+            closeModal={closeModal}
+            handleInputChange={handleInputChange}
+          />
+        </ResumeModal>
+      )}
     </div>
   );
 };

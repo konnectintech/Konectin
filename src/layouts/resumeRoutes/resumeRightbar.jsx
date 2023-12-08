@@ -9,13 +9,13 @@ import {
   tips,
   tips2,
 } from "../../assets";
-import { FaChevronDown, FaChevronUp, FaPlus } from "react-icons/fa";
-import { template_images } from "../../assets/resume";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import EditResumePhoto from "../../components/resumeRightSide/EditResumePhoto";
 import StyleResume from "../../components/resumeRightSide/StyleResume";
 import DownloadResume from "../../components/resumeRightSide/DownloadResume";
 import RightSidebarWalkthrough from "../../components/walkthrough/RightSidebarWalkthrough";
 import { useWalkthrough } from "../../context/WalkthroughContext";
+import ChangeTemplate from "../../components/resumeRightSide/ChangeTemplate";
 
 function ResumeRightbar() {
   const { currentModule } = useWalkthrough();
@@ -124,20 +124,7 @@ const RightBarOption = ({ item }) => {
           ) : null}
         </div>
       </li>
-      {activeItem === "Change Template" && (
-        <div className="flex flex-col gap-2 overflow-y-auto max-h-[250px]">
-          {template_images.map((item, index) => {
-            return (
-              <img
-                src={item.img}
-                alt={`img_${index + 1}`}
-                className="w-full h-full"
-                // onClick={() => handleSelect(`${sectionName}_${index + 1}`)}
-              />
-            );
-          })}
-        </div>
-      )}
+      {activeItem === "Change Template" && <ChangeTemplate />}
       {activeItem === "Edit Resume Photo" && <EditResumePhoto />}
       {activeItem === "Style Resume" && <StyleResume />}
     </div>

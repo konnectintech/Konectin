@@ -10,6 +10,7 @@ import CountryInput from "../../../../../../../components/form/countryInput";
 import CityInput from "../../../../../../../components/form/cityInput";
 import StateInput from "../../../../../../../components/form/stateInput";
 import { onSectionComplete, verifyInput } from "../../verification";
+import SelectedTemplates from "../../../resume-templates";
 
 function CollegeForm() {
   const [countryId, setCountryId] = useState(0);
@@ -34,6 +35,7 @@ function CollegeForm() {
   const navigate = useNavigate();
   const { templateData, setTemplateData } = useTemplateContext();
   const currentEditedEducation = templateData.currentEditedEducation;
+  console.log(currentEditedEducation);
 
   const [education, setEducation] = useState(
     templateData.education[currentEditedEducation - 1]
@@ -64,7 +66,7 @@ function CollegeForm() {
         endYearRef,
       ]);
     }
-  }, [education.current]);
+  }, [education?.current]);
 
   const handleChange = (name, value) => {
     setEducation((prev) => ({
@@ -207,143 +209,79 @@ function CollegeForm() {
   };
 
   return (
-    <section className="max-w-6xl flex flex-col justify-between gap-10 mt-8">
-      <div className="w-full mx-auto self-center">
-        <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
-          University or college details
-        </h2>
-        <p className="text-[#66666a] text-sm tracking-wide mt-3 mb-5">
-          Start with the essentials. Who you are and how can employers connect
-          with you.
-        </p>
+    <section className="max-w-6xl mx-auto">
+      <div className="flex flex-col md:flex-row items-start justify-between self-center  gap-10">
+        <div className="w-full mx-auto ">
+          <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
+            University or college details
+          </h2>
+          <p className="text-[#66666a] text-sm tracking-wide mt-3 mb-5">
+            Start with the essentials. Who you are and how can employers connect
+            with you.
+          </p>
 
-        <form className="w-full mt-12">
-          <div className="mt-6">
-            <div className="flex flex-col">
-              <input
-                type="text"
-                id="schoolName"
-                name="schoolName"
-                className="input-container"
-                value={education.schoolName}
-                onChange={(e) => handleChange(e.target.name, e.target.value)}
-                onInput={(e) => handleChange(e.target.name, e.target.value)}
-                placeholder="College / University Name"
-              />
-              <label
-                className="-mt-5 text-xs pl-4 text-error-500 hidden"
-                htmlFor="schoolName"
-                ref={schoolRef}
-              ></label>
-            </div>
-
-            <div className="flex flex-col">
-              <input
-                className="input-container"
-                value={education.degree}
-                name="degree"
-                id="degree"
-                type="text"
-                onChange={(e) => handleChange(e.target.name, e.target.value)}
-                onInput={(e) => handleChange(e.target.name, e.target.value)}
-                placeholder="Degree"
-              />
-              <label
-                className="-mt-5 text-xs pl-4 text-error-500 hidden"
-                htmlFor="degree"
-                ref={degreeRef}
-              ></label>
-            </div>
-
-            <div className="flex gap-4">
-              {/* Country  */}
-              <CountryInput
-                handleChange={(name, value) => handleChange(name, value)}
-                country={education.country}
-                setCountryId={setCountryId}
-              />
-
-              {/* State */}
-              <StateInput
-                countryId={countryId}
-                handleChange={(name, value) => handleChange(name, value)}
-                state={education.state}
-                setStateId={setStateId}
-              />
-
-              <CityInput
-                countryId={countryId}
-                stateId={stateId}
-                handleChange={(name, value) => handleChange(name, value)}
-                city={education.city}
-              />
-            </div>
-
-            <div className="flex gap-4">
-              <div className="flex flex-col w-full">
-                <DatePicker
-                  format="MMMM"
-                  arrow={false}
-                  buttons={false}
-                  onlyMonthPicker
-                  id="startMonth"
-                  placeholder={
-                    education.startMonth === ""
-                      ? "Start Month"
-                      : education.startMonth
-                  }
-                  value={
-                    new Date(`${education.startMonth} ${education.startYear}`)
-                  }
-                  // containerClassName="w-full"
-                  inputClass="input-container"
-                  className="bg-primary-600 text-white"
-                  onChange={(e) => {
-                    const date = e.toDate();
-                    handleChange(
-                      "startMonth",
-                      date.toLocaleString("default", { month: "long" })
-                    );
-                  }}
-                />
-
-                <label
-                  className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
-                  htmlFor="startMonth"
-                  ref={startMonthRef}
-                ></label>
-              </div>
-              <div className="flex flex-col w-full">
-                <DatePicker
-                  arrow={false}
-                  onlyYearPicker
-                  id="startYear"
-                  placeholder={
-                    education.startYear === ""
-                      ? "Start Year"
-                      : education.startYear
-                  }
-                  value={
-                    new Date(`${education.startMonth} ${education.startYear}`)
-                  }
-                  // containerClassName="w-full"
-                  inputClass="input-container"
-                  className="bg-primary-600 text-white"
-                  onChange={(e) => {
-                    const date = e.toDate();
-                    handleChange("startYear", date.getFullYear());
-                  }}
-                  maxDate={new Date()}
+          <form className="w-full mt-12">
+            <div className="mt-6">
+              <div className="flex flex-col">
+                <input
+                  type="text"
+                  id="schoolName"
+                  name="schoolName"
+                  className="input-container"
+                  value={education.schoolName}
+                  onChange={(e) => handleChange(e.target.name, e.target.value)}
+                  onInput={(e) => handleChange(e.target.name, e.target.value)}
+                  placeholder="College / University Name"
                 />
                 <label
-                  className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
-                  htmlFor="startYear"
-                  ref={startYearRef}
+                  className="-mt-5 text-xs pl-4 text-error-500 hidden"
+                  htmlFor="schoolName"
+                  ref={schoolRef}
                 ></label>
               </div>
-            </div>
 
-            {!education.current && (
+              <div className="flex flex-col">
+                <input
+                  className="input-container"
+                  value={education.degree}
+                  name="degree"
+                  id="degree"
+                  type="text"
+                  onChange={(e) => handleChange(e.target.name, e.target.value)}
+                  onInput={(e) => handleChange(e.target.name, e.target.value)}
+                  placeholder="Degree"
+                />
+                <label
+                  className="-mt-5 text-xs pl-4 text-error-500 hidden"
+                  htmlFor="degree"
+                  ref={degreeRef}
+                ></label>
+              </div>
+
+              <div className="flex gap-4">
+                {/* Country  */}
+                <CountryInput
+                  handleChange={(name, value) => handleChange(name, value)}
+                  country={education.country}
+                  setCountryId={setCountryId}
+                />
+
+                {/* State */}
+                <StateInput
+                  countryId={countryId}
+                  handleChange={(name, value) => handleChange(name, value)}
+                  state={education.state}
+                  setStateId={setStateId}
+                />
+
+                <CityInput
+                  countryId={countryId}
+                  stateId={stateId}
+                  handleChange={(name, value) => handleChange(name, value)}
+                  city={education.city}
+                />
+              </div>
+
               <div className="flex gap-4">
                 <div className="flex flex-col w-full">
                   <DatePicker
@@ -351,48 +289,13 @@ function CollegeForm() {
                     arrow={false}
                     buttons={false}
                     onlyMonthPicker
-                    id="endMonth"
+                    id="startMonth"
                     placeholder={
-                      education.endMonth === ""
-                        ? "Graduation Month"
-                        : education.endMonth
+                      education.startMonth === ""
+                        ? "Start Month"
+                        : education.startMonth
                     }
                     value={
-                      new Date(`${education.endMonth} ${education.endYear}`)
-                    }
-                    // containerClassName="w-full"
-                    inputClass="input-container"
-                    className="bg-primary-600 text-white"
-                    onChange={(e) => {
-                      const date = e.toDate();
-                      handleChange(
-                        "endMonth",
-                        date.toLocaleString("default", { month: "long" })
-                      );
-                    }}
-                  />
-
-                  <label
-                    className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
-                    htmlFor="endMonth"
-                    ref={endMonthRef}
-                  ></label>
-                </div>
-
-                <div className="flex flex-col w-full">
-                  <DatePicker
-                    arrow={false}
-                    onlyYearPicker
-                    id="endYear"
-                    placeholder={
-                      education.endYear === ""
-                        ? "Graduation Year"
-                        : education.endYear
-                    }
-                    value={
-                      new Date(`${education.endMonth} ${education.endYear}`)
-                    }
-                    minDate={
                       new Date(`${education.startMonth} ${education.startYear}`)
                     }
                     // containerClassName="w-full"
@@ -400,42 +303,150 @@ function CollegeForm() {
                     className="bg-primary-600 text-white"
                     onChange={(e) => {
                       const date = e.toDate();
-                      handleChange("endYear", date.getFullYear());
+                      handleChange(
+                        "startMonth",
+                        date.toLocaleString("default", { month: "long" })
+                      );
                     }}
                   />
 
                   <label
                     className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
-                    htmlFor="endYear"
-                    ref={endYearRef}
+                    htmlFor="startMonth"
+                    ref={startMonthRef}
+                  ></label>
+                </div>
+                <div className="flex flex-col w-full">
+                  <DatePicker
+                    arrow={false}
+                    onlyYearPicker
+                    id="startYear"
+                    placeholder={
+                      education.startYear === ""
+                        ? "Start Year"
+                        : education.startYear
+                    }
+                    value={
+                      new Date(`${education.startMonth} ${education.startYear}`)
+                    }
+                    // containerClassName="w-full"
+                    inputClass="input-container"
+                    className="bg-primary-600 text-white"
+                    onChange={(e) => {
+                      const date = e.toDate();
+                      handleChange("startYear", date.getFullYear());
+                    }}
+                    maxDate={new Date()}
+                  />
+                  <label
+                    className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
+                    htmlFor="startYear"
+                    ref={startYearRef}
                   ></label>
                 </div>
               </div>
-            )}
-            <div
-              className="w-fit flex gap-2 items-center cursor-pointer"
-              onClick={() => {
-                handleChange("current", !education.current);
-              }}
-            >
-              <div
-                className={`w-5 h-5 rounded-sm border-[1.5px] border-primary-600 flex items-center justify-center ${
-                  education.current ? "bg-primary-400" : "bg-white"
-                }`}
-              >
-                {education.current && (
-                  <FaIcon.FaCheck size=".4rem" color="#fff" />
-                )}
-              </div>
-              <span className="text-sm font-light text-neutral-300">
-                I currently attend here
-              </span>
-            </div>
-          </div>
-        </form>
-      </div>
 
-      <NavigationButton back={cancelEdu} cont={handleSubmit} />
+              {!education.current && (
+                <div className="flex gap-4">
+                  <div className="flex flex-col w-full">
+                    <DatePicker
+                      format="MMMM"
+                      arrow={false}
+                      buttons={false}
+                      onlyMonthPicker
+                      id="endMonth"
+                      placeholder={
+                        education.endMonth === ""
+                          ? "Graduation Month"
+                          : education.endMonth
+                      }
+                      value={
+                        new Date(`${education.endMonth} ${education.endYear}`)
+                      }
+                      // containerClassName="w-full"
+                      inputClass="input-container"
+                      className="bg-primary-600 text-white"
+                      onChange={(e) => {
+                        const date = e.toDate();
+                        handleChange(
+                          "endMonth",
+                          date.toLocaleString("default", { month: "long" })
+                        );
+                      }}
+                    />
+
+                    <label
+                      className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
+                      htmlFor="endMonth"
+                      ref={endMonthRef}
+                    ></label>
+                  </div>
+
+                  <div className="flex flex-col w-full">
+                    <DatePicker
+                      arrow={false}
+                      onlyYearPicker
+                      id="endYear"
+                      placeholder={
+                        education.endYear === ""
+                          ? "Graduation Year"
+                          : education.endYear
+                      }
+                      value={
+                        new Date(`${education.endMonth} ${education.endYear}`)
+                      }
+                      minDate={
+                        new Date(
+                          `${education.startMonth} ${education.startYear}`
+                        )
+                      }
+                      // containerClassName="w-full"
+                      inputClass="input-container"
+                      className="bg-primary-600 text-white"
+                      onChange={(e) => {
+                        const date = e.toDate();
+                        handleChange("endYear", date.getFullYear());
+                      }}
+                    />
+
+                    <label
+                      className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
+                      htmlFor="endYear"
+                      ref={endYearRef}
+                    ></label>
+                  </div>
+                </div>
+              )}
+              <div
+                className="w-fit flex gap-2 items-center cursor-pointer"
+                onClick={() => {
+                  handleChange("current", !education.current);
+                }}
+              >
+                <div
+                  className={`w-5 h-5 rounded-sm border-[1.5px] border-primary-600 flex items-center justify-center ${
+                    education.current ? "bg-primary-400" : "bg-white"
+                  }`}
+                >
+                  {education.current && (
+                    <FaIcon.FaCheck size=".4rem" color="#fff" />
+                  )}
+                </div>
+                <span className="text-sm font-light text-neutral-300">
+                  I currently attend here
+                </span>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div className="max-md:hidden">
+          <SelectedTemplates data={templateData} />
+        </div>
+      </div>
+      <div className="mt-16">
+        <NavigationButton back={cancelEdu} cont={handleSubmit} />
+      </div>
     </section>
   );
 }

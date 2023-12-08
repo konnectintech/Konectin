@@ -1,5 +1,6 @@
 import { FaTimes } from "react-icons/fa";
 import { useWalkthrough } from "../../context/WalkthroughContext";
+import { useEffect } from "react";
 
 function LeftSidebarWalkthrough() {
   const {
@@ -9,9 +10,15 @@ function LeftSidebarWalkthrough() {
     prevModule,
     skipWalkthrough,
   } = useWalkthrough();
+  useEffect(() => {
+    // Add 'modal-open' class to the body when the modal is open
+    document.body.classList.add("modal-open");
 
-  const array = new Array(totalModules);
-  console.log(array);
+    // Remove 'modal-open' class from the body when the modal is closed
+    return () => {
+      document.body.classList.remove("modal-open");
+    };
+  }, []);
   return (
     <div className="fixed inset-0 z-[100] ">
       <div className="w-16 absolute left-0  top-0  h-14 bg-black bg-opacity-40 " />

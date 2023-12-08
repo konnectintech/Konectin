@@ -1,7 +1,17 @@
 import { FaTimes } from "react-icons/fa";
 import { useWalkthrough } from "../../context/WalkthroughContext";
+import { useEffect } from "react";
 
 function TipsWalkthrough() {
+  useEffect(() => {
+    // Add 'modal-open' class to the body when the modal is open
+    document.body.classList.add("modal-open");
+
+    // Remove 'modal-open' class from the body when the modal is closed
+    return () => {
+      document.body.classList.remove("modal-open");
+    };
+  }, []);
   const {
     totalModules,
     currentModule,

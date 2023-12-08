@@ -15,7 +15,7 @@ function ResumeRoutes() {
       <div className="flex relative px-14 ">
         {pathname.split("/")[2] === "builder" && <ResumeLeftbar />}
         <main
-          className=""
+          className="overflow-y-auto h-screen no-scrollbar"
           style={{
             backgroundImage: `linear-gradient(rgba(249, 249, 249, .98), rgba(249, 249, 249, .98)), url("${BuilderBg}")`,
             backgroundSize: "cover",
