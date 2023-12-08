@@ -12,6 +12,7 @@ import { onSectionComplete, verifyInput } from "../verification";
 import ResumeModal from "../../../../../../layouts/resumeRoutes/resumeModal";
 import Responsibilities2 from "./responsibilities2";
 import DateSelector from "../../../../../../components/form/dateSelector";
+import DatePicker from "react-multi-date-picker";
 
 const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
   const [countryId, setCountryId] = useState(0);
@@ -28,6 +29,18 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
   };
 
   const companyErrorRef = useRef(null);
+  const startMonthRef = useRef(null);
+  const startYearRef = useRef(null);
+  const endMonthRef = useRef(null);
+  const endYearRef = useRef(null);
+
+  let allErrMsg = [
+    companyErrorRef,
+    startMonthRef,
+    startYearRef,
+    endMonthRef,
+    endYearRef,
+  ];
 
   const navigate = useNavigate();
   const { templateData } = useTemplateContext();

@@ -24,17 +24,17 @@ function Builder() {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!user) {
-      navigate("/resume/ai");
-    }
-  }, [navigate, user]);
+  // useEffect(() => {
+  //   if (!user) {
+  //     navigate("/resume/ai");
+  //   }
+  // }, [navigate, user]);
 
-  useEffect(() => {
-    if (!templateData) {
-      navigate("/resume/ai");
-    }
-  }, [templateData, navigate]);
+  // useEffect(() => {
+  //   if (!templateData) {
+  //     navigate("/resume/ai");
+  //   }
+  // }, [templateData, navigate]);
 
   const component_list = [
     {
@@ -102,19 +102,21 @@ function Builder() {
               key={component.link}
               path={component.link}
               element={
-                index === 0 ||
-                isStepCompleted(component_list[index - 1].link.substring(1)) ? (
-                  <component.element
-                    data={templateData}
-                    onInputChange={onInputChange}
-                    updateResume={setTemplateData}
-                  />
-                ) : (
-                  <Navigate
-                    to={"/resume/builder" + component_list[index - 1].link}
-                    replace
-                  />
-                )
+                // index === 0 ||
+                // isStepCompleted(component_list[index - 1].link.substring(1)) ?
+                //  (
+                <component.element
+                  data={templateData}
+                  onInputChange={onInputChange}
+                  updateResume={setTemplateData}
+                />
+                // )
+                //  : (
+                //   <Navigate
+                //     to={"/resume/builder" + component_list[index - 1].link}
+                //     replace
+                //   />
+                // )
               }
             />
           );
