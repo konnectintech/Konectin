@@ -10,7 +10,7 @@ import {
   variant4Icon,
   variant5Icon,
   variantIcon,
-  MustafaIcon,
+  // MustafaIcon,
   DavidIcon,
   FounderIcon,
   MichaelIcon,
@@ -92,7 +92,7 @@ export const TeamData = [
   },
   {
     name: "Mustafa Abdulasis",
-    image: MustafaIcon,
+    image: FounderIcon,
     title: "Chief Operations Officer (C.O.O)",
     contact: {
       linkedin: "https://www.linkedin.com/in/mustafa-abdulasis",
