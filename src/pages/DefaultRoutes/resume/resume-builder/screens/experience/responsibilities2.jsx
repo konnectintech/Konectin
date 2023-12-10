@@ -11,7 +11,7 @@ function Responsibilities2({ data, closeModal, handleInputChange }) {
   const navigate = useNavigate();
 
   const [responsibility, setResponsibility] = useState("");
-  const [editorValue, setEditorValue] = useState(data?.workDesc);
+  const [editorValue, setEditorValue] = useState(data?.workDesc || "");
   const [dirty, setDirty] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [suggestions, setSuggestion] = useState([]);
