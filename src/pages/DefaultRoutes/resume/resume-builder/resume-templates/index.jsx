@@ -5,7 +5,7 @@ function SelectedTemplates({ data }) {
     JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
 
   if (!selectedTemplate) {
-    // window.location.href = "/resume/ai";
+    window.location.href = "/resume/ai";
     return;
   }
 

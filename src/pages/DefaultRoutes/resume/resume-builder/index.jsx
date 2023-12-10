@@ -63,7 +63,7 @@ const Options = () => {
     const { currentStage } =
       JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
 
-    if (currentStage === null || currentStage === 0) {
+    if (!currentStage || currentStage === null || currentStage === 0) {
       setEditable(false);
     } else {
       setEditable(true);

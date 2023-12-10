@@ -24,17 +24,17 @@ function Builder() {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (!user) {
-  //     navigate("/resume/ai");
-  //   }
-  // }, [navigate, user]);
+  useEffect(() => {
+    if (!user) {
+      navigate("/resume/ai");
+    }
+  }, [navigate, user]);
 
-  // useEffect(() => {
-  //   if (!templateData) {
-  //     navigate("/resume/ai");
-  //   }
-  // }, [templateData, navigate]);
+  useEffect(() => {
+    if (!templateData) {
+      navigate("/resume/ai");
+    }
+  }, [templateData, navigate]);
 
   const component_list = [
     {
