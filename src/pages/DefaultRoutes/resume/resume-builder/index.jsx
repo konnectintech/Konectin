@@ -4,6 +4,7 @@ import { createResume, uploadResume } from "../../../../assets";
 import StartBuilder from "./start";
 import { useNavigate } from "react-router";
 import { FaChevronRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const BuilderOption = ({
   title,
@@ -100,20 +101,16 @@ const Options = () => {
           handleChoice={handleChoice}
         />
       </div>
-      <div className="text-2xl font-medium flex items-center gap-4">
-        I Want to build a Cover Letter
-        <span className="font-bold text-secondary-600 flex items-center gap-2 cursor-pointer">
-          Cover Letter <FaChevronRight className="text-sm" />
-        </span>
+
+      <div className="font-medium flex items-center gap-2 text-base">
+        I want to build a cover letter
+        <Link
+          to="/cover-letter"
+          className="font-bold text-secondary-600 flex items-center"
+        >
+          Cover Letter <FaChevronRight />
+        </Link>
       </div>
-      {/* <Link
-        to={choice ? `/resume/${choice}` : "#"}
-        className={`duration-500 px-12 py-3 rounded-md text-[#fff] mt-6${
-          choice ? " bg-primary-600" : " bg-primary-200"
-        }`}
-      >
-        Next
-      </Link> */}
     </section>
   );
 };

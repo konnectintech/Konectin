@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   download,
   droplet,
@@ -36,6 +36,7 @@ function ResumeRightbar() {
       option: true,
     },
   ];
+
   return (
     <>
       {currentModule === 4 && <RightSidebarWalkthrough />}

@@ -12,6 +12,7 @@ function DownloadWalkthrough() {
       document.body.classList.remove("modal-open");
     };
   }, []);
+
   const {
     totalModules,
     currentModule,

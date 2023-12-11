@@ -12,7 +12,6 @@ import { onSectionComplete, verifyInput } from "../verification";
 import ResumeModal from "../../../../../../layouts/resumeRoutes/resumeModal";
 import Responsibilities2 from "./responsibilities2";
 import DateSelector from "../../../../../../components/form/dateSelector";
-import DatePicker from "react-multi-date-picker";
 
 const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
   const [countryId, setCountryId] = useState(0);
@@ -29,18 +28,6 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
   };
 
   const companyErrorRef = useRef(null);
-  const startMonthRef = useRef(null);
-  const startYearRef = useRef(null);
-  const endMonthRef = useRef(null);
-  const endYearRef = useRef(null);
-
-  let allErrMsg = [
-    companyErrorRef,
-    startMonthRef,
-    startYearRef,
-    endMonthRef,
-    endYearRef,
-  ];
 
   const navigate = useNavigate();
   const { templateData } = useTemplateContext();
@@ -175,126 +162,56 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
               </div>
 
               <div className="flex gap-4">
-                <div className="flex flex-col w-full">
-                  <DatePicker
-                    format="MMMM"
-                    arrow={false}
-                    buttons={false}
-                    onlyMonthPicker
-                    id="startMonth"
-                    placeholder={
-                      data?.startMonth === "" ? "Start Month" : data?.startMonth
-                    }
-                    value={new Date(`${data?.startMonth} ${data?.startYear}`)}
-                    // containerClassName="w-full"
-                    inputClass="input-container"
-                    className="bg-primary-600 text-white"
-                    onChange={(e) => {
-                      const date = e.toDate();
-                      const value = date.toLocaleString("default", {
-                        month: "long",
-                      });
-                      handleInputChange("startMonth", value);
-                      verifyInput(value, startMonthRef.current, "startMonth");
-                    }}
-                  />
+                {/* Start Month */}
+                <DateSelector
+                  monthPicker
+                  handleDataChange={(name, value) => {
+                    console.log(name, value);
+                    handleInputChange(name, value);
+                  }}
+                  id="startMonth"
+                  year={data?.startYear}
+                  month={data?.startMonth}
+                  placeholder="Start Month"
+                />
 
-                  <label
-                    className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
-                    htmlFor="startMonth"
-                    ref={startMonthRef}
-                  ></label>
-                </div>
-
-                <div className="flex flex-col w-full">
-                  <DatePicker
-                    arrow={false}
-                    onlyYearPicker
-                    id="startYear"
-                    placeholder={
-                      data?.startYear === "" ? "Start Year" : data?.startYear
-                    }
-                    value={new Date(`${data?.startMonth} ${data?.startYear}`)}
-                    // containerClassName="w-full"
-                    inputClass="input-container"
-                    className="bg-primary-600 text-white"
-                    onChange={(e) => {
-                      const date = e.toDate();
-                      const value = date.getFullYear();
-                      handleInputChange("startYear", value.toString());
-                      verifyInput(value, startYearRef.current, "startYear");
-                    }}
-                    maxDate={new Date()}
-                  />
-                  <label
-                    className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
-                    htmlFor="startYear"
-                    ref={startYearRef}
-                  ></label>
-                </div>
+                {/* Start Year */}
+                <DateSelector
+                  handleDataChange={(name, value) =>
+                    handleInputChange(name, value)
+                  }
+                  id="startYear"
+                  year={data?.startYear}
+                  month={data?.startMonth}
+                  placeholder="Start Year"
+                  maxDate
+                />
               </div>
               {!data?.current && (
                 <div className="flex gap-4">
-                  <div className="flex flex-col w-full">
-                    <DatePicker
-                      format="MMMM"
-                      arrow={false}
-                      buttons={false}
-                      onlyMonthPicker
-                      id="endMonth"
-                      placeholder={
-                        data?.endMonth === "" ? "End Month" : data?.endMonth
-                      }
-                      value={new Date(`${data?.endMonth} ${data?.endYear}`)}
-                      // containerClassName="w-full"
-                      inputClass="input-container"
-                      className="bg-primary-600 text-white"
-                      onChange={(e) => {
-                        const date = e.toDate();
-                        const value = date.toLocaleString("default", {
-                          month: "long",
-                        });
-                        handleInputChange("endMonth", value);
-                        verifyInput(value, endMonthRef.current, "endMonth");
-                      }}
-                    />
+                  {/* End Month */}
+                  <DateSelector
+                    monthPicker
+                    handleDataChange={(name, value) =>
+                      handleInputChange(name, value)
+                    }
+                    id="endMonth"
+                    year={data?.endYear}
+                    month={data?.endMonth}
+                    placeholder="End Month"
+                  />
 
-                    <label
-                      className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
-                      htmlFor="endMonth"
-                      ref={endMonthRef}
-                    ></label>
-                  </div>
-
-                  <div className="flex flex-col w-full">
-                    <DatePicker
-                      arrow={false}
-                      onlyYearPicker
-                      id="endYear"
-                      placeholder={
-                        data?.endYear === "" ? "End Year" : data?.endYear
-                      }
-                      value={new Date(`${data?.endMonth} ${data?.endYear}`)}
-                      minDate={
-                        new Date(`${data?.startMonth} ${data?.startYear}`)
-                      }
-                      // containerClassName="w-full"
-                      inputClass="input-container"
-                      className="bg-primary-600 text-white"
-                      onChange={(e) => {
-                        const date = e.toDate();
-                        const value = date.getFullYear();
-                        handleInputChange("endYear", value);
-                        verifyInput(value, endYearRef.current, "endYear");
-                      }}
-                    />
-
-                    <label
-                      className="-mt-5 mb-1 text-xs pl-4 text-error-500 hidden"
-                      htmlFor="endYear"
-                      ref={endYearRef}
-                    ></label>
-                  </div>
+                  {/* End Year */}
+                  <DateSelector
+                    handleDataChange={(name, value) =>
+                      handleInputChange(name, value)
+                    }
+                    id="endYear"
+                    year={data?.endYear}
+                    month={data?.endMonth}
+                    placeholder="End Year"
+                    minDate={{ month: data?.startMonth, year: data?.startYear }}
+                  />
                 </div>
               )}
               <div

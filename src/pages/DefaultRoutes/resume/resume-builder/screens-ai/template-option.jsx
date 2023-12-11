@@ -101,7 +101,7 @@ const TemplateOption = ({ sectionName }) => {
           .filter((record) => record.category === sectionName)
           .map((item, index) => {
             return (
-              <div className="relative group">
+              <div key={item.category + index} className="relative group">
                 {/* <SwiperSlide
                    key={item.category + index}
                    className="cursor-pointer ml-2 flex justify-center items-center text-center group"

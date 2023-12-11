@@ -2,11 +2,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TypeAnimation } from "react-type-animation";
-import JobTitleInput from "../../../../../components/jobTitleInput";
-import { useTemplateContext } from "../../../../../middleware/resume";
 
 const Level = ({ data }) => {
-  const { onInputChange } = useTemplateContext();
   const [error, setError] = useState("");
   const [text, setText] = useState(false);
   const [selectedLevel, setSelectedLevel] = useState("");
@@ -16,7 +13,6 @@ const Level = ({ data }) => {
   useEffect(() => {
     if (!data.firstName || !data.lastName) {
       navigate("/resume/ai/");
-      return;
     }
   }, [navigate, data]);
 
@@ -29,11 +25,6 @@ const Level = ({ data }) => {
     navigate("/resume/ai/profession");
   };
 
-  useEffect(() => {
-    if (data.profession.length !== 0) {
-    }
-  });
-
   return (
     <>
       <h2 className="text-2xl lg:text-3xl font-extrabold text-center">
@@ -41,7 +32,7 @@ const Level = ({ data }) => {
         <span className="text-secondary-500 capitalize"> {data.lastName}</span>
       </h2>
 
-      <p className="font-bold text-center">
+      <div className="font-bold text-center">
         <TypeAnimation
           cursor={false}
           sequence={[
@@ -61,7 +52,7 @@ const Level = ({ data }) => {
             />
           </p>
         )}
-      </p>
+      </div>
 
       <form
         onSubmit={handleSubmit}
@@ -72,8 +63,8 @@ const Level = ({ data }) => {
             <input
               type="radio"
               name="level"
-              value="1"
-              checked={selectedLevel === "1"}
+              value="0"
+              checked={selectedLevel === "0"}
               onChange={(e) => setSelectedLevel(e.target.value)}
               className="hidden peer"
             />
@@ -98,8 +89,8 @@ const Level = ({ data }) => {
             <input
               type="radio"
               name="level"
-              value="1"
-              checked={selectedLevel === "1"}
+              value="2"
+              checked={selectedLevel === "2"}
               onChange={(e) => setSelectedLevel(e.target.value)}
               className="hidden peer"
             />

@@ -10,6 +10,7 @@ const ResumeModal = ({ onClose, children }) => {
       document.body.classList.remove("modal-open");
     };
   }, []);
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Dark transparent background overlay */}

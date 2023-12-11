@@ -186,7 +186,6 @@ export const useAuth = () => {
 
   const signOut = () => {
     localStorage.removeItem("konectin-profiler-data-template");
-    localStorage.removeItem("konectin-profiler-data-crStage");
     setUser(null);
   };
 

@@ -17,6 +17,7 @@ function ResumeLeftbar() {
   const { templateData } = useTemplateContext();
   const { currentModule } = useWalkthrough();
   const [active, setActive] = useState(false);
+
   return (
     <>
       {currentModule === 2 && <LeftSidebarWalkthrough />}
@@ -39,7 +40,7 @@ function ResumeLeftbar() {
               options: [{ label: "Add Section" }],
             },
           ].map((item) => (
-            <>
+            <React.Fragment key={item.label}>
               <li
                 className="relative cursor-pointer py-3 px-4 hover:border-r-[3px] border-primary-600 hover:bg-gradient-to-r from-transparent to-primary-200 "
                 key={item.route}
@@ -90,7 +91,7 @@ function ResumeLeftbar() {
                     </div>
                   );
                 })}
-            </>
+            </React.Fragment>
           ))}
         </ul>
       </div>

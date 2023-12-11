@@ -10,6 +10,7 @@ function ProgressWalkthrough() {
     prevModule,
     skipWalkthrough,
   } = useWalkthrough();
+
   useEffect(() => {
     // Add 'modal-open' class to the body when the modal is open
     document.body.classList.add("modal-open");

@@ -12,6 +12,7 @@ function RightSidebarWalkthrough() {
       document.body.classList.remove("modal-open");
     };
   }, []);
+
   const {
     totalModules,
     currentModule,
@@ -22,6 +23,7 @@ function RightSidebarWalkthrough() {
 
   const array = new Array(totalModules);
   console.log(array);
+
   return (
     <div className="fixed inset-0 z-[100]  ">
       <div className="w-16 absolute right-0  top-0  h-14 bg-black bg-opacity-40 " />

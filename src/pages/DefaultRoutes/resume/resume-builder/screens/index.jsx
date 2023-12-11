@@ -1,5 +1,5 @@
 import { useTemplateContext } from "../../../../../middleware/resume";
-import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import BasicInformation from "./basicinfo";
 import EmploymentExperience from "./experience";
 import Education from "./education";
@@ -25,16 +25,10 @@ function Builder() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) {
+    if (!templateData || user === null) {
       navigate("/resume/ai");
     }
-  }, [navigate, user]);
-
-  useEffect(() => {
-    if (!templateData) {
-      navigate("/resume/ai");
-    }
-  }, [templateData, navigate]);
+  }, [templateData, navigate, user]);
 
   const component_list = [
     {
@@ -72,22 +66,22 @@ function Builder() {
   ];
 
   // Function to check if a step is completed
-  const isStepCompleted = (step) => {
-    if (step === "") {
-      return templateData.completed["basic_info"] === true;
-    } else if (step === "employment-experience/*") {
-      return templateData.completed["work_history"] === true;
-    } else if (step === "education/*") {
-      return templateData.completed["education"] === true;
-    } else if (step === "add_information/*") {
-      return true;
-    } else if (step === "preview") {
-      return true;
-    } else if (step === "download") {
-      return true;
-    }
-    return templateData.completed[step] === true;
-  };
+  // const isStepCompleted = (step) => {
+  //   if (step === "") {
+  //     return templateData.completed["basic_info"] === true;
+  //   } else if (step === "employment-experience/*") {
+  //     return templateData.completed["work_history"] === true;
+  //   } else if (step === "education/*") {
+  //     return templateData.completed["education"] === true;
+  //   } else if (step === "add_information/*") {
+  //     return true;
+  //   } else if (step === "preview") {
+  //     return true;
+  //   } else if (step === "download") {
+  //     return true;
+  //   }
+  //   return templateData.completed[step] === true;
+  // };
 
   return (
     <div className="w-11/12 mx-auto">
@@ -96,27 +90,17 @@ function Builder() {
       {currentModule === 5 && <DownloadWalkthrough />}
       {currentModule === 6 && <FinishWalkthrough />}
       <Routes>
-        {component_list.map((component, index) => {
+        {component_list.map((component) => {
           return (
             <Route
               key={component.link}
               path={component.link}
               element={
-                // index === 0 ||
-                // isStepCompleted(component_list[index - 1].link.substring(1)) ?
-                //  (
                 <component.element
                   data={templateData}
                   onInputChange={onInputChange}
                   updateResume={setTemplateData}
                 />
-                // )
-                //  : (
-                //   <Navigate
-                //     to={"/resume/builder" + component_list[index - 1].link}
-                //     replace
-                //   />
-                // )
               }
             />
           );

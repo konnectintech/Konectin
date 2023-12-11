@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TypeAnimation } from "react-type-animation";
-import JobTitleInput from "../../../../../components/jobTitleInput";
 import { useTemplateContext } from "../../../../../middleware/resume";
 import CustomSelect from "../../../../../components/select/CustomSelect";
 import professions from "professions";
@@ -17,7 +16,6 @@ const Profession = ({ data }) => {
   useEffect(() => {
     if (!data.firstName || !data.lastName) {
       navigate("/resume/ai/");
-      return;
     }
   }, [navigate, data]);
 
@@ -30,11 +28,6 @@ const Profession = ({ data }) => {
     }
     navigate("/resume/ai/template-selector");
   };
-
-  useEffect(() => {
-    if (data.profession.length !== 0) {
-    }
-  });
 
   const handleSelect = (value) => {
     setSelectedProfession(value);

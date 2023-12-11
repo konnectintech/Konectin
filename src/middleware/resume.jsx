@@ -7,13 +7,8 @@ const TemplateContext = createContext();
 const useTemplateContext = () => useContext(TemplateContext);
 
 const TemplateProvider = ({ children }) => {
-  const {
-    templateData,
-    setTemplateData,
-    onInputChange,
-    onSectionComplete,
-    finalizeData,
-  } = useTemplateData();
+  const { templateData, setTemplateData, onInputChange, onSectionComplete } =
+    useTemplateData();
 
   return (
     <TemplateContext.Provider
@@ -22,7 +17,6 @@ const TemplateProvider = ({ children }) => {
         setTemplateData,
         onInputChange,
         onSectionComplete,
-        finalizeData,
       }}
     >
       {children}
@@ -33,40 +27,43 @@ const TemplateProvider = ({ children }) => {
 export { useTemplateContext, TemplateProvider };
 
 export const useTemplateData = () => {
-  const [templateData, setTemplateData] = useLocalStorage("templateData", {
-    completed: {
-      basic_info: false,
-      work_history: false,
-      education: false,
-      skills: false,
-      bio: false,
-    },
-    basicInfo: {
-      city: "",
-      country: "",
-      email: "",
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      phoneCode: "",
-      profession: "",
-      state: "",
-      zipCode: "",
-    },
-    theme: {
-      color: "blue",
-      font: "",
-    },
-    currentEditedJob: 0,
-    currentEditedEducation: 0,
-    jobExperience: [],
-    education: [],
-    skills: [],
-    additionalInformation: {},
-    bio: "",
-    selectedTemplate: "",
-    currentStage: 0,
-  });
+  const [templateData, setTemplateData] = useLocalStorage(
+    "konectin-profiler-data-template",
+    {
+      completed: {
+        basic_info: false,
+        work_history: false,
+        education: false,
+        skills: false,
+        bio: false,
+      },
+      basicInfo: {
+        city: "",
+        country: "",
+        email: "",
+        firstName: "",
+        lastName: "",
+        phoneNumber: "",
+        phoneCode: "",
+        profession: "",
+        state: "",
+        zipCode: "",
+      },
+      theme: {
+        color: "blue",
+        font: "",
+      },
+      currentEditedJob: 0,
+      currentEditedEducation: 0,
+      jobExperience: [],
+      education: [],
+      skills: [],
+      additionalInformation: {},
+      bio: "",
+      selectedTemplate: "",
+      currentStage: 0,
+    }
+  );
 
   const onInputChange = ({ section, subsection, values }) => {
     if (subsection) {
@@ -173,12 +170,9 @@ export const useTemplateData = () => {
     templateData.bio,
   ]);
 
-  const finalizeData = (section, values) => {};
-
   return {
     templateData,
     setTemplateData,
     onInputChange,
-    finalizeData,
   };
 };
