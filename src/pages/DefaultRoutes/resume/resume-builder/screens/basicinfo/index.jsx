@@ -112,7 +112,7 @@ const BasicInformation = ({ data, onInputChange }) => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto ">
+    <div className="max-w-6xl mx-auto">
       <div className=" flex flex-col mb-4 lg:flex-row items-start justify-between self-center gap-10">
         <div className="flex flex-col justify-center w-full">
           <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
@@ -161,8 +161,9 @@ const BasicInformation = ({ data, onInputChange }) => {
                 ></label>
               </div>
             </div>
+
             <JobTitleInput
-              title={data.profession}
+              title={data?.basicInfo?.profession}
               handleInputChange={({ section, subsection, values }) =>
                 onInputChange({
                   section: section,
@@ -270,7 +271,7 @@ const BasicInformation = ({ data, onInputChange }) => {
           </div>
         </div>
 
-        <div className="max-lg:hidden ">
+        <div className="max-lg:hidden">
           <SelectedTemplates data={data} />
         </div>
       </div>

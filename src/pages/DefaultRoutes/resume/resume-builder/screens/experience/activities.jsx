@@ -80,10 +80,15 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
                   </div>
                 </div>
                 <p className="font-light text-neutral-300 text-sm leading-3 mt-3">
-                  {data.startMonth} {data.startYear} -
-                  {data.current
-                    ? " Present"
-                    : ` ${data.endMonth} ${data.endYear}`}
+                  {(data.startMonth || data.startYear) &&
+                    (data.endMonth || data.endYear) &&
+                    `
+                    ${data.startMonth} ${data.startYear} -
+                    ${
+                      data.current
+                        ? " Present"
+                        : ` ${data.endMonth} ${data.endYear}`
+                    }`}
                 </p>
                 <div
                   className={`text-neutral-400 text-xs ${

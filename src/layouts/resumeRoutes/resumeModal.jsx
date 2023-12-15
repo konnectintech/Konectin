@@ -17,7 +17,7 @@ const ResumeModal = ({ onClose, children }) => {
       <div className="fixed inset-0 bg-black opacity-50"></div>
 
       {/* ResumeModal content */}
-      <div className="relative z-50 w-2/3 h-3/4 bg-white p-4 rounded shadow-md">
+      <div className="relative z-50 w-2/3 h-[90vh] min-h-[300px] max-h-[450px] bg-white p-6 rounded shadow-md">
         {/* Close icon button */}
         <button
           className="absolute top-2 right-2 text-white bg-secondary-500 rounded-full p-1  "

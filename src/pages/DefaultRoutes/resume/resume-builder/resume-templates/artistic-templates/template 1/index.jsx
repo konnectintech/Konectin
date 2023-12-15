@@ -144,7 +144,7 @@ function TemplateOneA(data) {
           >
             <div ref={page} className="real-content h-full w-full">
               <Contacts data={data?.basicInfo} />
-              <BasicInfo data={data?.basicInfo} />
+              <BasicInfo data={data?.basicInfo} theme={data?.theme} />
               <Profile data={data?.bio} />
               <Education
                 education={data?.education}

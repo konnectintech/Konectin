@@ -23,7 +23,6 @@ function JobTitleInput({
   section,
   subsection,
 }) {
-  const [jobTitle, setJobTitle] = useState(title);
   const [professionOption, setProfessionOption] = useState([]);
   const errorMessage = useRef(null);
 
@@ -48,8 +47,6 @@ function JobTitleInput({
       subsection: subsection,
       values: opt.value,
     });
-
-    setJobTitle(opt.value);
 
     if (auth) {
       verifyInput(opt.value, errorMessage.current, "jobTitle");
@@ -79,8 +76,10 @@ function JobTitleInput({
         className="mb-6 text-[11px] w-full text-[#8C8C8F] border border-neutral-500 outline-0 rounded-[4px] bg-[#f9f9f9] relative z-40"
         inputId="jobTitle"
         placeholder="Job Title"
-        // components={{ DropdownIndicator }}
+        components={{ DropdownIndicator }}
         defaultInputValue={title}
+        onChange={(opt) => handleChange(opt)}
+        onCreateOption={handleAddProfession}
         styles={{
           control: (base) => ({
             ...base,
@@ -112,8 +111,6 @@ function JobTitleInput({
           }),
         }}
         options={professionOption}
-        onChange={(opt) => handleChange(opt)}
-        onCreateOption={handleAddProfession}
         theme={(theme) => ({
           ...theme,
           colors: {

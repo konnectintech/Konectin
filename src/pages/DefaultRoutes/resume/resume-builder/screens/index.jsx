@@ -84,7 +84,7 @@ function Builder() {
   // };
 
   return (
-    <div className="w-11/12 mx-auto">
+    <div className="w-[calc(90%_-_88px)] mx-auto">
       {currentModule === 0 && <WelcomeWalkthrough />}
       {currentModule === 3 && <TipsWalkthrough />}
       {currentModule === 5 && <DownloadWalkthrough />}

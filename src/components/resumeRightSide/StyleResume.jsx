@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { BsDroplet, BsFonts } from "react-icons/bs";
 import { CgFontHeight } from "react-icons/cg";
-import { useTemplateData } from "../../middleware/resume";
+import { useTemplateContext } from "../../middleware/resume";
 
 const StyleResume = () => {
-  const { templateData, setTemplateData } = useTemplateData();
+  const { onInputChange } = useTemplateContext();
   const [selectedFont, setSelectedFont] = useState("Arial");
   const [selectedSize, setSelectedSize] = useState("medium");
   const [selectedColor, setSelectedColor] = useState("");
@@ -15,12 +15,10 @@ const StyleResume = () => {
 
   const handleFontChange = (event) => {
     setSelectedFont(event.target.value);
-    setTemplateData({
-      ...templateData,
-      theme: {
-        ...templateData.theme,
-        font: event.target.value,
-      },
+    onInputChange({
+      section: "theme",
+      subsection: "font",
+      values: event.target.value,
     });
   };
 
@@ -30,13 +28,7 @@ const StyleResume = () => {
 
   const handleColorChange = (color) => {
     setSelectedColor(color);
-    setTemplateData({
-      ...templateData,
-      theme: {
-        ...templateData.theme,
-        color,
-      },
-    });
+    onInputChange({ section: "theme", subsection: "color", values: color });
   };
 
   return (
@@ -100,7 +92,9 @@ const StyleResume = () => {
               {colorOptions.map((color) => (
                 <button
                   key={color}
-                  className={`w-6 h-6 rounded-full border border-gray-300 focus:outline-none focus:ring focus:ring-indigo-200 `}
+                  className={`${
+                    selectedColor === color ? "ring ring-indigo-200" : ""
+                  } w-6 h-6 rounded-full border border-gray-300 focus:outline-none focus:ring focus:ring-indigo-200 `}
                   style={{ backgroundColor: color }}
                   onClick={() => handleColorChange(color)}
                 ></button>
@@ -110,9 +104,9 @@ const StyleResume = () => {
         </div>
       </div>
       <div className="flex justify-end">
-        <botton className="bg-primary-500 cursor-pointer text-white rounded whitespace-nowrap text-xs px-4 py-2">
+        <button className="bg-primary-500 cursor-pointer text-white rounded whitespace-nowrap text-xs px-4 py-2">
           Save Edit
-        </botton>
+        </button>
       </div>
     </>
   );

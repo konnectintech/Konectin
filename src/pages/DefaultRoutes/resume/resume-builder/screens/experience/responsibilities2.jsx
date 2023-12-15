@@ -113,7 +113,7 @@ function Responsibilities2({ data, closeModal, handleInputChange }) {
   }, [responsibility]);
 
   return (
-    <div className="grid grid-cols-2 p-4 gap-4">
+    <div className="grid grid-cols-2 gap-4">
       <div>
         <div className="text-sm mb-2">
           Type or Paste your current job responsibility below and click on
@@ -123,26 +123,24 @@ function Responsibilities2({ data, closeModal, handleInputChange }) {
           type="text"
           id="responsibility"
           name="responsibility"
-          className="input-container"
+          className="input-container !mb-2"
           value={responsibility}
           onChange={(e) => setResponsibility(e.target.value)}
           placeholder="Type your job responsibility"
         />
         <button
           // onClick={handleSubmit}
-          className=" bg-primary-500 text-white rounded-md px-6 py-2 text-sm"
+          className="bg-primary-500 text-white rounded-md px-6 py-2 text-sm"
         >
           Generate
         </button>
-        <div className="overflow-hidden pb-4">
-          <Suggestions
-            jobTitle={responsibility}
-            handleChange={(value) => setResponsibility(value)}
-            handleAddSuggestion={handleAddSuggestion}
-            selected={editorValue}
-            responsibilities={suggestions}
-          />
-        </div>
+        <Suggestions
+          jobTitle={responsibility}
+          handleChange={(value) => setResponsibility(value)}
+          handleAddSuggestion={handleAddSuggestion}
+          selected={editorValue}
+          responsibilities={suggestions}
+        />
       </div>
       <div className="relative">
         <div className="text-sm mb-2">Product Designer | Konectin</div>
