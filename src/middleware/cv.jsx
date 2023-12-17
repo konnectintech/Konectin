@@ -30,7 +30,6 @@ export const useCVData = () => {
       details: { companyName: "", jobPosition: "", email: "", fullName: "" },
       description: { company: "", job: "" },
       bio: "",
-      relatedResume: "",
     }
   );
 
@@ -44,7 +43,7 @@ export const useCVData = () => {
         },
       });
     } else {
-      CVData({ ...CVData, [section]: values });
+      setCVData({ ...CVData, [section]: values });
     }
   };
 

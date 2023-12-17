@@ -1,4 +1,4 @@
-function Ended({ data }) {
+function EndBuilding({ data }) {
   const handleSubmit = () => {
     console.log("first");
   };
@@ -24,4 +24,4 @@ function Ended({ data }) {
   );
 }
 
-export default Ended;
+export default EndBuilding;

@@ -1,5 +1,6 @@
 // Icons
 import bulbIcon from "./icons/bulb.svg";
+import tipIcon from "./icons/cover-letter/tip.svg";
 import blurImage from "./icons/blur.svg";
 import successIcon from "./icons/success.svg";
 import calendarIcon from "./icons/calendar.svg";
@@ -146,6 +147,7 @@ import OurVisionImage from "./images/vision.png";
 export {
   // Icons
   bulbIcon,
+  tipIcon,
   blurImage,
   calendarIcon,
   contactIcon,

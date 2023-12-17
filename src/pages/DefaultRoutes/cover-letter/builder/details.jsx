@@ -103,7 +103,7 @@ function JobDetails({ isLogged, data, handleChange }) {
                   handleInputChange("fullName", e.target.value);
                   setErrorMessage((prev) => ({ ...prev, fullName: "" }));
                 }}
-                className="coverLetter__input"
+                className="px-4 py-3 text-[11px] w-full text-primary-400 border border-neutral-500 outline-0 bg-neutral-1000 focus:border-primary-500 focus:border-[1.5px]"
               />
               <label htmlFor="fullName" className="text-error-500 text-sm">
                 {errorMessage.fullName && errorMessage.fullName}
@@ -123,7 +123,7 @@ function JobDetails({ isLogged, data, handleChange }) {
                   handleInputChange("email", e.target.value);
                   setErrorMessage((prev) => ({ ...prev, email: "" }));
                 }}
-                className="coverLetter__input"
+                className="px-4 py-3 text-[11px] w-full text-primary-400 border border-neutral-500 outline-0 bg-neutral-1000 focus:border-primary-500 focus:border-[1.5px]"
               />
               <label htmlFor="email" className="text-error-500 text-sm">
                 {errorMessage.email && errorMessage.email}
@@ -146,7 +146,7 @@ function JobDetails({ isLogged, data, handleChange }) {
                 handleInputChange("jobPosition", e.target.value);
                 setErrorMessage((prev) => ({ ...prev, jobPosition: "" }));
               }}
-              className="coverLetter__input"
+              className="px-4 py-3 text-[11px] w-full text-primary-400 border border-neutral-500 outline-0 bg-neutral-1000 focus:border-primary-500 focus:border-[1.5px]"
             />
             <label htmlFor="jobPosition" className="text-error-500 text-sm">
               {errorMessage.jobPosition && errorMessage.jobPosition}
@@ -167,7 +167,7 @@ function JobDetails({ isLogged, data, handleChange }) {
                 handleInputChange("companyName", e.target.value);
                 setErrorMessage((prev) => ({ ...prev, companyName: "" }));
               }}
-              className="coverLetter__input"
+              className="px-4 py-3 text-[11px] w-full text-primary-400 border border-neutral-500 outline-0 bg-neutral-1000 focus:border-primary-500 focus:border-[1.5px]"
             />
             <label htmlFor="companyName" className="text-error-500 text-sm">
               {errorMessage.companyName && errorMessage.companyName}

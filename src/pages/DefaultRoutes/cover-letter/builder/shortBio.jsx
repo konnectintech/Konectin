@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { tipIcon } from "../../../../assets";
 
 const ShortBio = ({ data, handleChange, isLogged }) => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -44,21 +45,27 @@ const ShortBio = ({ data, handleChange, isLogged }) => {
         </span>
       )}
       <form onSubmit={handleSubmit} className="mt-4 w-full">
-        <div className="relative w-full">
-          <input
+        <div className="relative w-full flex items-end gap-2">
+          <textarea
             type="text"
-            className="coverLetter__input w-full p-2"
+            className="px-4 py-3 text-[11px] w-full h-16 text-primary-400 border rounded border-neutral-500 outline-0 bg-neutral-1000 focus:border-primary-500 focus:border-[1.5px]"
             placeholder="Professional Bio..."
             id="bio"
             value={data}
             onChange={(e) =>
-              // handleChange({
-              //   section: "bio",
-              //   values: e.target.value,
-              // })
-              console.log(data)
+              handleChange({
+                section: "bio",
+                values: e.target.value,
+              })
             }
           />
+          <div className="cursor-pointer relative">
+            <img className="peer" src={tipIcon} alt="bio tip" />
+            <p className="text-xs bg-primary-600 p-3 text-white text-start rounded opacity-0 invisible peer-hover:visible peer-hover:opacity-100 duration-300 w-[350px] absolute right-full">
+              A bio is a brief summary or account of a person's life, career, or
+              achievement
+            </p>
+          </div>
         </div>
         <label
           htmlFor="bio"
