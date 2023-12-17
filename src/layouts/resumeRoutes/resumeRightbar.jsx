@@ -20,6 +20,7 @@ import ChangeTemplate from "../../components/resumeRightSide/ChangeTemplate";
 function ResumeRightbar() {
   const { currentModule } = useWalkthrough();
   const [isDownload, setIsDownload] = useState(false);
+  const [hoverIn, setHoverIn] = useState(false);
   const options = [
     {
       route: "",
@@ -37,10 +38,18 @@ function ResumeRightbar() {
     },
   ];
 
+  const handleMouseLeave = () => {
+    setIsDownload(false);
+    setHoverIn(false);
+  };
+
   return (
     <>
       {currentModule === 4 && <RightSidebarWalkthrough />}
-      <div className="absolute top-0 right-0 bottom-0 z-10 bg-white group pt-20 hidden md:block transition-all duration-500 w-14 hover:w-56 overflow-hidden   ">
+      <div
+        className="absolute top-0 right-0 bottom-0 z-10 bg-white group pt-20 hidden md:block transition-all duration-500 w-14 hover:w-56 overflow-hidden"
+        onMouseLeave={handleMouseLeave}
+      >
         <ul className="flex flex-col gap-4">
           <li className="relative cursor-pointer mb-4 py-1 px-2 ">
             <div className="flex items-center ">
@@ -59,7 +68,12 @@ function ResumeRightbar() {
             </div>
           </li>
           {options.map((item) => (
-            <RightBarOption key={item.label} item={item} />
+            <RightBarOption
+              key={item.label}
+              item={item}
+              hoverIn={hoverIn}
+              setHoverIn={setHoverIn}
+            />
           ))}
           <div>
             <li
@@ -90,14 +104,16 @@ function ResumeRightbar() {
 
 export default ResumeRightbar;
 
-const RightBarOption = ({ item }) => {
+const RightBarOption = ({ item, hoverIn, setHoverIn }) => {
   const [activeItem, setActiveItem] = useState(null);
 
   const handleClick = (option) => {
     if (activeItem === option) {
+      setHoverIn(false);
       setActiveItem(null);
     } else {
       setActiveItem(option);
+      setHoverIn(true);
     }
   };
   return (
@@ -125,9 +141,9 @@ const RightBarOption = ({ item }) => {
           ) : null}
         </div>
       </li>
-      {activeItem === "Change Template" && <ChangeTemplate />}
-      {activeItem === "Edit Resume Photo" && <EditResumePhoto />}
-      {activeItem === "Style Resume" && <StyleResume />}
+      {activeItem === "Change Template" && hoverIn && <ChangeTemplate />}
+      {activeItem === "Edit Resume Photo" && hoverIn && <EditResumePhoto />}
+      {activeItem === "Style Resume" && hoverIn && <StyleResume />}
     </div>
   );
 };

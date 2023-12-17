@@ -142,20 +142,21 @@ function Responsibilities2({ data, closeModal, handleInputChange }) {
           responsibilities={suggestions}
         />
       </div>
-      <div className="relative">
+      <div className="relative ">
         <div className="text-sm mb-2">Product Designer | Konectin</div>
         <Editor
           apiKey="muetp0kpit1cdofn0tsv7aym5shbxqnxzglv3000ilo9pc0m"
           onInit={(_, editor) => (editorRef.current = editor)}
           init={{
             menubar: false,
-            resize: false,
+            resize: true,
             branding: false,
             plugins: "lists wordcount",
             elementpath: false,
+            height: 300,
             toolbar: "bold italic underline undo redo bullist",
             content_style:
-              "body { font-family: Merriweather, Arial, sans-serif; font-size: 12px }",
+              "body { font-family: Merriweather, Arial, sans-serif; font-size: 12px; height:100px }",
           }}
           initialValue=""
           value={editorValue}
