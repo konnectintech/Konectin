@@ -246,11 +246,15 @@ function BlogContent() {
           <p
             className={isLoading.post ? "blurry-text w-fit mx-auto" : "mx-auto"}
           >
-            {blog.metaDescription}
+            {blog.metaDescription?.toLowerCase()}
           </p>
         </div>
         <div className="w-full mx-auto">
-          <div className="w-full bg-neutral-700 h-[550px] overflow-hidden rounded-t-2xl">
+          <div
+            className={`${
+              isLoading.post ? "h-[550px]" : "h-full"
+            } w-full bg-neutral-700 rounded-t-2xl`}
+          >
             <img
               className="w-full h-full mx-auto"
               src={blog.featuredImage}
