@@ -6,11 +6,11 @@ import { useEffect } from "react";
 import img from "../../../assets/images/bot/bot.svg";
 
 // Routes
-import Start from "./started";
-import JobDetails from "./details";
-import JobDescription from "./description";
-import ShortBio from "./shortBio";
-import Ended from "./ended";
+import StartedBuilding from "./builder/startBuilding";
+import JobDetails from "./builder/details";
+import JobDescription from "./builder/description";
+import ShortBio from "./builder/shortBio";
+import EndBuilding from "./builder/endBuilding";
 
 function CoverLetter() {
   const { CVData, onInputChange } = useCVData();
@@ -86,7 +86,10 @@ function CoverLetter() {
             <Route
               path="/"
               element={
-                <Start isLogged={user?.isLogged} name={user?.fullname} />
+                <StartedBuilding
+                  isLogged={user?.isLogged}
+                  name={user?.fullname}
+                />
               }
             />
             <Route
@@ -118,7 +121,7 @@ function CoverLetter() {
                 />
               }
             />
-            <Route path="/info-ended" element={<Ended data={CVData} />} />
+            <Route path="/info-ended" element={<EndBuilding data={CVData} />} />
           </Routes>
         </div>
       </div>

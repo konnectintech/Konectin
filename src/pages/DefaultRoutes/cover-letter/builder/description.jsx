@@ -57,7 +57,7 @@ function JobDescription({ data, handleChange }) {
                 handleInputChange("job", e.target.value);
                 setErrorMessage((prev) => ({ ...prev, job: "" }));
               }}
-              className="coverLetter__input"
+              className="px-4 py-3 text-[11px] w-full text-primary-400 border border-neutral-500 outline-0 bg-neutral-1000 focus:border-primary-500 focus:border-[1.5px]"
             />
             <label htmlFor="job" className="text-error-500 text-sm">
               {errorMessage.job && errorMessage.job}
@@ -73,7 +73,7 @@ function JobDescription({ data, handleChange }) {
                 handleInputChange("company", e.target.value);
                 setErrorMessage((prev) => ({ ...prev, company: "" }));
               }}
-              className="coverLetter__input"
+              className="px-4 py-3 text-[11px] w-full text-primary-400 border border-neutral-500 outline-0 bg-neutral-1000 focus:border-primary-500 focus:border-[1.5px]"
             />
             <label htmlFor="company" className="text-error-500 text-sm">
               {errorMessage.company && errorMessage.company}
