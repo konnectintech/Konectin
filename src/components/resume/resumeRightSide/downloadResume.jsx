@@ -1,4 +1,4 @@
-import { docfolder, pdffolder } from "../../assets";
+import { docfolder, pdffolder } from "../../../assets";
 
 const DownloadResume = () => {
   return (

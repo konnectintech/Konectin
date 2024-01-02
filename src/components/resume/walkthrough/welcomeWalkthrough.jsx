@@ -1,6 +1,6 @@
 import { FaTimes } from "react-icons/fa";
-import { useWalkthrough } from "../../context/WalkthroughContext";
-import { botIcon } from "../../assets";
+import { useWalkthrough } from "../../../middleware/walkthrough";
+import { botIcon } from "../../../assets";
 import { useEffect } from "react";
 
 function WelcomeWalkthrough() {

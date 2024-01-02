@@ -5,8 +5,8 @@ import { Link, useLocation } from "react-router-dom";
 import { konectinIcon } from "../../assets";
 import { useTemplateContext } from "../../middleware/resume";
 import "../header/header.css";
-import ProgressWalkthrough from "../../components/walkthrough/ProgressWalkthrough";
-import { useWalkthrough } from "../../context/WalkthroughContext";
+import ProgressWalkthrough from "../../components/resume/walkthrough/ProgressWalkthrough";
+import { useWalkthrough } from "../../middleware/walkthrough";
 
 function ResumeHeader() {
   const { templateData, setTemplateData } = useTemplateContext();

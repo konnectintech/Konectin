@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Switch from "./Switch";
+import Switch from "./switch";
 import { BsArrowRightShort } from "react-icons/bs";
 
 const EditResumePhoto = () => {

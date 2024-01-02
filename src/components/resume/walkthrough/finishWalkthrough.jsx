@@ -1,8 +1,7 @@
-import { FaTimes } from "react-icons/fa";
-import { useWalkthrough } from "../../context/WalkthroughContext";
+import { useWalkthrough } from "../../../middleware/walkthrough";
 import { useEffect } from "react";
 
-function ProgressWalkthrough() {
+function FinishWalkthrough() {
   const {
     totalModules,
     currentModule,
@@ -20,23 +19,20 @@ function ProgressWalkthrough() {
       document.body.classList.remove("modal-open");
     };
   }, []);
+
+  const array = new Array(totalModules);
+  console.log(array);
   return (
-    <div className="fixed inset-0  z-[100] bg-black bg-opacity-40">
-      <div className="absolute top-20 right-1/3 bg-[#191A1F] py-10 px-14 rounded-lg w-1/2 flex flex-col items-center gap-8 ">
-        <div className="absolute left-8 bg-[#191A1F] rotate-45 -top-3 w-6 h-6 " />
-        <div className="absolute top-4  right-4">
-          <button onClick={skipWalkthrough} className="">
-            <FaTimes className="bg-secondary-600 text-white rounded-full p-1" />
-          </button>
-        </div>
+    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-40 ">
+      <div className="relative bg-[#191A1F] py-10 px-14 rounded-lg w-1/2 flex flex-col items-center gap-8 ">
         <h2 className="text-2xl font-bold mt-4 text-secondary-600 w-full ">
-          Progress Bar
+          Finish Tour
         </h2>
         <p className=" text-white font-medium text-lg  ">
-          Observe the Progress Bar at the top. It's your visual guide,
-          progressively filling up as you complete each section of your resume,
-          indicating your steady advancement towards a polished, professional
-          resume. 😉
+          You're now equipped with the power of our Resume Builder. It's time to
+          create a resume that not only stands out but speaks volumes about your
+          skills and potential. Click 'Finishc' and let's embark on the journey
+          to your dream job with Konectin! 😉
         </p>
         <div className="flex justify-between w-full ">
           <button
@@ -56,7 +52,7 @@ function ProgressWalkthrough() {
             }}
             className="px-9 py-2  bg-primary-500 text-white rounded-md text-base font-medium hover:bg-primary-600"
           >
-            Next
+            Finish
           </button>
         </div>
         <div className="text-center ">
@@ -76,4 +72,4 @@ function ProgressWalkthrough() {
   );
 }
 
-export default ProgressWalkthrough;
+export default FinishWalkthrough;

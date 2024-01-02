@@ -10,12 +10,12 @@ import {
   tips2,
 } from "../../assets";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import EditResumePhoto from "../../components/resumeRightSide/EditResumePhoto";
-import StyleResume from "../../components/resumeRightSide/StyleResume";
-import DownloadResume from "../../components/resumeRightSide/DownloadResume";
-import RightSidebarWalkthrough from "../../components/walkthrough/RightSidebarWalkthrough";
-import { useWalkthrough } from "../../context/WalkthroughContext";
-import ChangeTemplate from "../../components/resumeRightSide/ChangeTemplate";
+import EditResumePhoto from "../../components/resume/resumeRightSide/editResumePhoto";
+import StyleResume from "../../components/resume/resumeRightSide/styleResume";
+import DownloadResume from "../../components/resume/resumeRightSide/downloadResume";
+import RightSidebarWalkthrough from "../../components/resume/walkthrough/rightSidebarWalkthrough";
+import { useWalkthrough } from "../../middleware/walkthrough";
+import ChangeTemplate from "../../components/resume/resumeRightSide/changeTemplate";
 
 function ResumeRightbar() {
   const { currentModule } = useWalkthrough();

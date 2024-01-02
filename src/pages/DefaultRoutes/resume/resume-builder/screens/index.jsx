@@ -9,11 +9,11 @@ import Preview from "./preview";
 import Download from "./download";
 import { useAuth } from "../../../../../middleware/auth";
 import { useEffect } from "react";
-import { useWalkthrough } from "../../../../../context/WalkthroughContext";
-import WelcomeWalkthrough from "../../../../../components/walkthrough/WelcomeWalkthrough";
-import TipsWalkthrough from "../../../../../components/walkthrough/TipsWalkthrough";
-import DownloadWalkthrough from "../../../../../components/walkthrough/DownloadWalkthrough";
-import FinishWalkthrough from "../../../../../components/walkthrough/FinishWalkthrough";
+import { useWalkthrough } from "../../../../../middleware/walkthrough";
+import WelcomeWalkthrough from "../../../../../components/resume/walkthrough/welcomeWalkthrough";
+import TipsWalkthrough from "../../../../../components/resume/walkthrough/tipsWalkthrough";
+import DownloadWalkthrough from "../../../../../components/resume/walkthrough/downloadWalkthrough";
+import FinishWalkthrough from "../../../../../components/resume/walkthrough/finishWalkthrough";
 import AdditionInformation from "./additon_information";
 
 function Builder() {

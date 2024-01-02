@@ -1,6 +1,5 @@
-import React from "react";
-import { template_images } from "../../assets/resume";
-import { useTemplateContext } from "../../middleware/resume";
+import { template_images } from "../../../assets/resume";
+import { useTemplateContext } from "../../../middleware/resume";
 
 function ChangeTemplate() {
   const { templateData, setTemplateData } = useTemplateContext();

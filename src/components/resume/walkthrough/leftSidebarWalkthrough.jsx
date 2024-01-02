@@ -1,8 +1,16 @@
 import { FaTimes } from "react-icons/fa";
-import { useWalkthrough } from "../../context/WalkthroughContext";
+import { useWalkthrough } from "../../../middleware/walkthrough";
 import { useEffect } from "react";
 
-function DownloadWalkthrough() {
+function LeftSidebarWalkthrough() {
+  const {
+    totalModules,
+    currentModule,
+    nextModule,
+    prevModule,
+    skipWalkthrough,
+  } = useWalkthrough();
+
   useEffect(() => {
     // Add 'modal-open' class to the body when the modal is open
     document.body.classList.add("modal-open");
@@ -12,37 +20,25 @@ function DownloadWalkthrough() {
       document.body.classList.remove("modal-open");
     };
   }, []);
-
-  const {
-    totalModules,
-    currentModule,
-    nextModule,
-    prevModule,
-    skipWalkthrough,
-  } = useWalkthrough();
-
-  const array = new Array(totalModules);
-  console.log(array);
   return (
-    <div className="fixed inset-0 z-[100]">
-      <div className="w-16 absolute right-0  top-0  h-[35rem] bg-black bg-opacity-40 " />
-      <div className="w-16 absolute right-0  top-[590px]  bottom-0 bg-black bg-opacity-40 " />
-      <div className="absolute inset-y-0 left-0 right-16 bg-black bg-opacity-40">
-        <div className="absolute right-4 top-64 bg-[#191A1F] py-10 px-14 rounded-lg w-1/2 flex flex-col items-center gap-8 ">
-          <div className="absolute -right-3 bg-[#191A1F] rotate-45 bottom-8 w-6 h-6 " />
+    <div className="fixed inset-0 z-[100] ">
+      <div className="w-16 absolute left-0  top-0  h-14 bg-black bg-opacity-40 " />
+      <div className="absolute inset-y-0 right-0 left-16 bg-black bg-opacity-40">
+        <div className="absolute left-4 top-40 bg-[#191A1F] py-10 px-14 rounded-lg w-1/2 flex flex-col items-center gap-8 ">
+          <div className="absolute -left-3 bg-[#191A1F] rotate-45 top-8 w-6 h-6 " />
           <div className="absolute top-4 right-4">
             <button onClick={skipWalkthrough} className="">
               <FaTimes className="bg-secondary-600 text-white rounded-full p-1" />
             </button>
           </div>
           <h2 className="text-2xl font-bold mt-4 text-secondary-600 w-full ">
-            Download Resume
+            Left Sidebar Menu
           </h2>
           <p className=" text-white font-medium text-lg  ">
-            Spot the <span className="text-primary-500">'Download'</span> icon?
-            When you're satisfied, click here to save your resume. Choose
-            between PDF or DOC formats to align with your application needs.
-            Your standout resume is now primed to impress. 😉
+            Direct your attention to the Left Sidebar Menu. This is your command
+            center. From Basic Information to Skills, Work History, and even
+            Hobbies, you can swiftly navigate to any section with a simple
+            click. You're the architect of your resume.. 😉
           </p>
           <div className="flex justify-between w-full ">
             <button
@@ -83,4 +79,4 @@ function DownloadWalkthrough() {
   );
 }
 
-export default DownloadWalkthrough;
+export default LeftSidebarWalkthrough;

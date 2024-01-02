@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { BsDroplet, BsFonts } from "react-icons/bs";
 import { CgFontHeight } from "react-icons/cg";
-import { useTemplateContext } from "../../middleware/resume";
+import { useTemplateContext } from "../../../middleware/resume";
 
 const StyleResume = () => {
   const { onInputChange } = useTemplateContext();

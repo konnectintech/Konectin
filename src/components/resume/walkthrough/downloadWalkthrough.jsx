@@ -1,8 +1,8 @@
 import { FaTimes } from "react-icons/fa";
-import { useWalkthrough } from "../../context/WalkthroughContext";
+import { useWalkthrough } from "../../../middleware/walkthrough";
 import { useEffect } from "react";
 
-function RightSidebarWalkthrough() {
+function DownloadWalkthrough() {
   useEffect(() => {
     // Add 'modal-open' class to the body when the modal is open
     document.body.classList.add("modal-open");
@@ -23,45 +23,26 @@ function RightSidebarWalkthrough() {
 
   const array = new Array(totalModules);
   console.log(array);
-
   return (
-    <div className="fixed inset-0 z-[100]  ">
-      <div className="w-16 absolute right-0  top-0  h-14 bg-black bg-opacity-40 " />
+    <div className="fixed inset-0 z-[100]">
+      <div className="w-16 absolute right-0  top-0  h-[35rem] bg-black bg-opacity-40 " />
+      <div className="w-16 absolute right-0  top-[590px]  bottom-0 bg-black bg-opacity-40 " />
       <div className="absolute inset-y-0 left-0 right-16 bg-black bg-opacity-40">
-        <div className="absolute right-4 top-20 bg-[#191A1F] py-10 px-14 rounded-lg w-1/2 flex flex-col items-center gap-8 ">
-          <div className="absolute -right-3 bg-[#191A1F] rotate-45 top-8 w-6 h-6 " />
+        <div className="absolute right-4 top-64 bg-[#191A1F] py-10 px-14 rounded-lg w-1/2 flex flex-col items-center gap-8 ">
+          <div className="absolute -right-3 bg-[#191A1F] rotate-45 bottom-8 w-6 h-6 " />
           <div className="absolute top-4 right-4">
             <button onClick={skipWalkthrough} className="">
               <FaTimes className="bg-secondary-600 text-white rounded-full p-1" />
             </button>
           </div>
           <h2 className="text-2xl font-bold mt-4 text-secondary-600 w-full ">
-            Right Sidebar Menu
+            Download Resume
           </h2>
-          <p className=" text-white font-medium text-lg w-full ">
-            Now, glance at the Right Sidebar Menu. This is your toolbox:
-          </p>
           <p className=" text-white font-medium text-lg  ">
-            <span className="text-primary-500">Preview Resume:</span> Curious
-            about your resume's appearance? Click here for a live preview.
-            <br />
-            <span className="text-primary-500">
-              Rearrange Resume Section:
-            </span>{" "}
-            Adjust the order of sections to your preference here.
-            <br />
-            <span className="text-primary-500">
-              Change Resume Template:
-            </span>{" "}
-            Want a different aesthetic? Click here to switch resume styles.
-            <br />
-            <span className="text-primary-500">
-              Add/Remove Resume Photo:
-            </span>{" "}
-            Personalize your resume with a photo or choose to remove it here.
-            <br />
-            <span className="text-primary-500">Format Resume:</span> Customize
-            your resume's color and font to align with your personal brand.. 😉
+            Spot the <span className="text-primary-500">'Download'</span> icon?
+            When you're satisfied, click here to save your resume. Choose
+            between PDF or DOC formats to align with your application needs.
+            Your standout resume is now primed to impress. 😉
           </p>
           <div className="flex justify-between w-full ">
             <button
@@ -102,4 +83,4 @@ function RightSidebarWalkthrough() {
   );
 }
 
-export default RightSidebarWalkthrough;
+export default DownloadWalkthrough;

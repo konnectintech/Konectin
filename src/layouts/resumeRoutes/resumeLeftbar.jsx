@@ -8,8 +8,8 @@ import {
   workExpirience,
 } from "../../assets";
 import { FaChevronDown, FaChevronUp, FaPlus } from "react-icons/fa";
-import LeftSidebarWalkthrough from "../../components/walkthrough/LeftSidebarWalkthrough";
-import { useWalkthrough } from "../../context/WalkthroughContext";
+import LeftSidebarWalkthrough from "../../components/resume/walkthrough/leftSidebarWalkthrough";
+import { useWalkthrough } from "../../middleware/walkthrough";
 import { useTemplateContext } from "../../middleware/resume";
 import { Link } from "react-router-dom";
 

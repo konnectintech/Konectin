@@ -24,11 +24,11 @@ const AddSection = ({ options, onChange }) => {
   }, []);
 
   return (
-    <div className="relative inline-block rounded-md " ref={selectRef}>
+    <div className="relative inline-block rounded-md" ref={selectRef}>
       <div className="relative">
         <div
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center gap-2 text-primary-600 cursor-pointer font-bold "
+          className="flex items-center gap-2 text-primary-600 cursor-pointer font-bold"
         >
           <BsPlus className="bg-primary-600 text-lg rounded-full text-white" />{" "}
           Add Section

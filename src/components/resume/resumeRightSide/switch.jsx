@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 function Switch({ checked, onChange }) {
   const [isChecked, setIsChecked] = useState(checked || false);
