@@ -20,10 +20,10 @@ steps:
     npm run build
   displayName: 'npm install and build'
   env:
-    VITE_OPENAI_KEY: 0be0c97374ae48a9b9a4fb483db27d96
-    VITE_CLIENT_SERVER_URL: https://konectin-backend.azurewebsites.net/user
-    VITE_CLIENT_SERVER_RENDER_URL: https://konectin-backend-hj09.onrender.com/user
-    VITE_ADMIN_SERVER_URL: https://konectin-backend.azurewebsites.net/admin
+    VITE_OPENAI_KEY: "0be0c97374ae48a9b9a4fb483db27d96"
+    VITE_CLIENT_SERVER_URL: "https://konectin-backend.azurewebsites.net/user"
+    VITE_CLIENT_SERVER_RENDER_URL: "https://konectin-backend-hj09.onrender.com/user"
+    VITE_ADMIN_SERVER_URL: "https://konectin-backend.azurewebsites.net/admin"
       
   - task: AzureStaticWebApp@0
     inputs:
@@ -31,4 +31,4 @@ steps:
       api_location: 'api'
       output_location: ''
       skip_app_build: false
-      azure_static_web_apps_api_token: d1f6da13-d0ba-4cf0-8ab5-62762ae17243
+      azure_static_web_apps_api_token: "d1f6da13-d0ba-4cf0-8ab5-62762ae17243"
