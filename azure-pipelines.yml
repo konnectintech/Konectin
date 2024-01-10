@@ -24,6 +24,7 @@ steps:
     VITE_CLIENT_SERVER_URL: "https://konectin-backend.azurewebsites.net/user"
     VITE_CLIENT_SERVER_RENDER_URL: "https://konectin-backend-hj09.onrender.com/user"
     VITE_ADMIN_SERVER_URL: "https://konectin-backend.azurewebsites.net/admin"
+    AZURE_VERIFIED: "Verified for azure"
       
   - task: AzureStaticWebApp@0
     inputs:
