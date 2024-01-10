@@ -20,6 +20,8 @@ function Feeds() {
 
   async function getAllBlogs() {
     setLoading(true);
+    console.log(url);
+
     try {
       const response = await axios.get(`${url}/getAllBlogs`);
       const { blogs } = response.data;
