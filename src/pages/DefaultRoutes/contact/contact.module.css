@@ -1,0 +1,162 @@
+.animation_container {
+  position: relative;
+
+  --circleDiameter: 300px;
+  --planets: calc(var(--circleDiameter) / 5);
+
+  width: var(--circleDiameter);
+  height: var(--circleDiameter);
+}
+
+.centered_image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bounce {
+  position: absolute;
+  z-index: 1;
+}
+
+.bounce:nth-child(1) {
+}
+
+.bounce:nth-child(2) {
+}
+
+.bounce:nth-child(3) {
+  top: 70%;
+  right: 40%;
+}
+
+.rotating_path {
+  position: relative;
+  top: -7px;
+  left: -7px;
+  width: 100%;
+  height: calc(100% / 1.2);
+  border-radius: 100%;
+  animation: rotate 30s linear infinite;
+}
+
+.rotating_path:hover,
+.rotating_path:hover .rotating_image {
+  animation-play-state: paused;
+}
+
+.rotating_image {
+  position: absolute;
+  width: var(--planets);
+  aspect-ratio: 1;
+  border-radius: 100%;
+  animation: maintain 30s linear infinite;
+}
+
+.rotating_image:nth-child(1) {
+  --scale-initial: 2.5;
+  --scale-sub: 2.3;
+  --scale-middle: 1.8;
+  --scale-preend: 1.3;
+  --scale-end: 1;
+  top: calc(-1 * var(--planets) / 2);
+  left: calc(var(--circleDiameter) / 2 - var(--planets) / 2 - 5px);
+}
+
+.rotating_image:nth-child(2) {
+  --scale-initial: 1.2;
+  --scale-end: 1;
+  top: calc(var(--circleDiameter) / 8);
+  right: calc(var(--planets) / 6);
+}
+
+.rotating_image:nth-child(3) {
+  --scale-initial: 1.2;
+  --scale-end: 1;
+  top: calc(var(--planets) * 2.3 - 5px);
+  left: calc(var(--planets) * 1.2);
+}
+
+.rotating_image:nth-child(4) {
+  --scale-initial: 2.2;
+  --scale-sub: 1.8;
+  --scale-middle: 1.3;
+  --scale-preend: 1;
+  --scale-end: 2.5;
+  right: calc(var(--planets));
+  bottom: calc(var(--planets) / 16);
+}
+
+.rotating_image:nth-child(5) {
+  --scale-initial: 1.8;
+  --scale-sub: 1.3;
+  --scale-middle: 1;
+  --scale-preend: 2.5;
+  --scale-end: 2.2;
+  left: calc(var(--planets) / 4);
+  top: var(--planets);
+}
+
+.rotating_image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 100%;
+  animation: scale 15s linear infinite alternate;
+}
+
+@keyframes rotate {
+  0% {
+    margin-left: 0px;
+    margin-top: 0px;
+  } /* starting position */
+  25% {
+    margin-left: 50px;
+    margin-top: 0px;
+    transform: rotate(-360deg);
+  }
+  50% {
+    margin-left: 50px;
+    margin-top: 50px;
+    transform: rotate(-720deg);
+  }
+  75% {
+    margin-top: 50px;
+    margin-left: 0px;
+    transform: rotate(-1080deg);
+  }
+  100% {
+    margin-left: 0px;
+    margin-top: 0px;
+    transform: rotate(-1440deg);
+  }
+}
+
+@keyframes maintain {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(1440deg);
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(var(--scale-initial));
+  }
+  25% {
+    transform: scale(var(--scale-sub));
+  }
+  50% {
+    transform: scale(var(--scale-middle));
+  }
+  75% {
+    transform: scale(var(--scale-preend));
+  }
+  100% {
+    transform: scale(var(--scale-end));
+  }
+}

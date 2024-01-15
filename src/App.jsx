@@ -23,7 +23,7 @@ import VerifyMail from "./pages/sign/signup/verifyMail";
 import TermsAndCondition from "./pages/DefaultRoutes/terms/TermsAndConditions";
 import PrivacyPolicy from "./pages/DefaultRoutes/policy/PrivacyPolicy";
 import Faq from "./pages/DefaultRoutes/faq/Faq";
-import Contact from "./pages/DefaultRoutes/contact/Contact";
+import Contact from "./pages/DefaultRoutes/contact";
 
 import Sign from "./pages/sign";
 import Login from "./pages/sign/login/login";
