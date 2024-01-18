@@ -4,10 +4,10 @@ function SelectedTemplates({ data }) {
   const { selectedTemplate } =
     JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
 
-  if (!selectedTemplate) {
-    window.location.href = "/resume/ai";
-    return;
-  }
+  // if (!selectedTemplate) {
+  //   window.location.href = "/resume/ai";
+  //   return;
+  // }
 
   const [templateType, templateIndex] = selectedTemplate.split("_");
   const [ExactTemplate] =
