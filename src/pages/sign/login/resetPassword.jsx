@@ -49,7 +49,7 @@ function ResetPassword() {
       return;
     }
     setLoading(true);
-    const email = JSON.parse(localStorage.getItem("forgetPasswordEmail"));
+    const email = JSON.parse(sessionStorage.getItem("forgetPasswordEmail"));
     const url = `${parseURL}/resetPassword`;
 
     axios
@@ -59,7 +59,7 @@ function ResetPassword() {
         if (status === 200) {
           setLoading(false);
 
-          localStorage.setItem("forgetPasswordEmail", null);
+          sessionStorage.setItem("forgetPasswordEmail", null);
 
           const newState = {
             error: false,
@@ -119,7 +119,7 @@ function ResetPassword() {
   };
 
   const resendCode = async () => {
-    const email = JSON.parse(localStorage.getItem("forgetPasswordEmail"));
+    const email = JSON.parse(sessionStorage.getItem("forgetPasswordEmail"));
     setLoading(true);
 
     try {

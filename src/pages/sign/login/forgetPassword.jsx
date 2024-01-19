@@ -28,7 +28,7 @@ function ForgetPassword() {
 
     try {
       await axios.post(`${url}/forgotPassword`, { email: formResult });
-      localStorage.setItem("forgetPasswordEmail", JSON.stringify(formResult));
+      sessionStorage.setItem("forgetPasswordEmail", JSON.stringify(formResult));
       setLoading(false);
       navigate("/reset-password");
     } catch (err) {

@@ -122,7 +122,8 @@ import MustafaIcon from "./images/team/mustafa.png";
 import DavidIcon from "./images/team/david.png";
 import MichaelIcon from "./images/team/michael.png";
 import AfolabiIcon from "./images/team/afolabi.png";
-import FounderIcon from "./images/team/founder.png";
+import AnonymousIcon from "./images/team/anonymous.png";
+import FounderIcon from "./images/team/founder.jpg";
 import AboutProfileImage from "./images/about profile.png";
 import OurVisionImage from "./images/vision.png";
 
@@ -246,6 +247,7 @@ export {
   MichaelIcon,
   AfolabiIcon,
   FounderIcon,
+  AnonymousIcon,
 
   // socials
   SFacebook,
