@@ -59,10 +59,10 @@ function HeroSection({ isLoading }) {
                 Working Together To <br /> Keep{" "}
                 <span className="text-secondary-500">Konectin</span> Safe
               </h1> */}
-              <div className="absolute top-0 w-full h-full bg-gradient-to-t from-black from-45% to-transparent" />
+              <div className="absolute top-0 w-full h-full bg-gradient-to-t from-black from-25% sm:from-45% to-transparent" />
             </SwiperSlide>
           ))}
-          <h1 className="absolute text-4xl !leading-normal bottom-12 font-bold px-6 text-start text-white z-50">
+          <h1 className="absolute sm:text-4xl !leading-normal bottom-8 sm:bottom-12 font-bold px-6 text-start text-white z-50">
             Working Together To <br /> Keep{" "}
             <span className="text-secondary-500">Konectin</span> Safe
           </h1>

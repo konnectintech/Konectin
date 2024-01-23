@@ -8,8 +8,9 @@ export const textVariantUp = (delay) => {
       y: 0,
       opacity: 1,
       transition: {
+        ease: "easeIn",
         type: "spring",
-        duration: 1.25,
+        duration: 2.1,
         delay: delay,
       },
     },
@@ -26,8 +27,9 @@ export const textVariantDown = (delay) => {
       y: 0,
       opacity: 1,
       transition: {
+        ease: "easeIn",
         type: "spring",
-        duration: 1.25,
+        duration: 2.1,
         delay: delay,
       },
     },
@@ -54,7 +56,7 @@ export const fadeIn = (direction, type, delay, duration) => {
         type: type,
         delay: delay,
         duration: duration,
-        ease: "easeOut",
+        ease: "easeIn",
       },
     },
   };
@@ -96,8 +98,8 @@ export const slideIn = (direction, type, delay, duration) => {
       transition: {
         type: type,
         delay: delay,
-        duration: duration,
-        ease: "easeOut",
+        duration: duration * 2,
+        ease: "easeIn",
       },
     },
   };
