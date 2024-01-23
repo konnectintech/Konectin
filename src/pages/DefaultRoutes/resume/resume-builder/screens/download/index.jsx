@@ -42,7 +42,12 @@ const Download = ({ data }) => {
                 </html>
       `,
         },
-        { responseType: "blob" }
+        {
+          responseType: "blob",
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
       );
 
       var blob = new Blob([res.data], { type: "application/pdf" });

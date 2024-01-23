@@ -65,6 +65,7 @@ const Options = () => {
     if (currentStage === null || currentStage === 0) {
       setEditable(false);
     } else {
+      console.log(currentStage);
       setEditable(true);
     }
   }, []);

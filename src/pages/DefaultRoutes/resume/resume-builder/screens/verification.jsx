@@ -15,7 +15,12 @@ export const onSectionComplete = async (template) => {
     if (user) {
       await axios.put(
         `${url}/updateResume?userId=${user._id}&resumeId=${template._id}`,
-        duplicateData
+        duplicateData,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
       );
     }
   } catch (err) {

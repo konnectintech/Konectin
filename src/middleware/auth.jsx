@@ -97,9 +97,7 @@ export const useAuth = () => {
       const decodedJwt = parseJwt(user.token);
 
       if (decodedJwt.exp * 1000 < Date.now()) {
-        localStorage.setItem("konectin-profiler-user", null);
-        localStorage.removeItem("konectin-profiler-data-template");
-        localStorage.removeItem("konectin-profiler-data-crStage");
+        signOut();
       }
     }
   }, []);
@@ -117,13 +115,17 @@ export const useAuth = () => {
 
   useEffect(() => {
     if (user && user._id && !user.cvs) {
-      getUserResumes(user._id);
+      getUserResumes(user);
     }
   }, [user]);
 
-  const getUserResumes = async (id) => {
+  const getUserResumes = async (user) => {
     try {
-      const response = await axios.get(`${url}/getResumes?userId=${id}`);
+      const response = await axios.get(`${url}/getResumes?userId=${user._id}`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       const resumes = response.data.cvs;
       const templateData = JSON.parse(
         localStorage.getItem("konectin-profiler-data-template")

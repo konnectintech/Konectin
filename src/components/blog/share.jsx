@@ -9,12 +9,14 @@ import {
   STwitter,
   SWhatsapp,
 } from "../../assets";
+import axios from "axios";
 
 function Share({
   pathname,
   htmlTitle,
   rssSummary,
   isLoading,
+  id,
   numOfShares,
   updateBlogActions,
 }) {
@@ -61,8 +63,15 @@ function Share({
     },
   ];
 
-  const toShared = () => {
-    updateBlogActions((prev) => ({ ...prev, shares: numOfShares + 1 }));
+  const toShared = async () => {
+    try {
+      const url = import.meta.env.VITE_CLIENT_SERVER_URL;
+      await axios.put(`${url}/updateNumOfShares?blogId=${id}`);
+
+      updateBlogActions((prev) => ({ ...prev, shares: numOfShares + 1 }));
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
