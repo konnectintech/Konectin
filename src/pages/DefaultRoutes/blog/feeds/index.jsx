@@ -20,6 +20,7 @@ function Feeds() {
 
   async function getAllBlogs() {
     setLoading(true);
+
     try {
       const response = await axios.get(`${url}/getAllBlogs`);
       const { blogs } = response.data;
@@ -73,13 +74,13 @@ function Feeds() {
 
   return (
     <div
-      className={`w-11/12 mx-auto flex flex-col gap-10 ${
+      className={`w-11/12 mx-auto flex flex-col gap-6 sm:gap-10 ${
         isLoading && "text-neutral-500"
       }`}
     >
       <HeroSection isLoading={isLoading} />
       <div className="flex flex-col gap-8">
-        <div className="flex text-sm sm:text-md items-center">
+        <div className="flex no-scrollbar overflow-x-scroll text-sm sm:text-md items-center">
           {feedList.map((feedItem, index) => (
             <Link
               key={index}
@@ -91,7 +92,7 @@ function Feeds() {
                     : params.feed === feedItem.link
                     ? "text-white bg-primary-500 rounded-full"
                     : "text-neutral-200"
-                } capitalize px-5 py-1`}
+                } capitalize px-4 sm:px-5 py-1 min-w-fit`}
             >
               {feedItem.name}
             </Link>

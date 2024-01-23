@@ -98,6 +98,8 @@ export const useAuth = () => {
 
       if (decodedJwt.exp * 1000 < Date.now()) {
         localStorage.setItem("konectin-profiler-user", null);
+        localStorage.removeItem("konectin-profiler-data-template");
+        localStorage.removeItem("konectin-profiler-data-crStage");
       }
     }
   }, []);

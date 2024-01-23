@@ -36,6 +36,7 @@ function BlogContent() {
   const [isFull, setOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [similarContent, setSimilarContent] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
@@ -191,6 +192,7 @@ function BlogContent() {
 
   const handleLike = async () => {
     setLoading((prev) => ({ ...prev, liked: !prev.liked }));
+    setErrorMessage("");
 
     try {
       await axios.post(
@@ -204,17 +206,23 @@ function BlogContent() {
       );
 
       setLoading((prev) => ({ ...prev, liked: !prev.liked }));
-
-      console.log(isLoading.liked);
-
       setBlogActions((prev) => ({
         ...prev,
         likes: liked ? prev.likes - 1 : prev.likes + 1,
       }));
       setLiked((prev) => !prev);
     } catch (err) {
-      console.log(isLoading.liked);
       setLoading((prev) => ({ ...prev, liked: !prev.liked }));
+      setErrorMessage(
+        err?.response?.data?.message
+          ? err?.response?.data?.message
+          : "Check internet connection"
+      );
+
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 3000);
+
       console.log(err);
     }
   };
@@ -246,11 +254,15 @@ function BlogContent() {
           <p
             className={isLoading.post ? "blurry-text w-fit mx-auto" : "mx-auto"}
           >
-            {blog.metaDescription}
+            {blog.metaDescription?.toLowerCase()}
           </p>
         </div>
         <div className="w-full mx-auto">
-          <div className="w-full bg-neutral-700 h-[550px] overflow-hidden rounded-t-2xl">
+          <div
+            className={`${
+              isLoading.post ? "h-[550px]" : "h-full"
+            } w-full bg-neutral-700 rounded-t-2xl`}
+          >
             <img
               className="w-full h-full mx-auto"
               src={blog.featuredImage}
@@ -316,6 +328,9 @@ function BlogContent() {
                   isLoading={isLoading.actions}
                 />
               </div>
+              {errorMessage && (
+                <p className="text-xs text-red-500">{errorMessage}</p>
+              )}
 
               <article
                 className={

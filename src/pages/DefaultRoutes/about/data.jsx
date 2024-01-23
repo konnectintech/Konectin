@@ -19,6 +19,7 @@ import {
   person2Icon,
   person3Icon,
   person4Icon,
+  AnonymousIcon,
 } from "../../../assets";
 
 export const Values = [
@@ -92,7 +93,7 @@ export const TeamData = [
   },
   {
     name: "Mustafa Abdulasis",
-    image: FounderIcon,
+    image: AnonymousIcon,
     title: "Chief Operations Officer (C.O.O)",
     contact: {
       linkedin: "https://www.linkedin.com/in/mustafa-abdulasis",

@@ -39,6 +39,10 @@
   font-family: "Merriweather", sans-serif !important;
 }
 
+.blog-article h1 {
+  font-size: 2rem;
+}
+
 .blog-article p,
 .blog-article span {
   font-size: 14px !important;

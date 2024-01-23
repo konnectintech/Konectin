@@ -27,12 +27,12 @@ function VerifyMail() {
   const parseURL = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   const handleInputChange = (e) => {
-    // let value = e.target.value.replace(/[^0-9.]/g, "");
-    setCode(e.target.value);
+    let value = e.target.value.replace(/[^0-9.]/g, "");
+    setCode(value);
   };
 
   const resendCode = () => {
-    const url = `${parseURL}/requestEmail?userId=${user._id}`;
+    const url = `${parseURL}/requestEmail`;
 
     setLoading(true);
     axios
@@ -61,7 +61,7 @@ function VerifyMail() {
     const formReq = new FormData(event.target);
     const value = formReq.get("code");
 
-    const url = `${parseURL}/verifyEmail?userId=${user._id}`;
+    const url = `${parseURL}/verifyEmail?email=${user.email}`;
 
     setLoading(true);
 
