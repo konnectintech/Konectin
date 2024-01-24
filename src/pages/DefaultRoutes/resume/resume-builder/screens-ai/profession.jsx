@@ -47,15 +47,13 @@ const Profession = ({ data }) => {
       >
         <JobTitleInput
           title={data.profession}
-          handleInputChange={({ section, subsection, values }) =>
+          handleInputChange={(value) =>
             onInputChange({
-              section: section,
-              subsection: subsection,
-              values: values,
+              section: "basicInfo",
+              subsection: "profession",
+              values: value,
             })
           }
-          section="basicInfo"
-          subsection="profession"
         />
         <p className="absolute -bottom-5 text-sm text-error-500">{error}</p>
         <button

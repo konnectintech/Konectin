@@ -16,14 +16,7 @@ const DropdownIndicator = (props) => {
   );
 };
 
-function JobTitleInput({
-  auth,
-  title,
-  handleInputChange,
-  section,
-  subsection,
-}) {
-  const [jobTitle, setJobTitle] = useState(title);
+function JobTitleInput({ auth, title, handleInputChange }) {
   const [professionOption, setProfessionOption] = useState([]);
   const errorMessage = useRef(null);
 
@@ -38,18 +31,28 @@ function JobTitleInput({
     }
 
     professions.map((obj) =>
-      setProfessionOption((prev) => [...prev, { label: obj, value: obj }])
+      setProfessionOption((prev) =>
+        [
+          ...prev,
+          { label: obj, value: obj.charAt(0).toUpperCase() + obj.slice(1) },
+        ].sort((a, b) => {
+          let va = a.value.toLowerCase(),
+            vb = b.value.toLowerCase();
+
+          if (va < vb) {
+            return -1;
+          }
+          if (va > vb) {
+            return 1;
+          }
+          return 0;
+        })
+      )
     );
   }, []);
 
   const handleChange = (opt) => {
-    handleInputChange({
-      section: section,
-      subsection: subsection,
-      values: opt.value,
-    });
-
-    setJobTitle(opt.value);
+    handleInputChange(opt.value);
 
     if (auth) {
       verifyInput(opt.value, errorMessage.current, "jobTitle");
@@ -57,6 +60,8 @@ function JobTitleInput({
   };
 
   const handleAddProfession = (opt) => {
+    handleChange({ label: opt, value: opt });
+
     const storedProfession =
       JSON.parse(sessionStorage.getItem("profession")) || [];
 
@@ -70,17 +75,19 @@ function JobTitleInput({
       sessionStorage.setItem("profession", JSON.stringify(profession));
     }
 
-    handleChange(opt);
+    setProfessionOption((prev) => [...prev, { label: opt, value: opt }]);
   };
 
   return (
     <>
       <Creatable
-        className="mb-6 text-[11px] w-full text-[#8C8C8F] border border-[#b2b3b48a] outline-0 rounded-[4px] bg-[#f9f9f9] relative z-40"
+        className="mb-6 text-[11px] w-full text-[#8C8C8F] border border-neutral-500 outline-0 rounded-[4px] bg-[#f9f9f9] relative z-40"
         inputId="jobTitle"
         placeholder="Job Title"
         components={{ DropdownIndicator }}
-        defaultInputValue={jobTitle}
+        value={{ label: title, value: title }}
+        onChange={handleChange}
+        onCreateOption={handleAddProfession}
         styles={{
           control: (base) => ({
             ...base,
@@ -112,8 +119,6 @@ function JobTitleInput({
           }),
         }}
         options={professionOption}
-        onChange={(opt) => handleChange(opt)}
-        onCreateOption={handleAddProfession}
         theme={(theme) => ({
           ...theme,
           colors: {
