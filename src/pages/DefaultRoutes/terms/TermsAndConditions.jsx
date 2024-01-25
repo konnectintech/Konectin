@@ -1,6 +1,28 @@
 import React from "react";
+import { Link } from "react-scroll";
 
 const TermsAndCondition = () => {
+  const tableOfContent = [
+    { name: "Accounts", url: "accounts" },
+    { name: "Access to the Site", url: "accessToTheSite" },
+    { name: "User Content", url: "userContent" },
+    { name: "Indemnification", url: "indemnification" },
+    { name: "Third-Party Links & Ads - Other Users...", url: "thirdParty" },
+    { name: "Disclaimers", url: "disclaimers" },
+    { name: "Limitation on Liability", url: "liabilityLimitation" },
+    { name: "Term and Termination", url: "termTermination" },
+    { name: "Copyright Policy", url: "copyright" },
+    { name: "General", url: "general" },
+  ];
+
+  const getHeader = (id) => {
+    return (
+      <h2 id={tableOfContent[id].url} className="font-bold p-2 bg-primary-200">
+        {id + 1}. {tableOfContent[id].name.toUpperCase()}
+      </h2>
+    );
+  };
+
   return (
     <div className="terms px-6 py-16 md:px-16 flex flex-col">
       <h1 className="mt-4 flex items-center text-2xl font-black justify-center">
@@ -13,6 +35,24 @@ const TermsAndCondition = () => {
         terms, or rules, which will be posted on the Site in connection with
         such features. All such additional terms, guidelines, and rules are
         incorporated by reference into these Terms.
+      </div>
+      <div className="py-6">
+        <h4 className="text-xl font-bold mb-3">Table Of Contents</h4>
+        <div className="flex flex-col gap-2 px-4">
+          {tableOfContent.map((content) => (
+            <Link
+              key={content.url}
+              className="hover:text-primary-600 hover:cursor-pointer text-primary-400 truncate"
+              to={content.url}
+              spy={true}
+              smooth={true}
+              offset={-100}
+              duration={200}
+            >
+              {content.name}
+            </Link>
+          ))}
+        </div>
       </div>
       <div className="text-sm pt-4">
         THESE TERMS OF USE (THESE “TERMS”) SET FORTH THE LEGALLY BINDING TERMS
@@ -48,7 +88,7 @@ const TermsAndCondition = () => {
         </ul>
       </div>
       <div className="text-sm pt-4">
-        <h2 className="font-bold p-2 bg-primary-200">1. ACCOUNTS</h2>
+        {getHeader(0)}
         <ul className="list-decimal list-inside">
           <div className="space-y-2 pt-4">
             <li className="text-sm font-bold">Account Creation</li>
@@ -79,7 +119,7 @@ const TermsAndCondition = () => {
         </ul>
       </div>
       <div className="text-sm pt-4">
-        <h2 className="font-bold p-2 bg-primary-200">2. ACCESS TO THE SITE</h2>
+        {getHeader(1)}
         <ul className="list-decimal list-inside">
           <div className="space-y-2 pt-4">
             <li className="text-sm font-bold">License.</li>
@@ -170,7 +210,7 @@ const TermsAndCondition = () => {
         </ul>
       </div>
       <div className="text-sm pt-4">
-        <h2 className="font-bold p-2 bg-primary-200">3. USER CONTENT</h2>
+        {getHeader(2)}
         <ul className="list-decimal list-inside">
           <div className="space-y-2 pt-4">
             <li className="text-sm font-bold">User Content.</li>
@@ -281,7 +321,7 @@ const TermsAndCondition = () => {
         </ul>
       </div>
       <div className="text-sm pt-4">
-        <h2 className="font-bold p-2 bg-primary-200">4. INDEMNIFICATION.</h2>
+        {getHeader(3)}
         <p className="pt-4">
           You agree to indemnify and hold Company (and its officers, employees,
           and agents) harmless, including costs and attorneys’ fees, from any
@@ -303,9 +343,7 @@ const TermsAndCondition = () => {
         any such claim, action or proceeding upon becoming aware of it.
       </div>
       <div className="text-sm pt-4">
-        <h2 className="font-bold p-2 bg-primary-200">
-          5. THIRD-PARTY LINKS & ADS - OTHER USERS
-        </h2>
+        {getHeader(4)}
         <ul className="list-decimal list-inside">
           <div className="space-y-2 pt-4">
             <li className="text-sm font-bold">Third-Party Links & Ads.</li>
@@ -369,7 +407,7 @@ const TermsAndCondition = () => {
         </ul>
       </div>
       <div className="text-sm pt-4">
-        <h2 className="font-bold p-2 bg-primary-200">6. DISCLAIMERS </h2>
+        {getHeader(5)}
         <ul className="list-decimal list-inside">
           <li className="text-sm pt-4">
             THE SITE IS PROVIDED ON AN “AS-IS” AND “AS AVAILABLE” BASIS, AND
@@ -394,9 +432,7 @@ const TermsAndCondition = () => {
         </ul>
       </div>
       <div className="text-sm pt-4">
-        <h2 className="font-bold p-2 bg-primary-200">
-          7. LIMITATION ON LIABILITY
-        </h2>
+        {getHeader(6)}
         <ul className="list-decimal list-inside">
           <li className="text-sm pt-4">
             TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL COMPANY
@@ -428,9 +464,7 @@ const TermsAndCondition = () => {
         EXCLUSION MAY NOT APPLY TO YOU.
       </div>
       <div className="text-sm pt-2">
-        <h2 className="font-bold p-2 bg-primary-200">
-          8. TERM AND TERMINATION.
-        </h2>
+        {getHeader(7)}
         <p className="pt-4">
           Subject to this Section, these Terms will remain in full force and
           effect while you use the Site. We may suspend or terminate your rights
@@ -449,7 +483,7 @@ const TermsAndCondition = () => {
         </p>
       </div>
       <div className="text-sm pt-4">
-        <h2 className="font-bold p-2 bg-primary-200">9. COPYRIGHT POLICY.</h2>
+        {getHeader(8)}
         <div>
           <p className="text-sm pt-4">
             Company respects the intellectual property of others and asks that
@@ -510,7 +544,7 @@ const TermsAndCondition = () => {
         </p>
       </div>
       <div className="text-sm pt-4">
-        <h2 className="font-bold p-2 bg-primary-200">10. GENERAL</h2>
+        {getHeader(9)}
         <ul className="list-decimal list-inside">
           <div className="space-y-2 pt-4">
             <li className="text-sm font-bold">Changes.</li>

@@ -1,13 +1,13 @@
-import { internHero } from "../../../assets";
+import { blogHero, blogHero1, blogHero2, internHero } from "../../../assets";
 import "./index.css";
 import { motion } from "framer-motion";
 import SectionWrapper from "../../../components/animation/sectionWrapper";
-import { slideIn, textVariantUp } from "../../../utils/motion";
+import { textVariantUp } from "../../../utils/motion";
 import { Link } from "react-router-dom";
 
 function Internship() {
   return (
-    <section className="min-h-[70vh] overflow-hidden">
+    <section className="min-h-[70vh] relative overflow-hidden">
       <div className="w-11/12 mx-auto max-w-screen-2xl min-h-[70vh] flex flex-col md:gap-16 lg:gap-48 md:flex-row items-center py-32">
         <div className="flex flex-col gap-6 w-full my-auto md:w-9/12 lg:w-6/12">
           <div>
@@ -66,12 +66,23 @@ function Internship() {
           </motion.div>
         </div>
 
-        <motion.picture
-          variants={slideIn("rtl", "spring", 0.1, 1)}
-          className="hidden md:block sm:[--left-right:150%] [--left-right:-150%]"
-        >
+        <picture className="hidden md:block relative">
           <img src={internHero} alt="Konectin Internship" />
-        </motion.picture>
+
+          <div className="rotating-path">
+            <div className="rotating-image">
+              <img src={blogHero1} alt="" />
+            </div>
+
+            <div className="rotating-image">
+              <img src={blogHero2} alt="" />
+            </div>
+
+            <div className="rotating-image">
+              <img src={blogHero} alt="" />
+            </div>
+          </div>
+        </picture>
       </div>
     </section>
   );

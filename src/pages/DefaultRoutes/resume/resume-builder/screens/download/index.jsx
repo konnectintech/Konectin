@@ -38,6 +38,7 @@ const Download = ({ data }) => {
         //                 content="Get matched easily with recruiters who see value in your experience amidst other great Career oppurtunities." />
         //             </head>
 
+<<<<<<< HEAD
         //             <body>
         //               ${doc.innerHTML}
         //             </body>
@@ -45,6 +46,20 @@ const Download = ({ data }) => {
         // `,
         //   },
         //   { responseType: "blob" }
+=======
+                  <body>
+                    ${doc.innerHTML}
+                  </body>
+                </html>
+      `,
+        },
+        {
+          responseType: "blob",
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+>>>>>>> 33b3d0effd7e16332c6fd988b8c63c3c2d10db85
       );
 
       var blob = new Blob([res.data], { type: "application/pdf" });

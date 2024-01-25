@@ -38,3 +38,77 @@
   border-radius: 2px;
   background-size: 35px 20px, 100% 100%, 100% 100%;
 } */
+
+.rotating-path {
+  --circleDiameter: 300px;
+  --planets: calc(var(--circleDiameter) / 5);
+
+  position: absolute;
+  top: 0;
+  left: -10%;
+  width: 100%;
+  height: calc(100% / 1.2);
+  border-radius: 100%;
+}
+
+.rotating-image {
+  position: absolute;
+  width: var(--planets);
+  aspect-ratio: 1;
+  border-radius: 100%;
+  animation: reveal var(--reveal-secs) linear forwards;
+}
+
+.rotating-image:nth-child(1) {
+  --scale-initial: 2;
+  --scale-sub: 1.8;
+  --scale-middle: 1.5;
+  --scale-preend: 1.3;
+  --scale-end: 1;
+  --reveal-secs: 1s;
+  top: calc(-1 * var(--planets) / 2);
+  left: calc(var(--circleDiameter) / 2 - var(--planets) / 2 - 5px);
+}
+
+.rotating-image:nth-child(2) {
+  --reveal-secs: 6s;
+  --scale-initial: 1.8;
+  --scale-sub: 1.5;
+  --scale-middle: 1.3;
+  --scale-preend: 1;
+  --scale-end: 2;
+  right: calc(var(--planets));
+  bottom: calc(var(--planets) / 16);
+}
+
+.rotating-image:nth-child(3) {
+  --reveal-secs: 10s;
+  --scale-initial: 1.5;
+  --scale-sub: 1.3;
+  --scale-middle: 1;
+  --scale-preend: 2;
+  --scale-end: 1.8;
+  top: calc(var(--planets) * 6);
+  left: calc(var(--planets) * 1.2);
+}
+
+.rotating-image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+@keyframes reveal {
+  0% {
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

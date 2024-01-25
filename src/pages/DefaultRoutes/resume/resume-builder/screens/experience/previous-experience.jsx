@@ -80,11 +80,9 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
             <JobTitleInput
               auth
               title={data?.jobTitle}
-              handleInputChange={({ subsection, values }) =>
-                handleInputChange(subsection, values)
+              handleInputChange={(value) =>
+                handleInputChange("jobTitle", value)
               }
-              section="jobExperience"
-              subsection="jobTitle"
             />
 
             <div className="flex flex-col">
