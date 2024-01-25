@@ -3,20 +3,9 @@ import emailjs from "@emailjs/browser";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import * as FaIcon from "react-icons/fa";
-import styles from "./contact.module.css";
 import { Link } from "react-router-dom";
 import { discussionTopics } from "./data";
-import {
-  Ellipse,
-  Ellipse1,
-  Ellipse2,
-  Ellipse3,
-  Ellipse4,
-  box,
-  box1,
-  box2,
-  dotBox,
-} from "../../../assets/icons/contact us";
+import { ContactUSImage } from "../../../assets";
 
 function Contact() {
   const wrapperRef = useRef(null);
@@ -93,7 +82,7 @@ function Contact() {
             </h2>
 
             <form ref={form} onSubmit={sendEmail} className="space-y-3">
-              <div className="flex gap-1 lg:gap-4 flex-wrap">
+              <div className="flex gap-1 sm:gap-2 flex-wrap">
                 {discussionTopics.map((topic) => (
                   <div
                     key={topic.name}
@@ -141,8 +130,9 @@ function Contact() {
                   {discussionTopics
                     .filter((topic) => topic.name === topics)
                     .map((topic) =>
-                      topic.resources.map((res) => (
+                      topic.resources.map((res, i) => (
                         <Link
+                          key={res.link + topic.name + i}
                           to={res.link}
                           className="py-1 text-secondary-500 text-xs block"
                         >
@@ -194,9 +184,9 @@ function Contact() {
                 </>
               )}
 
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 sm:items-center pt-2">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 sm:items-center pt-2">
                 <button
-                  className="p-2 py-4 lg:px-5 bg-neutral-900 text-neutral-400 font-medium hover:text-white hover:bg-primary-600 text-xs rounded duration-500"
+                  className="py-4 px-5 bg-neutral-900 text-neutral-400 font-medium hover:text-white hover:bg-primary-600 text-xs rounded duration-500"
                   type="submit"
                   onClick={sendEmail}
                 >
@@ -207,7 +197,7 @@ function Contact() {
                   href="https://wa.link/jbbtji"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2 py-4 lg:px-5 border-primary-600 hover:text-white hover:bg-primary-600 border text-xs rounded duration-500 text-center"
+                  className="py-4 px-5 border-primary-600 hover:text-white hover:bg-primary-600 border text-xs rounded duration-500 text-center"
                 >
                   START A LIVE CHAT
                 </a>
@@ -249,31 +239,8 @@ function Contact() {
             </div>
           </div>
 
-          <div className={`${styles.animation_container} max-lg:hidden`}>
-            <div className={styles.centered_image}>
-              <img src={dotBox} alt="dots" />
-            </div>
-            <img className={styles.bounce} src={box} alt="box" />
-            <img className={styles.bounce} src={box1} alt="box" />
-            <img className={styles.bounce} src={box2} alt="box" />
-
-            <div className={styles.rotating_path}>
-              <div className={styles.rotating_image}>
-                <img src={Ellipse} alt="Ellipse" />
-              </div>
-              <div className={styles.rotating_image}>
-                <img src={Ellipse2} alt="Ellipse" />
-              </div>
-              <div className={styles.rotating_image}>
-                <img src={Ellipse4} alt="Ellipse" />
-              </div>
-              <div className={styles.rotating_image}>
-                <img src={Ellipse1} alt="Ellipse" />
-              </div>
-              <div className={styles.rotating_image}>
-                <img src={Ellipse3} alt="Ellipse" />
-              </div>
-            </div>
+          <div className="max-lg:hidden">
+            <img src={ContactUSImage} alt="Contact us page" />
           </div>
         </div>
       </div>
