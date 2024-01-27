@@ -22,44 +22,30 @@ const Download = ({ data }) => {
 
     try {
       let res = await axios.post(
-        `${url}/createPdf?userId=${user._id}resumeId=${data._id}`,
-        {},
-        { headers: { Authorization: `${user.token}` } }
-        //   {
-        //     html: `
-        //         <!DOCTYPE html>
-        //           <html lang="en">
-        //             <head>
-        //               <meta charset="UTF-8" />
-        //               <link rel="icon" type="image/png" href="/konectin.png" />
-        //               <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        //               <title>Konectin | Home</title>
-        //               <meta name="description"
-        //                 content="Get matched easily with recruiters who see value in your experience amidst other great Career oppurtunities." />
-        //             </head>
+        `${url}/createPdf?resumeId=${data._id}`,
+        {
+          resumeHtml: `
+                <!DOCTYPE html>
+                  <html lang="en">
+                    <head>
+                      <meta charset="UTF-8" />
+                      <link rel="icon" type="image/png" href="/konectin.png" />
+                      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                      <title>Konectin | Home</title>
+                      <meta name="description"
+                        content="Get matched easily with recruiters who see value in your experience amidst other great Career oppurtunities." />
+                    </head>
 
-<<<<<<< HEAD
-        //             <body>
-        //               ${doc.innerHTML}
-        //             </body>
-        //           </html>
-        // `,
-        //   },
-        //   { responseType: "blob" }
-=======
-                  <body>
-                    ${doc.innerHTML}
-                  </body>
-                </html>
-      `,
+                    <body>
+                      ${doc.innerHTML}
+                    </body>
+                  </html>
+        `,
         },
         {
           responseType: "blob",
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
+          headers: { Authorization: `Bearer ${user.token}` },
         }
->>>>>>> 33b3d0effd7e16332c6fd988b8c63c3c2d10db85
       );
 
       var blob = new Blob([res.data], { type: "application/pdf" });
