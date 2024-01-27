@@ -18,35 +18,33 @@ const Download = ({ data }) => {
   const handleDownload = async () => {
     const doc = document.getElementById("template");
     setLoading(true);
-    const url = import.meta.env.VITE_CLIENT_SERVER_URL;
+    const url = import.meta.env.VITE_CLIENT_SERVER_RENDER_URL;
 
     try {
       let res = await axios.post(
-        `${url}/createPdf?userId=${user._id}`,
+        `${url}/createPdf?resumeId=${data._id}`,
         {
-          html: `
-              <!DOCTYPE html>
-                <html lang="en">
-                  <head>
-                    <meta charset="UTF-8" />
-                    <link rel="icon" type="image/png" href="/konectin.png" />
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                    <title>Konectin | Home</title>
-                    <meta name="description"
-                      content="Get matched easily with recruiters who see value in your experience amidst other great Career oppurtunities." />
-                  </head>
+          resumeHtml: `
+                <!DOCTYPE html>
+                  <html lang="en">
+                    <head>
+                      <meta charset="UTF-8" />
+                      <link rel="icon" type="image/png" href="/konectin.png" />
+                      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                      <title>Konectin | Home</title>
+                      <meta name="description"
+                        content="Get matched easily with recruiters who see value in your experience amidst other great Career oppurtunities." />
+                    </head>
 
-                  <body>
-                    ${doc.innerHTML}
-                  </body>
-                </html>
-      `,
+                    <body>
+                      ${doc.innerHTML}
+                    </body>
+                  </html>
+        `,
         },
         {
           responseType: "blob",
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
+          headers: { Authorization: `Bearer ${user.token}` },
         }
       );
 
