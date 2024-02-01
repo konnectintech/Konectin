@@ -40,7 +40,7 @@ function CityInput({ countryId, stateId, handleChange, city }) {
             className="bg-transparent outline-none border-none w-full"
             id="cities"
             name="city"
-            value={city}
+            value={city ? city : ""}
             placeholder="Enter City"
             onChange={(e) => handleCityInput(e.target.value)}
             onInput={(e) => handleCityInput(e.target.value)}

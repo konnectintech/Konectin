@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { FaBars, FaCheck, FaTimes } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { konectinIcon } from "../../assets";
-import { useTemplateContext } from "../../middleware/resume";
 import "../header/header.css";
+import { useLocalStorage } from "../../middleware/storage";
 
 function ResumeHeader() {
-  const { templateData, setTemplateData } = useTemplateContext();
+  const [templateData, setTemplateData] = useLocalStorage(
+    "konectin-profiler-data-template"
+  );
   const { currentStage } = templateData;
   const locationNo = currentStage;
 

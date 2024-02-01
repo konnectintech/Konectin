@@ -18,7 +18,7 @@ function TemplateThreeA(data) {
 
   useEffect(() => {
     const pageContainer = page.current;
-    const pageX = Math.ceil(pageContainer.clientHeight / 640);
+    const pageX = Math.ceil(pageContainer.clientHeight / 1056);
     setPageMax(pageX);
     setPageNumber(pageX);
   }, [pathname, data]);
@@ -33,7 +33,7 @@ function TemplateThreeA(data) {
 
   useEffect(() => {
     parentPage.current.scrollTo({
-      top: (pageNumber - 1) * 640,
+      top: (pageNumber - 1) * 1056,
     });
   }, [pageNumber]);
 
@@ -43,7 +43,7 @@ function TemplateThreeA(data) {
         {`
         .doc-body .adjuster {
           width: 1px;
-          height: ${pageMax * 640}px;
+          height: ${pageMax * 1056}px;
         }
     `}
       </style>
@@ -59,11 +59,11 @@ function TemplateThreeA(data) {
                 .doc-body * {
                   margin: 0;
                   padding: 0;
-                  font-size: 11px;
+                  font-size: 16px;
                   font-family: "Hind", sans-serif;
                   font-style: normal;
                   font-weight: 400;
-                  line-height: 19px;
+                  line-height: 21px;
                   color: #212121;
                 }
 
@@ -73,10 +73,8 @@ function TemplateThreeA(data) {
 
                 .doc-body .parent-container {
                   position: relative;
-                  width: 100%;
-                  max-width: 560px;
-                  min-width: 460px;
-                  height: 810px;
+                  width: 816px;
+                  height: 1056px;
                   display: flex;
                   align-items: stretch;
                   background: white;
@@ -95,53 +93,60 @@ function TemplateThreeA(data) {
                 }
 
                 .doc-body h1 {   
-                  font-size: 48px;
+                  font-size: 36px;
                   font-style: normal;
                   font-weight: 700;
-                  line-height: 65px;
+                  line-height: 46px;
                 }
 
                 .doc-body h2 {      
-                  font-size: 18px;
+                  font-size: 24px;
                   font-weight: 500;
-                  line-height: 15px;
+                  line-height: 28px;
                   font-family:poppins;
                   color:#ffffff;
-                  margin-bottom:10px
+                  margin-bottom: 10px;
                 }
 
                 .doc-body h3 {
+                  font-size: 20px;
                   font-weight: 700;
-                  line-height: 10px;
+                  line-height: 24px;
                   text-transform:capitalize;
                 }
 
                 .section-row {
                   display: -webkit-flex; /* WebKit-based browsers */
                   display: flex;
+                  align-items: stretch;
+                  height: calc(100% + 10px);
+                  position: relative;
+                  top: -10px;
                 }
 
                 .section-column-left {
-                  padding:5px;
-                  width:40%;
+                  position: relative;
+                  left: -10px;
+                  padding: 45px 15px 15px 25px;
+                  width: 40%;
                   display: flex;
                   flex-direction: column;
                   background: #212121;
                 }
-
+                
                 .section-column-right {
-                  width:60%
+                  width: 60%;
+                  padding-top: 40px;
                 }
             `}
             </style>
           </div>
 
-          {/* Use h-full and then control with max h */}
           <div
             ref={parentPage}
-            className="parent-container !h-full max-h-[640px] !w-full overflow-y-scroll no-scrollbar pointer-events-none"
+            className="parent-container overflow-y-scroll no-scrollbar pointer-events-none"
           >
-            <div ref={page} className="real-content h-full w-full">
+            <div ref={page} className="w-full">
               <div className="section-row">
                 <div className="section-column-left">
                   <BasicInfo data={data?.basicInfo} />

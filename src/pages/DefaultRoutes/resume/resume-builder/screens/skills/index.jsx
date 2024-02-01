@@ -48,8 +48,8 @@ const Skills = ({ data, updateResume }) => {
   };
 
   return (
-    <div className="max-w-6xl flex flex-col md:flex-row justify-between mx-auto md:gap-20">
-      <div className="flex flex-col w-full">
+    <div className="max-w-6xl flex flex-col md:flex-row justify-between mx-auto md:gap-10 lg:gap-20 overflow-hidden">
+      <div className="flex flex-col w-full md:w-1/2">
         <h2 className="max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
           Skills
         </h2>
@@ -162,8 +162,12 @@ const Skills = ({ data, updateResume }) => {
         </Link>
       </div>
 
-      <div className="max-md:hidden">
-        <SelectedTemplates data={data} />
+      <div className="max-md:hidden w-1/2">
+        <div className="h-[360px] sm:h-[300px] md:h-[580px] flex items-center justify-center">
+          <div className="md:scale-[50%] mt-10">
+            <SelectedTemplates data={data} />
+          </div>
+        </div>
       </div>
     </div>
   );

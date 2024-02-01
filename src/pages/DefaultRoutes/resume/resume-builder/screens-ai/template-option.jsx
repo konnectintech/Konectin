@@ -14,6 +14,7 @@ import { konectinIcon } from "../../../../../assets";
 import { loginForm } from "../../../../sign/signData";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useAuth } from "../../../../../middleware/auth";
+import { onSectionComplete } from "../screens/verification";
 
 const TemplateOption = ({ sectionName }) => {
   const { templateData, setTemplateData } = useTemplateContext();
@@ -25,37 +26,39 @@ const TemplateOption = ({ sectionName }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
+  async function createResume(value) {
+    try {
+      const response = await axios.post(`${url}/resume?userId=${user._id}`);
+
+      const resume = response.data.cv;
+      setTemplateData((prev) => ({
+        ...prev,
+        ...resume,
+        selectedTemplate: value,
+      }));
+
+      navigate("/resume/builder");
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   const handleSelect = (value) => {
     const { currentStage } = templateData;
 
     if (user === null) {
       setPopUp(true);
     } else {
-      async function createResume() {
-        try {
-          const response = await axios.post(`${url}/resume?userId=${user._id}`);
-
-          const resume = response.data.cv;
-          setTemplateData((prev) => ({
-            ...prev,
-            ...resume,
-            selectedTemplate: value,
-          }));
-
-          navigate("/resume/builder");
-        } catch (err) {
-          console.error(err);
-        }
-      }
-
       if (currentStage === 6) {
         setTemplateData((prev) => ({
           ...prev,
           selectedTemplate: value,
         }));
+
+        onSectionComplete({ ...templateData, selectedTemplate: value });
         navigate("/resume/builder/preview");
       } else {
-        createResume();
+        createResume(value);
       }
     }
   };
@@ -70,7 +73,6 @@ const TemplateOption = ({ sectionName }) => {
 
       localStorage.setItem("konectin-profiler-user", JSON.stringify(userData));
       setLoading(false);
-      navigate("/resume/builder");
     } catch (err) {
       setLoading(false);
       setErrorMessage(err.response.data.message);

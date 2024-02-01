@@ -169,8 +169,12 @@ const Bio = ({ data, onInputChange }) => {
               />
             </div>
           </div>
-          <div className="max-lg:hidden">
-            <SelectedTemplates data={data} />
+          <div className="max-lg:hidden w-1/3">
+            <div className="lg:h-[500px] xl:h-[600px] 2xl:h-[850px] flex items-center justify-center">
+              <div className="lg:scale-[40%] xl:scale-[50%] 2xl:scale-[70%] mt-10">
+                <SelectedTemplates data={data} />
+              </div>
+            </div>
           </div>
         </div>
       </div>

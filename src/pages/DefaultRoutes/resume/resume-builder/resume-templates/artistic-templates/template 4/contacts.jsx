@@ -12,38 +12,33 @@ function Contacts({ data }) {
           <style>
             {`
              .content {
-              padding: 10px;
-            }
-            
-            .content .sub_content {
-            }
-            
-            .content .sub_content .item {
-              display: -webkit-flex; /* WebKit-based browsers */
-              display: flex;
-              -webkit-border-radius: 2px;
-              border-radius: 2px;
-              -webkit-align-items: center; /* WebKit-based browsers */
-              align-items: center;
-            }
-            
-            
-            .content .sub_content .icon {
-              margin-right:5px;
-              display: -webkit-flex; /* WebKit-based browsers */
-              display:flex;
-              -webkit-justify-content: center; /* WebKit-based browsers */
-              justify-content:center;
-              -webkit-align-items: center; /* WebKit-based browsers */
-              align-items:center;
-
-            }
-
-            .text {
-              color:#fffff
-            }
-            
+                padding: 10px;
+              }
               
+              .content .sub_content .item {
+                display: -webkit-flex; /* WebKit-based browsers */
+                display: flex;
+                -webkit-border-radius: 2px;
+                border-radius: 2px;
+                -webkit-align-items: center; /* WebKit-based browsers */
+                align-items: center;
+                margin-bottom: 15px;
+              }
+              
+              
+              .content .sub_content .icon {
+                margin-right: 5px;
+                display: -webkit-flex; /* WebKit-based browsers */
+                display: flex;
+                -webkit-justify-content: center; /* WebKit-based browsers */
+                justify-content: center;
+                -webkit-align-items: center; /* WebKit-based browsers */
+                align-items: center;
+              }
+
+              .text {
+                color: #fff;
+              }              
             `}
           </style>
           <div className="content">
@@ -55,6 +50,7 @@ function Contacts({ data }) {
                 </div>
                 <div className="text">{data?.email}</div>
               </div>
+
               <div className="item">
                 <div className="icon">
                   <AiOutlinePhone fill="#ffffff" />

@@ -7,10 +7,12 @@ const Preview = ({ data }) => {
       <h2 className="max-w-[30ch] text-3xl leading-tight font-semibold md:leading-snug">
         Preview Resume
       </h2>
-      <div className="w-full flex flex-col items-center sm:flex-row gap-10 mt-6">
-        <div className="w-[200px] max-h-[360px] sm:max-h-[300px] md:w-fit md:max-h-full flex items-center justify-center">
-          <div className="scale-[60%] sm:scale-[50%] md:scale-100 mt-10">
-            <SelectedTemplates data={data} />
+      <div className="w-full flex flex-col items-center md:flex-row gap-10 mt-6">
+        <div className="md:w-1/2">
+          <div className="h-[280px] xxs:h-[380px] lg:h-[500px] max-w-[90vw] flex items-center justify-center xl:justify-end">
+            <div className="scale-[32%] xxs:scale-[42%] lg:scale-[55%] xl:translate-x-[70px] mt-10">
+              <SelectedTemplates data={data} />
+            </div>
           </div>
         </div>
         <div className="md:w-1/2 px-4 md:px-0 flex-col md:flex items-center">
