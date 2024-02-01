@@ -134,13 +134,16 @@ const Download = ({ data }) => {
         <h2 className="max-w-[30ch] text-3xl leading-tight font-semibold md:leading-snug mb-8">
           Download Resume
         </h2>
-        <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-10">
-          <div className="w-[200px] max-h-[360px] sm:max-h-[300px] md:w-fit md:max-h-full flex items-center justify-center">
-            <div className="scale-[60%] sm:scale-[50%] md:scale-100 mt-10">
-              <SelectedTemplates data={data} />
+        <div className="w-full flex flex-col md:flex-row items-center gap-10">
+          <div className="w-1/2">
+            <div className="h-[280px] xxs:h-[380px] lg:h-[500px] max-w-[90vw] flex items-center justify-center xl:justify-end">
+              <div className="scale-[32%] xxs:scale-[42%] lg:scale-[55%] xl:translate-x-[70px] mt-10">
+                <SelectedTemplates data={data} />
+              </div>
             </div>
           </div>
-          <div className="max-w-xl flex flex-col max-md:justify-center mt-16 gap-5">
+
+          <div className="w-full flex flex-col max-md:justify-center mt-16 gap-5">
             <button
               onClick={handleDownload}
               type="submit"

@@ -12,55 +12,55 @@ function Contacts({ data }) {
           <style>
             {`
              .content {
-              padding: 22px;
-              display: -webkit-flex; /* WebKit-based browsers */
-              display: flex;
-              -webkit-justify-content: center; /* WebKit-based browsers */
-              justify-content: center;
-              -webkit-align-items: center; /* WebKit-based browsers */
-              align-items: center;
-            }
-            
-            .content .sub_content {
-              display: -webkit-flex; /* WebKit-based browsers */
-              display: flex;
-              margin: 0 auto;
-            }
-            
-            .content .sub_content .item {
-              display: -webkit-flex; /* WebKit-based browsers */
-              display: flex;
-              -webkit-border-radius: 2px;
-              border-radius: 2px;
-              -webkit-align-items: center; /* WebKit-based browsers */
-              align-items: center;
-            }
-            
-            .item {
-              border-left: 4px solid #EEEFF1;
-              margin-bottom:8px;
-              padding-left:8px
-            }
-            /* Create gap between flex items using negative margin */
-            .content .sub_content .item + .item {
-              margin-left: 10px; /* Adjust this value to control the gap */
-             
-            }
-            
-            .content .sub_content .icon {
-              width: 25px;
-              height: 25px;
-              margin-right:5px;
-              display: -webkit-flex; /* WebKit-based browsers */
-              display:flex;
-              -webkit-justify-content: center; /* WebKit-based browsers */
-              justify-content:center;
-              -webkit-align-items: center; /* WebKit-based browsers */
-              align-items:center
-
-            }
-            
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                padding: 22px;
+                display: -webkit-flex; /* WebKit-based browsers */
+                display: flex;
+                -webkit-justify-content: center; /* WebKit-based browsers */
+                justify-content: center;
+                -webkit-align-items: center; /* WebKit-based browsers */
+                align-items: center;
+              }
               
+              .content .sub_content {
+                display: -webkit-flex; /* WebKit-based browsers */
+                display: flex;
+                margin: 0 auto;
+              }
+              
+              .content .sub_content .item {
+                display: -webkit-flex; /* WebKit-based browsers */
+                display: flex;
+                -webkit-border-radius: 2px;
+                border-radius: 2px;
+                -webkit-align-items: center; /* WebKit-based browsers */
+                align-items: center;
+              }
+              
+              .item {
+                border-left: 4px solid #EEEFF1;
+                margin-bottom: 8px;
+                padding-left: 8px;
+              }
+
+              /* Create gap between flex items using negative margin */
+              .content .sub_content .item + .item {
+                margin-left: 10px; /* Adjust this value to control the gap */
+              }
+              
+              .content .sub_content .icon {
+                width: 25px;
+                height: 25px;
+                margin-right: 5px;
+                display: -webkit-flex; /* WebKit-based browsers */
+                display: flex;
+                -webkit-justify-content: center; /* WebKit-based browsers */
+                justify-content: center;
+                -webkit-align-items: center; /* WebKit-based browsers */
+                align-items: center;
+              }
             `}
           </style>
           <div className="content">

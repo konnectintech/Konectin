@@ -135,10 +135,19 @@ export const useAuth = () => {
         const lastResume = resumes.slice(-1)[0];
         const { currentStage } = lastResume;
 
-        if (currentStage >= 1 && currentStage < 6) {
+        if (currentStage >= 1 && currentStage <= 6) {
           localStorage.setItem(
             "konectin-profiler-data-template",
-            JSON.stringify(lastResume)
+            JSON.stringify({
+              ...lastResume,
+              completed: {
+                basic_info: currentStage >= 1,
+                work_history: currentStage >= 2,
+                education: currentStage >= 3,
+                skills: currentStage >= 4,
+                bio: currentStage >= 5,
+              },
+            })
           );
         }
       }
@@ -155,6 +164,8 @@ export const useAuth = () => {
 
       const userData = { ...authresult.data.data };
       userData.token = authresult.data.token;
+
+      console.log(authresult.data);
 
       setUser(userData);
       loader(false);
@@ -187,8 +198,10 @@ export const useAuth = () => {
   };
 
   const signOut = () => {
-    localStorage.removeItem("konectin-profiler-data-template");
-    localStorage.removeItem("konectin-profiler-data-crStage");
+    localStorage.setItem(
+      "konectin-profiler-data-template",
+      JSON.stringify(null)
+    );
     setUser(null);
   };
 

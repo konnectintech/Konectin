@@ -18,7 +18,7 @@ function TemplateOneA(data) {
 
   useEffect(() => {
     const pageContainer = page.current;
-    const pageX = Math.ceil(pageContainer.clientHeight / 640);
+    const pageX = Math.ceil(pageContainer.clientHeight / 1056);
     setPageMax(pageX);
     setPageNumber(pageX);
   }, [pathname, data]);
@@ -33,7 +33,7 @@ function TemplateOneA(data) {
 
   useEffect(() => {
     parentPage.current.scrollTo({
-      top: (pageNumber - 1) * 640,
+      top: (pageNumber - 1) * 1056,
     });
   }, [pageNumber]);
 
@@ -43,7 +43,7 @@ function TemplateOneA(data) {
         {`
         .doc-body .adjuster {
           width: 1px;
-          height: ${pageMax * 640}px;
+          height: ${pageMax * 1056}px;
         }
     `}
       </style>
@@ -59,11 +59,11 @@ function TemplateOneA(data) {
                 .doc-body * {
                   margin: 0;
                   padding: 0;
-                  font-size: 11px;
+                  font-size: 16px;
                   font-family: "Hind", sans-serif;
                   font-style: normal;
                   font-weight: 400;
-                  line-height: 19px;
+                  line-height: 21px;
                   color: #212121;
                 }
 
@@ -73,10 +73,8 @@ function TemplateOneA(data) {
 
                 .doc-body .parent-container {
                   position: relative;
-                  width: 100%;
-                  max-width: 560px;
-                  min-width: 460px;
-                  height: 810px;
+                  width: 816px;
+                  height: 1056px;
                   display: flex;
                   align-items: stretch;
                   background: white;
@@ -87,22 +85,9 @@ function TemplateOneA(data) {
                 }
 
                 .doc-body .top-head {
-                  max-width: 560px;
                   height: 10px;
-                  background:#ffffff
+                  background: #fff;
                 }
-
-                .doc-body .parent-container {
-                  position: relative;
-                  width: 100%;
-                  max-width: 560px;
-                  min-width: 460px;
-                  height: 810px;
-                  display: flex;
-                  align-items: stretch;
-                  background: white;
-                }
-
 
                 .doc-body h1,
                 .doc-body h2,
@@ -120,19 +105,21 @@ function TemplateOneA(data) {
                 }
 
                 .doc-body h2 {      
-                  font-size: 14px;
+                  font-size: 24px;
                   font-weight: 700;
                   line-height: 15px;
+                  padding-bottom: 3px;
+                  margin-bottom: 6px;
                   font-family:poppins;
                 }
-
+                
                 .doc-body h3 {
+                  font-size: 18px;
                   font-weight: 700;
                   line-height: 15px;
+                  margin-bottom: 6px;
                   text-transform:capitalize;
                 }
-                
-              
             `}
             </style>
           </div>
@@ -140,9 +127,9 @@ function TemplateOneA(data) {
           {/* Use h-full and then control with max h */}
           <div
             ref={parentPage}
-            className="parent-container !h-full max-h-[640px] !w-full overflow-y-scroll no-scrollbar pointer-events-none"
+            className="parent-container overflow-y-scroll no-scrollbar pointer-events-none"
           >
-            <div ref={page} className="real-content h-full w-full">
+            <div ref={page} className="w-full">
               <Contacts data={data?.basicInfo} />
               <BasicInfo data={data?.basicInfo} />
               <Profile data={data?.bio} />

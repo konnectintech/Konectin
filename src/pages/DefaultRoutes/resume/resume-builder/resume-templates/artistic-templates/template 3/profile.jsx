@@ -4,15 +4,15 @@ function Profile({ data }) {
       <section>
         <style>
           {`
-           .profile-section {
-            padding: 10px;
-            padding-bottom: 0;
-          }
-          .text{
-            font-family:poppins;
-            font-size:10px;
-            color:#ffffff;
-          }
+            .profile-section {
+              padding: 10px;
+              padding-bottom: 0;
+            }
+            
+            .text{
+              font-family: poppins;
+              color: #fff;
+            }
           `}
         </style>
         <div className="profile-section">

@@ -1,17 +1,21 @@
 import { useState } from "react";
 import * as FaIcon from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useTemplateContext } from "../../../../middleware/resume";
+import { useAuthContext } from "../../../../middleware/auth";
 
 const StartBuilder = () => {
   const [popUp, setPopUp] = useState(false);
-  const { templateData, setTemplateData } = useTemplateContext();
+  const { user } = useAuthContext();
+  const { jobExperience, basicInfo } =
+    JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
 
   const links = [
     "/resume/builder",
-    Object.keys(templateData.jobExperience).length <= 1
-      ? "/resume/builder/employment-experience"
-      : "/resume/builder/employment-experience/job-activities",
+    jobExperience
+      ? Object.keys(jobExperience).length <= 1
+        ? "/resume/builder/employment-experience"
+        : "/resume/builder/employment-experience/job-activities"
+      : "/resume/builder/employment-experience",
     "/resume/builder/education",
     "/resume/builder/skills",
     "/resume/builder/bio",
@@ -24,6 +28,11 @@ const StartBuilder = () => {
     const { currentStage } =
       JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
 
+    if (user === null) {
+      handleAfresh();
+      return;
+    }
+
     for (let index = 1; index <= links.length; index++) {
       if (index === currentStage) {
         navigate(links[index - 1]);
@@ -32,34 +41,37 @@ const StartBuilder = () => {
   };
 
   const handleAfresh = () => {
-    setTemplateData({
-      completed: {
-        basic_info: false,
-        work_history: false,
-        education: false,
-        skills: false,
-        bio: false,
-      },
-      basicInfo: {
-        city: "",
-        country: "",
-        email: "",
-        firstName: "",
-        lastName: "",
-        phoneNumber: "",
-        profession: "",
-        state: "",
-        zipCode: "",
-      },
-      currentEditedJob: 0,
-      currentEditedEducation: 0,
-      jobExperience: [],
-      education: [],
-      skills: [],
-      bio: "",
-      selectedTemplate: "",
-      currentStage: 0,
-    });
+    localStorage.setItem(
+      "konectin-profiler-data-template",
+      JSON.stringify({
+        completed: {
+          basic_info: false,
+          work_history: false,
+          education: false,
+          skills: false,
+          bio: false,
+        },
+        basicInfo: {
+          city: "",
+          country: "",
+          email: "",
+          firstName: "",
+          lastName: "",
+          phoneNumber: "",
+          profession: "",
+          state: "",
+          zipCode: "",
+        },
+        currentEditedJob: 0,
+        currentEditedEducation: 0,
+        jobExperience: [],
+        education: [],
+        skills: [],
+        bio: "",
+        selectedTemplate: "",
+        currentStage: 0,
+      })
+    );
 
     navigate("/resume/ai");
   };
@@ -69,8 +81,8 @@ const StartBuilder = () => {
       <div className="w-9/12 min-w-fit mx-auto max-w-screen-xl flex flex-col justify-center items-center gap-8 m-8 py-24 px-7 rounded-xl bg-white md:w-6/12">
         <h1 className="text-[20px] md:text-[28px] leading-tight font-semibold md:leading-snug">
           Welcome back{" "}
-          {templateData?.basicInfo?.lastName.charAt(0).toUpperCase() +
-            templateData?.basicInfo?.lastName.slice(1)}
+          {basicInfo?.lastName.charAt(0).toUpperCase() +
+            basicInfo?.lastName.slice(1)}
         </h1>
         <p className="md:w-[420px] tracking-wider text-sm text-center text-neutral-400">
           Continue from where you left off. By selecting create new resume, your

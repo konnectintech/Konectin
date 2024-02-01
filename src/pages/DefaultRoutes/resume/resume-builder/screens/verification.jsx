@@ -12,6 +12,7 @@ export const onSectionComplete = async (template) => {
 
   try {
     const user = JSON.parse(localStorage.getItem("konectin-profiler-user"));
+
     if (user) {
       await axios.put(
         `${url}/updateResume?userId=${user._id}&resumeId=${template._id}`,

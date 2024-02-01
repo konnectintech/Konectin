@@ -17,7 +17,7 @@ function TemplateTwo(data) {
 
   useEffect(() => {
     const pageContainer = page.current;
-    const pageX = Math.ceil(pageContainer.clientHeight / 640);
+    const pageX = Math.ceil(pageContainer.clientHeight / 1056);
     setPageMax(pageX);
     setPageNumber(pageX);
   }, [pathname, data]);
@@ -32,7 +32,7 @@ function TemplateTwo(data) {
 
   useEffect(() => {
     parentPage.current.scrollTo({
-      top: (pageNumber - 1) * 640,
+      top: (pageNumber - 1) * 1056,
     });
   }, [pageNumber]);
 
@@ -42,7 +42,7 @@ function TemplateTwo(data) {
         {`
         .doc-body .adjuster {
           width: 1px;
-          height: ${pageMax * 640}px;
+          height: ${pageMax * 1056}px;
         }
     `}
       </style>
@@ -58,14 +58,19 @@ function TemplateTwo(data) {
               {`
                 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
+                @page { 
+                  size: letter;
+                  margin:0; 
+                }
+
                 .doc-body * {
                   margin: 0;
                   padding: 0;
-                  font-size: 11px;
+                  font-size: 16px;
                   font-family: "Hind", sans-serif;
                   font-style: normal;
                   font-weight: 400;
-                  line-height: 19px;
+                  line-height: 21px;
                   color: #212121;
                 }
             
@@ -75,13 +80,12 @@ function TemplateTwo(data) {
             
                 .doc-body .parent-container {
                   position: relative;
-                  width: 100%;
-                  max-width: 590px;
-                  min-width: 460px;
-                  height: 810px;
+                  width: 816px;
+                  height: 1056px;
                   display: flex;
                   align-items: stretch;
                   background: white;
+                  padding: 2rem 4rem 0 1.5rem;
                 }
 
                 .doc-body p, .doc-body a, .doc-body span, .doc-body  ul li {
@@ -97,21 +101,24 @@ function TemplateTwo(data) {
                 }
 
                 .doc-body h1 {   
-                  font-size: 18px;
+                  font-size: 28px;
                   font-style: normal;
                   font-weight: 700;
-                  line-height: 25px;
+                  line-height: 27px;
+                  margin-bottom: 15px;
                 }
 
-                .doc-body h2 {      
-                  font-size: 13px;
+                .doc-body h2 { 
+                  font-size: 20px;
                   font-weight: 700;
                   line-height: 15px;
                 }
 
-                .doc-body h3 {
+                .doc-body h3 {  
+                  font-size: 17px;
                   font-weight: 600;
-                  line-height: 18px;
+                  line-height: 20px;
+                  margin: 7px 0;
                 }
 
                 .dataset-container > section {
@@ -128,7 +135,6 @@ function TemplateTwo(data) {
                   display: flex;
                   display: -webkit-box;
                   align-items: start;
-                  width: 90%;
                   margin: 0px auto;
                 }
             
@@ -144,6 +150,7 @@ function TemplateTwo(data) {
                   display: flex;
                   flex-direction: column;
                   width: 23%;
+                  margin: 7px 0;
                 }
 
                 .doc-body .sub-section {
@@ -201,7 +208,7 @@ function TemplateTwo(data) {
 
           <div
             ref={parentPage}
-            className="parent-container !h-full max-h-[640px] !w-full overflow-y-scroll no-scrollbar pointer-events-none"
+            className="parent-container !px-8 overflow-y-scroll no-scrollbar pointer-events-none"
           >
             <div ref={page} className="h-max w-full">
               <BasicInfo data={data?.basicInfo} />

@@ -58,17 +58,16 @@ const Options = () => {
     }
   };
 
-  useEffect(() => {
-    const { currentStage } =
-      JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
+  const { currentStage } =
+    JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
 
-    if (currentStage === null || currentStage === 0) {
+  useEffect(() => {
+    if (currentStage === undefined || currentStage === 0) {
       setEditable(false);
     } else {
-      console.log(currentStage);
       setEditable(true);
     }
-  }, []);
+  }, [currentStage]);
 
   return editable ? (
     <StartBuilder />
