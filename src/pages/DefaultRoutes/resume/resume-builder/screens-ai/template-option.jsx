@@ -13,22 +13,23 @@ import axios from "axios";
 import { konectinIcon } from "../../../../../assets";
 import { loginForm } from "../../../../sign/signData";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { useAuth } from "../../../../../middleware/auth";
 import { onSectionComplete } from "../screens/verification";
 
 const TemplateOption = ({ sectionName }) => {
   const { templateData, setTemplateData } = useTemplateContext();
-  const { user } = useAuth();
 
   const [popUp, setPopUp] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState(false);
   const navigate = useNavigate();
   const [isloading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   async function createResume(value) {
+    const { _id } =
+      JSON.parse(localStorage.getItem("konectin-profiler-user")) || "";
     try {
-      const response = await axios.post(`${url}/resume?userId=${user._id}`);
+      const response = await axios.post(`${url}/resume?userId=${_id}`);
 
       const resume = response.data.cv;
       setTemplateData((prev) => ({
@@ -45,8 +46,11 @@ const TemplateOption = ({ sectionName }) => {
 
   const handleSelect = (value) => {
     const { currentStage } = templateData;
+    const { _id } =
+      JSON.parse(localStorage.getItem("konectin-profiler-user")) || "";
 
-    if (user === null) {
+    if (_id === undefined) {
+      setSelectedTemplate(value);
       setPopUp(true);
     } else {
       if (currentStage === 6) {
@@ -73,8 +77,10 @@ const TemplateOption = ({ sectionName }) => {
 
       localStorage.setItem("konectin-profiler-user", JSON.stringify(userData));
       setLoading(false);
+      createResume(selectedTemplate);
     } catch (err) {
       setLoading(false);
+      setPopUp(false);
       setErrorMessage(err.response.data.message);
     }
   };
