@@ -76,7 +76,7 @@ export const RequireAuth = ({ children }) => {
   return children;
 };
 
-const parseJwt = (token) => {
+export const parseJwt = (token) => {
   try {
     return JSON.parse(atob(token.split(".")[1]));
   } catch (e) {
@@ -126,6 +126,7 @@ export const useAuth = () => {
           Authorization: `Bearer ${user.token}`,
         },
       });
+
       const resumes = response.data.cvs;
       const templateData = JSON.parse(
         localStorage.getItem("konectin-profiler-data-template")
@@ -165,17 +166,18 @@ export const useAuth = () => {
       const userData = { ...authresult.data.data };
       userData.token = authresult.data.token;
 
-      console.log(authresult.data);
-
       setUser(userData);
-      loader(false);
 
-      if (ongoing) {
-        navigate("/internship/intern-application");
-      } else if (status !== "") {
-        sessionStorage.removeItem("status");
-        navigate(`${status}`);
-      } else navigate("/resume/options");
+      setTimeout(() => {
+        loader(false);
+
+        if (ongoing) {
+          navigate("/internship/intern-application");
+        } else if (status !== "") {
+          sessionStorage.removeItem("status");
+          navigate(`${status}`);
+        } else navigate("/resume/options");
+      }, 3000);
     } catch (err) {
       loader(false);
       setError(err.response.data.message);

@@ -1,11 +1,9 @@
 import { useState } from "react";
 import * as FaIcon from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../../../../middleware/auth";
 
 const StartBuilder = () => {
   const [popUp, setPopUp] = useState(false);
-  const { user } = useAuthContext();
   const { jobExperience, basicInfo } =
     JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
 
@@ -27,8 +25,10 @@ const StartBuilder = () => {
   const handleContinueEdit = () => {
     const { currentStage } =
       JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
+    const { token } =
+      JSON.parse(localStorage.getItem("konectin-profiler-user")) || "";
 
-    if (user === null) {
+    if (!token) {
       handleAfresh();
       return;
     }

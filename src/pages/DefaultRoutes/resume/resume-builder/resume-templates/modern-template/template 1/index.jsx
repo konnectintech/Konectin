@@ -113,7 +113,6 @@ function TemplateOne(data) {
                 }
                 
                 .doc-body .top-head {
-                  max-width: 816px;
                   height: 20px;
                 }
 

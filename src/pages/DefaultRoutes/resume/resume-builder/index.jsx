@@ -3,6 +3,7 @@ import * as BsIcon from "react-icons/bs";
 import { createResume, uploadResume } from "../../../../assets";
 import StartBuilder from "./start";
 import { useNavigate } from "react-router";
+import { parseJwt } from "../../../../middleware/auth";
 
 const BuilderOption = ({
   title,
@@ -58,16 +59,25 @@ const Options = () => {
     }
   };
 
-  const { currentStage } =
-    JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
-
   useEffect(() => {
-    if (currentStage === undefined || currentStage === 0) {
+    const { currentStage } =
+      JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
+    const { token } =
+      JSON.parse(localStorage.getItem("konectin-profiler-user")) || "";
+
+    if (!token) {
+      setEditable(false);
+      return;
+    }
+
+    const decodedJwt = parseJwt(token);
+
+    if (!currentStage || decodedJwt.exp * 1000 < Date.now()) {
       setEditable(false);
     } else {
       setEditable(true);
     }
-  }, [currentStage]);
+  }, []);
 
   return editable ? (
     <StartBuilder />

@@ -127,7 +127,6 @@ function TemplateTwo(data) {
                 }
             
                 .doc-body .top-head {
-                  max-width: 590px;
                   height: 20px;
                 }
 
