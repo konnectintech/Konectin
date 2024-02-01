@@ -21,7 +21,7 @@ function Sign() {
   return (
     <section className="flex-col lg:flex-row min-h-screen gap-8 lg:gap-16 justify-between bg-neutral-1000 auth-container">
       <motion.div
-        variants={slideIn("ltr", "tween", 0.1, 1.2)}
+        variants={slideIn("ltr", "tween", 0.1, 0.2)}
         className="auth-side-image hidden lg:block relative"
       >
         <img
@@ -32,7 +32,7 @@ function Sign() {
       </motion.div>
 
       <motion.div
-        variants={slideIn("rtl", "tween", 0.1, 1)}
+        variants={slideIn("rtl", "tween", 0.1, 0.2)}
         className="auth-body items-start lg:w-6/12 w-full sm:min-w-[500px] flex-1 sm:[--left-right:150%] [--left-right:-150%]"
       >
         <div className="p-6 lg:pr-16 max-w-[600px] min-h-[80vh] lg:p-0 mx-auto flex flex-col gap-4 items-start justify-center">
