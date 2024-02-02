@@ -132,7 +132,12 @@ export const useAuth = () => {
         localStorage.getItem("konectin-profiler-data-template")
       );
 
-      if (resumes.length >= 1 && templateData === null) {
+      if (
+        resumes.length >= 1 &&
+        (templateData?.basicInfo?.firstName === "" ||
+          templateData?.basicInfo?.lastName === "" ||
+          templateData === null)
+      ) {
         const lastResume = resumes.slice(-1)[0];
         const { currentStage } = lastResume;
 

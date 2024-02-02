@@ -29,13 +29,31 @@ const TemplateOption = ({ sectionName }) => {
     const { _id } =
       JSON.parse(localStorage.getItem("konectin-profiler-user")) || "";
     try {
-      const response = await axios.post(`${url}/resume?userId=${_id}`);
+      const data = { ...templateData };
+
+      delete data.completed;
+      delete data._id;
+      delete data.userId;
+      delete data.__v;
+
+      const response = await axios.post(`${url}/resume?userId=${_id}`, {
+        data,
+        currentStage: 1,
+      });
 
       const resume = response.data.cv;
+
       setTemplateData((prev) => ({
         ...prev,
         ...resume,
         selectedTemplate: value,
+        completed: {
+          basic_info: false,
+          work_history: false,
+          education: false,
+          skills: false,
+          bio: false,
+        },
       }));
 
       navigate("/resume/builder");
@@ -57,6 +75,13 @@ const TemplateOption = ({ sectionName }) => {
         setTemplateData((prev) => ({
           ...prev,
           selectedTemplate: value,
+          completed: {
+            basic_info: true,
+            work_history: true,
+            education: true,
+            skills: true,
+            bio: true,
+          },
         }));
 
         onSectionComplete({ ...templateData, selectedTemplate: value });

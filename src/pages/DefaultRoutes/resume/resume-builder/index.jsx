@@ -64,6 +64,26 @@ const Options = () => {
       JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
     const { token } =
       JSON.parse(localStorage.getItem("konectin-profiler-user")) || "";
+    // Do not delete this code... Should be used when the user prompt is meant to be once
+    // const prompted = JSON.parse(
+    //   sessionStorage.getItem("konectin-profiler-recent-prompt")
+    // );
+
+    // if (!token || prompted) {
+    //   setEditable(false);
+    //   sessionStorage.setItem("konectin-profiler-recent-prompt", false);
+    //   return;
+    // }
+
+    // const decodedJwt = parseJwt(token);
+
+    // if (!currentStage || decodedJwt.exp * 1000 < Date.now()) {
+    //   setEditable(false);
+    //   sessionStorage.setItem("konectin-profiler-recent-prompt", false);
+    // } else {
+    //   setEditable(true);
+    //   sessionStorage.setItem("konectin-profiler-recent-prompt", true);
+    // }
 
     if (!token) {
       setEditable(false);
