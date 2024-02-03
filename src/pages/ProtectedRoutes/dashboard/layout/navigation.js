@@ -1,8 +1,8 @@
 import { application, job, profile, web } from "../../../../assets";
 import Jobs from "../pages/job";
-import Notification from "../pages/notification";
+import Notification from "../pages/notifications";
 import SocialProfile from "../pages/socialProfile";
-import UserProfile from "../pages/userProfile";
+import UserProfile from "../pages/userInfo";
 
 export const dashboardRoutes = [
   { path: "/jobs/*", name: "Jobs", element: Jobs, icon: job },

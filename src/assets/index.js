@@ -282,7 +282,7 @@ export {
   DavidIcon,
   MichaelIcon,
   AfolabiIcon,
-  FounderIcon,
+ FounderIcon,
   AnonymousIcon,
 
   // socials
