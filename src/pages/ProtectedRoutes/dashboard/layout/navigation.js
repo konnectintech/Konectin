@@ -1,8 +1,8 @@
 import { application, job, profile, web } from "../../../../assets";
 import Jobs from "../pages/job";
-import Notification from "../pages/notifications";
+import Notifications from "../pages/notifications";
 import SocialProfile from "../pages/socialProfile";
-import UserProfile from "../pages/userInfo";
+import UserInfo from "../pages/userInfo";
 
 export const dashboardRoutes = [
   { path: "/jobs/*", name: "Jobs", element: Jobs, icon: job },
@@ -18,11 +18,11 @@ export const dashboardRoutes = [
 ];
 
 export const newdashboardRoutes = [
-  { path: "/userprofile/*", name: "User Profile", element: UserProfile },
+  { path: "/userinfo/*", name: "User Info", element: UserInfo },
   {
     path: "/social/*",
     name: "Social Profile",
     element: SocialProfile,
   },
-  { path: "/notification/*", name: "Notification", element: Notification },
+  { path: "/notifications/*", name: "Notifications", element: Notifications },
 ];

@@ -1,5 +1,5 @@
-import { NavLink, useLocation } from "react-router-dom";
-import { dashboardRoutes } from "./navigation";
+// import { NavLink, useLocation } from "react-router-dom";
+// import { dashboardRoutes } from "./navigation";
 
 function Sidebar() {
   return (

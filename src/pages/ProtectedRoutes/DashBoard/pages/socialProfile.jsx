@@ -13,7 +13,9 @@ function SocialProfile() {
             </span>
             <div className="flex items-center justify-between grow">
               <p className="text-2xl font-bold">Google</p>
-              <button type="submit" className="flex items-center justify-center rounded-lg border border-solid border-[#FD853C] bg-[#FC670B] text-white font-bold text-xl h-12 py-8 w-48">Connect</button>
+              <button class="bg-secondary-500 whitespace-nowrap text-white py-4 px-16 rounded-lg hover:bg-secondary-600 text-xl font-bold flex justify-center items-center w-48">
+                Connect
+              </button>            
             </div>
           </div>
           <div className="h-24 rounded-lg shadow-dropShadow flex items-center gap-6 p-6">
@@ -22,7 +24,9 @@ function SocialProfile() {
             </span>
             <div className="flex items-center justify-between grow">
               <p className="text-2xl font-bold">Facebook</p>
-              <button type="submit" className="flex items-center justify-center rounded-lg border border-solid border-[#FD853C] bg-[#FC670B] text-white font-bold text-xl h-12 py-8 w-48">Connect</button>
+              <button class="bg-secondary-500 whitespace-nowrap text-white py-4 px-16 rounded-lg hover:bg-secondary-600 text-xl font-bold flex justify-center items-center w-48">
+                Connect
+              </button>            
             </div>
           </div>
           <div className="h-24 rounded-lg shadow-dropShadow flex items-center gap-6 p-6">
@@ -31,7 +35,9 @@ function SocialProfile() {
             </span>
             <div className="flex items-center justify-between grow">
               <p className="text-2xl font-bold">Twitter</p>
-              <button type="submit" className="flex items-center justify-center rounded-lg border border-solid border-[#FD853C] bg-[#FC670B] text-white font-bold text-xl h-12 py-8 w-48">Connect</button>
+              <button class="bg-secondary-500 whitespace-nowrap text-white py-4 px-16 rounded-lg hover:bg-secondary-600 text-xl font-bold flex justify-center items-center w-48">
+                Connect
+              </button>            
             </div>
           </div>
           <div className="h-24 rounded-lg shadow-dropShadow flex items-center gap-6 p-6">
@@ -40,7 +46,9 @@ function SocialProfile() {
             </span>
             <div className="flex items-center justify-between grow">
               <p className="text-2xl font-bold">LinkedIn</p>
-              <button type="submit" className="flex items-center justify-center rounded-lg border border-solid border-[#FD853C] bg-[#FC670B] text-white font-bold text-xl h-12 py-8 w-48">Connect</button>
+              <button class="bg-secondary-500 whitespace-nowrap text-white py-4 px-16 rounded-lg hover:bg-secondary-600 text-xl font-bold flex justify-center items-center w-48">
+                Connect
+              </button>
             </div>
           </div>
 
