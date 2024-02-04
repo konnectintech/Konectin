@@ -18,11 +18,17 @@ function VerifyMail() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // useEffect(() => {
+  //   if (location.state?.from == null) {
+  //     navigate("/signup", { replace: true });
+  //   }
+  // }, [location, navigate]);
+
   useEffect(() => {
-    if (location.state?.from == null) {
-      navigate("/signup", { replace: true });
+    if (user === null) {
+      navigate("/login", { replace: true });
     }
-  }, [location, navigate]);
+  });
 
   const parseURL = import.meta.env.VITE_CLIENT_SERVER_URL;
 

@@ -1,7 +1,4 @@
 import { useState, useRef } from "react";
-import emailjs from "@emailjs/browser";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import * as FaIcon from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { discussionTopics } from "./data";
@@ -9,53 +6,26 @@ import { ContactUSImage } from "../../../assets";
 
 function Contact() {
   const wrapperRef = useRef(null);
+  const [mailing, setMailing] = useState({
+    mail: "",
+    topic: "",
+    message: "",
+    files: [],
+  });
   const [topics, setTopics] = useState("");
 
-  // YUP VALIDATION
-  const validationSchema = Yup.object({
-    topic: Yup.string().required("Required"),
-    email: Yup.string().email("Invalid email format").required("Required"),
-    message: Yup.string().required("Required"),
-  });
+  const handleChange = (name, value) => {
+    setMailing((mailer) => ({ ...mailer, [name]: value }));
+  };
 
-  const formik = useFormik({
-    initialValues: {
-      topic: "",
-      email: "",
-      message: "",
-    },
-    onSubmit: (values) => {},
-    validationSchema,
-  });
-
-  const form = useRef();
   const sendEmail = (e) => {
-    var isEmpty = Object.getOwnPropertyNames(formik.errors).length === 0;
     e.preventDefault();
-    if (
-      formik.values.topic &&
-      formik.values.email &&
-      formik.values.message &&
-      isEmpty
-    ) {
-      emailjs
-        .sendForm(
-          "service_pxhna2k",
-          "template_jrgtxtl",
-          form.current,
-          "02ug9Lx-dB3lcnHWp"
-        )
-        .then(
-          (result) => {
-            console.log(result.text);
-          },
-          (error) => {
-            console.log(error.text);
-          }
-        );
+
+    if (topics !== "") {
+      setMailing((mailer) => ({ ...mailer, topic: topics }));
     }
 
-    formik.handleSubmit();
+    // Call Endpoint
   };
 
   const onFileDrop = (e) => {};
@@ -76,18 +46,31 @@ function Contact() {
 
       <div className="flex justify-between pb-24 w-11/12 mx-auto max-w-screen-2xl">
         <div className="flex flex-col lg:flex-row z-50 lg:w-[90%] mt-[-70px] justify-between gap-12">
-          <div className="shadow-2xl bg-white z-50 p-8 lg:p-12 space-y-3 lg:max-w-[60%]">
-            <h2 className="text-lg font-black">
-              Kindly select a topic for discussion:
-            </h2>
+          <div className="shadow-2xl bg-white z-50 p-8 lg:p-12 lg:max-w-[60%]">
+            <form className="space-y-3">
+              <h2 className="text-lg font-black">
+                Please, provide your Email address
+              </h2>
+              <input
+                className="p-4 py-3 lg:px-6 placeholder:text-xs font-normal w-full mt-3 outline-none rounded-lg border"
+                type="email"
+                name="email"
+                placeholder="Enter email address "
+                onChange={(e) => handleChange("mail", e.target.value)}
+                value={mailing.mail}
+              />
 
-            <form ref={form} onSubmit={sendEmail} className="space-y-3">
+              <h2 className="text-lg font-black">
+                Kindly select a topic for discussion:
+              </h2>
               <div className="flex gap-1 sm:gap-2 flex-wrap">
                 {discussionTopics.map((topic) => (
                   <div
                     key={topic.name}
                     className={`${
-                      topics === topic.name
+                      mailing.topic.length >= 4
+                        ? "text-neutral-700 pointer-events-none"
+                        : topics === topic.name
                         ? "text-white bg-primary-600"
                         : topics === ""
                         ? "border-neutral-grey hover:bg-primary-300 hover:text-white"
@@ -114,15 +97,17 @@ function Contact() {
                     type="text"
                     name="topic"
                     placeholder="Enter a topic like “Account setup” "
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.topic}
+                    onChange={(e) => {
+                      handleChange("topic", e.target.value);
+                      setTopics("");
+                    }}
+                    value={mailing.topic}
                   />
-                  {formik.errors.topic && formik.touched.topic ? (
-                    <h1 className="text-red-500 text-xs my-2">
-                      {formik.errors.topic}
-                    </h1>
-                  ) : null}
+                  {mailing.topic.length >= 1 && mailing.topic.length <= 4 && (
+                    <span className="text-red-500 text-xs my-2 block">
+                      Give a reasonable topic
+                    </span>
+                  )}
                 </>
               ) : (
                 <div className="space-y-1">
@@ -153,36 +138,31 @@ function Contact() {
                   type="text"
                   name="message"
                   placeholder="Tell us what you need help with..."
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.message}
+                  onChange={(e) => handleChange("message", e.target.value)}
+                  value={mailing.message}
                 />
-                {formik.errors.message && formik.touched.message ? (
-                  <h1 className="text-red-500 text-xs my-2">
-                    {formik.errors.message}
-                  </h1>
-                ) : null}
+                {mailing.message.length >= 1 && mailing.message.length <= 4 && (
+                  <span className="text-red-500 text-xs my-2 block">
+                    Write a good and appropriate write up
+                  </span>
+                )}
               </div>
 
-              {topics && (
-                <>
-                  <h1 className="font-black">Attach files (optional)</h1>
-                  <div className="text-xs text-center py-12 px-4 rounded-md border-dashed border-2 border-primary-300 mb-4 w-full relative">
-                    Drag & Drop your file(s) to attach it, or <br />{" "}
-                    <span className="text-secondary-500 block mt-1">
-                      browse for a file...
-                    </span>
-                    <input
-                      type="file"
-                      value=""
-                      ref={wrapperRef}
-                      multiple
-                      className="invisible absolute outline-0 border-0 left-[-1000%]"
-                      onChange={onFileDrop}
-                    />
-                  </div>
-                </>
-              )}
+              <h1 className="font-black">Attach files (optional)</h1>
+              <div className="text-xs text-center py-12 px-4 rounded-md border-dashed border-2 border-primary-300 mb-4 w-full relative">
+                Drag & Drop your file(s) to attach it, or <br />{" "}
+                <span className="text-secondary-500 block mt-1">
+                  browse for a file...
+                </span>
+                <input
+                  type="file"
+                  value=""
+                  ref={wrapperRef}
+                  multiple
+                  className="invisible absolute outline-0 border-0 left-[-1000%]"
+                  onChange={onFileDrop}
+                />
+              </div>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 sm:items-center pt-2">
                 <button
