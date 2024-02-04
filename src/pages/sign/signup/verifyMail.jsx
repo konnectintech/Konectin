@@ -24,13 +24,28 @@ function VerifyMail() {
   //   }
   // }, [location, navigate]);
 
+  const parseURL = import.meta.env.VITE_CLIENT_SERVER_URL;
+
   useEffect(() => {
     if (user === null) {
-      navigate("/login", { replace: true });
+      navigate("/login", { state: { from: "verify-mail" } });
+      return;
     }
-  });
 
-  const parseURL = import.meta.env.VITE_CLIENT_SERVER_URL;
+    // Check if this endpoint has been called already or if user is coming from sign up
+    const areq = sessionStorage.getItem("verifyMailRequest");
+    if (location.state?.from === "signup" || areq) return;
+
+    // If not, request a code for email verifiction
+    console.log("Requesting mail");
+    axios
+      .post(`${parseURL}/requestEmail?userId=${user._id}`, {
+        email: user.email,
+      })
+      .then(() => {
+        sessionStorage.setItem("verifyMailRequest", true);
+      });
+  });
 
   const handleInputChange = (e) => {
     let value = e.target.value.replace(/[^0-9.]/g, "");
@@ -126,7 +141,10 @@ function VerifyMail() {
 
           {errorMessage && <ErrorModal text={errorMessage} />}
 
-          <div>Provide the six digit code sent to your email</div>
+          <div>
+            Provide the six digit code sent to{" "}
+            {user !== null ? user.email : "your email"}
+          </div>
           <form onSubmit={submitHandler} className="pb-4 relative z-10">
             <input
               className={`${
