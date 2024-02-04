@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { createContext, useContext, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "./storage";
 import { EventType, PublicClientApplication } from "@azure/msal-browser";
 import { MsalProvider } from "@azure/msal-react";
@@ -88,6 +88,8 @@ export const parseJwt = (token) => {
 export const useAuth = () => {
   const [user, setUser] = useLocalStorage("konectin-profiler-user", null);
   const navigate = useNavigate();
+  const location = useLocation();
+
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
   const { ongoing } = JSON.parse(sessionStorage.getItem("internData")) || "";
   const status = sessionStorage.getItem("status") || "";
@@ -132,7 +134,12 @@ export const useAuth = () => {
         localStorage.getItem("konectin-profiler-data-template")
       );
 
-      if (resumes.length >= 1 && templateData === null) {
+      if (
+        resumes.length >= 1 &&
+        (templateData?.basicInfo?.firstName === "" ||
+          templateData?.basicInfo?.lastName === "" ||
+          templateData === null)
+      ) {
         const lastResume = resumes.slice(-1)[0];
         const { currentStage } = lastResume;
 
@@ -171,6 +178,9 @@ export const useAuth = () => {
       setTimeout(() => {
         loader(false);
 
+        if (location.state.from === "verify-mail") {
+          navigate("/verify-mail");
+        }
         if (ongoing) {
           navigate("/internship/intern-application");
         } else if (status !== "") {

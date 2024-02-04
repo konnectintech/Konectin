@@ -82,7 +82,7 @@ const Skills = ({ data, updateResume }) => {
                           {...provided.draggableProps}
                         >
                           <div className="flex w-full justify-between items-center rounded-lg border border-neutral-500 py-3 px-2 bg-white">
-                            <div className="flex items-center">
+                            <div className="flex items-center w-full">
                               =
                               <input
                                 type="text"

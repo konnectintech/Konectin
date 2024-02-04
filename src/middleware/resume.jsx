@@ -103,11 +103,11 @@ export const useTemplateData = () => {
         templateData.jobExperience[templateData.currentEditedJob - 1];
 
       if (
-        jobArray.jobTitle === "" ||
-        jobArray.company === "" ||
-        jobArray.workDesc.length <= 30 ||
-        jobArray.startYear === "" ||
-        (!jobArray.current && jobArray.endYear === "")
+        jobArray?.jobTitle === "" ||
+        jobArray?.company === "" ||
+        jobArray?.workDesc.length <= 30 ||
+        jobArray?.startYear === "" ||
+        (!jobArray?.current && jobArray?.endYear === "")
       ) {
         setTemplateData((prev) => ({
           ...prev,

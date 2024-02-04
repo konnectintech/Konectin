@@ -118,6 +118,8 @@ function College() {
 
     onSectionComplete(templateData);
 
+    delete education._id; // Remove its id
+
     const formHolder = Object.keys(education);
 
     formHolder.forEach((holder) => {
