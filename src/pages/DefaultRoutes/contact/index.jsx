@@ -1,8 +1,11 @@
+import axios from "axios";
+import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import * as FaIcon from "react-icons/fa";
-import { Link } from "react-router-dom";
 import { discussionTopics } from "./data";
 import { ContactUSImage } from "../../../assets";
+import { RiDeleteBinLine } from "react-icons/ri";
+import filePng from "../../../assets/images/file-png-solid-240.png";
 
 function Contact() {
   const wrapperRef = useRef(null);
@@ -13,6 +16,8 @@ function Contact() {
     files: [],
   });
   const [topics, setTopics] = useState("");
+  const [uploading, setUploading] = useState([]);
+  const url = import.meta.env.VITE_CLIENT_SERVER_RENDER_URL;
 
   const handleChange = (name, value) => {
     setMailing((mailer) => ({ ...mailer, [name]: value }));
@@ -28,7 +33,94 @@ function Contact() {
     // Call Endpoint
   };
 
-  const onFileDrop = (e) => {};
+  const onFileDrop = (e) => {
+    const complaintsImages = e.target.files;
+    let complaintsArr = Array.from(complaintsImages);
+
+    if (complaintsArr.length + mailing.files.length >= 3) {
+      complaintsArr = complaintsArr.splice(0, 2 - mailing.files.length);
+    }
+
+    complaintsArr.forEach((complaintImage, id) => {
+      const fd = new FormData();
+      fd.append("file", complaintsImages[id]);
+
+      setUploading((prev) => [
+        ...prev,
+        {
+          image: complaintImage,
+          started: true,
+          percent: 0,
+          message: "Uploading...",
+        },
+      ]);
+
+      axios
+        .post(`${url}/uploadFile`, fd, {
+          onUploadProgress: (event) => {
+            setUploading((prev) =>
+              prev.map((item, i) => {
+                if (i === id) {
+                  return { ...item, percent: event.progress * 100 };
+                } else {
+                  return item;
+                }
+              })
+            );
+          },
+        })
+        .then((res) => {
+          setMailing((mailer) => ({
+            ...mailer,
+            files: [...mailer.files, res.data.data.url],
+          }));
+          setUploading((prev) =>
+            prev.map((item, i) => {
+              if (i === id) {
+                return {
+                  ...item,
+                  message: "Uploaded",
+                  url: res.data.data.url,
+                };
+              } else {
+                return item;
+              }
+            })
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+          setUploading((prev) =>
+            prev.map((item, i) => {
+              if (i === id) {
+                return {
+                  ...item,
+                  message: `Upload failed...`,
+                };
+              } else {
+                return item;
+              }
+            })
+          );
+        });
+    });
+  };
+
+  const fileRemove = (index) => {
+    const updatedList = [...uploading];
+    updatedList.splice(index, 1);
+    setUploading(updatedList);
+    setMailing((mailer) => ({ ...mailer, files: [] }));
+
+    if (uploading.length >= 1) {
+      uploading.forEach((file) => {
+        setMailing((mailer) => ({
+          ...mailer,
+          files: [...mailer.files, file.url],
+        }));
+      });
+    }
+  };
 
   return (
     <>
@@ -149,7 +241,10 @@ function Contact() {
               </div>
 
               <h1 className="font-black">Attach files (optional)</h1>
-              <div className="text-xs text-center py-12 px-4 rounded-md border-dashed border-2 border-primary-300 mb-4 w-full relative">
+              <div
+                className="text-xs text-center py-12 px-4 rounded-md border-dashed border-2 border-primary-300 mb-4 w-full relative cursor-pointer"
+                onClick={() => wrapperRef.current.click()}
+              >
                 Drag & Drop your file(s) to attach it, or <br />{" "}
                 <span className="text-secondary-500 block mt-1">
                   browse for a file...
@@ -163,6 +258,55 @@ function Contact() {
                   onChange={onFileDrop}
                 />
               </div>
+
+              {uploading.length >= 1 && (
+                <div className="space-y-3 c min-w-[200px]">
+                  <p className="font-semibold">Uploaded file(s)</p>
+                  <div className="flex gap-3 flex-wrap">
+                    {uploading.map((file, index) =>
+                      file.message === "uploaded" ? (
+                        <img
+                          className="h-[100px] w-[100px]"
+                          key={index}
+                          src={file.url}
+                          alt={file.image.name}
+                        />
+                      ) : (
+                        <div
+                          key={index}
+                          className="relative flex gap-2 w-1/2 min-w-[200px]"
+                        >
+                          <img
+                            className="h-[35px] object-contain"
+                            src={filePng}
+                            alt={file.image.name}
+                          />
+                          <div className="space-y-2 w-full text-xs">
+                            {/* displaying file name, progress bar and file size in Bytes */}
+                            <p className="truncate max-w-[170px] sm:max-w-[15ch] md:max-w-full lg:max-w-[15ch]">
+                              Report Image {index + 1}
+                            </p>
+                            {file.started && (
+                              <progress
+                                className="h-1 w-full"
+                                max={100}
+                                value={file.percent}
+                              ></progress>
+                            )}
+                            {file.message && file.message}
+                          </div>
+
+                          <RiDeleteBinLine
+                            onClick={() => fileRemove(index)}
+                            size="1rem"
+                            className="text-error-500 cursor-pointer"
+                          />
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
+              )}
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 sm:items-center pt-2">
                 <button
