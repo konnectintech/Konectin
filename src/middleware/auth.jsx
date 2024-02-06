@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { createContext, useContext, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "./storage";
 import { EventType, PublicClientApplication } from "@azure/msal-browser";
 import { MsalProvider } from "@azure/msal-react";
@@ -76,7 +76,7 @@ export const RequireAuth = ({ children }) => {
   return children;
 };
 
-const parseJwt = (token) => {
+export const parseJwt = (token) => {
   try {
     return JSON.parse(atob(token.split(".")[1]));
   } catch (e) {
@@ -88,6 +88,8 @@ const parseJwt = (token) => {
 export const useAuth = () => {
   const [user, setUser] = useLocalStorage("konectin-profiler-user", null);
   const navigate = useNavigate();
+  const location = useLocation();
+
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
   const { ongoing } = JSON.parse(sessionStorage.getItem("internData")) || "";
   const status = sessionStorage.getItem("status") || "";
@@ -126,21 +128,34 @@ export const useAuth = () => {
           Authorization: `Bearer ${user.token}`,
         },
       });
+
       const resumes = response.data.cvs;
       const templateData = JSON.parse(
         localStorage.getItem("konectin-profiler-data-template")
       );
 
-      if (resumes.length >= 1 && !templateData) {
+      if (
+        resumes.length >= 1 &&
+        (templateData?.basicInfo?.firstName === "" ||
+          templateData?.basicInfo?.lastName === "" ||
+          templateData === null)
+      ) {
         const lastResume = resumes.slice(-1)[0];
         const { currentStage } = lastResume;
 
-        console.log(lastResume);
-
-        if (currentStage >= 1 && currentStage < 6) {
+        if (currentStage >= 1 && currentStage <= 6) {
           localStorage.setItem(
             "konectin-profiler-data-template",
-            JSON.stringify(lastResume)
+            JSON.stringify({
+              ...lastResume,
+              completed: {
+                basic_info: currentStage >= 1,
+                work_history: currentStage >= 2,
+                education: currentStage >= 3,
+                skills: currentStage >= 4,
+                bio: currentStage >= 5,
+              },
+            })
           );
         }
       }
@@ -159,14 +174,20 @@ export const useAuth = () => {
       userData.token = authresult.data.token;
 
       setUser(userData);
-      loader(false);
 
-      if (ongoing) {
-        navigate("/internship/intern-application");
-      } else if (status !== "") {
-        sessionStorage.removeItem("status");
-        navigate(`${status}`);
-      } else navigate("/resume/options");
+      setTimeout(() => {
+        loader(false);
+
+        if (location.state.from === "verify-mail") {
+          navigate("/verify-mail");
+        }
+        if (ongoing) {
+          navigate("/internship/intern-application");
+        } else if (status !== "") {
+          sessionStorage.removeItem("status");
+          navigate(`${status}`);
+        } else navigate("/resume/options");
+      }, 3000);
     } catch (err) {
       loader(false);
       setError(err.response.data.message);
@@ -189,8 +210,10 @@ export const useAuth = () => {
   };
 
   const signOut = () => {
-    localStorage.removeItem("konectin-profiler-data-template");
-    localStorage.removeItem("konectin-profiler-data-crStage");
+    localStorage.setItem(
+      "konectin-profiler-data-template",
+      JSON.stringify(null)
+    );
     setUser(null);
   };
 

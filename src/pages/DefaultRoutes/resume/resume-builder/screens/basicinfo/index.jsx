@@ -111,8 +111,8 @@ const BasicInformation = ({ data, onInputChange }) => {
   };
 
   return (
-    <div className="max-w-6xl flex flex-col lg:flex-row items-start justify-between self-center mx-auto gap-10">
-      <div className="flex flex-col justify-center w-full">
+    <div className="max-w-6xl flex flex-col md:flex-row items-start justify-between self-center mx-auto gap-10">
+      <div className="flex flex-col justify-center w-full md:w-1/2">
         <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
           Basic Information
         </h2>
@@ -260,8 +260,12 @@ const BasicInformation = ({ data, onInputChange }) => {
         />
       </div>
 
-      <div className="max-lg:hidden">
-        <SelectedTemplates data={data} />
+      <div className="max-md:hidden w-1/2">
+        <div className="h-[360px] sm:h-[300px] md:h-[500px] lg:h-[580px] lg:w-[500px] flex items-center justify-center">
+          <div className="md:scale-[42%] lg:scale-[50%] mt-10">
+            <SelectedTemplates data={data} />
+          </div>
+        </div>
       </div>
     </div>
   );

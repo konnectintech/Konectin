@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { FaBars, FaCheck, FaTimes } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { konectinIcon } from "../../assets";
-import { useTemplateContext } from "../../middleware/resume";
 import "../header/header.css";
+import { useLocalStorage } from "../../middleware/storage";
 
 function ResumeHeader() {
-  const { templateData, setTemplateData } = useTemplateContext();
-  const { currentStage } = templateData;
+  const [templateData, setTemplateData] = useLocalStorage(
+    "konectin-profiler-data-template"
+  );
+  const currentStage = templateData?.currentStage;
   const locationNo = currentStage;
 
   const [completed, setCompleted] = useState({
@@ -33,7 +35,9 @@ function ResumeHeader() {
     { path: "/resume/builder", text: "basic info", no: 1 },
     {
       path:
-        Object.keys(templateData.jobExperience).length <= 0
+        Object.keys(
+          templateData?.jobExperience ? templateData?.jobExperience : []
+        ).length <= 0
           ? "/resume/builder/employment-experience"
           : "/resume/builder/employment-experience/job-activities",
       text: "work history",
@@ -66,7 +70,7 @@ function ResumeHeader() {
   }, [completed]);
 
   useEffect(() => {
-    setCompleted(templateData.completed);
+    setCompleted(templateData?.completed);
   }, [templateData]);
 
   const toggle = () => {

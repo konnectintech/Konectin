@@ -118,6 +118,8 @@ function College() {
 
     onSectionComplete(templateData);
 
+    delete education._id; // Remove its id
+
     const formHolder = Object.keys(education);
 
     formHolder.forEach((holder) => {
@@ -167,7 +169,7 @@ function College() {
   };
 
   return (
-    <section className="max-w-6xl flex flex-col justify-between gap-10 mt-8">
+    <section className="max-w-6xl flex flex-col justify-between gap-10">
       <div className="w-full mx-auto self-center">
         <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
           What’s your college or university?

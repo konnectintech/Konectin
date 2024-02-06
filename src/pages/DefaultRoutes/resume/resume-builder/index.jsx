@@ -3,6 +3,7 @@ import * as BsIcon from "react-icons/bs";
 import { createResume, uploadResume } from "../../../../assets";
 import StartBuilder from "./start";
 import { useNavigate } from "react-router";
+import { parseJwt } from "../../../../middleware/auth";
 
 const BuilderOption = ({
   title,
@@ -61,11 +62,39 @@ const Options = () => {
   useEffect(() => {
     const { currentStage } =
       JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
+    const { token } =
+      JSON.parse(localStorage.getItem("konectin-profiler-user")) || "";
+    // Do not delete this code... Should be used when the user prompt is meant to be once
+    // const prompted = JSON.parse(
+    //   sessionStorage.getItem("konectin-profiler-recent-prompt")
+    // );
 
-    if (currentStage === null || currentStage === 0) {
+    // if (!token || prompted) {
+    //   setEditable(false);
+    //   sessionStorage.setItem("konectin-profiler-recent-prompt", false);
+    //   return;
+    // }
+
+    // const decodedJwt = parseJwt(token);
+
+    // if (!currentStage || decodedJwt.exp * 1000 < Date.now()) {
+    //   setEditable(false);
+    //   sessionStorage.setItem("konectin-profiler-recent-prompt", false);
+    // } else {
+    //   setEditable(true);
+    //   sessionStorage.setItem("konectin-profiler-recent-prompt", true);
+    // }
+
+    if (!token) {
+      setEditable(false);
+      return;
+    }
+
+    const decodedJwt = parseJwt(token);
+
+    if (!currentStage || decodedJwt.exp * 1000 < Date.now()) {
       setEditable(false);
     } else {
-      console.log(currentStage);
       setEditable(true);
     }
   }, []);

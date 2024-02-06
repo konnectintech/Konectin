@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { AuthProvider } from "./middleware/auth";
 
 import ResumeRoutes from "./layouts/resumeRoutes";
@@ -8,7 +8,6 @@ import ProtectedRoutes from "./pages/ProtectedRoutes";
 import Options from "./pages/DefaultRoutes/resume/resume-builder";
 import ResumeBuilder from "./pages/DefaultRoutes/resume/resume-landing";
 import Builder from "./pages/DefaultRoutes/resume/resume-builder/screens";
-import StartBuilder from "./pages/DefaultRoutes/resume/resume-builder/start";
 import AIStarter from "./pages/DefaultRoutes/resume/resume-builder/screens-ai";
 import ResumeUpload from "./pages/DefaultRoutes/resume/resume-builder/screen-upload";
 
@@ -23,7 +22,7 @@ import VerifyMail from "./pages/sign/signup/verifyMail";
 import TermsAndCondition from "./pages/DefaultRoutes/terms/TermsAndConditions";
 import PrivacyPolicy from "./pages/DefaultRoutes/policy/PrivacyPolicy";
 import Faq from "./pages/DefaultRoutes/faq/Faq";
-import Contact from "./pages/DefaultRoutes/contact/Contact";
+import Contact from "./pages/DefaultRoutes/contact";
 
 import Sign from "./pages/sign";
 import Login from "./pages/sign/login/login";
@@ -32,6 +31,7 @@ import ForgetPassword from "./pages/sign/login/forgetPassword";
 import ResetPassword from "./pages/sign/login/resetPassword";
 import ErrorPage from "./pages/404";
 import InternApplication from "./pages/DefaultRoutes/internship/intern-application";
+import { TemplateProvider } from "./middleware/resume";
 
 // import DashBoard from "./pages/ProtectedRoutes/dashboard";
 // import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
@@ -79,10 +79,17 @@ function App() {
 
           {/* Resume Builder Routes */}
           <Route element={<ResumeRoutes />}>
-            <Route path="/resume/ai/*" element={<AIStarter />} />
             <Route path="/resume/options" element={<Options />} />
-            <Route path="/resume/start" element={<StartBuilder />} />
-            <Route path="/resume/builder/*" element={<Builder />} />
+            <Route
+              element={
+                <TemplateProvider>
+                  <Outlet />
+                </TemplateProvider>
+              }
+            >
+              <Route path="/resume/ai/*" element={<AIStarter />} />
+              <Route path="/resume/builder/*" element={<Builder />} />
+            </Route>
             <Route path="/resume/upload/*" element={<ResumeUpload />} />
           </Route>
 

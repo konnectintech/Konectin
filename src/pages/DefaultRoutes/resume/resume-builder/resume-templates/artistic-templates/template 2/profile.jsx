@@ -8,9 +8,9 @@ function Profile({ data }) {
             padding: 20px;
             padding-bottom: 0;
           }
+          
           .text{
-            font-family:poppins;
-            font-size:10px;
+            font-family: poppins;
             color:#333333;
           }
           `}

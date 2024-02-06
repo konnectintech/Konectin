@@ -18,7 +18,7 @@ function TemplateThree(data) {
 
   useEffect(() => {
     const pageContainer = page.current;
-    const pageX = Math.ceil(pageContainer.clientHeight / 640);
+    const pageX = Math.ceil(pageContainer.clientHeight / 1056);
     setPageMax(pageX);
     setPageNumber(pageX);
   }, [pathname, data]);
@@ -33,7 +33,7 @@ function TemplateThree(data) {
 
   useEffect(() => {
     parentPage.current.scrollTo({
-      top: (pageNumber - 1) * 640,
+      top: (pageNumber - 1) * 1056,
     });
   }, [pageNumber]);
 
@@ -43,7 +43,7 @@ function TemplateThree(data) {
         {`
           .doc-body .adjuster {
             width: 1px;
-            height: ${pageMax * 640}px;
+            height: ${pageMax * 1056}px;
           }
       `}
       </style>
@@ -62,11 +62,11 @@ function TemplateThree(data) {
                 .doc-body * {
                   margin: 0;
                   padding: 0;
-                  font-size: 11px;
+                  font-size: 16px;
                   font-family: "Hind", sans-serif;
                   font-style: normal;
                   font-weight: 400;
-                  line-height: 19px;
+                  line-height: 21px;
                   color: #212121;
                 }
             
@@ -77,9 +77,8 @@ function TemplateThree(data) {
                 .doc-body .parent-container {
                   position: relative;
                   width: 100%;
-                  max-width: 560px;
-                  min-width: 460px;
-                  height: 810px;
+                  max-width: 816px;
+                  height: 1056px;
                   display: flex;
                   align-items: stretch;
                   background: white;
@@ -99,32 +98,35 @@ function TemplateThree(data) {
                 }
 
                 .doc-body h1 {   
-                  font-size: 18px;
+                  font-size: 28px;
                   font-style: normal;
                   font-weight: 700;
-                  line-height: 25px;
+                  line-height: 27px;
+                  margin-bottom: 10px;
                 }
 
                 .doc-body h2 {      
-                  font-size: 13px;
+                  font-size: 22px;
                   font-weight: 700;
                   line-height: 15px;
-                  margin: 15px 0;
+                  margin: 30px 0;
                 }
-
+                
                 .doc-body h3 {
+                  font-size: 18px;
                   font-weight: 600;
-                  line-height: 18px;
+                  line-height: 20px;
+                  margin-bottom: 6px;
                 }
 
                 .doc-body .page {
                   display: flex;
                   flex-direction: column;
-                  min-height: 640px;
+                  min-height: 1056px;
                 }
 
                 .doc-body .top-head {
-                  max-width: 560px;
+                  max-width: 816px;
                   height: 10px;
                 }
 
@@ -132,7 +134,6 @@ function TemplateThree(data) {
                   display: -webkit-box;
                   display: flex;
                   align-items: stretch;
-                  margin: 0px auto;
                   flex-grow: 1;
                 }
             
@@ -140,7 +141,7 @@ function TemplateThree(data) {
                   height: 100%;
                   display: flex;
                   flex-direction: column;
-                  width: 260px;
+                  width: calc(408px - 1rem - 19.5px);
                   padding-right: 1rem;
                 }
                 
@@ -151,7 +152,7 @@ function TemplateThree(data) {
                 .doc-body .side-content {
                   display: flex;
                   flex-direction: column;
-                  width: 260px;
+                  width: calc(408px - 1rem - 19.5px);
                   padding-left: 1rem;
                 }
                 
@@ -171,7 +172,7 @@ function TemplateThree(data) {
                 }
 
                 .doc-body .temp-head {
-                  width: 525px;
+                  width: calc(816px - 39px);
                   margin-top: 20px;
                   display: -webkit-box;
                   padding-bottom: 20px;
@@ -265,9 +266,9 @@ function TemplateThree(data) {
 
           <div
             ref={parentPage}
-            className="parent-container !h-full max-h-[640px] !w-full overflow-y-scroll no-scrollbar pointer-events-none"
+            className="parent-container overflow-y-scroll no-scrollbar pointer-events-none"
           >
-            <div ref={page} className="h-max w-full page">
+            <div ref={page} className="w-full page">
               <div className="temp-head">
                 <BasicInfo data={data?.basicInfo} />
                 <Contacts data={data?.basicInfo} />

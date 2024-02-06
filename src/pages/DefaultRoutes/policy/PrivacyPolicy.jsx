@@ -80,8 +80,8 @@ function PrivacyPolicy() {
             <p className="my-4">
               You can contact our customer support team directly through our
               website or by emailing{" "}
-              <a href="mailto:admin@konectin.org">
-                <b>admin@konectin.org</b>
+              <a href="mailto:info@konectin.org">
+                <b>info@konectin.org</b>
               </a>{" "}
               to share your feedback.
             </p>
