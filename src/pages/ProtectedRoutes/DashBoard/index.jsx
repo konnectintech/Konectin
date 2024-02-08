@@ -5,7 +5,6 @@ import { Suspense } from "react";
 import { newdashboardRoutes } from "./layout/navigation";
 // import { dashboardRoutes, newdashboardRoutes } from "./layout/navigation";
 import Sidebar from "./layout/sidebar";
-// import Header from "./layout/header";
 // import AsideBar from "./layout/asidebar";
 // import Jobs from "./pages/job";
 import Main from "./pages/main";
@@ -14,14 +13,11 @@ import UserInfo from "./pages/userInfo";
 const DashBoard = () => {
   return (
     <>
-      {/* <Header /> */}
-      <div className="py-40 px-14 flex flex-col gap-5 sm:flex-row items-start justify-between min-h-screen bg-[#F0EFF5] ">
+      <div className="py-28 px-6 sm:px-14 flex flex-col gap-5 sm:flex-row items-start justify-between min-h-screen bg-primary-100 ">
         <div className="w-full sm:w-1/4 min-w-[170px] md:min-w-[230px]">
-          {/* <div className="border border-solid border-red-500 sm:h-screen sm:bg-white bg-gray-25 sm:w-2/12 min-w-[170px] md:min-w-[230px]"> */}
           <Sidebar />
-          {/* </div> */}
         </div>
-
+        
         <div className="flex flex-1 h-full flex-col gap-6 justify-between min-h-screen bg-gray-25">
           <Routes>
             <Route
@@ -45,12 +41,12 @@ const DashBoard = () => {
           </Routes>
         </div>
 
-        {/* <div className="w-full sm:w-2/12 min-w-[170px] md:min-w-[230px]">
-          <div className="sm:fixed right-0 sm:h-screen sm:bg-white bg-gray-25 sm:w-2/12 min-w-[170px] md:min-w-[230px]">
-            <AsideBar />
-          </div>
-        </div> */}
+        <div class="sm:hidden text-center text-gray-600 text-sm mt-10 -mb-12 mx-auto">
+          Member Since:{" "}
+          <span className="font-bold text-black">October 1, 2020</span>
+        </div>
       </div>
+      
     </>
   );
 };

@@ -18,11 +18,11 @@ export const dashboardRoutes = [
 ];
 
 export const newdashboardRoutes = [
-  { path: "/userinfo/*", name: "User Info", element: UserInfo },
+  { path: "/", name: "User Info", element: UserInfo },
   {
-    path: "/social/*",
+    path: "/social/",
     name: "Social Profile",
     element: SocialProfile,
   },
-  { path: "/notifications/*", name: "Notifications", element: Notifications },
+  { path: "/notifications/", name: "Notifications", element: Notifications },
 ];
