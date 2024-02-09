@@ -14,7 +14,7 @@ const DashBoard = () => {
   return (
     <>
       <div className="py-28 px-6 sm:px-14 flex flex-col gap-5 sm:flex-row items-start justify-between min-h-screen bg-primary-100 ">
-        <div className="w-full sm:w-1/4 min-w-[170px] md:min-w-[230px]">
+        <div className="w-full sm:w-1/4 sm:min-w-[170px] md:min-w-[230px]">
           <Sidebar />
         </div>
         

@@ -42,7 +42,7 @@ function Sidebar() {
       </div>
 
       
-      <div class="order-5 hidden sm:block text-center text-gray-600 text-sm">
+      <div className="order-5 hidden sm:block text-center text-gray-600 text-sm">
         Member Since:{" "}
         <span className="font-bold text-black">October 1, 2020</span>
       </div>
