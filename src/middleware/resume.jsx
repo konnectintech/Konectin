@@ -7,13 +7,8 @@ const TemplateContext = createContext();
 const useTemplateContext = () => useContext(TemplateContext);
 
 const TemplateProvider = ({ children }) => {
-  const {
-    templateData,
-    setTemplateData,
-    onInputChange,
-    onSectionComplete,
-    finalizeData,
-  } = useTemplateData();
+  const { templateData, setTemplateData, onInputChange, onSectionComplete } =
+    useTemplateData();
 
   return (
     <TemplateContext.Provider
@@ -22,7 +17,6 @@ const TemplateProvider = ({ children }) => {
         setTemplateData,
         onInputChange,
         onSectionComplete,
-        finalizeData,
       }}
     >
       {children}
@@ -55,11 +49,16 @@ export const useTemplateData = () => {
         state: "",
         zipCode: "",
       },
+      theme: {
+        color: "blue",
+        font: "",
+      },
       currentEditedJob: 0,
       currentEditedEducation: 0,
       jobExperience: [],
       education: [],
       skills: [],
+      additionalInformation: {},
       bio: "",
       selectedTemplate: "",
       currentStage: 0,
@@ -171,12 +170,9 @@ export const useTemplateData = () => {
     templateData.bio,
   ]);
 
-  const finalizeData = (section, values) => {};
-
   return {
     templateData,
     setTemplateData,
     onInputChange,
-    finalizeData,
   };
 };

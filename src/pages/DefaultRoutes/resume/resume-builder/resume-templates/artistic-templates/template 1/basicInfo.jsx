@@ -1,15 +1,11 @@
-function BasicInfo({ data }) {
+function BasicInfo({ data, theme }) {
   return (
     <section className="section">
       <style>
         {`
           .basic_info {
-            position: relative;
-            left: -10px;
             padding: 30px;
-            padding=left: calc(30px + 10px);
-            background: -webkit-linear-gradient(180deg, #3F3BF4, #445FF6);
-            background: linear-gradient(180deg, #3F3BF4, #445FF6);
+            background: ${theme.color};
           }
           
           .basic_info_content {
@@ -36,14 +32,14 @@ function BasicInfo({ data }) {
             font-weight: 400;
             color: white;
           }
-        `}
+  `}
       </style>
 
       <div className="basic_info">
         <div className="basic_info_content">
           <div className="name">{`${data.firstName} ${data.lastName}`}</div>
           <div className="profession">
-            {data.profession || "Your Profession"}
+            {data.profession || 'Your Profession'}
           </div>
         </div>
       </div>

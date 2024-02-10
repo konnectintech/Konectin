@@ -1,30 +1,43 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { TypeAnimation } from "react-type-animation";
-import JobTitleInput from "../../../../../components/jobTitleInput";
-import { useTemplateContext } from "../../../../../middleware/resume";
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { TypeAnimation } from 'react-type-animation';
+import { useTemplateContext } from '../../../../../middleware/resume';
+import CustomSelect from '../../../../../components/select/CustomSelect';
+import professions from 'professions';
 
 const Profession = ({ data }) => {
-  const { onInputChange } = useTemplateContext();
-  const [error, setError] = useState("");
+  const { setTemplateData } = useTemplateContext();
+  const [error, setError] = useState('');
+  const [selectedProfession, setSelectedProfession] = useState('');
 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!data.firstName || !data.lastName) {
-      navigate("/resume/ai/");
-      return;
+      navigate('/resume/ai/');
     }
   }, [navigate, data]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!data.profession) {
-      setError("Please enter a profession");
+      setError('Please enter a profession');
       return;
     }
-    navigate("/resume/ai/template-selector");
+    navigate('/resume/ai/template-selector');
+  };
+
+  const handleSelect = (value) => {
+    setSelectedProfession(value);
+    setTemplateData((prev) => ({
+      ...prev,
+      basicInfo: {
+        ...prev.basicInfo,
+        profession: value,
+      },
+    }));
   };
 
   return (
@@ -37,7 +50,7 @@ const Profession = ({ data }) => {
       <p className="font-bold text-center">
         <TypeAnimation
           cursor={false}
-          sequence={["What best describes your profession?", 1000]}
+          sequence={['What best describes your profession?', 1000]}
         />
       </p>
 
@@ -45,22 +58,17 @@ const Profession = ({ data }) => {
         onSubmit={handleSubmit}
         className="flex position relative items-center min-w-[320px] max-w-[722px]"
       >
-        <JobTitleInput
-          title={data.profession}
-          handleInputChange={(value) =>
-            onInputChange({
-              section: "basicInfo",
-              subsection: "profession",
-              values: value,
-            })
-          }
+        <CustomSelect
+          onChange={handleSelect}
+          value={selectedProfession}
+          options={professions}
         />
         <p className="absolute -bottom-5 text-sm text-error-500">{error}</p>
         <button
           onClick={handleSubmit}
-          className="absolute -bottom-5 text-primary-600 text-sm text-center w-full"
+          className="absolute right-4 bg-primary-500 text-white rounded-md px-6 py-1 text-sm"
         >
-          Press Enter
+          Continue
         </button>
       </form>
     </>

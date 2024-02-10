@@ -9,7 +9,6 @@ const TemplateSelector = ({ data }) => {
   useEffect(() => {
     if (!data.profession) {
       navigate("/resume/ai/profession/");
-      return;
     }
   }, [navigate, data]);
 

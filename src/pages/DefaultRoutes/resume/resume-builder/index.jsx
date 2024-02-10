@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
-import * as BsIcon from "react-icons/bs";
-import { createResume, uploadResume } from "../../../../assets";
-import StartBuilder from "./start";
-import { useNavigate } from "react-router";
-import { parseJwt } from "../../../../middleware/auth";
+import { useEffect, useState } from 'react';
+import * as BsIcon from 'react-icons/bs';
+import { createResume, uploadResume } from '../../../../assets';
+import StartBuilder from './start';
+import { useNavigate } from 'react-router';
+import { parseJwt } from '../../../../middleware/auth';
+import { FaChevronRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const BuilderOption = ({
   title,
@@ -21,12 +23,12 @@ const BuilderOption = ({
     >
       <div
         className={`${
-          selector === choice ? "bg-opacity-20" : "bg-opacity-40"
+          selector === choice ? 'bg-opacity-20' : 'bg-opacity-40'
         } absolute left-0 top-0 bg-primary-600 bg-opacity-40 w-full h-full duration-500`}
       />
       <div
         className={`${
-          selector === choice ? "top-0" : "-top-full"
+          selector === choice ? 'top-0' : '-top-full'
         } absolute left-0 bg-secondary-500 w-full h-full duration-500`}
       />
       <div className="w-full h-full flex flex-col justify-center items-center relative">
@@ -36,7 +38,7 @@ const BuilderOption = ({
         </div>
         <div
           className={`${
-            selector === choice ? "opacity-100" : "hidden"
+            selector === choice ? 'opacity-100' : 'hidden'
           } bg-success-400 rounded-full h-[20px] w-[20px] text-[16px] flex items-center justify-center mt-auto mb-6 duration-500`}
         >
           <BsIcon.BsCheck />
@@ -47,23 +49,23 @@ const BuilderOption = ({
 };
 
 const Options = () => {
-  const [choice, setChoice] = useState("");
+  const [choice, setChoice] = useState('');
   const [editable, setEditable] = useState(false);
   const navigate = useNavigate();
 
   const handleChoice = (choice) => {
     setChoice(choice);
 
-    if (choice === "ai") {
+    if (choice === 'ai') {
       navigate(`/resume/${choice}`);
     }
   };
 
   useEffect(() => {
     const { currentStage } =
-      JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
+      JSON.parse(localStorage.getItem('konectin-profiler-data-template')) || '';
     const { token } =
-      JSON.parse(localStorage.getItem("konectin-profiler-user")) || "";
+      JSON.parse(localStorage.getItem('konectin-profiler-user')) || '';
     // Do not delete this code... Should be used when the user prompt is meant to be once
     // const prompted = JSON.parse(
     //   sessionStorage.getItem("konectin-profiler-recent-prompt")
@@ -117,11 +119,11 @@ const Options = () => {
         />
 
         <BuilderOption
-          title={choice === "upload" ? "Coming soon" : "Upload a resume"}
+          title={choice === 'upload' ? 'Coming soon' : 'Upload a resume'}
           description={
-            choice === "upload"
-              ? "We have our developers working on this. We should have it running as soon as possible"
-              : "We access your existing resume and make neccessary adjustments."
+            choice === 'upload'
+              ? 'We have our developers working on this. We should have it running as soon as possible'
+              : 'We access your existing resume and make neccessary adjustments.'
           }
           image={uploadResume}
           selector="upload"
@@ -129,14 +131,16 @@ const Options = () => {
           handleChoice={handleChoice}
         />
       </div>
-      {/* <Link
-        to={choice ? `/resume/${choice}` : "#"}
-        className={`duration-500 px-12 py-3 rounded-md text-[#fff] mt-6${
-          choice ? " bg-primary-600" : " bg-primary-200"
-        }`}
-      >
-        Next
-      </Link> */}
+
+      <div className="font-medium flex items-center gap-2 text-base">
+        I want to build a cover letter
+        <Link
+          to="/cover-letter"
+          className="font-bold text-secondary-600 flex items-center"
+        >
+          Cover Letter <FaChevronRight />
+        </Link>
+      </div>
     </section>
   );
 };
