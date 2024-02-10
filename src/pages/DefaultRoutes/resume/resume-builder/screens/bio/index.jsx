@@ -1,13 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Editor } from "@tinymce/tinymce-react";
-import Suggestions from "../../../../../../components/suggestions";
 import NavigationButton from "../navigationButton";
 import SelectedTemplates from "../../resume-templates";
-import { AzureKeyCredential, OpenAIClient } from "@azure/openai";
 import { onSectionComplete } from "../verification";
 import ResumeModal from "../../../../../../layouts/resumeRoutes/resumeModal";
-import Responsibilities2 from "../experience/responsibilities2";
 import { botIcon } from "../../../../../../assets";
 import BioAi from "./BioAi";
 

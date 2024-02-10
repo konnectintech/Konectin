@@ -1,10 +1,9 @@
-import { Outlet, Route, Routes } from 'react-router-dom';
+import { Outlet, Route, Routes } from "react-router-dom";
 
-import College from './college';
-import HighSchool from './high-school';
-import SelectEducation from './selectEducation';
-import SelectedTemplates from '../../resume-templates';
-import Other from './other';
+import College from "./college";
+import HighSchool from "./high-school";
+import SelectEducation from "./selectEducation";
+import Other from "./other";
 
 const Education = ({ data }) => {
   return (

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { useTemplateContext } from "../../../../../../../middleware/resume";
 import { useEffect, useState } from "react";

@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-import SelectedTemplates from '../../resume-templates';
+import SelectedTemplates from "../../resume-templates";
 
 const Preview = ({ data }) => {
   return (
