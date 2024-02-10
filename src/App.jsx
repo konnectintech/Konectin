@@ -1,40 +1,44 @@
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
-import { AuthProvider } from './middleware/auth';
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { AuthProvider } from "./middleware/auth";
 
-import ResumeRoutes from './layouts/resumeRoutes';
-import DefaultRoutes from './pages/DefaultRoutes';
-import ProtectedRoutes from './pages/ProtectedRoutes';
+import ResumeRoutes from "./layouts/resumeRoutes";
+import DefaultRoutes from "./pages/DefaultRoutes";
+import ProtectedRoutes from "./pages/ProtectedRoutes";
 
-import Options from './pages/DefaultRoutes/resume/resume-builder';
-import ResumeBuilder from './pages/DefaultRoutes/resume/resume-landing';
-import Builder from './pages/DefaultRoutes/resume/resume-builder/screens';
-import AIStarter from './pages/DefaultRoutes/resume/resume-builder/screens-ai';
-import ResumeUpload from './pages/DefaultRoutes/resume/resume-builder/screen-upload';
+import Options from "./pages/DefaultRoutes/resume/resume-builder";
+import ResumeBuilder from "./pages/DefaultRoutes/resume/resume-landing";
+import Builder from "./pages/DefaultRoutes/resume/resume-builder/screens";
+import AIStarter from "./pages/DefaultRoutes/resume/resume-builder/screens-ai";
+import ResumeUpload from "./pages/DefaultRoutes/resume/resume-builder/screen-upload";
 
-import Landing from './pages/DefaultRoutes/landing';
-import Internship from './pages/DefaultRoutes/internship';
-import About from './pages/DefaultRoutes/about';
-import Blog from './pages/DefaultRoutes/blog';
-import BlogContent from './pages/DefaultRoutes/blog/blogContent';
-import Feeds from './pages/DefaultRoutes/blog/feeds';
-import RouteIdentifier from './layouts/routeIdentifier';
-import VerifyMail from './pages/sign/signup/verifyMail';
-import TermsAndCondition from './pages/DefaultRoutes/terms/TermsAndConditions';
-import PrivacyPolicy from './pages/DefaultRoutes/policy/PrivacyPolicy';
-import Faq from './pages/DefaultRoutes/faq/Faq';
-import Contact from './pages/DefaultRoutes/contact';
+import Landing from "./pages/DefaultRoutes/landing";
+import Internship from "./pages/DefaultRoutes/internship";
+import About from "./pages/DefaultRoutes/about";
+import Blog from "./pages/DefaultRoutes/blog";
+import BlogContent from "./pages/DefaultRoutes/blog/blogContent";
+import Feeds from "./pages/DefaultRoutes/blog/feeds";
+import RouteIdentifier from "./layouts/routeIdentifier";
+import VerifyMail from "./pages/sign/signup/verifyMail";
+import TermsAndCondition from "./pages/DefaultRoutes/terms/TermsAndConditions";
+import PrivacyPolicy from "./pages/DefaultRoutes/policy/PrivacyPolicy";
+import Faq from "./pages/DefaultRoutes/faq/Faq";
+import Contact from "./pages/DefaultRoutes/contact";
 
-import Sign from './pages/sign';
-import Login from './pages/sign/login/login';
-import SignUp from './pages/sign/signup/signup';
-import ForgetPassword from './pages/sign/login/forgetPassword';
-import ResetPassword from './pages/sign/login/resetPassword';
-import DashBoard from './pages/ProtectedRoutes/DashBoard';
-import Coverletter from './pages/DefaultRoutes/cover-letter/index';
+import Sign from "./pages/sign";
+import Login from "./pages/sign/login/login";
+import SignUp from "./pages/sign/signup/signup";
+import ForgetPassword from "./pages/sign/login/forgetPassword";
+import ResetPassword from "./pages/sign/login/resetPassword";
+import DashBoard from "./pages/ProtectedRoutes/DashBoard";
+import Coverletter from "./pages/DefaultRoutes/cover-letter/index";
 // import ErrorPage from "./pages/404";
-import ErrorPage from './pages/404';
-import InternApplication from './pages/DefaultRoutes/internship/intern-application';
-import { TemplateProvider } from './middleware/resume';
+import ErrorPage from "./pages/404";
+import InternApplication from "./pages/DefaultRoutes/internship/intern-application";
+import { TemplateProvider } from "./middleware/resume";
+import { WalkthroughProvider } from "./middleware/walkthrough";
+import { CVProvider } from "./middleware/cv";
+import ResumeFooter from "./layouts/resumeRoutes/resumeFooter";
+import Header from "./layouts/header";
 
 // import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
 
@@ -84,17 +88,31 @@ function App() {
           </Route>
 
           {/* Resume Builder Routes */}
-          <Route element={<ResumeRoutes />}>
-            <Route path="/cover-letter/*" element={<Coverletter />} />
-            <Route path="/resume/ai/*" element={<AIStarter />} />
+          <Route
+            element={
+              <>
+                <Header />
+                <Outlet />
+                <ResumeFooter />
+              </>
+            }
+          >
             <Route path="/resume/options" element={<Options />} />
-            <Route
-              element={
-                <TemplateProvider>
-                  <Outlet />
-                </TemplateProvider>
-              }
-            >
+          </Route>
+
+          <Route
+            element={
+              <TemplateProvider>
+                <WalkthroughProvider>
+                  <CVProvider>
+                    <Outlet />
+                  </CVProvider>
+                </WalkthroughProvider>
+              </TemplateProvider>
+            }
+          >
+            <Route element={<ResumeRoutes />}>
+              <Route path="/cover-letter/*" element={<Coverletter />} />
               <Route path="/resume/ai/*" element={<AIStarter />} />
               <Route path="/resume/builder/*" element={<Builder />} />
             </Route>

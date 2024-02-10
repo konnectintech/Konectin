@@ -6,7 +6,7 @@ import { onSectionComplete } from "../verification";
 import { useTemplateContext } from "../../../../../../middleware/resume";
 import { useNavigate } from "react-router-dom";
 
-function Responsibilities2({ data, closeModal, handleInputChange }) {
+function Responsibilities({ data, closeModal, handleInputChange }) {
   const editorRef = useRef(null);
   const navigate = useNavigate();
 
@@ -178,4 +178,4 @@ function Responsibilities2({ data, closeModal, handleInputChange }) {
   );
 }
 
-export default Responsibilities2;
+export default Responsibilities;

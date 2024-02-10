@@ -1,7 +1,7 @@
 import * as FaIcon from "react-icons/fa";
 import { useState, useRef } from "react";
 import NavigationButton from "../navigationButton";
-import Responsibilities2 from "./responsibilities2";
+import Responsibilities from "./work-responsibilities";
 import SelectedTemplates from "../../resume-templates";
 import { onSectionComplete, verifyInput } from "../verification";
 import CityInput from "../../../../../../components/form/cityInput";
@@ -265,8 +265,12 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
           </div>
         </div>
 
-        <div className="max-lg:hidden">
-          <SelectedTemplates data={templateData} />
+        <div className="max-md:hidden w-1/2">
+          <div className="h-[360px] sm:h-[300px] md:h-[500px] lg:h-[580px] lg:w-[500px] flex items-center justify-center">
+            <div className="md:scale-[42%] lg:scale-[50%] mt-10">
+              <SelectedTemplates data={templateData} />
+            </div>
+          </div>
         </div>
       </div>
       <div className="mt-16">
@@ -274,7 +278,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
       </div>
       {isModalOpen && (
         <ResumeModal onClose={closeModal}>
-          <Responsibilities2
+          <Responsibilities
             data={data}
             closeModal={closeModal}
             handleInputChange={handleInputChange}
