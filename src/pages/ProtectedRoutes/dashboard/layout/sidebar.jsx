@@ -1,6 +1,3 @@
-import { NavLink, useLocation } from "react-router-dom";
-import { dashboardRoutes } from "./navigation";
-
 function Sidebar() {
   return (
     <div class="rounded-lg w-full p-8 bg-white">
@@ -24,16 +21,16 @@ function Sidebar() {
 
       <div class="flex flex-col gap-4 mt-4 text-center text-[#8C8C8F] border border-[#8C8C8F] text-xs bg-[#F0EFF5] rounded-lg p-4">
         <p>
-          Upload a new picture. Larger image will be resized automatically.{" "}
+          Upload a new picture. Larger image will be resized automatically.{' '}
         </p>
         <p>
-          Maximum upload size is{" "}
+          Maximum upload size is{' '}
           <span className="font-bold text-black">1MB</span>
         </p>
       </div>
 
       <div class="text-center text-gray-600 text-sm mt-4">
-        Member Since:{" "}
+        Member Since:{' '}
         <span className="font-bold text-black">October 1, 2020</span>
       </div>
     </div>
