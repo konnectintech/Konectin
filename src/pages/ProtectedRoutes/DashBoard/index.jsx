@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import "./index.css";
 import { Suspense } from "react";
-import Sidebar from "./layout/sidebar";
+// import Sidebar from "./layout/sidebar";
 import Main from "./pages/main";
 import UserProfile from "./pages/userProfile";
 import { dashboardRoutes } from "./layout/navigation";
@@ -13,7 +13,7 @@ const DashBoard = () => {
       <div className="flex pt-[67px] flex-col sm:flex-row items-start min-h-screen justify-between bg-[#F0EFF5] ">
         <div className="w-full sm:w-1/4 min-w-[170px] md:min-w-[230px]">
           {/* <div className="sm:h-screen sm:bg-white bg-gray-25 sm:w-2/12 min-w-[170px] md:min-w-[230px]"> */}
-          <Sidebar />
+          {/* <Sidebar /> */}
           {/* </div> */}
         </div>
 
