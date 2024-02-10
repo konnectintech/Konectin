@@ -1,5 +1,7 @@
 import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
+import { useTemplateData } from "../../../../../../../middleware/resume";
 function Contacts({ data }) {
+  const { templateData } = useTemplateData();
   return (
     (data.state ||
       data.country ||
@@ -44,7 +46,7 @@ function Contacts({ data }) {
             .content .sub_content .icon {
               width: 25px;
               height: 25px;
-              background: #3F3BF4;
+              background:  ${templateData.theme.color};;
               margin-right:5px;
               color:#ffffff;
               display: -webkit-flex; /* WebKit-based browsers */

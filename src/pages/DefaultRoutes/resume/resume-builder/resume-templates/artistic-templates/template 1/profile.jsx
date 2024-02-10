@@ -1,4 +1,7 @@
+import { useTemplateData } from "../../../../../../../middleware/resume";
+
 function Profile({ data }) {
+  const { templateData } = useTemplateData();
   return (
     data && (
       <section className="section">
@@ -10,8 +13,8 @@ function Profile({ data }) {
           }
           
           .highlight-bar {
-            border: 2px solid #3F3EF4;
-            background: #3F3EF4;
+            border: 2px solid ${templateData.theme.color};
+            background:  ${templateData.theme.color};
             width: 100px;
             margin:0.5rem 0;
             border-radius:5px;
