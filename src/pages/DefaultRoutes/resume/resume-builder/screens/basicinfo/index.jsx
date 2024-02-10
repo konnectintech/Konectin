@@ -162,19 +162,6 @@ const BasicInformation = ({ data, onInputChange }) => {
               </div>
             </div>
 
-            <JobTitleInput
-              title={data?.basicInfo?.profession}
-              handleInputChange={({ section, subsection, values }) =>
-                onInputChange({
-                  section: section,
-                  subsection: subsection,
-                  values: values,
-                })
-              }
-              section="basicInfo"
-              subsection="profession"
-            />
-
             <div className="flex flex-col">
               <input
                 className="input-container"
