@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 // import Sidebar from "./layout/sidebar";
 import Main from "./pages/main";
 import UserProfile from "./pages/userProfile";
-import { dashboardRoutes } from "./layout/navigation";
+// import { dashboardRoutes } from "./layout/navigation";
 
 import "./index.css";
 
@@ -30,13 +30,13 @@ const DashBoard = () => {
               }
             >
               <Route path="/" element={<UserProfile />} />
-              {dashboardRoutes.map((route) => (
+              {/* {dashboardRoutes.map((route) => (
                 <Route
                   key={route.path}
                   path={route.path}
                   element={<route.element />}
                 />
-              ))}
+              ))} */}
             </Route>
           </Routes>
         </div>
