@@ -14,6 +14,7 @@ const Skills = ({ data, updateResume }) => {
 
   const addSkill = () => {
     setSkillList([...skillList, { name: "", lvl: "" }]);
+    setSkillList([...skillList, { name: "", lvl: "" }]);
   };
 
   const removeSkill = (index) => {
@@ -43,7 +44,7 @@ const Skills = ({ data, updateResume }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSectionComplete(data);
+    onSectionComplete(data, 4);
     navigate("/resume/builder/bio");
   };
 

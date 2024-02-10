@@ -22,7 +22,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSectionComplete(templateData);
+    onSectionComplete(templateData, 2);
 
     delete data._id; // Remove the item id
 
