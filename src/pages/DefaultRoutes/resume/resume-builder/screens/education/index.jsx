@@ -3,7 +3,7 @@ import { Outlet, Route, Routes } from "react-router-dom";
 import College from "./college";
 import HighSchool from "./high-school";
 import SelectEducation from "./selectEducation";
-import Other from "./other";
+import SelectedTemplates from "../../resume-templates";
 
 const Education = ({ data }) => {
   return (
@@ -20,11 +20,17 @@ const Education = ({ data }) => {
           element={
             <>
               <Outlet />
+              <div className="max-md:hidden w-1/2">
+                <div className="h-[360px] sm:h-[300px] md:h-[500px] lg:h-[580px] lg:w-[500px] flex items-center justify-center">
+                  <div className="md:scale-[42%] lg:scale-[50%] mt-10">
+                    <SelectedTemplates data={data} />
+                  </div>
+                </div>
+              </div>
             </>
           }
         >
-          <Route path="/college/*" element={<College data={data} />} />
-          <Route path="/other" element={<Other />} />
+          <Route path="/college" element={<College />} />
           <Route path="/high-school" element={<HighSchool />} />
         </Route>
       </Route>
