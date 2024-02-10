@@ -92,7 +92,6 @@ function JobTitleInput({
     <>
       <Creatable
         className="mb-6 text-[11px] w-full text-[#8C8C8F] border border-neutral-500 outline-0 rounded-[4px] bg-[#f9f9f9] relative z-40"
-        className="mb-6 text-[11px] w-full text-[#8C8C8F] border border-neutral-500 outline-0 rounded-[4px] bg-[#f9f9f9] relative z-40"
         inputId="jobTitle"
         placeholder="Job Title"
         components={{ DropdownIndicator }}
