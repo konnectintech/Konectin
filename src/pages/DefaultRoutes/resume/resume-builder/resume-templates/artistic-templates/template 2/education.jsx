@@ -4,46 +4,36 @@ function Education({ education, currentEditedEducation }) {
       <section className="section">
         <style>
           {`
-         .section {
-          margin-right: 15px;
-          -webkit-flex: 1; /* WebKit-based browsers */
-          flex: 1;
-        }
-        
-        .education-section {
-        }
-        
-        .education-text {
-          font-family: poppins;
-          font-size: 10px;
-          color: #333333;
-        }
-        
-        .education-detail {
-        }
-        
-        .education-item {
-          border-left: 4px solid #EEEFF1;
-          margin-bottom: 8px;
-          padding-left: 8px;
-        }
-        
-        .education-info {
-          display: -webkit-flex; /* WebKit-based browsers */
-          display: flex;
-          -webkit-justify-content: space-between; /* WebKit-based browsers */
-          justify-content: space-between;
-          -webkit-align-items: center; /* WebKit-based browsers */
-          align-items: center;
-        }
-        
-        .education-year {
-          font-size: 10px;
-          white-space: nowrap;
-        }
-        
-
-
+            .section {
+              margin-right: 15px;
+              -webkit-flex: 1; /* WebKit-based browsers */
+              flex: 1;
+            }
+            
+            .education-text {
+              font-family: poppins;
+              font-size: 10px;
+              color: #333333;
+            }
+            
+            .education-item {
+              border-left: 4px solid #EEEFF1;
+              margin-bottom: 8px;
+              padding-left: 8px;
+            }
+            
+            .education-info {
+              display: -webkit-flex; /* WebKit-based browsers */
+              display: flex;
+              -webkit-justify-content: space-between; /* WebKit-based browsers */
+              justify-content: space-between;
+              -webkit-align-items: center; /* WebKit-based browsers */
+              align-items: center;
+            }
+            
+            .education-year {
+              white-space: nowrap;
+            }
           `}
         </style>
         <div className="education-section">

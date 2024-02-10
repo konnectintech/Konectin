@@ -16,7 +16,7 @@ export function CustomButton({
       type={type ? type : ""}
       disabled={disabled}
       onClick={onClick}
-      className={`w-full py-3 ${
+      className={`w-full py-3 cursor-pointer ${
         primary
           ? `bg-${colorType}-${
               disabled ? 200 : 600

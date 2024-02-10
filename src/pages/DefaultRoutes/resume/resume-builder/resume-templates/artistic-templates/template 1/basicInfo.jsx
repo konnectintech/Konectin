@@ -34,11 +34,12 @@ function BasicInfo({ data, theme }) {
           }
   `}
       </style>
+
       <div className="basic_info">
         <div className="basic_info_content">
           <div className="name">{`${data.firstName} ${data.lastName}`}</div>
           <div className="profession">
-            {data.profession || "Your Profession"}
+            {data.profession || 'Your Profession'}
           </div>
         </div>
       </div>

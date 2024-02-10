@@ -4,51 +4,40 @@ function Experience({ jobExperience, currentEditedJob }) {
       <section className="exp-section">
         <style>
           {`
-          
-          .exp-section {
-            -webkit-flex: 1; /* WebKit-based browsers */
-            flex: 1;
-          }
-          
-          .exp-text {
-            font-family: poppins;
-            font-size: 10px;
-            color: #333333;
-          }
-          
-          .exp-detail {
-          }
-          
-          .sub-section {
-          }
-          
-          .exp-item {
-            border-left: 4px solid #0470DC;
-            margin-bottom: 8px;
-            padding-left: 8px;
-          }
-          
-          .exp-info {
-            display: -webkit-flex; /* WebKit-based browsers */
-            display: flex;
-            -webkit-justify-content: space-between; /* WebKit-based browsers */
-            justify-content: space-between;
-            -webkit-align-items: center; /* WebKit-based browsers */
-            align-items: center;
-          }
-          
-          .exp-year {
-            font-size: 10px;
-            white-space: nowrap;
-          }
-          
-          .location {
-            font-weight: 600;
-            margin-top: 5px;
-            color: #000 !important;
-          }
-          
-    
+            .exp-section {
+              -webkit-flex: 1; /* WebKit-based browsers */
+              flex: 1;
+            }
+            
+            .exp-text {
+              font-family: poppins;
+              color: #333333;
+            }
+            
+            .exp-item {
+              border-left: 4px solid #0470DC;
+              margin-bottom: 8px;
+              padding-left: 8px;
+            }
+            
+            .exp-info {
+              display: -webkit-flex; /* WebKit-based browsers */
+              display: flex;
+              -webkit-justify-content: space-between; /* WebKit-based browsers */
+              justify-content: space-between;
+              -webkit-align-items: center; /* WebKit-based browsers */
+              align-items: center;
+            }
+            
+            .exp-year {
+              white-space: nowrap;
+            }
+            
+            .location {
+              font-weight: 600;
+              margin-top: 5px;
+              color: #000 !important;
+            }
           `}
         </style>
         <div className="exp-section">

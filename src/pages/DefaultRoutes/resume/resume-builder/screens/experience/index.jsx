@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 import JobActivities from "./activities";
-import Responsibilities from "./responsibilites";
 import PreviousExperience from "./previous-experience";
 import { useTemplateContext } from "../../../../../../middleware/resume";
 
@@ -136,7 +135,6 @@ const EmploymentExperience = ({ data }) => {
 
   const employment_components = [
     { element: PreviousExperience, path: "/" },
-    // { element: Responsibilities, path: "/responsibilities" },
     { element: JobActivities, path: "/job-activities" },
   ];
 

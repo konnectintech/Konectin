@@ -4,59 +4,53 @@ function Experience({ jobExperience, currentEditedJob }) {
       <section className="section">
         <style>
           {`
-          
-          .exp-section {
-            padding:10px;
-            padding-bottom:0
-          }
-          
-          .exp-text {
-            font-family: poppins;
-            font-size: 10px;
-            color: #333333;
-          }
+            .exp-section {
+              padding:10px;
+              padding-bottom:0
+            }
+            
+            .exp-text {
+              font-family: poppins;
+              font-size: 10px;
+              color: #333333;
+            }
 
-          .heading {
-            background:#FEBC2C;
-            color:#000000 !important;
-            padding:10px;
-            text-align:center;
-            border-radius:3px
-  
-          }
-          
-          .exp-detail {
-            padding:5px;
-            background:#febb2c3f;
-            border-radius:3px
-          }
-          
-          .sub-section {
-          }
-          
-          .exp-item {
-            margin-bottom: 8px;
-          }
-          
-          .exp-info {
-            display: -webkit-flex; /* WebKit-based browsers */
-            display: flex;
-            -webkit-justify-content: space-between; /* WebKit-based browsers */
-            justify-content: space-between;
-            -webkit-align-items: center; /* WebKit-based browsers */
-            align-items: center;
-          }
-          
-          .exp-year {
-            font-size: 10px;
-            white-space: nowrap;
-          }
-          
-          .location {
-            color: #000 !important;
-          }
-          
+            .heading {
+              background:#FEBC2C;
+              color:#000000 !important;
+              padding:10px;
+              text-align:center;
+              border-radius:3px
     
+            }
+            
+            .exp-detail {
+              padding: 5px;
+              background: #febb2c3f;
+              border-radius: 3px;
+            }
+            
+            
+            .exp-item {
+              margin-bottom: 8px;
+            }
+            
+            .exp-info {
+              display: -webkit-flex; /* WebKit-based browsers */
+              display: flex;
+              -webkit-justify-content: space-between; /* WebKit-based browsers */
+              justify-content: space-between;
+              -webkit-align-items: center; /* WebKit-based browsers */
+              align-items: center;
+            }
+            
+            .exp-year {
+              white-space: nowrap;
+            }
+            
+            .location {
+              color: #000 !important;
+            }
           `}
         </style>
         <div className="exp-section">
