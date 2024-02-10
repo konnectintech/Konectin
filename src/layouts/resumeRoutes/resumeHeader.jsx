@@ -7,9 +7,6 @@ import '../header/header.css';
 import ProgressWalkthrough from '../../components/resume/walkthrough/ProgressWalkthrough';
 import { useWalkthrough } from '../../middleware/walkthrough';
 import { useTemplateContext } from '../../middleware/resume';
-import '../header/header.css';
-import ProgressWalkthrough from '../../components/resume/walkthrough/ProgressWalkthrough';
-import { useWalkthrough } from '../../middleware/walkthrough';
 
 function ResumeHeader() {
   const { templateData, setTemplateData } = useTemplateContext();
