@@ -41,7 +41,7 @@ const Bio = ({ data, onInputChange }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onSectionComplete(data);
+    onSectionComplete(data, 5);
 
     const wordCount = editorRef
       ? editorRef.current.plugins.wordcount.getCount()

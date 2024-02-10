@@ -1,15 +1,17 @@
-import { useTemplateContext } from "../../../../../middleware/resume";
+import { useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
+
 import BasicInformation from "./basicinfo";
 import EmploymentExperience from "./experience";
 import Education from "./education";
 import Skills from "./skills";
 import Bio from "./bio";
 import Preview from "./preview";
-import Download from "./download";
+
 import { useAuth } from "../../../../../middleware/auth";
-import { useEffect } from "react";
+import { useTemplateContext } from "../../../../../middleware/resume";
 import { useWalkthrough } from "../../../../../middleware/walkthrough";
+
 import WelcomeWalkthrough from "../../../../../components/resume/walkthrough/welcomeWalkthrough";
 import TipsWalkthrough from "../../../../../components/resume/walkthrough/tipsWalkthrough";
 import DownloadWalkthrough from "../../../../../components/resume/walkthrough/downloadWalkthrough";
@@ -58,10 +60,6 @@ function Builder() {
     {
       element: Preview,
       link: "/preview",
-    },
-    {
-      element: Download,
-      link: "/download",
     },
   ];
 

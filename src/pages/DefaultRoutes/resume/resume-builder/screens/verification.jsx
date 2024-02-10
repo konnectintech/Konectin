@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const onSectionComplete = async (template) => {
+export const onSectionComplete = async (template, stage) => {
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   const data = { ...template };
@@ -20,7 +20,12 @@ export const onSectionComplete = async (template) => {
         `${url}/updateResume?userId=${user._id}&resumeId=${template._id}`,
         {
           data,
-          currentStage: currentStage === 6 ? 6 : currentStage + 1,
+          currentStage:
+            currentStage === 6
+              ? 6
+              : stage < currentStage
+              ? currentStage
+              : currentStage + 1,
         },
         {
           headers: {
