@@ -117,7 +117,7 @@ function App() {
           </Route>
 
           <Route element={<ProtectedRoutes />}>
-            {/* <Route path="/dashboard/*" element={<DashBoard />} /> */}
+            <Route path="/dashboard/*" element={<DashBoard />} />
           </Route>
         </Route>
       </Routes>

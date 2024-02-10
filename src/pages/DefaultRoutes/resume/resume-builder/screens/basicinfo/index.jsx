@@ -6,7 +6,6 @@ import CountryInput from "../../../../../../components/form/countryInput";
 import StateInput from "../../../../../../components/form/stateInput";
 import CityInput from "../../../../../../components/form/cityInput";
 import { onSectionComplete, verifyInput } from "../verification";
-import JobTitleInput from "../../../../../../components/jobTitleInput";
 
 const BasicInformation = ({ data, onInputChange }) => {
   const {
