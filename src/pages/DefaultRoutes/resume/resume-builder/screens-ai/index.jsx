@@ -4,7 +4,6 @@ import TemplateSelector from "./template-selector";
 import { Route, Routes } from "react-router-dom";
 import { botIcon } from "../../../../../assets";
 import { useTemplateContext } from "../../../../../middleware/resume";
-import Level from "./level";
 
 const AIStarter = () => {
   const { templateData, onInputChange } = useTemplateContext();
@@ -21,10 +20,6 @@ const AIStarter = () => {
     {
       element: Username,
       link: "/",
-    },
-    {
-      element: Level,
-      link: "/level",
     },
     {
       element: Profession,

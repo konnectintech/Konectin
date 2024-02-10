@@ -51,19 +51,14 @@ function EducationOption({ title, link }) {
 function SelectEducation({ data }) {
   return (
     <div className="w-full mx-auto flex flex-col justify-center gap-12">
-      <div className="">
+      <div className="flex justify-center">
         <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
-          Education
+          Add school
         </h2>
-        <p className="text-[#66666a] text-sm tracking-wide mt-3 mb-5">
-          Start with the essentials. Who you are and how can employers connect
-          with you.
-        </p>
       </div>
-      <div className="w-full flex flex-col md:flex-row mx-auto gap-6">
+      <div className="w-full flex flex-col md:flex-row mx-auto gap-4">
         <EducationOption title="College/University" link="college" />
         <EducationOption title="High School" link="high-school" />
-        <EducationOption title="Others" link="other" />
       </div>
 
       <div className="max-w-xl w-full flex flex-col gap-5 md:flex-row">
