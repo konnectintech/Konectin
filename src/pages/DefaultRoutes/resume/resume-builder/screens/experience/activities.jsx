@@ -1,10 +1,10 @@
-import { FaPlus, FaPen, FaTrash, FaCaretDown, FaCaretUp } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import { useTemplateContext } from "../../../../../../middleware/resume";
-import { useEffect, useState } from "react";
-import NavigationButton from "../navigationButton";
-import SelectedTemplates from "../../resume-templates";
-import { onSectionComplete } from "../verification";
+import { FaPlus, FaPen, FaTrash, FaCaretDown, FaCaretUp } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { useTemplateContext } from '../../../../../../middleware/resume';
+import { useEffect, useState } from 'react';
+import NavigationButton from '../navigationButton';
+import SelectedTemplates from '../../resume-templates';
+import { onSectionComplete } from '../verification';
 
 const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
   const { templateData, setTemplateData } = useTemplateContext();
@@ -38,10 +38,10 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
               <div className="flex flex-col md:justify-between md:flex-row ">
                 <p className="font-bold text-neutral-300 capitalize text-sm mb-4">
                   {data.company}
-                  {(data.city || data.state || data.country) && " | "}
+                  {(data.city || data.state || data.country) && ' | '}
                   <span className="font-medium">
                     {data.city}
-                    {data.city && (data.state || data.country) && ", "}
+                    {data.city && (data.state || data.country) && ', '}
                     {data.state}
                     {data.state && data.country && `, `}
                     {data.country}
@@ -61,7 +61,7 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
                           currentEditedJob: index + 1,
                         }));
 
-                        navigate("/resume/builder/employment-experience");
+                        navigate('/resume/builder/employment-experience');
                       }}
                     >
                       <FaPen size="1rem" />
@@ -86,13 +86,13 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
                     ${data.startMonth} ${data.startYear} -
                     ${
                       data.current
-                        ? " Present"
+                        ? ' Present'
                         : ` ${data.endMonth} ${data.endYear}`
                     }`}
                 </p>
                 <div
                   className={`text-neutral-400 text-xs ${
-                    showMore === index ? "line-clamp-none" : "line-clamp-4"
+                    showMore === index ? 'line-clamp-none' : 'line-clamp-4'
                   } job-desc mt-3`}
                 >
                   <div
@@ -153,7 +153,7 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
           back={goBack}
           cont={() => {
             onSectionComplete(templateData);
-            navigate("/resume/builder/education");
+            navigate('/resume/builder/education');
           }}
         />
       </div>

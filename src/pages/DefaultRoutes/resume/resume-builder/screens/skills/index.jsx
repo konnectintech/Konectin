@@ -1,19 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { FaTrash, FaPlus } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import NavigationButton from "../navigationButton";
-import SelectedTemplates from "../../resume-templates";
-import { onSectionComplete } from "../verification";
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { FaTrash, FaPlus } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import NavigationButton from '../navigationButton';
+import SelectedTemplates from '../../resume-templates';
+import { onSectionComplete } from '../verification';
 
 const Skills = ({ data, updateResume }) => {
   const [skillList, setSkillList] = useState(data.skills);
   const navigate = useNavigate();
 
   const addSkill = () => {
-    setSkillList([...skillList, { name: "", lvl: "" }]);
+    setSkillList([...skillList, { name: '', lvl: '' }]);
   };
 
   const removeSkill = (index) => {
@@ -44,7 +44,7 @@ const Skills = ({ data, updateResume }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSectionComplete(data);
-    navigate("/resume/builder/bio");
+    navigate('/resume/builder/bio');
   };
 
   return (
@@ -113,10 +113,10 @@ const Skills = ({ data, updateResume }) => {
                                 onChange={(e) => {
                                   const replaced =
                                     e.target.value <= 100
-                                      ? e.target.value.replace(/[^0-9]/, "")
+                                      ? e.target.value.replace(/[^0-9]/, '')
                                       : e.target.value.replace(
                                           /[1-9][0-9]/,
-                                          ""
+                                          ''
                                         );
 
                                   e.target.value = replaced.trim();
@@ -167,7 +167,7 @@ const Skills = ({ data, updateResume }) => {
       </div>
       <div className="mt-8">
         <NavigationButton
-          back={() => navigate("/resume/builder/education")}
+          back={() => navigate('/resume/builder/education')}
           cont={handleSubmit}
         />
       </div>

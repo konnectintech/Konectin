@@ -1,17 +1,17 @@
-import * as FaIcon from "react-icons/fa";
-import { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import NavigationButton from "../navigationButton";
-import SelectedTemplates from "../../resume-templates";
-import JobTitleInput from "../../../../../../components/jobTitleInput";
-import { useTemplateContext } from "../../../../../../middleware/resume";
-import CountryInput from "../../../../../../components/form/countryInput";
-import StateInput from "../../../../../../components/form/stateInput";
-import CityInput from "../../../../../../components/form/cityInput";
-import { onSectionComplete, verifyInput } from "../verification";
-import ResumeModal from "../../../../../../layouts/resumeRoutes/resumeModal";
-import Responsibilities2 from "./responsibilities2";
-import DateSelector from "../../../../../../components/form/dateSelector";
+import * as FaIcon from 'react-icons/fa';
+import { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import NavigationButton from '../navigationButton';
+import SelectedTemplates from '../../resume-templates';
+import JobTitleInput from '../../../../../../components/jobTitleInput';
+import { useTemplateContext } from '../../../../../../middleware/resume';
+import CountryInput from '../../../../../../components/form/countryInput';
+import StateInput from '../../../../../../components/form/stateInput';
+import CityInput from '../../../../../../components/form/cityInput';
+import { onSectionComplete, verifyInput } from '../verification';
+import ResumeModal from '../../../../../../layouts/resumeRoutes/resumeModal';
+import Responsibilities2 from './responsibilities2';
+import DateSelector from '../../../../../../components/form/dateSelector';
 
 const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
   const [countryId, setCountryId] = useState(0);
@@ -36,31 +36,33 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
     e.preventDefault();
     onSectionComplete(templateData);
 
+    delete data._id; // Remove the item id
+
     const formHolder = Object.keys(data);
 
     formHolder.forEach((holder) => {
       let errorHolder;
       switch (holder) {
-        case "city":
-        case "state":
-        case "country":
-        case "startMonth":
-        case "startYear":
+        case 'city':
+        case 'state':
+        case 'country':
+        case 'startMonth':
+        case 'startYear':
           errorHolder = document.getElementById(`${holder}Error`);
           verifyInput(data[holder], errorHolder, holder);
           break;
-        case "endMonth":
-        case "endYear":
+        case 'endMonth':
+        case 'endYear':
           if (data.current) break;
           errorHolder = document.getElementById(`${holder}Error`);
           verifyInput(data[holder], errorHolder, holder);
           break;
-        case "jobTitle":
+        case 'jobTitle':
           errorHolder = document.getElementById(`${holder}Error`);
           verifyInput(data[holder], errorHolder, holder);
           break;
-        case "current":
-        case "workDesc":
+        case 'current':
+        case 'workDesc':
           break;
         default:
           errorHolder = companyErrorRef.current;
@@ -70,13 +72,13 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
     });
 
     if (
-      data.jobTitle !== "" &&
-      data.company !== "" &&
+      data.jobTitle !== '' &&
+      data.company !== '' &&
       data.country &&
-      (data.startMonth !== "" || data.startYear !== "") &&
-      (data.current || data.endMonth !== "" || data.endYear !== "")
+      (data.startMonth !== '' || data.startYear !== '') &&
+      (data.current || data.endMonth !== '' || data.endYear !== '')
     ) {
-      navigate("/resume/builder/employment-experience/responsibilities");
+      navigate('/resume/builder/employment-experience/responsibilities');
     }
   };
 
@@ -117,7 +119,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
                     verifyInput(
                       e.target.value,
                       companyErrorRef.current,
-                      "company"
+                      'company'
                     );
                   }}
                   onInput={(e) => {
@@ -125,7 +127,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
                     verifyInput(
                       e.target.value,
                       companyErrorRef.current,
-                      "company"
+                      'company'
                     );
                   }}
                   placeholder="Company / Organization Name"
@@ -216,11 +218,11 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
               )}
               <div
                 className="w-fit flex gap-2 items-center cursor-pointer mb-4"
-                onClick={() => handleInputChange("current", !data?.current)}
+                onClick={() => handleInputChange('current', !data?.current)}
               >
                 <div
                   className={`w-5 h-5 rounded-sm border-[1.5px] border-primary-600 flex items-center justify-center ${
-                    data?.current ? "bg-primary-400" : "bg-white"
+                    data?.current ? 'bg-primary-400' : 'bg-white'
                   }`}
                 >
                   {data?.current && (
@@ -243,7 +245,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
                     verifyInput(
                       e.target.value,
                       companyErrorRef.current,
-                      "company"
+                      'company'
                     );
                   }}
                   onInput={(e) => {
@@ -251,7 +253,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
                     verifyInput(
                       e.target.value,
                       companyErrorRef.current,
-                      "company"
+                      'company'
                     );
                   }}
                   placeholder="Work Responsibilities / Functions"
