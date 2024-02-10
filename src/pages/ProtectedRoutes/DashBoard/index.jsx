@@ -1,13 +1,13 @@
-import { Routes, Route, Outlet } from "react-router-dom";
-import "./index.css";
-import { Suspense } from "react";
-import { dashboardRoutes, newdashboardRoutes } from "./layout/navigation";
-import Sidebar from "./layout/sidebar";
-import Header from "./layout/header";
-import AsideBar from "./layout/asidebar";
-import Jobs from "./pages/job";
-import Main from "./pages/main";
-import UserProfile from "./pages/userProfile";
+import { Routes, Route, Outlet } from 'react-router-dom';
+import './index.css';
+import { Suspense } from 'react';
+import Sidebar from './layout/sidebar';
+import Header from './layout/header';
+import AsideBar from './layout/asidebar';
+import Jobs from './pages/job';
+import Main from './pages/main';
+import UserProfile from './pages/userProfile';
+import { newdashboardRoutes } from './layout/navigation.js';
 
 const DashBoard = () => {
   return (
