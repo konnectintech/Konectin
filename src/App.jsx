@@ -37,8 +37,6 @@ import InternApplication from "./pages/DefaultRoutes/internship/intern-applicati
 import { TemplateProvider } from "./middleware/resume";
 import { WalkthroughProvider } from "./middleware/walkthrough";
 import { CVProvider } from "./middleware/cv";
-import ResumeFooter from "./layouts/resumeRoutes/resumeFooter";
-import Header from "./layouts/header";
 
 // import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
 
@@ -90,28 +88,22 @@ function App() {
           {/* Resume Builder Routes */}
           <Route
             element={
-              <>
-                <Header />
-                <Outlet />
-                <ResumeFooter />
-              </>
+              <WalkthroughProvider>
+                <ResumeRoutes />
+              </WalkthroughProvider>
             }
           >
             <Route path="/resume/options" element={<Options />} />
-          </Route>
 
-          <Route
-            element={
-              <TemplateProvider>
-                <WalkthroughProvider>
+            <Route
+              element={
+                <TemplateProvider>
                   <CVProvider>
                     <Outlet />
                   </CVProvider>
-                </WalkthroughProvider>
-              </TemplateProvider>
-            }
-          >
-            <Route element={<ResumeRoutes />}>
+                </TemplateProvider>
+              }
+            >
               <Route path="/cover-letter/*" element={<Coverletter />} />
               <Route path="/resume/ai/*" element={<AIStarter />} />
               <Route path="/resume/builder/*" element={<Builder />} />

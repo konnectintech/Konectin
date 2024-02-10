@@ -5,12 +5,14 @@ import { Link, useLocation } from "react-router-dom";
 import "../header/header.css";
 import ProgressWalkthrough from "../../components/resume/walkthrough/progressWalkthrough";
 import { useWalkthrough } from "../../middleware/walkthrough";
-import { useTemplateContext } from "../../middleware/resume";
+import { useLocalStorage } from "../../middleware/storage";
 
 function ResumeHeader() {
-  const { templateData, setTemplateData } = useTemplateContext();
+  const { templateData, setTemplateData } = useLocalStorage(
+    "konectin-profiler-data-template"
+  );
   const { currentModule } = useWalkthrough();
-  const { currentStage } = templateData;
+  const currentStage = templateData?.currentStage;
   const locationNo = currentStage;
 
   const [completed, setCompleted] = useState({
