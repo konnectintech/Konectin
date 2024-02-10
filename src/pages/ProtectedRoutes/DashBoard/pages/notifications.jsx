@@ -10,7 +10,7 @@ function Notifications() {
   const [reminderToggle, setReminderToggle] = useState(false);
 
   return (
-    <div className="sm:py-14 sm:px-12 w-full">
+    <div className="sm:py-10 sm:px-12 w-full">
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-4">
           <p className="font-bold text-base sm:text-2xl leading-[160%] text-neutral-200">Stay informed with Konectin</p>

@@ -107,10 +107,10 @@ const Application = () => {
                               <div className='font-bold text-md'>{role.head}</div>
                               <div className='font-[600] text-slate-800 text-sm'>{role.company}</div>
                               <div className='flex flex-col gap-2'>
-                                <div className='font-[600] text-sm text-slate-700 text-sm items-center gap-2'>
+                                <div className='font-[600] text-sm text-slate-700 items-center gap-2'>
                                   {role.location}
                                 </div>
-                                <div className='font-[600] text-sm text-slate-700 text-sm items-center gap-2'>
+                                <div className='font-[600] text-sm text-slate-700 items-center gap-2'>
                                   {role.workload}
                                 </div>
                               </div>

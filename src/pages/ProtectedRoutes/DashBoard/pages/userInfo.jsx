@@ -2,7 +2,7 @@ import React from "react";
 
 
 function UserInfo() {
-  return <div className="sm:py-14 sm:px-12">
+  return <div className="sm:py-10 sm:px-12">
     <div className="">
       <form action="#">
         <div className="flex flex-col gap-6 sm:gap-12">

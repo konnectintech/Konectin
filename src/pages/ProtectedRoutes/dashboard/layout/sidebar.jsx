@@ -1,14 +1,17 @@
 // import { NavLink, useLocation } from "react-router-dom";
 // import { dashboardRoutes } from "./navigation";
 import { uploadIcon } from "../../../../assets";
+import { useAuth } from "../../../../middleware/auth";
 
 function Sidebar() {
+  const { user } = useAuth();
+  
   return (
     <div className="rounded-lg w-full py-3.5 px-4 md:p-8 bg-white flex md:flex-col items-center sm:justify-center gap-11 sm:gap-8">
       <div className="w-full order-2 sm:order-1 sm:my-3 flex flex-col gap-4">
-        <div className=" sm:text-center text-xl font-bold">John Doe</div>
+        <div className=" sm:text-center text-xl font-bold">{user.fullname}</div>
         <div className="sm:text-center text-gray-600 text-sm">
-          john.doe@example.com
+          {user.email}
         </div>
       </div>
       

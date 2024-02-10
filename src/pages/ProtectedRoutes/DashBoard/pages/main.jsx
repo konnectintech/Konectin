@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 function Main() {
   return (
-    <div className="sm:bg-white rounded-lg mt-10 sm:my-0 flex flex-col gap-y-10 bg-primary-100 min-w-full border border-red-700">
+    <div className="sm:bg-white rounded-lg mt-10 sm:my-0 flex flex-col gap-y-10 bg-primary-100 min-w-full">
       <div className="flex flex-col gap-8 sm:bg-primary-600 sm:text-white sm:pt-6 px-12 sm:rounded-tl-lg sm:rounded-tr-lg">
         <div className="font-extrabold text-3xl hidden sm:block">Edit Profile</div>
         <div className="flex items-center gap-6 sm:gap-0 ">
