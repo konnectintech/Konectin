@@ -116,10 +116,11 @@ const Responsibilities = ({ data, handleInputChange }) => {
   return (
     <div className="mt-4 max-w-6xl flex flex-col justify-center items-start mx-auto">
       <h2 className="md:max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
-        Work Experience
+        Your work responsibilities
       </h2>
       <p className="text-neutral-300 text-sm tracking-[-0.01rem] mt-3 max-w-2xl">
-        Add, edit or delete your work experience.
+        Try to include 3-6 work experience bullet points. Little is less and
+        more is too much.
       </p>
       <div className="w-full">
         <section className="w-full flex gap-4 justify-between mt-6">

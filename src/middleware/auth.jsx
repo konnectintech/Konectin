@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from 'axios';
-import { createContext, useContext, useEffect } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { useLocalStorage } from './storage';
-import { EventType, PublicClientApplication } from '@azure/msal-browser';
-import { MsalProvider } from '@azure/msal-react';
+import axios from "axios";
+import { createContext, useContext, useEffect } from "react";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useLocalStorage } from "./storage";
+import { EventType, PublicClientApplication } from "@azure/msal-browser";
+import { MsalProvider } from "@azure/msal-react";
 
 // Create a Authenication Hook
 const AuthContext = createContext();
@@ -12,12 +12,12 @@ const useAuthContext = () => useContext(AuthContext);
 
 const pca = new PublicClientApplication({
   auth: {
-    clientId: 'fafebde3-1871-43ee-afb0-34374edaa6b1',
-    authority: 'https://login.microsoftonline.com/common/',
-    redirectUri: '/login',
+    clientId: "fafebde3-1871-43ee-afb0-34374edaa6b1",
+    authority: "https://login.microsoftonline.com/common/",
+    redirectUri: "/login",
   },
   cache: {
-    cacheLocation: 'localStorage',
+    cacheLocation: "localStorage",
     storeAuthStateInCookie: true,
   },
   system: {
@@ -41,9 +41,9 @@ pca.addEventCallback((event) => {
         const user = { ...response.data.data };
         user.token = response.data.token;
 
-        localStorage.getItem('konectin-profiler-user', JSON.stringify(user));
+        localStorage.getItem("konectin-profiler-user", JSON.stringify(user));
 
-        window.location.href = '/resume/options';
+        window.location.href = "/resume/options";
       })
       .catch((err) => console.error(err));
   }
@@ -78,7 +78,7 @@ export const RequireAuth = ({ children }) => {
 
 export const parseJwt = (token) => {
   try {
-    return JSON.parse(atob(token.split('.')[1]));
+    return JSON.parse(atob(token.split(".")[1]));
   } catch (e) {
     return null;
   }
@@ -86,13 +86,13 @@ export const parseJwt = (token) => {
 
 // Create User logged Hook
 export const useAuth = () => {
-  const [user, setUser] = useLocalStorage('konectin-profiler-user', null);
+  const [user, setUser] = useLocalStorage("konectin-profiler-user", null);
   const navigate = useNavigate();
   const location = useLocation();
 
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
-  const { ongoing } = JSON.parse(sessionStorage.getItem('internData')) || '';
-  const status = sessionStorage.getItem('status') || '';
+  const { ongoing } = JSON.parse(sessionStorage.getItem("internData")) || "";
+  const status = sessionStorage.getItem("status") || "";
 
   useEffect(() => {
     if (user !== null) {
@@ -131,13 +131,13 @@ export const useAuth = () => {
 
       const resumes = response.data.cvs;
       const templateData = JSON.parse(
-        localStorage.getItem('konectin-profiler-data-template')
+        localStorage.getItem("konectin-profiler-data-template")
       );
 
       if (
         resumes.length >= 1 &&
-        (templateData?.basicInfo?.firstName === '' ||
-          templateData?.basicInfo?.lastName === '' ||
+        (templateData?.basicInfo?.firstName === "" ||
+          templateData?.basicInfo?.lastName === "" ||
           templateData === null)
       ) {
         const lastResume = resumes.slice(-1)[0];
@@ -145,7 +145,7 @@ export const useAuth = () => {
 
         if (currentStage >= 1 && currentStage <= 6) {
           localStorage.setItem(
-            'konectin-profiler-data-template',
+            "konectin-profiler-data-template",
             JSON.stringify({
               ...lastResume,
               completed: {
@@ -178,15 +178,15 @@ export const useAuth = () => {
       setTimeout(() => {
         loader(false);
 
-        if (location.state.from === 'verify-mail') {
-          navigate('/verify-mail');
+        if (location.state.from === "verify-mail") {
+          navigate("/verify-mail");
         }
         if (ongoing) {
-          navigate('/internship/intern-application');
-        } else if (status !== '') {
-          sessionStorage.removeItem('status');
+          navigate("/internship/intern-application");
+        } else if (status !== "") {
+          sessionStorage.removeItem("status");
           navigate(`${status}`);
-        } else navigate('/resume/options');
+        } else navigate("/resume/options");
       }, 3000);
     } catch (err) {
       loader(false);
@@ -201,7 +201,7 @@ export const useAuth = () => {
       setUser(userData);
       loader(false);
       setTimeout(() => {
-        navigate('/verify-mail', { state: { from: 'sign-up' } });
+        navigate("/verify-mail", { state: { from: "sign-up" } });
       }, 1000);
     } catch (err) {
       loader(false);
@@ -210,7 +210,10 @@ export const useAuth = () => {
   };
 
   const signOut = () => {
-    localStorage.removeItem('konectin-profiler-data-template');
+    localStorage.setItem(
+      "konectin-profiler-data-template",
+      JSON.stringify(null)
+    );
     setUser(null);
   };
 
