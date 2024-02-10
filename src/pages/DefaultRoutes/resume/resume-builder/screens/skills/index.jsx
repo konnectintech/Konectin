@@ -43,7 +43,7 @@ const Skills = ({ data, updateResume }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSectionComplete(data);
+    onSectionComplete(data, 4);
     navigate("/resume/builder/bio");
   };
 

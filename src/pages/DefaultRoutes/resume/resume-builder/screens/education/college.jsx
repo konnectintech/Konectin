@@ -116,7 +116,7 @@ function College() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    onSectionComplete(templateData);
+    onSectionComplete(templateData, 3);
 
     delete education._id; // Remove its id
 
