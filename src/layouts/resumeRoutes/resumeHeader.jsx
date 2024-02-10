@@ -1,12 +1,11 @@
-/* eslint-disable no-unused-vars */
-import { useEffect, useState } from 'react';
-import { FaBars, FaCheck, FaTimes } from 'react-icons/fa';
-import { Link, useLocation } from 'react-router-dom';
-import { konectinIcon } from '../../assets';
-import '../header/header.css';
-import ProgressWalkthrough from '../../components/resume/walkthrough/ProgressWalkthrough';
-import { useWalkthrough } from '../../middleware/walkthrough';
-import { useTemplateContext } from '../../middleware/resume';
+import { useEffect, useState } from "react";
+import { FaBars, FaCheck, FaTimes } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
+// import { konectinIcon } from "../../assets";
+import "../header/header.css";
+import ProgressWalkthrough from "../../components/resume/walkthrough/progressWalkthrough";
+import { useWalkthrough } from "../../middleware/walkthrough";
+import { useTemplateContext } from "../../middleware/resume";
 
 function ResumeHeader() {
   const { templateData, setTemplateData } = useTemplateContext();
@@ -24,43 +23,43 @@ function ResumeHeader() {
 
   const [isOpen, setToggle] = useState(false);
   const navLinks = [
-    { name: 'Home', link: '/' },
-    { name: 'Internships', link: '/internship' },
-    { name: 'Resume Builder', link: '/resume' },
-    { name: 'Blog', link: '/blog' },
-    { name: 'About Us', link: '/about' },
+    { name: "Home", link: "/" },
+    { name: "Internships", link: "/internship" },
+    { name: "Resume Builder", link: "/resume" },
+    { name: "Blog", link: "/blog" },
+    { name: "About Us", link: "/about" },
   ];
 
   const { pathname } = useLocation();
 
   const [links] = useState([
-    { path: '/resume/builder', text: 'basic info', no: 1 },
+    { path: "/resume/builder", text: "basic info", no: 1 },
     {
       path:
         Object.keys(
           templateData?.jobExperience ? templateData?.jobExperience : []
         ).length <= 0
-          ? '/resume/builder/employment-experience'
-          : '/resume/builder/employment-experience/job-activities',
-      text: 'work history',
+          ? "/resume/builder/employment-experience"
+          : "/resume/builder/employment-experience/job-activities",
+      text: "work history",
       no: 2,
     },
     {
-      path: '/resume/builder/education',
-      text: 'education',
+      path: "/resume/builder/education",
+      text: "education",
       no: 3,
     },
     {
-      path: '/resume/builder/skills',
-      text: 'skills',
+      path: "/resume/builder/skills",
+      text: "skills",
       no: 4,
     },
     {
-      path: '/resume/builder/bio',
-      text: 'bio',
+      path: "/resume/builder/bio",
+      text: "bio",
       no: 5,
     },
-    { path: '#', text: 'finalize', no: 6 },
+    { path: "#", text: "finalize", no: 6 },
   ]);
 
   useEffect(() => {
@@ -81,14 +80,14 @@ function ResumeHeader() {
 
   const backgroundColor = (link) =>
     `${
-      completed[link.text.split(' ').join('_')] ||
-      (link.text === 'finalize' &&
-        (pathname === '/resume/builder/preview' ||
-          pathname === '/resume/builder/download'))
-        ? 'bg-success-400'
+      completed[link.text.split(" ").join("_")] ||
+      (link.text === "finalize" &&
+        (pathname === "/resume/builder/preview" ||
+          pathname === "/resume/builder/download"))
+        ? "bg-success-400"
         : locationNo >= link.no
-        ? 'bg-white'
-        : 'bg-neutral-400 '
+        ? "bg-white"
+        : "bg-neutral-400 "
     }`;
 
   return (
@@ -113,36 +112,36 @@ function ResumeHeader() {
               {links.map((link, index) => (
                 <Link
                   to={
-                    completed[link.text.split(' ').join('_')] ||
+                    completed[link.text.split(" ").join("_")] ||
                     locationNo >= link.no
                       ? link.path
-                      : '#'
+                      : "#"
                   }
                   key={index}
                   className={`flex cursor-pointer items-center gap-2 text-sm ${
-                    completed[link.text.split(' ').join('_')] ||
-                    (link.text === 'finalize' &&
-                      (pathname === '/resume/builder/preview' ||
-                        pathname === '/resume/builder/download'))
-                      ? 'text-success-400 font-semibold'
+                    completed[link.text.split(" ").join("_")] ||
+                    (link.text === "finalize" &&
+                      (pathname === "/resume/builder/preview" ||
+                        pathname === "/resume/builder/download"))
+                      ? "text-success-400 font-semibold"
                       : locationNo >= link.no
-                      ? 'text-white font-semibold'
-                      : 'text-neutral-400 font-medium'
+                      ? "text-white font-semibold"
+                      : "text-neutral-400 font-medium"
                   }`}
                 >
                   <span
                     className={`max-md:hidden circle-orange ${
-                      completed[link.text.split(' ').join('_')] ||
-                      (link.text === 'finalize' &&
-                        (pathname === '/resume/builder/preview' ||
-                          pathname === '/resume/builder/download'))
-                        ? 'bg-success-400'
+                      completed[link.text.split(" ").join("_")] ||
+                      (link.text === "finalize" &&
+                        (pathname === "/resume/builder/preview" ||
+                          pathname === "/resume/builder/download"))
+                        ? "bg-success-400"
                         : locationNo >= link.no
-                        ? 'text-white border-white'
-                        : 'text-neutral-400 border-neutral-400'
+                        ? "text-white border-white"
+                        : "text-neutral-400 border-neutral-400"
                     }`}
                   >
-                    {completed[link.text.split(' ').join('_')] ? (
+                    {completed[link.text.split(" ").join("_")] ? (
                       <FaCheck color="white" />
                     ) : (
                       link.no
@@ -177,22 +176,22 @@ function ResumeHeader() {
           <nav
             className={
               isOpen
-                ? 'flex flex-col gap-8 w-full h-screen items-start pt-36 bg-primary-600 px-6 text-white fixed z-20 top-0 right-0 md:hidden'
-                : 'hidden'
+                ? "flex flex-col gap-8 w-full h-screen items-start pt-36 bg-primary-600 px-6 text-white fixed z-20 top-0 right-0 md:hidden"
+                : "hidden"
             }
           >
             {navLinks.map((link, index) => (
               <Link
                 className={
-                  (link.link === '/blog' &&
-                    pathname.split('/')[1] === 'blog') ||
+                  (link.link === "/blog" &&
+                    pathname.split("/")[1] === "blog") ||
                   link.link === pathname
-                    ? 'py-1 border-b border-secondary-600'
-                    : 'py-1'
+                    ? "py-1 border-b border-secondary-600"
+                    : "py-1"
                 }
                 onClick={toggle}
                 key={index}
-                to={link.link === '/blog' ? '/blog/all' : link.link}
+                to={link.link === "/blog" ? "/blog/all" : link.link}
               >
                 {link.name}
               </Link>
@@ -208,32 +207,32 @@ function ResumeHeader() {
             key={index}
             className={`${
               link.no <= links.length - 1
-                ? 'flex cursor-pointer items-center gap-2 text-sm'
-                : ''
+                ? "flex cursor-pointer items-center gap-2 text-sm"
+                : ""
             } ${
-              completed[link.text.split(' ').join('_')] ||
-              (link.text === 'finalize' &&
-                (pathname === '/resume/builder/preview' ||
-                  pathname === '/resume/builder/download'))
-                ? 'text-success-400 font-semibold'
+              completed[link.text.split(" ").join("_")] ||
+              (link.text === "finalize" &&
+                (pathname === "/resume/builder/preview" ||
+                  pathname === "/resume/builder/download"))
+                ? "text-success-400 font-semibold"
                 : locationNo >= link.no
-                ? 'text-secondary-500 font-semibold'
-                : 'text-secondary-300 font-medium'
+                ? "text-secondary-500 font-semibold"
+                : "text-secondary-300 font-medium"
             }`}
           >
             <span
               className={`circle-orange ${
-                completed[link.text.split(' ').join('_')] ||
-                (link.text === 'finalize' &&
-                  (pathname === '/resume/builder/preview' ||
-                    pathname === '/resume/builder/download'))
-                  ? 'bg-success-400'
+                completed[link.text.split(" ").join("_")] ||
+                (link.text === "finalize" &&
+                  (pathname === "/resume/builder/preview" ||
+                    pathname === "/resume/builder/download"))
+                  ? "bg-success-400"
                   : locationNo >= link.no
-                  ? 'text-secondary-500 border-secondary-500'
-                  : 'text-secondary-300 border-secondary-300'
+                  ? "text-secondary-500 border-secondary-500"
+                  : "text-secondary-300 border-secondary-300"
               }`}
             >
-              {completed[link.text.split(' ').join('_')] ? (
+              {completed[link.text.split(" ").join("_")] ? (
                 <FaCheck color="white" />
               ) : (
                 link.no
@@ -242,11 +241,11 @@ function ResumeHeader() {
             {link.no <= links.length - 1 && (
               <span
                 className={`nav-dotted-line relative rounded-xl hidden xxs:block w-4 sm:w-6 h-0.5 ${
-                  completed[link.text.split(' ').join('_')]
-                    ? 'bg-success-400'
+                  completed[link.text.split(" ").join("_")]
+                    ? "bg-success-400"
                     : locationNo >= link.no
-                    ? 'bg-secondary-500'
-                    : 'bg-secondary-300 inactive'
+                    ? "bg-secondary-500"
+                    : "bg-secondary-300 inactive"
                 }`}
               />
             )}
