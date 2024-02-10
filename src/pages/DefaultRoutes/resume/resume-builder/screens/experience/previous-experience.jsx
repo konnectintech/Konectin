@@ -78,6 +78,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
       (data.startMonth !== "" || data.startYear !== "") &&
       (data.current || data.endMonth !== "" || data.endYear !== "")
     ) {
+      openModal();
       navigate("/resume/builder/employment-experience/responsibilities");
     }
   };
