@@ -5,13 +5,6 @@ import { useEffect, useState } from "react";
 import NavigationButton from "../navigationButton";
 import SelectedTemplates from "../../resume-templates";
 import { onSectionComplete } from "../verification";
-import { FaPlus, FaPen, FaTrash, FaCaretDown, FaCaretUp } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import { useTemplateContext } from "../../../../../../middleware/resume";
-import { useEffect, useState } from "react";
-import NavigationButton from "../navigationButton";
-import SelectedTemplates from "../../resume-templates";
-import { onSectionComplete } from "../verification";
 
 const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
   const { templateData, setTemplateData } = useTemplateContext();
