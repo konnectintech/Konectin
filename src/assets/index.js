@@ -1,5 +1,6 @@
 // Icons
 import bulbIcon from "./icons/bulb.svg";
+import tipIcon from "./icons/cover-letter/tip.svg";
 import blurImage from "./icons/blur.svg";
 import successIcon from "./icons/success.svg";
 import calendarIcon from "./icons/calendar.svg";
@@ -104,6 +105,23 @@ import ResumeTemplateSampleImage from "./images/resume template.png";
 import BuilderBg from "./images/builder-bg.png";
 import ResumeTemplateSample1Image from "./images/resume template 1.png";
 import ResumeCTAImage from "./images/cta.png";
+import basicInfo from "./icons/basic_info.svg";
+import workExpirience from "./icons/work_experience.svg";
+import education from "./icons/education.svg";
+import skill from "./icons/skill.svg";
+import bio from "./icons/bio.svg";
+import finalize from "./icons/finalize.svg";
+import eye from "./icons/eye.svg";
+import menu from "./icons/menu.svg";
+import page from "./icons/page.svg";
+import profileadd from "./icons/profile-add.svg";
+import style from "./icons/style.svg";
+import tips from "./icons/tips.svg";
+import tips2 from "./icons/tips2.svg";
+import droplet from "./icons/droplet.svg";
+import download from "./icons/download.svg";
+import pdffolder from "./icons/pdffolder.svg";
+import docfolder from "./icons/docfolder.svg";
 
 // Blog Images
 import blogHero from "./images/blog/hero.jpg";
@@ -132,6 +150,7 @@ import ContactUSImage from "./images/contact-us.png";
 export {
   // Icons
   bulbIcon,
+  tipIcon,
   blurImage,
   calendarIcon,
   contactIcon,
@@ -200,6 +219,23 @@ export {
   createResume,
   uploadResume,
   botIcon,
+  basicInfo,
+  workExpirience,
+  education,
+  skill,
+  bio,
+  finalize,
+  eye,
+  menu,
+  page,
+  profileadd,
+  style,
+  tips,
+  tips2,
+  droplet,
+  download,
+  docfolder,
+  pdffolder,
 
   //Dashboard Images
   bell,

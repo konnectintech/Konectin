@@ -113,7 +113,7 @@ function HighSchool() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSectionComplete(templateData, 3);
+    onSectionComplete(templateData);
 
     delete education._id; // Remove its id
 

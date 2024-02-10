@@ -45,7 +45,7 @@ const Username = ({ data }) => {
       },
     }));
 
-    navigate("profession");
+    navigate("level");
   };
 
   return (
@@ -84,14 +84,14 @@ const Username = ({ data }) => {
           placeholder="Enter your full name"
           value={name}
           onChange={handleChange}
-          className="w-full border-b border-neutral-500 rounded-lg p-6 text-[11px] text-neutral-400 tracking-wide outline-none"
+          className="w-full border-b border-neutral-500 rounded-lg p-4 text-[11px] text-neutral-400 tracking-wide outline-none"
         />
         <p className="absolute -bottom-7 text-sm text-error-500">{error}</p>
         <button
           onClick={handleSubmit}
-          className="absolute right-10 text-primary-500 text-sm"
+          className="absolute right-4 bg-primary-500 text-white rounded-md px-6 py-1 text-sm"
         >
-          Press Enter
+          Continue
         </button>
       </form>
     </>

@@ -1,16 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Editor } from "@tinymce/tinymce-react";
-import Suggestions from "../../../../../../components/suggestions";
 import NavigationButton from "../navigationButton";
 import SelectedTemplates from "../../resume-templates";
-import { AzureKeyCredential, OpenAIClient } from "@azure/openai";
 import { onSectionComplete } from "../verification";
+import ResumeModal from "../../../../../../layouts/resumeRoutes/resumeModal";
+import { botIcon } from "../../../../../../assets";
+import BioAi from "./BioAi";
 
 const Bio = ({ data, onInputChange }) => {
-  const [responsibility, setResponsibility] = useState(
-    data.basicInfo.profession
-  );
   const [editorValue, setEditorValue] = useState(data?.bio);
   const [dirty, setDirty] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -18,7 +16,18 @@ const Bio = ({ data, onInputChange }) => {
   const editorRef = useRef(null);
   const navigate = useNavigate();
 
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   useEffect(() => {
+    console.log("editorValue", editorValue);
     const interval = setInterval(() => {
       onInputChange({ section: "bio", values: editorValue });
       setDirty(false);
@@ -29,16 +38,10 @@ const Bio = ({ data, onInputChange }) => {
     };
   }, [editorValue, onInputChange]);
 
-  const handleAddSuggestion = (value) => {
-    const content = editorRef.current.getContent();
-    setEditorValue(`${content} ${value.content}`);
-    editorRef.current.setDirty(true);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onSectionComplete(data, 5);
+    onSectionComplete(data);
 
     const wordCount = editorRef
       ? editorRef.current.plugins.wordcount.getCount()
@@ -53,66 +56,9 @@ const Bio = ({ data, onInputChange }) => {
     if (dirty) {
       setErrorMessage("You have unsaved content!");
     } else {
-      navigate("/resume/builder/preview");
+      navigate("/resume/builder/add_information");
     }
   };
-
-  const [suggestions, setSuggestion] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const azureApiKey = import.meta.env.VITE_OPENAI_KEY;
-
-  const getJobProfile = async (n) => {
-    setLoading(true);
-    const messages = [
-      {
-        role: "user",
-        content: `Using Google XYZ Formula, generate professional biography for ${
-          data.basicInfo.firstName
-        } ${data.basicInfo.lastName}, ${responsibility} at ${
-          data.jobExperience[0].company
-        }. Highlight ${data.basicInfo.firstName} ${
-          data.basicInfo.lastName
-        }'s key skills in ${data.skills.map(
-          (skill) => `${skill.name} `
-        )}, experience, and accomplishments using about 5 personality associated with ${responsibility}. Keep it concise and aim for about 50-100 words. Use keywords to enhance discoverability and proof read for accuracy.`,
-      },
-    ];
-
-    try {
-      const client = new OpenAIClient(
-        "https://azure-openai-konectin.openai.azure.com/",
-        new AzureKeyCredential(azureApiKey)
-      );
-      const deploymentId = "35Turbo";
-      const result = await client.getChatCompletions(deploymentId, messages);
-
-      const replica = suggestions;
-      replica.splice(n, 1, { content: result.choices[0].message.content });
-      setSuggestion(replica);
-    } catch (err) {
-      console.log(err);
-    }
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    if (loading) {
-      const preloader = new Array(5).fill({
-        content:
-          "Streamlined financial reporting process, reducing monthly close time by 20%, and ensuring accuracy of financial statements.",
-        loading,
-      });
-      setSuggestion(preloader);
-    }
-  }, [loading]);
-
-  useEffect(() => {
-    for (let i = 0; i <= 5; i++) {
-      getJobProfile(i);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [responsibility]);
 
   return (
     <div className="flex flex-col justify-between items-start mx-auto">
@@ -130,19 +76,19 @@ const Bio = ({ data, onInputChange }) => {
         </div>
 
         <div className="flex flex-col-reverse sm:flex-row gap-8 w-full">
-          <div className="max-sm:hidden w-1/2">
-            <Suggestions
-              jobTitle={responsibility}
-              handleChange={(value) => setResponsibility(value)}
-              handleAddSuggestion={handleAddSuggestion}
-              selected={editorValue}
-              responsibilities={suggestions}
-            />
-          </div>
           <div className="sm:w-1/2">
-            <p className="font-semibold text-[#66666a] text-xs mb-3 mt-1">
-              This is a brief description of you job background
-            </p>
+            <div className="flex justify-between">
+              <p className="font-semibold text-[#66666a] text-xs mb-3 mt-1">
+                This is a brief description of you job background
+              </p>
+              <div onClick={openModal} className="w-10 h-10 cursor-pointer">
+                <img
+                  className="object-contain"
+                  src={botIcon}
+                  alt="Konecto-bot"
+                />
+              </div>
+            </div>
             <div className="h-full">
               <Editor
                 apiKey="muetp0kpit1cdofn0tsv7aym5shbxqnxzglv3000ilo9pc0m"
@@ -177,6 +123,21 @@ const Bio = ({ data, onInputChange }) => {
             </div>
           </div>
         </div>
+        {isModalOpen && (
+          <ResumeModal onClose={closeModal}>
+            <BioAi
+              closeModal={closeModal}
+              data={data}
+              onInputChange={onInputChange}
+              editorValue={editorValue}
+              setEditorValue={setEditorValue}
+              setDirty={setDirty}
+              dirty={dirty}
+              setErrorMessage={setErrorMessage}
+              errorMessage={errorMessage}
+            />
+          </ResumeModal>
+        )}
       </div>
 
       <div className="mt-12 w-full">
