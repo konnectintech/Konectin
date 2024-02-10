@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { NavLink } from "react-router-dom";
-import { dashboardRoutes } from "../layout/navigation";
+// import { NavLink } from "react-router-dom";
+// import { dashboardRoutes } from "../layout/navigation";
 
 function Main() {
   return (
@@ -8,14 +8,14 @@ function Main() {
       <div className=" flex flex-col gap-8 bg-primary-600 text-white p-4 px-8 rounded-lg ">
         <div className=" font-[900] text-4xl">Edit Profile</div>
         <div className="flex items-center gap-4">
-          {dashboardRoutes.map((route) => (
+          {/* {dashboardRoutes.map((route) => (
             <NavLink
               to={`/dashboard${route.path}`}
               className="text-white cursor-pointer "
             >
               {route.name}
             </NavLink>
-          ))}
+          ))} */}
         </div>
       </div>
       <Outlet />
