@@ -5,7 +5,7 @@ import {
   ResumeTemplateSampleImage,
 } from "../../../../assets";
 import { ResumeButton } from "../../../../components/button";
-import InfiniteLooper from "../../../../components/infiniteScroller";
+import InfiniteLooper from "../../../../components/elementScroll";
 import "./index.css";
 import { slideIn, textVariantUp } from "../../../../utils/motion";
 import SectionWrapper from "../../../../components/animation/sectionWrapper";

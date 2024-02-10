@@ -40,6 +40,7 @@ import { CVProvider } from "./middleware/cv";
 import ResumeFooter from "./layouts/resumeRoutes/resumeFooter";
 import Header from "./layouts/header";
 
+// import DashBoard from "./pages/ProtectedRoutes/dashboard";
 // import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
 
 function App() {
@@ -75,16 +76,12 @@ function App() {
             <Route path="/policy" element={<PrivacyPolicy />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/contact" element={<Contact />} />
-
             {/* <Route path="/admin" element={<Admin />} /> */}
             <Route path="/blog/" element={<Blog />}>
               <Route path="/blog/:feed" element={<Feeds />} />
               <Route path="/blog/:feed/:id" element={<BlogContent />} />
             </Route>
             <Route path="/about" element={<About />} />
-            <Route element={<ProtectedRoutes />}>
-              <Route path="/dashboard/*" element={<DashBoard />} />
-            </Route>
           </Route>
 
           {/* Resume Builder Routes */}
@@ -117,6 +114,10 @@ function App() {
               <Route path="/resume/builder/*" element={<Builder />} />
             </Route>
             <Route path="/resume/upload/*" element={<ResumeUpload />} />
+          </Route>
+
+          <Route element={<ProtectedRoutes />}>
+            {/* <Route path="/dashboard/*" element={<DashBoard />} /> */}
           </Route>
         </Route>
       </Routes>
