@@ -10,11 +10,11 @@ import {
 import { FaChevronDown, FaChevronUp, FaPlus } from "react-icons/fa";
 import LeftSidebarWalkthrough from "../../components/resume/walkthrough/leftSidebarWalkthrough";
 import { useWalkthrough } from "../../middleware/walkthrough";
-import { useTemplateContext } from "../../middleware/resume";
 import { Link } from "react-router-dom";
+import { useLocalStorage } from "../../middleware/storage";
 
 function ResumeLeftbar() {
-  const { templateData } = useTemplateContext();
+  const { templateData } = useLocalStorage("konectin-profiler-data-template");
   const { currentModule } = useWalkthrough();
   const [active, setActive] = useState(false);
 

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./middleware/auth";
 
 import ResumeRoutes from "./layouts/resumeRoutes";
@@ -86,34 +86,26 @@ function App() {
           </Route>
 
           {/* Resume Builder Routes */}
+          <Route element={<ResumeRoutes />}>
+            <Route path="/resume/options" element={<Options />} />
+          </Route>
+
           <Route
             element={
               <WalkthroughProvider>
-                <ResumeRoutes />
+                <TemplateProvider>
+                  <CVProvider>
+                    <ResumeRoutes />
+                  </CVProvider>
+                </TemplateProvider>
               </WalkthroughProvider>
             }
           >
-            <Route path="/resume/options" element={<Options />} />
-
-            <Route
-              element={
-                <TemplateProvider>
-                  <CVProvider>
-                    <Outlet />
-                  </CVProvider>
-                </TemplateProvider>
-              }
-            >
-              <Route path="/cover-letter/*" element={<Coverletter />} />
-              <Route path="/resume/ai/*" element={<AIStarter />} />
-              <Route path="/resume/builder/*" element={<Builder />} />
-            </Route>
-            <Route path="/resume/upload/*" element={<ResumeUpload />} />
+            <Route path="/cover-letter/*" element={<Coverletter />} />
+            <Route path="/resume/ai/*" element={<AIStarter />} />
+            <Route path="/resume/builder/*" element={<Builder />} />
           </Route>
-
-          <Route element={<ProtectedRoutes />}>
-            <Route path="/dashboard/*" element={<DashBoard />} />
-          </Route>
+          <Route path="/resume/upload/*" element={<ResumeUpload />} />
         </Route>
       </Routes>
     </BrowserRouter>

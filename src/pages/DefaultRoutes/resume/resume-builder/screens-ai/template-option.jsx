@@ -1,18 +1,18 @@
-import { template_images } from '../../../../../assets/resume';
-import { useTemplateContext } from '../../../../../middleware/resume';
+import { template_images } from "../../../../../assets/resume";
+import { useTemplateContext } from "../../../../../middleware/resume";
 
 // Import Swiper styles
-import 'swiper/swiper.css';
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
-import { FieldForm } from '../../../../../components/form';
-import * as FaIcon from 'react-icons/fa';
-import axios from 'axios';
-import { konectinIcon } from '../../../../../assets';
-import { loginForm } from '../../../../sign/signData';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { onSectionComplete } from '../screens/verification';
+import "swiper/swiper.css";
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+import { FieldForm } from "../../../../../components/form";
+import * as FaIcon from "react-icons/fa";
+import axios from "axios";
+import { konectinIcon } from "../../../../../assets";
+import { loginForm } from "../../../../sign/signData";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { onSectionComplete } from "../screens/verification";
 
 const TemplateOption = ({ sectionName }) => {
   const { templateData, setTemplateData } = useTemplateContext();
@@ -21,12 +21,12 @@ const TemplateOption = ({ sectionName }) => {
   const [selectedTemplate, setSelectedTemplate] = useState(false);
   const navigate = useNavigate();
   const [isloading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   async function createResume(value) {
     const { _id } =
-      JSON.parse(localStorage.getItem('konectin-profiler-user')) || '';
+      JSON.parse(localStorage.getItem("konectin-profiler-user")) || "";
     try {
       const data = { ...templateData };
 
@@ -47,23 +47,23 @@ const TemplateOption = ({ sectionName }) => {
         selectedTemplate: value,
       }));
       localStorage.setItem(
-        'konectin-profiler-data-template',
+        "konectin-profiler-data-template",
         JSON.stringify({
           ...templateData,
           ...resume,
           selectedTemplate: value,
         })
       );
-      navigate('/resume/builder');
+      navigate("/resume/builder");
     } catch (err) {
       console.error(err);
     }
   }
 
   const handleSelect = (value) => {
-    const { currentStage } = templateData;
+    const { currentStage, selectedTemplate } = templateData;
     const { _id } =
-      JSON.parse(localStorage.getItem('konectin-profiler-user')) || '';
+      JSON.parse(localStorage.getItem("konectin-profiler-user")) || "";
 
     if (_id === undefined) {
       setSelectedTemplate(value);
@@ -82,8 +82,20 @@ const TemplateOption = ({ sectionName }) => {
           },
         }));
 
-        onSectionComplete({ ...templateData, selectedTemplate: value });
-        navigate('/resume/builder/preview');
+        onSectionComplete(
+          { ...templateData, selectedTemplate: value },
+          currentStage
+        );
+        navigate("/resume/builder/preview");
+      } else if (selectedTemplate !== "") {
+        setTemplateData((prev) => ({
+          ...prev,
+          selectedTemplate: value,
+        }));
+        onSectionComplete(
+          { ...templateData, selectedTemplate: value },
+          currentStage
+        );
       } else {
         createResume(value);
       }
@@ -98,7 +110,7 @@ const TemplateOption = ({ sectionName }) => {
       const userData = { ...authresult.data.data };
       userData.token = authresult.data.token;
 
-      localStorage.setItem('konectin-profiler-user', JSON.stringify(userData));
+      localStorage.setItem("konectin-profiler-user", JSON.stringify(userData));
       setLoading(false);
       createResume(selectedTemplate);
     } catch (err) {
@@ -142,8 +154,8 @@ const TemplateOption = ({ sectionName }) => {
                                 ${
                                   templateData.selectedTemplate ===
                                   `${sectionName}_${index + 1}`
-                                    ? 'absolute w-full h-full top-0 bg-primary-300 bg-opacity-60'
-                                    : '-top-full'
+                                    ? "absolute w-full h-full top-0 bg-primary-300 bg-opacity-60"
+                                    : "-top-full"
                                 } left-0 duration-500 flex items-center justify-center`}
                 >
                   {templateData.selectedTemplate ===
@@ -158,8 +170,8 @@ const TemplateOption = ({ sectionName }) => {
                                 ${
                                   templateData.selectedTemplate ===
                                   `${sectionName}_${index + 1}`
-                                    ? '-top-full'
-                                    : 'absolute group-hover:w-full group-hover:h-full group-hover:top-0 bg-neutral-100 bg-opacity-60'
+                                    ? "-top-full"
+                                    : "absolute group-hover:w-full group-hover:h-full group-hover:top-0 bg-neutral-100 bg-opacity-60"
                                 } left-0 duration-500 flex items-center justify-center`}
                 >
                   <div
@@ -168,8 +180,8 @@ const TemplateOption = ({ sectionName }) => {
                                 ${
                                   templateData.selectedTemplate ===
                                   `${sectionName}_${index + 1}`
-                                    ? 'hidden'
-                                    : 'invisible absolute -top-full -translate-y-1/2 group-hover:top-1/2 group-hover:visible'
+                                    ? "hidden"
+                                    : "invisible absolute -top-full -translate-y-1/2 group-hover:top-1/2 group-hover:visible"
                                 } bg-secondary-600 text-white text-xs px-2 py-2 rounded cursor-pointer `}
                   >
                     Select Template
@@ -206,7 +218,7 @@ const TemplateOption = ({ sectionName }) => {
 
                 {/* Log In Link */}
                 <p className="self-center mt-6">
-                  You don't have an account?{' '}
+                  You don't have an account?{" "}
                   <Link
                     to="/signup"
                     className="text-secondary-600 hover:underline"
