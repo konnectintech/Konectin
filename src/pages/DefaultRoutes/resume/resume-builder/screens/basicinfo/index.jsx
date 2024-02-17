@@ -6,7 +6,6 @@ import CountryInput from "../../../../../../components/form/countryInput";
 import StateInput from "../../../../../../components/form/stateInput";
 import CityInput from "../../../../../../components/form/cityInput";
 import { onSectionComplete, verifyInput } from "../verification";
-import JobTitleInput from "../../../../../../components/jobTitleInput";
 
 const BasicInformation = ({ data, onInputChange }) => {
   const {
@@ -67,7 +66,7 @@ const BasicInformation = ({ data, onInputChange }) => {
   };
 
   const handleSubmit = () => {
-    onSectionComplete(data);
+    onSectionComplete(data, 2);
 
     const formHolder = Object.keys(data.basicInfo);
 
@@ -97,6 +96,7 @@ const BasicInformation = ({ data, onInputChange }) => {
     // Validation before routing to next page
     if (firstName && lastName && email && country) {
       const jobArray = Object.entries(data.jobExperience)[0];
+
       if (Object.keys(data.jobExperience).length >= 1) {
         if (jobArray[1].company === "" || jobArray[1].workDesc.length <= 28) {
           navigate("employment-experience");
@@ -161,19 +161,6 @@ const BasicInformation = ({ data, onInputChange }) => {
                 ></label>
               </div>
             </div>
-
-            <JobTitleInput
-              title={data?.basicInfo?.profession}
-              handleInputChange={({ section, subsection, values }) =>
-                onInputChange({
-                  section: section,
-                  subsection: subsection,
-                  values: values,
-                })
-              }
-              section="basicInfo"
-              subsection="profession"
-            />
 
             <div className="flex flex-col">
               <input
@@ -271,8 +258,12 @@ const BasicInformation = ({ data, onInputChange }) => {
           </div>
         </div>
 
-        <div className="max-lg:hidden">
-          <SelectedTemplates data={data} />
+        <div className="max-md:hidden w-1/2">
+          <div className="h-[360px] sm:h-[300px] md:h-[500px] lg:h-[580px] lg:w-[500px] flex items-center justify-center">
+            <div className="md:scale-[42%] lg:scale-[50%] mt-10">
+              <SelectedTemplates data={data} />
+            </div>
+          </div>
         </div>
       </div>
       <NavigationButton

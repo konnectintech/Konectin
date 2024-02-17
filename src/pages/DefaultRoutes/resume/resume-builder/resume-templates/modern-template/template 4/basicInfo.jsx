@@ -4,7 +4,7 @@ function BasicInfo({ data }) {
       <div className="side-content"></div>
 
       <div className="main-content sub-section">
-        <h1 className="capitalize">
+        <h1 className="capitalize pt-4">
           {data.firstName && data.lastName
             ? `${data.firstName} ${data.lastName}`
             : data.firstName

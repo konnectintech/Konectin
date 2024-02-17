@@ -12,56 +12,95 @@ import axios from "axios";
 import { konectinIcon } from "../../../../../assets";
 import { loginForm } from "../../../../sign/signData";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { useAuth } from "../../../../../middleware/auth";
+import { onSectionComplete } from "../screens/verification";
 
 const TemplateOption = ({ sectionName }) => {
   const { templateData, setTemplateData } = useTemplateContext();
-  const { user } = useAuth();
 
   const [popUp, setPopUp] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState(false);
   const navigate = useNavigate();
   const [isloading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
-  const handleSelect = (value) => {
-    const { currentStage } = templateData;
+  async function createResume(value) {
+    const { _id } =
+      JSON.parse(localStorage.getItem("konectin-profiler-user")) || "";
+    try {
+      const data = { ...templateData };
 
-    if (user === null) {
+      delete data.completed;
+      delete data._id;
+      delete data.userId;
+      delete data.__v;
+
+      const response = await axios.post(`${url}/resume?userId=${_id}`, {
+        ...data,
+        currentStage: 1,
+      });
+
+      const resume = response.data.cv;
+      setTemplateData((prev) => ({
+        ...prev,
+        ...resume,
+        selectedTemplate: value,
+      }));
+      localStorage.setItem(
+        "konectin-profiler-data-template",
+        JSON.stringify({
+          ...templateData,
+          ...resume,
+          selectedTemplate: value,
+        })
+      );
+      navigate("/resume/builder");
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  const handleSelect = (value) => {
+    const { currentStage, selectedTemplate } = templateData;
+    const { _id } =
+      JSON.parse(localStorage.getItem("konectin-profiler-user")) || "";
+
+    if (_id === undefined) {
+      setSelectedTemplate(value);
       setPopUp(true);
     } else {
-      async function createResume() {
-        try {
-          const response = await axios.post(`${url}/resume?userId=${user._id}`);
-
-          const resume = response.data.cv;
-          setTemplateData((prev) => ({
-            ...prev,
-            ...resume,
-            selectedTemplate: value,
-          }));
-          localStorage.setItem(
-            "konectin-profiler-data-template",
-            JSON.stringify({
-              ...templateData,
-              ...resume,
-              selectedTemplate: value,
-            })
-          );
-          navigate("/resume/builder");
-        } catch (err) {
-          console.error(err);
-        }
-      }
-
       if (currentStage === 6) {
         setTemplateData((prev) => ({
           ...prev,
           selectedTemplate: value,
+          completed: {
+            basic_info: true,
+            work_history: true,
+            education: true,
+            skills: true,
+            bio: true,
+          },
         }));
+
+        onSectionComplete(
+          { ...templateData, selectedTemplate: value },
+          currentStage
+        );
         navigate("/resume/builder/preview");
+      } else if (selectedTemplate !== "") {
+        setTemplateData((prev) => ({
+          ...prev,
+          selectedTemplate: value,
+        }));
+
+        onSectionComplete(
+          { ...templateData, selectedTemplate: value },
+          currentStage
+        );
+
+        navigate("/resume/builder");
       } else {
-        createResume();
+        createResume(value);
       }
     }
   };
@@ -76,9 +115,10 @@ const TemplateOption = ({ sectionName }) => {
 
       localStorage.setItem("konectin-profiler-user", JSON.stringify(userData));
       setLoading(false);
-      navigate("/resume/builder");
+      createResume(selectedTemplate);
     } catch (err) {
       setLoading(false);
+      setPopUp(false);
       setErrorMessage(err.response.data.message);
     }
   };

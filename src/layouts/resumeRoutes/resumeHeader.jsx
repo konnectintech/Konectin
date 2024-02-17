@@ -1,17 +1,16 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { FaBars, FaCheck, FaTimes } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
-import { konectinIcon } from "../../assets";
-import { useTemplateContext } from "../../middleware/resume";
+// import { konectinIcon } from "../../assets";
 import "../header/header.css";
-import ProgressWalkthrough from "../../components/resume/walkthrough/ProgressWalkthrough";
+import ProgressWalkthrough from "../../components/resume/walkthrough/progressWalkthrough";
 import { useWalkthrough } from "../../middleware/walkthrough";
+import { useTemplateContext } from "../../middleware/resume";
 
 function ResumeHeader() {
   const { templateData, setTemplateData } = useTemplateContext();
   const { currentModule } = useWalkthrough();
-  const { currentStage } = templateData;
+  const currentStage = templateData?.currentStage;
   const locationNo = currentStage;
 
   const [completed, setCompleted] = useState({
@@ -37,7 +36,9 @@ function ResumeHeader() {
     { path: "/resume/builder", text: "basic info", no: 1 },
     {
       path:
-        Object.keys(templateData.jobExperience).length <= 0
+        Object.keys(
+          templateData?.jobExperience ? templateData?.jobExperience : []
+        ).length <= 0
           ? "/resume/builder/employment-experience"
           : "/resume/builder/employment-experience/job-activities",
       text: "work history",
@@ -70,7 +71,7 @@ function ResumeHeader() {
   }, [completed]);
 
   useEffect(() => {
-    setCompleted(templateData.completed);
+    setCompleted(templateData?.completed);
   }, [templateData]);
 
   const toggle = () => {

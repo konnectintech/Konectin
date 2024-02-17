@@ -9,8 +9,6 @@ function SelectedTemplates({ data }) {
     return;
   }
 
-  console.log("selectedTemplate", selectedTemplate);
-
   const [templateType, templateIndex] = selectedTemplate.split("_");
   const [ExactTemplate] =
     templateType === "modern"

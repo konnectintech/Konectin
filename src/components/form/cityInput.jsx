@@ -40,7 +40,7 @@ function CityInput({ countryId, stateId, handleChange, city }) {
             className="bg-transparent outline-none border-none w-full"
             id="cities"
             name="city"
-            value={city}
+            value={city ? city : ""}
             placeholder="Enter City"
             onChange={(e) => handleCityInput(e.target.value)}
             onInput={(e) => handleCityInput(e.target.value)}
@@ -53,7 +53,7 @@ function CityInput({ countryId, stateId, handleChange, city }) {
           ref={errorMessage}
         ></label>
       </div>
-      {showCity && city.length >= 3 && (
+      {showCity && city?.length >= 3 && (
         <div className="absolute flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto max-h-[30vh] h-fit top-full w-full">
           {cityList.map((item, index) => (
             <div

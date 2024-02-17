@@ -66,7 +66,7 @@ function PrivacyPolicy() {
 
       <div className="max-md:mt-6 px-6 md:px-12">
         <p className="text-secondary-600 text-sm">
-          Last revised on: 5th April, 2023
+          Last revised on: 5th February, 2024
         </p>
         <div id="provideFeedback">
           {/* Provide Feedback */}
@@ -80,8 +80,8 @@ function PrivacyPolicy() {
             <p className="my-4">
               You can contact our customer support team directly through our
               website or by emailing{" "}
-              <a href="mailto:admin@konectin.org">
-                <b>admin@konectin.org</b>
+              <a href="mailto:info@konectin.org">
+                <b>info@konectin.org</b>
               </a>{" "}
               to share your feedback.
             </p>

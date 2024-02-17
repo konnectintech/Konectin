@@ -183,11 +183,7 @@ function InternApplication() {
   };
 
   const handleVerify = () => {
-    axios
-      .post(`${url}/requestEmail?userId=${user._id}`, { email: user.email })
-      .then((res) => {
-        navigate("/verify-mail", { state: { from: "intern" } });
-      });
+    navigate("/verify-mail", { state: { from: "intern" } });
   };
 
   const handleSubmit = (e) => {

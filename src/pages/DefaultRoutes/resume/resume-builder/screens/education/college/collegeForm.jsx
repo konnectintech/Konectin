@@ -149,7 +149,7 @@ function CollegeForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    onSectionComplete(templateData);
+    onSectionComplete(templateData, 3);
 
     const formHolder = Object.keys(education);
 
@@ -440,8 +440,12 @@ function CollegeForm() {
           </form>
         </div>
 
-        <div className="max-md:hidden">
-          <SelectedTemplates data={templateData} />
+        <div className="max-md:hidden w-1/2">
+          <div className="h-[360px] sm:h-[300px] md:h-[500px] lg:h-[580px] lg:w-[500px] flex items-center justify-center">
+            <div className="md:scale-[42%] lg:scale-[50%] mt-10">
+              <SelectedTemplates data={templateData} />
+            </div>
+          </div>
         </div>
       </div>
       <div className="mt-16">

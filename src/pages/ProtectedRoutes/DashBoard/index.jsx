@@ -2,11 +2,8 @@
 import { Routes, Route } from "react-router-dom";
 import "./index.css";
 import { Suspense } from "react";
-import { newdashboardRoutes } from "./layout/navigation";
-// import { dashboardRoutes, newdashboardRoutes } from "./layout/navigation";
+import { dashboardRoutes } from "./layout/navigation";
 import Sidebar from "./layout/sidebar";
-// import AsideBar from "./layout/asidebar";
-// import Jobs from "./pages/job";
 import Main from "./pages/main";
 import UserInfo from "./pages/userInfo";
 
@@ -17,7 +14,7 @@ const DashBoard = () => {
         <div className="w-full sm:w-1/4 sm:min-w-[170px] md:min-w-[230px]">
           <Sidebar />
         </div>
-        
+
         <div className="flex flex-1 h-full flex-col gap-6 justify-between min-h-screen bg-gray-25">
           <Routes>
             <Route
@@ -30,7 +27,7 @@ const DashBoard = () => {
               }
             >
               <Route path="/" element={<UserInfo />} />
-              {newdashboardRoutes.map((route) => (
+              {dashboardRoutes.map((route) => (
                 <Route
                   key={route.path}
                   path={route.path}
@@ -46,7 +43,6 @@ const DashBoard = () => {
           <span className="font-bold text-black">October 1, 2020</span>
         </div>
       </div>
-      
     </>
   );
 };

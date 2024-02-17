@@ -1,22 +1,49 @@
 import axios from "axios";
 
-export const onSectionComplete = async (template) => {
+export const onSectionComplete = async (template, stage) => {
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
-  const duplicateData = { ...template };
+  const data = { ...template };
 
-  delete duplicateData.completed;
-  delete duplicateData._id;
-  delete duplicateData.userId;
-  delete duplicateData.__v;
+  delete data.completed;
+  delete data._id;
+  delete data.userId;
+  delete data.__v;
 
   try {
     const user = JSON.parse(localStorage.getItem("konectin-profiler-user"));
+
     if (user) {
-      await axios.put(
+      const { currentStage } = data;
+      // If the user is logged in, add their details to the template submission
+      const regenResume = await axios.put(
         `${url}/updateResume?userId=${user._id}&resumeId=${template._id}`,
-        duplicateData
+        {
+          ...data,
+          currentStage: stage >= currentStage ? stage : currentStage,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
       );
+
+      localStorage.setItem(
+        "konectin-profiler-data-template",
+        JSON.stringify({
+          completed: {
+            basic_info: currentStage >= 1,
+            work_history: currentStage >= 2,
+            education: currentStage >= 3,
+            skills: currentStage >= 4,
+            bio: currentStage >= 5,
+          },
+          ...regenResume.data.updated,
+        })
+      );
+
+      console.log("resume updated", regenResume.data.updated);
     }
   } catch (err) {
     console.error(err);
@@ -43,6 +70,8 @@ export function verifyInput(data, errorRef, holder) {
         container.style.borderColor = "initial";
         errorRef.style.display = "none";
       }
+      break;
+    case "current":
       break;
     case "startMonth":
     case "startYear":

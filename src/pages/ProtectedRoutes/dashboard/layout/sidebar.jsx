@@ -1,8 +1,11 @@
+<<<<<<< HEAD
 // import { NavLink, useLocation } from "react-router-dom";
 // import { dashboardRoutes } from "./navigation";
 import { uploadIcon } from "../../../../assets";
 import { useAuth } from "../../../../middleware/auth";
 
+=======
+>>>>>>> 0e63e24f09dcc6dc7e41f1c6d6ae03722af51994
 function Sidebar() {
   const { user } = useAuth();
   
@@ -36,17 +39,22 @@ function Sidebar() {
       {/* mt-4 */}
       <div className="order-4 hidden sm:flex sm:mt-3.5 flex-col gap-4  text-center text-[#8C8C8F] border border-[#8C8C8F] text-xs bg-[#F0EFF5] rounded-lg p-4">
         <p>
-          Upload a new picture. Larger image will be resized automatically.{" "}
+          Upload a new picture. Larger image will be resized automatically.{' '}
         </p>
         <p>
-          Maximum upload size is{" "}
+          Maximum upload size is{' '}
           <span className="font-bold text-black">1MB</span>
         </p>
       </div>
 
+<<<<<<< HEAD
       
       <div className="order-5 hidden sm:block text-center text-gray-600 text-sm">
         Member Since:{" "}
+=======
+      <div class="text-center text-gray-600 text-sm mt-4">
+        Member Since:{' '}
+>>>>>>> 0e63e24f09dcc6dc7e41f1c6d6ae03722af51994
         <span className="font-bold text-black">October 1, 2020</span>
       </div>
     </div>
