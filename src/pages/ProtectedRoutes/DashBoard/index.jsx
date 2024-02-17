@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import { Routes, Route, Outlet } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import "./index.css";
@@ -10,6 +11,16 @@ import Sidebar from "./layout/sidebar";
 // import Jobs from "./pages/job";
 import Main from "./pages/main";
 import UserInfo from "./pages/userInfo";
+=======
+import { Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
+// import Sidebar from "./layout/sidebar";
+import Main from "./pages/main";
+import UserProfile from "./pages/userProfile";
+// import { dashboardRoutes } from "./layout/navigation";
+
+import "./index.css";
+>>>>>>> 5e20bd8ddd917e078c6efde1fc1be8be9785962a
 
 const DashBoard = () => {
   return (
@@ -17,8 +28,13 @@ const DashBoard = () => {
       {/* <Header /> */}
       <div className="py-40 px-14 flex flex-col gap-5 sm:flex-row items-start justify-between min-h-screen bg-[#F0EFF5] ">
         <div className="w-full sm:w-1/4 min-w-[170px] md:min-w-[230px]">
+<<<<<<< HEAD
           {/* <div className="border border-solid border-red-500 sm:h-screen sm:bg-white bg-gray-25 sm:w-2/12 min-w-[170px] md:min-w-[230px]"> */}
           <Sidebar />
+=======
+          {/* <div className="sm:h-screen sm:bg-white bg-gray-25 sm:w-2/12 min-w-[170px] md:min-w-[230px]"> */}
+          {/* <Sidebar /> */}
+>>>>>>> 5e20bd8ddd917e078c6efde1fc1be8be9785962a
           {/* </div> */}
         </div>
 
@@ -33,14 +49,19 @@ const DashBoard = () => {
                 </Suspense>
               }
             >
+<<<<<<< HEAD
               <Route path="/" element={<UserInfo />} />
               {newdashboardRoutes.map((route) => (
+=======
+              <Route path="/" element={<UserProfile />} />
+              {/* {dashboardRoutes.map((route) => (
+>>>>>>> 5e20bd8ddd917e078c6efde1fc1be8be9785962a
                 <Route
                   key={route.path}
                   path={route.path}
                   element={<route.element />}
                 />
-              ))}
+              ))} */}
             </Route>
           </Routes>
         </div>

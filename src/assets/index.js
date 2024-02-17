@@ -145,6 +145,8 @@ import FounderIcon from "./images/team/founder.jpg";
 import AboutProfileImage from "./images/about profile.png";
 import OurVisionImage from "./images/vision.png";
 
+import ContactUSImage from "./images/contact-us.png";
+
 export {
   // Icons
   bulbIcon,
@@ -282,7 +284,12 @@ export {
   DavidIcon,
   MichaelIcon,
   AfolabiIcon,
+<<<<<<< HEAD
  FounderIcon,
+=======
+  FounderIcon,
+  ContactUSImage,
+>>>>>>> 5e20bd8ddd917e078c6efde1fc1be8be9785962a
   AnonymousIcon,
 
   // socials

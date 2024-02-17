@@ -1,13 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Editor } from "@tinymce/tinymce-react";
-import Suggestions from "../../../../../../components/suggestions";
 import NavigationButton from "../navigationButton";
 import SelectedTemplates from "../../resume-templates";
-import { AzureKeyCredential, OpenAIClient } from "@azure/openai";
 import { onSectionComplete } from "../verification";
 import ResumeModal from "../../../../../../layouts/resumeRoutes/resumeModal";
-import Responsibilities2 from "../experience/responsibilities2";
 import { botIcon } from "../../../../../../assets";
 import BioAi from "./BioAi";
 
@@ -44,7 +41,7 @@ const Bio = ({ data, onInputChange }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onSectionComplete(data);
+    onSectionComplete(data, 5);
 
     const wordCount = editorRef
       ? editorRef.current.plugins.wordcount.getCount()
@@ -118,8 +115,12 @@ const Bio = ({ data, onInputChange }) => {
               />
             </div>
           </div>
-          <div className="max-lg:hidden">
-            <SelectedTemplates data={data} />
+          <div className="max-lg:hidden w-1/3">
+            <div className="lg:h-[500px] xl:h-[600px] 2xl:h-[850px] flex items-center justify-center">
+              <div className="lg:scale-[40%] xl:scale-[50%] 2xl:scale-[70%] mt-10">
+                <SelectedTemplates data={data} />
+              </div>
+            </div>
           </div>
         </div>
         {isModalOpen && (

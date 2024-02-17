@@ -43,7 +43,7 @@ const Skills = ({ data, updateResume }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSectionComplete(data);
+    onSectionComplete(data, 4);
     navigate("/resume/builder/bio");
   };
 
@@ -161,8 +161,12 @@ const Skills = ({ data, updateResume }) => {
           </Link>
         </div>
 
-        <div className="max-md:hidden">
-          <SelectedTemplates data={data} />
+        <div className="max-md:hidden w-1/2">
+          <div className="h-[360px] sm:h-[300px] md:h-[580px] flex items-center justify-center">
+            <div className="md:scale-[50%] mt-10">
+              <SelectedTemplates data={data} />
+            </div>
+          </div>
         </div>
       </div>
       <div className="mt-8">
