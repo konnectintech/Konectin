@@ -36,7 +36,7 @@ const TemplateOption = ({ sectionName }) => {
       delete data.__v;
 
       const response = await axios.post(`${url}/resume?userId=${_id}`, {
-        data,
+        ...data,
         currentStage: 1,
       });
 

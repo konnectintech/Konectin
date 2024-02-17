@@ -19,7 +19,7 @@ export const onSectionComplete = async (template, stage) => {
       const regenResume = await axios.put(
         `${url}/updateResume?userId=${user._id}&resumeId=${template._id}`,
         {
-          data,
+          ...data,
           currentStage:
             currentStage === 6
               ? 6
