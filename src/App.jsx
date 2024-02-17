@@ -80,6 +80,7 @@ function App() {
               <Route path="/blog/:feed/:id" element={<BlogContent />} />
             </Route>
             <Route path="/about" element={<About />} />
+
             <Route element={<ProtectedRoutes />}>
               <Route path="/dashboard/*" element={<DashBoard />} />
             </Route>
