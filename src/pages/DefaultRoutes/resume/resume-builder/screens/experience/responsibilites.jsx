@@ -45,7 +45,7 @@ const Responsibilities = ({ data, handleInputChange }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSectionComplete(templateData, 2);
+    onSectionComplete(templateData, 3);
 
     const wordCount = editorRef
       ? editorRef.current.plugins.wordcount.getCount()
