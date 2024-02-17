@@ -53,7 +53,7 @@ function StateInput({ countryId, handleChange, state, setStateId }) {
           ref={errorMessage}
         ></label>
       </div>
-      {showState && state.length >= 3 && (
+      {showState && state?.length >= 3 && (
         <div className="absolute flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto max-h-[30vh] h-fit top-full w-full">
           {stateList.map((item, index) => (
             <div

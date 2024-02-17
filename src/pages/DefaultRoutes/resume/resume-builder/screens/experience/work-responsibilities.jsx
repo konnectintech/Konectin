@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import Suggestions from "../../../../../../components/suggestions";
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
