@@ -92,10 +92,13 @@ const TemplateOption = ({ sectionName }) => {
           ...prev,
           selectedTemplate: value,
         }));
+
         onSectionComplete(
           { ...templateData, selectedTemplate: value },
           currentStage
         );
+
+        navigate("/resume/builder");
       } else {
         createResume(value);
       }

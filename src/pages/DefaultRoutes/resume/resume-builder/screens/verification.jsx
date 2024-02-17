@@ -20,12 +20,7 @@ export const onSectionComplete = async (template, stage) => {
         `${url}/updateResume?userId=${user._id}&resumeId=${template._id}`,
         {
           ...data,
-          currentStage:
-            currentStage === 6
-              ? 6
-              : stage < currentStage
-              ? currentStage
-              : currentStage + 1,
+          currentStage: stage >= currentStage ? stage : currentStage,
         },
         {
           headers: {

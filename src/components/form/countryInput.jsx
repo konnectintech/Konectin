@@ -45,7 +45,7 @@ function CountryInput({ setCode, handleChange, country, setCountryId }) {
         <div className="flex items-center">
           <input
             className="bg-transparent outline-none border-none w-full h-full"
-            value={country}
+            value={country ? country : ""}
             id="countries"
             autoComplete="country"
             name="country"
@@ -63,7 +63,7 @@ function CountryInput({ setCode, handleChange, country, setCountryId }) {
           Country required
         </label>
       </div>
-      {showCountry && country.length >= 3 && (
+      {showCountry && country?.length >= 3 && (
         <div className="absolute z-10 flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto max-h-[30vh] h-fit top-full w-full">
           {countriesList.map((item, index) => (
             <div
