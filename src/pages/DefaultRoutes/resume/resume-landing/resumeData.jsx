@@ -8,32 +8,17 @@ import {
 export const SliderData = [
   {
     button: "Build resume now",
-    title: (
-      <>
-        Create <font className="text-secondary-600">eye-catching resume</font>{" "}
-        that gets you the job.
-      </>
-    ),
+    title: <>Create an eye-catching résumé.</>,
     type: "Resume Builder",
     id: "#",
   },
   {
-    title: (
-      <>
-        <font className="text-secondary-600">Designed specifically</font> for
-        you
-      </>
-    ),
+    title: <>Designed specifically for you</>,
     type: "Resume Templates",
     id: "resume_templates",
   },
   {
-    title: (
-      <>
-        Follow <font className="text-secondary-600">useful tips</font> from
-        industry experts
-      </>
-    ),
+    title: <>Follow useful tips from industry Experts</>,
     type: "Resume Examples",
     id: "resume_examples",
   },

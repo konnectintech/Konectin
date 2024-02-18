@@ -36,16 +36,16 @@ function SliderSection({ data }) {
               <h4
                 className={`${
                   currentTemplate === index ? "font-bold" : "font-medium"
-                } text-[10px] sm:text-xs`}
+                } text-xl sm:text-xs`}
               >
                 {template.type}
               </h4>
               <small
-                className={
-                  currentTemplate === index
-                    ? "small w-[120px] sm:w-[150px]"
-                    : "small w-[90px] sm:w-[120px]"
-                }
+              // className={
+              //   currentTemplate === index
+              //     ? "small w-[120px] sm:w-[150px]"
+              //     : "small w-[90px] sm:w-[120px]"
+              // }
               >
                 {template.title}
               </small>
@@ -76,12 +76,12 @@ function SliderSection({ data }) {
               variants={textVariantUp(0.4)}
               className="text-2xl font-semibold md:text-3xl md:leading-relaxed lg:text-4xl max-w-md"
             >
-              {data[0].title}
+              Create eye-catching resume that gets you the job.
             </motion.h1>
 
             <motion.p
               variants={textVariantUp(0.6)}
-              className="w-9/12 text-neutral-300"
+              className=" text-neutral-300"
             >
               At konectin, we believe that first impresions matter, that’s why
               we make sure you put your best foot forward with eye-catching
