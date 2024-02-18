@@ -36,7 +36,7 @@ const TemplateOption = ({ sectionName }) => {
       delete data.__v;
 
       const response = await axios.post(`${url}/resume?userId=${_id}`, {
-        data,
+        ...data,
         currentStage: 1,
       });
 
@@ -92,10 +92,13 @@ const TemplateOption = ({ sectionName }) => {
           ...prev,
           selectedTemplate: value,
         }));
+
         onSectionComplete(
           { ...templateData, selectedTemplate: value },
           currentStage
         );
+
+        navigate("/resume/builder");
       } else {
         createResume(value);
       }

@@ -34,7 +34,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSectionComplete(templateData, 2);
+    onSectionComplete(templateData, 3);
 
     delete data._id; // Remove the item id
 

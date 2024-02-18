@@ -66,7 +66,7 @@ const BasicInformation = ({ data, onInputChange }) => {
   };
 
   const handleSubmit = () => {
-    onSectionComplete(data, 1);
+    onSectionComplete(data, 2);
 
     const formHolder = Object.keys(data.basicInfo);
 
