@@ -1,53 +1,43 @@
+import "./index.css";
 import { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-// import Sidebar from "./layout/sidebar";
-import Main from "./pages/main";
-import UserProfile from "./pages/userProfile";
-// import { dashboardRoutes } from "./layout/navigation";
 
-import "./index.css";
+import Main from "./pages/main";
+import Sidebar from "./layout/sidebar";
+import { dashboardRoutes } from "./layout/navigation";
 
 const DashBoard = () => {
   return (
-    <>
-      {/* <Header /> */}
-      <div className="flex pt-[67px] flex-col sm:flex-row items-start min-h-screen justify-between bg-[#F0EFF5] ">
-        <div className="w-full sm:w-1/4 min-w-[170px] md:min-w-[230px]">
-          {/* <div className="sm:h-screen sm:bg-white bg-gray-25 sm:w-2/12 min-w-[170px] md:min-w-[230px]"> */}
-          {/* <Sidebar /> */}
-          {/* </div> */}
-        </div>
-
-        <div className="flex flex-1 h-full flex-col gap-6 justify-between min-h-screen bg-gray-25 px-6">
-          <Routes>
-            <Route
-              element={
-                <Suspense
-                  fallback={<div className="animate-spin">Loading</div>}
-                >
-                  <Main />
-                </Suspense>
-              }
-            >
-              <Route path="/" element={<UserProfile />} />
-              {/* {dashboardRoutes.map((route) => (
-                <Route
-                  key={route.path}
-                  path={route.path}
-                  element={<route.element />}
-                />
-              ))} */}
-            </Route>
-          </Routes>
-        </div>
-
-        {/* <div className="w-full sm:w-2/12 min-w-[170px] md:min-w-[230px]">
-          <div className="sm:fixed right-0 sm:h-screen sm:bg-white bg-gray-25 sm:w-2/12 min-w-[170px] md:min-w-[230px]">
-            <AsideBar />
-          </div>
-        </div> */}
+    <div className="py-28 px-6 sm:px-14 flex flex-col gap-5 sm:flex-row items-start justify-between min-h-screen bg-primary-100 ">
+      <div className="w-full sm:w-1/4 sm:min-w-[170px] md:min-w-[230px]">
+        <Sidebar />
       </div>
-    </>
+
+      <div className="flex flex-1 h-full flex-col gap-6 justify-between min-h-screen bg-gray-25">
+        <Routes>
+          <Route
+            element={
+              <Suspense fallback={<div className="animate-spin">Loading</div>}>
+                <Main />
+              </Suspense>
+            }
+          >
+            {dashboardRoutes.map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={<route.element />}
+              />
+            ))}
+          </Route>
+        </Routes>
+      </div>
+
+      <div className="sm:hidden text-center text-gray-600 text-sm mt-10 -mb-12 mx-auto">
+        Member Since:{" "}
+        <span className="font-bold text-black">October 1, 2020</span>
+      </div>
+    </div>
   );
 };
 
