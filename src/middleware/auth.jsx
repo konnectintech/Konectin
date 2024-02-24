@@ -178,7 +178,7 @@ export const useAuth = () => {
       setTimeout(() => {
         loader(false);
 
-        if (location.state.from === "verify-mail") {
+        if (location.state?.from === "verify-mail") {
           navigate("/verify-mail");
         }
         if (ongoing) {
