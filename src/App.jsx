@@ -3,7 +3,6 @@ import { AuthProvider } from "./middleware/auth";
 
 import ResumeRoutes from "./layouts/resumeRoutes";
 import DefaultRoutes from "./pages/DefaultRoutes";
-import ProtectedRoutes from "./pages/ProtectedRoutes";
 
 import Options from "./pages/DefaultRoutes/resume/resume-builder";
 import ResumeBuilder from "./pages/DefaultRoutes/resume/resume-landing";
@@ -32,9 +31,6 @@ import ResetPassword from "./pages/sign/login/resetPassword";
 import ErrorPage from "./pages/404";
 import InternApplication from "./pages/DefaultRoutes/internship/intern-application";
 import { TemplateProvider } from "./middleware/resume";
-
-// import DashBoard from "./pages/ProtectedRoutes/dashboard";
-// import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
 
 function App() {
   return (
@@ -91,10 +87,6 @@ function App() {
               <Route path="/resume/builder/*" element={<Builder />} />
             </Route>
             <Route path="/resume/upload/*" element={<ResumeUpload />} />
-          </Route>
-
-          <Route element={<ProtectedRoutes />}>
-            {/* <Route path="/dashboard/*" element={<DashBoard />} /> */}
           </Route>
         </Route>
       </Routes>
