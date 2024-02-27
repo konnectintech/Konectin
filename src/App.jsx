@@ -29,16 +29,14 @@ import Login from "./pages/sign/login/login";
 import SignUp from "./pages/sign/signup/signup";
 import ForgetPassword from "./pages/sign/login/forgetPassword";
 import ResetPassword from "./pages/sign/login/resetPassword";
-import DashBoard from "./pages/ProtectedRoutes/DashBoard";
-import Coverletter from "./pages/DefaultRoutes/cover-letter/index";
-// import ErrorPage from "./pages/404";
+import DashBoard from "./pages/ProtectedRoutes/dashboard";
+import Coverletter from "./pages/DefaultRoutes/cover-letter";
 import ErrorPage from "./pages/404";
 import InternApplication from "./pages/DefaultRoutes/internship/intern-application";
+
 import { TemplateProvider } from "./middleware/resume";
 import { WalkthroughProvider } from "./middleware/walkthrough";
 import { CVProvider } from "./middleware/cv";
-
-// import Admin from "./pages/ProtectedRoutes/DashBoard/Admin";
 
 function App() {
   return (
@@ -74,7 +72,6 @@ function App() {
             <Route path="/faq" element={<Faq />} />
             <Route path="/contact" element={<Contact />} />
 
-            {/* <Route path="/admin" element={<Admin />} /> */}
             <Route path="/blog/" element={<Blog />}>
               <Route path="/blog/:feed" element={<Feeds />} />
               <Route path="/blog/:feed/:id" element={<BlogContent />} />

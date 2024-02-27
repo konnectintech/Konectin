@@ -1,38 +1,39 @@
-import { uploadIcon } from "../../../../assets";
 import { useAuth } from "../../../../middleware/auth";
 
 function Sidebar() {
   const { user } = useAuth();
 
   return (
-    <div className="rounded-lg w-full py-3.5 px-4 md:p-8 bg-white flex md:flex-col items-center sm:justify-center gap-11 sm:gap-8">
-      <div className="w-full order-2 sm:order-1 sm:my-3 flex flex-col gap-4">
-        <div className=" sm:text-center text-xl font-bold">{user.fullname}</div>
-        <div className="sm:text-center text-gray-600 text-sm">{user.email}</div>
+    <div className="rounded-lg w-full py-3.5 px-4 md:p-6 bg-white flex md:flex-col items-center sm:justify-center gap-8 sm:gap-4">
+      <div className="w-full order-2 sm:order-1 space-y-2">
+        <h1 className="sm:text-center text-xl font-semibold">
+          {user?.fullname}
+        </h1>
+        <p className="sm:text-center text-gray-600 text-sm">{user?.email}</p>
       </div>
 
       <div className="relative flex justify-center order-1 sm:order-2">
-        <img
-          src="your-profile-image.jpg"
-          alt="User Profile"
-          className="w-20 h-20 sm:w-32 sm:h-32 rounded-full bg-neutral-grey"
-        />
-        <button
-          type="submit"
-          className="sm:hidden absolute bottom-0 w-20 h-10 rounded-b-full flex justify-center items-center bg-[#00000066] opacity-0 transition-opacity hover:opacity-100"
-        >
-          <img src={uploadIcon} alt="Upload" />
-        </button>
+        {user?.picture ? (
+          <img
+            src="your-profile-image.jpg"
+            alt="User Profile"
+            className="w-20 h-20 sm:w-32 sm:h-32 rounded-full bg-neutral-grey"
+          />
+        ) : (
+          <div className="rounded-full bg-neutral-1000 flex items-center justify-center w-32 h-32">
+            <h2 className="text-uppercase text-3xl font-black text-neutral-100">
+              {user?.fullname.split(" ")[0].charAt(0)}
+              {user?.fullname.split(" ")[1].charAt(0)}
+            </h2>
+          </div>
+        )}
       </div>
 
-      <div className="hidden sm:block text-center order-3">
-        <button className="bg-secondary-500 whitespace-nowrap text-white py-4 px-16 rounded-lg hover:bg-secondary-600">
-          Upload Photo
-        </button>
-      </div>
+      <button className="hidden sm:block w-full text-center order-3 bg-secondary-500 whitespace-nowrap text-white py-4 rounded-lg hover:bg-secondary-600">
+        Upload Photo
+      </button>
 
-      {/* mt-4 */}
-      <div className="order-4 hidden sm:flex sm:mt-3.5 flex-col gap-4  text-center text-[#8C8C8F] border border-[#8C8C8F] text-xs bg-[#F0EFF5] rounded-lg p-4">
+      <div className="order-4 hidden sm:flex flex-col gap-4 text-center text-[#8C8C8F] border border-[#8C8C8F] text-xs bg-[#F0EFF5] rounded-lg p-4">
         <p>
           Upload a new picture. Larger image will be resized automatically.{" "}
         </p>
@@ -42,10 +43,10 @@ function Sidebar() {
         </p>
       </div>
 
-      <div className="order-5 hidden sm:block text-center text-gray-600 text-sm">
+      <p className="order-5 hidden sm:block text-center text-gray-600 text-sm">
         Member Since:{" "}
-        <span className="font-bold text-black">October 1, 2020</span>
-      </div>
+        <span className="font-bold text-neutral-100">1 October 2020</span>
+      </p>
     </div>
   );
 }

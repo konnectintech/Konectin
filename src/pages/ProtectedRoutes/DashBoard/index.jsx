@@ -1,27 +1,21 @@
-import "./index.css";
-import { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-
-import Main from "./pages/main";
-import Sidebar from "./layout/sidebar";
 import { dashboardRoutes } from "./layout/navigation";
 
-const DashBoard = () => {
-  return (
-    <div className="py-28 px-6 sm:px-14 flex flex-col gap-5 sm:flex-row items-start justify-between min-h-screen bg-primary-100 ">
-      <div className="w-full sm:w-1/4 sm:min-w-[170px] md:min-w-[230px]">
-        <Sidebar />
-      </div>
+import Header from "./layout/header";
+import Sidebar from "./layout/sidebar";
 
-      <div className="flex flex-1 h-full flex-col gap-6 justify-between min-h-screen bg-gray-25">
-        <Routes>
-          <Route
-            element={
-              <Suspense fallback={<div className="animate-spin">Loading</div>}>
-                <Main />
-              </Suspense>
-            }
-          >
+function DashBoard() {
+  return (
+    <main className="bg-primary-100">
+      <div className="w-11/12 mx-auto max-w-screen-2xl flex justify-between gap-8 py-4 mt-20">
+        <div className="w-full sm:w-1/4 sm:min-w-[170px] md:min-w-[290px]">
+          <Sidebar />
+        </div>
+
+        <div className="flex flex-1 h-full flex-col gap-10 justify-between sm:bg-white rounded-lg mt-4 sm:my-0 bg-primary-100">
+          <Header />
+
+          <Routes>
             {dashboardRoutes.map((route) => (
               <Route
                 key={route.path}
@@ -29,16 +23,16 @@ const DashBoard = () => {
                 element={<route.element />}
               />
             ))}
-          </Route>
-        </Routes>
-      </div>
+          </Routes>
+        </div>
 
-      <div className="sm:hidden text-center text-gray-600 text-sm mt-10 -mb-12 mx-auto">
-        Member Since:{" "}
-        <span className="font-bold text-black">October 1, 2020</span>
+        <div className="sm:hidden text-center text-gray-600 text-sm mt-10 -mb-12 mx-auto">
+          Member Since:{" "}
+          <span className="font-bold text-black">October 1, 2020</span>
+        </div>
       </div>
-    </div>
+    </main>
   );
-};
+}
 
 export default DashBoard;

@@ -130,7 +130,7 @@ function Header() {
         <nav className="hidden lg:block">
           {user ? (
             <Link
-              to="/dashboard"
+              to="/dashboard/"
               className="relative flex items-center cursor-pointer gap-2 text-xs text-neutral-400"
             >
               <div
