@@ -29,10 +29,11 @@ import Login from "./pages/sign/login/login";
 import SignUp from "./pages/sign/signup/signup";
 import ForgetPassword from "./pages/sign/login/forgetPassword";
 import ResetPassword from "./pages/sign/login/resetPassword";
-import DashBoard from "./pages/ProtectedRoutes/dashboard";
 import Coverletter from "./pages/DefaultRoutes/cover-letter";
 import ErrorPage from "./pages/404";
 import InternApplication from "./pages/DefaultRoutes/internship/intern-application";
+
+import DashBoard from "./pages/ProtectedRoutes/DashBoard";
 
 import { TemplateProvider } from "./middleware/resume";
 import { WalkthroughProvider } from "./middleware/walkthrough";

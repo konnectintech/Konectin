@@ -4,24 +4,29 @@ function Sidebar() {
   const { user } = useAuth();
 
   return (
-    <div className="rounded-lg w-full py-3.5 px-4 md:p-6 bg-white flex md:flex-col items-center sm:justify-center gap-8 sm:gap-4">
+    <div className="rounded-lg w-full py-6 px-4 md:p-6 bg-white flex md:flex-col items-center sm:justify-center gap-4">
       <div className="w-full order-2 sm:order-1 space-y-2">
-        <h1 className="sm:text-center text-xl font-semibold">
+        <h1 className="sm:text-center text-lg md:text-xl font-semibold">
           {user?.fullname}
         </h1>
-        <p className="sm:text-center text-gray-600 text-sm">{user?.email}</p>
+        <p className="sm:text-center text-gray-600 text-xs md:text-sm">
+          {user?.email}
+        </p>
       </div>
 
-      <div className="relative flex justify-center order-1 sm:order-2">
+      <div
+        title={user?.fullname}
+        className="relative flex justify-center order-1 sm:order-2 cursor-pointer"
+      >
         {user?.picture ? (
           <img
-            src="your-profile-image.jpg"
-            alt="User Profile"
+            src={user?.picture}
+            alt={user?.fullname}
             className="w-20 h-20 sm:w-32 sm:h-32 rounded-full bg-neutral-grey"
           />
         ) : (
-          <div className="rounded-full bg-neutral-1000 flex items-center justify-center w-32 h-32">
-            <h2 className="text-uppercase text-3xl font-black text-neutral-100">
+          <div className="rounded-full bg-neutral-1000 flex items-center justify-center w-16 h-16 sm:w-32 sm:h-32">
+            <h2 className="text-uppercase sm:text-3xl font-black text-neutral-100">
               {user?.fullname.split(" ")[0].charAt(0)}
               {user?.fullname.split(" ")[1].charAt(0)}
             </h2>

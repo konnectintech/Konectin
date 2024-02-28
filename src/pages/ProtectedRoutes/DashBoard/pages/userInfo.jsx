@@ -25,8 +25,14 @@ function UserInfo() {
     }
   }, [user]);
 
+  const handleChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setDetails((prev) => ({ ...prev, [name]: value }));
+  };
+
   return (
-    <form className="sm:pb-8 sm:px-10">
+    <form className="w-full">
       <div className="flex flex-col gap-6">
         <div className="grid grid-cols-2 gap-2.5 sm:gap-6">
           <div className="flex flex-col gap-2.5">
@@ -42,6 +48,8 @@ function UserInfo() {
               id="firstName"
               placeholder="First Name"
               value={details?.firstName}
+              onChange={handleChange}
+              onInput={handleChange}
               className="h-[60px] rounded-lg border border-neutral-500 bg-primary-100 px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400"
             />
           </div>
@@ -58,6 +66,8 @@ function UserInfo() {
               id="lastName"
               placeholder="Last Name"
               value={details?.lastName}
+              onChange={handleChange}
+              onInput={handleChange}
               className="h-[60px] rounded-lg border border-neutral-500 bg-primary-100 px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400"
             />
           </div>
@@ -72,10 +82,12 @@ function UserInfo() {
             </label>
             <input
               type="email"
-              name="emailAddress"
-              id="emailAddress"
+              name="email"
+              id="email"
               placeholder="Email Address"
               value={details?.email}
+              onChange={handleChange}
+              onInput={handleChange}
               className="h-[60px] rounded-lg border border-neutral-500 bg-primary-100 px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400"
             />
           </div>
