@@ -162,8 +162,6 @@ export const useTemplateData = () => {
       }));
     }
 
-    console.log("Changed");
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     templateData.basicInfo,
