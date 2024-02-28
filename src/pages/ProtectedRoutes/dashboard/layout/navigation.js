@@ -5,9 +5,9 @@ import UserInfo from "../pages/userInfo";
 export const dashboardRoutes = [
   { path: "/", name: "User Info", element: UserInfo },
   {
-    path: "/social/",
+    path: "/socials",
     name: "Social Profile",
     element: SocialProfile,
   },
-  { path: "/notifications/", name: "Notifications", element: Notifications },
+  { path: "/notifications", name: "Notifications", element: Notifications },
 ];

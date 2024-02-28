@@ -1,44 +1,40 @@
-import "./index.css";
-import { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-
-import Main from "./pages/main";
-import Sidebar from "./layout/sidebar";
 import { dashboardRoutes } from "./layout/navigation";
 
-const DashBoard = () => {
+import Header from "./layout/header";
+import Sidebar from "./layout/sidebar";
+
+function DashBoard() {
   return (
-    <div className="py-28 px-6 sm:px-14 flex flex-col gap-5 sm:flex-row items-start justify-between min-h-screen bg-primary-100 ">
-      <div className="w-full sm:w-1/4 sm:min-w-[170px] md:min-w-[230px]">
-        <Sidebar />
-      </div>
+    <main className="bg-primary-100">
+      <div className="w-11/12 mx-auto max-w-screen-2xl flex max-md:flex-col gap-6 md:gap-8 py-4">
+        <div className="w-full sm:max-w-[240px] lg:max-w-[290px] sm:hidden md:block">
+          <Sidebar />
+        </div>
 
-      <div className="flex flex-1 h-full flex-col gap-6 justify-between min-h-screen bg-gray-25">
-        <Routes>
-          <Route
-            element={
-              <Suspense fallback={<div className="animate-spin">Loading</div>}>
-                <Main />
-              </Suspense>
-            }
-          >
-            {dashboardRoutes.map((route) => (
-              <Route
-                key={route.path}
-                path={route.path}
-                element={<route.element />}
-              />
-            ))}
-          </Route>
-        </Routes>
-      </div>
+        <div className="flex w-full min-w-0 h-full flex-col gap-8 justify-between sm:bg-white rounded-lg bg-primary-100">
+          <Header />
 
-      <div className="sm:hidden text-center text-gray-600 text-sm mt-10 -mb-12 mx-auto">
-        Member Since:{" "}
-        <span className="font-bold text-black">October 1, 2020</span>
+          <div className="sm:pb-8 sm:px-6 lg:px-10">
+            <Routes>
+              {dashboardRoutes.map((route) => (
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={<route.element />}
+                />
+              ))}
+            </Routes>
+          </div>
+        </div>
+
+        <div className="sm:hidden text-center text-gray-600 text-sm mt-10 -mb-12 mx-auto">
+          Member Since:{" "}
+          <span className="font-bold text-black">October 1, 2020</span>
+        </div>
       </div>
-    </div>
+    </main>
   );
-};
+}
 
 export default DashBoard;
