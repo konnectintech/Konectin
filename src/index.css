@@ -241,19 +241,23 @@ h4 {
 }
 
 /* Terms and Condition  */
-.terms ul.list-decimal > .space-y-2 > li.text-sm,
+.terms ul.list-decimal>.space-y-2>li.text-sm,
 .merri {
   font-family: "Merriweather", sans-serif;
 }
+
 .modal-open {
   overflow: hidden;
 }
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }

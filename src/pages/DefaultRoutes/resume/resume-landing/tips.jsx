@@ -9,6 +9,7 @@ import InfiniteLooper from "../../../../components/infiniteScroller";
 import "./index.css";
 import { slideIn, textVariantUp } from "../../../../utils/motion";
 import SectionWrapper from "../../../../components/animation/sectionWrapper";
+import { Link } from "react-router-dom";
 
 function TipSection() {
   return (
@@ -20,9 +21,9 @@ function TipSection() {
         <div className="flex w-full md:w-7/12 lg:w-8/12 flex-col gap-4 text-start items-start justify-center">
           <motion.h1
             variants={textVariantUp(0.4)}
-            className="text-2xl font-semibold md:text-3xl md:leading-relaxed"
+            className="text-2xl w-10/12 font-semibold md:text-3xl md:leading-relaxed"
           >
-            Choose from our professional template
+            Choose From Our Professional Templates
           </motion.h1>
           <motion.p
             variants={textVariantUp(0.6)}
@@ -34,7 +35,12 @@ function TipSection() {
             organized and professional templates you can choose from.
           </motion.p>
           <motion.div variants={textVariantUp(0.8)} className="w-fit">
-            <ResumeButton />
+            <Link
+              to="/resume/options"
+              className="self-start px-6 py-2 bg-white flex gap-2 items-center justify-center text-primary-500 border-primary-500 border rounded-sm hover:bg-primary-500 hover:text-white"
+            >
+              Create A Resume Now
+            </Link>
           </motion.div>
         </div>
         <motion.div
@@ -74,8 +80,7 @@ function TipSection() {
             variants={textVariantUp()}
             className="text-2xl font-semibold mb-2 md:text-3xl md:leading-relaxed"
           >
-            Follow <font className="text-secondary-600">useful tips</font> from
-            industry experts around the globe
+            Follow Useful Tips From Industry Experts Around The Globe
           </motion.h1>
           <motion.p
             variants={textVariantUp(0.4)}

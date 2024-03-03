@@ -40,13 +40,15 @@ function TestimonialSection({ data }) {
           ))}
         </div>
         <small className="w-3/4 mt-3 text-neutral-200">
-          Contact our{" "}
-          <Link className="text-secondary-600 underline" to="/">
-            Customer Supports
-          </Link>{" "}
-          if you have any question(s) or encounter any issue. We are always
-          ready to help.
+          Contact our Customer Support if you have any question(s) or encounter
+          any issue. We are always ready to help.
         </small>
+        <Link
+          to="/"
+          className="self-start text-sm px-2 py-1 bg-white flex gap-2 items-center justify-center text-neutral-200 border-neutral-200 border rounded-sm hover:bg-primary-500 hover:text-white"
+        >
+          Contact Us
+        </Link>
       </div>
     </div>
   );
