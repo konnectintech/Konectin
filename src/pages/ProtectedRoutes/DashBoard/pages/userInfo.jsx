@@ -50,7 +50,7 @@ function UserInfo() {
               value={details?.firstName}
               onChange={handleChange}
               onInput={handleChange}
-              className="h-[60px] rounded-lg border border-neutral-500 bg-primary-100 px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400"
+              className="h-[60px] rounded-lg border border-neutral-500 valid:bg-yellow-300 empty:bg-white px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400"
             />
           </div>
           <div className="flex flex-col gap-2.5">

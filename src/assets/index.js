@@ -286,17 +286,8 @@ export {
   DavidIcon,
   MichaelIcon,
   AfolabiIcon,
-<<<<<<< HEAD
-<<<<<<< HEAD
- FounderIcon,
-=======
   FounderIcon,
   ContactUSImage,
->>>>>>> 5e20bd8ddd917e078c6efde1fc1be8be9785962a
-=======
-  FounderIcon,
-  ContactUSImage,
->>>>>>> 3550d443878a55b4cf639c5c52355b042656b171
   AnonymousIcon,
 
   // socials
