@@ -1,10 +1,12 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import * as FaIcon from "react-icons/fa";
 import { discussionTopics } from "./data";
-import { ContactUSImage } from "../../../assets";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { ContactUSImage } from "../../../assets";
+import Preloader from "../../../components/preloader";
 import filePng from "../../../assets/images/file-png-solid-240.png";
 
 function Contact() {
@@ -16,21 +18,58 @@ function Contact() {
     files: [],
   });
   const [topics, setTopics] = useState("");
+  const [submitable, setSubmitable] = useState(false);
   const [uploading, setUploading] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const url = import.meta.env.VITE_CLIENT_SERVER_RENDER_URL;
+
+  function checkSubmitable() {
+    if (
+      mailing.mail &&
+      (mailing.topic || topics) &&
+      mailing.message.length > 5
+    ) {
+      setSubmitable(true);
+    } else {
+      setSubmitable(false);
+    }
+  }
 
   const handleChange = (name, value) => {
     setMailing((mailer) => ({ ...mailer, [name]: value }));
+    checkSubmitable();
   };
 
   const sendEmail = (e) => {
     e.preventDefault();
+    let body = { ...mailing, message: mailing.message.trim() };
 
-    if (topics !== "") {
-      setMailing((mailer) => ({ ...mailer, topic: topics }));
+    if (topics !== "" && mailing.topic === "") {
+      body = { ...mailing, topic: topics };
     }
 
+    setLoading(true);
     // Call Endpoint
+    axios
+      .post(`${url}/contact`, { ...body })
+      .then(() => {
+        setMailing({
+          mail: "",
+          topic: "",
+          message: "",
+          files: [],
+        });
+
+        toast.success(
+          "Mail has been sent successfully, we will get back to you shortly"
+        );
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.error(err);
+      });
   };
 
   const onFileDrop = (e) => {
@@ -124,6 +163,7 @@ function Contact() {
 
   return (
     <>
+      {loading && <Preloader />}
       <div className="mt-[4.5rem] pt-16 pb-28 bg-primary-700">
         <div className="w-11/12 mx-auto max-w-screen-2xl">
           <h1 className="text-3xl lg:text-6xl font-bold text-primary-100 mb-2">
@@ -139,7 +179,7 @@ function Contact() {
       <div className="flex justify-between pb-24 w-11/12 mx-auto max-w-screen-2xl">
         <div className="flex flex-col lg:flex-row z-50 lg:w-[90%] mt-[-70px] justify-between gap-12">
           <div className="shadow-2xl bg-white z-50 p-8 lg:p-12 lg:max-w-[60%]">
-            <form className="space-y-3">
+            <form onSubmit={sendEmail} className="space-y-3">
               <h2 className="text-lg font-black">
                 Please, provide your Email address
               </h2>
@@ -310,9 +350,11 @@ function Contact() {
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 sm:items-center pt-2">
                 <button
-                  className="py-4 px-5 bg-neutral-900 text-neutral-400 font-medium hover:text-white hover:bg-primary-600 text-xs rounded duration-500"
+                  disabled={!submitable}
+                  className={`${
+                    submitable ? "hover:text-white hover:bg-primary-600" : null
+                  } py-4 px-5 bg-neutral-900 text-neutral-400 font-medium text-xs rounded duration-500`}
                   type="submit"
-                  onClick={sendEmail}
                 >
                   SEND US A MESSAGE
                 </button>
