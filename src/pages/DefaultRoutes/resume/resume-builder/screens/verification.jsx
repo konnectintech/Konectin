@@ -10,46 +10,42 @@ export const onSectionComplete = async (template, stage) => {
   delete data.userId;
   delete data.__v;
 
-  try {
-    const user = JSON.parse(localStorage.getItem("konectin-profiler-user"));
+  const user = JSON.parse(localStorage.getItem("konectin-profiler-user"));
 
-    if (user) {
-      const { currentStage } = data;
-      // If the user is logged in, add their details to the template submission
-      await axios
-        .put(
-          `${url}/updateResume?userId=${user._id}&resumeId=${template._id}`,
-          {
-            ...data,
-            currentStage: stage >= currentStage ? stage : currentStage,
+  if (user) {
+    const { currentStage } = data;
+    // If the user is logged in, add their details to the template submission
+    await axios
+      .put(
+        `${url}/updateResume?userId=${user._id}&resumeId=${template._id}`,
+        {
+          ...data,
+          currentStage: stage >= currentStage ? stage : currentStage,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
           },
-          {
-            headers: {
-              Authorization: `Bearer ${user.token}`,
+        }
+      )
+      .then((res) => {
+        localStorage.setItem(
+          "konectin-profiler-data-template",
+          JSON.stringify({
+            completed: {
+              basic_info: currentStage >= 1,
+              work_history: currentStage >= 2,
+              education: currentStage >= 3,
+              skills: currentStage >= 4,
+              bio: currentStage >= 5,
             },
-          }
-        )
-        .then((res) => {
-          localStorage.setItem(
-            "konectin-profiler-data-template",
-            JSON.stringify({
-              completed: {
-                basic_info: currentStage >= 1,
-                work_history: currentStage >= 2,
-                education: currentStage >= 3,
-                skills: currentStage >= 4,
-                bio: currentStage >= 5,
-              },
-              ...res.data.updated,
-            })
-          );
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-  } catch (err) {
-    console.error(err);
+            ...res.data.updated,
+          })
+        );
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 };
 
