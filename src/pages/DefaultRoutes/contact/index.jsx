@@ -68,6 +68,8 @@ function Contact() {
       })
       .catch((err) => {
         setLoading(false);
+
+        toast.error("Error... Try again later");
         console.error(err);
       });
   };
