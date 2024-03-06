@@ -101,6 +101,14 @@ function Header() {
               {link.name}
             </NavLink>
           ))}
+
+          <Link
+            to={user ? "/" : "/login"}
+            onClick={user ? signOut : null}
+            className="lg:hidden hover:border-b border-secondary-600 py-1"
+          >
+            {user ? "Log Out" : "Log In"}
+          </Link>
         </nav>
 
         {/* Mobile View  */}
@@ -126,6 +134,14 @@ function Header() {
               {link.name}
             </Link>
           ))}
+
+          <Link
+            to={user ? "/" : "/login"}
+            onClick={user ? signOut : null}
+            className="lg:hidden hover:border-b border-secondary-600 py-1"
+          >
+            {user ? "Log Out" : "Log In"}
+          </Link>
         </nav>
 
         <nav className="hidden lg:block">
@@ -171,24 +187,6 @@ function Header() {
                     : "-top-full invisible opacity-0"
                 } absolute -right-3 duration-500 border border-primary-200 rounded translate-y-2 bg-primary-600 py-2 space-y-2 min-w-[150px]`}
               >
-                {/* <div
-                  onClick={signOut}
-                  className="cursor-pointer text-white text-medium py-2 px-4 hover:bg-primary-200"
-                >
-                  View profile
-                </div> */}
-                <Link
-                  to="/resume/start"
-                  className="cursor-pointer block text-white text-medium py-2 px-4 hover:bg-primary-200"
-                >
-                  Build resume
-                </Link>
-                <Link
-                  to="/blog/all"
-                  className="cursor-pointer block text-white text-medium py-2 px-4 hover:bg-primary-200"
-                >
-                  Blog content
-                </Link>
                 <div
                   onClick={signOut}
                   className="cursor-pointer text-white text-medium py-2 px-4 hover:bg-primary-200"
