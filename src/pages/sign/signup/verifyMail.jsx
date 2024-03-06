@@ -1,17 +1,16 @@
 import axios from "axios";
-import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { konectinIcon } from "../../../assets";
-import { CustomButton } from "../../../components/button";
-import { ErrorModal, SuccessModal } from "../../../components/form/modal";
 import Preloader from "../../../components/preloader";
-import { useEffect } from "react";
+import { toast } from "react-toastify";
+import { CustomButton } from "../../../components/button";
+import { ErrorModal } from "../../../components/form/modal";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function VerifyMail() {
   const [code, setCode] = useState("");
   const [isloading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [modal, popModal] = useState("");
 
   const user = JSON.parse(localStorage.getItem("konectin-profiler-user"));
 
@@ -37,7 +36,6 @@ function VerifyMail() {
     if (location.state?.from === "signup" || areq) return;
 
     // If not, request a code for email verifiction
-    console.log("Requesting mail");
     axios
       .post(`${parseURL}/requestEmail?userId=${user._id}`, {
         email: user.email,
@@ -62,10 +60,7 @@ function VerifyMail() {
         const status = res.status;
         if (status === 200) {
           setLoading(false);
-          popModal("A code has been sent to your mail");
-          setTimeout(() => {
-            popModal("");
-          }, 2000);
+          toast.info("A code has been sent to your mail");
         } else {
           setLoading(false);
           setErrorMessage(res.data.message);
@@ -97,10 +92,8 @@ function VerifyMail() {
             "konectin-profiler-user",
             JSON.stringify(userUpdate)
           );
-          popModal("You have been verified");
+          toast.success("You have been verified, Redirecting now...");
           setTimeout(() => {
-            popModal("");
-
             const { ongoing } =
               JSON.parse(sessionStorage.getItem("internData")) || "";
 
@@ -128,12 +121,6 @@ function VerifyMail() {
         <Link to="/" className="w-fit mx-auto flex justify-center relative z-5">
           <img src={konectinIcon} alt="Konectin Icon" />
         </Link>
-
-        <SuccessModal
-          text={modal}
-          popModal={modal}
-          closeModal={() => popModal(false)}
-        />
 
         <div className="space-y-2 text-sm">
           <div className="text-secondary-500">You are almost there!</div>

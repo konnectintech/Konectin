@@ -3,6 +3,9 @@ import App from "./App";
 import ReactDOM from "react-dom/client";
 import TimeAgo from "javascript-time-ago";
 
+import "./index.css";
+import "react-toastify/dist/ReactToastify.css";
+
 import en from "javascript-time-ago/locale/en.json";
 import ru from "javascript-time-ago/locale/ru.json";
 
