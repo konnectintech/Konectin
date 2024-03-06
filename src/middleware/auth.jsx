@@ -181,6 +181,7 @@ export const useAuth = () => {
         if (location.state?.from === "verify-mail") {
           navigate("/verify-mail");
         }
+
         if (ongoing) {
           navigate("/internship/intern-application");
         } else if (status !== "") {
@@ -190,7 +191,7 @@ export const useAuth = () => {
       }, 3000);
     } catch (err) {
       loader(false);
-      setError(err.response.data.message);
+      setError(err.response.data?.message);
     }
   };
 
