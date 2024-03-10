@@ -1,21 +1,21 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { TypeAnimation } from 'react-type-animation';
-import { useTemplateContext } from '../../../../../middleware/resume';
-import CustomSelect from '../../../../../components/select/CustomSelect';
-import professions from 'professions';
+import { useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { TypeAnimation } from "react-type-animation";
+import { useTemplateContext } from "../../../../../middleware/resume";
+import CustomSelect from "../../../../../components/select/CustomSelect";
+import professions from "professions";
 
 const Profession = ({ data }) => {
   const { setTemplateData } = useTemplateContext();
-  const [error, setError] = useState('');
-  const [selectedProfession, setSelectedProfession] = useState('');
+  const [error, setError] = useState("");
+  const [selectedProfession, setSelectedProfession] = useState("");
 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!data.firstName || !data.lastName) {
-      navigate('/resume/ai/');
+      navigate("/resume/ai/");
     }
   }, [navigate, data]);
 
@@ -23,10 +23,10 @@ const Profession = ({ data }) => {
     e.preventDefault();
 
     if (!data.profession) {
-      setError('Please enter a profession');
+      setError("Please enter a profession");
       return;
     }
-    navigate('/resume/ai/template-selector');
+    navigate("/resume/ai/template-selector");
   };
 
   const handleSelect = (value) => {
@@ -50,7 +50,7 @@ const Profession = ({ data }) => {
       <p className="font-bold text-center">
         <TypeAnimation
           cursor={false}
-          sequence={['What best describes your profession?', 1000]}
+          sequence={["What best describes your profession?", 1000]}
         />
       </p>
 

@@ -21,6 +21,8 @@ function ResumeRightbar() {
   const { currentModule } = useWalkthrough();
   const [isDownload, setIsDownload] = useState(false);
   const [hoverIn, setHoverIn] = useState(false);
+  const [activeItem, setActiveItem] = useState(null);
+
   const options = [
     {
       route: "",
@@ -41,6 +43,7 @@ function ResumeRightbar() {
   const handleMouseLeave = () => {
     setIsDownload(false);
     setHoverIn(false);
+    setActiveItem(null);
   };
 
   return (
@@ -73,6 +76,8 @@ function ResumeRightbar() {
               item={item}
               hoverIn={hoverIn}
               setHoverIn={setHoverIn}
+              activeItem={activeItem}
+              setActiveItem={setActiveItem}
             />
           ))}
           <div>
@@ -104,9 +109,13 @@ function ResumeRightbar() {
 
 export default ResumeRightbar;
 
-const RightBarOption = ({ item, hoverIn, setHoverIn }) => {
-  const [activeItem, setActiveItem] = useState(null);
-
+const RightBarOption = ({
+  item,
+  hoverIn,
+  setHoverIn,
+  activeItem,
+  setActiveItem,
+}) => {
   const handleClick = (option) => {
     if (activeItem === option) {
       setHoverIn(false);
@@ -132,7 +141,7 @@ const RightBarOption = ({ item, hoverIn, setHoverIn }) => {
           </div>
           {item.option ? (
             <div className="">
-              {activeItem === item.label ? (
+              {activeItem === item.label && hoverIn ? (
                 <FaChevronUp className="opacity-0 group-hover:opacity-100" />
               ) : (
                 <FaChevronDown className="opacity-0 group-hover:opacity-100" />
@@ -141,9 +150,14 @@ const RightBarOption = ({ item, hoverIn, setHoverIn }) => {
           ) : null}
         </div>
       </li>
-      {activeItem === "Change Template" && hoverIn && <ChangeTemplate />}
-      {activeItem === "Edit Resume Photo" && hoverIn && <EditResumePhoto />}
-      {activeItem === "Style Resume" && hoverIn && <StyleResume />}
+      {hoverIn &&
+        ((item.label === "Change Template" &&
+          activeItem === "Change Template" && <ChangeTemplate />) ||
+          (item.label === "Edit Resume Photo" &&
+            activeItem === "Edit Resume Photo" && <EditResumePhoto />) ||
+          (item.label === "Style Resume" && activeItem === "Style Resume" && (
+            <StyleResume />
+          )))}
     </div>
   );
 };

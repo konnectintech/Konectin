@@ -9,9 +9,11 @@ import { useTemplateContext } from "../../../../../../middleware/resume";
 import CountryInput from "../../../../../../components/form/countryInput";
 import StateInput from "../../../../../../components/form/stateInput";
 import CityInput from "../../../../../../components/form/cityInput";
+import CustomSelect from "../../../../../../components/select/CustomSelect";
 import { onSectionComplete, verifyInput } from "../verification";
 import DateSelector from "../../../../../../components/form/dateSelector";
 import ResumeModal from "../../../../../../layouts/resumeRoutes/resumeModal";
+import professions from "professions";
 
 const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
   const [countryId, setCountryId] = useState(0);
@@ -31,6 +33,10 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
 
   const navigate = useNavigate();
   const { templateData } = useTemplateContext();
+
+  const handleSelect = (value) => {
+    handleInputChange("jobTitle", value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,8 +64,6 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
           verifyInput(data[holder], errorHolder, holder);
           break;
         case "jobTitle":
-          errorHolder = document.getElementById(`${holder}Error`);
-          verifyInput(data[holder], errorHolder, holder);
           break;
         case "current":
         case "workDesc":
@@ -79,7 +83,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
       (data.current || data.endMonth !== "" || data.endYear !== "")
     ) {
       openModal();
-      navigate("/resume/builder/employment-experience/responsibilities");
+      // navigate("/resume/builder/employment-experience/responsibilities");
     }
   };
 
@@ -92,13 +96,14 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
 
         <div className="w-full">
           <div className="mt-6">
-            <JobTitleInput
-              auth
-              title={data?.jobTitle}
-              handleInputChange={(value) =>
-                handleInputChange("jobTitle", value)
-              }
-            />
+            <div className="mb-6">
+              <CustomSelect
+                onChange={handleSelect}
+                value={data?.jobTitle}
+                options={professions}
+                showSearch
+              />
+            </div>
 
             <div className="flex flex-col">
               <input
@@ -239,9 +244,9 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
           </div>
         </div>
       </div>
-      <div className="mt-16">
+      {/* <div className="mt-16">
         <NavigationButton back={handleBack} cont={handleSubmit} />
-      </div>
+      </div> */}
 
       {isModalOpen && (
         <ResumeModal onClose={closeModal}>

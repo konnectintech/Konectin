@@ -22,7 +22,7 @@ const EmploymentExperience = ({ data }) => {
             current: false,
             endMonth: "",
             endYear: "",
-            jobTitle: "",
+            jobTitle: data?.basicInfo?.profession || "",
             startMonth: "",
             startYear: "",
             state: "",
