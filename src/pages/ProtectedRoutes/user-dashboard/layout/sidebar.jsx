@@ -1,4 +1,5 @@
 import { useAuth } from "../../../../middleware/auth";
+import { uploadIcon } from "../../../../assets"
 
 function Sidebar() {
   const { user } = useAuth();
@@ -22,7 +23,7 @@ function Sidebar() {
           <img
             src={user?.picture}
             alt={user?.fullname}
-            className="w-20 h-20 sm:w-32 sm:h-32 rounded-full bg-neutral-grey"
+            className="w-16 h-16 sm:w-32 sm:h-32 rounded-full bg-neutral-grey"
           />
         ) : (
           <div className="rounded-full bg-neutral-1000 flex items-center justify-center w-16 h-16 sm:w-32 sm:h-32">
@@ -32,6 +33,9 @@ function Sidebar() {
             </h2>
           </div>
         )}
+        <button type="submit" className="sm:hidden absolute bottom-0 w-16 h-8 rounded-b-full flex justify-center items-center bg-[#00000066] opacity-0 transition-opacity hover:opacity-100">
+          <img src={uploadIcon} alt="Upload" />
+        </button>
       </div>
 
       <button className="hidden sm:block w-full text-center order-3 bg-secondary-500 whitespace-nowrap text-white py-4 rounded-lg hover:bg-secondary-600">
