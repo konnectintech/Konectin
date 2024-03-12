@@ -1,6 +1,10 @@
-function EndBuilding({ data }) {
+import { useNavigate } from "react-router";
+
+function EndBuilding() {
+  const navigate = useNavigate();
+
   const handleSubmit = () => {
-    console.log("first");
+    navigate("/cover-letter/editor");
   };
 
   return (

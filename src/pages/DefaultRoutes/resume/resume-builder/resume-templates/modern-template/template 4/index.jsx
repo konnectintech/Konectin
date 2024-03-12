@@ -238,6 +238,10 @@ function TemplateFour(data) {
               margin-top: 2px;
               margin-right: 5px;
             }
+            
+            .doc-body .separated-section .section {
+              margin-bottom: 15px;
+            }
           `}
         </style>
         <div className="parent-container top-head no-scrollbar">

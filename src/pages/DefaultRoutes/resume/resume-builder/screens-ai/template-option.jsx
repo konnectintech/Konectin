@@ -24,40 +24,36 @@ const TemplateOption = ({ sectionName }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
-  async function createResume(value) {
-    const { _id } =
-      JSON.parse(localStorage.getItem("konectin-profiler-user")) || "";
-    try {
-      const data = { ...templateData };
+  async function createResume(value, user_id) {
+    const data = { ...templateData };
 
-      delete data.completed;
-      delete data._id;
-      delete data.userId;
-      delete data.__v;
+    delete data.completed;
+    delete data._id;
+    delete data.userId;
+    delete data.__v;
 
-      const response = await axios.post(`${url}/resume?userId=${_id}`, {
+    await axios
+      .post(`${url}/resume?userId=${user_id}`, {
         ...data,
         currentStage: 1,
-      });
-
-      const resume = response.data.cv;
-      setTemplateData((prev) => ({
-        ...prev,
-        ...resume,
-        selectedTemplate: value,
-      }));
-      localStorage.setItem(
-        "konectin-profiler-data-template",
-        JSON.stringify({
-          ...templateData,
+      })
+      .then((res) => {
+        const resume = res.data.cv;
+        setTemplateData((prev) => ({
+          ...prev,
           ...resume,
           selectedTemplate: value,
-        })
-      );
-      navigate("/resume/builder");
-    } catch (err) {
-      console.error(err);
-    }
+        }));
+        localStorage.setItem(
+          "konectin-profiler-data-template",
+          JSON.stringify({
+            ...templateData,
+            ...resume,
+            selectedTemplate: value,
+          })
+        );
+        navigate("/resume/builder");
+      });
   }
 
   const handleSelect = (value) => {
@@ -68,54 +64,55 @@ const TemplateOption = ({ sectionName }) => {
     if (_id === undefined) {
       setSelectedTemplate(value);
       setPopUp(true);
+    } else if (currentStage === 6) {
+      // Coming from preview section
+      setTemplateData((prev) => ({
+        ...prev,
+        selectedTemplate: value,
+        completed: {
+          basic_info: true,
+          work_history: true,
+          education: true,
+          skills: true,
+          bio: true,
+        },
+      }));
+
+      onSectionComplete(
+        { ...templateData, selectedTemplate: value },
+        currentStage
+      );
+      navigate("/resume/builder/preview");
+    } else if (selectedTemplate !== "") {
+      // if coming from other section
+      setTemplateData((prev) => ({
+        ...prev,
+        selectedTemplate: value,
+      }));
+
+      onSectionComplete(
+        { ...templateData, selectedTemplate: value },
+        currentStage
+      );
+
+      navigate("/resume/builder");
     } else {
-      if (currentStage === 6) {
-        setTemplateData((prev) => ({
-          ...prev,
-          selectedTemplate: value,
-          completed: {
-            basic_info: true,
-            work_history: true,
-            education: true,
-            skills: true,
-            bio: true,
-          },
-        }));
-
-        onSectionComplete(
-          { ...templateData, selectedTemplate: value },
-          currentStage
-        );
-        navigate("/resume/builder/preview");
-      } else if (selectedTemplate !== "") {
-        setTemplateData((prev) => ({
-          ...prev,
-          selectedTemplate: value,
-        }));
-
-        onSectionComplete(
-          { ...templateData, selectedTemplate: value },
-          currentStage
-        );
-
-        navigate("/resume/builder");
-      } else {
-        createResume(value);
-      }
+      createResume(value, _id);
     }
   };
 
   const handleSubmit = async (data) => {
     setLoading(true);
+
     try {
-      let authresult = await axios.post(`${url}/login`, data);
+      await axios.post(`${url}/login`, data).then((res) => {
+        const user = { ...res.data.data };
+        user.token = res.data.token;
 
-      const userData = { ...authresult.data.data };
-      userData.token = authresult.data.token;
-
-      localStorage.setItem("konectin-profiler-user", JSON.stringify(userData));
-      setLoading(false);
-      createResume(selectedTemplate);
+        localStorage.setItem("konectin-profiler-user", JSON.stringify(user));
+        setLoading(false);
+        createResume(selectedTemplate, user._id);
+      });
     } catch (err) {
       setLoading(false);
       setPopUp(false);

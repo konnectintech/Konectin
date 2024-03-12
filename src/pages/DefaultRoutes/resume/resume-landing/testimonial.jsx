@@ -44,7 +44,7 @@ function TestimonialSection({ data }) {
           any issue. We are always ready to help.
         </small>
         <Link
-          to="/"
+          to="/contact"
           className="self-start text-sm px-2 py-1 bg-white flex gap-2 items-center justify-center text-neutral-200 border-neutral-200 border rounded-sm hover:bg-primary-500 hover:text-white"
         >
           Contact Us
