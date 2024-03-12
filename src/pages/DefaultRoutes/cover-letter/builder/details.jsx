@@ -24,14 +24,14 @@ function JobDetails({ isLogged, data, handleChange }) {
 
     if (!isLogged) {
       if (data.fullName.length <= 2) {
-        setErrorMessage((prev) => ({
+        return setErrorMessage((prev) => ({
           ...prev,
           fullName: "Please fill in your name",
         }));
       }
 
       if (!checkMail) {
-        setErrorMessage((prev) => ({
+        return setErrorMessage((prev) => ({
           ...prev,
           email: "Please fill in a valid email",
         }));
@@ -39,18 +39,19 @@ function JobDetails({ isLogged, data, handleChange }) {
     }
 
     if (data.jobPosition.length <= 2) {
-      setErrorMessage((prev) => ({
+      return setErrorMessage((prev) => ({
         ...prev,
         jobPosition: "Please fill in the job position",
       }));
     }
 
     if (data.companyName.length <= 2) {
-      setErrorMessage((prev) => ({
+      return setErrorMessage((prev) => ({
         ...prev,
         companyName: "Please fill in the company name",
       }));
     }
+
     if (
       data.companyName.length >= 2 &&
       data.jobPosition.length >= 2 &&
@@ -63,9 +64,7 @@ function JobDetails({ isLogged, data, handleChange }) {
         email: "",
         fullName: "",
       });
-      navigate("/cover-letter/job-description");
-    } else {
-      console.log(data.fullName);
+      return navigate("/cover-letter/job-description");
     }
   };
 

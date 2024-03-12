@@ -54,7 +54,7 @@ const ShortBio = ({ data, handleChange, isLogged }) => {
             value={data}
             onChange={(e) =>
               handleChange({
-                section: "bio",
+                section: "professionalBio",
                 values: e.target.value,
               })
             }

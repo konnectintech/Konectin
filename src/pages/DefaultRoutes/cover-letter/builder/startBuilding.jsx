@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
-function StartedBuilding({ isLogged, name }) {
+function StartBuilding({ isLogged, name }) {
   return (
     <>
       <h2 className="py-4 font-bold text-2xl md:text-4xl !leading-normal">
-        Hello {isLogged && name}! Welcome back to our
+        Hello {isLogged && name?.split(" ")[0]}! Welcome back to our
         <span className="text-secondary-500"> AI-powered</span> Cover Letter
         Builder
       </h2>
@@ -28,4 +28,4 @@ function StartedBuilding({ isLogged, name }) {
   );
 }
 
-export default StartedBuilding;
+export default StartBuilding;

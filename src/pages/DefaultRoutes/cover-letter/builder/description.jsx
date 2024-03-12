@@ -2,7 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 function JobDescription({ data, handleChange }) {
-  const [errorMessage, setErrorMessage] = useState({ company: "", job: "" });
+  const [errorMessage, setErrorMessage] = useState({
+    companyInfo: "",
+    jobDescription: "",
+  });
 
   const navigate = useNavigate();
 
@@ -12,22 +15,22 @@ function JobDescription({ data, handleChange }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (data.job.length <= 2) {
+    if (data.jobDescription.length <= 2) {
       setErrorMessage((prev) => ({
         ...prev,
-        job: "Please fill in the job description",
+        jobDescription: "Please fill in the job description",
       }));
     }
 
-    if (data.company.length <= 2) {
+    if (data.companyInfo.length <= 2) {
       setErrorMessage((prev) => ({
         ...prev,
-        company: "Please fill in the company information",
+        companyInfo: "Please fill in the company information",
       }));
     }
 
-    if (data.company.length >= 2 && data.job.length >= 2) {
-      setErrorMessage({ company: "", job: "" });
+    if (data.companyInfo.length >= 2 && data.jobDescription.length >= 2) {
+      setErrorMessage({ companyInfo: "", jobDescription: "" });
       navigate("/cover-letter/short-bio");
     }
   };
@@ -52,31 +55,32 @@ function JobDescription({ data, handleChange }) {
             <input
               type="text"
               placeholder="Job Description"
-              value={data.job}
+              id="job"
+              value={data.jobDescription}
               onChange={(e) => {
-                handleInputChange("job", e.target.value);
-                setErrorMessage((prev) => ({ ...prev, job: "" }));
+                handleInputChange("jobDescription", e.target.value);
+                setErrorMessage((prev) => ({ ...prev, jobDescription: "" }));
               }}
               className="px-4 py-3 text-[11px] w-full text-primary-400 border border-neutral-500 outline-0 bg-neutral-1000 focus:border-primary-500 focus:border-[1.5px]"
             />
             <label htmlFor="job" className="text-error-500 text-sm">
-              {errorMessage.job && errorMessage.job}
+              {errorMessage.jobDescription && errorMessage.jobDescription}
             </label>
           </div>
           <div className="flex-col flex items-start w-full gap-2">
             <input
               type="text"
               placeholder="Company's Info"
-              value={data.company}
+              value={data.companyInfo}
               id="company"
               onChange={(e) => {
-                handleInputChange("company", e.target.value);
-                setErrorMessage((prev) => ({ ...prev, company: "" }));
+                handleInputChange("companyInfo", e.target.value);
+                setErrorMessage((prev) => ({ ...prev, companyInfo: "" }));
               }}
               className="px-4 py-3 text-[11px] w-full text-primary-400 border border-neutral-500 outline-0 bg-neutral-1000 focus:border-primary-500 focus:border-[1.5px]"
             />
             <label htmlFor="company" className="text-error-500 text-sm">
-              {errorMessage.company && errorMessage.company}
+              {errorMessage.companyInfo && errorMessage.companyInfo}
             </label>
           </div>
         </div>

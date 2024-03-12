@@ -28,8 +28,8 @@ export const useCVData = () => {
     "konectin-profiler-coverLetter-data",
     {
       details: { companyName: "", jobPosition: "", email: "", fullName: "" },
-      description: { company: "", job: "" },
-      bio: "",
+      description: { companyInfo: "", jobDescription: "" },
+      professionalBio: "",
     }
   );
 

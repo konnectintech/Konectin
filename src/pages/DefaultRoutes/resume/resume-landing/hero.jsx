@@ -13,7 +13,7 @@ function HeroSection() {
         <div className="flex w-full md:w-1/2 flex-col gap-6 items-center text-center md:text-start md:items-start justify-center">
           <motion.h1
             variants={textVariantUp()}
-            className="text-4xl lg:text-5xl xl:text-6xl leading-normal  font-semibold "
+            className="text-4xl lg:text-5xl xl:text-6xl lg:leading-relaxed font-semibold"
           >
             Get Your Dream Job With The{" "}
             <span className="text-secondary-500">Perfect Resume</span>

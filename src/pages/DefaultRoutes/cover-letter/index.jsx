@@ -9,15 +9,14 @@ import { useAuth } from "../../../middleware/auth";
 import { useCVData } from "../../../middleware/cv";
 import { useEffect } from "react";
 
-import img from "../../../assets/images/bot/bot.svg";
-
 // Routes
-import StartedBuilding from "./builder/startBuilding";
+import StartBuilding from "./builder/startBuilding";
 import JobDetails from "./builder/details";
 import JobDescription from "./builder/description";
 import ShortBio from "./builder/shortBio";
-import EndBuilding from "./builder/endBuilding";
+import CreateLetter from "./builder/createLetter";
 import CoverEditor from "./editor";
+import { botIcon } from "../../../assets";
 
 function CoverLetter() {
   const { CVData, onInputChange } = useCVData();
@@ -52,7 +51,7 @@ function CoverLetter() {
       let data = CVData.details;
 
       if (
-        data.fullname === "" ||
+        data.fullName === "" ||
         data.email === "" ||
         data.companyName === "" ||
         data.jobPosition === ""
@@ -65,13 +64,13 @@ function CoverLetter() {
     if (path === "short-bio" || path === "conclude") {
       let data = CVData.description;
 
-      if (data.company === "" || data.job === "") {
+      if (data.companyInfo === "" || data.jobDescription === "") {
         navigate("/cover-letter/job-description");
         return;
       }
 
       if (path === "conclude") {
-        let data = CVData.bio;
+        let data = CVData.professionalBio;
 
         if (data === "" || data.length <= 30) {
           navigate("/cover-letter/short-bio");
@@ -90,7 +89,7 @@ function CoverLetter() {
           <Route
             element={
               <div className="flex justify-center items-center flex-col w-full lg:w-3/4 px-12 lg:px-32 text-center">
-                <img src={img} alt="bot__image" />
+                <img src={botIcon} alt="bot__image" />
                 <Outlet />
               </div>
             }
@@ -98,7 +97,7 @@ function CoverLetter() {
             <Route
               path="/"
               element={
-                <StartedBuilding
+                <StartBuilding
                   isLogged={user?.isLogged}
                   name={user?.fullname}
                 />
@@ -127,16 +126,16 @@ function CoverLetter() {
               path="/short-bio"
               element={
                 <ShortBio
-                  data={CVData.bio}
+                  data={CVData.professionalBio}
                   handleChange={onInputChange}
                   isLogged={user?.isLogged}
                 />
               }
             />
-            <Route path="/info-ended" element={<EndBuilding />} />
+            <Route path="/info-ended" element={<CreateLetter />} />
           </Route>
 
-          <Route path="/editor" element={<CoverEditor {...CVData} />} />
+          <Route path="/editor" element={<CoverEditor data={CVData} />} />
         </Routes>
       </div>
     </>
