@@ -18,7 +18,7 @@ const Download = ({ data }) => {
   const handleDownload = async () => {
     const doc = document.getElementById("template");
     setLoading(true);
-    const url = import.meta.env.VITE_CLIENT_SERVER_RENDER_URL;
+    const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
     try {
       let res = await axios.post(
