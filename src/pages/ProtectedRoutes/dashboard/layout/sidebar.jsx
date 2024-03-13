@@ -1,8 +1,67 @@
 import { useAuth } from "../../../../middleware/auth";
 import { uploadIcon } from "../../../../assets"
+import axios from "axios"
+import { useRef, useState } from "react";
+
 
 function Sidebar() {
   const { user } = useAuth();
+
+  const [userData, setUserData] = useState({
+    fullname: "",
+    email: "",
+    password: "",
+    picture: "",
+    isEmailVerified: false,
+    typeOfUser: "Regular",
+    notificationSettings: {
+      emails: true,
+      pushNotifications: true
+    },
+    socials: {
+      github: "",
+      facebook: "",
+      instagram: "",
+      linkedin: "",
+      medium: ""
+    }
+  })
+
+
+  const updatePicture = async (userId, newPicture) => {
+    try {
+      const url = import.meta.env.VITE_CLIENT_SERVER_URL;
+      const updatedUserData = {
+        ...userData,
+        picture: newPicture
+      }
+      await axios.put(`${url}/v2/updateUser?userId=${userId}`, updatedUserData)
+      console.log("PUT request successful");
+    } catch (error) {
+      console.error("Error making PUT request: ", error);
+    }
+  }
+
+  const hiddenFileInput = useRef(null)
+
+  const handleUpdatePicture = () => {
+    hiddenFileInput.current.click();
+  }
+
+  const handleChange = async (event) => {
+    const pictureUploaded = event.target.files[0]
+    if (!pictureUploaded) return
+    try {
+      const userId = user?._id
+      await updatePicture(userId, pictureUploaded.name)
+      setUserData(prevUserData => ({
+        ...prevUserData,
+        picture: pictureUploaded.name
+      }))
+    } catch (error) {
+      console.error("Error handling picture upload: ", error);
+    }
+  }
 
   return (
     <div className="rounded-lg w-full py-6 px-4 md:p-6 bg-white flex md:flex-col items-center sm:justify-center gap-4">
@@ -33,14 +92,21 @@ function Sidebar() {
             </h2>
           </div>
         )}
-        <button type="submit" className="sm:hidden absolute bottom-0 w-16 h-8 rounded-b-full flex justify-center items-center bg-[#00000066] opacity-0 transition-opacity hover:opacity-100">
+        <button onClick={handleUpdatePicture} className="sm:hidden absolute bottom-0 w-16 h-8 rounded-b-full flex justify-center items-center bg-[#00000066] opacity-0 transition-opacity hover:opacity-100">
           <img src={uploadIcon} alt="Upload" />
         </button>
       </div>
 
-      <button className="hidden sm:block w-full text-center order-3 bg-secondary-500 whitespace-nowrap text-white py-4 rounded-lg hover:bg-secondary-600">
+      <button onClick={handleUpdatePicture} className="hidden sm:block w-full text-center order-3 bg-secondary-500 whitespace-nowrap text-white py-4 rounded-lg hover:bg-secondary-600">
         Upload Photo
       </button>
+
+      <input 
+        type="file"
+        onChange={handleChange}
+        ref={hiddenFileInput}
+        style={{display:"none"}} 
+      />
 
       <div className="order-4 hidden sm:flex flex-col gap-4 text-center text-[#8C8C8F] border border-[#8C8C8F] text-xs bg-[#F0EFF5] rounded-lg p-4">
         <p>
