@@ -6,9 +6,9 @@ export const onSectionComplete = async (template, stage) => {
   const data = { ...template };
 
   delete data.completed;
- // delete data._id;
-//  delete data.userId;
- // delete data.__v;
+  delete data._id;
+  delete data.userId;
+  delete data.__v;
 
   const user = JSON.parse(localStorage.getItem("konectin-profiler-user"));
 
@@ -44,20 +44,7 @@ export const onSectionComplete = async (template, stage) => {
         )
       )
       .catch((err) => {
-        console.err(err);
-        localStorage.setItem(
-          "konectin-profiler-data-template",
-          JSON.stringify({
-            completed: {
-              basic_info: currentStage >= 1,
-              work_history: currentStage >= 2,
-              education: currentStage >= 3,
-              skills: currentStage >= 4,
-              bio: currentStage >= 5,
-            },
-            ...template
-          })
-        )
+        console.error(err);
       });
   }
 };

@@ -19,7 +19,7 @@ const TemplateOption = ({ sectionName }) => {
   const { templateData, setTemplateData } = useTemplateContext();
 
   const [popUp, setPopUp] = useState(false);
-  const [selectedTemplate, setSelectedTemplate] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState("");
   const navigate = useNavigate();
   const [isloading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -40,6 +40,7 @@ const TemplateOption = ({ sectionName }) => {
       })
       .then((res) => {
         const resume = res.data.cv;
+        console.log(resume);
 
         setTemplateData((prev) => ({
           ...prev,
@@ -59,7 +60,7 @@ const TemplateOption = ({ sectionName }) => {
   }
 
   const handleSelect = (value) => {
-    const { currentStage } = templateData;
+    const { currentStage, selectedTemplate } = templateData;
     const { _id } =
       JSON.parse(localStorage.getItem("konectin-profiler-user")) || "";
 
