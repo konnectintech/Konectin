@@ -40,7 +40,6 @@ const TemplateOption = ({ sectionName }) => {
       })
       .then((res) => {
         const resume = res.data.cv;
-        console.log(resume);
 
         setTemplateData((prev) => ({
           ...prev,
