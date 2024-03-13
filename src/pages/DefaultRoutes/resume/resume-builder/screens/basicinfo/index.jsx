@@ -166,6 +166,7 @@ const BasicInformation = ({ data, onInputChange }) => {
                 maxLength="6"
                 value={zipCode}
                 onChange={(e) => handleInputChange(e, "zipCode", "zipcode")}
+                onInput={(e) => handleInputChange(e, "zipCode", "zipcode")}
                 placeholder="Zip Code"
                 name="zipcode"
                 id="zipCode"
