@@ -10,13 +10,11 @@ function Sidebar() {
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   const updateAvatar = async (image) => {
-    const formImage = new FormData();
-    formImage.append("file", image);
-
     await axios
-      .post(`${url}/uploadFile`, formImage)
+      .post(`${url}/updateUserPicture`, image)
       .then((res) => {
-        setUser((prev) => ({ ...prev, picture: res.data.data.url }));
+        setUser((prev) => ({ ...prev, picture: res.data.url }));
+        setModalOpen(false);
       })
       .catch((err) => console.log(err));
   };

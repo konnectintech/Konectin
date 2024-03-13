@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../../middleware/auth";
-// import axios from "axios";
 import Preloader from "../../../../components/preloader";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 function UserInfo() {
   const [details, setDetails] = useState({
@@ -73,10 +74,39 @@ function UserInfo() {
     }
   };
 
-  // const URL = "";
-  const handleSubmit = (e) => {
+  const url = import.meta.env.VITE_CLIENT_SERVER_URL;
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    const { firstName, lastName, email, phoneNumber, country, city, college } =
+      details;
+
+    await axios
+      .put(
+        `${url}/v2/updateUser?userId=${user?._id}`,
+        {
+          fullname: `${firstName} ${lastName}`,
+          email,
+          phoneNumber,
+          country,
+          city,
+          college,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      )
+      .then(() => {
+        setIsLoading(false);
+        toast.success("User information updated successfully");
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        toast.error("Information was not saved... Try again later");
+      });
   };
 
   return (
@@ -162,6 +192,8 @@ function UserInfo() {
               name="phoneNumber"
               id="phoneNumber"
               placeholder="Phone Number"
+              onChange={handleChange}
+              onInput={handleChange}
               onBlur={handleBlur}
               className={`h-[60px] rounded-lg border border-neutral-500 px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400 ${
                 isFilled.phoneNumber ? "bg-primary-100" : "bg-white"
@@ -184,6 +216,8 @@ function UserInfo() {
               id="country"
               autoComplete="name"
               placeholder="Country"
+              onChange={handleChange}
+              onInput={handleChange}
               onBlur={handleBlur}
               className={`h-[60px] rounded-lg border border-neutral-500 px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400 ${
                 isFilled.country ? "bg-primary-100" : "bg-white"
@@ -202,6 +236,8 @@ function UserInfo() {
               name="city"
               id="city"
               placeholder="City"
+              onChange={handleChange}
+              onInput={handleChange}
               onBlur={handleBlur}
               className={`h-[60px] rounded-lg border border-neutral-500 px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400 ${
                 isFilled.city ? "bg-primary-100" : "bg-white"
@@ -222,6 +258,8 @@ function UserInfo() {
             cols="30"
             rows="6"
             placeholder="College / University Name"
+            onChange={handleChange}
+            onInput={handleChange}
             onBlur={handleBlur}
             className={`resize-none rounded-lg border border-solid border-neutral-500 pt-6 px-4 pb-[18px] placeholder:text-neutral-400 ${
               isFilled.college ? "bg-primary-100" : "bg-white"

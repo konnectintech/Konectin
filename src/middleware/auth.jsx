@@ -170,8 +170,10 @@ export const useAuth = () => {
     try {
       let authresult = await axios.post(`${url}/login`, data);
 
-      const userData = { ...authresult.data.data };
-      userData.token = authresult.data.token;
+      const userData = {
+        ...authresult.data.data,
+        token: authresult.data.token,
+      };
 
       setUser(userData);
 
