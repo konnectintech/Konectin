@@ -14,14 +14,17 @@ function UserInfo() {
     college: "",
   });
 
-  const [firstNameFilled, setFirstNameFilled] = useState(false)
-  const [lastNameFilled, setLastNameFilled] = useState(false)
-  const [emailFilled, setEmailFilled] = useState(false)
-  const [phoneNumberFilled, setPhoneNumberFilled] = useState(false)
-  const [countryFilled, setCountryFilled] = useState(false)
-  const [cityFilled, setCityFilled] = useState(false)
-  const [collegeFilled, setCollegeFilled] = useState(false)
+  const [isFilled, setIsFilled] = useState({
+    firstName: false,
+    lastName: false,
+    email: false,
+    phoneNumber: false,
+    country: false,
+    city: false,
+    college: false,
+  });
 
+  const [isLoading, setIsLoading] = useState(false);
 
   const { user } = useAuth();
 
@@ -34,22 +37,17 @@ function UserInfo() {
         email: user?.email,
       }));
     }
+  }, [user]);
 
-    const checkIfFilled = (value, setState) => {
-      if(value.trim().length !== 0) {
-        setState(true)
+  useEffect(() => {
+    Object.entries(details).map((item) => {
+      if (item[1].trim().length !== 0) {
+        return setIsFilled((prev) => ({ ...prev, [item[0]]: true }));
+      } else {
+        return setIsFilled((prev) => ({ ...prev, [item[0]]: false }));
       }
-    }
-    checkIfFilled(details.firstName, setFirstNameFilled)
-    checkIfFilled(details.lastName, setLastNameFilled)
-    checkIfFilled(details.email, setEmailFilled)
-    checkIfFilled(details.phoneNumber, setPhoneNumberFilled)
-    checkIfFilled(details.country, setCountryFilled)
-    checkIfFilled(details.city, setCityFilled)
-    checkIfFilled(details.college, setCollegeFilled)
-
-    
-  }, [user, details.firstName, details.lastName, details.email, details.phoneNumber, details.country, details.city, details.college]);
+    });
+  }, [details]);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -62,40 +60,28 @@ function UserInfo() {
     const { name, value } = e.target;
     switch (name) {
       case "firstName":
-        setFirstNameFilled(value.trim().length !== 0);
-        break;
       case "lastName":
-        setLastNameFilled(value.trim().length !== 0);
-        break;
       case "email":
-        setEmailFilled(value.trim().length !== 0)
-        break;
       case "phoneNumber":
-        setPhoneNumberFilled(value.trim().length !== 0);
-        break;
       case "country":
-        setCountryFilled(value.trim().length !== 0)
-        break;
       case "city":
-        setCityFilled(value.trim().length !== 0)
-        break;
       case "college":
-        setCollegeFilled(value.trim().length !== 0)
+        setIsFilled((prev) => ({ ...prev, [name]: value.trim().length !== 0 }));
         break;
       default:
         break;
     }
-  }
+  };
 
   // const URL = "";
-  const handleSubmit = (e) => { 
-
-    <Preloader />
-  }
-  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+  };
 
   return (
     <form className="w-full" method="POST" onSubmit={handleSubmit}>
+      {isLoading && <Preloader />}
       <div className="flex flex-col gap-6">
         <div className="grid grid-cols-2 gap-2.5 sm:gap-6">
           <div className="flex flex-col gap-2.5">
@@ -114,7 +100,9 @@ function UserInfo() {
               onChange={handleChange}
               onInput={handleChange}
               onBlur={handleBlur}
-              className={`h-[60px] rounded-lg border border-neutral-500 px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400 ${firstNameFilled ? "bg-primary-100" : "bg-white"}`}
+              className={`h-[60px] rounded-lg border border-neutral-500 px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400 ${
+                isFilled.firstName ? "bg-primary-100" : "bg-white"
+              }`}
             />
           </div>
           <div className="flex flex-col gap-2.5">
@@ -133,14 +121,16 @@ function UserInfo() {
               onChange={handleChange}
               onInput={handleChange}
               onBlur={handleBlur}
-              className={`h-[60px] rounded-lg border border-neutral-500 px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400 ${lastNameFilled ? "bg-primary-100" : "bg-white"}`}
+              className={`h-[60px] rounded-lg border border-neutral-500 px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400 ${
+                isFilled.lastName ? "bg-primary-100" : "bg-white"
+              }`}
             />
           </div>
         </div>
         <div className="flex flex-col gap-6 sm:grid sm:grid-cols-2">
           <div className="flex flex-col gap-2.5">
             <label
-              htmlFor="emailAddress"
+              htmlFor="email"
               className="hidden sm:block text-neutral-300 font-bold tracking-[-0.2px] cursor-pointer"
             >
               Email Address
@@ -149,12 +139,15 @@ function UserInfo() {
               type="email"
               name="email"
               id="email"
+              autoComplete="email"
               placeholder="Email Address"
               value={details?.email}
               onChange={handleChange}
               onInput={handleChange}
               onBlur={handleBlur}
-              className={`h-[60px] rounded-lg border border-neutral-500 px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400  ${emailFilled ? "bg-primary-100" : "bg-white"}`}
+              className={`h-[60px] rounded-lg border border-neutral-500 px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400  ${
+                isFilled.email ? "bg-primary-100" : "bg-white"
+              }`}
             />
           </div>
           <div className="flex flex-col gap-2.5">
@@ -170,7 +163,9 @@ function UserInfo() {
               id="phoneNumber"
               placeholder="Phone Number"
               onBlur={handleBlur}
-              className={`h-[60px] rounded-lg border border-neutral-500 px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400 ${phoneNumberFilled ? "bg-primary-100" : "bg-white"}`}
+              className={`h-[60px] rounded-lg border border-neutral-500 px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400 ${
+                isFilled.phoneNumber ? "bg-primary-100" : "bg-white"
+              }`}
             />
           </div>
         </div>
@@ -187,9 +182,12 @@ function UserInfo() {
               type="text"
               name="country"
               id="country"
+              autoComplete="name"
               placeholder="Country"
               onBlur={handleBlur}
-              className={`h-[60px] rounded-lg border border-neutral-500 px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400 ${countryFilled ? "bg-primary-100" : "bg-white"}`}
+              className={`h-[60px] rounded-lg border border-neutral-500 px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400 ${
+                isFilled.country ? "bg-primary-100" : "bg-white"
+              }`}
             />
           </div>
           <div className="flex flex-col gap-2.5">
@@ -205,7 +203,9 @@ function UserInfo() {
               id="city"
               placeholder="City"
               onBlur={handleBlur}
-              className={`h-[60px] rounded-lg border border-neutral-500 px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400 ${cityFilled ? "bg-primary-100" : "bg-white"}`}
+              className={`h-[60px] rounded-lg border border-neutral-500 px-4 py-2 placeholder:text-neutral-400 text-xs outline-none focus:border-[1.7px] focus:border-primary-400 ${
+                isFilled.city ? "bg-primary-100" : "bg-white"
+              }`}
             />
           </div>
         </div>
@@ -223,8 +223,9 @@ function UserInfo() {
             rows="6"
             placeholder="College / University Name"
             onBlur={handleBlur}
-            className={`resize-none rounded-lg border border-solid border-neutral-500 pt-6 px-4 pb-[18px] placeholder:text-neutral-400 ${collegeFilled ? "bg-primary-100" : "bg-white"}`}
-            // className="resize-none rounded-lg border border-solid border-neutral-500 pt-6 px-4 pb-[18px] placeholder:text-neutral-400"
+            className={`resize-none rounded-lg border border-solid border-neutral-500 pt-6 px-4 pb-[18px] placeholder:text-neutral-400 ${
+              isFilled.college ? "bg-primary-100" : "bg-white"
+            }`}
           ></textarea>
         </div>
         <div className="flex flex-col justify-center items-center">

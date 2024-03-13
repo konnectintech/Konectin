@@ -20,7 +20,7 @@ function UploadResume({ data, setUpdate, updateForm, handleChange }) {
 
   const wrapperRef = useRef(null);
   const navigate = useNavigate();
-  const url = import.meta.env.VITE_CLIENT_SERVER_RENDER_URL;
+  const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   const onFileDrop = (e) => {
     const resumes = e.target.files;

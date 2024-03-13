@@ -220,6 +220,7 @@ export const useAuth = () => {
 
   return {
     user,
+    setUser,
     signIn,
     signUp,
     signOut,

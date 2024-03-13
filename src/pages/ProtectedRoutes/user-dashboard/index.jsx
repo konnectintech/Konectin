@@ -8,7 +8,7 @@ function UserDashBoard() {
   return (
     <main className="bg-primary-100">
       <div className="w-11/12 mx-auto max-w-screen-2xl flex max-md:flex-col gap-6 md:gap-8 py-4">
-        <div className="w-full sm:max-w-[240px] lg:max-w-[290px] sm:hidden md:block">
+        <div className="w-full sm:w-fit md:max-w-[240px] lg:max-w-[290px]">
           <Sidebar />
         </div>
 
