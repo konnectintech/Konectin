@@ -18,7 +18,7 @@ const TemplateOption = ({ sectionName }) => {
   const { templateData, setTemplateData } = useTemplateContext();
 
   const [popUp, setPopUp] = useState(false);
-  const [selectedTemplate, setSelectedTemplate] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState("");
   const navigate = useNavigate();
   const [isloading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");

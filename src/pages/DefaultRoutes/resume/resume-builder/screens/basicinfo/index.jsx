@@ -162,6 +162,54 @@ const BasicInformation = ({ data, onInputChange }) => {
               </div>
             </div>
 
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col">
+                <input
+                  className="input-container"
+                  type="tel"
+                  minLength="4"
+                  maxLength="6"
+                  value={zipCode}
+                  onChange={(e) => handleInputChange(e, "zipCode", "zipcode")}
+                  onInput={(e) => handleInputChange(e, "zipCode", "zipcode")}
+                  placeholder="Zip Code"
+                  name="zipcode"
+                  id="zipCode"
+                />
+                <label
+                  className="-mt-5 text-xs pl-4 text-error-500 hidden"
+                  htmlFor="zipCode"
+                  ref={zipCodeErrMsg}
+                ></label>
+              </div>
+
+              {/* City */}
+              <CityInput
+                countryId={countryId}
+                stateId={stateId}
+                handleChange={handleCCSChange}
+                city={city}
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              {/* State */}
+              <StateInput
+                countryId={countryId}
+                handleChange={handleCCSChange}
+                state={state}
+                setStateId={setStateId}
+              />
+
+              {/* Country  */}
+              <CountryInput
+                setCode={setCode}
+                handleChange={handleCCSChange}
+                country={country}
+                setCountryId={setCountryId}
+              />
+            </div>
+
             <div className="flex flex-col">
               <input
                 className="input-container"
