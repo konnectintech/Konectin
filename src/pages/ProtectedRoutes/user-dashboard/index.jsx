@@ -1,12 +1,10 @@
-
 import { Routes, Route } from "react-router-dom";
 import { dashboardRoutes } from "./layout/navigation";
 
 import Header from "./layout/header";
 import Sidebar from "./layout/sidebar";
 
-
-function DashBoard() {
+function UserDashBoard() {
   return (
     <main className="bg-primary-100">
       <div className="w-11/12 mx-auto max-w-screen-2xl flex max-md:flex-col gap-6 md:gap-8 py-4">
@@ -39,4 +37,4 @@ function DashBoard() {
   );
 }
 
-export default DashBoard;
+export default UserDashBoard;
