@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 
@@ -30,6 +31,40 @@ function Builder() {
     if (!templateData || user === null) {
       navigate("/resume/ai");
     } else if (user._id === (null || undefined)) {
+      setTemplateData({
+        completed: {
+          basic_info: false,
+          work_history: false,
+          education: false,
+          skills: false,
+          bio: false,
+        },
+        basicInfo: {
+          city: "",
+          country: "",
+          email: "",
+          firstName: "",
+          lastName: "",
+          phoneNumber: "",
+          phoneCode: "",
+          profession: "",
+          state: "",
+          zipCode: "",
+        },
+        theme: {
+          color: "blue",
+          font: "",
+        },
+        currentEditedJob: 0,
+        currentEditedEducation: 0,
+        jobExperience: [],
+        education: [],
+        skills: [],
+        additionalInformation: {},
+        bio: "",
+        selectedTemplate: "",
+        currentStage: 0,
+      });
       navigate("/resume/ai/template-selector");
     }
   }, [templateData, navigate, user]);
