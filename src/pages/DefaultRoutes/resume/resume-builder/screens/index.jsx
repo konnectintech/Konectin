@@ -29,6 +29,8 @@ function Builder() {
   useEffect(() => {
     if (!templateData || user === null) {
       navigate("/resume/ai");
+    } else if (user._id === (null || undefined)) {
+      navigate("/resume/ai/template-selector");
     }
   }, [templateData, navigate, user]);
 
