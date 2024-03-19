@@ -6,13 +6,13 @@ import { toast } from "react-toastify";
 import { CustomButton } from "../../../components/button";
 import { ErrorModal } from "../../../components/form/modal";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../middleware/auth";
 
 function VerifyMail() {
   const [code, setCode] = useState("");
   const [isloading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
-  const user = JSON.parse(localStorage.getItem("konectin-profiler-user"));
+  const { user, setUser } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -52,8 +52,8 @@ function VerifyMail() {
 
   const resendCode = () => {
     const url = `${parseURL}/requestEmail`;
-
     setLoading(true);
+
     axios
       .post(url, { email: user.email })
       .then(async (res) => {
@@ -83,33 +83,20 @@ function VerifyMail() {
 
     axios
       .post(url, { OTP: value })
-      .then(async (res) => {
-        const status = res.status;
-        if (status === 200) {
-          setLoading(false);
-          let userUpdate = { ...user, isEmailVerified: true };
-          localStorage.setItem(
-            "konectin-profiler-user",
-            JSON.stringify(userUpdate)
-          );
-          toast.success("You have been verified, Redirecting now...");
-          setTimeout(() => {
-            const { ongoing } =
-              JSON.parse(sessionStorage.getItem("internData")) || "";
+      .then((res) => {
+        setLoading(false);
+        toast.success("You have been verified");
+        setUser(res.data.user);
 
-            if (location.state.from === "intern" || ongoing)
-              navigate("/internship/intern-application");
-            else navigate("/resume/options");
-          }, 2000);
-        } else {
-          setLoading(false);
-          setErrorMessage(res.data.message);
-          console.log(res);
-        }
+        const { ongoing } =
+          JSON.parse(sessionStorage.getItem("internData")) || "";
+
+        if (location.state.from === "intern" || ongoing)
+          navigate("/internship/intern-application");
+        else navigate("/resume/options");
       })
       .catch((err) => {
         setLoading(false);
-        console.log(err);
         setErrorMessage(err.response.data.message);
       });
   };

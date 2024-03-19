@@ -95,7 +95,7 @@ export const useAuth = () => {
   const status = sessionStorage.getItem("status") || "";
 
   useEffect(() => {
-    if (user !== null) {
+    if (user !== null && user.token) {
       const decodedJwt = parseJwt(user.token);
 
       if (decodedJwt.exp * 1000 < Date.now()) {
@@ -116,7 +116,7 @@ export const useAuth = () => {
   // };
 
   useEffect(() => {
-    if (user && user._id && !user.cvs) {
+    if (user && user._id && !user.cvs && user.token) {
       getUserResumes(user);
     }
   }, [user]);
@@ -202,7 +202,7 @@ export const useAuth = () => {
       setUser(userData);
       loader(false);
       setTimeout(() => {
-        navigate("/verify-mail", { state: { from: "sign-up" } });
+        navigate("/verify-mail", { state: { from: "signup" } });
       }, 1000);
     } catch (err) {
       loader(false);
@@ -215,6 +215,7 @@ export const useAuth = () => {
       "konectin-profiler-data-template",
       JSON.stringify(null)
     );
+    sessionStorage.setItem("verifyMailRequest", false);
     setUser(null);
   };
 

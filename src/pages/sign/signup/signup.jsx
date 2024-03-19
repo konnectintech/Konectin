@@ -34,7 +34,7 @@ function SignUp() {
         })
         .then((res) => {
           instance.setActiveAccount(res.account);
-          navigate("/blog/all");
+          navigate("/resume/options");
         })
         .catch((err) => {
           if (err instanceof InteractionRequiredAuthError) {
