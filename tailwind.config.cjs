@@ -56,6 +56,9 @@ module.exports = {
       boxShadow: {
         dropShadow: "0px 0px 2px 0px rgba(0, 0, 0, 0.05), 0px 4px 8px 0px rgba(0, 0, 0, 0.05)"
       },
+      dropShadow: {
+        'dropdown': "0px 0px 2.41px rgba(0, 0, 0, 0.05), 0px 4.819px 9.639px rgba(0, 0, 0, 0.05)"
+      }
     },
   },
   plugins: [],

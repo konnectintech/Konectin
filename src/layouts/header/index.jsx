@@ -6,9 +6,15 @@ import { konectinIcon } from "../../assets";
 import "./header.css";
 import { useAuth } from "../../middleware/auth";
 import InternAnimation from "../../utils/intern-animation";
+import Dropdown from "../../components/dropdown";
 
 function Header() {
   const { user } = useAuth();
+  const [dropdown, setDropdown] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdown(!dropdown)
+  }
 
   const [offset, setOffset] = useState({
     prevScrollpos: window.pageYOffset,
@@ -127,7 +133,7 @@ function Header() {
           ))}
         </nav>
 
-        <nav className="hidden lg:block">
+        <nav className="hidden lg:block" onClick={toggleDropdown}>
           {user ? (
             <Link
               to="/dashboard/"
@@ -148,9 +154,9 @@ function Header() {
                     offset.darken ? "text-white" : "text-neutral-100"
                   } text-base`}
                 >
-                  {user.fullname}
+                  {user?.fullname}
                 </h3>
-                <p>{user.email}</p>
+                <p>{user?.email}</p>
               </div>
             </Link>
           ) : (
@@ -166,9 +172,13 @@ function Header() {
             </Link>
           )}
         </nav>
+
+     
       </nav>
       {pathname.includes("/intern-application") &&
         (offset.prevScrollpos <= 50 || offset.darken) && <InternAnimation />}
+
+      {dropdown && (<Dropdown />) }
     </header>
   );
 }
