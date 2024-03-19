@@ -9,6 +9,10 @@ import { useAuth } from "../../../middleware/auth";
 import { useCVData } from "../../../middleware/cv";
 import { useEffect } from "react";
 
+// assets
+import { botIcon } from "../../../assets";
+import { IoArrowBackCircleOutline } from "react-icons/io5";
+
 // Routes
 import StartBuilding from "./builder/startBuilding";
 import JobDetails from "./builder/details";
@@ -16,7 +20,7 @@ import JobDescription from "./builder/description";
 import ShortBio from "./builder/shortBio";
 import CreateLetter from "./builder/createLetter";
 import CoverEditor from "./editor";
-import { botIcon } from "../../../assets";
+import CompanyBrief from "./builder/companyBrief";
 
 function CoverLetter() {
   const { CVData, onInputChange } = useCVData();
@@ -84,11 +88,17 @@ function CoverLetter() {
 
   return (
     <>
-      <div className="flex justify-center items-center h-full">
+      <div className="flex justify-center items-center h-full w-full">
         <Routes>
           <Route
             element={
               <div className="flex justify-center items-center flex-col w-full lg:w-3/4 px-12 lg:px-32 text-center">
+                <div
+                  onClick={() => navigate(-1)}
+                  className="self-start flex items-center gap-2 text-sm cursor-pointer"
+                >
+                  <IoArrowBackCircleOutline size="1.4rem" /> Back
+                </div>
                 <img src={botIcon} alt="bot__image" />
                 <Outlet />
               </div>
@@ -117,7 +127,16 @@ function CoverLetter() {
               path="/job-description"
               element={
                 <JobDescription
-                  data={CVData.description}
+                  data={CVData.description.jobDescription}
+                  handleChange={onInputChange}
+                />
+              }
+            />
+            <Route
+              path="/company-info"
+              element={
+                <CompanyBrief
+                  data={CVData.description.companyInfo}
                   handleChange={onInputChange}
                 />
               }
