@@ -35,7 +35,7 @@ function VerifyMail() {
     const areq = sessionStorage.getItem("verifyMailRequest");
     if (location.state?.from === "signup" || areq) return;
 
-    // If not, request a code for email verifiction
+    // If not, request a code for email verification
     axios
       .post(`${parseURL}/requestEmail?userId=${user._id}`, {
         email: user.email,
