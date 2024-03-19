@@ -52,6 +52,8 @@ export const educationOption = [
 export const typeList = ["Paid", "Unpaid", "Both"];
 export const fieldList = [
   "Product Management",
+  "Flutter Developer",
+  "Android/IOS Developer"
   "Software Development (Frontend)",
   "Software Development (Backend)",
   "Software Development (Full Stack)",
