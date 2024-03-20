@@ -83,7 +83,7 @@ const Bio = ({ data, onInputChange }) => {
               </p>
               <div onClick={openModal} className="w-10 h-10 cursor-pointer">
                 <img
-                  className="object-contain"
+                  className="object-contain cursor-pointer"
                   src={botIcon}
                   alt="Konecto-bot"
                 />

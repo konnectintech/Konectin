@@ -95,8 +95,12 @@ const AdditionInformation = ({ data, updateResume }) => {
                 />
               </div>
 
-              <div className="max-lg:hidden ">
-                <SelectedTemplates data={data} />
+              <div className="max-md:hidden w-1/2">
+                <div className="h-[360px] sm:h-[300px] md:h-[500px] lg:h-[580px] lg:w-[500px] flex items-center justify-center">
+                  <div className="md:scale-[42%] lg:scale-[50%] mt-10">
+                    <SelectedTemplates data={data} />
+                  </div>
+                </div>
               </div>
             </div>
             <NavigationButton

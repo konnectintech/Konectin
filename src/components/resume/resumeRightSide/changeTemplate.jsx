@@ -12,7 +12,7 @@ function ChangeTemplate() {
   };
 
   return (
-    <div className="flex flex-col gap-2 overflow-y-auto max-h-[250px] snap-y">
+    <div className="flex flex-col gap-2 overflow-y-auto max-h-[250px] snap-y p-2">
       {template_images
         .filter((record) => record.category === "modern")
         .map((item, index) => {

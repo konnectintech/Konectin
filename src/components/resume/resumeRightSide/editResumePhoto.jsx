@@ -11,10 +11,14 @@ const EditResumePhoto = () => {
         <p className="whitespace-nowrap">Resume Photo</p>
         <Switch checked={resumePhoto} onChange={setResumePhoto} />
       </div>
-      <div className="flex items-center justify-between cursor-pointer">
+      <label
+        htmlFor="image"
+        className="flex items-center justify-between cursor-pointer"
+      >
         <p className="whitespace-nowrap">Add / Change Photo</p>
         <BsArrowRightShort className="text-secondary-600 text-3xl" />
-      </div>
+        <input type="file" className="sr-only" id="image" />
+      </label>
     </div>
   );
 };

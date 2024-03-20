@@ -4,6 +4,7 @@ import College from "./college";
 import HighSchool from "./high-school";
 import SelectEducation from "./selectEducation";
 import Other from "./other";
+import CollegeList from "./collegeList";
 
 const Education = ({ data }) => {
   return (
@@ -15,6 +16,7 @@ const Education = ({ data }) => {
           </div>
         }
       >
+        <Route path="/list" element={<CollegeList data={data} />} />
         <Route path="/" element={<SelectEducation data={data} />} />
         <Route
           element={

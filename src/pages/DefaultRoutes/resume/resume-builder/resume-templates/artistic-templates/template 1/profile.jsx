@@ -13,8 +13,8 @@ function Profile({ data }) {
           }
           
           .highlight-bar {
-            border: 2px solid ${templateData.theme.color};
-            background:  ${templateData.theme.color};
+            border: 2px solid ${templateData?.theme?.color || "blue"};
+            background:  ${templateData?.theme?.color || "blue"};
             width: 100px;
             margin:0.5rem 0;
             border-radius:5px;
