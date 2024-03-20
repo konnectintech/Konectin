@@ -3,7 +3,6 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import { useTemplateContext } from "../../../../../../../middleware/resume";
 import { useEffect, useState } from "react";
 import CollegeForm from "./collegeForm";
-import CollegeList from "./collegeList";
 
 const College = ({ data }) => {
   const navigate = useNavigate();
@@ -129,15 +128,11 @@ const College = ({ data }) => {
     }));
   };
 
-  const education_components = [
-    { element: CollegeForm, path: "/" },
-    { element: CollegeList, path: "/college-list" },
-  ];
+  const education_components = [{ element: CollegeForm, path: "/" }];
 
   return (
     <Routes>
       {education_components.map((route) => {
-        console.log("fdgd", route);
         return (
           <Route
             key={route.path}

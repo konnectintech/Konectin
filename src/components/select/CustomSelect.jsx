@@ -88,8 +88,10 @@ const CustomSelect = ({ options, value, onChange, showSearch }) => {
             {filteredOptions.map((option) => (
               <li
                 key={option}
-                className={`px-4 py-2 cursor-pointer hover:bg-neutral-700 text-sm font-medium ${
-                  option === value ? "font-semibold" : ""
+                className={`px-4 py-2 cursor-pointer hover:bg-neutral-700 hover:text-white text-sm font-medium ${
+                  option === value
+                    ? "font-semibold bg-primary-200 text-white"
+                    : ""
                 }`}
                 onClick={() => handleOptionClick(option)}
               >

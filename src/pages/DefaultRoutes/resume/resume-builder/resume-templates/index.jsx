@@ -12,8 +12,6 @@ function SelectedTemplates({ data }) {
     return;
   }
 
-  console.log(templateData?.selectedTemplate);
-
   const [templateType, templateIndex] =
     templateData?.selectedTemplate.split("_");
   const [ExactTemplate] =

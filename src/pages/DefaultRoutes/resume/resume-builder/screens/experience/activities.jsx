@@ -157,7 +157,11 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
           back={goBack}
           cont={() => {
             onSectionComplete(templateData, 3);
-            navigate("/resume/builder/education");
+            navigate(
+              Object.keys(templateData?.education || []).length <= 0
+                ? "/resume/builder/education"
+                : "/resume/builder/education/list"
+            );
           }}
         />
       </div>

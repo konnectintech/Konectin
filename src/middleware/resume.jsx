@@ -51,7 +51,12 @@ export const useTemplateData = () => {
       },
       theme: {
         color: "blue",
-        font: "",
+        fontSize: "",
+        fontStyle: "",
+      },
+      image: {
+        show: false,
+        value: "",
       },
       currentEditedJob: 0,
       currentEditedEducation: 0,

@@ -50,7 +50,10 @@ function ResumeHeader() {
       no: 2,
     },
     {
-      path: "/resume/builder/education",
+      path:
+        Object.keys(templateData?.education || []).length <= 0
+          ? "/resume/builder/education"
+          : "/resume/builder/education/list",
       text: "education",
       no: 3,
     },

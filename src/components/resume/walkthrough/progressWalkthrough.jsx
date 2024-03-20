@@ -22,7 +22,7 @@ function ProgressWalkthrough() {
   }, []);
   return (
     <div className="fixed inset-0  z-[100] bg-black bg-opacity-40">
-      <div className="absolute top-20 right-1/3 bg-[#191A1F] py-10 px-14 rounded-lg w-1/2 flex flex-col items-center gap-8 ">
+      <div className="absolute top-36 right-1/3 bg-[#191A1F] py-10 px-14 rounded-lg w-1/2 flex flex-col items-center gap-8 ">
         <div className="absolute left-8 bg-[#191A1F] rotate-45 -top-3 w-6 h-6 " />
         <div className="absolute top-4  right-4">
           <button onClick={skipWalkthrough} className="">

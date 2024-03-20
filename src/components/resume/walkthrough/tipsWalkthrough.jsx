@@ -26,10 +26,10 @@ function TipsWalkthrough() {
 
   return (
     <div className="fixed inset-0 z-[100]  ">
-      <div className="w-16 absolute right-0  top-0  h-32 bg-black bg-opacity-40 " />
-      <div className="w-16 absolute right-0  top-48  bottom-0 bg-black bg-opacity-40 " />
+      <div className="w-16 absolute right-0  top-0  h-48 bg-black bg-opacity-40 " />
+      <div className="w-16 absolute right-0  top-64  bottom-0 bg-black bg-opacity-40 " />
       <div className="absolute inset-y-0 left-0 right-16 bg-black bg-opacity-40">
-        <div className="absolute right-4 top-28 bg-[#191A1F] py-10 px-14 rounded-lg w-1/2 flex flex-col items-center gap-8 ">
+        <div className="absolute right-4 top-44 bg-[#191A1F] py-10 px-14 rounded-lg w-1/2 flex flex-col items-center gap-8 ">
           <div className="absolute -right-3 bg-[#191A1F] rotate-45 top-8 w-6 h-6 " />
 
           <div className="absolute top-4 right-4">
