@@ -3,7 +3,6 @@ import {
   download,
   droplet,
   eye,
-  menu,
   page,
   profileadd,
   tips,
@@ -16,11 +15,15 @@ import DownloadResume from "../../components/resume/resumeRightSide/downloadResu
 import RightSidebarWalkthrough from "../../components/resume/walkthrough/rightSidebarWalkthrough";
 import { useWalkthrough } from "../../middleware/walkthrough";
 import ChangeTemplate from "../../components/resume/resumeRightSide/changeTemplate";
+import Tips from "../../components/resume/resumeRightSide/tips";
 
 function ResumeRightbar() {
   const { currentModule } = useWalkthrough();
   const [isDownload, setIsDownload] = useState(false);
   const [hoverIn, setHoverIn] = useState(false);
+  const [activeItem, setActiveItem] = useState(null);
+  const [showTips, setShowTips] = useState(false);
+
   const options = [
     {
       route: "",
@@ -29,7 +32,7 @@ function ResumeRightbar() {
     },
     { route: "", icon: page, label: "Change Template", option: true },
     { route: "", icon: profileadd, label: "Edit Resume Photo", option: true },
-    { route: "", icon: menu, label: "Rearrange Sections" },
+    // { route: "", icon: menu, label: "Rearrange Sections" },
     {
       route: "",
       icon: droplet,
@@ -41,19 +44,23 @@ function ResumeRightbar() {
   const handleMouseLeave = () => {
     setIsDownload(false);
     setHoverIn(false);
+    setActiveItem(null);
   };
 
   return (
     <>
       {currentModule === 4 && <RightSidebarWalkthrough />}
       <div
-        className="absolute top-0 right-0 bottom-0 z-10 bg-white group pt-20 hidden md:block transition-all duration-500 w-14 hover:w-56 overflow-hidden"
+        className="absolute top-0 right-0 bottom-0 z-10 bg-white group pt-20 hidden md:block transition-all duration-500 w-14 hover:w-56 "
         onMouseLeave={handleMouseLeave}
       >
         <ul className="flex flex-col gap-4">
           <li className="relative cursor-pointer mb-4 py-1 px-2 ">
             <div className="flex items-center ">
-              <div className="relative w-[32px] h-[32px] group/tips  bg-secondary-200 p-2 rounded-full hover:bg-secondary-600">
+              <div
+                onClick={() => setShowTips(!showTips)}
+                className="relative w-[32px] h-[32px] group/tips  bg-secondary-200 p-2 rounded-full hover:bg-secondary-600"
+              >
                 <img
                   src={tips}
                   alt={"tips"}
@@ -64,6 +71,10 @@ function ResumeRightbar() {
                   alt={"tips"}
                   className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-[24px] opacity-0 group-hover/tips:opacity-100 "
                 />
+                <div className="absolute z-50 -top-2 text-[8px] w-3 text-center h-3 right-0 bg-secondary-500 text-white rounded-full">
+                  1
+                </div>
+                {showTips && <Tips />}
               </div>
             </div>
           </li>
@@ -73,6 +84,8 @@ function ResumeRightbar() {
               item={item}
               hoverIn={hoverIn}
               setHoverIn={setHoverIn}
+              activeItem={activeItem}
+              setActiveItem={setActiveItem}
             />
           ))}
           <div>
@@ -104,9 +117,13 @@ function ResumeRightbar() {
 
 export default ResumeRightbar;
 
-const RightBarOption = ({ item, hoverIn, setHoverIn }) => {
-  const [activeItem, setActiveItem] = useState(null);
-
+const RightBarOption = ({
+  item,
+  hoverIn,
+  setHoverIn,
+  activeItem,
+  setActiveItem,
+}) => {
   const handleClick = (option) => {
     if (activeItem === option) {
       setHoverIn(false);
@@ -132,7 +149,7 @@ const RightBarOption = ({ item, hoverIn, setHoverIn }) => {
           </div>
           {item.option ? (
             <div className="">
-              {activeItem === item.label ? (
+              {activeItem === item.label && hoverIn ? (
                 <FaChevronUp className="opacity-0 group-hover:opacity-100" />
               ) : (
                 <FaChevronDown className="opacity-0 group-hover:opacity-100" />
@@ -141,9 +158,14 @@ const RightBarOption = ({ item, hoverIn, setHoverIn }) => {
           ) : null}
         </div>
       </li>
-      {activeItem === "Change Template" && hoverIn && <ChangeTemplate />}
-      {activeItem === "Edit Resume Photo" && hoverIn && <EditResumePhoto />}
-      {activeItem === "Style Resume" && hoverIn && <StyleResume />}
+      {hoverIn &&
+        ((item.label === "Change Template" &&
+          activeItem === "Change Template" && <ChangeTemplate />) ||
+          (item.label === "Edit Resume Photo" &&
+            activeItem === "Edit Resume Photo" && <EditResumePhoto />) ||
+          (item.label === "Style Resume" && activeItem === "Style Resume" && (
+            <StyleResume />
+          )))}
     </div>
   );
 };

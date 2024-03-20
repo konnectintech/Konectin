@@ -204,7 +204,7 @@ function CollegeForm() {
         education.endMonth !== "" ||
         education.endYear !== "")
     ) {
-      navigate("/resume/builder/education/college/college-list");
+      navigate("/resume/builder/education/list");
     }
   };
 

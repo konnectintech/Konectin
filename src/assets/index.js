@@ -42,6 +42,8 @@ import bookmarkIcon from "./icons/bookmark.svg";
 import notifySuccess from "./icons/notifysuccess.svg";
 import notifyError from "./icons/notifyerror.svg";
 import uploadIcon from "./icons/upload.svg";
+import completedCheck from "./icons/completed-check.svg";
+import halfLoading from "./icons/half-loading.svg";
 
 // socials
 import SFacebook from "./icons/socials/Facebook.svg";
@@ -190,6 +192,8 @@ export {
   dislikeIcon,
   microsoftIcon,
   uploadIcon,
+  completedCheck,
+  halfLoading,
 
   // Sign Images
   signImage,
