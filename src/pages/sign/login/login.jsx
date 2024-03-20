@@ -61,7 +61,7 @@ function Login() {
         })
         .then((res) => {
           instance.setActiveAccount(res.account);
-          navigate("/resume/options");
+          navigate("/dashboard/");
         })
         .catch((err) => {
           if (err instanceof InteractionRequiredAuthError) {

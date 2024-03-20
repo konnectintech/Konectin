@@ -43,7 +43,7 @@ pca.addEventCallback((event) => {
 
         localStorage.getItem("konectin-profiler-user", JSON.stringify(user));
 
-        window.location.href = "/resume/options";
+        window.location.href = "/dashboard/";
       })
       .catch((err) => console.error(err));
   }
@@ -159,7 +159,7 @@ export const useAuth = () => {
         }
       }
 
-      setUser((prev) => ({ ...prev, cvs: resumes, isLogged: true }));
+      setUser((prev) => ({ ...prev, cvs: resumes }));
     } catch (err) {
       console.error(err);
     }
@@ -179,7 +179,7 @@ export const useAuth = () => {
 
           if (ongoing) {
             navigate("/internship/intern-application");
-          } else navigate("/resume/options");
+          } else navigate("/dashboard/");
         }, 3000);
       })
       .catch((err) => {

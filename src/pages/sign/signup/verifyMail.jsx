@@ -97,7 +97,7 @@ function VerifyMail() {
         setTimeout(() => {
           if (location.state.from === "intern" || ongoing)
             navigate("/internship/intern-application");
-          else navigate("/resume/options");
+          else navigate("/dashboard/");
         }, 2000);
       })
       .catch((err) => {

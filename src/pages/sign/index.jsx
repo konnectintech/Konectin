@@ -14,7 +14,7 @@ function Sign() {
 
   useEffect(() => {
     if (user) {
-      navigate("/resume/options");
+      navigate("/dashboard/");
     }
   }, [navigate, user]);
 
