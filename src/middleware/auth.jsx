@@ -115,7 +115,7 @@ export const useAuth = () => {
   // };
 
   useEffect(() => {
-    if (user && user._id && !user.cvs && user.token) {
+    if (user && user.token) {
       getUserResumes(user);
     }
   }, [user]);
@@ -192,7 +192,7 @@ export const useAuth = () => {
     await axios
       .post(`${url}/register`, data)
       .then((res) => {
-        setUser(res.data.user);
+        setUser({ ...res.data.user, token: res.data.token });
         loader(false);
         navigate("/verify-mail", { state: { from: "signup" } });
       })

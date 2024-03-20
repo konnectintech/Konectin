@@ -12,7 +12,7 @@ function VerifyMail() {
   const [code, setCode] = useState("");
   const [isloading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const { user, setUser } = useAuth();
+  const { user } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -83,20 +83,26 @@ function VerifyMail() {
 
     axios
       .post(url, { OTP: value })
-      .then((res) => {
+      .then(() => {
         setLoading(false);
         toast.success("You have been verified");
-        setUser(res.data.user);
+        localStorage.setItem(
+          "konectin-profiler-user",
+          JSON.stringify({ ...user, isEmailVerified: true })
+        );
 
         const { ongoing } =
           JSON.parse(sessionStorage.getItem("internData")) || "";
 
-        if (location.state.from === "intern" || ongoing)
-          navigate("/internship/intern-application");
-        else navigate("/resume/options");
+        setTimeout(() => {
+          if (location.state.from === "intern" || ongoing)
+            navigate("/internship/intern-application");
+          else navigate("/resume/options");
+        }, 2000);
       })
       .catch((err) => {
         setLoading(false);
+        console.log(err);
         setErrorMessage(err.response.data.message);
       });
   };
