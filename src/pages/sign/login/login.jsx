@@ -1,13 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { loginForm } from "../signData";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as FaIcon from "react-icons/fa";
-import { useIsAuthenticated, useMsal } from "@azure/msal-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAuth } from "../../../middleware/auth";
 import { FieldForm } from "../../../components/form/";
 import Preloader from "../../../components/preloader";
-import { InteractionRequiredAuthError } from "@azure/msal-browser";
 
 export function RememberMe() {
   const [agreed, setAgreed] = useState(false);
@@ -47,31 +45,7 @@ function Login() {
   const [isloading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const navigate = useNavigate();
-  const { instance } = useMsal();
   const { signIn } = useAuth();
-  const isUserAuthenticated = useIsAuthenticated();
-
-  useEffect(() => {
-    if (!isUserAuthenticated) {
-      instance
-        .ssoSilent({
-          scopes: ["user.read"],
-          loginHint: "",
-        })
-        .then((res) => {
-          instance.setActiveAccount(res.account);
-          navigate("/dashboard/");
-        })
-        .catch((err) => {
-          if (err instanceof InteractionRequiredAuthError) {
-            // instance.loginPopup({
-            //   scopes: ["user.read"],
-            // });
-          }
-        });
-    }
-  }, []);
 
   const handleSubmit = (data) => {
     setLoading(true);
