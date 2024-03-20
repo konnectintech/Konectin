@@ -101,8 +101,6 @@ export const useAuth = () => {
         signOut();
       }
     }
-
-    signOut();
   }, []);
 
   // const getUser = async (data) => {

@@ -88,7 +88,7 @@ function CoverLetter() {
 
   return (
     <>
-      <div className="flex justify-center items-center h-full w-full">
+      <div className="flex justify-center items-center h-full w-full cover-letter-main">
         <Routes>
           <Route
             element={
@@ -106,12 +106,7 @@ function CoverLetter() {
           >
             <Route
               path="/"
-              element={
-                <StartBuilding
-                  isLogged={user?.isLogged}
-                  name={user?.fullname}
-                />
-              }
+              element={<StartBuilding isLogged={user} name={user?.fullname} />}
             />
             <Route
               path="/job-details"
@@ -119,7 +114,7 @@ function CoverLetter() {
                 <JobDetails
                   data={CVData.details}
                   handleChange={onInputChange}
-                  isLogged={user?.isLogged}
+                  isLogged={user}
                 />
               }
             />
@@ -147,7 +142,7 @@ function CoverLetter() {
                 <ShortBio
                   data={CVData.professionalBio}
                   handleChange={onInputChange}
-                  isLogged={user?.isLogged}
+                  isLogged={user}
                 />
               }
             />

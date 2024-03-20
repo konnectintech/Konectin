@@ -15,14 +15,14 @@ function ContentEditor() {
         onInit={(_, editor) => (editorRef.current = editor)}
         init={{
           menubar: false,
-          resize: false,
+          resize: true,
           branding: false,
           plugins: "lists wordcount",
           elementpath: false,
-          toolbar: "bold italic underline undo redo bullist",
+          toolbar:
+            "bold italic underline undo redo fontfamily fontsize alignleft aligncenter alignright alignjustify",
           height: 300,
-          content_style:
-            "body { font-family: Merriweather, Arial, sans-serif; font-size: 12px }",
+          content_style: "body { font-family: Merriweather; font-size: 12px }",
         }}
         initialValue=""
         value={editorValue}

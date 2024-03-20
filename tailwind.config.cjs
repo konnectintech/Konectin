@@ -17,6 +17,7 @@ module.exports = {
           800: "#E7E7E8",
           900: "#F1F1F2",
           1000: "#F6F6F7",
+          1100: "#FCFCFC",
         },
         primary: {
           100: "#F0EFF5",
@@ -54,7 +55,8 @@ module.exports = {
         sm: "475px",
       },
       boxShadow: {
-        dropShadow: "0px 0px 2px 0px rgba(0, 0, 0, 0.05), 0px 4px 8px 0px rgba(0, 0, 0, 0.05)"
+        dropShadow:
+          "0px 0px 2px 0px rgba(0, 0, 0, 0.05), 0px 4px 8px 0px rgba(0, 0, 0, 0.05)",
       },
     },
   },

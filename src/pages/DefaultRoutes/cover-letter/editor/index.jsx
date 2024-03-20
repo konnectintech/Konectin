@@ -1,8 +1,12 @@
 import { botIcon, download } from "../../../../assets";
 import * as CiIcons from "react-icons/ci";
 import ContentEditor from "./contentEditor";
+import EditorSidebar from "./editorSidebar";
+import { useState } from "react";
 
 function CoverEditor() {
+  const [chatBot, setChatBot] = useState(false);
+
   return (
     <div className="h-full w-full">
       <nav className="bg-black">
@@ -26,12 +30,20 @@ function CoverEditor() {
         </nav>
       </nav>
 
-      <div className="w-11/12 mx-auto max-w-screen-lg flex gap-4 py-6">
-        <ContentEditor />
-
-        <div title="Konecto" className="w-10 h-10 cursor-pointer">
-          <img src={botIcon} alt="Konecto-bot" />
+      <div className={`${chatBot ? "pl-6" : ""} flex gap-6 items-stretch`}>
+        <div className="w-11/12 mx-auto max-w-screen-lg flex gap-4 py-6">
+          <ContentEditor />
+          {!chatBot && (
+            <div
+              title="Konecto"
+              onClick={() => setChatBot(true)}
+              className="w-10 h-10 cursor-pointer"
+            >
+              <img src={botIcon} alt="Konecto-bot" />
+            </div>
+          )}
         </div>
+        {chatBot && <EditorSidebar closeBot={() => setChatBot(false)} />}
       </div>
     </div>
   );

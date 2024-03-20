@@ -39,6 +39,10 @@ main {
   @apply flex-1 flex flex-col justify-center pt-[65px] sm:pt-[85px];
 }
 
+main:has(.cover-letter-main) {
+  padding-bottom: 0rem;
+}
+
 input:-webkit-autofill {
   -webkit-background-clip: text;
 }
