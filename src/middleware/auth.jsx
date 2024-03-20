@@ -117,7 +117,7 @@ export const useAuth = () => {
   // };
 
   useEffect(() => {
-    if (user && user.token) {
+    if (user && user._id && !user.cvs && user.token) {
       getUserResumes(user);
     }
   }, [user]);
