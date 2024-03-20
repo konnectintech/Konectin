@@ -115,7 +115,7 @@ export const useAuth = () => {
   // };
 
   useEffect(() => {
-    if (user && user.token) {
+    if (user && user._id && !user.cvs && user.token) {
       getUserResumes(user);
     }
   }, [user]);
@@ -159,7 +159,7 @@ export const useAuth = () => {
         }
       }
 
-      setUser((prev) => ({ ...prev, cvs: resumes, isLogged: true }));
+      setUser((prev) => ({ ...prev, cvs: resumes }));
     } catch (err) {
       console.error(err);
     }
