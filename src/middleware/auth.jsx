@@ -92,10 +92,9 @@ export const useAuth = () => {
 
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
   const { ongoing } = JSON.parse(sessionStorage.getItem("internData")) || "";
-  const status = sessionStorage.getItem("status") || "";
 
   useEffect(() => {
-    if (user !== null) {
+    if (user !== null && user.token) {
       const decodedJwt = parseJwt(user.token);
 
       if (decodedJwt.exp * 1000 < Date.now()) {
@@ -116,7 +115,7 @@ export const useAuth = () => {
   // };
 
   useEffect(() => {
-    if (user && user._id && !user.cvs) {
+    if (user && user.token) {
       getUserResumes(user);
     }
   }, [user]);
@@ -167,47 +166,40 @@ export const useAuth = () => {
   };
 
   const signIn = async (data, loader, setError) => {
-    try {
-      let authresult = await axios.post(`${url}/login`, data);
+    await axios
+      .post(`${url}/login`, data)
+      .then((res) => {
+        setUser({ ...res.data.data, token: res.data.token });
 
-      const userData = { ...authresult.data.data };
-      userData.token = authresult.data.token;
+        setTimeout(() => {
+          loader(false);
+          if (location.state?.from === "verify-mail") {
+            navigate("/verify-mail");
+          }
 
-      setUser(userData);
-
-      setTimeout(() => {
+          if (ongoing) {
+            navigate("/internship/intern-application");
+          } else navigate("/resume/options");
+        }, 3000);
+      })
+      .catch((err) => {
         loader(false);
-
-        if (location.state?.from === "verify-mail") {
-          navigate("/verify-mail");
-        }
-
-        if (ongoing) {
-          navigate("/internship/intern-application");
-        } else if (status !== "") {
-          sessionStorage.removeItem("status");
-          navigate(`${status}`);
-        } else navigate("/resume/options");
-      }, 3000);
-    } catch (err) {
-      loader(false);
-      setError(err.response?.data?.message);
-    }
+        setError(err.response?.data?.message);
+      });
   };
 
   const signUp = async (data, loader, setError) => {
-    try {
-      const res = await axios.post(`${url}/register`, data);
-      const userData = res.data.user;
-      setUser(userData);
-      loader(false);
-      setTimeout(() => {
-        navigate("/verify-mail", { state: { from: "sign-up" } });
-      }, 1000);
-    } catch (err) {
-      loader(false);
-      setError(err.response.data.message);
-    }
+    await axios
+      .post(`${url}/register`, data)
+      .then((res) => {
+        setUser({ ...res.data.user, token: res.data.token });
+        loader(false);
+        navigate("/verify-mail", { state: { from: "signup" } });
+      })
+      .catch((err) => {
+        loader(false);
+        setError(err.response.data.message);
+      });
   };
 
   const signOut = () => {
@@ -215,6 +207,8 @@ export const useAuth = () => {
       "konectin-profiler-data-template",
       JSON.stringify(null)
     );
+
+    sessionStorage.setItem("verifyMailRequest", false);
     setUser(null);
   };
 

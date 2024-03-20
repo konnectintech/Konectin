@@ -8,7 +8,6 @@ import Agreement from "./agreement";
 import Preloader from "../../../components/preloader";
 import { InteractionRequiredAuthError } from "@azure/msal-browser";
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
-import { toast } from "react-toastify";
 
 function SignUp() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -35,7 +34,7 @@ function SignUp() {
         })
         .then((res) => {
           instance.setActiveAccount(res.account);
-          navigate("/blog/all");
+          navigate("/resume/options");
         })
         .catch((err) => {
           if (err instanceof InteractionRequiredAuthError) {
@@ -50,12 +49,9 @@ function SignUp() {
   // handle sign up
   const handleSignUp = async (data) => {
     if (agreed) {
-      toast.info(
-        "Minor changes currently being made... Please try again in the next 24 hours"
-      );
-      // setLoading(true);
-      // signUp(data, setLoading, setErrorMessage);
-      // sessionStorage.setItem("mail", "");
+      setLoading(true);
+      signUp(data, setLoading, setErrorMessage);
+      sessionStorage.setItem("mail", "");
     } else {
       setErrorMessage(
         "Please read and agree with our terms and condition to continue"
