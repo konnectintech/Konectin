@@ -51,6 +51,7 @@ function Header() {
 
   window.addEventListener("scroll", handleScroll);
 
+
   return (
     <header
       className={
@@ -136,7 +137,8 @@ function Header() {
         <nav className="hidden lg:block" onClick={toggleDropdown}>
           {user ? (
             <Link
-              to="/dashboard/"
+              // to="/dashboard/"
+              to="#"
               className="relative flex items-center cursor-pointer gap-2 text-xs text-neutral-400"
             >
               <div
@@ -178,7 +180,7 @@ function Header() {
       {pathname.includes("/intern-application") &&
         (offset.prevScrollpos <= 50 || offset.darken) && <InternAnimation />}
 
-      {dropdown && (<Dropdown />) }
+      {dropdown && (<Dropdown toggleDropdown={toggleDropdown} />) }
     </header>
   );
 }

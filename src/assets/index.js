@@ -59,7 +59,7 @@ import forgotPasswordImage from "./images/forgot-password.png";
 import bell from "./icons/bell.svg";
 import job from "./icons/jobs.png";
 import help from "./icons/help.png";
-import logOut from "./icons/logout.png";
+import logOut from "./icons/logout.svg";
 import chat from "./icons/chat.png";
 import web from "./icons/web.png";
 import profile from "./icons/profile.png";

@@ -1,9 +1,25 @@
 import { useAuth } from "../../middleware/auth";
+import { Link } from "react-router-dom"
+import { useState } from "react";
+import Logout from "../../components/logout";
 
 
 const Dropdown = () => {
     const { user } = useAuth();
+    // const [dropdownOpen, setDropdownOpen] = useState(false)
+    const [logoutOpen, setLogoutOpen] = useState(false)
+
+    const openLogoutModal = () => {
+      // setDropdownOpen(false);
+      setLogoutOpen(true)
+    }
+
+    const closeLogoutModal = () => {
+      setLogoutOpen(false)
+    }
+
     return (
+      <>
         <div className="w-[300px] bg-white pt-11 pb-4 px-4 rounded-md absolute right-4 drop-shadow-dropdown">
             <div className="flex items-center gap-4 text-xs text-neutral-400 mb-6">
                 {user?.picture ? (
@@ -30,16 +46,32 @@ const Dropdown = () => {
               </div>
             </div>
             <hr />
-            <ul className="my-4 flex flex-col gap-2">
-                <li className="p-2 rounded-md hover:bg-primary-100">Profile</li>
-                <li className="p-2 rounded-md hover:bg-primary-100">Saved Resumes & Cover Letters</li>
+            <ul className="my-4 flex flex-col gap-2 cursor-pointer">
+                <li className="p-2 rounded-md hover:bg-primary-100">
+                  <Link
+                    to="/dashboard"
+                  >
+                    Profile
+                  </Link>
+                </li>
+                <li className="p-2 rounded-md hover:bg-primary-100">
+                  <Link
+                    to="#"
+                  >
+                    Saved Resumes & Cover Letters
+                  </Link>
+                </li>
             </ul>
             <hr />
-            <ul className="mt-4 flex flex-col gap-2">
+            <ul className="mt-4 flex flex-col gap-2 cursor-pointer">
                 <li className="p-2 rounded-md hover:bg-primary-100">Help</li>
-                <li className="p-2 rounded-md hover:bg-primary-100">Log out</li>
+                <li className="p-2 rounded-md hover:bg-primary-100" onClick={openLogoutModal}>
+                  Log out            
+                </li>
             </ul>
         </div>
+        {logoutOpen && (<Logout closeLogoutModal={closeLogoutModal} />) }
+      </>
     )
 }
 
