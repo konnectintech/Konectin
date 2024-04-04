@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { tipIcon } from "../../../../assets";
+import img from "../../../../assets/images/bot/bot.svg";
 
 const ShortBio = ({ data, handleChange, isLogged }) => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -19,7 +20,9 @@ const ShortBio = ({ data, handleChange, isLogged }) => {
   }
 
   return (
-    <>
+    <div className="flex flex-col items-center lg:w-3/4 px-12 lg:px-32 text-center">
+      <img src={img} alt="bot__image" width={180} height={180} />
+
       <h2 className="py-4 mb-3 font-bold text-2xl md:text-4xl leading-10">
         {isLogged ? (
           <span className="text-secondary-500">
@@ -80,7 +83,7 @@ const ShortBio = ({ data, handleChange, isLogged }) => {
           Continue
         </button>
       </form>
-    </>
+    </div>
   );
 };
 

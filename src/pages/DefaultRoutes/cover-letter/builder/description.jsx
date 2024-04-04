@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import img from "../../../../assets/images/bot/bot.svg";
 
 function JobDescription({ data, handleChange }) {
   const [errorMessage, setErrorMessage] = useState({ company: "", job: "" });
@@ -33,7 +34,9 @@ function JobDescription({ data, handleChange }) {
   };
 
   return (
-    <>
+    <div className="flex flex-col items-center lg:w-3/4 px-12 lg:px-32">
+      <img src={img} alt="bot__image" width={180} height={180} />
+
       <h2 className="py-4 mb-3 font-bold text-2xl md:text-4xl leading-10">
         <span className="text-secondary-500">Job Description</span> & Company
         Brief
@@ -88,7 +91,7 @@ function JobDescription({ data, handleChange }) {
           Continue
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

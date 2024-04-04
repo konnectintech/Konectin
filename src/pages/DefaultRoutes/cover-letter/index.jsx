@@ -3,7 +3,7 @@ import { useAuth } from "../../../middleware/auth";
 import { useCVData } from "../../../middleware/cv";
 import { useEffect } from "react";
 
-import img from "../../../assets/images/bot/bot.svg";
+// import img from "../../../assets/images/bot/bot.svg";
 
 // Routes
 import StartedBuilding from "./builder/startBuilding";
@@ -11,6 +11,8 @@ import JobDetails from "./builder/details";
 import JobDescription from "./builder/description";
 import ShortBio from "./builder/shortBio";
 import EndBuilding from "./builder/endBuilding";
+
+import DisplayCoverLetter from "./display";
 
 function CoverLetter() {
   const { CVData, onInputChange } = useCVData();
@@ -79,8 +81,8 @@ function CoverLetter() {
   return (
     <>
       <div className="flex justify-center items-center">
-        <div className="flex justify-center items-center flex-col w-full lg:w-3/4 px-12 lg:px-32 text-center">
-          <img src={img} alt="bot__image" />
+        <div className="flex justify-center items-center flex-col w-full">
+          {/* <img src={img} alt="bot__image" /> lg:w-3/4 px-12 lg:px-32 */}
 
           <Routes>
             <Route
@@ -122,6 +124,10 @@ function CoverLetter() {
               }
             />
             <Route path="/info-ended" element={<EndBuilding data={CVData} />} />
+            <Route
+              path="/display"
+              element={<DisplayCoverLetter data={CVData} />}
+            />
           </Routes>
         </div>
       </div>

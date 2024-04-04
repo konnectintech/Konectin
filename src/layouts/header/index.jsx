@@ -11,9 +11,19 @@ import Dropdown from "../../components/dropdown";
 function Header() {
   const { user } = useAuth();
   const [dropdown, setDropdown] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // const openMenu = () => {
+  //   setIsMenuOpen(false)
+  // }
+
+  const closeMenu = () => {
+    setIsMenuOpen(true)
+  }
 
   const toggleDropdown = () => {
     setDropdown(!dropdown)
+    setIsMenuOpen(!isMenuOpen)
   }
 
   const [offset, setOffset] = useState({
@@ -180,7 +190,7 @@ function Header() {
       {pathname.includes("/intern-application") &&
         (offset.prevScrollpos <= 50 || offset.darken) && <InternAnimation />}
 
-      {dropdown && (<Dropdown toggleDropdown={toggleDropdown} />) }
+      {dropdown && isMenuOpen && (<Dropdown isOpen={isMenuOpen} onClose={closeMenu} toggleDropdown={toggleDropdown} />) }
     </header>
   );
 }

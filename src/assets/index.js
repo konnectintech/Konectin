@@ -123,6 +123,9 @@ import droplet from "./icons/droplet.svg";
 import download from "./icons/download.svg";
 import pdffolder from "./icons/pdffolder.svg";
 import docfolder from "./icons/docfolder.svg";
+import edit from "./icons/edit.svg";
+import copy from "./icons/copy.svg";
+import trash from "./icons/trash.svg";
 
 // Blog Images
 import blogHero from "./images/blog/hero.jpg";
@@ -238,6 +241,9 @@ export {
   download,
   docfolder,
   pdffolder,
+  edit,
+  copy,
+  trash,
 
   //Dashboard Images
   bell,

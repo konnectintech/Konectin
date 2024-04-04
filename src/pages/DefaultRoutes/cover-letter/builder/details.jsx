@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import img from "../../../../assets/images/bot/bot.svg";
 
 function JobDetails({ isLogged, data, handleChange }) {
   const [errorMessage, setErrorMessage] = useState({
@@ -70,7 +71,9 @@ function JobDetails({ isLogged, data, handleChange }) {
   };
 
   return (
-    <>
+    <div className="flex flex-col items-center lg:w-3/4 px-12 lg:px-32 text-center">
+      <img src={img} alt="bot__image" width={180} height={180} />
+
       <h2 className="py-2 font-bold text-2xl md:text-4xl leading-10">
         {isLogged ? (
           <span className="text-secondary-500">Job</span>
@@ -182,7 +185,7 @@ function JobDetails({ isLogged, data, handleChange }) {
           Continue
         </button>
       </form>
-    </>
+    </div>
   );
 }
 
