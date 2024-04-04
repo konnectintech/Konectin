@@ -8,9 +8,9 @@ import {
   trash,
 } from "../../../../assets";
 
-export default function CoverLetterComponent() {
+export default function TemplateComponent() {
   return (
-    <div className="flex flex-col w-[300px] gap-2 items-start">
+    <div className="flex flex-col gap-2 items-start max-w-xs w-64">
       {/* h-[515px] */}
       <div className="flex flex-col gap-1.5">
         <p className="text-xl font-black text-neutral-100">

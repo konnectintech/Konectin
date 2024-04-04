@@ -126,6 +126,8 @@ import docfolder from "./icons/docfolder.svg";
 import edit from "./icons/edit.svg";
 import copy from "./icons/copy.svg";
 import trash from "./icons/trash.svg";
+import sliders from "./icons/sliders.svg";
+import chevronDownWhite from "./icons/chevron-down-white.svg"
 
 // Blog Images
 import blogHero from "./images/blog/hero.jpg";
@@ -244,6 +246,8 @@ export {
   edit,
   copy,
   trash,
+  sliders,
+  chevronDownWhite,
 
   //Dashboard Images
   bell,

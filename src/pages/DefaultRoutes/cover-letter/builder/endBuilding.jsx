@@ -12,7 +12,7 @@ function EndBuilding({ data }) {
 
     if (data) {
       // setErrorMessage("Error with CV data")
-      console.log(data);
+      // console.log(data);
       navigate("/cover-letter/display");
     }
   };
