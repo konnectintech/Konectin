@@ -4,6 +4,7 @@ import { useCVContext } from "../../../../middleware/cv";
 import Preloader from "../../../../components/preloader";
 import { useState } from "react";
 import { AzureKeyCredential, OpenAIClient } from "@azure/openai";
+import { toast } from "react-toastify";
 
 function CreateLetter() {
   const { CVData, setCVData } = useCVContext();
@@ -54,6 +55,7 @@ function CreateLetter() {
       })
       .catch((err) => {
         setLoading(false);
+        toast.error("Encountered Error. Try Again");
         console.log(err);
       });
   };

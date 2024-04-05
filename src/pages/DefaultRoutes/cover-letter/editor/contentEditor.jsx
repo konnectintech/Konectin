@@ -41,7 +41,6 @@ function ContentEditor() {
           branding: false,
           plugins: "lists wordcount",
           elementpath: false,
-          forced_root_block: "",
           toolbar:
             "bold italic underline undo redo fontfamily fontsize alignleft aligncenter alignright alignjustify",
           height: 600,
@@ -50,7 +49,6 @@ function ContentEditor() {
         initialValue={content?.replaceAll("\n", "<br />")}
         value={editorValue}
         onEditorChange={() => {
-          console.log(editorRef.current.getContent());
           setEditorValue(editorRef.current.getContent());
           editorRef.current.setDirty(true);
           setDirty(true);

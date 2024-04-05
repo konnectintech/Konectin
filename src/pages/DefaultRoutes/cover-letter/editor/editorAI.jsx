@@ -54,10 +54,15 @@ function EditorAI() {
         stop: null,
       })
       .then((result) => {
-        setMessages((prev) => [
-          ...prev,
-          { type: "konecto", message: result.choices[0].message.content },
-        ]);
+        const content = result.choices[0].message.content;
+        if (content.includes("Updated Cover Letter:")) {
+          console.log(content.split("Updated Cover Letter:"));
+        } else {
+          setMessages((prev) => [
+            ...prev,
+            { type: "konecto", message: content },
+          ]);
+        }
       })
       .catch((err) => {
         console.log(err);
