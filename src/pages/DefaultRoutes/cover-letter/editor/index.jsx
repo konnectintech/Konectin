@@ -41,7 +41,7 @@ function CoverEditor() {
             <div
               title="Konecto"
               onClick={() => setChatBot(true)}
-              className="w-10 h-10 cursor-pointer"
+              className="w-10 h-10 cursor-pointer ml-auto"
             >
               <img src={botIcon} alt="Konecto-bot" />
             </div>

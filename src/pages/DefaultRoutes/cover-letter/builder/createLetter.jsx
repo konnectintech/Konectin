@@ -30,8 +30,8 @@ function CreateLetter() {
     const deploymentId = "35Turbo";
     await client
       .getChatCompletions(deploymentId, messages, {
-        temperature: 0.5,
-        top_p: 0.95,
+        temperature: 0.4,
+        top_p: 0.5,
         frequency_penalty: 0,
         presence_penalty: 0,
         max_tokens: 800,
