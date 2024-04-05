@@ -1,87 +1,100 @@
 import { useEffect, useRef, useState } from "react";
 import { TbSend } from "react-icons/tb";
 import { botIcon, orangeLoader } from "../../../../assets";
-import { useCVData } from "../../../../middleware/cv";
+import { useCVContext } from "../../../../middleware/cv";
+import EditorAISuggestion from "./editorAISuggestion";
+import { AzureKeyCredential, OpenAIClient } from "@azure/openai";
+import { botIdentity } from "../../../../utils/konecto";
 
 function EditorAI() {
-  const { CVData } = useCVData();
+  const { CVData } = useCVContext();
   const [botLoading, setBotLoading] = useState(false);
   const [messages, setMessages] = useState([]);
   const messageEnd = useRef(null);
   const [promptMessage, setPromptMessage] = useState("");
-  const [firstPrompt, setFirstPrompt] = useState(
-    `👋 Hi ${
-      CVData?.details?.fullName.split(" ")[1]
-    }! Now that we've created your cover letter, we can make it even better. Feel free to ask me to make changes or choose from the quick prompts below.`
-  );
-
-  const [suggestions, setSuggestions] = useState([
-    { text: "Improve the opening line", selected: false },
-    { text: "Highlight my leadership skills", selected: false },
-    { text: "Talk more about my technical skills", selected: false },
-    { text: "Add details about my work experience", selected: false },
-    { text: "Mention my educational background", selected: false },
-    { text: "Include my volunteer or internship experience", selected: false },
-    { text: "Discuss my problem-solving abilities", selected: false },
-    { text: "Add my notable achievements", selected: false },
-  ]);
 
   useEffect(() => {
     // Scroll to the bottom
     messageEnd.current.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const handleSuggestionClick = (index) => {
-    setSuggestions((prompts) =>
-      prompts.map((suggest, id) =>
-        id === index
-          ? { ...suggest, selected: true }
-          : { ...suggest, selected: false }
-      )
-    );
+  const azureApiKey = import.meta.env.VITE_OPENAI_KEY;
 
-    setMessages((prev) => [
-      ...prev,
-      { type: "user", text: suggestions[index].text },
-    ]);
+  const konectoResponse = async (message) => {
+    const prompts = [
+      {
+        role: "system",
+        content: `${botIdentity}. I have received a request from ${CVData.details.fullName}, who is applying for the position of ${CVData.details.jobPosition} at ${CVData.details.companyName}. The job description provided is as follows: ${CVData.description.jobDescription}. The professional bio of the user is: ${CVData.professionalBio}. The information provided about the company is: ${CVData.description.companyInfo}. The user's cover letter reads: ${CVData.content}. If there is a need to revise, update, modify, change or alter the cover letter information, I will start the message with 'Updated Cover Letter: '. I can also provide additional personal information about the user if required or requested for.`,
+      },
+      ...messages.map((prompt) => ({
+        role: prompt.type === "user" ? prompt.type : "assistant",
+        content: prompt.message,
+      })),
+      {
+        role: "user",
+        content: message,
+      },
+    ];
 
-    // Call endpoint for bot to respond then load the bot
     setBotLoading(true);
 
-    // when bot responds setbotloading to false
+    const client = new OpenAIClient(
+      "https://azure-openai-konectin.openai.azure.com/",
+      new AzureKeyCredential(azureApiKey)
+    );
+    const deploymentId = "35Turbo";
+
+    await client
+      .getChatCompletions(deploymentId, prompts, {
+        temperature: 0.5,
+        top_p: 0.95,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+        max_tokens: 800,
+        stop: null,
+      })
+      .then((result) => {
+        setMessages((prev) => [
+          ...prev,
+          { type: "konecto", message: result.choices[0].message.content },
+        ]);
+      })
+      .catch((err) => {
+        console.log(err);
+        setMessages((prev) => [
+          ...prev,
+          { type: "konecto", message: "Encountered Error. Try Again!" },
+        ]);
+      });
+
+    setBotLoading(false);
+  };
+
+  const handleSubmit = (message) => {
+    setMessages((prev) => [...prev, { type: "user", message: message }]);
+
+    // Call endpoint for bot to respond then load the bot
+    konectoResponse(message);
   };
 
   return (
     <div className="flex flex-col gap-5 text-xs bg-neutral-1100 max-h-[70vh] rounded shadow">
       <div className="space-y-2 overflow-y-auto flex-1 p-4">
-        <div className="bg-neutral-900 p-3">{firstPrompt}</div>
-        <div className="text-neutral-100 text-sm font-semibold">
-          Select quick prompt
-        </div>
-        <div className="flex flex-col gap-2">
-          {suggestions.map((suggestedPrompt, id) => (
-            <div
-              key={suggestedPrompt.text}
-              onClick={() => !botLoading && handleSuggestionClick(id)}
-              className={`p-2 ${
-                suggestedPrompt.selected
-                  ? "text-primary-100 bg-primary-500"
-                  : "bg-primary-100 text-primary-500 hover:bg-primary-200 hover:text-primary-100"
-              } w-fit rounded-lg cursor-pointer duration-500`}
-            >
-              {suggestedPrompt.text}
-            </div>
-          ))}
-        </div>
-
-        {messages.map((chat) =>
+        <EditorAISuggestion botLoading={botLoading} handleChat={handleSubmit} />
+        {messages.map((chat, id) =>
           chat.type === "user" ? (
-            <div className="bg-primary-500 text-primary-100 w-fit rounded p-3 ml-auto">
-              {chat.text}
+            <div
+              key={chat.type + id}
+              className="bg-primary-500 text-primary-100 w-fit rounded p-3 ml-auto"
+            >
+              {chat.message}
             </div>
           ) : (
-            <div className="bg-neutral-500 text-neutral-100 w-fit rounded p-3 mr-auto">
-              {chat.text}
+            <div
+              key={chat.type + id}
+              className="bg-neutral-500 text-neutral-100 w-fit rounded p-3 mr-auto"
+            >
+              {chat.message}
             </div>
           )
         )}
@@ -97,7 +110,16 @@ function EditorAI() {
 
         <div ref={messageEnd} />
       </div>
-      <form className="px-4 pb-4 relative flex items-center">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (!botLoading) {
+            handleSubmit(promptMessage);
+            setPromptMessage("");
+          }
+        }}
+        className="px-4 pb-4 relative flex items-center"
+      >
         <input
           type="text"
           placeholder="Type message..."

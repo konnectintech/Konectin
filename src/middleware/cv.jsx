@@ -23,13 +23,14 @@ const CVProvider = ({ children }) => {
 
 export { useCVContext, CVProvider };
 
-export const useCVData = () => {
+const useCVData = () => {
   const [CVData, setCVData] = useLocalStorage(
     "konectin-profiler-coverLetter-data",
     {
       details: { companyName: "", jobPosition: "", email: "", fullName: "" },
       description: { companyInfo: "", jobDescription: "" },
       professionalBio: "",
+      content: "",
     }
   );
 

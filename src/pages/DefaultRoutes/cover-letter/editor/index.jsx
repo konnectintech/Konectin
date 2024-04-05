@@ -30,8 +30,12 @@ function CoverEditor() {
         </nav>
       </nav>
 
-      <div className={`${chatBot ? "pl-6" : ""} flex gap-6 items-stretch`}>
-        <div className="w-11/12 mx-auto max-w-screen-lg flex gap-4 py-6">
+      <div
+        className={`${
+          chatBot ? "md:pl-6" : ""
+        } flex gap-6 items-stretch relative min-h-screen`}
+      >
+        <div className="w-11/12 mx-auto max-w-screen-lg flex max-md:flex-col-reverse gap-4 py-6">
           <ContentEditor />
           {!chatBot && (
             <div
@@ -43,6 +47,12 @@ function CoverEditor() {
             </div>
           )}
         </div>
+        <div
+          className={`md:hidden ${
+            chatBot ? "flex" : "hidden"
+          } absolute w-full h-full z-10`}
+          onClick={() => setChatBot(false)}
+        />
         {chatBot && <EditorSidebar closeBot={() => setChatBot(false)} />}
       </div>
     </div>

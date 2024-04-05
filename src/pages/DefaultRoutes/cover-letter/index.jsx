@@ -6,7 +6,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { useAuth } from "../../../middleware/auth";
-import { useCVData } from "../../../middleware/cv";
+import { useCVContext } from "../../../middleware/cv";
 import { useEffect } from "react";
 
 // assets
@@ -23,7 +23,7 @@ import CoverEditor from "./editor";
 import CompanyBrief from "./builder/companyBrief";
 
 function CoverLetter() {
-  const { CVData, onInputChange } = useCVData();
+  const { CVData, onInputChange } = useCVContext();
   const { user } = useAuth();
 
   const { pathname } = useLocation();
@@ -92,7 +92,7 @@ function CoverLetter() {
         <Routes>
           <Route
             element={
-              <div className="flex justify-center items-center flex-col w-full lg:w-3/4 px-12 lg:px-32 text-center">
+              <div className="flex justify-center items-center flex-col w-full lg:w-3/4 px-12 lg:px-32 text-center pb-16">
                 <div
                   onClick={() => navigate(-1)}
                   className="self-start flex items-center gap-2 text-sm cursor-pointer"
@@ -149,7 +149,7 @@ function CoverLetter() {
             <Route path="/info-ended" element={<CreateLetter />} />
           </Route>
 
-          <Route path="/editor" element={<CoverEditor data={CVData} />} />
+          <Route path="/editor" element={<CoverEditor />} />
         </Routes>
       </div>
     </>

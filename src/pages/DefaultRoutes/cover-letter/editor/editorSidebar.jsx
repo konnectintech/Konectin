@@ -4,7 +4,7 @@ import EditorAI from "./editorAI";
 
 function EditorSidebar({ closeBot }) {
   return (
-    <div className="max-w-[330px] lg:max-w-[350px] w-full bg-white p-6 h-screen space-y-8">
+    <div className="max-md:absolute max-md:right-0 max-md:h-full z-10 max-w-[330px] lg:max-w-[350px] w-full bg-white p-6 space-y-8">
       <IoIcons.IoArrowForwardCircleOutline
         onClick={closeBot}
         className="cursor-pointer"
