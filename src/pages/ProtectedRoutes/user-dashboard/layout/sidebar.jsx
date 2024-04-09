@@ -11,7 +11,7 @@ function Sidebar() {
 
   const updateAvatar = async (image) => {
     await axios
-      .post(`${url}/updateUserPicture`, image)
+      .put(`${url}/v2/updateUserPicture`, image)
       .then((res) => {
         setUser((prev) => ({ ...prev, picture: res.data.url }));
         setModalOpen(false);
