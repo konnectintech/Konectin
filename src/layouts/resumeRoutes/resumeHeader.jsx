@@ -8,10 +8,10 @@ import ProgressWalkthrough from "../../components/resume/walkthrough/progressWal
 import { useWalkthrough } from "../../middleware/walkthrough";
 import { useTemplateContext } from "../../middleware/resume";
 import { konectinIcon } from "../../assets";
-import { useAuth } from "../../middleware/auth";
+import { useAuthContext } from "../../middleware/auth";
 
 function ResumeHeader() {
-  const { user } = useAuth();
+  const { user } = useAuthContext();
 
   const { templateData, setTemplateData } = useTemplateContext();
   const { currentModule } = useWalkthrough();

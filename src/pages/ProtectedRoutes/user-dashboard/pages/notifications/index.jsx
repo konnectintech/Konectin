@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useAuth } from "../../../../../middleware/auth";
+import { useAuthContext } from "../../../../../middleware/auth";
 import ToggleCard from "./toggleCard";
 import { notificationInfo } from "../../layout/navigation";
 
@@ -15,7 +15,7 @@ function Notifications() {
     resumeStatusUpdates: true,
   });
 
-  const { user } = useAuth();
+  const { user } = useAuthContext();
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   const getNotifications = async () => {

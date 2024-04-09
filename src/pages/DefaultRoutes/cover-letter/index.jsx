@@ -5,7 +5,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import { useAuth } from "../../../middleware/auth";
+import { useAuthContext } from "../../../middleware/auth";
 import { useCVContext } from "../../../middleware/cv";
 import { useEffect } from "react";
 
@@ -24,7 +24,7 @@ import CompanyBrief from "./builder/companyBrief";
 
 function CoverLetter() {
   const { CVData, onInputChange } = useCVContext();
-  const { user } = useAuth();
+  const { user } = useAuthContext();
 
   const { pathname } = useLocation();
   const navigate = useNavigate();

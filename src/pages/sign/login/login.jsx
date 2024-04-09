@@ -3,7 +3,7 @@ import { loginForm } from "../signData";
 import { Link } from "react-router-dom";
 import * as FaIcon from "react-icons/fa";
 import { useState } from "react";
-import { useAuth } from "../../../middleware/auth";
+import { useAuthContext } from "../../../middleware/auth";
 import { FieldForm } from "../../../components/form/";
 import Preloader from "../../../components/preloader";
 
@@ -45,7 +45,7 @@ function Login() {
   const [isloading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const { signIn } = useAuth();
+  const { signIn } = useAuthContext();
 
   const handleSubmit = (data) => {
     setLoading(true);

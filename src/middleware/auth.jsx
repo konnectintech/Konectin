@@ -85,7 +85,7 @@ export const parseJwt = (token) => {
 };
 
 // Create User logged Hook
-export const useAuth = () => {
+const useAuth = () => {
   const [user, setUser] = useLocalStorage("konectin-profiler-user", null);
   const navigate = useNavigate();
   const location = useLocation();

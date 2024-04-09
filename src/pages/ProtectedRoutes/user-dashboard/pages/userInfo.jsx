@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../../../../middleware/auth";
+import { useAuthContext } from "../../../../middleware/auth";
 import Preloader from "../../../../components/preloader";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -27,7 +27,7 @@ function UserInfo() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const { user } = useAuth();
+  const { user } = useAuthContext();
 
   useEffect(() => {
     if (user) {

@@ -1,11 +1,11 @@
-import { useAuth } from "../../../../middleware/auth";
+import { useAuthContext } from "../../../../middleware/auth";
 import { uploadIcon } from "../../../../assets";
 import { useState } from "react";
 import ImageModal from "../../../../components/image-uploader/imageModal";
 import axios from "axios";
 
 function Sidebar() {
-  const { user, setUser } = useAuth();
+  const { user, setUser } = useAuthContext();
   const [modalOpen, setModalOpen] = useState(false);
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 

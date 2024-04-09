@@ -4,11 +4,11 @@ import * as MdIcons from "react-icons/md";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { konectinIcon } from "../../assets";
 import "./header.css";
-import { useAuth } from "../../middleware/auth";
+import { useAuthContext } from "../../middleware/auth";
 import InternAnimation from "../../utils/intern-animation";
 
 function Header() {
-  const { user } = useAuth();
+  const { user } = useAuthContext();
 
   const [offset, setOffset] = useState({
     prevScrollpos: window.pageYOffset,

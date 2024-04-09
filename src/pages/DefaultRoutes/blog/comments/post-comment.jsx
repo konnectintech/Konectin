@@ -3,10 +3,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { BiUser } from "react-icons/bi";
 import * as TbIcons from "react-icons/tb";
-import { useAuth } from "../../../../middleware/auth";
+import { useAuthContext } from "../../../../middleware/auth";
 
 function PostComment({ updateComments, postID, pathname, setLoading }) {
-  const { user } = useAuth();
+  const { user } = useAuthContext();
   const [error, setError] = useState("");
   const [comment, setComment] = useState("");
 

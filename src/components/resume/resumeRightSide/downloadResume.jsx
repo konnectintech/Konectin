@@ -2,12 +2,12 @@ import { useState } from "react";
 import { saveAs } from "file-saver";
 import axios from "axios";
 import { useTemplateContext } from "../../../middleware/resume";
-import { useAuth } from "../../../middleware/auth";
+import { useAuthContext } from "../../../middleware/auth";
 import { completedCheck, halfLoading } from "../../../assets/index";
 
 const DownloadResume = () => {
   const { templateData: data } = useTemplateContext();
-  const { user } = useAuth();
+  const { user } = useAuthContext();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [isDownloaded, setIsDownloaded] = useState(false);

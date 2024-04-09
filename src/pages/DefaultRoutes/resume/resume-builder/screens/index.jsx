@@ -9,7 +9,7 @@ import Skills from "./skills";
 import Bio from "./bio";
 import Preview from "./preview";
 
-import { useAuth } from "../../../../../middleware/auth";
+import { useAuthContext } from "../../../../../middleware/auth";
 import { useTemplateContext } from "../../../../../middleware/resume";
 import { useWalkthrough } from "../../../../../middleware/walkthrough";
 
@@ -24,7 +24,7 @@ function Builder() {
 
   const { currentModule } = useWalkthrough();
 
-  const { user } = useAuth();
+  const { user } = useAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {

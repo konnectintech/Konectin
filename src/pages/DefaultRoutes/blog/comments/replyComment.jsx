@@ -3,7 +3,7 @@ import { useState } from "react";
 import * as BiIcons from "react-icons/bi";
 import * as TbIcons from "react-icons/tb";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../../../middleware/auth";
+import { useAuthContext } from "../../../../middleware/auth";
 
 function ReplyComment({
   isReply,
@@ -12,7 +12,7 @@ function ReplyComment({
   pathname,
   setLoading,
 }) {
-  const { user } = useAuth();
+  const { user } = useAuthContext();
   const [error, setError] = useState("");
   const [content, setContent] = useState("");
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
