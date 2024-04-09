@@ -24,7 +24,7 @@ function EditorAI() {
     const prompts = [
       {
         role: "system",
-        content: `${botIdentity}. I have received a request from ${CVData.details.fullName}, who is applying for the position of ${CVData.details.jobPosition} at ${CVData.details.companyName}. The job description provided is as follows: ${CVData.description.jobDescription}. The professional bio of the user is: ${CVData.professionalBio}. The information provided about the company is: ${CVData.description.companyInfo}. The user's cover letter reads: ${CVData.content}. If there is a need to revise, update, modify, change or alter the cover letter information, I will start the message with 'Updated Cover Letter: '. I can also provide additional personal information about the user if required or requested for.`,
+        content: `${botIdentity}. I have received a request from ${CVData.details.fullName}, who is applying for the position of ${CVData.details.jobPosition} at ${CVData.details.companyName}. The job description provided is as follows: ${CVData.description.jobDescription}. The professional bio of the user is: ${CVData.professionalBio}. The information provided about the company is: ${CVData.description.companyInfo}. The user's cover letter reads: ${CVData.content}. Everytime I revise, update, modify, change or alter the cover letter information, I will tag it in my consciousness that it is a special message and start the message with 'Updated Cover Letter: ', never should I make a mistake of replying a request that updates the cover letter with a response that does not start with 'Updated Cover Letter: ', When it is not a special message, I will strictly limit my response, not be more than 100 words. I can also provide additional personal information about the user if required or requested for. `,
       },
       ...messages.map((prompt) => ({
         role: prompt.type === "user" ? prompt.type : "assistant",
@@ -56,11 +56,17 @@ function EditorAI() {
       .then((result) => {
         const content = result.choices[0].message.content;
         if (content.includes("Updated Cover Letter:")) {
-          console.log();
           setCVData((prev) => ({
             ...prev,
             content: content.split("Updated Cover Letter:")[1].trimStart(),
           }));
+          setMessages((prev) => [
+            ...prev,
+            {
+              type: "konecto",
+              message: "I've updated your cover letter... Check it out",
+            },
+          ]);
         } else {
           setMessages((prev) => [
             ...prev,

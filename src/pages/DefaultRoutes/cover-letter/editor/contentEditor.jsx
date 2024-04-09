@@ -10,6 +10,9 @@ function ContentEditor() {
     onInputChange,
   } = useCVContext();
 
+  const [contentValue, setContentValue] = useState(
+    content?.trimStart().replaceAll("\r \n", "<br>")
+  );
   const [editorValue, setEditorValue] = useState();
   const [dirty, setDirty] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
@@ -46,7 +49,7 @@ function ContentEditor() {
           height: 600,
           content_style: "body { font-family: Comic Sans MS; font-size: 12px }",
         }}
-        initialValue={content?.replaceAll("\n", "<br />")}
+        initialValue={contentValue}
         value={editorValue}
         onEditorChange={() => {
           setEditorValue(editorRef.current.getContent());
