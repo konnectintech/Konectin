@@ -6,7 +6,7 @@ import { useTemplateContext } from "../../../middleware/resume";
 function Option({ item }) {
   const { templateData } = useTemplateContext();
   const [active, setActive] = useState(false);
-  console.log(templateData);
+
   return (
     <React.Fragment key={item.label}>
       <li

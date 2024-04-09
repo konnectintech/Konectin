@@ -1,7 +1,7 @@
 import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
-import { useTemplateData } from "../../../../../../../middleware/resume";
+import { useTemplateContext } from "../../../../../../../middleware/resume";
 function Contacts({ data }) {
-  const { templateData } = useTemplateData();
+  const { templateData } = useTemplateContext();
   return (
     (data.state ||
       data.country ||

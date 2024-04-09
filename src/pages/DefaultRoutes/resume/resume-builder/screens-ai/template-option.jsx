@@ -45,14 +45,6 @@ const TemplateOption = ({ sectionName }) => {
           selectedTemplate: value,
         }));
 
-        localStorage.setItem(
-          "konectin-profiler-data-template",
-          JSON.stringify({
-            ...templateData,
-            ...resume,
-            selectedTemplate: value,
-          })
-        );
         navigate("/resume/builder");
       });
   }

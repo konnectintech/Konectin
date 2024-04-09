@@ -7,18 +7,10 @@ const TemplateContext = createContext();
 const useTemplateContext = () => useContext(TemplateContext);
 
 const TemplateProvider = ({ children }) => {
-  const { templateData, setTemplateData, onInputChange, onSectionComplete } =
-    useTemplateData();
+  const resumeTemplate = useTemplateData();
 
   return (
-    <TemplateContext.Provider
-      value={{
-        templateData,
-        setTemplateData,
-        onInputChange,
-        onSectionComplete,
-      }}
-    >
+    <TemplateContext.Provider value={resumeTemplate}>
       {children}
     </TemplateContext.Provider>
   );
@@ -26,7 +18,7 @@ const TemplateProvider = ({ children }) => {
 
 export { useTemplateContext, TemplateProvider };
 
-export const useTemplateData = () => {
+const useTemplateData = () => {
   const [templateData, setTemplateData] = useLocalStorage(
     "konectin-profiler-data-template",
     {
