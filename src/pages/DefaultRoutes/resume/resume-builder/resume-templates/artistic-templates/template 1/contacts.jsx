@@ -46,7 +46,7 @@ function Contacts({ data }) {
             .content .sub_content .icon {
               width: 25px;
               height: 25px;
-              background:  ${templateData.theme.color};;
+              background:  ${templateData?.theme?.color || "blue"};;
               margin-right:5px;
               color:#ffffff;
               display: -webkit-flex; /* WebKit-based browsers */

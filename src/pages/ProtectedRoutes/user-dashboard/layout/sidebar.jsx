@@ -1,11 +1,13 @@
 import { useAuth } from "../../../../middleware/auth";
 import { uploadIcon } from "../../../../assets"
+
 import axios from "axios"
 import { useRef, useState } from "react";
 
 
 function Sidebar() {
   const { user } = useAuth();
+
 
   const [userData, setUserData] = useState({
     fullname: "",
@@ -92,8 +94,9 @@ function Sidebar() {
             </h2>
           </div>
         )}
+
         <button onClick={handleUpdatePicture} className="sm:hidden absolute bottom-0 w-16 h-8 rounded-b-full flex justify-center items-center bg-[#00000066] opacity-0 transition-opacity hover:opacity-100">
-          <img src={uploadIcon} alt="Upload" />
+<img src={uploadIcon} alt="Upload" />
         </button>
       </div>
 
@@ -108,7 +111,7 @@ function Sidebar() {
         style={{display:"none"}} 
       />
 
-      <div className="order-4 hidden sm:flex flex-col gap-4 text-center text-[#8C8C8F] border border-[#8C8C8F] text-xs bg-[#F0EFF5] rounded-lg p-4">
+<div className="order-4 hidden sm:flex flex-col gap-4 text-center text-[#8C8C8F] border border-[#8C8C8F] text-xs bg-[#F0EFF5] rounded-lg p-4">
         <p>
           Upload a new picture. Larger image will be resized automatically.{" "}
         </p>

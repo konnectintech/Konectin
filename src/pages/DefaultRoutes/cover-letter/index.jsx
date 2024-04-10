@@ -1,4 +1,10 @@
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import {
+  Outlet,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { useAuth } from "../../../middleware/auth";
 import { useCVData } from "../../../middleware/cv";
 import { useEffect } from "react";
@@ -11,6 +17,7 @@ import JobDetails from "./builder/details";
 import JobDescription from "./builder/description";
 import ShortBio from "./builder/shortBio";
 import EndBuilding from "./builder/endBuilding";
+import CoverEditor from "./editor";
 
 import DisplayCoverLetter from "./display";
 
@@ -80,11 +87,16 @@ function CoverLetter() {
 
   return (
     <>
-      <div className="flex justify-center items-center">
-        <div className="flex justify-center items-center flex-col w-full">
-          {/* <img src={img} alt="bot__image" /> lg:w-3/4 px-12 lg:px-32 */}
-
-          <Routes>
+      <div className="flex justify-center items-center h-full">
+        <Routes>
+          <Route
+            element={
+              <div className="flex justify-center items-center flex-col w-full lg:w-3/4 px-12 lg:px-32 text-center">
+                <img src={img} alt="bot__image" />
+                <Outlet />
+              </div>
+            }
+          >
             <Route
               path="/"
               element={
@@ -123,13 +135,18 @@ function CoverLetter() {
                 />
               }
             />
-            <Route path="/info-ended" element={<EndBuilding data={CVData} />} />
-            <Route
+<Route
               path="/display"
               element={<DisplayCoverLetter data={CVData} />}
             />
-          </Routes>
-        </div>
+         
+
+            <Route path="/info-ended" element={<EndBuilding />} />
+          </Route>
+
+          <Route path="/editor" element={<CoverEditor {...CVData} />} />
+        </Routes>
+
       </div>
     </>
   );

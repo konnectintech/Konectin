@@ -3,7 +3,6 @@ import { AuthProvider } from "./middleware/auth";
 
 import ResumeRoutes from "./layouts/resumeRoutes";
 import DefaultRoutes from "./pages/DefaultRoutes";
-import ProtectedRoutes from "./pages/ProtectedRoutes";
 
 import Options from "./pages/DefaultRoutes/resume/resume-builder";
 import ResumeBuilder from "./pages/DefaultRoutes/resume/resume-landing";
@@ -33,7 +32,10 @@ import Coverletter from "./pages/DefaultRoutes/cover-letter";
 import ErrorPage from "./pages/404";
 import InternApplication from "./pages/DefaultRoutes/internship/intern-application";
 
+
 import DashBoard from "./pages/ProtectedRoutes/user-dashboard";
+import ProtectedRoutes from "./pages/ProtectedRoutes";
+
 
 import { TemplateProvider } from "./middleware/resume";
 import { WalkthroughProvider } from "./middleware/walkthrough";
@@ -80,7 +82,7 @@ function App() {
             <Route path="/about" element={<About />} />
 
             <Route element={<ProtectedRoutes />}>
-              <Route path="/dashboard/*" element={<DashBoard />} />
+              <Route path="/dashboard/*" element={<UserDashBoard />} />
             </Route>
           </Route>
 

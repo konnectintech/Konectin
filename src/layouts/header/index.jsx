@@ -117,6 +117,13 @@ function Header() {
               {link.name}
             </NavLink>
           ))}
+
+          <Link
+            to={user ? "/dashboard/" : "/login"}
+            className="lg:hidden hover:border-b border-secondary-600 py-1"
+          >
+            {user ? "Profile" : "Log In"}
+          </Link>
         </nav>
 
         {/* Mobile View  */}
@@ -142,6 +149,13 @@ function Header() {
               {link.name}
             </Link>
           ))}
+
+          <Link
+            to={user ? "/dashboard/" : "/login"}
+            className="lg:hidden hover:border-b border-secondary-600 py-1"
+          >
+            {user ? "Profile" : "Log In"}
+          </Link>
         </nav>
 
         <nav className="hidden lg:block" onClick={toggleDropdown}>

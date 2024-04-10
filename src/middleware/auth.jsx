@@ -191,7 +191,7 @@ export const useAuth = () => {
       }, 3000);
     } catch (err) {
       loader(false);
-      setError(err.response.data.message);
+      setError(err.response.data?.message);
     }
   };
 

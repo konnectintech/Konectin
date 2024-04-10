@@ -26,7 +26,7 @@ function DownloadWalkthrough() {
   return (
     <div className="fixed inset-0 z-[100]">
       <div className="w-16 absolute right-0  top-0  h-[35rem] bg-black bg-opacity-40 " />
-      <div className="w-16 absolute right-0  top-[590px]  bottom-0 bg-black bg-opacity-40 " />
+      <div className="w-16 absolute right-0  top-[39rem]  bottom-0 bg-black bg-opacity-40 " />
       <div className="absolute inset-y-0 left-0 right-16 bg-black bg-opacity-40">
         <div className="absolute right-4 top-64 bg-[#191A1F] py-10 px-14 rounded-lg w-1/2 flex flex-col items-center gap-8 ">
           <div className="absolute -right-3 bg-[#191A1F] rotate-45 bottom-8 w-6 h-6 " />

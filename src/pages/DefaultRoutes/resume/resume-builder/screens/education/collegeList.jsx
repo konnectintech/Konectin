@@ -1,14 +1,15 @@
 import { FaPlus, FaPen, FaTrash, FaCaretDown, FaCaretUp } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useTemplateContext } from "../../../../../../../middleware/resume";
-import SelectedTemplates from "../../../resume-templates";
-import NavigationButton from "../../navigationButton";
-import { onSectionComplete } from "../../verification";
+import { useTemplateContext } from "../../../../../../middleware/resume";
+import SelectedTemplates from "../../resume-templates";
+import NavigationButton from "../navigationButton";
+import { onSectionComplete } from "../verification";
 
-const CollegeList = ({ addCollege, goBack, deleteCollege }) => {
+const CollegeList = ({ data }) => {
   const { templateData, setTemplateData } = useTemplateContext();
   const [showMore, setShowMore] = useState(-1);
+  console.log(templateData);
 
   const navigate = useNavigate();
 
@@ -20,9 +21,55 @@ const CollegeList = ({ addCollege, goBack, deleteCollege }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // add another empty valued object into the education and navigates to the first job field
+  const addCollege = () => {
+    setTemplateData((prev) => ({
+      ...prev,
+      education: [
+        ...data.education,
+        {
+          city: "",
+          company: "",
+          country: "",
+          current: false,
+          endMonth: "",
+          endYear: "",
+          jobTitle: "",
+          startMonth: "",
+          startYear: "",
+          state: "",
+          workDesc: "",
+        },
+      ],
+      currentEditedEducation: prev.currentEditedEducation + 1,
+    }));
+
+    navigate("/resume/builder/education/");
+  };
+
+  // Controls the activities go back functions
+  const goBack = () => {
+    // if the array contains more than one object it goes to the basicInfo page otherwise goes to the job responsibility page
+    if (Object.keys(data.education).length <= 1) {
+      navigate("/resume/builder/education/college");
+      return;
+    }
+
+    navigate("/resume/builder/");
+  };
+
+  const deleteCollege = (index) => {
+    data.education.splice(index, 1);
+
+    setTemplateData((prev) => ({
+      ...prev,
+      education: data.education,
+    }));
+  };
+
   return (
     <div className="max-w-6xl mx-auto">
-      <div className="flex flex-col md:flex-row items-start justify-between self-center  gap-10">
+      <div className="flex flex-1 flex-col md:flex-row items-start justify-between self-center  gap-10">
         <div className="flex flex-col justify-center w-full">
           <h2 className="-mt-6 max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
             University or college details
@@ -126,7 +173,7 @@ const CollegeList = ({ addCollege, goBack, deleteCollege }) => {
               <FaPlus size="0.6rem" />
             </div>
             <span className=" ml-3 font-extrabold text-sm text-neutral-400">
-              Add Company
+              Add Education
             </span>
           </div>
 
@@ -138,8 +185,12 @@ const CollegeList = ({ addCollege, goBack, deleteCollege }) => {
           </button> */}
         </div>
 
-        <div className="max-md:hidden">
-          <SelectedTemplates data={templateData} />
+        <div className="max-md:hidden w-1/2">
+          <div className="h-[360px] sm:h-[300px] md:h-[500px] lg:h-[580px] lg:w-[500px] flex items-center justify-center">
+            <div className="md:scale-[42%] lg:scale-[50%] mt-10">
+              <SelectedTemplates data={templateData} />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -148,7 +199,7 @@ const CollegeList = ({ addCollege, goBack, deleteCollege }) => {
           back={goBack}
           cont={() => {
             onSectionComplete(templateData);
-            navigate("/resume/builder/education");
+            navigate("/resume/builder/skills");
           }}
         />
       </div>

@@ -18,6 +18,12 @@ function Responsibilities({ data, closeModal, handleInputChange }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (data?.jobTitle && !responsibility) {
+      setResponsibility(data.jobTitle);
+    }
+  }, [data?.jobTitle]);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       handleInputChange("workDesc", editorValue);
       setDirty(false);

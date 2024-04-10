@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import ScrollToTop from "../components/scrollToTop";
+import { ToastContainer } from "react-toastify";
 
 function RouteIdentifier() {
   const { pathname } = useLocation();
@@ -18,6 +19,7 @@ function RouteIdentifier() {
     <>
       <ScrollToTop />
       <Outlet />
+      <ToastContainer limit={1} />
     </>
   );
 }
