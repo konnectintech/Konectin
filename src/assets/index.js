@@ -127,7 +127,8 @@ import edit from "./icons/edit.svg";
 import copy from "./icons/copy.svg";
 import trash from "./icons/trash.svg";
 import sliders from "./icons/sliders.svg";
-import chevronDownWhite from "./icons/chevron-down-white.svg"
+import chevronDownWhite from "./icons/chevron-down-white.svg";
+import search from "./icons/search.svg";
 
 // Blog Images
 import blogHero from "./images/blog/hero.jpg";
@@ -150,7 +151,6 @@ import AnonymousIcon from "./images/team/anonymous.png";
 import FounderIcon from "./images/team/founder.jpg";
 import AboutProfileImage from "./images/about profile.png";
 import OurVisionImage from "./images/vision.png";
-
 import ContactUSImage from "./images/contact-us.png";
 
 export {
@@ -248,6 +248,7 @@ export {
   trash,
   sliders,
   chevronDownWhite,
+  search,
 
   //Dashboard Images
   bell,

@@ -1,5 +1,5 @@
 import CoverLetterComponent from "./template-component";
-import { chevronDownWhite, sliders } from "../../../../assets";
+import { chevronDownWhite, sliders, chevronUpArrow } from "../../../../assets";
 import FilterMenu from "./filterMenu";
 
 export default function DisplayCoverLetter() {
@@ -19,7 +19,8 @@ export default function DisplayCoverLetter() {
             </div>
             <div className="flex gap-1">
               Filter
-              <img src={chevronDownWhite} alt="Open filter menu" />
+              <img src={chevronDownWhite} alt="Show filter menu" />
+              <img src={chevronUpArrow} alt="Hide filter menu" />
             </div>
           </button>
           <button className="flex justify-center items-center font-bold px-4 py-2 border border-solid border-primary-600 bg-primary-500 w-44 rounded-lg">
