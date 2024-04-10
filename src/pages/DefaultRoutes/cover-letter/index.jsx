@@ -9,7 +9,7 @@ import { useAuth } from "../../../middleware/auth";
 import { useCVData } from "../../../middleware/cv";
 import { useEffect } from "react";
 
-// import img from "../../../assets/images/bot/bot.svg";
+import img from "../../../assets/images/bot/bot.svg";
 
 // Routes
 import StartedBuilding from "./builder/startBuilding";
@@ -135,18 +135,16 @@ function CoverLetter() {
                 />
               }
             />
-<Route
+            <Route
               path="/display"
               element={<DisplayCoverLetter data={CVData} />}
             />
-         
 
             <Route path="/info-ended" element={<EndBuilding />} />
           </Route>
 
           <Route path="/editor" element={<CoverEditor {...CVData} />} />
         </Routes>
-
       </div>
     </>
   );
