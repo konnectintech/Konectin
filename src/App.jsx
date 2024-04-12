@@ -32,10 +32,8 @@ import Coverletter from "./pages/DefaultRoutes/cover-letter";
 import ErrorPage from "./pages/404";
 import InternApplication from "./pages/DefaultRoutes/internship/intern-application";
 
-
-import DashBoard from "./pages/ProtectedRoutes/user-dashboard";
 import ProtectedRoutes from "./pages/ProtectedRoutes";
-
+import UserDashBoard from "./pages/ProtectedRoutes/user-dashboard";
 
 import { TemplateProvider } from "./middleware/resume";
 import { WalkthroughProvider } from "./middleware/walkthrough";
