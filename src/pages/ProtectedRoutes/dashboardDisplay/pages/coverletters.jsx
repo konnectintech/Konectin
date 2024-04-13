@@ -1,15 +1,13 @@
-// import CoverLetterComponent from "../layout/template";
+import CoverLetterComponent from "../layout/template";
 function CoverLetters() {
   return (
     <>
-      <h1>CoverLetters</h1>;
-      <p>I will never fall in love until I've found you.</p>
-      {/* <div className="px-14 pt-14 flex justify-between gap-x-20 gap-y-14 flex-wrap">
+      <div className="grid grid-cols-4 auto-rows-fr justify-between mt-7 px-14 gap-y-14 gap-x-20">
         <CoverLetterComponent />
         <CoverLetterComponent />
         <CoverLetterComponent />
         <CoverLetterComponent />
-      </div> */}
+      </div>
     </>
   );
 }

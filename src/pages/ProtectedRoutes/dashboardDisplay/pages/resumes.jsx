@@ -1,19 +1,24 @@
-// import ResumeComponent from "../layout/template";
+import ResumeComponent from "../layout/template";
 
 function Resumes() {
   return (
     <>
-      <h1>Resumes</h1>;
-      <p>
-        Met her, one night out in Belgium, it started with dancing then we fell
-        in love
-      </p>
-      {/* <div className="px-14 pt-14 flex justify-between gap-x-20 gap-y-14 flex-wrap">
+      <div className="grid grid-cols-4 auto-rows-fr justify-between mt-7 px-14 gap-y-14 gap-x-20">
         <ResumeComponent />
         <ResumeComponent />
         <ResumeComponent />
         <ResumeComponent />
-      </div> */}
+        <ResumeComponent />
+        <ResumeComponent />
+        <ResumeComponent />
+        <ResumeComponent />
+        <ResumeComponent />
+        <ResumeComponent />
+        <ResumeComponent />
+        <ResumeComponent />
+        <ResumeComponent />
+        <ResumeComponent />
+      </div>
     </>
   );
 }
