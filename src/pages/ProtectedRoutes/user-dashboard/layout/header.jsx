@@ -4,7 +4,7 @@ import { dashboardRoutes } from "./navigation";
 function Header() {
   return (
     <div className="flex flex-col gap-3 sm:bg-primary-600 sm:text-white sm:pt-6 sm:px-10 sm:rounded-tl-lg sm:rounded-tr-lg">
-      <h1 className="text-3xl !leading-normal font-semibold hidden sm:block">
+      <h1 className="text-3xl !leading-normal font-semibold hidden sm:block border border-dashed border-yellow-500">
         Edit Profile
       </h1>
 

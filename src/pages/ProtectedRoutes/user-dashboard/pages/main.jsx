@@ -5,9 +5,9 @@ import { dashboardRoutes } from "../layout/navigation";
 function Main() {
   return (
     <div className="bg-white rounded-lg">
-      <div className=" flex flex-col gap-8 bg-primary-600 text-white p-4 px-8 rounded-lg ">
-        <div className=" font-[900] text-4xl">Edit Profile</div>
-        <div className="flex items-center gap-4">
+      <div className=" flex flex-col gap-8 bg-primary-600 text-white p-4 px-8 rounded-lg debug">
+        <div className=" font-[900] text-4xl debug">Edit Profile</div>
+        <div className="flex items-center gap-4 debug">
           {dashboardRoutes.map((route) => (
             <NavLink
               to={`/dashboard${route.path}`}

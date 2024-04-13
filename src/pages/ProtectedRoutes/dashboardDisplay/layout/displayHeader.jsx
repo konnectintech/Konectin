@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { displayRoutes } from "./navigation";
 
-function Header() {
+function DisplayHeader() {
   return (
     <div className="flex">
       <div className="flex items-center">
@@ -24,4 +24,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default DisplayHeader;

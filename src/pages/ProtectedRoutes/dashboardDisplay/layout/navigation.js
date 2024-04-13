@@ -3,12 +3,12 @@ import CoverLetters from "../pages/coverletters";
 
 export const displayRoutes = [
   {
-    path: "/resumes/display",
+    path: "/display/resumes",
     name: "Resumes",
     element: Resumes,
   },
   {
-    path: "/cover-letters/display",
+    path: "/display/cover-letters",
     name: "Cover Letters",
     element: CoverLetters,
   },
