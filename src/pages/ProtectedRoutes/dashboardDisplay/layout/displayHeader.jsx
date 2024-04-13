@@ -1,24 +1,46 @@
 import { NavLink } from "react-router-dom";
-import { displayRoutes } from "./navigation";
+import { chevronDownWhite, sliders, chevronUpArrow } from "../../../../assets";
+// import FilterMenu from "./filterMenu";
 
 function DisplayHeader() {
   return (
-    <div className="flex">
-      <div className="flex items-center">
-        {displayRoutes.map((route) => (
-          <NavLink
-            key={route.path}
-            to={`/dashboard${route.path}`}
-            className={({ isActive }) =>
-              isActive
-                ? "cursor-pointer min-w-0 border-b-2 sm:border-b-[3px] border-secondary-600 text-neutral-300 sm:text-white whitespace-nowrap py-2.5 px-6"
-                : "border-b-[3px] border-transparent text-neutral-300 sm:text-neutral-600 sm:hover:text-white whitespace-nowrap min-w-0 py-2.5 px-6"
-            }
-            aria-current={route.current ? "page" : undefined}
-          >
-            {route.name}
-          </NavLink>
-        ))}
+    <div className="flex items-center w-full h-[70px] mx-auto justify-between bg-neutral-100 text-white px-14">
+      <div className="flex gap-6 h-full text-white font-bold whitespace-nowrap py-3.5">
+        <NavLink
+          to="/dashboard/display/resumes"
+          className={({ isActive }) =>
+            isActive
+              ? "cursor-pointer border-b-2 border-b-secondary-600"
+              : "cursor-pointer"
+          }
+        >
+          Resume
+        </NavLink>
+        <NavLink
+          to="/dashboard/display/cover-letters"
+          className={({ isActive }) =>
+            isActive
+              ? "cursor-pointer border-b-2 border-b-secondary-600"
+              : "cursor-pointer"
+          }
+        >
+          Cover Letter
+        </NavLink>
+      </div>
+      <div className="flex gap-6">
+        <button className="flex justify-between items-center gap-4 border border-solid border-white rounded-lg px-4 py-2 w-56">
+          <div>
+            <img src={sliders} alt="Filter" />
+          </div>
+          <div className="flex gap-1">
+            Filter
+            <img src={chevronDownWhite} alt="Show filter menu" />
+            <img src={chevronUpArrow} alt="Hide filter menu" />
+          </div>
+        </button>
+        <button className="flex justify-center items-center font-bold px-4 py-2 border border-solid border-primary-600 bg-primary-500 w-44 rounded-lg">
+          Create New
+        </button>
       </div>
     </div>
   );
