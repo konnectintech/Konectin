@@ -5,7 +5,7 @@ import { chevronDownWhite, sliders, chevronUpArrow, slidersBlack, plusCircle } f
 function DisplayHeader() {
   console.log(sliders)
   return (
-    <div className="flex items-center w-full h-8 md:h-[70px] mx-auto justify-between bg-transparent md:bg-neutral-100 text-white px-14">
+    <div className="flex items-center w-full h-8 md:h-[70px] mx-auto justify-between bg-transparent md:bg-neutral-100 text-white px-5 md:px-14">
       <div className="flex gap-6 h-full text-black md:text-white text-sm md:text-base font-bold whitespace-nowrap md:py-3.5">
         <NavLink
           to="/dashboard/display/resumes"
