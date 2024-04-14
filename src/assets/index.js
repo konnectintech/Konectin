@@ -131,6 +131,8 @@ import trash from "./icons/trash.svg";
 import sliders from "./icons/sliders.svg";
 import chevronDownWhite from "./icons/chevron-down-white.svg";
 import search from "./icons/search.svg";
+import slidersBlack from "./icons/slidersBlack.svg";
+import plusCircle from "./icons/plus-sign-circle.svg";
 
 // Blog Images
 import blogHero from "./images/blog/hero.jpg";
@@ -253,6 +255,8 @@ export {
   sliders,
   chevronDownWhite,
   search,
+  slidersBlack,
+  plusCircle,
 
   //Dashboard Images
   bell,

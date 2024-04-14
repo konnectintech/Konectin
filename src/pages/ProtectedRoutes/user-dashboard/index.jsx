@@ -15,7 +15,7 @@ function UserDashBoard() {
         <div className="flex w-full min-w-0 h-full flex-col gap-8 justify-between sm:bg-white rounded-lg bg-primary-100">
           <Header />
 
-          <div className="sm:pb-8 sm:px-6 lg:px-10 border border-dashed border-yellow-500">
+          <div className="sm:pb-8 sm:px-6 lg:px-10">
             <Routes>
               {dashboardRoutes.map((route) => (
                 <Route
