@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./middleware/auth";
 
 import ResumeRoutes from "./layouts/resumeRoutes";
@@ -85,6 +85,11 @@ function App() {
               <Route
                 path="/dashboard/display/*"
                 element={<DashboardDisplay />}
+              />
+
+              <Route
+                path="/dashboard/display"
+                element={<Navigate to="/dashboard/display/resumes" />}
               />
             </Route>
           </Route>
