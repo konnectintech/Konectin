@@ -7,15 +7,15 @@ import {
   trash,
 } from "../../../../assets";
 
-export default function TemplateComponent() {
+export default function TemplateComponent({ item }) {
   return (
     <div className="flex flex-col grow gap-2 items-start max-w-xs w-1/4 xl:w-full min-w-[182px]">
       {/* h-[515px] */}
       <div className="flex flex-col gap-1.5">
         <p className="text-sm md:text-xl font-black text-neutral-100">
-          Marketing Specialist
+          {item.title}
         </p>
-        <p className="text-xs">January 14, 2023</p>
+        <p className="text-xs">{item.date}</p>
       </div>
       <div className="mt-2">
         <img

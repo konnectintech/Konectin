@@ -1,6 +1,11 @@
 import { search, chevronUpArrow } from "../../../../assets";
 
-export default function FilterDropdown({ isFilterOpen, toggleFilter }) {
+export default function FilterDropdown({
+  isFilterOpen,
+  toggleFilter,
+  searchQuery,
+  handleSearch,
+}) {
   return (
     <>
       {isFilterOpen && (
@@ -13,12 +18,17 @@ export default function FilterDropdown({ isFilterOpen, toggleFilter }) {
             <div className="h-[34px] border border-solid border-black rounded p-1.5 flex justify-center items-center gap-1">
               <input
                 type="text"
-                className="placeholder:text-neutral-500 w-5/6"
+                className="focus:outline-none placeholder:text-neutral-500 w-5/6"
                 name="custom-search"
                 id="custom-search"
                 placeholder="Custom search"
+                value={searchQuery}
+                onChange={handleSearch}
               />
-              <button className="rounded-full bg-[#f5f5f5] w-6 h-6 flex justify-center items-center">
+              <button
+                onClick={() => handleSearch(searchQuery)}
+                className="rounded-full bg-[#f5f5f5] w-6 h-6 flex justify-center items-center"
+              >
                 <img src={search} alt="Custom search" />
               </button>
             </div>

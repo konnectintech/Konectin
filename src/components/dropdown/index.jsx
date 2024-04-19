@@ -1,15 +1,24 @@
 import { useAuth } from "../../middleware/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Logout from "../../components/logout";
+import ActionModal from "../actionModal";
+import { logOut } from "../../assets";
 
 const Dropdown = () => {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const [logoutOpen, setLogoutOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
+  const navigate = useNavigate();
 
-  const openLogoutModal = () => {
+  const toggleLogoutModal = () => {
     setLogoutOpen(!logoutOpen);
+  };
+
+  const logoutFn = () => {
+    signOut();
+    navigate("/");
+    setLogoutOpen(!logoutOpen);
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -31,16 +40,16 @@ const Dropdown = () => {
               ) : (
                 <div className="rounded-full bg-neutral-1000 flex items-center justify-center w-16 h-16">
                   <h3 className="text-uppercase sm:text-3xl font-black text-neutral-100">
-                    {user?.fullname.split(" ")[0].charAt(0)}
-                    {user?.fullname.split(" ")[1].charAt(0)}
+                    {user?.fullname.split(" ")[0].charAt(0) || "K"}
+                    {user?.fullname.split(" ")[1].charAt(0) || "U"}
                   </h3>
                 </div>
               )}
               <div>
                 <p className="text-neutral-100 text-base font-bold">
-                  {user?.fullname}
+                  {user?.fullname || "Konectin User"}
                 </p>
-                <p>{user?.email}</p>
+                <p>{user?.email || "user@konenctin.org"}</p>
               </div>
             </div>
             <hr />
@@ -65,7 +74,7 @@ const Dropdown = () => {
               </Link>
               <div
                 className="p-2 rounded-md hover:bg-primary-100"
-                onClick={openLogoutModal}
+                onClick={toggleLogoutModal}
               >
                 Log out
               </div>
@@ -73,7 +82,20 @@ const Dropdown = () => {
           </div>
         </div>
       )}
-      {logoutOpen && <Logout />}
+      {logoutOpen && (
+        <>
+          <ActionModal
+            isOpen={toggleLogoutModal}
+            onClose={toggleLogoutModal}
+            icon={logOut}
+            header="Are you sure you want to log out?"
+            body="Keep your notifications enabled to stay updated. See you soon!"
+            buttonText="Logout"
+            btnColors="border-primary-600 bg-error-500"
+            actionFn={logoutFn}
+          />
+        </>
+      )}
     </>
   );
 };
