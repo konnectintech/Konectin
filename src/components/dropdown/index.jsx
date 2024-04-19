@@ -4,7 +4,8 @@ import { useState } from "react";
 import ActionModal from "../actionModal";
 import { logOut } from "../../assets";
 
-const Dropdown = () => {
+const Dropdown = ({ tabs, offset }) => {
+  console.log(`this is the tabs prop ${tabs} and the offset props ${offset} `);
   const { user, signOut } = useAuth();
   const [logoutOpen, setLogoutOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
@@ -29,7 +30,13 @@ const Dropdown = () => {
             className="absolute top-0 left-0 h-screen w-screen"
             onClick={() => setIsOpen(!isOpen)}
           ></div>
-          <div className="w-64 bg-white pt-11 pb-4 px-4 rounded-md absolute right-10 top-20 drop-shadow-dropdown">
+          <div
+            className={`${
+              tabs && (offset.prevScrollpos <= 50 || offset.darken)
+                ? "top-full visible opacity-100"
+                : "-top-full invisible opacity-0"
+            } duration-500 translate-y-2 w-64 bg-white pt-11 pb-4 px-4 rounded-md absolute right-10 drop-shadow-dropdown`}
+          >
             <div className="flex items-center gap-4 text-xs text-neutral-400 mb-6">
               {user?.picture ? (
                 <img

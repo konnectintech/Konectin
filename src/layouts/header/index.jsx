@@ -11,26 +11,18 @@ import Dropdown from "../../components/dropdown";
 function Header() {
   const { user } = useAuth();
   const [dropdown, setDropdown] = useState(false);
-  // const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  // const openMenu = () => {
-  //   setIsMenuOpen(false)
-  // }
-
-  // const closeMenu = () => {
-  //   setIsMenuOpen(true)
-  // }
 
   const toggleDropdown = () => {
     setDropdown(!dropdown);
   };
 
   const [offset, setOffset] = useState({
-    prevScrollpos: window.pageYOffset,
+    prevScrollpos: window.scrollY,
     visible: true,
   });
 
   const [isOpen, setIsOpen] = useState(false);
+  const [tabs, setTabs] = useState(false);
   const links = [
     { name: "Home", link: "/" },
     { name: "Internships", link: "/internship" },
@@ -43,7 +35,7 @@ function Header() {
 
   const handleScroll = () => {
     const { prevScrollpos } = offset;
-    const currentScrollPos = window.pageYOffset;
+    const currentScrollPos = window.scrollY;
     const visible = prevScrollpos > currentScrollPos;
     const darken = visible && currentScrollPos >= 50;
 
@@ -161,6 +153,9 @@ function Header() {
             <Link
               // to="/dashboard/"
               to="#"
+              onClick={() => {
+                setTabs((prev) => !prev);
+              }}
               className="relative flex items-center cursor-pointer gap-2 text-xs text-neutral-400"
             >
               <div
@@ -200,7 +195,7 @@ function Header() {
       {pathname.includes("/intern-application") &&
         (offset.prevScrollpos <= 50 || offset.darken) && <InternAnimation />}
 
-      {dropdown && <Dropdown />}
+      {dropdown && <Dropdown tabs={tabs} offset={offset} />}
     </header>
   );
 }
