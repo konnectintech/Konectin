@@ -1,12 +1,14 @@
-import { search, chevronUpArrow } from "../../../../assets";
+import { search } from "../../../../assets";
 
 export default function FilterDropdown({
   isFilterOpen,
   toggleFilter,
   searchQuery,
   handleSearch,
+  handleSort
 }) {
   return (
+
     <>
       {isFilterOpen && (
         <div>
@@ -32,17 +34,20 @@ export default function FilterDropdown({
                 <img src={search} alt="Custom search" />
               </button>
             </div>
-            <div className="h-[34px] p-1.5 hover:bg-[#f5f5f5] cursor-pointer rounded">
+            <div
+              onClick={() => handleSort("oldest")}
+              className="h-[34px] p-1.5 hover:bg-[#f5f5f5] cursor-pointer rounded"
+            >
               <p>Oldest to Newest</p>
             </div>
-            <div className="h-[34px] p-1.5 hover:bg-[#f5f5f5] cursor-pointer rounded">
+            <div
+              onClick={() => handleSort("newest")}
+              className="h-[34px] p-1.5 hover:bg-[#f5f5f5] cursor-pointer rounded"
+            >
               <p>Newest to Oldest</p>
             </div>
             <div className="h-[34px] p-1.5 hover:bg-[#f5f5f5] cursor-pointer rounded">
               <p>Latest Edit</p>
-            </div>
-            <div className="h-[34px] p-1.5 hover:bg-[#f5f5f5] cursor-pointer rounded">
-              <img src={chevronUpArrow} alt="chevron up" />
             </div>
           </div>
         </div>

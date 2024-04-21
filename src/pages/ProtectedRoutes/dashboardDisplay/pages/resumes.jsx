@@ -2,7 +2,7 @@ import TemplateComponent from "../layout/template";
 import testData from "../../../../utils/data.json";
 import { useState, useEffect } from "react";
 
-function Resumes({ searchQuery }) {
+function Resumes({ searchQuery, sortCriteria }) {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
 
@@ -20,6 +20,19 @@ function Resumes({ searchQuery }) {
     });
     setFilteredData(filtered);
   }, [searchQuery, data]);
+
+  useEffect(() => {
+    const sorted = (data, sortCriteria) => {
+      if (sortCriteria === "newest") {
+        return [...data].sort((a, b) => new Date(b.date) - new Date(a.date));
+      } else if (sortCriteria === "oldest") {
+        return [...data].sort((a, b) => new Date(a.date) - new Date(b.date));
+      }
+    };
+
+    const sortedData = sorted(data, sortCriteria);
+    setFilteredData(sortedData);
+  }, [sortCriteria, data]);
 
   return (
     <>

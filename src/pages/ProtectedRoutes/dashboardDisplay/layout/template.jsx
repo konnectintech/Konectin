@@ -8,6 +8,13 @@ import {
 } from "../../../../assets";
 
 export default function TemplateComponent({ item }) {
+  const date = new Date(item.date)
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }
+  const formattedDate = date.toLocaleDateString(undefined, options)
   return (
     <div className="flex flex-col grow gap-2 items-start max-w-xs w-1/4 xl:w-full min-w-[182px]">
       {/* h-[515px] */}
@@ -15,7 +22,7 @@ export default function TemplateComponent({ item }) {
         <p className="text-sm md:text-xl font-black text-neutral-100">
           {item.title}
         </p>
-        <p className="text-xs">{item.date}</p>
+        <p className="text-xs">{formattedDate}</p>
       </div>
       <div className="mt-2">
         <img

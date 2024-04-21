@@ -9,7 +9,7 @@ import {
 import FilterDropdown from "./filterDropdown";
 import ActionModal from "../../../../components/actionModal";
 
-function DisplayHeader({ searchQuery, handleSearch }) {
+function DisplayHeader({ searchQuery, handleSearch, handleSort }) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isNewOpen, setIsNewOpen] = useState(false);
 
@@ -94,7 +94,7 @@ function DisplayHeader({ searchQuery, handleSearch }) {
           toggleFilter={toggleFilter}
           searchQuery={searchQuery}
           handleSearch={handleSearch}
-          
+          handleSort={handleSort}
         />
       )}
       {isNewOpen && (
