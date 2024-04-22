@@ -61,7 +61,7 @@ import forgotPasswordImage from "./images/forgot-password.png";
 import bell from "./icons/bell.svg";
 import job from "./icons/jobs.png";
 import help from "./icons/help.png";
-import logOut from "./icons/logout.png";
+import logOut from "./icons/logout.svg";
 import chat from "./icons/chat.png";
 import web from "./icons/web.png";
 import profile from "./icons/profile.png";
@@ -125,6 +125,14 @@ import droplet from "./icons/droplet.svg";
 import download from "./icons/download.svg";
 import pdffolder from "./icons/pdffolder.svg";
 import docfolder from "./icons/docfolder.svg";
+import edit from "./icons/edit.svg";
+import copy from "./icons/copy.svg";
+import trash from "./icons/trash.svg";
+import sliders from "./icons/sliders.svg";
+import chevronDownWhite from "./icons/chevron-down-white.svg";
+import search from "./icons/search.svg";
+import slidersBlack from "./icons/slidersBlack.svg";
+import plusCircle from "./icons/plus-sign-circle.svg";
 
 // Blog Images
 import blogHero from "./images/blog/hero.jpg";
@@ -147,7 +155,6 @@ import AnonymousIcon from "./images/team/anonymous.png";
 import FounderIcon from "./images/team/founder.jpg";
 import AboutProfileImage from "./images/about profile.png";
 import OurVisionImage from "./images/vision.png";
-
 import ContactUSImage from "./images/contact-us.png";
 
 export {
@@ -242,6 +249,14 @@ export {
   download,
   docfolder,
   pdffolder,
+  edit,
+  copy,
+  trash,
+  sliders,
+  chevronDownWhite,
+  search,
+  slidersBlack,
+  plusCircle,
 
   //Dashboard Images
   bell,
