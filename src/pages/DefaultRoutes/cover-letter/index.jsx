@@ -23,7 +23,7 @@ import CoverEditor from "./editor";
 import CompanyBrief from "./builder/companyBrief";
 
 function CoverLetter() {
-  const { CVData, onInputChange } = useCVContext();
+  const { CVData, setCVData } = useCVContext();
   const { user } = useAuthContext();
 
   const { pathname } = useLocation();
@@ -32,19 +32,17 @@ function CoverLetter() {
   useEffect(() => {
     const path = pathname.split("/")[2];
     if (user?._id && CVData.details.fullName === "") {
-      onInputChange({
-        section: "details",
-        subsection: "fullName",
-        values: user.fullname,
-      });
+      setCVData((prev) => ({
+        ...prev,
+        details: { ...prev.details, fullName: user.fullname },
+      }));
     }
 
     if (user?._id && CVData.details.email === "") {
-      onInputChange({
-        section: "details",
-        subsection: "email",
-        values: user.email,
-      });
+      setCVData((prev) => ({
+        ...prev,
+        details: { ...prev.details, email: user.email },
+      }));
     }
 
     if (
@@ -110,40 +108,22 @@ function CoverLetter() {
             />
             <Route
               path="/job-details"
-              element={
-                <JobDetails
-                  data={CVData.details}
-                  handleChange={onInputChange}
-                  isLogged={user}
-                />
-              }
+              element={<JobDetails data={CVData.details} isLogged={user} />}
             />
             <Route
               path="/job-description"
               element={
-                <JobDescription
-                  data={CVData.description.jobDescription}
-                  handleChange={onInputChange}
-                />
+                <JobDescription data={CVData.description.jobDescription} />
               }
             />
             <Route
               path="/company-info"
-              element={
-                <CompanyBrief
-                  data={CVData.description.companyInfo}
-                  handleChange={onInputChange}
-                />
-              }
+              element={<CompanyBrief data={CVData.description.companyInfo} />}
             />
             <Route
               path="/short-bio"
               element={
-                <ShortBio
-                  data={CVData.professionalBio}
-                  handleChange={onInputChange}
-                  isLogged={user}
-                />
+                <ShortBio data={CVData.professionalBio} isLogged={user} />
               }
             />
             <Route path="/info-ended" element={<CreateLetter />} />

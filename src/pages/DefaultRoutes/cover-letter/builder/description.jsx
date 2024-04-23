@@ -1,13 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useCVContext } from "../../../../middleware/cv";
 
-function JobDescription({ data, handleChange }) {
+function JobDescription({ data }) {
+  const { setCVData } = useCVContext();
   const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
   const handleInputChange = (name, value) => {
-    handleChange({ section: "description", subsection: name, values: value });
+    setCVData((prev) => ({
+      ...prev,
+      description: { ...prev.description, [name]: value },
+    }));
   };
 
   const handleSubmit = (e) => {

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router";
 import { useCVContext } from "../../../../middleware/cv";
 import Preloader from "../../../../components/preloader";
 import { useState } from "react";
-import { AzureKeyCredential, OpenAIClient } from "@azure/openai";
 import { toast } from "react-toastify";
 
 function CreateLetter() {
@@ -13,57 +12,28 @@ function CreateLetter() {
   const navigate = useNavigate();
   const primaryURL = import.meta.env.VITE_CLIENT_SERVER_URL;
 
-  const azureApiKey = import.meta.env.VITE_OPENAI_KEY;
+  const handleSubmit = async () => {
+    setLoading(true);
 
-  const generateCV = async () => {
-    const messages = [
-      {
-        role: "user",
-        content: `I am ${CVData.details.fullName}, who is applying for the position of ${CVData.details.jobPosition} at ${CVData.details.companyName}. The job description provided is as follows: ${CVData.description.jobDescription}. The professional bio of the user is: ${CVData.professionalBio}. The information provided about the company is: ${CVData.description.companyInfo}. Write a concise cover letter for me`,
-      },
-    ];
+    // If Letter exist
+    if (CVData._id) {
+      navigate(`/cover-letter/editor?id=${CVData._id}`);
+      return;
+    }
 
-    const client = new OpenAIClient(
-      "https://azure-openai-konectin.openai.azure.com/",
-      new AzureKeyCredential(azureApiKey)
-    );
-    const deploymentId = "35Turbo";
-    await client
-      .getChatCompletions(deploymentId, messages, {
-        temperature: 0.4,
-        top_p: 0.5,
-        frequency_penalty: 0,
-        presence_penalty: 0,
-        max_tokens: 800,
-        stop: null,
-      })
-      .then(async (result) => {
-        await axios
-          .post(`${primaryURL}/letter`, {
-            ...CVData,
-            content: result.choices[0].message.content,
-          })
-          .then((res) => {
-            setCVData({ ...res.data.data });
-            setLoading(false);
-            navigate("/cover-letter/editor");
-          })
-          .catch((err) => {
-            setLoading(false);
-            console.log(err);
-          });
+    // Else create one
+    await axios
+      .post(`${primaryURL}/letter`, CVData)
+      .then((res) => {
+        setCVData({ ...res.data.data });
+        setLoading(false);
+        navigate(`/cover-letter/editor?id=${res.data.data._id}`);
       })
       .catch((err) => {
         setLoading(false);
         toast.error("Encountered Error. Try Again");
         console.log(err);
       });
-  };
-
-  const handleSubmit = async () => {
-    setLoading(true);
-
-    generateCV();
   };
 
   return (
@@ -82,7 +52,7 @@ function CreateLetter() {
         className="text-white mt-4 w-fit rounded-md bg-primary-600 py-3 px-12"
         onClick={handleSubmit}
       >
-        Create Cover Letter
+        {CVData._id ? "Edit Cover Letter" : "Create Cover Letter"}
       </button>
     </div>
   );

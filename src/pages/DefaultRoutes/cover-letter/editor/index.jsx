@@ -1,14 +1,62 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { botIcon, download } from "../../../../assets";
 import * as CiIcons from "react-icons/ci";
 import ContentEditor from "./contentEditor";
 import EditorSidebar from "./editorSidebar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useCVContext } from "../../../../middleware/cv";
+import axios from "axios";
 
 function CoverEditor() {
+  const { CVData, setCVData } = useCVContext();
   const [chatBot, setChatBot] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const location = useLocation();
+
+  const navigate = useNavigate();
+  const primaryURL = import.meta.env.VITE_CLIENT_SERVER_URL;
+
+  useEffect(() => {
+    // Get a letter ID query parameter
+    const LID = new URLSearchParams(location.search).get("id");
+    // Get the CV id from the url
+    try {
+      if (LID !== null) {
+        axios
+          .get(`${primaryURL}/getLetter?letterId=${LID}`)
+          .then((res) => {
+            // If it exists
+            setCVData({ ...res.data.letter });
+            setLoading(false);
+          })
+          .catch((err) => {
+            // If it  doesn't
+            throw new Error("Letter not found");
+          });
+      } else throw new Error("Letter not found");
+    } catch (error) {
+      if (error?.message === "Letter not found") {
+        // Create one and routes to it
+        axios
+          .post(`${primaryURL}/letter`, CVData)
+          .then((res) => {
+            setCVData({ ...res.data.data });
+            navigate(`/cover-letter/editor?id=${res.data.data._id}`);
+          })
+          .catch((err) => {
+            toast.error("Encountered Error. Try Again");
+            console.log(err);
+          });
+      }
+    }
+  }, [location, navigate]);
 
   return (
     <div className="h-full w-full">
+      {loading}
       <nav className="bg-black">
         <nav className="w-11/12 mx-auto max-w-screen-2xl flex justify-between items-center py-4">
           <nav className="flex-1 p-2"></nav>

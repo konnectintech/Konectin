@@ -6,14 +6,13 @@ const CVContext = createContext();
 const useCVContext = () => useContext(CVContext);
 
 const CVProvider = ({ children }) => {
-  const { CVData, setCVData, onInputChange } = useCVData();
+  const { CVData, setCVData } = useCVData();
 
   return (
     <CVContext.Provider
       value={{
         CVData,
         setCVData,
-        onInputChange,
       }}
     >
       {children}
@@ -31,26 +30,12 @@ const useCVData = () => {
       description: { companyInfo: "", jobDescription: "" },
       professionalBio: "",
       content: "",
+      chats: [],
     }
   );
-
-  const onInputChange = ({ section, subsection, values }) => {
-    if (subsection) {
-      setCVData({
-        ...CVData,
-        [section]: {
-          ...CVData[section],
-          [subsection]: values,
-        },
-      });
-    } else {
-      setCVData({ ...CVData, [section]: values });
-    }
-  };
 
   return {
     CVData,
     setCVData,
-    onInputChange,
   };
 };

@@ -3,24 +3,32 @@ import { uploadIcon } from "../../../../assets";
 import { useState } from "react";
 import ImageModal from "../../../../components/image-uploader/imageModal";
 import axios from "axios";
+import Preloader from "../../../../components/preloader";
 
 function Sidebar() {
   const { user, setUser } = useAuthContext();
   const [modalOpen, setModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   const updateAvatar = async (image) => {
-    await axios
-      .put(`${url}/v2/updateUserPicture`, image)
+    const formData = new FormData();
+    formData.append("picture", image);
+    setLoading(true);
+
+    axios
+      .put(`${url}/v2/updateUserPicture?userId=${user._id}`, formData)
       .then((res) => {
         setUser((prev) => ({ ...prev, picture: res.data.url }));
         setModalOpen(false);
+        setLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => setLoading(false));
   };
 
   return (
     <div className="rounded-lg w-full py-6 px-4 md:p-6 bg-white flex md:flex-col items-center md:justify-center gap-4">
+      {loading && <Preloader />}
       <div className="w-full order-2 md:order-1 space-y-2">
         <h1 className="md:text-center text-lg md:text-xl font-semibold">
           {user?.fullname}
@@ -38,7 +46,7 @@ function Sidebar() {
           <img
             src={user?.picture}
             alt={user?.fullname}
-            className="w-16 h-16 md:w-32 md:h-32 rounded-full bg-neutral-grey"
+            className="w-16 h-16 md:w-32 md:h-32 rounded-full bg-primary-300"
           />
         ) : (
           <div className="rounded-full bg-neutral-1000 flex items-center justify-center w-16 h-16 md:w-32 md:h-32">

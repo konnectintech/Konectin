@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { tipIcon } from "../../../../assets";
+import { useCVContext } from "../../../../middleware/cv";
 
-const ShortBio = ({ data, handleChange, isLogged }) => {
+const ShortBio = ({ data, isLogged }) => {
+  const { setCVData } = useCVContext();
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
@@ -53,10 +55,10 @@ const ShortBio = ({ data, handleChange, isLogged }) => {
             id="bio"
             value={data}
             onChange={(e) =>
-              handleChange({
-                section: "professionalBio",
-                values: e.target.value,
-              })
+              setCVData((prev) => ({
+                ...prev,
+                professionalBio: e.target.value,
+              }))
             }
           />
           <div className="cursor-pointer relative">

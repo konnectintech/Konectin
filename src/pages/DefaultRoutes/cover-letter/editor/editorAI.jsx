@@ -9,7 +9,7 @@ import { botIdentity } from "../../../../utils/konecto";
 function EditorAI() {
   const { CVData, setCVData } = useCVContext();
   const [botLoading, setBotLoading] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState(() => CVData?.chats || []);
   const messageEnd = useRef(null);
   const [promptMessage, setPromptMessage] = useState("");
 
@@ -38,10 +38,13 @@ function EditorAI() {
 
     setBotLoading(true);
 
+    // PUT endpoint for user message
+
     const client = new OpenAIClient(
       "https://azure-openai-konectin.openai.azure.com/",
       new AzureKeyCredential(azureApiKey)
     );
+
     const deploymentId = "35Turbo";
 
     await client
@@ -55,11 +58,15 @@ function EditorAI() {
       })
       .then((result) => {
         const content = result.choices[0].message.content;
+
+        // PUT endpoint for bot message
+
         if (content.includes("Updated Cover Letter:")) {
           setCVData((prev) => ({
             ...prev,
             content: content.split("Updated Cover Letter:")[1].trimStart(),
           }));
+
           setMessages((prev) => [
             ...prev,
             {

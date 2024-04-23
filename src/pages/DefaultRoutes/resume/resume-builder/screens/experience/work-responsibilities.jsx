@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import Suggestions from "../../../../../../components/suggestions";
@@ -18,10 +19,10 @@ function Responsibilities({ data, closeModal, handleInputChange }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (data?.jobTitle && !responsibility) {
+    if (data.jobTitle && !responsibility) {
       setResponsibility(data.jobTitle);
     }
-  }, [data?.jobTitle]);
+  }, [data.jobTitle]);
 
   useEffect(() => {
     const interval = setInterval(() => {
