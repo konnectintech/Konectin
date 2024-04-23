@@ -4,28 +4,58 @@ import { Editor } from "@tinymce/tinymce-react";
 import { useRef, useState, useEffect } from "react";
 import { useCVContext } from "../../../../middleware/cv";
 import { AzureKeyCredential, OpenAIClient } from "@azure/openai";
+import axios from "axios";
+import { useInterval } from "../../../../middleware/hooks";
 
 function ContentEditor() {
   const { CVData, setCVData } = useCVContext();
 
-  const [editorValue, setEditorValue] = useState();
+  const [editorValue, setEditorValue] = useState("");
   const [dirty, setDirty] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const editorRef = useRef(null);
+  const url = import.meta.env.VITE_CLIENT_SERVER_URL;
   const azureApiKey = import.meta.env.VITE_OPENAI_KEY;
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCVData((prev) => ({ ...prev, content: editorValue }));
-      setDirty(false);
-    }, 5000);
+  // useEffect(() => {
+  //   // const content = CVData.content.replaceAll("<p>", "").replaceAll("</p>", "");
+  //   // const editorContent = editorValue
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, [editorValue]);
+  //   const interval = setInterval(() => {
+  //     if (editorValue.localeCompare(CVData.content) !== 0 && dirty) {
+  //       setCVData((prev) => ({ ...prev, content: editorValue }));
+  //       console.log(editorValue.localeCompare(CVData.content), dirty);
+  //       // axios
+  //       //   .put(`${url}/updateLetter?letterId=${CVData._id}`, {
+  //       //     content: editorValue,
+  //       //   })
+  //       //   .then((res) => console.log(res.data))
+  //       //   .catch((err) => console.log(err));
+  //       setDirty((prev) => (prev === true ? false : prev));
+  //     }
+  //   }, 5000);
+
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, [editorValue]);
+
+  useInterval(() => {
+    // Your custom logic here
+    if (editorValue.localeCompare(CVData.content) !== 0 && dirty) {
+      setCVData((prev) => ({ ...prev, content: editorValue }));
+
+      axios
+        .put(`${url}/updateLetter?letterId=${CVData._id}`, {
+          content: editorValue,
+        })
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err));
+      setDirty((prev) => (prev === true ? false : prev));
+    }
+  }, 5000);
 
   const generateCV = async () => {
     const messages = [
@@ -68,8 +98,9 @@ function ContentEditor() {
 
   useEffect(() => {
     if (CVData.content === "" || CVData.content === undefined) {
-      console.log("Generating CV content....", CVData.content);
       generateCV();
+    } else {
+      setEditorValue(CVData.content);
     }
   }, [CVData]);
 

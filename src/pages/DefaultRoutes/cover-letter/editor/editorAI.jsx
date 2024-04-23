@@ -5,6 +5,7 @@ import { useCVContext } from "../../../../middleware/cv";
 import EditorAISuggestion from "./editorAISuggestion";
 import { AzureKeyCredential, OpenAIClient } from "@azure/openai";
 import { botIdentity } from "../../../../utils/konecto";
+import axios from "axios";
 
 function EditorAI() {
   const { CVData, setCVData } = useCVContext();
@@ -18,9 +19,10 @@ function EditorAI() {
     messageEnd.current.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  const url = import.meta.env.VITE_CLIENT_SERVER_URL;
   const azureApiKey = import.meta.env.VITE_OPENAI_KEY;
 
-  const konectoResponse = async (message) => {
+  const konectoResponse = (message) => {
     const prompts = [
       {
         role: "system",
@@ -38,58 +40,101 @@ function EditorAI() {
 
     setBotLoading(true);
 
-    // PUT endpoint for user message
-
-    const client = new OpenAIClient(
-      "https://azure-openai-konectin.openai.azure.com/",
-      new AzureKeyCredential(azureApiKey)
-    );
-
-    const deploymentId = "35Turbo";
-
-    await client
-      .getChatCompletions(deploymentId, prompts, {
-        temperature: 0.4,
-        top_p: 0.5,
-        frequency_penalty: 0,
-        presence_penalty: 0,
-        max_tokens: 800,
-        stop: null,
+    // PUT endpoint for update user message
+    axios
+      .put(`${url}/updateLetter?letterId=${CVData._id}`, {
+        chats: [
+          {
+            userType: "user",
+            message: message,
+          },
+        ],
       })
-      .then((result) => {
-        const content = result.choices[0].message.content;
+      .then(() => {
+        const client = new OpenAIClient(
+          "https://azure-openai-konectin.openai.azure.com/",
+          new AzureKeyCredential(azureApiKey)
+        );
 
-        // PUT endpoint for bot message
+        const deploymentId = "35Turbo";
 
-        if (content.includes("Updated Cover Letter:")) {
-          setCVData((prev) => ({
-            ...prev,
-            content: content.split("Updated Cover Letter:")[1].trimStart(),
-          }));
+        client
+          .getChatCompletions(deploymentId, prompts, {
+            temperature: 0.4,
+            top_p: 0.5,
+            frequency_penalty: 0,
+            presence_penalty: 0,
+            max_tokens: 800,
+            stop: null,
+          })
+          .then((result) => {
+            const content = result.choices[0].message.content;
 
-          setMessages((prev) => [
-            ...prev,
-            {
-              type: "konecto",
-              message: "I've updated your cover letter... Check it out",
-            },
-          ]);
-        } else {
-          setMessages((prev) => [
-            ...prev,
-            { type: "konecto", message: content },
-          ]);
-        }
+            if (content.includes("Updated Cover Letter:")) {
+              // If updating cover letter
+              axios
+                .put(`${url}/updateLetter?letterId=${CVData._id}`, {
+                  chats: [
+                    {
+                      userType: "konecto",
+                      message: "I've updated your cover letter... Check it out",
+                    },
+                  ],
+                })
+                .then((res) => {
+                  setCVData((prev) => ({
+                    ...prev,
+                    content: content
+                      .split("Updated Cover Letter:")[1]
+                      .trimStart(),
+                  }));
+
+                  setMessages([
+                    ...res.data.letter.chats.map((chat) => ({
+                      type: chat.userType,
+                      message: chat.message,
+                    })),
+                  ]);
+
+                  setBotLoading(false);
+                })
+                .catch((err) => console.log(err));
+            } else {
+              // If normal chat
+              axios
+                .put(`${url}/updateLetter?letterId=${CVData._id}`, {
+                  chats: [
+                    {
+                      type: "konecto",
+                      message: content,
+                    },
+                  ],
+                })
+                .then((res) => {
+                  setMessages([
+                    ...res.data.letter.chats.map((chat) => ({
+                      type: chat.userType,
+                      message: chat.message,
+                    })),
+                  ]);
+
+                  setBotLoading(false);
+                })
+                .catch((err) => console.log(err));
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            setMessages((prev) => [
+              ...prev,
+              { type: "konecto", message: "Encountered Error. Try Again!" },
+            ]);
+
+            setBotLoading(false);
+          });
       })
-      .catch((err) => {
-        console.log(err);
-        setMessages((prev) => [
-          ...prev,
-          { type: "konecto", message: "Encountered Error. Try Again!" },
-        ]);
-      });
-
-    setBotLoading(false);
+      // If Message didn't go
+      .catch((err) => console.log(err));
   };
 
   const handleSubmit = (message) => {
