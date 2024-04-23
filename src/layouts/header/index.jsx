@@ -6,16 +6,23 @@ import { konectinIcon } from "../../assets";
 import "./header.css";
 import { useAuthContext } from "../../middleware/auth";
 import InternAnimation from "../../utils/intern-animation";
+import Dropdown from "../../components/dropdown";
 
 function Header() {
   const { user } = useAuthContext();
+  const [dropdown, setDropdown] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdown(!dropdown);
+  };
 
   const [offset, setOffset] = useState({
-    prevScrollpos: window.pageYOffset,
+    prevScrollpos: window.scrollY,
     visible: true,
   });
 
-  const [isOpen, setToggle] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [tabs, setTabs] = useState(false);
   const links = [
     { name: "Home", link: "/" },
     { name: "Internships", link: "/internship" },
@@ -28,7 +35,7 @@ function Header() {
 
   const handleScroll = () => {
     const { prevScrollpos } = offset;
-    const currentScrollPos = window.pageYOffset;
+    const currentScrollPos = window.scrollY;
     const visible = prevScrollpos > currentScrollPos;
     const darken = visible && currentScrollPos >= 50;
 
@@ -40,7 +47,7 @@ function Header() {
   };
 
   const toggle = () => {
-    setToggle(!isOpen);
+    setIsOpen(!isOpen);
   };
 
   window.addEventListener("scroll", handleScroll);
@@ -141,10 +148,14 @@ function Header() {
           </Link>
         </nav>
 
-        <nav className="hidden lg:block">
+        <nav className="hidden lg:block" onClick={toggleDropdown}>
           {user ? (
             <Link
-              to="/dashboard/"
+              // to="/dashboard/"
+              to="#"
+              onClick={() => {
+                setTabs((prev) => !prev);
+              }}
               className="relative flex items-center cursor-pointer gap-2 text-xs text-neutral-400"
             >
               <div
@@ -162,9 +173,9 @@ function Header() {
                     offset.darken ? "text-white" : "text-neutral-100"
                   } text-base`}
                 >
-                  {user.fullname}
+                  {user?.fullname}
                 </h3>
-                <p>{user.email}</p>
+                <p>{user?.email}</p>
               </div>
             </Link>
           ) : (
@@ -183,6 +194,8 @@ function Header() {
       </nav>
       {pathname.includes("/intern-application") &&
         (offset.prevScrollpos <= 50 || offset.darken) && <InternAnimation />}
+
+      {dropdown && <Dropdown tabs={tabs} offset={offset} />}
     </header>
   );
 }

@@ -256,3 +256,7 @@ h4 {
   scrollbar-width: none;
   /* Firefox */
 }
+
+.debug {
+  border: 1px dashed red;
+}

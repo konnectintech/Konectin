@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./middleware/auth";
 
 import ResumeRoutes from "./layouts/resumeRoutes";
@@ -34,6 +34,7 @@ import InternApplication from "./pages/DefaultRoutes/internship/intern-applicati
 
 import ProtectedRoutes from "./pages/ProtectedRoutes";
 import UserDashBoard from "./pages/ProtectedRoutes/user-dashboard";
+import DashboardDisplay from "./pages/ProtectedRoutes/dashboardDisplay";
 
 import { TemplateProvider } from "./middleware/resume";
 import { WalkthroughProvider } from "./middleware/walkthrough";
@@ -81,6 +82,15 @@ function App() {
 
             <Route element={<ProtectedRoutes />}>
               <Route path="/dashboard/*" element={<UserDashBoard />} />
+              <Route
+                path="/dashboard/display/*"
+                element={<DashboardDisplay />}
+              />
+
+              <Route
+                path="/dashboard/display"
+                element={<Navigate to="/dashboard/display/resumes" />}
+              />
             </Route>
           </Route>
 
