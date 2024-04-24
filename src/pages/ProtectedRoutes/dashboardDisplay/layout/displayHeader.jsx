@@ -8,6 +8,7 @@ import {
 } from "../../../../assets";
 import FilterDropdown from "./filterDropdown";
 import ActionModal from "../../../../components/actionModal";
+import * as CiIcons from "react-icons/ci";
 
 function DisplayHeader({ searchQuery, handleSearch, handleSort }) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -24,79 +25,72 @@ function DisplayHeader({ searchQuery, handleSearch, handleSort }) {
   const createNewFn = () => {
     console.log("Create a new resume or cover letter!");
   };
+
   return (
-    <>
-      <div className="flex items-center w-full h-8 md:h-[70px] mx-auto justify-between bg-transparent md:bg-neutral-100 text-white px-5 md:px-14">
-        <div className="flex gap-6 h-full text-black md:text-white text-sm md:text-base font-bold whitespace-nowrap md:py-3.5">
-          <NavLink
-            to="/dashboard/display/resumes"
-            className={({ isActive }) =>
-              isActive
-                ? "cursor-pointer border-b-2 border-b-secondary-600"
-                : "cursor-pointer"
-            }
-          >
-            Resume
-          </NavLink>
-          <NavLink
-            to="/dashboard/display/cover-letters"
-            className={({ isActive }) =>
-              isActive
-                ? "cursor-pointer border-b-2 border-b-secondary-600"
-                : "cursor-pointer"
-            }
-          >
-            Cover Letter
-          </NavLink>
-        </div>
-        <div className="flex gap-10 md:gap-6">
+    <div className="flex items-center w-full h-8 md:h-[70px] mx-auto justify-between bg-transparent md:bg-neutral-100 px-5 md:px-14">
+      <div className="flex gap-4 text-black md:text-white text-sm font-bold whitespace-nowrap md:py-3.5">
+        <NavLink
+          to="/dashboard/display/resumes"
+          className={({ isActive }) =>
+            isActive
+              ? "cursor-pointer pb-3 border-b-2 border-b-secondary-600"
+              : "cursor-pointer pb-3"
+          }
+        >
+          Resume
+        </NavLink>
+        <NavLink
+          to="/dashboard/display/cover-letters"
+          className={({ isActive }) =>
+            isActive
+              ? "cursor-pointer pb-3 border-b-2 border-b-secondary-600"
+              : "cursor-pointer pb-3"
+          }
+        >
+          Cover Letter
+        </NavLink>
+      </div>
+      <div className="flex gap-2 md:gap-6">
+        <div className="relative">
           <button
             onClick={toggleFilter}
-            className="flex justify-center items-center md:hidden"
+            className="flex justify-between items-center gap-24 md:border rounded-md px-4 py-3"
           >
-            <img src={slidersBlack} alt="Filter" />
-          </button>
-          <button
-            onClick={toggleFilter}
-            className="hidden md:flex justify-between items-center gap-4 border border-solid border-white rounded-lg px-4 py-2 w-56"
-          >
-            <div>
+            <picture className="w-4">
+              <source media="(max-width: 768px)" srcSet={slidersBlack} />
               <img src={sliders} alt="Filter" />
-            </div>
-            <div className="flex gap-1">
+            </picture>
+            <div className="flex gap-1 text-xs text-white max-md:hidden">
               Filter
               <img
                 src={chevronDownWhite}
                 alt={isFilterOpen ? "Show filter menu" : "Hide filter menu"}
-                className={`transition-transform transform ease-[cubic-bezier(0.95,0.05,0.795,0.035)] ${
+                className={`transition-transform w-4 transform ease-[cubic-bezier(0.95,0.05,0.795,0.035)] ${
                   isFilterOpen ? "rotate-180" : ""
                 }`}
               />
             </div>
           </button>
-          <button
-            onClick={toggleModal}
-            className="flex justify-center items-center md:hidden"
-          >
-            <img src={plusCircle} alt="New" />
-          </button>
-          <button
-            onClick={toggleModal}
-            className="hidden md:flex justify-center items-center font-bold px-4 py-2 border border-solid border-primary-600 bg-primary-500 w-44 rounded-lg"
-          >
-            Create New
-          </button>
+          {isFilterOpen && (
+            <FilterDropdown
+              isFilterOpen={isFilterOpen}
+              toggleFilter={toggleFilter}
+              searchQuery={searchQuery}
+              handleSearch={handleSearch}
+              handleSort={handleSort}
+            />
+          )}
         </div>
+
+        <button
+          onClick={toggleModal}
+          className="md:bg-primary-600 md:py-2 md:px-6 text-primary-700 md:text-white rounded flex items-center gap-1"
+        >
+          <CiIcons.CiCirclePlus size="1.5rem" />
+          <span className="text-sm max-md:hidden">Create New</span>
+        </button>
       </div>
-      {isFilterOpen && (
-        <FilterDropdown
-          isFilterOpen={isFilterOpen}
-          toggleFilter={toggleFilter}
-          searchQuery={searchQuery}
-          handleSearch={handleSearch}
-          handleSort={handleSort}
-        />
-      )}
+
       {isNewOpen && (
         <>
           <ActionModal
@@ -111,7 +105,7 @@ function DisplayHeader({ searchQuery, handleSearch, handleSort }) {
           />
         </>
       )}
-    </>
+    </div>
   );
 }
 

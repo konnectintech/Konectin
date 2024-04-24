@@ -13,7 +13,7 @@ function ContentEditor() {
   const [editorValue, setEditorValue] = useState("");
   const [dirty, setDirty] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const editorRef = useRef(null);
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
@@ -90,7 +90,6 @@ function ContentEditor() {
         }));
       })
       .catch((err) => {
-        setLoading(false);
         toast.error("Encountered Error. Try Again");
         console.log(err);
       });
@@ -106,9 +105,42 @@ function ContentEditor() {
 
   return (
     <div className="flex-1">
+      {loading && (
+        <div className="w-full bg-white py-6 px-8">
+          <div className="animate-pulse space-y-1">
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-full max-w-sm mx-auto" />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-24 mx-auto" />
+            <br />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-24" />
+            <br />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-3/4 rounded" />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-24" />
+            <br />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-3/4 rounded" />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+            <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+          </div>
+        </div>
+      )}
       <Editor
         apiKey="muetp0kpit1cdofn0tsv7aym5shbxqnxzglv3000ilo9pc0m"
-        onInit={(_, editor) => (editorRef.current = editor)}
+        onInit={(_, editor) => {
+          editorRef.current = editor;
+          setLoading(false);
+        }}
         init={{
           menubar: false,
           resize: true,

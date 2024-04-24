@@ -105,7 +105,7 @@ function EditorAI() {
                 .put(`${url}/updateLetter?letterId=${CVData._id}`, {
                   chats: [
                     {
-                      type: "konecto",
+                      userType: "konecto",
                       message: content,
                     },
                   ],

@@ -1,14 +1,12 @@
-import { useAuth } from "../../middleware/auth";
+import { useAuthContext } from "../../middleware/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ActionModal from "../actionModal";
 import { logOut } from "../../assets";
 
-const Dropdown = ({ tabs, offset }) => {
-  console.log(`this is the tabs prop ${tabs} and the offset props ${offset} `);
-  const { user, signOut } = useAuth();
+const Dropdown = ({ offset, isOpen, setIsOpen }) => {
+  const { user, signOut } = useAuthContext();
   const [logoutOpen, setLogoutOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();
 
   const toggleLogoutModal = () => {
@@ -19,7 +17,7 @@ const Dropdown = ({ tabs, offset }) => {
     signOut();
     navigate("/");
     setLogoutOpen(!logoutOpen);
-    setIsOpen(!isOpen);
+    setIsOpen(false);
   };
 
   return (
@@ -28,16 +26,16 @@ const Dropdown = ({ tabs, offset }) => {
         <div>
           <div
             className="absolute top-0 left-0 h-screen w-screen"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => setIsOpen(false)}
           ></div>
           <div
             className={`${
-              tabs && (offset.prevScrollpos <= 50 || offset.darken)
+              offset.prevScrollpos <= 50 || offset.darken
                 ? "top-full visible opacity-100"
                 : "-top-full invisible opacity-0"
-            } duration-500 translate-y-2 w-64 bg-white pt-11 pb-4 px-4 rounded-md absolute right-10 drop-shadow-dropdown`}
+            } duration-500 w-64 bg-white py-4 px-2 rounded-md absolute text-sm right-10 drop-shadow-dropdown`}
           >
-            <div className="flex items-center gap-4 text-xs text-neutral-400 mb-6">
+            <div className="flex items-center gap-3 text-xs text-neutral-400 mb-3">
               {user?.picture ? (
                 <img
                   src={user?.picture}
@@ -46,7 +44,7 @@ const Dropdown = ({ tabs, offset }) => {
                 />
               ) : (
                 <div className="rounded-full bg-neutral-1000 flex items-center justify-center w-16 h-16">
-                  <h3 className="text-uppercase sm:text-3xl font-black text-neutral-100">
+                  <h3 className="text-uppercase sm:text-xl font-black text-neutral-100">
                     {user?.fullname.split(" ")[0].charAt(0) || "K"}
                     {user?.fullname.split(" ")[1].charAt(0) || "U"}
                   </h3>
@@ -60,27 +58,30 @@ const Dropdown = ({ tabs, offset }) => {
               </div>
             </div>
             <hr />
-            <div className="my-4 flex flex-col gap-2 cursor-pointer">
+            <div className="my-2 flex flex-col">
               <Link
                 to="/dashboard"
-                className="p-2 rounded-md hover:bg-primary-100"
+                className="p-2 rounded-md hover:bg-primary-100 !text-black"
               >
                 Profile
               </Link>
               <Link
                 to="/dashboard/display/resumes"
-                className="p-2 rounded-md hover:bg-primary-100"
+                className="p-2 rounded-md hover:bg-primary-100 !text-black truncate"
               >
                 Saved Resumes & Cover Letters
               </Link>
             </div>
             <hr />
-            <div className="mt-4 flex flex-col gap-2 cursor-pointer">
-              <Link to="/faq" className="p-2 rounded-md hover:bg-primary-100">
+            <div className="mt-2 flex flex-col">
+              <Link
+                to="/faq"
+                className="p-2 rounded-md hover:bg-primary-100 !text-black"
+              >
                 Help
               </Link>
               <div
-                className="p-2 rounded-md hover:bg-primary-100"
+                className="p-2 rounded-md hover:bg-primary-100 !text-black cursor-pointer"
                 onClick={toggleLogoutModal}
               >
                 Log out

@@ -12,17 +12,12 @@ function Header() {
   const { user } = useAuthContext();
   const [dropdown, setDropdown] = useState(false);
 
-  const toggleDropdown = () => {
-    setDropdown(!dropdown);
-  };
-
   const [offset, setOffset] = useState({
     prevScrollpos: window.scrollY,
     visible: true,
   });
 
   const [isOpen, setIsOpen] = useState(false);
-  const [tabs, setTabs] = useState(false);
   const links = [
     { name: "Home", link: "/" },
     { name: "Internships", link: "/internship" },
@@ -64,7 +59,7 @@ function Header() {
           : "nav-bar-hidden"
       }
     >
-      <nav className="w-11/12 mx-auto max-w-screen-2xl flex justify-between items-center gap-16 py-4">
+      <nav className="w-11/12 relative z-10 mx-auto max-w-screen-2xl flex justify-between items-center gap-16 py-4">
         <Link to="/" className="relative z-30 nav-icon block">
           <img
             className={
@@ -148,16 +143,12 @@ function Header() {
           </Link>
         </nav>
 
-        <nav className="hidden lg:block" onClick={toggleDropdown}>
+        <nav
+          className="hidden lg:block"
+          onClick={() => setDropdown((prev) => !prev)}
+        >
           {user ? (
-            <Link
-              // to="/dashboard/"
-              to="#"
-              onClick={() => {
-                setTabs((prev) => !prev);
-              }}
-              className="relative flex items-center cursor-pointer gap-2 text-xs text-neutral-400"
-            >
+            <div className="relative flex items-center cursor-pointer gap-2 text-xs text-neutral-400">
               <div
                 className={`w-10 h-10 rounded-md flex items-center justify-center ${
                   offset.darken
@@ -177,7 +168,7 @@ function Header() {
                 </h3>
                 <p>{user?.email}</p>
               </div>
-            </Link>
+            </div>
           ) : (
             <Link
               to="/login"
@@ -195,7 +186,9 @@ function Header() {
       {pathname.includes("/intern-application") &&
         (offset.prevScrollpos <= 50 || offset.darken) && <InternAnimation />}
 
-      {dropdown && <Dropdown tabs={tabs} offset={offset} />}
+      {dropdown && (
+        <Dropdown offset={offset} setIsOpen={setDropdown} isOpen={dropdown} />
+      )}
     </header>
   );
 }
