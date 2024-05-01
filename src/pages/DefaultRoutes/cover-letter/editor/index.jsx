@@ -69,7 +69,6 @@ function CoverEditor() {
           }
         )
         .then((res) => {
-          console.log(res);
           var blob = new Blob([res.data], { type: "application/docx" });
           saveAs(
             blob,
