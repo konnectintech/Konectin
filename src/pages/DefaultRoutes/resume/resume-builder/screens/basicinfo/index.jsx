@@ -17,6 +17,7 @@ const BasicInformation = ({ data, onInputChange }) => {
     phoneNumber,
     zipCode,
     email,
+    profile_url,
   } = data?.basicInfo;
 
   const [code, setCode] = useState("");
@@ -162,54 +163,6 @@ const BasicInformation = ({ data, onInputChange }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col">
-                <input
-                  className="input-container"
-                  type="tel"
-                  minLength="4"
-                  maxLength="6"
-                  value={zipCode}
-                  onChange={(e) => handleInputChange(e, "zipCode", "zipcode")}
-                  onInput={(e) => handleInputChange(e, "zipCode", "zipcode")}
-                  placeholder="Zip Code"
-                  name="zipcode"
-                  id="zipCode"
-                />
-                <label
-                  className="-mt-5 text-xs pl-4 text-error-500 hidden"
-                  htmlFor="zipCode"
-                  ref={zipCodeErrMsg}
-                ></label>
-              </div>
-
-              {/* City */}
-              <CityInput
-                countryId={countryId}
-                stateId={stateId}
-                handleChange={handleCCSChange}
-                city={city}
-              />
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              {/* State */}
-              <StateInput
-                countryId={countryId}
-                handleChange={handleCCSChange}
-                state={state}
-                setStateId={setStateId}
-              />
-
-              {/* Country  */}
-              <CountryInput
-                setCode={setCode}
-                handleChange={handleCCSChange}
-                country={country}
-                setCountryId={setCountryId}
-              />
-            </div>
-
             <div className="flex flex-col">
               <input
                 className="input-container"
@@ -241,6 +194,7 @@ const BasicInformation = ({ data, onInputChange }) => {
                 ref={phoneNumberErrMsg}
               ></label>
             </div>
+
             <div className="grid grid-cols-2 gap-4">
               {/* Country  */}
               <CountryInput
@@ -296,6 +250,22 @@ const BasicInformation = ({ data, onInputChange }) => {
                 id="email"
                 onChange={(e) => handleInputChange(e, "email")}
                 placeholder="Email*"
+              />
+              <label
+                className="-mt-5 mb-4 text-xs pl-4 text-error-500 hidden"
+                htmlFor="email"
+                ref={emailErrMsg}
+              ></label>
+            </div>
+            <div className="flex flex-col">
+              <input
+                className="input-container"
+                type="url"
+                value={profile_url}
+                name="profile_url"
+                id="profile_url"
+                onChange={(e) => handleInputChange(e, "profile_url")}
+                placeholder="Portfolio Link / Website / LinkedIn Profile"
               />
               <label
                 className="-mt-5 mb-4 text-xs pl-4 text-error-500 hidden"
