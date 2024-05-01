@@ -51,7 +51,7 @@ function ResumeRightbar() {
     <>
       {currentModule === 4 && <RightSidebarWalkthrough />}
       <div
-        className="absolute top-0 right-0 bottom-0 z-10 bg-white group pt-20 hidden md:block transition-all duration-500 w-14 hover:w-56 "
+        className="absolute top-0 right-0 bottom-0 z-10 bg-white group pt-20 hidden md:block transition-all duration-500 w-14 hover:w-56 overflow-hidden"
         onMouseLeave={handleMouseLeave}
       >
         <ul className="flex flex-col gap-4">

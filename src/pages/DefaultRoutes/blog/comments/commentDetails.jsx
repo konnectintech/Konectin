@@ -7,7 +7,7 @@ import * as Io5Icons from "react-icons/io5";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import ReactTimeAgo from "react-time-ago";
-import { useAuth } from "../../../../middleware/auth";
+import { useAuthContext } from "../../../../middleware/auth";
 
 function CommentDetails({
   id,
@@ -17,7 +17,7 @@ function CommentDetails({
   setLoading,
   pathname,
 }) {
-  const { user } = useAuth();
+  const { user } = useAuthContext();
   const [name, setName] = useState("");
   const [liked, setLiked] = useState(false);
   const [replies, setReplies] = useState([]);

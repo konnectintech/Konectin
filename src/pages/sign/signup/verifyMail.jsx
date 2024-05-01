@@ -6,13 +6,13 @@ import { toast } from "react-toastify";
 import { CustomButton } from "../../../components/button";
 import { ErrorModal } from "../../../components/form/modal";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../../middleware/auth";
 
 function VerifyMail() {
   const [code, setCode] = useState("");
   const [isloading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
-  const user = JSON.parse(localStorage.getItem("konectin-profiler-user"));
+  const { user } = useAuthContext();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -35,7 +35,7 @@ function VerifyMail() {
     const areq = sessionStorage.getItem("verifyMailRequest");
     if (location.state?.from === "signup" || areq) return;
 
-    // If not, request a code for email verifiction
+    // If not, request a code for email verification
     axios
       .post(`${parseURL}/requestEmail?userId=${user._id}`, {
         email: user.email,
@@ -52,8 +52,8 @@ function VerifyMail() {
 
   const resendCode = () => {
     const url = `${parseURL}/requestEmail`;
-
     setLoading(true);
+
     axios
       .post(url, { email: user.email })
       .then(async (res) => {
@@ -83,29 +83,22 @@ function VerifyMail() {
 
     axios
       .post(url, { OTP: value })
-      .then(async (res) => {
-        const status = res.status;
-        if (status === 200) {
-          setLoading(false);
-          let userUpdate = { ...user, isEmailVerified: true };
-          localStorage.setItem(
-            "konectin-profiler-user",
-            JSON.stringify(userUpdate)
-          );
-          toast.success("You have been verified, Redirecting now...");
-          setTimeout(() => {
-            const { ongoing } =
-              JSON.parse(sessionStorage.getItem("internData")) || "";
+      .then(() => {
+        setLoading(false);
+        toast.success("You have been verified");
+        localStorage.setItem(
+          "konectin-profiler-user",
+          JSON.stringify({ ...user, isEmailVerified: true })
+        );
 
-            if (location.state.from === "intern" || ongoing)
-              navigate("/internship/intern-application");
-            else navigate("/resume/options");
-          }, 2000);
-        } else {
-          setLoading(false);
-          setErrorMessage(res.data.message);
-          console.log(res);
-        }
+        const { ongoing } =
+          JSON.parse(sessionStorage.getItem("internData")) || "";
+
+        setTimeout(() => {
+          if (location.state.from === "intern" || ongoing)
+            navigate("/internship/intern-application");
+          else navigate("/dashboard/");
+        }, 2000);
       })
       .catch((err) => {
         setLoading(false);

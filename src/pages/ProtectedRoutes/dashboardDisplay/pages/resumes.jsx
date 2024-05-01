@@ -36,7 +36,7 @@ function Resumes({ searchQuery, sortCriteria }) {
 
   return (
     <>
-      <div className="flex flex-wrap items-center mt-7 px-5 md:px-14 gap-y-14 gap-x-4 justify-between xl:grid xl:grid-cols-4">
+      <div className="flex flex-wrap items-center px-5 md:px-14 gap-y-14 gap-x-4 justify-between xl:grid xl:grid-cols-4">
         {filteredData.map((item) => (
           <TemplateComponent key={item.id} item={item} />
         ))}

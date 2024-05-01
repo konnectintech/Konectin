@@ -1,7 +1,7 @@
-import { useTemplateData } from "../../../../../../../middleware/resume";
+import { useTemplateContext } from "../../../../../../../middleware/resume";
 
 function Profile({ data }) {
-  const { templateData } = useTemplateData();
+  const { templateData } = useTemplateContext();
   return (
     data && (
       <section className="section">

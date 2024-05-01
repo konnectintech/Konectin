@@ -6,7 +6,6 @@ const CustomSelect = ({ options, value, onChange, showSearch }) => {
   const [filteredOptions, setFilteredOptions] = useState(options);
   const [inputValue, setInputValue] = useState(value);
   const selectRef = useRef;
-  console.log("value", value);
 
   useEffect(() => {
     setFilteredOptions(options);

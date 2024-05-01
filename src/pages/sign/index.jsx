@@ -5,16 +5,16 @@ import "./sign.css";
 import SectionWrapper from "../../components/animation/sectionWrapper";
 import { motion } from "framer-motion";
 import { slideIn } from "../../utils/motion";
-import { useAuth } from "../../middleware/auth";
+import { useAuthContext } from "../../middleware/auth";
 import { useEffect } from "react";
 
 function Sign() {
-  const { user } = useAuth();
+  const { user } = useAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
-      navigate("/resume/options");
+      navigate("/dashboard");
     }
   }, [navigate, user]);
 

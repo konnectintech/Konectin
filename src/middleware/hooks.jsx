@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export function useMediaQuery(query) {
   const [matches, setMatches] = useState(false);
@@ -34,3 +34,23 @@ export function useMediaQuery(query) {
 
 export const IsSmall = () => useMediaQuery("(min-width: 480px)");
 export const IsMedium = () => useMediaQuery("(min-width: 768px)");
+
+export function useInterval(callback, delay) {
+  const savedCallback = useRef();
+
+  // Remember the latest callback.
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  // Set up the interval.
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+}

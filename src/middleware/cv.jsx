@@ -6,14 +6,13 @@ const CVContext = createContext();
 const useCVContext = () => useContext(CVContext);
 
 const CVProvider = ({ children }) => {
-  const { CVData, setCVData, onInputChange } = useCVData();
+  const { CVData, setCVData } = useCVData();
 
   return (
     <CVContext.Provider
       value={{
         CVData,
         setCVData,
-        onInputChange,
       }}
     >
       {children}
@@ -23,33 +22,20 @@ const CVProvider = ({ children }) => {
 
 export { useCVContext, CVProvider };
 
-export const useCVData = () => {
+const useCVData = () => {
   const [CVData, setCVData] = useLocalStorage(
     "konectin-profiler-coverLetter-data",
     {
       details: { companyName: "", jobPosition: "", email: "", fullName: "" },
-      description: { company: "", job: "" },
-      bio: "",
+      description: { companyInfo: "", jobDescription: "" },
+      professionalBio: "",
+      content: "",
+      chats: [],
     }
   );
-
-  const onInputChange = ({ section, subsection, values }) => {
-    if (subsection) {
-      setCVData({
-        ...CVData,
-        [section]: {
-          ...CVData[section],
-          [subsection]: values,
-        },
-      });
-    } else {
-      setCVData({ ...CVData, [section]: values });
-    }
-  };
 
   return {
     CVData,
     setCVData,
-    onInputChange,
   };
 };

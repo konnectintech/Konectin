@@ -98,6 +98,7 @@ import modalBackground from "./images/modal background.png";
 import happyTeam from "./images/happyTeam.png";
 
 // Resume Builder Images
+import orangeLoader from "./icons/orange-loader.gif";
 import botIcon from "./images/bot/bot.svg";
 import card3Image from "./images/card 3.png";
 import uploadResume from "./images/upload resume.png";
@@ -159,6 +160,7 @@ import ContactUSImage from "./images/contact-us.png";
 
 export {
   // Icons
+  orangeLoader,
   bulbIcon,
   tipIcon,
   blurImage,

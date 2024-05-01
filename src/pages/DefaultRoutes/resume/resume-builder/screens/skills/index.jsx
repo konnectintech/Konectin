@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { FaTrash, FaPlus } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import NavigationButton from "../navigationButton";
 import SelectedTemplates from "../../resume-templates";
 import { onSectionComplete } from "../verification";
@@ -153,12 +152,12 @@ const Skills = ({ data, updateResume }) => {
             </div>
           </div>
 
-          <Link
+          {/* <Link
             to="/resume/builder/bio"
             className="text-secondary-600 text-sm font-extralight tracking-[0.02rem] underline mx-auto mt-8"
           >
             Skip this step
-          </Link>
+          </Link> */}
         </div>
 
         <div className="max-md:hidden w-1/2">
@@ -171,7 +170,7 @@ const Skills = ({ data, updateResume }) => {
       </div>
       <div className="mt-8">
         <NavigationButton
-          back={() => navigate("/resume/builder/education")}
+          back={() => navigate("/resume/builder/education/list")}
           cont={handleSubmit}
         />
       </div>

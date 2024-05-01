@@ -18,7 +18,7 @@ function DashboardDisplay() {
 
   return (
     <main className="bg-primary-100">
-      <div className="w-full mx-auto max-w-screen-2xl flex flex-col gap-6 md:gap-8 py-4">
+      <div className="w-full mx-auto max-w-screen-2xl flex flex-col gap-6 md:gap-8">
         <DisplayHeader
           searchQuery={searchQuery}
           sortCriteria={sortCriteria}

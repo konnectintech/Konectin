@@ -1,13 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
-@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-icons/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-lists/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-navigations/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-richtexteditor/styles/material.css";
 
 @tailwind base;
 @tailwind utilities;
@@ -45,7 +36,11 @@ body {
 
 main {
   padding-bottom: 4rem;
-  @apply flex-1 flex flex-col justify-center pt-[65px] sm:pt-[85px];
+  @apply flex-1 flex flex-col justify-center pt-[65px] sm:pt-[74px];
+}
+
+main:has(.cover-letter-main) {
+  padding-bottom: 0rem;
 }
 
 input:-webkit-autofill {

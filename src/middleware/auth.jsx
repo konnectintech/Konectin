@@ -43,7 +43,7 @@ pca.addEventCallback((event) => {
 
         localStorage.getItem("konectin-profiler-user", JSON.stringify(user));
 
-        window.location.href = "/resume/options";
+        // window.location.href = "/dashboard/";
       })
       .catch((err) => console.error(err));
   }
@@ -65,10 +65,10 @@ const AuthProvider = ({ children }) => {
 export { useAuthContext, AuthProvider };
 
 export const RequireAuth = ({ children }) => {
-  const auth = useAuthContext(); // Your hook to get login status
+  const { user } = useAuth(); // Your hook to get login status
 
   // if you are not signed in then return to signup page
-  if (!auth.user) {
+  if (!user) {
     return <Navigate to="/login" />;
   }
 
@@ -85,17 +85,16 @@ export const parseJwt = (token) => {
 };
 
 // Create User logged Hook
-export const useAuth = () => {
+const useAuth = () => {
   const [user, setUser] = useLocalStorage("konectin-profiler-user", null);
   const navigate = useNavigate();
   const location = useLocation();
 
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
   const { ongoing } = JSON.parse(sessionStorage.getItem("internData")) || "";
-  const status = sessionStorage.getItem("status") || "";
 
   useEffect(() => {
-    if (user !== null) {
+    if (user !== null && user.token) {
       const decodedJwt = parseJwt(user.token);
 
       if (decodedJwt.exp * 1000 < Date.now()) {
@@ -116,7 +115,7 @@ export const useAuth = () => {
   // };
 
   useEffect(() => {
-    if (user && user._id && !user.cvs) {
+    if (user && user._id && !user.cvs && user.token) {
       getUserResumes(user);
     }
   }, [user]);
@@ -160,54 +159,47 @@ export const useAuth = () => {
         }
       }
 
-      setUser((prev) => ({ ...prev, cvs: resumes, isLogged: true }));
+      setUser((prev) => ({ ...prev, cvs: resumes }));
     } catch (err) {
       console.error(err);
     }
   };
 
   const signIn = async (data, loader, setError) => {
-    try {
-      let authresult = await axios.post(`${url}/login`, data);
+    await axios
+      .post(`${url}/login`, data)
+      .then((res) => {
+        setUser({ ...res.data.data, token: res.data.token });
 
-      const userData = { ...authresult.data.data };
-      userData.token = authresult.data.token;
+        setTimeout(() => {
+          loader(false);
+          if (location.state?.from === "verify-mail") {
+            navigate("/verify-mail");
+          }
 
-      setUser(userData);
-
-      setTimeout(() => {
+          if (ongoing) {
+            navigate("/internship/intern-application");
+          } else navigate("/dashboard/");
+        }, 3000);
+      })
+      .catch((err) => {
         loader(false);
-
-        if (location?.state?.from === "verify-mail") {
-          navigate("/verify-mail");
-        }
-
-        if (ongoing) {
-          navigate("/internship/intern-application");
-        } else if (status !== "") {
-          sessionStorage.removeItem("status");
-          navigate(`${status}`);
-        } else navigate("/resume/options");
-      }, 3000);
-    } catch (err) {
-      loader(false);
-      setError(err.response.data?.message);
-    }
+        setError(err.response?.data?.message);
+      });
   };
 
   const signUp = async (data, loader, setError) => {
-    try {
-      const res = await axios.post(`${url}/register`, data);
-      const userData = res.data.user;
-      setUser(userData);
-      loader(false);
-      setTimeout(() => {
-        navigate("/verify-mail", { state: { from: "sign-up" } });
-      }, 1000);
-    } catch (err) {
-      loader(false);
-      setError(err.response.data.message);
-    }
+    await axios
+      .post(`${url}/register`, data)
+      .then((res) => {
+        setUser({ ...res.data.user, token: res.data.token });
+        loader(false);
+        navigate("/verify-mail", { state: { from: "signup" } });
+      })
+      .catch((err) => {
+        loader(false);
+        setError(err.response.data.message);
+      });
   };
 
   const signOut = () => {
@@ -215,11 +207,14 @@ export const useAuth = () => {
       "konectin-profiler-data-template",
       JSON.stringify(null)
     );
+
+    sessionStorage.setItem("verifyMailRequest", false);
     setUser(null);
   };
 
   return {
     user,
+    setUser,
     signIn,
     signUp,
     signOut,

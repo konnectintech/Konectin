@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useCVContext } from "../../../../middleware/cv";
 
-function JobDescription({ data }) {
+function CompanyBrief({ data }) {
   const { setCVData } = useCVContext();
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -17,24 +17,26 @@ function JobDescription({ data }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (data.length <= 2) {
-      setErrorMessage("Please fill in the job description");
+      setErrorMessage("Please fill in the company information");
     }
 
     if (data.length >= 2) {
       setErrorMessage("");
-      navigate("/cover-letter/company-info");
+      navigate("/cover-letter/short-bio");
     }
   };
 
   return (
     <>
       <h2 className="py-4 mb-3 font-bold text-2xl md:text-4xl leading-10">
-        <span className="text-secondary-500">Job </span>Description
+        <span className="text-secondary-500">Company </span>Brief
       </h2>
       <span>
-        Fantastic, could you copy and paste the job role. This will help me
-        customize your cover letter to fit the role you are applying for.
+        Good job! Now, could you copy and paste the company's mission, vision
+        and values. This will help me align your values with the organization's
+        ethos.
       </span>
       <form
         className="w-full flex flex-col items-center gap-4 max-w-xl"
@@ -43,16 +45,16 @@ function JobDescription({ data }) {
         <div className="flex-col flex items-start w-full gap-2 mt-6">
           <textarea
             type="text"
-            placeholder="Job Description"
-            id="job"
+            placeholder="Company's Info"
             value={data}
+            id="company"
             onChange={(e) => {
-              handleInputChange("jobDescription", e.target.value);
+              handleInputChange("companyInfo", e.target.value);
               setErrorMessage("");
             }}
             className="px-4 py-3 text-[11px] w-full h-16 text-primary-400 border rounded border-neutral-500 outline-0 bg-neutral-1000 focus:border-primary-500 focus:border-[1.5px]"
           />
-          <label htmlFor="job" className="text-error-500 text-sm">
+          <label htmlFor="company" className="text-error-500 text-sm">
             {errorMessage && errorMessage}
           </label>
         </div>
@@ -68,4 +70,4 @@ function JobDescription({ data }) {
   );
 }
 
-export default JobDescription;
+export default CompanyBrief;
