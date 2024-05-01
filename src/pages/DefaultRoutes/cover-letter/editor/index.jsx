@@ -8,6 +8,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useCVContext } from "../../../../middleware/cv";
 import axios from "axios";
+import Preloader from "../../../../components/preloader";
+import { saveAs } from "file-saver";
 
 function CoverEditor() {
   const { CVData, setCVData } = useCVContext();
@@ -54,15 +56,46 @@ function CoverEditor() {
     }
   }, [location, navigate]);
 
+  const downloadCoverLetter = () => {
+    setLoading(true);
+
+    if (CVData._id) {
+      axios
+        .post(
+          `${primaryURL}/v2/createLetterDocx?letterId=${CVData._id}`,
+          {},
+          {
+            responseType: "blob",
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          var blob = new Blob([res.data], { type: "application/docx" });
+          saveAs(
+            blob,
+            `${CVData.details.fullName} ${CVData.details.companyName}.docx`
+          );
+
+          setLoading(false);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      toast.error("Wait for preview to show before downloading");
+    }
+  };
+
   return (
     <div className="h-full w-full">
-      {loading}
+      {loading && <Preloader />}
       <nav className="bg-black">
         <nav className="w-11/12 mx-auto max-w-screen-2xl flex justify-between items-center py-4">
           <nav className="flex-1 p-2"></nav>
 
           <div className="flex items-center gap-4">
-            <div className="rounded-full w-8 h-8 bg-primary-500 flex items-center justify-center cursor-pointer">
+            <div
+              onClick={downloadCoverLetter}
+              className="rounded-full w-8 h-8 bg-primary-500 flex items-center justify-center cursor-pointer"
+            >
               <img
                 className="w-4 h-4 brightness-[500]"
                 src={download}
