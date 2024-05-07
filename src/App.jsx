@@ -10,7 +10,7 @@ import Builder from "./pages/DefaultRoutes/resume/resume-builder/screens";
 import AIStarter from "./pages/DefaultRoutes/resume/resume-builder/screens-ai";
 import ResumeUpload from "./pages/DefaultRoutes/resume/resume-builder/screen-upload";
 
-import Landing from "./pages/DefaultRoutes/landing";
+import Landing from "./pages/DefaultRoutes/v2-landing";
 import Internship from "./pages/DefaultRoutes/internship";
 import About from "./pages/DefaultRoutes/about";
 import Blog from "./pages/DefaultRoutes/blog";

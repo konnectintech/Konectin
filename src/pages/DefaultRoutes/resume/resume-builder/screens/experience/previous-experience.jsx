@@ -1,10 +1,10 @@
 import * as FaIcon from "react-icons/fa";
 import { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import NavigationButton from "../navigationButton";
 import Responsibilities from "./work-responsibilities";
 import SelectedTemplates from "../../resume-templates";
-import JobTitleInput from "../../../../../../components/jobTitleInput";
+// import JobTitleInput from "../../../../../../components/jobTitleInput";
 import { useTemplateContext } from "../../../../../../middleware/resume";
 import CountryInput from "../../../../../../components/form/countryInput";
 import StateInput from "../../../../../../components/form/stateInput";
@@ -31,7 +31,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
 
   const companyErrorRef = useRef(null);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { templateData } = useTemplateContext();
 
   const handleSelect = (value) => {

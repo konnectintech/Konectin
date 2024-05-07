@@ -90,6 +90,12 @@ import recruitImage from "./images/recruiters.png";
 import newsletterBg from "./images/newsletterBg.png";
 import sideImage from "./images/side details.png";
 import side1Image from "./images/side details 1.png";
+import hero_0 from "./images/hero-0.png";
+import hero_1 from "./images/hero-1.png";
+import hero_2 from "./images/hero-2.png";
+import hero_3 from "./images/hero-3.png";
+import hero_bg from "./images/hero-bg.png";
+import headline_bg from "./images/headline-bg.svg";
 
 // Internship Images
 import internHero from "./images/internship hero.png";
@@ -216,6 +222,12 @@ export {
   newsletterBg,
   sideImage,
   side1Image,
+  hero_0,
+  hero_1,
+  hero_2,
+  hero_3,
+  headline_bg,
+  hero_bg,
 
   // Internship Images
   internHero,
