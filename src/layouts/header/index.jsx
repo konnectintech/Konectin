@@ -10,12 +10,11 @@ import { konectinLogo } from "../../assets";
 import "./header.css";
 import { useAuthContext } from "../../middleware/auth";
 import InternAnimation from "../../utils/intern-animation";
-import Dropdown from "../../components/dropdown";
 import Headline from "./headline";
+import ProfileBar from "./profileBar";
 
 function Header() {
   const { user } = useAuthContext();
-  const [dropdown, setDropdown] = useState(false);
 
   const [offset, setOffset] = useState({
     prevScrollpos: window.scrollY,
@@ -88,7 +87,9 @@ function Header() {
     //     : "nav-bar-hidden"
     // }
     >
-      <Headline message="Konectin Partners EntryLevel" pageTo="/internship" />
+      {!pathname.includes("/intern-application") && (
+        <Headline message="Konectin Partners EntryLevel" pageTo="/internship" />
+      )}
       <nav className="w-full lg:w-11/12 relative z-10 mx-auto max-w-screen-2xl flex justify-between items-stretch gap-10 lg:gap-12 py-4 max-lg:px-4">
         <Link to="/" className="relative z-30 nav-icon block">
           <img
@@ -189,32 +190,7 @@ function Header() {
 
         <nav className="hidden md:flex gap-4">
           {user ? (
-            <div
-              onClick={() => setDropdown((prev) => !prev)}
-              className="relative flex items-center cursor-pointer gap-2 text-xs text-neutral-400"
-            >
-              <div
-                className="w-10 h-10 rounded-md flex items-center justify-center text-white bg-primary-700"
-                // className={`w-10 h-10 rounded-md flex items-center justify-center ${
-                //   offset.darken
-                //     ? "bg-white text-primary-700"
-                //     : "text-white bg-primary-700"
-                // }`}
-              >
-                <MdIcons.MdPerson size="1.5rem" />
-              </div>
-              <div>
-                <h3
-                  // className={`${
-                  //   offset.darken ? "text-white" : "text-neutral-100"
-                  // } text-base`}
-                  className="text-neutral-100 text-base"
-                >
-                  {user?.fullname}
-                </h3>
-                <p>{user?.email}</p>
-              </div>
-            </div>
+            <ProfileBar />
           ) : (
             <>
               <Link
@@ -264,32 +240,7 @@ function Header() {
 
           <nav className="mt-4 flex flex-col gap-3 w-full">
             {user ? (
-              <div
-                onClick={() => setDropdown((prev) => !prev)}
-                className="relative flex items-center cursor-pointer gap-2 text-xs text-neutral-400"
-              >
-                <div
-                  className="w-10 h-10 rounded-md flex items-center justify-center text-white bg-primary-700"
-                  // className={`w-10 h-10 rounded-md flex items-center justify-center ${
-                  //   offset.darken
-                  //     ? "bg-white text-primary-700"
-                  //     : "text-white bg-primary-700"
-                  // }`}
-                >
-                  <MdIcons.MdPerson size="1.5rem" />
-                </div>
-                <div>
-                  <h3
-                    // className={`${
-                    //   offset.darken ? "text-white" : "text-neutral-100"
-                    // } text-base`}
-                    className="text-neutral-100 text-base"
-                  >
-                    {user?.fullname}
-                  </h3>
-                  <p>{user?.email}</p>
-                </div>
-              </div>
+              <ProfileBar />
             ) : (
               <>
                 <Link
@@ -314,11 +265,9 @@ function Header() {
       </nav>
       {/* End Mobile View */}
 
-      {pathname.includes("/intern-application") &&
-        (offset.prevScrollpos <= 50 || offset.darken) && <InternAnimation />}
-
-      {dropdown && (
-        <Dropdown offset={offset} setIsOpen={setDropdown} isOpen={dropdown} />
+      {pathname.includes("/intern-application") && (
+        // (offset.prevScrollpos <= 50 || offset.darken) &&
+        <InternAnimation />
       )}
     </header>
   );

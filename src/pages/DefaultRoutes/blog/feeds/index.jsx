@@ -55,11 +55,15 @@ function Feeds() {
 
   useEffect(() => {
     if (params.feed === "all") {
-      setNewBlogs(allBlogs);
-    } else {
-      const currentFeed = allBlogs.filter(
-        (blog) => blog.tagIds && blog.tagIds.includes(parseInt(params.feed))
+      setNewBlogs(
+        allBlogs.sort((a, b) => new Date(b.updated) - new Date(a.updated))
       );
+    } else {
+      const currentFeed = allBlogs
+        .filter(
+          (blog) => blog.tagIds && blog.tagIds.includes(parseInt(params.feed))
+        )
+        .sort((a, b) => new Date(b.updated) - new Date(a.updated));
 
       setNewBlogs(currentFeed);
     }
@@ -98,11 +102,7 @@ function Feeds() {
             </Link>
           ))}
         </div>
-        <Feed
-          newBlogs={newBlogs}
-          trendingBlogs={trendingBlogs}
-          gridNumber={9}
-        />
+        <Feed newBlogs={newBlogs} trendingBlogs={trendingBlogs} />
       </div>
     </div>
   );

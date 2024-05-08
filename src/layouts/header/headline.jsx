@@ -4,8 +4,8 @@ import { TiArrowRight } from "react-icons/ti";
 
 function Headline({ message, pageTo }) {
   return (
-    <section className="w-full py-4 px-2 text-center bg-primary-500 text-white flex gap-3 items-center justify-center">
-      <img src={megaSpeakerIcon} alt={message} />
+    <section className="w-full py-4 px-2 text-center bg-primary-500 text-white flex gap-2 sm:gap-3 items-center justify-center text-xs sm:text-base">
+      <img className="w-8 sm:w-fit" src={megaSpeakerIcon} alt={message} />
       <p>{message}</p>
       <Link to={pageTo}>
         <TiArrowRight size="1.6rem" />

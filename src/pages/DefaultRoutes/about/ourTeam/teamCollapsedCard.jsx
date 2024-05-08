@@ -18,7 +18,7 @@ function TeamCollapsedCard({ data, onCardClick }) {
                 />
               </div>
               <MdIcons.MdArrowForward className="my-2 arrow" />
-              <h4 className="font-semibold">{team.name}</h4>
+              <h5 className="font-semibold">{team.name}</h5>
               <p className="text-xs text-neutral-400">{team.title}</p>
             </div>
           </div>
