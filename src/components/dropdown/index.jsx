@@ -25,15 +25,17 @@ const Dropdown = ({ offset, isOpen, setIsOpen }) => {
       {isOpen && (
         <div>
           <div
-            className="absolute top-0 left-0 h-screen w-screen"
+            className="absolute top-0 left-0 h-screen w-full"
             onClick={() => setIsOpen(false)}
           ></div>
           <div
-            className={`${
-              offset.prevScrollpos <= 50 || offset.darken
-                ? "top-full visible opacity-100"
-                : "-top-full invisible opacity-0"
-            } duration-500 w-64 bg-white py-4 px-2 rounded-md absolute text-sm right-10 drop-shadow-dropdown`}
+            // ${
+            //   offset.prevScrollpos <= 50 || offset.darken
+            //     ? "top-full visible opacity-100"
+            //     : "-top-full invisible opacity-0"
+            // }
+            className={`
+            duration-500 w-64 bg-white py-4 px-2 rounded-md absolute text-sm right-10 shadow-md`}
           >
             <div className="flex items-center gap-3 text-xs text-neutral-400 mb-3">
               {user?.picture ? (

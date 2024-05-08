@@ -63,12 +63,12 @@ function App() {
           <Route element={<DefaultRoutes />}>
             <Route path="*" element={<ErrorPage />} />
             <Route path="/" element={<Landing />} />
-            <Route path="/internship" element={<Internship />} />
+            <Route path="/services/internship" element={<Internship />} />
             <Route
-              path="/internship/intern-application"
+              path="/services/internship/intern-application"
               element={<InternApplication />}
             />
-            <Route path="/resume" element={<ResumeBuilder />} />
+            <Route path="/services/resume" element={<ResumeBuilder />} />
             <Route path="/terms" element={<TermsAndCondition />} />
             <Route path="/policy" element={<PrivacyPolicy />} />
             <Route path="/faq" element={<Faq />} />
@@ -96,7 +96,7 @@ function App() {
 
           {/* Resume Builder Routes */}
           <Route element={<ResumeRoutes />}>
-            <Route path="/resume/options" element={<Options />} />
+            <Route path="/services/resume/options" element={<Options />} />
           </Route>
 
           <Route
@@ -110,11 +110,11 @@ function App() {
               </WalkthroughProvider>
             }
           >
-            <Route path="/cover-letter/*" element={<Coverletter />} />
-            <Route path="/resume/ai/*" element={<AIStarter />} />
-            <Route path="/resume/builder/*" element={<Builder />} />
+            <Route path="/services/cover-letter/*" element={<Coverletter />} />
+            <Route path="/services/resume/ai/*" element={<AIStarter />} />
+            <Route path="/services/resume/builder/*" element={<Builder />} />
           </Route>
-          <Route path="/resume/upload/*" element={<ResumeUpload />} />
+          <Route path="/services/resume/upload/*" element={<ResumeUpload />} />
         </Route>
       </Routes>
     </BrowserRouter>

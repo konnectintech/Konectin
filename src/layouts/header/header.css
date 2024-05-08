@@ -1,11 +1,23 @@
-header {
+/* header {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 100;
+} */
+
+header {
+  position: fixed;
+  z-index: 100;
+  background-color: white;
+  width: 100%;
+  box-shadow: 0 -15px 30px rgb(122, 122, 122);
 }
 
-.navbar-change {
+header .sublink-box {
+  box-shadow: 0 0 5px rgba(122, 122, 122, 0.443);
+}
+
+/* .navbar-change {
   box-shadow: 0 1px 7px rgb(122, 122, 122);
   transform: translateY(0px);
   transition: all 0.5s linear;
@@ -36,4 +48,4 @@ header {
   .nav-bar-hidden {
     transform: translateY(-60px);
   }
-}
+} */

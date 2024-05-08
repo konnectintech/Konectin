@@ -11,8 +11,9 @@ import microsoftIcon from "./icons/microsoft.svg";
 import guardIcon from "./icons/guard.svg";
 import chevronDownArrow from "./icons/chevron-down.svg";
 import chevronUpArrow from "./icons/chevron-up.svg";
-import konectinLogo from "./icons/konectin.png";
-import konectinIcon from "./icons/konectin.svg";
+import konectinLogo from "./icons/konectin.svg";
+import konectinIcon from "./icons/konectin 1.svg";
+import megaSpeakerIcon from "./icons/mega speaker.svg";
 import errorTriangle from "./icons/alert-triangle.svg";
 import locationIcon from "./icons/location.svg";
 import mailIcon from "./icons/mail.svg";
@@ -171,6 +172,7 @@ export {
   guardIcon,
   konectinLogo,
   konectinIcon,
+  megaSpeakerIcon,
   errorTriangle,
   locationIcon,
   mailIcon,

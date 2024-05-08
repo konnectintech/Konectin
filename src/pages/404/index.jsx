@@ -4,7 +4,7 @@ import { backgroundVideo } from "../../assets/data";
 
 function ErrorPage() {
   return (
-    <section className="flex flex-col justify-center items-center py-24">
+    <main className="flex flex-col justify-center items-center">
       <section className="w-full h-full relative overflow-hidden flex justify-center items-center">
         <video
           className="absolute object-cover w-full h-full left-0 top-0"
@@ -31,7 +31,7 @@ function ErrorPage() {
           GO TO HOME PAGE
         </Link>
       </div>
-    </section>
+    </main>
   );
 }
 
