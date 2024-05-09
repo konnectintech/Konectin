@@ -48,7 +48,7 @@ const Skills = ({ data, updateResume }) => {
 
   return (
     <div className="max-w-6xl mx-auto">
-      <div className=" flex flex-col md:flex-row justify-between  md:gap-20">
+      <div className="flex flex-col md:flex-row justify-between md:gap-20">
         <div className="flex flex-col w-full">
           <h2 className="max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
             Skills
@@ -160,7 +160,7 @@ const Skills = ({ data, updateResume }) => {
           </Link> */}
         </div>
 
-        <div className="max-md:hidden w-1/2">
+        <div className="max-lg:hidden w-1/2">
           <div className="h-[360px] sm:h-[300px] md:h-[580px] flex items-center justify-center">
             <div className="md:scale-[50%] mt-10">
               <SelectedTemplates data={data} />

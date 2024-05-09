@@ -119,7 +119,7 @@ function Builder() {
   // };
 
   return (
-    <div className="w-[calc(90%_-_88px)] mx-auto">
+    <div className="px-4 sm:px-6 md:px-0 md:w-[calc(90%_-_88px)] md:mx-auto">
       {currentModule === 0 && <WelcomeWalkthrough />}
       {currentModule === 3 && <TipsWalkthrough />}
       {currentModule === 5 && <DownloadWalkthrough />}

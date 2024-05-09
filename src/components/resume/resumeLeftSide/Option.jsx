@@ -10,11 +10,14 @@ function Option({ item }) {
   return (
     <React.Fragment key={item.label}>
       <li
-        className="relative cursor-pointer py-3 px-4 hover:border-r-[3px] border-primary-600 hover:bg-gradient-to-r from-transparent to-primary-200 "
+        className="relative cursor-pointer py-3 px-4 hover:border-r-[3px] border-primary-600 hover:bg-gradient-to-r from-transparent to-primary-200"
         key={item.route}
         onClick={() => setActive(!active)}
       >
-        <div className="flex items-center  ">
+        <Link
+          to={item.options ? "#" : `/services/resume/builder${item.route}`}
+          className="flex items-center"
+        >
           <img src={item.icon} alt={item.label} className="min-w-[24px]" />
           <span className="ml-4  whitespace-nowrap text-sm hover:text-primary-600 font-semibold ">
             {item.label}
@@ -28,7 +31,7 @@ function Option({ item }) {
               )}
             </div>
           ) : null}
-        </div>
+        </Link>
       </li>
       {active &&
         item.options &&

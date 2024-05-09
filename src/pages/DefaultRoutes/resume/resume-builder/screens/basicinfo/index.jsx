@@ -114,7 +114,7 @@ const BasicInformation = ({ data, onInputChange }) => {
 
   return (
     <div className="max-w-6xl mx-auto">
-      <div className=" flex flex-col mb-4 lg:flex-row items-start justify-between self-center gap-10">
+      <div className="flex flex-col mb-4 lg:flex-row items-start justify-between self-center gap-10">
         <div className="flex flex-col justify-center w-full">
           <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
             Basic Information
@@ -125,7 +125,7 @@ const BasicInformation = ({ data, onInputChange }) => {
           </p>
 
           <div className="w-full">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid xxs:grid-cols-2 xxs:gap-4">
               <div className="flex flex-col">
                 <input
                   className="input-container"
@@ -195,7 +195,7 @@ const BasicInformation = ({ data, onInputChange }) => {
               ></label>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid xxs:grid-cols-2 xxs:gap-4">
               {/* Country  */}
               <CountryInput
                 setCode={setCode}
@@ -212,7 +212,7 @@ const BasicInformation = ({ data, onInputChange }) => {
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid xxs:grid-cols-2 xxs:gap-4">
               {/* City */}
               <CityInput
                 countryId={countryId}
@@ -276,7 +276,7 @@ const BasicInformation = ({ data, onInputChange }) => {
           </div>
         </div>
 
-        <div className="max-md:hidden w-1/2">
+        <div className="max-lg:hidden w-1/2">
           <div className="h-[360px] sm:h-[300px] md:h-[500px] lg:h-[580px] lg:w-[500px] flex items-center justify-center">
             <div className="md:scale-[42%] lg:scale-[50%] mt-10">
               <SelectedTemplates data={data} />

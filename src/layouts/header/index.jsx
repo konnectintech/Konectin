@@ -12,8 +12,9 @@ import { useAuthContext } from "../../middleware/auth";
 import InternAnimation from "../../utils/intern-animation";
 import Headline from "./headline";
 import ProfileBar from "./profileBar";
+import MobileHeader from "./mobileView";
 
-function Header() {
+function Header({ post }) {
   const { user } = useAuthContext();
 
   const [offset, setOffset] = useState({
@@ -77,20 +78,21 @@ function Header() {
 
   return (
     <header
-    // className={
-    //   isOpen
-    //     ? "navbar bg-primary-600"
-    //     : offset.prevScrollpos <= 50
-    //     ? "navbar"
-    //     : offset?.darken
-    //     ? "navbar-change bg-primary-600"
-    //     : "nav-bar-hidden"
-    // }
+      className={post ? "static" : "fixed"}
+      // className={
+      //   isOpen
+      //     ? "navbar bg-primary-600"
+      //     : offset.prevScrollpos <= 50
+      //     ? "navbar"
+      //     : offset?.darken
+      //     ? "navbar-change bg-primary-600"
+      //     : "nav-bar-hidden"
+      // }
     >
-      {!pathname.includes("/intern-application") && (
+      {!pathname.includes("/intern-application") && !isOpen && (
         <Headline message="Konectin Partners EntryLevel" pageTo="/internship" />
       )}
-      <nav className="w-full lg:w-11/12 relative z-10 mx-auto max-w-screen-2xl flex justify-between items-stretch gap-10 lg:gap-12 py-4 max-lg:px-4">
+      <nav className="w-full lg:w-11/12 relative z-10 mx-auto max-w-screen-2xl flex justify-between items-stretch gap-10 lg:gap-12 py-4 px-2 xxs:px-4 lg:px-0">
         <Link to="/" className="relative z-30 nav-icon block">
           <img
             className="w-[40px]"
@@ -107,7 +109,7 @@ function Header() {
         </Link>
         <nav
           onClick={toggle}
-          className="md:hidden relative z-30 cursor-pointer"
+          className="md:hidden relative z-30 cursor-pointer flex items-center"
         >
           {isOpen ? (
             <FaIcons.FaTimes size="1.5rem" color="#fff" />
@@ -190,7 +192,7 @@ function Header() {
 
         <nav className="hidden md:flex gap-4">
           {user ? (
-            <ProfileBar />
+            <ProfileBar closeMenu={() => setIsOpen(false)} />
           ) : (
             <>
               <Link
@@ -215,55 +217,9 @@ function Header() {
         </nav>
 
         {/* Mobile View  */}
-        <nav
-          className={
-            isOpen
-              ? "flex flex-col gap-6 w-full h-full items-start pt-36 bg-primary-600 px-4 text-white fixed z-20 top-0 right-0 md:hidden"
-              : "hidden"
-          }
-        >
-          {links.map((link, index) => (
-            <Link
-              className={
-                (link.link === "/blog" && pathname.split("/")[1] === "blog") ||
-                link.link === pathname
-                  ? "py-3 px-4 text-neutral-100 bg-neutral-900 rounded w-full"
-                  : "py-3 px-4 text-white hover:text-neutral-900 w-full"
-              }
-              onClick={toggle}
-              key={index}
-              to={link.link === "/blog" ? "/blog/all" : link.link}
-            >
-              {link.name}
-            </Link>
-          ))}
-
-          <nav className="mt-4 flex flex-col gap-3 w-full">
-            {user ? (
-              <ProfileBar />
-            ) : (
-              <>
-                <Link
-                  to="/signup"
-                  className="text-sm text-center flex-1 px-6 py-4 text-white bg-primary-500"
-                >
-                  Sign Up
-                </Link>
-                <p className="text-center text-neutral-500">
-                  Already have an account?{" "}
-                  <Link
-                    to="/login"
-                    className="text-sm text-secondary-400 underline underline-offset-4"
-                  >
-                    Login
-                  </Link>
-                </p>
-              </>
-            )}
-          </nav>
-        </nav>
+        <MobileHeader links={links} isOpen={isOpen} setIsOpen={setIsOpen} />
+        {/* End Mobile View */}
       </nav>
-      {/* End Mobile View */}
 
       {pathname.includes("/intern-application") && (
         // (offset.prevScrollpos <= 50 || offset.darken) &&

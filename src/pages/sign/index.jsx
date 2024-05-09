@@ -1,4 +1,4 @@
-import { signImage, konectinIcon } from "../../assets";
+import { signImage, konectinLogo } from "../../assets";
 import * as FaIcon from "react-icons/fa";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import "./sign.css";
@@ -37,7 +37,7 @@ function Sign() {
       >
         <div className="p-6 lg:pr-16 max-w-[600px] min-h-[80vh] lg:p-0 mx-auto flex flex-col gap-4 items-start justify-center">
           <Link to="/">
-            <img src={konectinIcon} alt="Konectin Logo" />
+            <img src={konectinLogo} alt="Konectin Logo" />
           </Link>
           <Outlet />
         </div>

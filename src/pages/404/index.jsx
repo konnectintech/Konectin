@@ -4,7 +4,7 @@ import { backgroundVideo } from "../../assets/data";
 
 function ErrorPage() {
   return (
-    <main className="flex flex-col justify-center items-center">
+    <main className="flex flex-col justify-center items-center text-center">
       <section className="w-full h-full relative overflow-hidden flex justify-center items-center">
         <video
           className="absolute object-cover w-full h-full left-0 top-0"

@@ -1,10 +1,8 @@
 import * as FaIcon from "react-icons/fa";
 import { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import NavigationButton from "../navigationButton";
 import Responsibilities from "./work-responsibilities";
 import SelectedTemplates from "../../resume-templates";
-import JobTitleInput from "../../../../../../components/jobTitleInput";
 import { useTemplateContext } from "../../../../../../middleware/resume";
 import CountryInput from "../../../../../../components/form/countryInput";
 import StateInput from "../../../../../../components/form/stateInput";
@@ -18,6 +16,7 @@ import professions from "professions";
 const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
   const [countryId, setCountryId] = useState(0);
   const [stateId, setStateId] = useState(0);
+  const companyErrorRef = useRef(null);
 
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -29,9 +28,6 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
     setModalOpen(false);
   };
 
-  const companyErrorRef = useRef(null);
-
-  const navigate = useNavigate();
   const { templateData } = useTemplateContext();
 
   const handleSelect = (value) => {
@@ -137,7 +133,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
               ></label>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex gap-x-4 max-xxs:flex-wrap">
               {/* Country  */}
               <CountryInput
                 handleChange={(name, value) => handleInputChange(name, value)}
@@ -237,7 +233,7 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
         </div>
       </div>
 
-      <div className="max-md:hidden w-1/2">
+      <div className="max-lg:hidden w-1/2">
         <div className="h-[360px] sm:h-[300px] md:h-[500px] lg:h-[580px] lg:w-[500px] flex items-center justify-center">
           <div className="md:scale-[42%] lg:scale-[50%] mt-10">
             <SelectedTemplates data={templateData} />

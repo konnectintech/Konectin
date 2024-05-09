@@ -172,7 +172,7 @@ h4 {
 
 .nav-dotted-line::after {
   content: "";
-  @apply rounded-full absolute left-full -top-1/2 -translate-y-1/3 w-[10px] h-[10px] bg-secondary-500;
+  @apply rounded-full absolute left-full -top-1/2 -translate-y-1/3 w-[8px] h-[8px] bg-white;
 }
 
 .nav-dotted-line.bg-success-400::after {
@@ -180,7 +180,7 @@ h4 {
 }
 
 .inactive.nav-dotted-line::after {
-  @apply bg-secondary-300;
+  @apply bg-neutral-1000;
 }
 
 .small {

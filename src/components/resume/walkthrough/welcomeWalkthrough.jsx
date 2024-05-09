@@ -18,8 +18,8 @@ function WelcomeWalkthrough() {
   }, []);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-[110] bg-black bg-opacity-40">
-      <div className="relative bg-[#191A1F] p-10 rounded-lg w-1/2 flex flex-col items-center">
+    <div className="fixed inset-0 flex items-end justify-center z-[110] bg-black bg-opacity-40">
+      <div className="relative bg-neutral-100 py-6 px-6 rounded-lg w-3/4 max-w-xl flex flex-col items-center mb-6">
         <div className="absolute top-4 right-4">
           <button onClick={skipWalkthrough} className="">
             <FaTimes className="bg-secondary-600 text-white rounded-full p-1" />

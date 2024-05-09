@@ -133,13 +133,13 @@ function App() {
 
           <Route
             element={
-              <WalkthroughProvider>
-                <TemplateProvider>
+              <TemplateProvider>
+                <WalkthroughProvider>
                   <CVProvider>
                     <ResumeRoutes />
                   </CVProvider>
-                </TemplateProvider>
-              </WalkthroughProvider>
+                </WalkthroughProvider>
+              </TemplateProvider>
             }
           >
             <Route path="/services/cover-letter/*" element={<Coverletter />} />

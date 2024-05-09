@@ -21,13 +21,13 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
   }, []);
 
   return (
-    <div className="max-w-6xl mx-auto">
-      <div className="flex flex-col md:flex-row items-start justify-between self-center  gap-10">
-        <div className="mt-8 flex flex-col justify-center">
-          <h2 className="-mt-6 max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
+    <div className="max-w-6xl mx-auto w-full">
+      <div className="flex flex-col md:flex-row items-start justify-between self-center gap-10 w-full">
+        <div className="mt-8 flex flex-col justify-center w-full">
+          <h2 className="-mt-6 md:max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
             Work Experience
           </h2>
-          <p className="text-neutral-300 text-sm tracking-[-0.01rem] my-3 max-w-2xl">
+          <p className="text-neutral-300 text-sm tracking-[-0.01rem] my-3 max-w-2xl w-full">
             Add, edit or delete your work experience.
           </p>
           {templateData.jobExperience.map((data, index) => (
@@ -49,11 +49,11 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
                 </p>
               </div>
               <div className="border w-full border-neutral-500 rounded-lg bg-white p-4">
-                <div className="flex justify-between gap-3">
+                <div className="flex justify-between items-center gap-3 md:gap-6">
                   <h3 className="font-extrabold text-neutral-300 text-lg capitalize">
                     {data.jobTitle}
                   </h3>
-                  <div className="space-x-2 text-neutral-400">
+                  <div className="text-neutral-400 flex gap-2 items-center">
                     <button
                       onClick={() => {
                         setTemplateData((prev) => ({
@@ -61,7 +61,9 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
                           currentEditedJob: index + 1,
                         }));
 
-                        navigate("/resume/builder/employment-experience");
+                        navigate(
+                          "/services/resume/builder/employment-experience"
+                        );
                       }}
                     >
                       <FaPen size="1rem" />
@@ -143,7 +145,7 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
           </button> */}
         </div>
 
-        <div className="max-md:hidden w-1/2">
+        <div className="max-lg:hidden w-1/2">
           <div className="h-[360px] sm:h-[300px] md:h-[500px] lg:h-[580px] lg:w-[500px] flex items-center justify-center">
             <div className="md:scale-[42%] lg:scale-[50%] mt-10">
               <SelectedTemplates data={templateData} />

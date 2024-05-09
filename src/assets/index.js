@@ -111,7 +111,7 @@ import BuilderBg from "./images/builder-bg.png";
 import ResumeTemplateSample1Image from "./images/resume template 1.png";
 import ResumeCTAImage from "./images/cta.png";
 import basicInfo from "./icons/basic_info.svg";
-import workExpirience from "./icons/work_experience.svg";
+import workExperience from "./icons/work_experience.svg";
 import education from "./icons/education.svg";
 import skill from "./icons/skill.svg";
 import bio from "./icons/bio.svg";
@@ -237,7 +237,7 @@ export {
   uploadResume,
   botIcon,
   basicInfo,
-  workExpirience,
+  workExperience,
   education,
   skill,
   bio,

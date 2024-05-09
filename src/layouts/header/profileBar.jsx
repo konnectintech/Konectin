@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import ActionModal from "../../components/actionModal";
 import { logOut } from "../../assets";
 
-function ProfileBar() {
+function ProfileBar({ closeMenu }) {
   const { user, signOut } = useAuthContext();
   const [logoutOpen, setLogoutOpen] = useState(false);
   const navigate = useNavigate();
@@ -22,27 +22,29 @@ function ProfileBar() {
   };
 
   return (
-    <div className="relative flex items-center cursor-pointer gap-2 text-xs text-neutral-400 group">
-      <div
-        className="w-10 h-10 rounded-md flex items-center justify-center text-white bg-primary-700"
-        // className={`w-10 h-10 rounded-md flex items-center justify-center ${
-        //   offset.darken
-        //     ? "bg-white text-primary-700"
-        //     : "text-white bg-primary-700"
-        // }`}
-      >
-        <MdIcons.MdPerson size="1.5rem" />
-      </div>
-      <div>
-        <h3
-          // className={`${
-          //   offset.darken ? "text-white" : "text-neutral-100"
-          // } text-base`}
-          className="text-neutral-100 text-base"
+    <div className="relative group max-md:w-full">
+      <div className="flex items-center cursor-pointer gap-2 text-xs text-neutral-400 w-full">
+        <div
+          className="w-10 h-10 rounded-md flex items-center justify-center text-white bg-primary-700"
+          // className={`w-10 h-10 rounded-md flex items-center justify-center ${
+          //   offset.darken
+          //     ? "bg-white text-primary-700"
+          //     : "text-white bg-primary-700"
+          // }`}
         >
-          {user?.fullname}
-        </h3>
-        <p>{user?.email}</p>
+          <MdIcons.MdPerson size="1.5rem" />
+        </div>
+        <div>
+          <h3
+            // className={`${
+            //   offset.darken ? "text-white" : "text-neutral-100"
+            // } text-base`}
+            className="text-white md:text-neutral-100 text-base"
+          >
+            {user?.fullname}
+          </h3>
+          <p>{user?.email}</p>
+        </div>
       </div>
 
       {/* Dropdown */}
@@ -52,9 +54,9 @@ function ProfileBar() {
         //     ? "top-full visible opacity-100"
         //     : "-top-full invisible opacity-0"
         // }
-        className={`w-64 bg-white py-4 px-2 rounded-md absolute top-full translate-y-4 invisible opacity-0 duration-500 group-hover:opacity-100 group-hover:visible text-sm right-0 sublink-box`}
+        className={`md:w-64 md:bg-white py-4 px-2 rounded-md md:absolute md:top-full md:translate-y-4 invisible opacity-0 duration-500 group-hover:opacity-100 group-hover:visible text-sm md:right-0 sublink-box`}
       >
-        <div className="flex items-center gap-3 text-xs text-neutral-400 mb-3">
+        <div className="hidden md:flex items-center gap-3 text-xs text-neutral-400 mb-3">
           {user?.picture ? (
             <img
               src={user?.picture}
@@ -76,17 +78,19 @@ function ProfileBar() {
             <p>{user.email}</p>
           </div>
         </div>
-        <hr />
+        <hr className="max-md:hidden" />
         <div className="my-2 flex flex-col">
           <Link
             to="/dashboard"
-            className="p-2 rounded-md hover:bg-primary-100 !text-black"
+            onClick={closeMenu}
+            className="p-2 rounded-md hover:bg-primary-100 hover:text-black md:text-black text-white"
           >
             Profile
           </Link>
           <Link
             to="/dashboard/display/resumes"
-            className="p-2 rounded-md hover:bg-primary-100 !text-black truncate"
+            onClick={closeMenu}
+            className="p-2 rounded-md hover:bg-primary-100 hover:text-black md:text-black text-white truncate"
           >
             Saved Resumes & Cover Letters
           </Link>
@@ -95,12 +99,13 @@ function ProfileBar() {
         <div className="mt-2 flex flex-col">
           <Link
             to="/faq"
-            className="p-2 rounded-md hover:bg-primary-100 !text-black"
+            onClick={closeMenu}
+            className="p-2 rounded-md hover:bg-primary-100 hover:text-black md:text-black text-white"
           >
             Help
           </Link>
           <div
-            className="p-2 rounded-md hover:bg-primary-100 !text-black cursor-pointer"
+            className="p-2 rounded-md hover:bg-primary-100 hover:text-black md:text-black text-white cursor-pointer"
             onClick={toggleLogoutModal}
           >
             Log out
