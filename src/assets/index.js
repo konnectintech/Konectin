@@ -164,6 +164,11 @@ import AboutProfileImage from "./images/about profile.png";
 import OurVisionImage from "./images/vision.png";
 import ContactUSImage from "./images/contact-us.png";
 
+// Impact section
+import impact from "./images/impact.png";
+import graduate from "./icons/impact/graduate.png";
+import workers from "./icons/impact/workers.png";
+
 export {
   // Icons
   orangeLoader,
@@ -330,4 +335,9 @@ export {
   SInstagram,
   SLinkedin,
   SGoogle,
+
+  // impact section
+  impact,
+  graduate,
+  workers,
 };
