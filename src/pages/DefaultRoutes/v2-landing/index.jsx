@@ -2,6 +2,7 @@ import Hero from "./hero";
 import Brands from "./brands";
 import Impact from "./impact";
 import Benefits from "./benefits";
+import Solutions from "./solutions";
 
 function Landing() {
   return (
@@ -10,6 +11,7 @@ function Landing() {
       <Brands />
       <Impact />
       <Benefits />
+      <Solutions />
     </main>
   );
 }

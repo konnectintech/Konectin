@@ -44,6 +44,8 @@ import notifyError from "./icons/notifyerror.svg";
 import uploadIcon from "./icons/upload.svg";
 import completedCheck from "./icons/completed-check.svg";
 import halfLoading from "./icons/half-loading.svg";
+import arrowOut from "./icons/arrow-out.svg";
+import arrowRight from "./icons/arrow-right.svg";
 
 // socials
 import SFacebook from "./icons/socials/Facebook.svg";
@@ -169,6 +171,12 @@ import impact from "./images/impact.png";
 import graduate from "./icons/impact/graduate.png";
 import workers from "./icons/impact/workers.png";
 
+// solution section
+import solution1 from "./images/solution1.png";
+import solution2 from "./images/solution2.png";
+import solution3 from "./images/solution3.png";
+import solution4 from "./images/solution4.png";
+
 export {
   // Icons
   orangeLoader,
@@ -212,6 +220,8 @@ export {
   uploadIcon,
   completedCheck,
   halfLoading,
+  arrowOut,
+  arrowRight,
 
   // Sign Images
   signImage,
@@ -340,4 +350,10 @@ export {
   impact,
   graduate,
   workers,
+
+  // solution section
+  solution1,
+  solution2,
+  solution3,
+  solution4,
 };

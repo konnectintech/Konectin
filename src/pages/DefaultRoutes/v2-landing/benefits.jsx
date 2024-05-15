@@ -34,7 +34,7 @@ export default function Benefits() {
   return (
     <div className="flex flex-col py-16 px-6 md:px-20 md:py-28 bg-[#f5f5f5] gap-10 md:gap-20">
       <div className="flex flex-col gap-1 md:gap-4">
-        <p className="text-3xl md:text-5xl md:tracking-tight font-extrabold text-neutral-100">
+        <p className="text-3xl md:text-4xl md:tracking-tight font-extrabold text-neutral-100">
           What We <span className="text-secondary-600">Offer</span>
         </p>
         <p className="w-10/12 text-sm text-neutral-200 md:text-xl">
@@ -59,7 +59,9 @@ export function BenefitCard({ item }) {
         <p className="font-extrabold text-4xl md:text-5xl">{item.id}</p>
       </div>
       <div className="flex flex-col gap-2.5 md:gap-3.5 mb-10">
-        <p className="font-extrabold text-xl md:text-2xl text-neutral-100 tracking-tighter sm:tracking-normal">{item.title}</p>
+        <p className="font-extrabold text-xl md:text-2xl text-neutral-100 tracking-tighter sm:tracking-normal">
+          {item.title}
+        </p>
         <p className="text-neutral-200 text-sm md:text-xl">{item.desc}</p>
       </div>
     </div>

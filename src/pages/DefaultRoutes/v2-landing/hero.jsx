@@ -50,7 +50,7 @@ function Hero() {
             <span className="absolute -top-4 -left-4">
               <img src={headline_bg} width={39} height={43} alt="" />
             </span>
-            <p className="font-extrabold text-3xl md:text-4xl md:h-28 leading-normal text-neutral-100 flex items-center justify-center p-3.5 bg-white rounded-lg border border-solid border-off_white">
+            <p className="font-extrabold text-3xl md:text-4xl md:h-28 leading-normal text-neutral-100 flex items-center justify-center p-3.5 bg-white rounded-lg border border-solid border-whites-100">
               {heroData.map((item, index) => (
                 <motion.span
                   key={index}
@@ -85,7 +85,10 @@ function Hero() {
             </p>
           </div>
         </div>
-        <Link to={About} className="bg-primary-500 text-white w-fit px-5 md:px-11 py-3.5 md:py-5 md:font-bold md:text-lg flex items-center justify-center rounded-md">
+        <Link
+          to={About}
+          className="bg-primary-500 text-white w-fit px-5 md:px-11 py-3.5 md:py-5 md:font-bold md:text-lg flex items-center justify-center rounded-md"
+        >
           Learn More
         </Link>
       </div>
