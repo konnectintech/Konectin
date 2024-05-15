@@ -3,6 +3,7 @@ import Brands from "./brands";
 import Impact from "./impact";
 import Benefits from "./benefits";
 import Solutions from "./solutions";
+import Blog from "./blog";
 
 function Landing() {
   return (
@@ -12,6 +13,7 @@ function Landing() {
       <Impact />
       <Benefits />
       <Solutions />
+      <Blog />
     </main>
   );
 }

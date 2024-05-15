@@ -40,7 +40,7 @@ export default function Impact() {
 export function ImpactCard({ item }) {
   return (
     <div className="flex flex-col md:flex-row items-center gap-12 md:gap-11 rounded-2xl bg-white p-12">
-      <div className="flex items-center justify-center bg-neutral-800 rounded-tl-3xl rounded-br-3xl md:w-52 md:h-fit md:p-12">
+      <div className="flex items-center justify-center bg-neutral-800 rounded-tl-3xl rounded-br-3xl md:w-52 md:h-fit p-9 md:p-12">
         <img
           src={item.src}
           alt={item.title}

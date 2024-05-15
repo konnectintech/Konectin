@@ -177,6 +177,13 @@ import solution2 from "./images/solution2.png";
 import solution3 from "./images/solution3.png";
 import solution4 from "./images/solution4.png";
 
+// blog section
+import blog1 from "./images/blog1.jfif";
+import blog2 from "./images/blog2.jfif";
+import blog3 from "./images/blog3.jfif";
+
+
+
 export {
   // Icons
   orangeLoader,
@@ -356,4 +363,9 @@ export {
   solution2,
   solution3,
   solution4,
+
+  // blog section
+  blog1,
+  blog2,
+  blog3,
 };
