@@ -4,6 +4,7 @@ import Impact from "./impact";
 import Benefits from "./benefits";
 import Solutions from "./solutions";
 import Blog from "./blog";
+import About from "./about";
 
 function Landing() {
   return (
@@ -14,6 +15,7 @@ function Landing() {
       <Benefits />
       <Solutions />
       <Blog />
+      <About />
     </main>
   );
 }

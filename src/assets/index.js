@@ -182,7 +182,8 @@ import blog1 from "./images/blog1.jfif";
 import blog2 from "./images/blog2.jfif";
 import blog3 from "./images/blog3.jfif";
 
-
+// coverage section
+import coverage from "./images/coverage.svg";
 
 export {
   // Icons
@@ -368,4 +369,7 @@ export {
   blog1,
   blog2,
   blog3,
+
+  // coverage section
+  coverage,
 };
