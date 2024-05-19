@@ -103,6 +103,9 @@ import orangeLoader from "./icons/orange-loader.gif";
 import botIcon from "./images/bot/bot.svg";
 import card3Image from "./images/card 3.png";
 import uploadResume from "./images/upload resume.png";
+import educationImage from "./images/education.png";
+import educationImage1 from "./images/education 1.png";
+import educationImage2 from "./images/education 2.png";
 import createResume from "./images/create resume.png";
 import ResumeHeroImage from "./images/resume hero.png";
 import ResumeTemplateCrossImage from "./images/resume cross.png";
@@ -261,6 +264,9 @@ export {
   search,
   slidersBlack,
   plusCircle,
+  educationImage,
+  educationImage1,
+  educationImage2,
 
   //Dashboard Images
   bell,

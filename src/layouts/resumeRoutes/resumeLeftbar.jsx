@@ -28,7 +28,15 @@ function ResumeLeftbar() {
       icon: workExperience,
       label: "Work Experience",
     },
-    { route: "/education/*", icon: education, label: "Education" },
+    {
+      route:
+        Object.keys(templateData?.education ? templateData?.education : [])
+          .length <= 0
+          ? "/education"
+          : "/education/list",
+      icon: education,
+      label: "Education",
+    },
     { route: "/skills", icon: skill, label: "Skills" },
     { route: "/bio", icon: bio, label: "Bio" },
     {
@@ -45,7 +53,7 @@ function ResumeLeftbar() {
       <div className="absolute top-0 left-0 bottom-0 z-50 bg-white group pt-[85px] hidden md:block transition-all duration-500 w-14 hover:w-56 overflow-hidden">
         <ul className="flex flex-col gap-4">
           {routes.map((item) => (
-            <Option item={item} />
+            <Option item={item} key={item.route} />
           ))}
         </ul>
       </div>

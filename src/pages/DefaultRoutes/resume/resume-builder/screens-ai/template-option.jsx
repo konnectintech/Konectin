@@ -45,7 +45,7 @@ const TemplateOption = ({ sectionName }) => {
           selectedTemplate: value,
         }));
 
-        navigate("/resume/builder");
+        navigate("/services/resume/builder");
       });
   }
 
@@ -75,7 +75,7 @@ const TemplateOption = ({ sectionName }) => {
         { ...templateData, selectedTemplate: value },
         currentStage
       );
-      navigate("/resume/builder/preview");
+      navigate("/services/resume/builder/preview");
     } else if (selectedTemplate !== "") {
       // if coming from other section
       setTemplateData((prev) => ({
@@ -88,7 +88,7 @@ const TemplateOption = ({ sectionName }) => {
         currentStage
       );
 
-      navigate("/resume/builder");
+      navigate("/services/resume/builder");
     } else {
       createResume(value, _id);
     }

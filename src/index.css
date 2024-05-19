@@ -52,9 +52,11 @@ input {
 }
 
 input[type="tel"]:-webkit-autofill {
-  outline: 1px solid #fd853c;
+  outline: none;
+  border: 1.5px solid #403580;
   -webkit-background-clip: unset;
 }
+
 
 .stdropdown-container {
   border: none !important;
@@ -135,6 +137,15 @@ h2,
 h3,
 h4 {
   font-family: "Merriweather", sans-serif;
+}
+
+.responsibilities .tox .tox-edit-area__iframe {
+  @apply !bg-neutral-1000;
+}
+
+.responsibilities .tox .tox-statusbar {
+  background-color: transparent !important;
+  height: 20px !important;
 }
 
 .job-desc ul {

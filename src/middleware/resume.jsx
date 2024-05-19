@@ -38,6 +38,7 @@ const useTemplateData = () => {
         phoneNumber: "",
         phoneCode: "",
         profession: "",
+        profileUrl: "",
         state: "",
         zipCode: "",
       },

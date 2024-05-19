@@ -89,7 +89,7 @@ function Header({ post }) {
       //     : "nav-bar-hidden"
       // }
     >
-      {!pathname.includes("/intern-application") && !isOpen && (
+      {!pathname.includes("/internnship") && !isOpen && (
         <Headline message="Konectin Partners EntryLevel" pageTo="/internship" />
       )}
       <nav className="w-full lg:w-11/12 relative z-10 mx-auto max-w-screen-2xl flex justify-between items-stretch gap-10 lg:gap-12 py-4 px-2 xxs:px-4 lg:px-0">
@@ -208,7 +208,7 @@ function Header({ post }) {
               </Link>
               <Link
                 to="/signup"
-                className="text-sm px-6 py-3 text-white bg-primary-500 border-2 border-primary-500 rounded max-lg:hidden"
+                className="text-sm px-6 py-3 text-white bg-primary-500 border-2 border-primary-500 rounded"
               >
                 Sign Up
               </Link>
@@ -221,7 +221,7 @@ function Header({ post }) {
         {/* End Mobile View */}
       </nav>
 
-      {pathname.includes("/intern-application") && (
+      {pathname.includes("/internship") && (
         // (offset.prevScrollpos <= 50 || offset.darken) &&
         <InternAnimation />
       )}

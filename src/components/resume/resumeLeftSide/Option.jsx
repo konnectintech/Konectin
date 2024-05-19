@@ -8,7 +8,7 @@ function Option({ item }) {
   const [active, setActive] = useState(false);
 
   return (
-    <React.Fragment key={item.label}>
+    <React.Fragment>
       <li
         className="relative cursor-pointer py-3 px-4 hover:border-r-[3px] border-primary-600 hover:bg-gradient-to-r from-transparent to-primary-200"
         key={item.route}
@@ -44,7 +44,7 @@ function Option({ item }) {
                     <div key={sectionName}>
                       <Link
                         className="capitalize px-4 text-sm cursor-pointer"
-                        to={`/resume/builder/add_information/${sectionName}`}
+                        to={`/services/resume/builder/add_information/${sectionName}`}
                       >
                         {sectionName}
                       </Link>

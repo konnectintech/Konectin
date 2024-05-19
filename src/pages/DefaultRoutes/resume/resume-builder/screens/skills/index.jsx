@@ -43,7 +43,7 @@ const Skills = ({ data, updateResume }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSectionComplete(data, 5);
-    navigate("/resume/builder/bio");
+    navigate("/services/resume/builder/bio");
   };
 
   return (
@@ -170,7 +170,7 @@ const Skills = ({ data, updateResume }) => {
       </div>
       <div className="mt-8">
         <NavigationButton
-          back={() => navigate("/resume/builder/education/list")}
+          back={() => navigate("/services/resume/builder/education/list")}
           cont={handleSubmit}
         />
       </div>

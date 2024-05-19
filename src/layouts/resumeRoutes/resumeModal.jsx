@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 const ResumeModal = ({ onClose, children }) => {
   useEffect(() => {
@@ -12,12 +12,15 @@ const ResumeModal = ({ onClose, children }) => {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-[101] flex items-center justify-center">
       {/* Dark transparent background overlay */}
-      <div className="fixed inset-0 bg-black opacity-50"></div>
+      <div
+        onClick={onClose}
+        className="fixed inset-0 bg-black opacity-50 cursor-pointer"
+      ></div>
 
       {/* ResumeModal content */}
-      <div className="relative z-50 w-2/3 h-[90vh] min-h-[300px] max-h-[450px] bg-white p-6 rounded shadow-md">
+      <div className="relative z-50 w-[95%] mx-auto lg:max-w-3xl h-[90vh] min-h-[300px] max-h-[450px] bg-white max-xxs:p-4 p-6 rounded shadow-md max-md:overflow-y-auto">
         {/* Close icon button */}
         <button
           className="absolute top-2 right-2 text-white bg-secondary-500 rounded-full p-1  "

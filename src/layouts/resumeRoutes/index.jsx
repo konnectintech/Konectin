@@ -11,8 +11,8 @@ function ResumeRoutes() {
 
   return (
     <>
-      <Header post />
-      <ResumeHeader />
+      <Header post={pathname.split("/")[3] === "builder"} />
+      {pathname.split("/")[3] === "builder" && <ResumeHeader />}
       <div className="flex relative builder-main justify-center">
         {pathname.split("/")[3] === "builder" && <ResumeLeftbar />}
         <main

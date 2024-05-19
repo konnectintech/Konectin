@@ -70,6 +70,15 @@ export function verifyInput(data, errorRef, holder) {
         errorRef.style.display = "none";
       }
       break;
+    case "workDesc":
+      if (data.length <= 29) {
+        errorRef.style.display = "block";
+        errorRef.innerHTML =
+          "A good work description must be at least 30 words";
+      } else {
+        errorRef.style.display = "none";
+      }
+      break;
     case "current":
       break;
     case "startMonth":

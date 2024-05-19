@@ -29,7 +29,7 @@ function Builder() {
 
   useEffect(() => {
     if (!templateData || user === null) {
-      navigate("/resume/ai");
+      navigate("/services/resume/ai");
     } else if (user._id === (null || undefined)) {
       setTemplateData({
         completed: {
@@ -65,7 +65,7 @@ function Builder() {
         selectedTemplate: "",
         currentStage: 0,
       });
-      navigate("/resume/ai/template-selector");
+      navigate("/services/resume/ai/template-selector");
     }
   }, [templateData, navigate, user]);
 
