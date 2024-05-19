@@ -31,6 +31,7 @@ import ResetPassword from "./pages/sign/login/resetPassword";
 import ErrorPage from "./pages/404";
 import InternApplication from "./pages/DefaultRoutes/internship/intern-application";
 import { TemplateProvider } from "./middleware/resume";
+import HireTalent from "./pages/DefaultRoutes/internship/hire-talent";
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
               path="/internship/intern-application"
               element={<InternApplication />}
             />
+            <Route path="/internship/hire-talent" element={<HireTalent />} />
             <Route path="/resume" element={<ResumeBuilder />} />
             <Route path="/terms" element={<TermsAndCondition />} />
             <Route path="/policy" element={<PrivacyPolicy />} />
