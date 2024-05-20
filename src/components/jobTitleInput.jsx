@@ -1,9 +1,9 @@
-import { components } from "react-select";
-import Creatable from "react-select/creatable";
-import * as BsIcon from "react-icons/bs";
-import professions from "professions";
-import { useEffect, useRef, useState } from "react";
-import { verifyInput } from "../pages/DefaultRoutes/resume/resume-builder/screens/verification";
+import { components } from 'react-select';
+import Creatable from 'react-select/creatable';
+import * as BsIcon from 'react-icons/bs';
+import professions from 'professions';
+import { useEffect, useRef, useState } from 'react';
+import { verifyInput } from '../pages/DefaultRoutes/resume/resume-builder/screens/verification';
 
 const DropdownIndicator = (props) => {
   return (
@@ -16,13 +16,19 @@ const DropdownIndicator = (props) => {
   );
 };
 
-function JobTitleInput({ auth, title, handleInputChange }) {
+function JobTitleInput({
+  auth,
+  title,
+  handleInputChange,
+  section,
+  subsection,
+}) {
   const [professionOption, setProfessionOption] = useState([]);
   const errorMessage = useRef(null);
 
   useEffect(() => {
     const storedProfession =
-      JSON.parse(sessionStorage.getItem("profession")) || [];
+      JSON.parse(sessionStorage.getItem('profession')) || [];
 
     if (storedProfession.length >= 1) {
       storedProfession.map((obj) =>
@@ -52,10 +58,14 @@ function JobTitleInput({ auth, title, handleInputChange }) {
   }, []);
 
   const handleChange = (opt) => {
-    handleInputChange(opt.value);
+    handleInputChange({
+      section: section,
+      subsection: subsection,
+      values: opt.value,
+    });
 
     if (auth) {
-      verifyInput(opt.value, errorMessage.current, "jobTitle");
+      verifyInput(opt.value, errorMessage.current, 'jobTitle');
     }
   };
 
@@ -63,16 +73,16 @@ function JobTitleInput({ auth, title, handleInputChange }) {
     handleChange({ label: opt, value: opt });
 
     const storedProfession =
-      JSON.parse(sessionStorage.getItem("profession")) || [];
+      JSON.parse(sessionStorage.getItem('profession')) || [];
 
     if (storedProfession.length >= 1) {
       sessionStorage.setItem(
-        "profession",
+        'profession',
         JSON.stringify([...storedProfession, { label: opt, value: opt }])
       );
     } else {
       const profession = [{ label: opt, value: opt }];
-      sessionStorage.setItem("profession", JSON.stringify(profession));
+      sessionStorage.setItem('profession', JSON.stringify(profession));
     }
 
     setProfessionOption((prev) => [...prev, { label: opt, value: opt }]);
@@ -85,37 +95,37 @@ function JobTitleInput({ auth, title, handleInputChange }) {
         inputId="jobTitle"
         placeholder="Job Title"
         components={{ DropdownIndicator }}
-        value={{ label: title, value: title }}
-        onChange={handleChange}
+        defaultInputValue={title}
+        onChange={(opt) => handleChange(opt)}
         onCreateOption={handleAddProfession}
         styles={{
           control: (base) => ({
             ...base,
-            borderStyle: "none",
-            boxShadow: "none",
-            background: "transparent",
+            borderStyle: 'none',
+            boxShadow: 'none',
+            background: 'transparent',
           }),
           option: (base) => ({
             ...base,
-            "&:hover": {
-              color: "white",
+            '&:hover': {
+              color: 'white',
             },
           }),
           dropdownIndicator: (base) => ({
             ...base,
-            padding: "1rem",
-            color: "white",
-            "&:hover": {
-              color: "white",
+            padding: '1rem',
+            color: 'white',
+            '&:hover': {
+              color: 'white',
             },
           }),
           indicatorsContainer: (base, state) => ({
             ...base,
-            display: state.isFocused ? "none" : "flex",
+            display: state.isFocused ? 'none' : 'flex',
           }),
           indicatorSeparator: (base, state) => ({
             ...base,
-            display: state.isFocused ? "flex" : "none",
+            display: state.isFocused ? 'flex' : 'none',
           }),
         }}
         options={professionOption}
@@ -123,8 +133,8 @@ function JobTitleInput({ auth, title, handleInputChange }) {
           ...theme,
           colors: {
             ...theme.colors,
-            primary25: "#eae6ff",
-            primary: "#D1D1D2",
+            primary25: '#eae6ff',
+            primary: '#D1D1D2',
           },
         })}
       />

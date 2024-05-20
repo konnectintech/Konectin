@@ -28,7 +28,7 @@ export const onSectionComplete = async (template, stage) => {
           },
         }
       )
-      .then((res) =>
+      .then((res) => {
         localStorage.setItem(
           "konectin-profiler-data-template",
           JSON.stringify({
@@ -41,8 +41,8 @@ export const onSectionComplete = async (template, stage) => {
             },
             ...res.data.updated,
           })
-        )
-      )
+        );
+      })
       .catch((err) => {
         console.error(err);
       });

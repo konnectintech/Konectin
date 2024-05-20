@@ -1,50 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FieldForm } from "../../../components/form";
-import { useAuth } from "../../../middleware/auth";
+import { useAuthContext } from "../../../middleware/auth";
 import { signUpForm } from "../signData";
 import Agreement from "./agreement";
 import Preloader from "../../../components/preloader";
-import { InteractionRequiredAuthError } from "@azure/msal-browser";
-import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 
 function SignUp() {
-  const [errorMessage, setErrorMessage] = useState("");
+  const { signUp } = useAuthContext();
+
   const [agreed, setAgreed] = useState(false);
   const [isloading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     if (agreed) {
       setErrorMessage("");
     }
   }, [agreed]);
-
-  const navigate = useNavigate();
-  const { instance } = useMsal();
-  const { signUp } = useAuth();
-  const isUserAuthenticated = useIsAuthenticated();
-
-  useEffect(() => {
-    if (!isUserAuthenticated) {
-      instance
-        .ssoSilent({
-          scopes: ["user.read"],
-          loginHint: "",
-        })
-        .then((res) => {
-          instance.setActiveAccount(res.account);
-          navigate("/resume/options");
-        })
-        .catch((err) => {
-          if (err instanceof InteractionRequiredAuthError) {
-            // instance.loginPopup({
-            //   scopes: ["user.read"],
-            // });
-          }
-        });
-    }
-  }, []);
 
   // handle sign up
   const handleSignUp = async (data) => {

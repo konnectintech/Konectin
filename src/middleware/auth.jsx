@@ -43,7 +43,7 @@ pca.addEventCallback((event) => {
 
         localStorage.getItem("konectin-profiler-user", JSON.stringify(user));
 
-        window.location.href = "/resume/options";
+        // window.location.href = "/dashboard/";
       })
       .catch((err) => console.error(err));
   }
@@ -65,10 +65,10 @@ const AuthProvider = ({ children }) => {
 export { useAuthContext, AuthProvider };
 
 export const RequireAuth = ({ children }) => {
-  const auth = useAuthContext(); // Your hook to get login status
+  const { user } = useAuth(); // Your hook to get login status
 
   // if you are not signed in then return to signup page
-  if (!auth.user) {
+  if (!user) {
     return <Navigate to="/login" />;
   }
 
@@ -85,7 +85,7 @@ export const parseJwt = (token) => {
 };
 
 // Create User logged Hook
-export const useAuth = () => {
+const useAuth = () => {
   const [user, setUser] = useLocalStorage("konectin-profiler-user", null);
   const navigate = useNavigate();
   const location = useLocation();
@@ -179,7 +179,7 @@ export const useAuth = () => {
 
           if (ongoing) {
             navigate("/internship/intern-application");
-          } else navigate("/resume/options");
+          } else navigate("/dashboard/");
         }, 3000);
       })
       .catch((err) => {
@@ -214,6 +214,7 @@ export const useAuth = () => {
 
   return {
     user,
+    setUser,
     signIn,
     signUp,
     signOut,

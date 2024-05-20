@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./middleware/auth";
 
 import ResumeRoutes from "./layouts/resumeRoutes";
@@ -28,10 +28,18 @@ import Login from "./pages/sign/login/login";
 import SignUp from "./pages/sign/signup/signup";
 import ForgetPassword from "./pages/sign/login/forgetPassword";
 import ResetPassword from "./pages/sign/login/resetPassword";
+import Coverletter from "./pages/DefaultRoutes/cover-letter";
 import ErrorPage from "./pages/404";
 import InternApplication from "./pages/DefaultRoutes/internship/intern-application";
+
+import ProtectedRoutes from "./pages/ProtectedRoutes";
+import UserDashBoard from "./pages/ProtectedRoutes/user-dashboard";
+import DashboardDisplay from "./pages/ProtectedRoutes/dashboardDisplay";
+
 import { TemplateProvider } from "./middleware/resume";
 import HireTalent from "./pages/DefaultRoutes/internship/hire-talent";
+import { WalkthroughProvider } from "./middleware/walkthrough";
+import { CVProvider } from "./middleware/cv";
 
 function App() {
   return (
@@ -67,29 +75,48 @@ function App() {
             <Route path="/policy" element={<PrivacyPolicy />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/contact" element={<Contact />} />
-            {/* <Route path="/admin" element={<Admin />} /> */}
+
             <Route path="/blog/" element={<Blog />}>
               <Route path="/blog/:feed" element={<Feeds />} />
               <Route path="/blog/:feed/:id" element={<BlogContent />} />
             </Route>
             <Route path="/about" element={<About />} />
+
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/dashboard/*" element={<UserDashBoard />} />
+              <Route
+                path="/dashboard/display/*"
+                element={<DashboardDisplay />}
+              />
+
+              <Route
+                path="/dashboard/display"
+                element={<Navigate to="/dashboard/display/resumes" />}
+              />
+            </Route>
           </Route>
 
           {/* Resume Builder Routes */}
           <Route element={<ResumeRoutes />}>
             <Route path="/resume/options" element={<Options />} />
-            <Route
-              element={
-                <TemplateProvider>
-                  <Outlet />
-                </TemplateProvider>
-              }
-            >
-              <Route path="/resume/ai/*" element={<AIStarter />} />
-              <Route path="/resume/builder/*" element={<Builder />} />
-            </Route>
-            <Route path="/resume/upload/*" element={<ResumeUpload />} />
           </Route>
+
+          <Route
+            element={
+              <WalkthroughProvider>
+                <TemplateProvider>
+                  <CVProvider>
+                    <ResumeRoutes />
+                  </CVProvider>
+                </TemplateProvider>
+              </WalkthroughProvider>
+            }
+          >
+            <Route path="/cover-letter/*" element={<Coverletter />} />
+            <Route path="/resume/ai/*" element={<AIStarter />} />
+            <Route path="/resume/builder/*" element={<Builder />} />
+          </Route>
+          <Route path="/resume/upload/*" element={<ResumeUpload />} />
         </Route>
       </Routes>
     </BrowserRouter>

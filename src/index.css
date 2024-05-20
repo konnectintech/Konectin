@@ -36,7 +36,11 @@ body {
 
 main {
   padding-bottom: 4rem;
-  @apply flex-1 flex flex-col justify-center pt-[65px] sm:pt-[85px];
+  @apply flex-1 flex flex-col justify-center pt-[65px] sm:pt-[74px];
+}
+
+main:has(.cover-letter-main) {
+  padding-bottom: 0rem;
 }
 
 input:-webkit-autofill {
@@ -68,7 +72,7 @@ input[type="tel"]:-webkit-autofill {
 }
 
 .input-container {
-  @apply p-4 mb-6 text-[11px] w-full max-h-[50px] text-primary-400 border border-neutral-500 outline-0 rounded-[4px] bg-neutral-1000 focus:border-primary-500 focus:border-[1.5px];
+  @apply p-4 mb-6 text-[11px] w-full h-[50px] text-primary-400 border border-neutral-500 outline-0 rounded-[4px] bg-neutral-1000 focus:border-primary-500 focus:border-[1.5px];
 }
 
 .input-container:has(input:focus) {
@@ -232,7 +236,27 @@ h4 {
 }
 
 /* Terms and Condition  */
-.terms ul.list-decimal > .space-y-2 > li.text-sm,
+.terms ul.list-decimal>.space-y-2>li.text-sm,
 .merri {
   font-family: "Merriweather", sans-serif;
+}
+
+.modal-open {
+  overflow: hidden;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.debug {
+  border: 1px dashed red;
 }

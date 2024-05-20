@@ -4,19 +4,20 @@ import * as MdIcons from "react-icons/md";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { konectinIcon } from "../../assets";
 import "./header.css";
-import { useAuth } from "../../middleware/auth";
+import { useAuthContext } from "../../middleware/auth";
 import InternAnimation from "../../utils/intern-animation";
+import Dropdown from "../../components/dropdown";
 
 function Header() {
-  const { user, signOut } = useAuth();
+  const { user } = useAuthContext();
+  const [dropdown, setDropdown] = useState(false);
 
   const [offset, setOffset] = useState({
-    prevScrollpos: window.pageYOffset,
+    prevScrollpos: window.scrollY,
     visible: true,
   });
 
-  const [isOpen, setToggle] = useState(false);
-  const [tabs, setTabs] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const links = [
     { name: "Home", link: "/" },
     { name: "Internships", link: "/internship" },
@@ -29,7 +30,7 @@ function Header() {
 
   const handleScroll = () => {
     const { prevScrollpos } = offset;
-    const currentScrollPos = window.pageYOffset;
+    const currentScrollPos = window.scrollY;
     const visible = prevScrollpos > currentScrollPos;
     const darken = visible && currentScrollPos >= 50;
 
@@ -41,7 +42,7 @@ function Header() {
   };
 
   const toggle = () => {
-    setToggle(!isOpen);
+    setIsOpen(!isOpen);
   };
 
   window.addEventListener("scroll", handleScroll);
@@ -58,7 +59,7 @@ function Header() {
           : "nav-bar-hidden"
       }
     >
-      <nav className="w-11/12 mx-auto max-w-screen-2xl flex justify-between items-center gap-16 py-4">
+      <nav className="w-11/12 relative z-10 mx-auto max-w-screen-2xl flex justify-between items-center gap-16 py-4">
         <Link to="/" className="relative z-30 nav-icon block">
           <img
             className={
@@ -103,11 +104,10 @@ function Header() {
           ))}
 
           <Link
-            to={user ? "/" : "/login"}
-            onClick={user ? signOut : null}
+            to={user ? "/dashboard/" : "/login"}
             className="lg:hidden hover:border-b border-secondary-600 py-1"
           >
-            {user ? "Log Out" : "Log In"}
+            {user ? "Profile" : "Log In"}
           </Link>
         </nav>
 
@@ -136,22 +136,19 @@ function Header() {
           ))}
 
           <Link
-            to={user ? "/" : "/login"}
-            onClick={user ? signOut : null}
+            to={user ? "/dashboard/" : "/login"}
             className="lg:hidden hover:border-b border-secondary-600 py-1"
           >
-            {user ? "Log Out" : "Log In"}
+            {user ? "Profile" : "Log In"}
           </Link>
         </nav>
 
-        <nav className="hidden lg:block">
+        <nav
+          className="hidden lg:block"
+          onClick={() => setDropdown((prev) => !prev)}
+        >
           {user ? (
-            <div
-              onClick={() => {
-                setTabs((prev) => !prev);
-              }}
-              className="relative flex items-center cursor-pointer gap-2 text-xs text-neutral-400"
-            >
+            <div className="relative flex items-center cursor-pointer gap-2 text-xs text-neutral-400">
               <div
                 className={`w-10 h-10 rounded-md flex items-center justify-center ${
                   offset.darken
@@ -167,32 +164,9 @@ function Header() {
                     offset.darken ? "text-white" : "text-neutral-100"
                   } text-base`}
                 >
-                  {user.fullname}
+                  {user?.fullname}
                 </h3>
-                <p>{user.email}</p>
-              </div>
-
-              <div
-                className={`${
-                  offset.darken ? "text-white" : "text-primary-600"
-                } ${tabs ? "rotate-0" : "rotate-180"} duration-300`}
-              >
-                <MdIcons.MdArrowDropDown size="2rem" />
-              </div>
-
-              <div
-                className={`${
-                  tabs && (offset.prevScrollpos <= 50 || offset.darken)
-                    ? "top-full visible opacity-100"
-                    : "-top-full invisible opacity-0"
-                } absolute -right-3 duration-500 border border-primary-200 rounded translate-y-2 bg-primary-600 py-2 space-y-2 min-w-[150px]`}
-              >
-                <div
-                  onClick={signOut}
-                  className="cursor-pointer text-white text-medium py-2 px-4 hover:bg-primary-200"
-                >
-                  Log out
-                </div>
+                <p>{user?.email}</p>
               </div>
             </div>
           ) : (
@@ -212,6 +186,10 @@ function Header() {
       {(pathname.includes("/intern-application") ||
         pathname.includes("/hire-talent")) &&
         (offset.prevScrollpos <= 50 || offset.darken) && <InternAnimation />}
+
+      {dropdown && (
+        <Dropdown offset={offset} setIsOpen={setDropdown} isOpen={dropdown} />
+      )}
     </header>
   );
 }

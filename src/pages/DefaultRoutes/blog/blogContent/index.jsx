@@ -12,7 +12,7 @@ import Pagination from "../../../../components/pagination";
 import BlogCard from "../../../../components/blog/blogCard";
 
 import "../index.css";
-import { useAuth } from "../../../../middleware/auth";
+import { useAuthContext } from "../../../../middleware/auth";
 
 function BlogContent() {
   const [blog, setBlog] = useState({});
@@ -31,7 +31,7 @@ function BlogContent() {
   });
 
   const { id } = useParams();
-  const { user } = useAuth();
+  const { user } = useAuthContext();
   const { pathname } = useLocation();
   const [isFull, setOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);

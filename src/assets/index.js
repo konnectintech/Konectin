@@ -1,5 +1,6 @@
 // Icons
 import bulbIcon from "./icons/bulb.svg";
+import tipIcon from "./icons/cover-letter/tip.svg";
 import blurImage from "./icons/blur.svg";
 import successIcon from "./icons/success.svg";
 import calendarIcon from "./icons/calendar.svg";
@@ -40,6 +41,9 @@ import dislikeIcon from "./icons/dislike.svg";
 import bookmarkIcon from "./icons/bookmark.svg";
 import notifySuccess from "./icons/notifysuccess.svg";
 import notifyError from "./icons/notifyerror.svg";
+import uploadIcon from "./icons/upload.svg";
+import completedCheck from "./icons/completed-check.svg";
+import halfLoading from "./icons/half-loading.svg";
 
 // socials
 import SFacebook from "./icons/socials/Facebook.svg";
@@ -57,7 +61,7 @@ import forgotPasswordImage from "./images/forgot-password.png";
 import bell from "./icons/bell.svg";
 import job from "./icons/jobs.png";
 import help from "./icons/help.png";
-import logOut from "./icons/logout.png";
+import logOut from "./icons/logout.svg";
 import chat from "./icons/chat.png";
 import web from "./icons/web.png";
 import profile from "./icons/profile.png";
@@ -94,6 +98,7 @@ import modalBackground from "./images/modal background.png";
 import happyTeam from "./images/happyTeam.png";
 
 // Resume Builder Images
+import orangeLoader from "./icons/orange-loader.gif";
 import botIcon from "./images/bot/bot.svg";
 import card3Image from "./images/card 3.png";
 import uploadResume from "./images/upload resume.png";
@@ -104,6 +109,31 @@ import ResumeTemplateSampleImage from "./images/resume template.png";
 import BuilderBg from "./images/builder-bg.png";
 import ResumeTemplateSample1Image from "./images/resume template 1.png";
 import ResumeCTAImage from "./images/cta.png";
+import basicInfo from "./icons/basic_info.svg";
+import workExpirience from "./icons/work_experience.svg";
+import education from "./icons/education.svg";
+import skill from "./icons/skill.svg";
+import bio from "./icons/bio.svg";
+import finalize from "./icons/finalize.svg";
+import eye from "./icons/eye.svg";
+import menu from "./icons/menu.svg";
+import page from "./icons/page.svg";
+import profileadd from "./icons/profile-add.svg";
+import style from "./icons/style.svg";
+import tips from "./icons/tips.svg";
+import tips2 from "./icons/tips2.svg";
+import droplet from "./icons/droplet.svg";
+import download from "./icons/download.svg";
+import pdffolder from "./icons/pdffolder.svg";
+import docfolder from "./icons/docfolder.svg";
+import edit from "./icons/edit.svg";
+import copy from "./icons/copy.svg";
+import trash from "./icons/trash.svg";
+import sliders from "./icons/sliders.svg";
+import chevronDownWhite from "./icons/chevron-down-white.svg";
+import search from "./icons/search.svg";
+import slidersBlack from "./icons/slidersBlack.svg";
+import plusCircle from "./icons/plus-sign-circle.svg";
 
 // Blog Images
 import blogHero from "./images/blog/hero.jpg";
@@ -126,12 +156,13 @@ import AnonymousIcon from "./images/team/anonymous.png";
 import FounderIcon from "./images/team/founder.jpg";
 import AboutProfileImage from "./images/about profile.png";
 import OurVisionImage from "./images/vision.png";
-
 import ContactUSImage from "./images/contact-us.png";
 
 export {
   // Icons
+  orangeLoader,
   bulbIcon,
+  tipIcon,
   blurImage,
   calendarIcon,
   contactIcon,
@@ -167,6 +198,9 @@ export {
   likeIcon,
   dislikeIcon,
   microsoftIcon,
+  uploadIcon,
+  completedCheck,
+  halfLoading,
 
   // Sign Images
   signImage,
@@ -200,6 +234,31 @@ export {
   createResume,
   uploadResume,
   botIcon,
+  basicInfo,
+  workExpirience,
+  education,
+  skill,
+  bio,
+  finalize,
+  eye,
+  menu,
+  page,
+  profileadd,
+  style,
+  tips,
+  tips2,
+  droplet,
+  download,
+  docfolder,
+  pdffolder,
+  edit,
+  copy,
+  trash,
+  sliders,
+  chevronDownWhite,
+  search,
+  slidersBlack,
+  plusCircle,
 
   //Dashboard Images
   bell,

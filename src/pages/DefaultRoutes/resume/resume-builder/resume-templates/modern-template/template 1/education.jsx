@@ -17,7 +17,7 @@ function Education({ education, currentEditedEducation }) {
                     {edu?.month && edu?.year && ` ${edu?.year}`}
 
                     {!edu?.month && edu?.year && "Currently pursuing"}
-                    {edu.year && edu.schoolName && edu.degree && " - "}
+                    {edu?.year && edu.schoolName && edu.degree && " - "}
                     {edu?.schoolName && edu?.degree && edu?.schoolName}
                   </h3>
 

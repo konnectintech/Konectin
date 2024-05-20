@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../middleware/auth";
+import { useAuthContext } from "../../../middleware/auth";
 import { NotifyModal } from "../../../components/form/modal";
 import { useSessionStorage } from "../../../middleware/storage";
 
@@ -19,7 +19,7 @@ import { happyTeam, konectinLogo, successIcon } from "../../../assets";
 import SectionWrapper from "../../../components/animation/sectionWrapper";
 
 function InternApplication() {
-  const { user } = useAuth();
+  const { user } = useAuthContext();
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   const navigate = useNavigate();
@@ -203,7 +203,7 @@ function InternApplication() {
           .post(`${url}/subscribeIntern?userId=${user._id}`, form, {
             headers: { Authorization: `Bearer ${user.token}` },
           })
-          .then((res) => {
+          .then(() => {
             setLoading(false);
             setMessage("success");
           })

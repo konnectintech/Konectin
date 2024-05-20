@@ -6,13 +6,13 @@ import { toast } from "react-toastify";
 import { CustomButton } from "../../../components/button";
 import { ErrorModal } from "../../../components/form/modal";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../middleware/auth";
+import { useAuthContext } from "../../../middleware/auth";
 
 function VerifyMail() {
   const [code, setCode] = useState("");
   const [isloading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const { user } = useAuth();
+  const { user } = useAuthContext();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -97,7 +97,7 @@ function VerifyMail() {
         setTimeout(() => {
           if (location.state.from === "intern" || ongoing)
             navigate("/internship/intern-application");
-          else navigate("/resume/options");
+          else navigate("/dashboard/");
         }, 2000);
       })
       .catch((err) => {

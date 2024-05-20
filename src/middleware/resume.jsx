@@ -7,24 +7,10 @@ const TemplateContext = createContext();
 const useTemplateContext = () => useContext(TemplateContext);
 
 const TemplateProvider = ({ children }) => {
-  const {
-    templateData,
-    setTemplateData,
-    onInputChange,
-    onSectionComplete,
-    finalizeData,
-  } = useTemplateData();
+  const resumeTemplate = useTemplateData();
 
   return (
-    <TemplateContext.Provider
-      value={{
-        templateData,
-        setTemplateData,
-        onInputChange,
-        onSectionComplete,
-        finalizeData,
-      }}
-    >
+    <TemplateContext.Provider value={resumeTemplate}>
       {children}
     </TemplateContext.Provider>
   );
@@ -32,7 +18,7 @@ const TemplateProvider = ({ children }) => {
 
 export { useTemplateContext, TemplateProvider };
 
-export const useTemplateData = () => {
+const useTemplateData = () => {
   const [templateData, setTemplateData] = useLocalStorage(
     "konectin-profiler-data-template",
     {
@@ -55,11 +41,21 @@ export const useTemplateData = () => {
         state: "",
         zipCode: "",
       },
+      theme: {
+        color: "blue",
+        fontSize: "",
+        fontStyle: "",
+      },
+      image: {
+        show: false,
+        value: "",
+      },
       currentEditedJob: 0,
       currentEditedEducation: 0,
       jobExperience: [],
       education: [],
       skills: [],
+      additionalInformation: {},
       bio: "",
       selectedTemplate: "",
       currentStage: 0,
@@ -171,12 +167,9 @@ export const useTemplateData = () => {
     templateData.bio,
   ]);
 
-  const finalizeData = (section, values) => {};
-
   return {
     templateData,
     setTemplateData,
     onInputChange,
-    finalizeData,
   };
 };

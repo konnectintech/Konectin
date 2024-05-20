@@ -1,6 +1,5 @@
 import { template_images } from "../../../../../assets/resume";
 import { useTemplateContext } from "../../../../../middleware/resume";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/swiper.css";
@@ -40,18 +39,10 @@ const TemplateOption = ({ sectionName }) => {
       })
       .then((res) => {
         const resume = res.data.cv;
-
         setTemplateData((prev) => ({
           ...prev,
           ...resume,
           selectedTemplate: value,
-          completed: {
-            basic_info: false,
-            work_history: false,
-            education: false,
-            skills: false,
-            bio: false,
-          },
         }));
 
         navigate("/resume/builder");
@@ -127,73 +118,73 @@ const TemplateOption = ({ sectionName }) => {
       <h3 className="text-xl lg:text-2xl font-bold capitalize">
         {sectionName}
       </h3>
-      <div className="max-w-[100%] mx-auto">
-        <Swiper
+      <div className="max-w-[100%] mx-auto grid grid-cols-4 gap-4">
+        {/* <Swiper
           spaceBetween={10}
           slidesPerView={1.7}
           breakpoints={{
             640: { slidesPerView: 2.5 },
             1024: { slidesPerView: 4 },
           }}
-        >
-          {template_images
-            .filter((record) => record.category === sectionName)
-            .map((item, index) => {
-              return (
-                <SwiperSlide
-                  key={item.category + index}
-                  className="cursor-pointer ml-2 flex justify-center items-center text-center group"
-                >
-                  <LazyLoadImage
-                    src={item.img}
-                    alt={`${sectionName}_${index + 1}`}
-                    className="w-full h-full"
-                    onClick={() => handleSelect(`${sectionName}_${index + 1}`)}
-                  />
-                  <div
-                    className={`
+        > */}
+        {template_images
+          .filter((record) => record.category === sectionName)
+          .map((item, index) => {
+            return (
+              <div key={item.category + index} className="relative group">
+                {/* <SwiperSlide
+                   key={item.category + index}
+                   className="cursor-pointer ml-2 flex justify-center items-center text-center group"
+                 > */}
+                <LazyLoadImage
+                  src={item.img}
+                  alt={`${sectionName}_${index + 1}`}
+                  className="w-full h-full"
+                  onClick={() => handleSelect(`${sectionName}_${index + 1}`)}
+                />
+                <div
+                  className={`
                                 ${
                                   templateData.selectedTemplate ===
                                   `${sectionName}_${index + 1}`
                                     ? "absolute w-full h-full top-0 bg-primary-300 bg-opacity-60"
                                     : "-top-full"
                                 } left-0 duration-500 flex items-center justify-center`}
-                  >
-                    {templateData.selectedTemplate ===
-                      `${sectionName}_${index + 1}` && (
-                      <div className="bg-primary-600 text-white text-xs px-2 py-2 rounded absolute">
-                        Selected
-                      </div>
-                    )}
-                  </div>
-                  <div
-                    className={`
+                >
+                  {templateData.selectedTemplate ===
+                    `${sectionName}_${index + 1}` && (
+                    <div className="bg-primary-600 text-white text-xs px-2 py-2 rounded absolute">
+                      Selected
+                    </div>
+                  )}
+                </div>
+                <div
+                  className={`
                                 ${
                                   templateData.selectedTemplate ===
                                   `${sectionName}_${index + 1}`
                                     ? "-top-full"
                                     : "absolute group-hover:w-full group-hover:h-full group-hover:top-0 bg-neutral-100 bg-opacity-60"
                                 } left-0 duration-500 flex items-center justify-center`}
-                  >
-                    <div
-                      onClick={() =>
-                        handleSelect(`${sectionName}_${index + 1}`)
-                      }
-                      className={`
+                >
+                  <div
+                    onClick={() => handleSelect(`${sectionName}_${index + 1}`)}
+                    className={`
                                 ${
                                   templateData.selectedTemplate ===
                                   `${sectionName}_${index + 1}`
                                     ? "hidden"
                                     : "invisible absolute -top-full -translate-y-1/2 group-hover:top-1/2 group-hover:visible"
-                                } bg-secondary-600 text-white text-xs px-2 py-2 rounded`}
-                    >
-                      Select Template
-                    </div>
+                                } bg-secondary-600 text-white text-xs px-2 py-2 rounded cursor-pointer `}
+                  >
+                    Select Template
                   </div>
-                </SwiperSlide>
-              );
-            })}
-        </Swiper>
+                </div>
+                {/* </SwiperSlide> */}
+              </div>
+            );
+          })}
+        {/* </Swiper> */}
       </div>
 
       {popUp && (

@@ -2,23 +2,41 @@ import * as FaIcon from "react-icons/fa";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import NavigationButton from "../navigationButton";
+import Responsibilities from "./work-responsibilities";
 import SelectedTemplates from "../../resume-templates";
 import JobTitleInput from "../../../../../../components/jobTitleInput";
 import { useTemplateContext } from "../../../../../../middleware/resume";
 import CountryInput from "../../../../../../components/form/countryInput";
 import StateInput from "../../../../../../components/form/stateInput";
 import CityInput from "../../../../../../components/form/cityInput";
+import CustomSelect from "../../../../../../components/select/CustomSelect";
 import { onSectionComplete, verifyInput } from "../verification";
 import DateSelector from "../../../../../../components/form/dateSelector";
+import ResumeModal from "../../../../../../layouts/resumeRoutes/resumeModal";
+import professions from "professions";
 
 const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
   const [countryId, setCountryId] = useState(0);
   const [stateId, setStateId] = useState(0);
 
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   const companyErrorRef = useRef(null);
 
   const navigate = useNavigate();
   const { templateData } = useTemplateContext();
+
+  const handleSelect = (value) => {
+    handleInputChange("jobTitle", value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,8 +64,6 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
           verifyInput(data[holder], errorHolder, holder);
           break;
         case "jobTitle":
-          errorHolder = document.getElementById(`${holder}Error`);
-          verifyInput(data[holder], errorHolder, holder);
           break;
         case "current":
         case "workDesc":
@@ -66,7 +82,8 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
       (data.startMonth !== "" || data.startYear !== "") &&
       (data.current || data.endMonth !== "" || data.endYear !== "")
     ) {
-      navigate("/resume/builder/employment-experience/responsibilities");
+      openModal();
+      // navigate("/resume/builder/employment-experience/responsibilities");
     }
   };
 
@@ -79,13 +96,14 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
 
         <div className="w-full">
           <div className="mt-6">
-            <JobTitleInput
-              auth
-              title={data?.jobTitle}
-              handleInputChange={(value) =>
-                handleInputChange("jobTitle", value)
-              }
-            />
+            <div className="mb-6">
+              <CustomSelect
+                onChange={handleSelect}
+                value={data?.jobTitle}
+                options={professions}
+                showSearch
+              />
+            </div>
 
             <div className="flex flex-col">
               <input
@@ -226,6 +244,19 @@ const PreviousExperience = ({ data, handleBack, handleInputChange }) => {
           </div>
         </div>
       </div>
+      {/* <div className="mt-16">
+        <NavigationButton back={handleBack} cont={handleSubmit} />
+      </div> */}
+
+      {isModalOpen && (
+        <ResumeModal onClose={closeModal}>
+          <Responsibilities
+            data={data}
+            closeModal={closeModal}
+            handleInputChange={handleInputChange}
+          />
+        </ResumeModal>
+      )}
     </div>
   );
 };
