@@ -69,7 +69,7 @@ function JobDetails({ isLogged, data }) {
         email: "",
         fullName: "",
       });
-      return navigate("/cover-letter/job-description");
+      return navigate("/services/cover-letter/job-description");
     }
   };
 

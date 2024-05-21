@@ -13,14 +13,14 @@ function StartBuilding({ isLogged, name }) {
         started?
       </span>
       <Link
-        to={`/cover-letter/job-details`}
+        to={`/services/cover-letter/job-details`}
         className="text-white rounded-lg bg-primary-600 py-3 px-16 mt-6"
       >
         Get Started
       </Link>
       <span className="mt-6">
         I want to build a resume{" "}
-        <Link to={`/resume/options`} className="text-secondary-500">
+        <Link to={`/services/resume/options`} className="text-secondary-500">
           Resume Builder
         </Link>
       </span>
