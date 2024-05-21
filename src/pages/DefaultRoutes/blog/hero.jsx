@@ -45,10 +45,13 @@ function HeroSection({ isLoading }) {
           }}
           slidesPerView={1}
           pagination={{ clickable: true }}
-          className="max-h-[400px] h-full relative rounded-md w-full"
+          className="max-h-[400px] min-h-[300px] h-full relative rounded-md w-full"
         >
           {images.map((image) => (
-            <SwiperSlide key={image} className="relative rounded-md w-full">
+            <SwiperSlide
+              key={image}
+              className="relative rounded-md w-full min-h-[400px]"
+            >
               <LazyLoadImage
                 className="block h-full w-full bg-cover rounded-md"
                 effect="blur"
