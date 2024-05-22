@@ -37,6 +37,7 @@ import UserDashBoard from "./pages/ProtectedRoutes/user-dashboard";
 import DashboardDisplay from "./pages/ProtectedRoutes/dashboardDisplay";
 
 import { TemplateProvider } from "./middleware/resume";
+import HireTalent from "./pages/DefaultRoutes/internship/hire-talent";
 import { WalkthroughProvider } from "./middleware/walkthrough";
 import { CVProvider } from "./middleware/cv";
 
@@ -68,6 +69,7 @@ function App() {
               path="/internship/intern-application"
               element={<InternApplication />}
             />
+            <Route path="/internship/hire-talent" element={<HireTalent />} />
             <Route path="/resume" element={<ResumeBuilder />} />
             <Route path="/terms" element={<TermsAndCondition />} />
             <Route path="/policy" element={<PrivacyPolicy />} />

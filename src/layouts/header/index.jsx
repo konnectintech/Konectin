@@ -183,7 +183,8 @@ function Header() {
           )}
         </nav>
       </nav>
-      {pathname.includes("/intern-application") &&
+      {(pathname.includes("/intern-application") ||
+        pathname.includes("/hire-talent")) &&
         (offset.prevScrollpos <= 50 || offset.darken) && <InternAnimation />}
 
       {dropdown && (
