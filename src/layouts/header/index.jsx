@@ -92,8 +92,11 @@ function Header({ post }) {
       //     : "nav-bar-hidden"
       // }
     >
-      {!pathname.includes("/internnship") && !isOpen && (
-        <Headline message="Konectin Partners EntryLevel" pageTo="/internship" />
+      {!pathname.includes("/internship") && !isOpen && (
+        <Headline
+          message="Konectin Partners EntryLevel"
+          pageTo="/services/internship"
+        />
       )}
       <nav className="w-full lg:w-11/12 relative z-10 mx-auto max-w-screen-2xl flex justify-between items-stretch gap-10 lg:gap-12 py-4 px-2 xxs:px-4 lg:px-0">
         <Link to="/" className="relative z-30 nav-icon block">
