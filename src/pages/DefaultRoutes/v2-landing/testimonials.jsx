@@ -56,10 +56,22 @@ export default function Testimonials() {
           </p>
         </div>
       </div>
-      <div className="flex flex-col gap-7 md:flex-row md:gap-8 overflow-auto">
+      <div className="flex flex-col gap-7 md:hidden">
         {data.map((item, index) => (
           <TestimonialCard key={index} item={item} />
         ))}
+      </div>
+      <div className="flex flex-col gap-11 -mx-28">
+        <div className="hidden md:flex gap-8">
+          {data.map((item, index) => (
+            <TestimonialCard key={index} item={item} />
+          ))}
+        </div>
+        <div className="hidden md:flex gap-8">
+          {data.map((item, index) => (
+            <TestimonialCard key={index} item={item} />
+          ))}
+        </div>
       </div>
     </div>
   );

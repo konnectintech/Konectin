@@ -70,7 +70,7 @@ export default function Faq() {
 }
 
 export function FaqCard({ item, index }) {
-  const [active, setActive] = useState(null | index);
+  const [active, setActive] = useState(null);
 
   return (
     <div
