@@ -36,7 +36,10 @@ function Header({ post }) {
             { name: "AI Resume Builder", link: "/resume" },
             { name: "AI Cover Letter Builder", link: "/cover-letter" },
             { name: "AI Resume Review & Edit", link: "/resume/review" },
-            { name: "Konectin Internship", link: "/internship" },
+            {
+              name: "Konectin Internship",
+              link: "/internship/intern-application",
+            },
           ],
         },
         {
@@ -45,7 +48,7 @@ function Header({ post }) {
           links: [
             {
               name: "Konectin Internship Partnership",
-              link: "/internship/partnership",
+              link: "/internship/hire-talent",
             },
           ],
         },
