@@ -185,6 +185,12 @@ import blog3 from "./images/blog3.jfif";
 // coverage section
 import coverage from "./images/coverage.svg";
 
+// testimonials section
+import person1 from "./images/person1.png";
+import person2 from "./images/person2.png";
+import person3 from "./images/person3.png";
+import person4 from "./images/person4.png";
+
 export {
   // Icons
   orangeLoader,
@@ -372,4 +378,10 @@ export {
 
   // coverage section
   coverage,
+
+  // testimonials section
+  person1,
+  person2,
+  person3,
+  person4,
 };

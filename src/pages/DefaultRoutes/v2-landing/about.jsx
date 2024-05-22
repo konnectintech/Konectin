@@ -3,10 +3,10 @@ export default function About() {
   return (
     <div className="flex flex-col items-center py-12 md:py-24 px-6 md:px-20 gap-12">
       <div className="flex flex-col md:items-center gap-2">
-        <p className="text-2xl md:text-5xl font-bold">
-          Join Our <span className="md:text-secondary-500">Pan-African</span>{" "}
+        <p className="text-2xl md:text-5xl font-bold flex">
+          Join Our&nbsp;<span className="md:text-secondary-500">Pan-African</span>&nbsp;
           <span className="hidden md:block">Movement</span>
-          <span>Reach</span>
+          <span className="md:hidden">Reach</span>
         </p>
         <p className="hidden md:block text-xl font-medium text-center w-[76ch]">
           Connect with diverse and vibrant communities across Africa. Join
