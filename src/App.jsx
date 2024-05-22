@@ -103,6 +103,7 @@ function App() {
               path="/services/internship/intern-application"
               element={<InternApplication />}
             />
+            <Route path="/internship/hire-talent" element={<HireTalent />} />
             <Route path="/services/resume" element={<ResumeBuilder />} />
             <Route path="/terms" element={<TermsAndCondition />} />
             <Route path="/policy" element={<PrivacyPolicy />} />

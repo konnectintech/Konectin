@@ -56,14 +56,24 @@ function Internship() {
             tech landscape in Africa. Are you ready to make your mark and
             accelerate your career?
           </motion.p>
-          <motion.div variants={textVariantUp(0.8)}>
-            <Link
-              className="rounded-md w-fit block bg-secondary-500 py-4 px-6 text-white"
-              to="intern-application"
-            >
-              Begin Your Journey Now
-            </Link>
-          </motion.div>
+          <div className="flex items-center gap-8">
+            <motion.div className="flex-1" variants={textVariantUp(0.8)}>
+              <Link
+                className="rounded-md w-full text-center block bg-secondary-500 py-4 px-6 text-white"
+                to="intern-application"
+              >
+                Begin Your Journey Now
+              </Link>
+            </motion.div>
+            <motion.div className="flex-1" variants={textVariantUp(0.8)}>
+              <Link
+                className="rounded-md w-full flex p-4 justify-center text-secondary-500 border border-secondary-500 "
+                to="hire-talent"
+              >
+                Hire Talent
+              </Link>
+            </motion.div>
+          </div>
         </div>
 
         <picture className="hidden md:block relative">

@@ -220,6 +220,8 @@ function Header({ post }) {
         <MobileHeader links={links} isOpen={isOpen} setIsOpen={setIsOpen} />
         {/* End Mobile View */}
       </nav>
+      {pathname.includes("/intern-application") &&
+        (offset.prevScrollpos <= 50 || offset.darken) && <InternAnimation />}
 
       {pathname.includes("/internship") && (
         // (offset.prevScrollpos <= 50 || offset.darken) &&
