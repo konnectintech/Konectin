@@ -68,6 +68,10 @@ const InternApplication = lazy(() =>
   import("./pages/DefaultRoutes/internship/intern-application")
 );
 
+const HireTalent = lazy(() =>
+  import("./pages/DefaultRoutes/internship/hire-talent")
+);
+
 const UserDashBoard = lazy(() =>
   import("./pages/ProtectedRoutes/user-dashboard")
 );
