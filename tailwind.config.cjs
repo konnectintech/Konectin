@@ -49,11 +49,11 @@ module.exports = {
         error: {
           500: "#F11010",
         },
-        // off_white: "#F1F1F3",
         whites: {
           100: "#F1F1F3",
           200: "#F5F5F5",
         },
+        grey: "#4c4c4d",
       },
       screens: {
         xxs: "375px",

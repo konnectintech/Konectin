@@ -75,7 +75,7 @@ export function TestimonialCard({ item }) {
       </div>
 
       <div className="hidden md:flex md:order-2 h-full border-l-2 border-solid border-neutral-600"></div>
-      <div className="h-full md:w-72 md:p-0 border-t border-solid border-neutral-700 md:border-t-0 rounded-b-lg md:rounded-sm w-full flex  items-center justify-center bg-whites-200 px-8 py-7">
+      <div className="h-full md:w-72 md:p-0 border-t border-solid border-neutral-700 md:border-t-0 rounded-b-lg md:rounded-sm w-full flex  items-center md:justify-center bg-whites-200 px-8 py-7">
         <div className="flex items-center gap-2.5">
           <img
             className="w-12 h-12 rounded-md md:w-14 md:h-14 md:rounded-lg"

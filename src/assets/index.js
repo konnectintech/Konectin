@@ -82,6 +82,12 @@ import circleProfile from "./icons/Ellipse 97circle-profile.svg";
 import profileBg from "./icons/Rectangle 2952.svg";
 import cancelIcon from "./icons/ic_round-cancelcancle-profile (1).svg";
 
+// faq section icons
+import plusBlack from "./icons/plus-black.svg";
+import plusWhite from "./icons/plus-white.svg";
+import closeBlack from "./icons/close-black.svg";
+import closeWhite from "./icons/close-white.svg";
+
 // landing Page Images
 import cardImage from "./images/card.png";
 import card1Image from "./images/card 1.png";
@@ -98,6 +104,7 @@ import hero_2 from "./images/hero-2.png";
 import hero_3 from "./images/hero-3.png";
 import hero_bg from "./images/hero-bg.png";
 import headline_bg from "./images/headline-bg.svg";
+
 
 // Internship Images
 import internHero from "./images/internship hero.png";
@@ -384,4 +391,10 @@ export {
   person2,
   person3,
   person4,
+
+  // faq section
+  plusBlack,
+  plusWhite,
+  closeBlack,
+  closeWhite,
 };
