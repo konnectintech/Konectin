@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 
 function Internship() {
   return (
-    <section className="min-h-[70vh] relative overflow-hidden">
-      <div className="w-11/12 mx-auto max-w-screen-2xl min-h-[70vh] flex flex-col md:gap-16 lg:gap-48 md:flex-row items-center py-32">
+    <main className="min-h-[70vh] relative overflow-hidden">
+      <div className="w-11/12 mx-auto max-w-screen-2xl pt-16 min-h-[70vh] flex flex-col md:gap-16 lg:gap-48 md:flex-row items-center">
         <div className="flex flex-col gap-6 w-full my-auto md:w-9/12 lg:w-6/12">
           <div>
             <motion.p
@@ -94,7 +94,7 @@ function Internship() {
           </div>
         </picture>
       </div>
-    </section>
+    </main>
   );
 }
 

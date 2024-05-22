@@ -1,45 +1,83 @@
+import { lazy } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider } from "./middleware/auth";
 
 import ResumeRoutes from "./layouts/resumeRoutes";
 import DefaultRoutes from "./pages/DefaultRoutes";
-
-import Options from "./pages/DefaultRoutes/resume/resume-builder";
-import ResumeBuilder from "./pages/DefaultRoutes/resume/resume-landing";
-import Builder from "./pages/DefaultRoutes/resume/resume-builder/screens";
-import AIStarter from "./pages/DefaultRoutes/resume/resume-builder/screens-ai";
-import ResumeUpload from "./pages/DefaultRoutes/resume/resume-builder/screen-upload";
-
-import Landing from "./pages/DefaultRoutes/landing";
-import Internship from "./pages/DefaultRoutes/internship";
-import About from "./pages/DefaultRoutes/about";
-import Blog from "./pages/DefaultRoutes/blog";
-import BlogContent from "./pages/DefaultRoutes/blog/blogContent";
-import Feeds from "./pages/DefaultRoutes/blog/feeds";
-import RouteIdentifier from "./layouts/routeIdentifier";
-import VerifyMail from "./pages/sign/signup/verifyMail";
-import TermsAndCondition from "./pages/DefaultRoutes/terms/TermsAndConditions";
-import PrivacyPolicy from "./pages/DefaultRoutes/policy/PrivacyPolicy";
-import Faq from "./pages/DefaultRoutes/faq/Faq";
-import Contact from "./pages/DefaultRoutes/contact";
-
-import Sign from "./pages/sign";
-import Login from "./pages/sign/login/login";
-import SignUp from "./pages/sign/signup/signup";
-import ForgetPassword from "./pages/sign/login/forgetPassword";
-import ResetPassword from "./pages/sign/login/resetPassword";
-import Coverletter from "./pages/DefaultRoutes/cover-letter";
-import ErrorPage from "./pages/404";
-import InternApplication from "./pages/DefaultRoutes/internship/intern-application";
-
 import ProtectedRoutes from "./pages/ProtectedRoutes";
-import UserDashBoard from "./pages/ProtectedRoutes/user-dashboard";
-import DashboardDisplay from "./pages/ProtectedRoutes/dashboardDisplay";
 
-import { TemplateProvider } from "./middleware/resume";
-import HireTalent from "./pages/DefaultRoutes/internship/hire-talent";
-import { WalkthroughProvider } from "./middleware/walkthrough";
-import { CVProvider } from "./middleware/cv";
+import { AuthProvider } from "./middleware/auth";
+
+const TemplateProvider = lazy(() =>
+  import("./middleware/resume").then((module) => ({
+    default: module.TemplateProvider,
+  }))
+);
+const WalkthroughProvider = lazy(() =>
+  import("./middleware/walkthrough").then((module) => ({
+    default: module.WalkthroughProvider,
+  }))
+);
+const CVProvider = lazy(() =>
+  import("./middleware/cv").then((module) => ({ default: module.CVProvider }))
+);
+
+const Options = lazy(() =>
+  import("./pages/DefaultRoutes/resume/resume-builder")
+);
+const ResumeBuilder = lazy(() =>
+  import("./pages/DefaultRoutes/resume/resume-landing")
+);
+
+const Builder = lazy(() =>
+  import("./pages/DefaultRoutes/resume/resume-builder/screens")
+);
+const AIStarter = lazy(() =>
+  import("./pages/DefaultRoutes/resume/resume-builder/screens-ai")
+);
+const ResumeUpload = lazy(() =>
+  import("./pages/DefaultRoutes/resume/resume-builder/screen-upload")
+);
+
+const Landing = lazy(() => import("./pages/DefaultRoutes/landing"));
+const Internship = lazy(() => import("./pages/DefaultRoutes/internship"));
+const About = lazy(() => import("./pages/DefaultRoutes/about"));
+const Blog = lazy(() => import("./pages/DefaultRoutes/blog"));
+const BlogContent = lazy(() =>
+  import("./pages/DefaultRoutes/blog/blogContent")
+);
+const Feeds = lazy(() => import("./pages/DefaultRoutes/blog/feeds"));
+const RouteIdentifier = lazy(() => import("./layouts/routeIdentifier"));
+const VerifyMail = lazy(() => import("./pages/sign/signup/verifyMail"));
+const TermsAndCondition = lazy(() =>
+  import("./pages/DefaultRoutes/terms/TermsAndConditions")
+);
+const PrivacyPolicy = lazy(() =>
+  import("./pages/DefaultRoutes/policy/PrivacyPolicy")
+);
+const Faq = lazy(() => import("./pages/DefaultRoutes/faq/Faq"));
+const Contact = lazy(() => import("./pages/DefaultRoutes/contact"));
+
+const Sign = lazy(() => import("./pages/sign"));
+const Login = lazy(() => import("./pages/sign/login/login"));
+const SignUp = lazy(() => import("./pages/sign/signup/signup"));
+const ForgetPassword = lazy(() => import("./pages/sign/login/forgetPassword"));
+const ResetPassword = lazy(() => import("./pages/sign/login/resetPassword"));
+const Coverletter = lazy(() => import("./pages/DefaultRoutes/cover-letter"));
+const ErrorPage = lazy(() => import("./pages/404"));
+const InternApplication = lazy(() =>
+  import("./pages/DefaultRoutes/internship/intern-application")
+);
+
+const HireTalent = lazy(() =>
+  import("./pages/DefaultRoutes/internship/hire-talent")
+);
+
+const UserDashBoard = lazy(() =>
+  import("./pages/ProtectedRoutes/user-dashboard")
+);
+const DashboardDisplay = lazy(() =>
+  import("./pages/ProtectedRoutes/dashboardDisplay")
+);
 
 function App() {
   return (
@@ -64,13 +102,16 @@ function App() {
           <Route element={<DefaultRoutes />}>
             <Route path="*" element={<ErrorPage />} />
             <Route path="/" element={<Landing />} />
-            <Route path="/internship" element={<Internship />} />
+            <Route path="/services/internship" element={<Internship />} />
             <Route
-              path="/internship/intern-application"
+              path="/services/internship/intern-application"
               element={<InternApplication />}
             />
-            <Route path="/internship/hire-talent" element={<HireTalent />} />
-            <Route path="/resume" element={<ResumeBuilder />} />
+            <Route
+              path="/services/internship/hire-talent"
+              element={<HireTalent />}
+            />
+            <Route path="/services/resume" element={<ResumeBuilder />} />
             <Route path="/terms" element={<TermsAndCondition />} />
             <Route path="/policy" element={<PrivacyPolicy />} />
             <Route path="/faq" element={<Faq />} />
@@ -81,42 +122,39 @@ function App() {
               <Route path="/blog/:feed/:id" element={<BlogContent />} />
             </Route>
             <Route path="/about" element={<About />} />
+          </Route>
 
-            <Route element={<ProtectedRoutes />}>
-              <Route path="/dashboard/*" element={<UserDashBoard />} />
-              <Route
-                path="/dashboard/display/*"
-                element={<DashboardDisplay />}
-              />
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/dashboard/*" element={<UserDashBoard />} />
+            <Route path="/dashboard/display/*" element={<DashboardDisplay />} />
 
-              <Route
-                path="/dashboard/display"
-                element={<Navigate to="/dashboard/display/resumes" />}
-              />
-            </Route>
+            <Route
+              path="/dashboard/display"
+              element={<Navigate to="/dashboard/display/resumes" />}
+            />
           </Route>
 
           {/* Resume Builder Routes */}
           <Route element={<ResumeRoutes />}>
-            <Route path="/resume/options" element={<Options />} />
+            <Route path="/services/resume/options" element={<Options />} />
           </Route>
 
           <Route
             element={
-              <WalkthroughProvider>
-                <TemplateProvider>
+              <TemplateProvider>
+                <WalkthroughProvider>
                   <CVProvider>
                     <ResumeRoutes />
                   </CVProvider>
-                </TemplateProvider>
-              </WalkthroughProvider>
+                </WalkthroughProvider>
+              </TemplateProvider>
             }
           >
-            <Route path="/cover-letter/*" element={<Coverletter />} />
-            <Route path="/resume/ai/*" element={<AIStarter />} />
-            <Route path="/resume/builder/*" element={<Builder />} />
+            <Route path="/services/cover-letter/*" element={<Coverletter />} />
+            <Route path="/services/resume/ai/*" element={<AIStarter />} />
+            <Route path="/services/resume/builder/*" element={<Builder />} />
           </Route>
-          <Route path="/resume/upload/*" element={<ResumeUpload />} />
+          <Route path="/services/resume/upload/*" element={<ResumeUpload />} />
         </Route>
       </Routes>
     </BrowserRouter>

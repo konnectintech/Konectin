@@ -3,18 +3,13 @@ import { useEffect, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import Suggestions from "../../../../../../components/suggestions";
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
-import { onSectionComplete } from "../verification";
-import { useTemplateContext } from "../../../../../../middleware/resume";
-import { useNavigate } from "react-router-dom";
 
-function Responsibilities({ data, closeModal, handleInputChange }) {
+function Responsibilities({ data, closeModal, handleChange }) {
   const editorRef = useRef(null);
-  const navigate = useNavigate();
 
   const [responsibility, setResponsibility] = useState("");
+  const [keyWord, setKeyWord] = useState("");
   const [editorValue, setEditorValue] = useState(data?.workDesc || "");
-  const [dirty, setDirty] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
   const [suggestions, setSuggestion] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -24,35 +19,15 @@ function Responsibilities({ data, closeModal, handleInputChange }) {
     }
   }, [data.jobTitle]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      handleInputChange("workDesc", editorValue);
-      setDirty(false);
-    }, 5000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [editorValue, handleInputChange]);
-
-  const handleEditorChange = (content) => {
-    setEditorValue(content);
-    editorRef.current.setDirty(true);
-    setDirty(true);
-    setErrorMessage("You have unsaved content!");
-  };
   const handleAddSuggestion = (value) => {
     const content = editorRef.current.getContent();
     setEditorValue(`${content} <ul><li>${value.content}</li></ul>`);
-    editorRef.current.setDirty(true);
-    setDirty(true);
-    setErrorMessage("You have unsaved content!");
   };
 
   const azureApiKey = import.meta.env.VITE_OPENAI_KEY;
+  const editorKey = import.meta.env.VITE_CLIENT_TINYMCE_EDITOR_KEY;
 
   const getJobResponsibilities = async (n) => {
-    setLoading(true);
     const messages = [
       {
         role: "user",
@@ -74,53 +49,24 @@ function Responsibilities({ data, closeModal, handleInputChange }) {
     } catch (err) {
       console.log(err);
     }
-    setLoading(false);
   };
-
-  const { templateData } = useTemplateContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSectionComplete(templateData, 2);
 
-    const wordCount = editorRef
-      ? editorRef.current.plugins.wordcount.getCount()
-      : 0;
-
-    if (wordCount <= 30) {
-      setDirty(true);
-      setErrorMessage("You have to write at least 30 words");
-      return;
-    }
-
-    if (dirty) {
-      setErrorMessage("You have unsaved content!");
-    } else {
-      closeModal();
-      navigate("/resume/builder/employment-experience/job-activities");
-    }
+    handleChange(editorValue);
+    closeModal();
   };
-
-  useEffect(() => {
-    if (loading) {
-      const preloader = new Array(5).fill({
-        content:
-          "Streamlined financial reporting process, reducing monthly close time by 20%, and ensuring accuracy of financial statements.",
-        loading,
-      });
-      setSuggestion(preloader);
-    }
-  }, [loading]);
 
   useEffect(() => {
     for (let i = 0; i <= 5; i++) {
       getJobResponsibilities(i);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [responsibility]);
+  }, [keyWord]);
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid md:grid-cols-2 gap-4">
       <div>
         <div className="text-sm mb-2">
           Type or Paste your current job responsibility below and click on
@@ -136,24 +82,48 @@ function Responsibilities({ data, closeModal, handleInputChange }) {
           placeholder="Type your job responsibility"
         />
         <button
-          // onClick={handleSubmit}
+          onClick={() => setKeyWord(responsibility)}
           className="bg-primary-500 text-white rounded-md px-6 py-2 text-sm"
         >
           Generate
         </button>
-        <Suggestions
-          jobTitle={responsibility}
-          handleChange={(value) => setResponsibility(value)}
-          handleAddSuggestion={handleAddSuggestion}
-          selected={editorValue}
-          responsibilities={suggestions}
-        />
+        {suggestions.length >= 1 && (
+          <Suggestions
+            jobTitle={keyWord}
+            handleChange={(value) => setResponsibility(value)}
+            handleAddSuggestion={handleAddSuggestion}
+            selected={editorValue}
+            responsibilities={suggestions}
+          />
+        )}
       </div>
-      <div className="relative ">
+      <div className="relative">
         <div className="text-sm mb-2">Product Designer | Konectin</div>
+        {loading && (
+          <div className="w-full absolute bg-white py-6 px-8">
+            <div className="animate-pulse space-y-1">
+              <div className="h-3 bg-neutral-500 bg-opacity-70 w-full max-w-sm mx-auto" />
+              <div className="h-3 bg-neutral-500 bg-opacity-70 w-24 mx-auto" />
+              <br />
+              <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+              <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+              <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+              <div className="h-3 bg-neutral-500 bg-opacity-70 w-24" />
+              <br />
+              <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+              <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+              <div className="h-3 bg-neutral-500 bg-opacity-70 w-full rounded" />
+              <div className="h-3 bg-neutral-500 bg-opacity-70 w-3/4 rounded" />
+              <div className="h-3 bg-neutral-500 bg-opacity-70 w-24" />
+            </div>
+          </div>
+        )}
         <Editor
-          apiKey="muetp0kpit1cdofn0tsv7aym5shbxqnxzglv3000ilo9pc0m"
-          onInit={(_, editor) => (editorRef.current = editor)}
+          apiKey={editorKey}
+          onInit={(_, editor) => {
+            editorRef.current = editor;
+            setLoading(false);
+          }}
           init={{
             menubar: false,
             resize: true,
@@ -167,17 +137,12 @@ function Responsibilities({ data, closeModal, handleInputChange }) {
           }}
           initialValue=""
           value={editorValue}
-          onEditorChange={handleEditorChange}
-          onDirty={() => setDirty(true)}
+          onEditorChange={(content) => setEditorValue(content)}
         />
-
-        {dirty && (
-          <p className="mr-auto w-max text-error-500">{errorMessage}</p>
-        )}
       </div>
       <button
         onClick={handleSubmit}
-        className="absolute bottom-4 right-4 bg-primary-500 text-white rounded-md px-6 py-2 text-sm"
+        className="relative md:absolute md:bottom-4 md:right-4 bg-primary-500 text-white rounded-md px-6 py-2 text-sm"
       >
         Apply
       </button>

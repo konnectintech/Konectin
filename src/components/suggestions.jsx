@@ -2,7 +2,6 @@ import * as BsIcon from "react-icons/bs";
 
 const Suggestions = ({
   jobTitle,
-  handleChange,
   handleAddSuggestion,
   responsibilities,
   selected,
@@ -10,18 +9,24 @@ const Suggestions = ({
   return (
     <section className="flex flex-col gap-2 mt-2">
       <p className="text-neutral-200 font-extralight tracking-[-0.01em] text-sm">
-        Showing 3 results for <span className="font-bold">{jobTitle}</span>
+        Showing {responsibilities.length} results for{" "}
+        <span className="font-bold">{jobTitle}</span>
       </p>
       <div className="bg-neutral-1000 border border-neutral-500 overflow-y-auto rounded h-full max-h-[190px] min-h-[100px]">
         {responsibilities.map((item, index) => {
           return item.error ? (
             <div
               key={index}
-              className={`p-3 w-full flex gap-4 items-start border-b border-neutral-500`}
+              className={`p-3 w-full flex gap-4 items-start border-b border-neutral-500 animate-pulse`}
             >
-              <p className="text-xs text-neutral-100 font-light">
-                {item.error}
-              </p>
+              <div>
+                <div className="h-12 w-12 bg-neutral-500 bg-opacity-70 rounded" />
+              </div>
+              <div className="w-full space-y-1">
+                <div className="h-4 bg-neutral-500 bg-opacity-70 w-full rounded" />
+                <div className="h-4 bg-neutral-500 bg-opacity-70 w-full rounded" />
+                <div className="h-4 bg-neutral-500 bg-opacity-70 w-24 rounded" />
+              </div>
             </div>
           ) : (
             <div

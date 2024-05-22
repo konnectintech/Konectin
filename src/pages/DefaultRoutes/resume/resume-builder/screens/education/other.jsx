@@ -142,7 +142,7 @@ function Other() {
         currentEditedEducation - 1 <= 0 ? 0 : currentEditedEducation - 1,
     }));
 
-    navigate("/resume/builder/education/");
+    navigate("/services/resume/builder/education/");
   };
 
   const handleSubmit = (event) => {
@@ -205,7 +205,7 @@ function Other() {
         education.endMonth !== "" ||
         education.endYear !== "")
     ) {
-      navigate("/resume/builder/skills");
+      navigate("/services/resume/builder/education/list");
     }
   };
 

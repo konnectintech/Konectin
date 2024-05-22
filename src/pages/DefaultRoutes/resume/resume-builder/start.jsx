@@ -8,16 +8,16 @@ const StartBuilder = () => {
     JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
 
   const links = [
-    "/resume/builder",
+    "/services/resume/builder",
     jobExperience
       ? Object.keys(jobExperience).length <= 1
-        ? "/resume/builder/employment-experience"
-        : "/resume/builder/employment-experience/job-activities"
-      : "/resume/builder/employment-experience",
-    "/resume/builder/education",
-    "/resume/builder/skills",
-    "/resume/builder/bio",
-    "/resume/builder/download",
+        ? "/services/resume/builder/employment-experience"
+        : "/services/resume/builder/employment-experience/job-activities"
+      : "/services/resume/builder/employment-experience",
+    "/services/resume/builder/education",
+    "/services/resume/builder/skills",
+    "/services/resume/builder/bio",
+    "/services/resume/builder/download",
   ];
 
   const navigate = useNavigate();
@@ -73,7 +73,7 @@ const StartBuilder = () => {
       })
     );
 
-    navigate("/resume/ai");
+    navigate("/services/resume/ai");
   };
 
   return (

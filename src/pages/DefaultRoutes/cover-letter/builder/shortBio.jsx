@@ -16,7 +16,7 @@ const ShortBio = ({ data, isLogged }) => {
 
     if (data && data.length >= 2) {
       setErrorMessage("");
-      navigate("/cover-letter/info-ended");
+      navigate("/services/cover-letter/info-ended");
     }
   }
 

@@ -15,7 +15,7 @@ const Profession = ({ data }) => {
 
   useEffect(() => {
     if (!data.firstName || !data.lastName) {
-      navigate("/resume/ai/");
+      navigate("/services/resume/ai/");
     }
   }, [navigate, data]);
 
@@ -26,7 +26,7 @@ const Profession = ({ data }) => {
       setError("Please enter a profession");
       return;
     }
-    navigate("/resume/ai/template-selector");
+    navigate("/services/resume/ai/template-selector");
   };
 
   const handleSelect = (value) => {

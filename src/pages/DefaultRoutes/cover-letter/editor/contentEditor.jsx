@@ -18,6 +18,7 @@ function ContentEditor() {
   const editorRef = useRef(null);
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
   const azureApiKey = import.meta.env.VITE_OPENAI_KEY;
+  const editorKey = import.meta.env.VITE_CLIENT_TINYMCE_EDITOR_KEY;
 
   // useEffect(() => {
   //   // const content = CVData.content.replaceAll("<p>", "").replaceAll("</p>", "");
@@ -136,7 +137,7 @@ function ContentEditor() {
         </div>
       )}
       <Editor
-        apiKey="muetp0kpit1cdofn0tsv7aym5shbxqnxzglv3000ilo9pc0m"
+        apiKey={editorKey}
         onInit={(_, editor) => {
           editorRef.current = editor;
           setLoading(false);

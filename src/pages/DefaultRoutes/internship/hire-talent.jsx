@@ -62,8 +62,8 @@ const HireTalent = () => {
     }
   };
   return (
-    <div className="flex bg-neutral-50 justify-center py-24 mt-20 items-center">
-      <div className="w-full max-w-2xl">
+    <main className="flex bg-neutral-50 justify-center items-center">
+      <div className="w-full max-w-2xl pt-12">
         <h1 className="text-3xl font-semibold mb-2">
           Internship Partnership Form
         </h1>
@@ -74,30 +74,32 @@ const HireTalent = () => {
           Join us in shaping the future workforce by offering internship
           opportunities.
         </p>
-        <div className="bg-white p-10   rounded-lg shadow-lg ">
+        <div className="bg-white p-10 rounded-lg shadow-lg">
           <div className="flex justify-center">
-            <div className="flex items-center w-1/2 justify-center gap-4 mb-16">
+            <div className="flex items-center w-3/4 justify-center gap-4 mb-8">
               {[1, 2, 3, 4].map((num) => (
-                <div className="flex w-1/4 items-center  mb-2 ">
+                <div className="flex w-full items-center mb-2 gap-3">
                   <span
-                    className={`h-6  w-6 flex justify-center items-center  border-2 ${
+                    className={`h-6 w-6 flex justify-center items-center border-2 ${
                       currentStep >= num
                         ? "border-primary-500 text-primary-500"
                         : "border-neutral-500 text-neutral-500"
-                    } rounded-full mr-3`}
+                    } rounded-full text-xs`}
                   >
                     {num}
                   </span>
-                  <span
-                    className={`block w-1/2 h-0.5 ${
-                      currentStep >= num ? "bg-primary-500" : "bg-neutral-500"
-                    } rounded-full`}
-                  ></span>
-                  <span
-                    className={`h-2 w-2  ${
-                      currentStep >= num ? "bg-primary-500" : "bg-neutral-500"
-                    }  rounded-full`}
-                  ></span>
+                  <div className="flex-1 flex items-center">
+                    <span
+                      className={`block flex-1 h-0.5 ${
+                        currentStep >= num ? "bg-primary-500" : "bg-neutral-500"
+                      } rounded-full`}
+                    ></span>
+                    <span
+                      className={`h-2 w-2 ${
+                        currentStep >= num ? "bg-primary-500" : "bg-neutral-500"
+                      }  rounded-full`}
+                    ></span>
+                  </div>
                 </div>
               ))}
             </div>
@@ -105,7 +107,7 @@ const HireTalent = () => {
           {renderStep()}
         </div>
 
-        <div className="flex justify-between ">
+        <div className="flex justify-between">
           <button
             onClick={prevStep}
             className=" mt-10 ali p-3 px-10 bg-white text-primary-600 border border-primary-600 font-semibold rounded-lg"
@@ -120,7 +122,7 @@ const HireTalent = () => {
           </button>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 
