@@ -1,17 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BlogCard from "../../../../components/blog/blogCard";
 import Pagination from "../../../../components/pagination";
 
-function Feed({ newBlogs, trendingBlogs, gridNumber }) {
+function Feed({ newBlogs, trendingBlogs }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [cardsPerPage] = useState(gridNumber);
+  const [cardsPerPage] = useState(9);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [newBlogs]);
 
   // Every thing Pagination
   const LastCardOfNewBlog = currentPage * (cardsPerPage - 3); // Get the last new blog in the page
   const FirstCardOfNewBlog = LastCardOfNewBlog - (cardsPerPage - 3); // Get the first new blog in the page
 
   const paginate = (pageNumber) => {
-    window.scrollTo({ top: 350, left: 0, behavior: "smooth" });
+    window.scrollTo({ top: 550, left: 0, behavior: "smooth" });
     setCurrentPage(pageNumber);
   };
 
@@ -38,7 +42,7 @@ function Feed({ newBlogs, trendingBlogs, gridNumber }) {
         </div>
       )}
       <Pagination
-        cardsPerPage={cardsPerPage}
+        cardsPerPage={cardsPerPage - 3}
         totalCards={newBlogs.length}
         currentPage={currentPage}
         paginate={paginate}

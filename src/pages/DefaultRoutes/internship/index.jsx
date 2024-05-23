@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 
 function Internship() {
   return (
-    <section className="min-h-[70vh] relative overflow-hidden">
-      <div className="w-11/12 mx-auto max-w-screen-2xl min-h-[70vh] flex flex-col md:gap-16 lg:gap-48 md:flex-row items-center py-32">
+    <main className="min-h-[70vh] relative overflow-hidden">
+      <div className="w-11/12 mx-auto max-w-screen-2xl pt-16 min-h-[70vh] flex flex-col md:gap-16 lg:gap-48 md:flex-row items-center">
         <div className="flex flex-col gap-6 w-full my-auto md:w-9/12 lg:w-6/12">
           <div>
             <motion.p
@@ -56,14 +56,24 @@ function Internship() {
             tech landscape in Africa. Are you ready to make your mark and
             accelerate your career?
           </motion.p>
-          <motion.div variants={textVariantUp(0.8)}>
-            <Link
-              className="rounded-md w-fit block bg-secondary-500 py-4 px-6 text-white"
-              to="intern-application"
-            >
-              Begin Your Journey Now
-            </Link>
-          </motion.div>
+          <div className="flex items-center gap-8">
+            <motion.div className="flex-1" variants={textVariantUp(0.8)}>
+              <Link
+                className="rounded-md w-full text-center block bg-secondary-500 py-4 px-6 text-white"
+                to="intern-application"
+              >
+                Begin Your Journey Now
+              </Link>
+            </motion.div>
+            <motion.div className="flex-1" variants={textVariantUp(0.8)}>
+              <Link
+                className="rounded-md w-full flex p-4 justify-center text-secondary-500 border border-secondary-500 "
+                to="hire-talent"
+              >
+                Hire Talent
+              </Link>
+            </motion.div>
+          </div>
         </div>
 
         <picture className="hidden md:block relative">
@@ -84,7 +94,7 @@ function Internship() {
           </div>
         </picture>
       </div>
-    </section>
+    </main>
   );
 }
 

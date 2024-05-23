@@ -12,7 +12,7 @@ const Level = ({ data }) => {
 
   useEffect(() => {
     if (!data.firstName || !data.lastName) {
-      navigate("/resume/ai/");
+      navigate("/services/resume/ai/");
     }
   }, [navigate, data]);
 
@@ -22,7 +22,7 @@ const Level = ({ data }) => {
       setError("Please select a profession level");
       return;
     }
-    navigate("/resume/ai/profession");
+    navigate("/services/resume/ai/profession");
   };
 
   return (

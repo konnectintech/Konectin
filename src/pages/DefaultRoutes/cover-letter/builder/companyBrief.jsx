@@ -24,7 +24,7 @@ function CompanyBrief({ data }) {
 
     if (data.length >= 2) {
       setErrorMessage("");
-      navigate("/cover-letter/short-bio");
+      navigate("/services/cover-letter/short-bio");
     }
   };
 

@@ -285,7 +285,7 @@ function InternApplication() {
   };
 
   return (
-    <section className="min-h-[70vh] overflow-hidden">
+    <main className="min-h-[70vh] overflow-hidden">
       {loading && (
         <div className="fixed no-scrollbar w-full h-screen top-0 left-0 z-[100] flex">
           <div className="bg-neutral-100 opacity-70 absolute w-full h-full"></div>
@@ -345,7 +345,7 @@ function InternApplication() {
           />
         </div>
       )}
-      <div className="w-11/12 mx-auto max-w-screen-2xl min-h-[70vh] flex flex-col md:gap-4 lg:gap-8 md:flex-row items-start py-32">
+      <div className="w-11/12 mx-auto max-w-screen-2xl min-h-[70vh] flex flex-col md:gap-4 lg:gap-8 md:flex-row items-start">
         <div className="flex flex-col gap-6 w-full pt-12 md:w-10/12 lg:w-8/12">
           <motion.h1
             variants={textVariantUp()}
@@ -445,7 +445,7 @@ function InternApplication() {
           <img src={happyTeam} alt="Konectin Internship" />
         </motion.picture>
       </div>
-    </section>
+    </main>
   );
 }
 

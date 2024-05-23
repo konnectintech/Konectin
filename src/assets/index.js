@@ -11,8 +11,9 @@ import microsoftIcon from "./icons/microsoft.svg";
 import guardIcon from "./icons/guard.svg";
 import chevronDownArrow from "./icons/chevron-down.svg";
 import chevronUpArrow from "./icons/chevron-up.svg";
-import konectinLogo from "./icons/konectin.png";
-import konectinIcon from "./icons/konectin.svg";
+import konectinLogo from "./icons/konectin.svg";
+import konectinIcon from "./icons/konectin 1.svg";
+import megaSpeakerIcon from "./icons/mega speaker.svg";
 import errorTriangle from "./icons/alert-triangle.svg";
 import locationIcon from "./icons/location.svg";
 import mailIcon from "./icons/mail.svg";
@@ -117,6 +118,9 @@ import orangeLoader from "./icons/orange-loader.gif";
 import botIcon from "./images/bot/bot.svg";
 import card3Image from "./images/card 3.png";
 import uploadResume from "./images/upload resume.png";
+import educationImage from "./images/education.png";
+import educationImage1 from "./images/education 1.png";
+import educationImage2 from "./images/education 2.png";
 import createResume from "./images/create resume.png";
 import ResumeHeroImage from "./images/resume hero.png";
 import ResumeTemplateCrossImage from "./images/resume cross.png";
@@ -125,7 +129,7 @@ import BuilderBg from "./images/builder-bg.png";
 import ResumeTemplateSample1Image from "./images/resume template 1.png";
 import ResumeCTAImage from "./images/cta.png";
 import basicInfo from "./icons/basic_info.svg";
-import workExpirience from "./icons/work_experience.svg";
+import workExperience from "./icons/work_experience.svg";
 import education from "./icons/education.svg";
 import skill from "./icons/skill.svg";
 import bio from "./icons/bio.svg";
@@ -211,6 +215,7 @@ export {
   guardIcon,
   konectinLogo,
   konectinIcon,
+  megaSpeakerIcon,
   errorTriangle,
   locationIcon,
   mailIcon,
@@ -283,7 +288,7 @@ export {
   uploadResume,
   botIcon,
   basicInfo,
-  workExpirience,
+  workExperience,
   education,
   skill,
   bio,
@@ -307,6 +312,9 @@ export {
   search,
   slidersBlack,
   plusCircle,
+  educationImage,
+  educationImage1,
+  educationImage2,
 
   //Dashboard Images
   bell,

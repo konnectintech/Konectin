@@ -2,15 +2,15 @@
 import * as FaIcon from "react-icons/fa";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { useTemplateContext } from "../../../../../../../middleware/resume";
+import { useTemplateContext } from "../../../../../../middleware/resume";
 
 import DatePicker from "react-multi-date-picker";
-import NavigationButton from "../../navigationButton";
-import CountryInput from "../../../../../../../components/form/countryInput";
-import CityInput from "../../../../../../../components/form/cityInput";
-import StateInput from "../../../../../../../components/form/stateInput";
-import { onSectionComplete, verifyInput } from "../../verification";
-import SelectedTemplates from "../../../resume-templates";
+import NavigationButton from "../navigationButton";
+import CountryInput from "../../../../../../components/form/countryInput";
+import CityInput from "../../../../../../components/form/cityInput";
+import StateInput from "../../../../../../components/form/stateInput";
+import { onSectionComplete, verifyInput } from "../verification";
+import SelectedTemplates from "../../resume-templates";
 
 function CollegeForm() {
   const [countryId, setCountryId] = useState(0);
@@ -35,7 +35,6 @@ function CollegeForm() {
   const navigate = useNavigate();
   const { templateData, setTemplateData } = useTemplateContext();
   const currentEditedEducation = templateData.currentEditedEducation;
-  console.log(currentEditedEducation);
 
   const [education, setEducation] = useState(
     templateData.education[currentEditedEducation - 1]
@@ -143,7 +142,7 @@ function CollegeForm() {
         currentEditedEducation - 1 <= 0 ? 0 : currentEditedEducation - 1,
     }));
 
-    navigate("/resume/builder/education/");
+    navigate("/services/resume/builder/education/");
   };
 
   const handleSubmit = (event) => {
@@ -204,7 +203,7 @@ function CollegeForm() {
         education.endMonth !== "" ||
         education.endYear !== "")
     ) {
-      navigate("/resume/builder/education/list");
+      navigate("/services/resume/builder/education/list");
     }
   };
 
@@ -440,7 +439,7 @@ function CollegeForm() {
           </form>
         </div>
 
-        <div className="max-md:hidden w-1/2">
+        <div className="max-lg:hidden w-1/2">
           <div className="h-[360px] sm:h-[300px] md:h-[500px] lg:h-[580px] lg:w-[500px] flex items-center justify-center">
             <div className="md:scale-[42%] lg:scale-[50%] mt-10">
               <SelectedTemplates data={templateData} />

@@ -23,7 +23,7 @@ function JobDescription({ data }) {
 
     if (data.length >= 2) {
       setErrorMessage("");
-      navigate("/cover-letter/company-info");
+      navigate("/services/cover-letter/company-info");
     }
   };
 

@@ -6,7 +6,7 @@ import NavigationButton from "../navigationButton";
 import SelectedTemplates from "../../resume-templates";
 import { onSectionComplete } from "../verification";
 
-const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
+const JobActivities = () => {
   const { templateData, setTemplateData } = useTemplateContext();
   const [showMore, setShowMore] = useState(-1);
 
@@ -20,14 +20,58 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const addWorkExperience = () => {
+    setTemplateData((prev) => ({
+      ...prev,
+      jobExperience: [
+        ...prev.jobExperience,
+        {
+          city: "",
+          company: "",
+          country: "",
+          current: false,
+          endMonth: "",
+          endYear: "",
+          jobTitle: "",
+          startMonth: "",
+          startYear: "",
+          state: "",
+          workDesc: "",
+        },
+      ],
+      currentEditedJob: prev.currentEditedJob + 1,
+    }));
+
+    navigate("/services/resume/builder/employment-experience/");
+  };
+
+  const goBack = () => {
+    // if the array contains more than one object it goes to the basicInfo page otherwise goes to the job responsibility page
+    if (Object.keys(templateData.jobExperience).length <= 1) {
+      navigate("/services/resume/builder/employment-experience/");
+      return;
+    }
+
+    navigate("/services/resume/builder/");
+  };
+
+  const deleteExperience = (index) => {
+    templateData.jobExperience.splice(index, 1);
+
+    setTemplateData((prev) => ({
+      ...prev,
+      jobExperience: templateData.jobExperience,
+    }));
+  };
+
   return (
-    <div className="max-w-6xl mx-auto">
-      <div className="flex flex-col md:flex-row items-start justify-between self-center  gap-10">
-        <div className="mt-8 flex flex-col justify-center">
-          <h2 className="-mt-6 max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
+    <div className="max-w-6xl mx-auto w-full">
+      <div className="flex flex-col md:flex-row items-start justify-between self-center gap-10 w-full">
+        <div className="mt-8 flex flex-col justify-center w-full">
+          <h2 className="-mt-6 md:max-w-[30ch] text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
             Work Experience
           </h2>
-          <p className="text-neutral-300 text-sm tracking-[-0.01rem] my-3 max-w-2xl">
+          <p className="text-neutral-300 text-sm tracking-[-0.01rem] my-3 max-w-2xl w-full">
             Add, edit or delete your work experience.
           </p>
           {templateData.jobExperience.map((data, index) => (
@@ -49,11 +93,11 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
                 </p>
               </div>
               <div className="border w-full border-neutral-500 rounded-lg bg-white p-4">
-                <div className="flex justify-between gap-3">
+                <div className="flex justify-between items-center gap-3 md:gap-6">
                   <h3 className="font-extrabold text-neutral-300 text-lg capitalize">
                     {data.jobTitle}
                   </h3>
-                  <div className="space-x-2 text-neutral-400">
+                  <div className="text-neutral-400 flex gap-2 items-center">
                     <button
                       onClick={() => {
                         setTemplateData((prev) => ({
@@ -61,7 +105,9 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
                           currentEditedJob: index + 1,
                         }));
 
-                        navigate("/resume/builder/employment-experience");
+                        navigate(
+                          "/services/resume/builder/employment-experience"
+                        );
                       }}
                     >
                       <FaPen size="1rem" />
@@ -105,7 +151,7 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
                   onClick={() =>
                     setShowMore((prev) => (prev === index ? -1 : index))
                   }
-                  className="text-neutral-500 text-xs font-extralight flex items-center mt-4"
+                  className="text-secondary-400 text-xs font-extralight flex items-center mt-4"
                 >
                   {showMore === index ? (
                     <>
@@ -125,7 +171,7 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
 
           <div
             className="flex items-center border-none outline-none cursor-pointer"
-            onClick={addCompany}
+            onClick={addWorkExperience}
           >
             <div className="bg-primary-400 text-neutral-1000 p-2 border rounded-full">
               <FaPlus size="0.6rem" />
@@ -134,16 +180,9 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
               Add Company
             </span>
           </div>
-
-          {/* <button
-            onClick={() => navigate("/resume/builder/education")}
-            className="text-secondary-500 text-sm font-extralight tracking-[0.02rem] underline mt-8"
-          >
-            Skip this step
-          </button> */}
         </div>
 
-        <div className="max-md:hidden w-1/2">
+        <div className="max-lg:hidden w-1/2">
           <div className="h-[360px] sm:h-[300px] md:h-[500px] lg:h-[580px] lg:w-[500px] flex items-center justify-center">
             <div className="md:scale-[42%] lg:scale-[50%] mt-10">
               <SelectedTemplates data={templateData} />
@@ -159,8 +198,8 @@ const JobActivities = ({ addCompany, goBack, deleteExperience }) => {
             onSectionComplete(templateData, 3);
             navigate(
               Object.keys(templateData?.education || []).length <= 0
-                ? "/resume/builder/education"
-                : "/resume/builder/education/list"
+                ? "/services/resume/builder/education"
+                : "/services/resume/builder/education/list"
             );
           }}
         />

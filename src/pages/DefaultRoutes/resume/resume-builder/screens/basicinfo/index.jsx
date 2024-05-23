@@ -11,13 +11,14 @@ const BasicInformation = ({ data, onInputChange }) => {
   const {
     firstName,
     lastName,
+    profession,
     city,
     state,
     country,
     phoneNumber,
     zipCode,
     email,
-    profile_url,
+    profileUrl,
   } = data?.basicInfo;
 
   const [code, setCode] = useState("");
@@ -27,16 +28,20 @@ const BasicInformation = ({ data, onInputChange }) => {
   // Input Validation Error Reference
   const firstNameErrMsg = useRef(null);
   const lastNameErrMsg = useRef(null);
+  const professionErrMsg = useRef(null);
   const phoneNumberErrMsg = useRef(null);
   const zipCodeErrMsg = useRef(null);
   const emailErrMsg = useRef(null);
+  const profileUrlErrMsg = useRef(null);
 
   let allErrMsg = [
     firstNameErrMsg,
     lastNameErrMsg,
+    professionErrMsg,
     phoneNumberErrMsg,
     zipCodeErrMsg,
     emailErrMsg,
+    profileUrlErrMsg,
   ];
 
   const navigate = useNavigate();
@@ -88,6 +93,7 @@ const BasicInformation = ({ data, onInputChange }) => {
           errorHolder = allErrMsg.filter(
             (ref) => ref.current.getAttribute("for") === holder
           );
+          console.log(holder, errorHolder);
           errorHolder = errorHolder[0].current;
           verifyInput(data.basicInfo[holder], errorHolder, holder);
           break;
@@ -104,7 +110,9 @@ const BasicInformation = ({ data, onInputChange }) => {
           return;
         }
 
-        navigate("/resume/builder/employment-experience/job-activities");
+        navigate(
+          "/services/resume/builder/employment-experience/job-activities"
+        );
         return;
       }
 
@@ -114,7 +122,7 @@ const BasicInformation = ({ data, onInputChange }) => {
 
   return (
     <div className="max-w-6xl mx-auto">
-      <div className=" flex flex-col mb-4 lg:flex-row items-start justify-between self-center gap-10">
+      <div className="flex flex-col mb-4 lg:flex-row items-start justify-between self-center gap-10">
         <div className="flex flex-col justify-center w-full">
           <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
             Basic Information
@@ -125,7 +133,7 @@ const BasicInformation = ({ data, onInputChange }) => {
           </p>
 
           <div className="w-full">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid xxs:grid-cols-2 xxs:gap-4">
               <div className="flex flex-col">
                 <input
                   className="input-container"
@@ -167,6 +175,23 @@ const BasicInformation = ({ data, onInputChange }) => {
               <input
                 className="input-container"
                 type="text"
+                placeholder="Profession"
+                value={profession}
+                name="profession"
+                id="profession"
+                onChange={(e) => handleInputChange(e, "profession")}
+              />
+              <label
+                className="-mt-5 text-xs pl-4 text-error-500 hidden"
+                htmlFor="profession"
+                ref={professionErrMsg}
+              ></label>
+            </div>
+
+            <div className="flex flex-col">
+              <input
+                className="input-container"
+                type="text"
                 placeholder="Phone"
                 minLength="12"
                 maxLength="12"
@@ -179,12 +204,6 @@ const BasicInformation = ({ data, onInputChange }) => {
                     .replace(/(\d{3})(\d{3})(\d{4})/, "$1 $2 $3")
                     .trim();
 
-                  onInputChange({
-                    section: "basicInfo",
-                    subsection: "phoneNumber",
-                    values: e.target.value,
-                  });
-
                   handleInputChange(e, "phoneNumber");
                 }}
               />
@@ -195,13 +214,13 @@ const BasicInformation = ({ data, onInputChange }) => {
               ></label>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid xxs:grid-cols-2 xxs:gap-4">
               {/* Country  */}
               <CountryInput
                 setCode={setCode}
                 handleChange={handleCCSChange}
-                country={country}
                 setCountryId={setCountryId}
+                country={country}
               />
               {/* State */}
               <StateInput
@@ -212,7 +231,7 @@ const BasicInformation = ({ data, onInputChange }) => {
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid xxs:grid-cols-2 xxs:gap-4">
               {/* City */}
               <CityInput
                 countryId={countryId}
@@ -228,7 +247,10 @@ const BasicInformation = ({ data, onInputChange }) => {
                   minLength="4"
                   maxLength="6"
                   value={zipCode}
-                  onChange={(e) => handleInputChange(e, "zipCode", "zipcode")}
+                  onChange={(e) => handleInputChange(e, "zipCode")}
+                  onInput={(e) => {
+                    handleInputChange(e, "zipcode");
+                  }}
                   placeholder="Zip Code"
                   name="zipcode"
                   id="zipCode"
@@ -250,6 +272,7 @@ const BasicInformation = ({ data, onInputChange }) => {
                 id="email"
                 onChange={(e) => handleInputChange(e, "email")}
                 placeholder="Email*"
+                required
               />
               <label
                 className="-mt-5 mb-4 text-xs pl-4 text-error-500 hidden"
@@ -261,22 +284,22 @@ const BasicInformation = ({ data, onInputChange }) => {
               <input
                 className="input-container"
                 type="url"
-                value={profile_url}
-                name="profile_url"
-                id="profile_url"
-                onChange={(e) => handleInputChange(e, "profile_url")}
+                value={profileUrl}
+                name="profileUrl"
+                id="profileUrl"
+                onChange={(e) => handleInputChange(e, "profileUrl")}
                 placeholder="Portfolio Link / Website / LinkedIn Profile"
               />
               <label
                 className="-mt-5 mb-4 text-xs pl-4 text-error-500 hidden"
-                htmlFor="email"
-                ref={emailErrMsg}
+                htmlFor="profileUrl"
+                ref={profileUrlErrMsg}
               ></label>
             </div>
           </div>
         </div>
 
-        <div className="max-md:hidden w-1/2">
+        <div className="max-lg:hidden w-1/2">
           <div className="h-[360px] sm:h-[300px] md:h-[500px] lg:h-[580px] lg:w-[500px] flex items-center justify-center">
             <div className="md:scale-[42%] lg:scale-[50%] mt-10">
               <SelectedTemplates data={data} />
@@ -285,7 +308,7 @@ const BasicInformation = ({ data, onInputChange }) => {
         </div>
       </div>
       <NavigationButton
-        back={() => navigate("/resume/ai/template-selector")}
+        back={() => navigate("/services/resume/ai/template-selector")}
         cont={handleSubmit}
       />
     </div>

@@ -1,15 +1,13 @@
-import { FaPlus, FaPen, FaTrash, FaCaretDown, FaCaretUp } from "react-icons/fa";
+import { FaPlus, FaPen, FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useTemplateContext } from "../../../../../../middleware/resume";
 import SelectedTemplates from "../../resume-templates";
 import NavigationButton from "../navigationButton";
 import { onSectionComplete } from "../verification";
 
-const CollegeList = ({ data }) => {
+const EducationList = ({ data }) => {
   const { templateData, setTemplateData } = useTemplateContext();
-  const [showMore, setShowMore] = useState(-1);
-  console.log(templateData);
 
   const navigate = useNavigate();
 
@@ -23,39 +21,18 @@ const CollegeList = ({ data }) => {
 
   // add another empty valued object into the education and navigates to the first job field
   const addCollege = () => {
-    setTemplateData((prev) => ({
-      ...prev,
-      education: [
-        ...data.education,
-        {
-          city: "",
-          company: "",
-          country: "",
-          current: false,
-          endMonth: "",
-          endYear: "",
-          jobTitle: "",
-          startMonth: "",
-          startYear: "",
-          state: "",
-          workDesc: "",
-        },
-      ],
-      currentEditedEducation: prev.currentEditedEducation + 1,
-    }));
-
-    navigate("/resume/builder/education/");
+    navigate("/services/resume/builder/education/");
   };
 
   // Controls the activities go back functions
   const goBack = () => {
     // if the array contains more than one object it goes to the basicInfo page otherwise goes to the job responsibility page
     if (Object.keys(data.education).length <= 1) {
-      navigate("/resume/builder/education/college");
+      navigate("/services/resume/builder/education/college");
       return;
     }
 
-    navigate("/resume/builder/");
+    navigate("/services/resume/builder/employment-experience/job-activities");
   };
 
   const deleteCollege = (index) => {
@@ -80,11 +57,11 @@ const CollegeList = ({ data }) => {
           {templateData.education.map((data, index) => (
             <section
               key={index}
-              className="w-full flex flex-col items-start mx-auto mb-4"
+              className="w-full flex flex-col items-start mx-auto mb-4 gap-2"
             >
-              <div className="flex flex-col md:justify-between md:flex-row ">
-                <p className="font-bold text-neutral-300 capitalize text-sm mb-4">
-                  {data.schoolName}
+              <div className="flex flex-col md:justify-between md:flex-row">
+                <p className="font-bold text-neutral-300 capitalize text-sm">
+                  {data.schoolName === "" ? "" : data.schoolName}
                   {(data.city || data.state || data.country) && " | "}
                   <span className="font-medium">
                     {data.city}
@@ -95,12 +72,13 @@ const CollegeList = ({ data }) => {
                   </span>
                 </p>
               </div>
+
               <div className="border w-full border-neutral-500 rounded-lg bg-white p-4">
-                <div className="flex justify-between gap-3">
-                  <h3 className="font-extrabold text-neutral-300 text-lg capitalize">
+                <div className="flex justify-between items-center gap-3">
+                  <h3 className="font-semibold text-neutral-300 text-lg capitalize">
                     {data.degree}
                   </h3>
-                  <div className="space-x-2 text-neutral-400">
+                  <div className="space-x-2 text-neutral-400 text-xs">
                     <button
                       onClick={() => {
                         setTemplateData((prev) => ({
@@ -108,7 +86,9 @@ const CollegeList = ({ data }) => {
                           currentEditedEducation: index + 1,
                         }));
 
-                        navigate("/resume/builder/education/college");
+                        navigate(
+                          `/services/resume/builder/education/${data.type}`
+                        );
                       }}
                     >
                       <FaPen size="1rem" />
@@ -126,41 +106,12 @@ const CollegeList = ({ data }) => {
                     </button>
                   </div>
                 </div>
-                <p className="font-light text-neutral-300 text-sm leading-3 mt-3">
+                <p className="font-light text-neutral-300 text-sm leading-3 my-2">
                   {data.startMonth} {data.startYear} -
                   {data.current
                     ? " Present"
                     : ` ${data.endMonth} ${data.endYear}`}
                 </p>
-                <div
-                  className={`text-neutral-400 text-xs ${
-                    showMore === index ? "line-clamp-none" : "line-clamp-4"
-                  } job-desc mt-3`}
-                >
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: data.workDesc,
-                    }}
-                  />
-                </div>
-                <button
-                  onClick={() =>
-                    setShowMore((prev) => (prev === index ? -1 : index))
-                  }
-                  className="text-neutral-500 text-xs font-extralight flex items-center mt-4"
-                >
-                  {showMore === index ? (
-                    <>
-                      Show less
-                      <FaCaretUp className="ml-1" size="0.5rem" />
-                    </>
-                  ) : (
-                    <>
-                      Show more
-                      <FaCaretDown className="ml-1" size="0.5rem" />
-                    </>
-                  )}
-                </button>
               </div>
             </section>
           ))}
@@ -172,7 +123,7 @@ const CollegeList = ({ data }) => {
             <div className="bg-primary-400 text-neutral-1000 p-2 border rounded-full">
               <FaPlus size="0.6rem" />
             </div>
-            <span className=" ml-3 font-extrabold text-sm text-neutral-400">
+            <span className="ml-3 font-extrabold text-sm text-neutral-400">
               Add Education
             </span>
           </div>
@@ -199,7 +150,7 @@ const CollegeList = ({ data }) => {
           back={goBack}
           cont={() => {
             onSectionComplete(templateData);
-            navigate("/resume/builder/skills");
+            navigate("/services/resume/builder/skills");
           }}
         />
       </div>
@@ -207,4 +158,4 @@ const CollegeList = ({ data }) => {
   );
 };
 
-export default CollegeList;
+export default EducationList;

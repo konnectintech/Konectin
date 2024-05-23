@@ -26,7 +26,7 @@ function Faq() {
   }, [active]);
 
   return (
-    <div className="flex flex-col md:flex-row bg-neutral-800 pt-20 relative min-h-screen">
+    <div className="flex flex-col md:flex-row bg-neutral-800 pt-40 sm:pt-32 relative min-h-screen">
       <div className="w-full md:w-4/12 lg:max-w-[250px] md:min-h-[60vh] md:bg-neutral-1000 md:py-8 px-4 space-y-6">
         <h1 className="text-xl font-bold md:px-4">FAQs</h1>
         <div>

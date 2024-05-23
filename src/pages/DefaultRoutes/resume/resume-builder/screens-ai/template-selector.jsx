@@ -8,7 +8,7 @@ const TemplateSelector = ({ data }) => {
 
   useEffect(() => {
     if (!data.profession) {
-      navigate("/resume/ai/profession/");
+      navigate("/services/resume/ai/profession/");
     }
   }, [navigate, data]);
 

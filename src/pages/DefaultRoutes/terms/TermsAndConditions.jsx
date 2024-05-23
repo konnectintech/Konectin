@@ -24,7 +24,7 @@ const TermsAndCondition = () => {
   };
 
   return (
-    <div className="terms px-6 py-16 md:px-16 flex flex-col">
+    <main className="terms px-6 md:px-16 flex flex-col">
       <h1 className="mt-4 flex items-center text-2xl font-black justify-center">
         Terms & Conditions
       </h1>
@@ -843,7 +843,7 @@ const TermsAndCondition = () => {
           <p>Email: admin@konectin.org</p>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

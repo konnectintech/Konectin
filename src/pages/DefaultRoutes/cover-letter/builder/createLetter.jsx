@@ -17,7 +17,7 @@ function CreateLetter() {
 
     // If Letter exist
     if (CVData._id) {
-      navigate(`/cover-letter/editor?id=${CVData._id}`);
+      navigate(`/services/cover-letter/editor?id=${CVData._id}`);
       return;
     }
 
@@ -27,7 +27,7 @@ function CreateLetter() {
       .then((res) => {
         setCVData({ ...res.data.data });
         setLoading(false);
-        navigate(`/cover-letter/editor?id=${res.data.data._id}`);
+        navigate(`/services/cover-letter/editor?id=${res.data.data._id}`);
       })
       .catch((err) => {
         setLoading(false);

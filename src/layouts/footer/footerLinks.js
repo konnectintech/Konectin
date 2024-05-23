@@ -2,9 +2,9 @@ export const FooterLinks = [
   {
     head: "Services",
     sublinks: [
-      { link: "/login", name: "Get Hired" },
-      { link: "/", name: "Hire Talent" },
-      { link: "/resume", name: "Resume Builder" },
+      { link: "/services/internship", name: "Get Hired" },
+      { link: "/services/internship/partnership", name: "Hire Talent" },
+      { link: "/services/resume", name: "Resume Builder" },
     ],
   },
   {

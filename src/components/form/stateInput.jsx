@@ -1,38 +1,37 @@
-import { useState, useRef } from "react";
-import { GetState } from "react-country-state-city/dist/cjs";
+import { useRef } from "react";
 import { verifyInput } from "../../pages/DefaultRoutes/resume/resume-builder/screens/verification";
 
 function StateInput({ countryId, handleChange, state, setStateId }) {
-  const [stateList, setStateList] = useState([]);
-  const [showState, setShowState] = useState(false);
+  // const [stateList, setStateList] = useState([]);
+  // const [showState, setShowState] = useState(false);
   const errorMessage = useRef(null);
 
   const handleStateInput = (input) => {
-    setShowState(true);
-    GetState(countryId).then((result) => {
-      const filtered = result.filter((state) =>
-        state.name.toLowerCase().startsWith(input.toLowerCase())
-      );
+    // setShowState(true);
+    // GetState(countryId).then((result) => {
+    //   const filtered = result.filter((state) =>
+    //     state.name.toLowerCase().startsWith(input.toLowerCase())
+    //   );
 
-      if (filtered.length >= 0) {
-        setStateList(filtered);
-      }
-    });
+    //   if (filtered.length >= 0) {
+    //     setStateList(filtered);
+    //   }
+    // });
 
     handleChange("state", input);
 
     verifyInput(input, errorMessage.current, "state");
   };
 
-  const handleSelectChange = (name) => {
-    handleChange("state", name);
-    verifyInput(name, errorMessage.current, "state");
-  };
+  // const handleSelectChange = (name) => {
+  //   handleChange("state", name);
+  //   verifyInput(name, errorMessage.current, "state");
+  // };
 
   return (
     <div id="state" className="input-container relative">
       <div
-        onClick={() => setShowState((prev) => !prev)}
+        // onClick={() => setShowState((prev) => !prev)}
         className="cursor-pointer flex flex-col gap-2 w-full"
       >
         <div className="flex items-center">
@@ -53,7 +52,7 @@ function StateInput({ countryId, handleChange, state, setStateId }) {
           ref={errorMessage}
         ></label>
       </div>
-      {showState && state?.length >= 3 && (
+      {/* {showState && state?.length >= 3 && (
         <div className="absolute flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto max-h-[30vh] h-fit top-full w-full">
           {stateList.map((item, index) => (
             <div
@@ -69,7 +68,7 @@ function StateInput({ countryId, handleChange, state, setStateId }) {
             </div>
           ))}
         </div>
-      )}
+      )} */}
     </div>
   );
 }

@@ -58,7 +58,7 @@ function CoverLetter() {
         data.companyName === "" ||
         data.jobPosition === ""
       ) {
-        navigate("/cover-letter/job-details");
+        navigate("/services/cover-letter/job-details");
         return;
       }
     }
@@ -67,7 +67,7 @@ function CoverLetter() {
       let data = CVData.description;
 
       if (data.companyInfo === "" || data.jobDescription === "") {
-        navigate("/cover-letter/job-description");
+        navigate("/services/cover-letter/job-description");
         return;
       }
 
@@ -75,7 +75,7 @@ function CoverLetter() {
         let data = CVData.professionalBio;
 
         if (data === "" || data.length <= 30) {
-          navigate("/cover-letter/short-bio");
+          navigate("/services/cover-letter/short-bio");
           return;
         }
       }

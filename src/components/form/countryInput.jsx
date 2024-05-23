@@ -11,23 +11,17 @@ function CountryInput({ setCode, handleChange, country, setCountryId }) {
     GetCountries().then((result) => {
       setCountriesList(result);
     });
-    // console.log(allInputs)
   }, []);
 
   const handleCountryInput = (input) => {
+    if (countriesList.length === 0) {
+      GetCountries().then((result) => {
+        setCountriesList(result);
+      });
+    }
+
     setShowCountry(true);
-    GetCountries().then((result) => {
-      const filtered = result.filter((country) =>
-        country.name.toLowerCase().startsWith(input.toLowerCase())
-      );
-
-      if (filtered.length >= 0) {
-        setCountriesList(filtered);
-      }
-    });
-
     handleChange("country", input);
-
     verifyInput(input, errorMessage.current, "country");
   };
 
@@ -52,6 +46,8 @@ function CountryInput({ setCode, handleChange, country, setCountryId }) {
             placeholder="Country"
             onChange={(e) => handleCountryInput(e.target.value)}
             onInput={(e) => handleCountryInput(e.target.value)}
+            onBlur={() => setTimeout(() => setShowCountry(false), 300)}
+            required
           />
         </div>
         <label
@@ -63,22 +59,26 @@ function CountryInput({ setCode, handleChange, country, setCountryId }) {
           Country required
         </label>
       </div>
-      {showCountry && country?.length >= 3 && (
-        <div className="absolute z-10 flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto max-h-[30vh] h-fit top-full w-full">
-          {countriesList.map((item, index) => (
-            <div
-              className="w-full py-3 px-6 cursor-pointer hover:bg-primary-400"
-              key={index}
-              onClick={() => {
-                setShowCountry((prev) => !prev);
-                setCode && setCode(`${item.phone_code}`);
-                handleSelectChange(item.name);
-                setCountryId(item.id);
-              }}
-            >
-              {item.name}
-            </div>
-          ))}
+      {showCountry && countriesList.length >= 1 && (
+        <div className="absolute z-30 flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto max-h-[30vh] h-fit top-full w-full duration-300">
+          {countriesList
+            .filter((countries) =>
+              countries.name.toLowerCase().startsWith(country.toLowerCase())
+            )
+            .map((item, index) => (
+              <div
+                className="w-full py-3 px-6 cursor-pointer hover:bg-primary-400"
+                key={index}
+                onClick={() => {
+                  handleSelectChange(item.name);
+                  setCountryId(item.id);
+                  setCode && setCode(`${item.phone_code}`);
+                  setShowCountry((prev) => !prev);
+                }}
+              >
+                {item.name}
+              </div>
+            ))}
         </div>
       )}
     </div>

@@ -46,7 +46,7 @@ function CoverEditor() {
           .post(`${primaryURL}/letter`, CVData)
           .then((res) => {
             setCVData({ ...res.data.data });
-            navigate(`/cover-letter/editor?id=${res.data.data._id}`);
+            navigate(`/services/cover-letter/editor?id=${res.data.data._id}`);
           })
           .catch((err) => {
             toast.error("Encountered Error. Try Again");
