@@ -10,21 +10,6 @@ const CustomSelect = ({ options, value, onChange, showSearch }) => {
     setFilteredOptions(options);
   }, [options]);
 
-<<<<<<< Updated upstream
-=======
-  useEffect(() => {
-    if (!inputValue && value) setInputValue(value);
-  }, [inputValue, value]);
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
->>>>>>> Stashed changes
   const handleOptionClick = (option) => {
     setInputValue(option);
     onChange(option);

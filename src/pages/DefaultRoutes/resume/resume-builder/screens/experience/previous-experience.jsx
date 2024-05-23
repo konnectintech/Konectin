@@ -1,7 +1,7 @@
 import professions from "professions";
 import { useState, useRef } from "react";
 
-import Responsibilities from "./work-responsibilities";
+
 // import JobTitleInput from "../../../../../../components/jobTitleInput";
 import * as FaIcon from "react-icons/fa";
 import { useNavigate } from "react-router-dom";

@@ -5,36 +5,7 @@ import ResumeRoutes from "./layouts/resumeRoutes";
 import DefaultRoutes from "./pages/DefaultRoutes";
 import ProtectedRoutes from "./pages/ProtectedRoutes";
 
-import Options from "./pages/DefaultRoutes/resume/resume-builder";
-import ResumeBuilder from "./pages/DefaultRoutes/resume/resume-landing";
-import Builder from "./pages/DefaultRoutes/resume/resume-builder/screens";
-import AIStarter from "./pages/DefaultRoutes/resume/resume-builder/screens-ai";
-import ResumeUpload from "./pages/DefaultRoutes/resume/resume-builder/screen-upload";
-
-import Landing from "./pages/DefaultRoutes/v2-landing";
-import Internship from "./pages/DefaultRoutes/internship";
-import About from "./pages/DefaultRoutes/about";
-import Blog from "./pages/DefaultRoutes/blog";
-import BlogContent from "./pages/DefaultRoutes/blog/blogContent";
-import Feeds from "./pages/DefaultRoutes/blog/feeds";
-import RouteIdentifier from "./layouts/routeIdentifier";
-import VerifyMail from "./pages/sign/signup/verifyMail";
-import TermsAndCondition from "./pages/DefaultRoutes/terms/TermsAndConditions";
-import PrivacyPolicy from "./pages/DefaultRoutes/policy/PrivacyPolicy";
-import Faq from "./pages/DefaultRoutes/faq/Faq";
-import Contact from "./pages/DefaultRoutes/contact";
-
-import Sign from "./pages/sign";
-import Login from "./pages/sign/login/login";
-import SignUp from "./pages/sign/signup/signup";
-import ForgetPassword from "./pages/sign/login/forgetPassword";
-import ResetPassword from "./pages/sign/login/resetPassword";
-import Coverletter from "./pages/DefaultRoutes/cover-letter";
-import ErrorPage from "./pages/404";
-import InternApplication from "./pages/DefaultRoutes/internship/intern-application";
-
 import { AuthProvider } from "./middleware/auth";
-
 
 const TemplateProvider = lazy(() =>
   import("./middleware/resume").then((module) => ({
