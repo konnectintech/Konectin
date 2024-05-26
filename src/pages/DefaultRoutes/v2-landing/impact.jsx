@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { impact, graduate, workers } from "../../../assets";
+import { animate } from "framer-motion";
 
 export default function Impact() {
   const data = [
@@ -38,8 +40,32 @@ export default function Impact() {
 }
 
 export function ImpactCard({ item }) {
+  const [count, setCount] = useState(0);
+  const [controls, setControls] = useState(null);
+
+  const startAnimation = () => {
+    const animationControls = animate(0, item.numbers, {
+      duration: 1,
+      onUpdate(value) {
+        setCount(value.toFixed(0));
+      },
+    });
+    setControls(animationControls);
+  };
+
+  const stopAnimation = () => {
+    if (controls) {
+      controls.stop();
+    }
+    setCount(0);
+  };
+
   return (
-    <div className="flex flex-col md:flex-row items-center gap-12 md:gap-11 rounded-2xl bg-white p-12">
+    <div
+      onMouseEnter={startAnimation}
+      onMouseLeave={stopAnimation}
+      className="flex flex-col md:flex-row items-center gap-12 md:gap-11 rounded-2xl bg-white p-12"
+    >
       <div className="flex items-center justify-center bg-neutral-800 rounded-tl-3xl rounded-br-3xl md:w-52 md:h-fit p-9 md:p-12">
         <img
           src={item.src}
@@ -51,7 +77,7 @@ export function ImpactCard({ item }) {
 
       <div className="flex flex-col gap-6 items-center md:items-start justify-center w-full">
         <p className="text-secondary-600 font-black text-5xl text-center whitespace-nowrap md:text-start">
-          {item.numbers}
+          {count}
         </p>
         <p className="font-medium md:tracking-tight text-2xl md:text-3xl text-center whitespace-nowrap md:text-start">
           {item.title}

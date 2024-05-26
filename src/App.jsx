@@ -21,7 +21,7 @@ const CVProvider = lazy(() =>
   import("./middleware/cv").then((module) => ({ default: module.CVProvider }))
 );
 
-const Options = lazy(() =>
+const ResumeOptions = lazy(() =>
   import("./pages/DefaultRoutes/resume/resume-builder")
 );
 const ResumeBuilder = lazy(() =>
@@ -38,7 +38,7 @@ const ResumeUpload = lazy(() =>
   import("./pages/DefaultRoutes/resume/resume-builder/screen-upload")
 );
 
-const Landing = lazy(() => import("./pages/DefaultRoutes/landing"));
+const Landing = lazy(() => import("./pages/DefaultRoutes/v2-landing"));
 const Internship = lazy(() => import("./pages/DefaultRoutes/internship"));
 const About = lazy(() => import("./pages/DefaultRoutes/about"));
 const Blog = lazy(() => import("./pages/DefaultRoutes/blog"));
@@ -136,7 +136,10 @@ function App() {
 
           {/* Resume Builder Routes */}
           <Route element={<ResumeRoutes />}>
-            <Route path="/services/resume/options" element={<Options />} />
+            <Route
+              path="/services/resume/ResumeOptions"
+              element={<ResumeOptions />}
+            />
           </Route>
 
           <Route
