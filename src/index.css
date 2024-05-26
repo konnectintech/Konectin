@@ -268,19 +268,8 @@ h4 {
   /* Firefox */
 }
 
-/* #headline::before {
-  content: url("./assets/images/headline-bg.svg");
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 44px;
-  height: 44px;
-  z-index: 1;
-} */
-
-/* box-shadow: 10px 10px 2px 0px #FC670B; */
-
-
 .debug {
   border: 1px dashed red;
 }
+
+

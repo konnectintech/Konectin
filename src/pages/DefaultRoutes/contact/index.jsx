@@ -180,7 +180,7 @@ function Contact() {
 
       <div className="flex justify-between pb-24 w-11/12 mx-auto max-w-screen-2xl">
         <div className="flex flex-col lg:flex-row z-50 lg:w-[90%] mt-[-70px] justify-between gap-12">
-          <div className="shadow-2xl bg-white z-50 p-8 lg:p-12 lg:max-w-[60%]">
+          <div className="-2xl bg-white z-50 p-8 lg:p-12 lg:max-w-[60%]">
             <form onSubmit={sendEmail} className="space-y-3">
               <h2 className="text-lg font-black">
                 Please, provide your Email address

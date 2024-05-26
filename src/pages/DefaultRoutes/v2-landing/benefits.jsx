@@ -54,7 +54,7 @@ export default function Benefits() {
 
 export function BenefitCard({ item }) {
   return (
-    <div className="flex flex-col items-center gap-8 md:gap-12 bg-white py-8 px-6 md:p-10 rounded-[10px] md:rounded-xl">
+    <div className="flex flex-col items-center gap-8 md:gap-12 bg-white py-8 px-6 md:p-10 rounded-[10px] md:rounded-xl hover:bg-whites-200 hover:shadow-2xl ">
       <div className="w-full flex justify-end">
         <p className="font-extrabold text-4xl md:text-5xl">{item.id}</p>
       </div>
