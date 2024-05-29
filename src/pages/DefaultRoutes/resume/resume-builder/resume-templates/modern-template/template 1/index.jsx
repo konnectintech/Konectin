@@ -59,7 +59,7 @@ function TemplateOne(data) {
                   margin: 0;
                   padding: 0;
                   font-size: 16px;
-                  font-family: "Hind", sans-serif;
+                  font-family: ${data.theme.font}, sans-serif;
                   font-style: normal;
                   font-weight: 400;
                   line-height: 21px;

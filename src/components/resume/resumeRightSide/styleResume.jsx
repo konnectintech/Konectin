@@ -6,11 +6,11 @@ import { useTemplateContext } from "../../../middleware/resume";
 const StyleResume = () => {
   const { onInputChange } = useTemplateContext();
   const [selectedFont, setSelectedFont] = useState("Arial");
-  const [selectedSize, setSelectedSize] = useState("medium");
+  // const [selectedSize, setSelectedSize] = useState("medium");
   const [selectedColor, setSelectedColor] = useState("");
 
   const fontOptions = ["Arial", "Helvetica", "Times New Roman", "Courier New"];
-  const sizeOptions = ["small", "medium", "big"];
+  const sizeOptions = { min: 14, max: 18 };
   const colorOptions = ["red", "blue", "green", "yellow", "orange", "purple"];
 
   const handleFontChange = (event) => {
@@ -22,9 +22,9 @@ const StyleResume = () => {
     });
   };
 
-  const handleSizeChange = (size) => {
-    setSelectedSize(size);
-  };
+  // const handleSizeChange = (size) => {
+  //   setSelectedSize(size);
+  // };
 
   const handleColorChange = (color) => {
     setSelectedColor(color);
@@ -33,7 +33,7 @@ const StyleResume = () => {
 
   return (
     <>
-      <div className="space-y-4  bg-white p-[10px]">
+      <div className="space-y-4 bg-white p-[10px]">
         <div className="bg-neutral-800 p-3 flex flex-col gap-4 rounded">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
@@ -64,8 +64,13 @@ const StyleResume = () => {
                 Font Size
               </label>
             </div>
-            <div className="flex items-center">
-              {sizeOptions.map((size) => (
+            <input
+              className="w-full"
+              type="range"
+              min={sizeOptions.min}
+              max={sizeOptions.max}
+            />
+            {/* sizeOptions.map((size) => (
                 <button
                   key={size}
                   className={`px-2 py-1 text-xs  rounded border border-gray-300 focus:outline-none focus:ring focus:ring-indigo-200 ${
@@ -75,8 +80,7 @@ const StyleResume = () => {
                 >
                   {size}
                 </button>
-              ))}
-            </div>
+              )) */}
           </div>
 
           <div className="w-full h-[1px] bg-neutral-500" />

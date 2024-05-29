@@ -55,8 +55,8 @@ function ResumeRightbar() {
         onMouseLeave={handleMouseLeave}
       >
         <ul className="flex flex-col gap-4">
-          <li className="relative cursor-pointer mb-4 py-1 px-2 ">
-            <div className="flex items-center ">
+          <li className="relative cursor-pointer mb-4 py-1 px-2">
+            <div className="flex items-center">
               <div
                 onClick={() => setShowTips(!showTips)}
                 className="relative w-[32px] h-[32px] group/tips  bg-secondary-200 p-2 rounded-full hover:bg-secondary-600"
@@ -91,7 +91,7 @@ function ResumeRightbar() {
           <div>
             <li
               onClick={() => setIsDownload(!isDownload)}
-              className="relative flex items-center justify-between cursor-pointer mt-8 py-3 px-4 hover:border-r-[3px] border-primary-600 hover:bg-gradient-to-r from-transparent to-primary-200 "
+              className="relative flex items-center justify-between cursor-pointer py-3 px-4 hover:border-r-[3px] border-primary-600 hover:bg-gradient-to-r from-transparent to-primary-200"
             >
               <div className="flex items-center  ">
                 <img src={download} alt={"download"} className="min-w-[24px]" />

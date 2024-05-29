@@ -10,7 +10,7 @@ import BioAi from "./BioAi";
 
 const Bio = ({ data, onInputChange }) => {
   const editorRef = useRef(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [isModal, setModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
