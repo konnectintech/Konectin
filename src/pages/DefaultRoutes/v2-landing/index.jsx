@@ -6,7 +6,7 @@ import Solutions from "./solutions";
 import Blog from "./blog";
 import Testimonials from "./testimonials";
 import Faq from "./faq";
-import About from "./about";
+import MapSection from "../../../components/map";
 
 function Landing() {
   return (
@@ -19,7 +19,7 @@ function Landing() {
       <Blog />
       <Testimonials />
       <Faq />
-      <About />
+      <MapSection />
     </main>
   );
 }
