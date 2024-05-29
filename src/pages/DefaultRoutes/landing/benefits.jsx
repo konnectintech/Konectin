@@ -32,29 +32,31 @@ export default function Benefits() {
     },
   ];
   return (
-    <div className="flex flex-col py-16 px-6 md:px-20 md:py-28 bg-[#f5f5f5] gap-10 md:gap-20">
-      <div className="flex flex-col gap-1 md:gap-4">
-        <p className="text-3xl md:text-4xl md:tracking-tight font-extrabold text-neutral-100">
-          What We <span className="text-secondary-600">Offer</span>
-        </p>
-        <p className="w-10/12 text-sm text-neutral-200 md:text-xl">
-          Whether you're a higher education institution seeking a versatile
-          program collaborator or a business organization striving to attract,
-          retain, and nurture your workforce, Konectin is your ally.
-        </p>
+    <section className="bg-whites-200">
+      <div className="w-full lg:w-11/12 relative z-10 mx-auto max-w-screen-2xl flex flex-col gap-10 lg:gap-12 py-16 px-2 xxs:px-4 lg:px-0">
+        <div className="flex flex-col gap-1 md:gap-4">
+          <h4 className="text-3xl md:text-4xl md:tracking-tight font-semibold text-neutral-100">
+            What We <span className="text-secondary-600">Offer</span>
+          </h4>
+          <p className="max-w-xl text-sm md:text-base text-neutral-200">
+            Whether you're a higher education institution seeking a versatile
+            program collaborator or a business organization striving to attract,
+            retain, and nurture your workforce, Konectin is your ally.
+          </p>
+        </div>
+        <div className="gap-10 grid sm:grid-cols-2 lg:grid-cols-3 md:gap-[30px]">
+          {data.map((item, index) => (
+            <BenefitCard key={index} item={item} />
+          ))}
+        </div>
       </div>
-      <div className="flex flex-col gap-10 md:grid md:grid-cols-3 md:gap-[30px]">
-        {data.map((item, index) => (
-          <BenefitCard key={index} item={item} />
-        ))}
-      </div>
-    </div>
+    </section>
   );
 }
 
 export function BenefitCard({ item }) {
   return (
-    <div className="flex flex-col items-center gap-8 md:gap-12 bg-white py-8 px-6 md:p-10 rounded-[10px] md:rounded-xl hover:bg-whites-200 hover:shadow-2xl ">
+    <div className="flex flex-col items-center gap-8 md:gap-12 bg-white py-8 px-6 md:p-10 rounded-[10px] md:rounded-xl hover:bg-whites-200 hover:shadow-2xl">
       <div className="w-full flex justify-end">
         <p className="font-extrabold text-4xl md:text-5xl">{item.id}</p>
       </div>
