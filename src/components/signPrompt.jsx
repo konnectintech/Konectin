@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { MicrosoftLog } from "../../../components/button";
+import { MicrosoftLog } from "./button";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import SectionWrapper from "../../../components/animation/sectionWrapper";
-import { slideIn } from "../../../utils/motion";
+import SectionWrapper from "./animation/sectionWrapper";
+import { slideIn } from "../utils/motion";
 
 function SignPrompt() {
   const [mail, setMail] = useState("");

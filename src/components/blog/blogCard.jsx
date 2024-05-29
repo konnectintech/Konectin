@@ -23,11 +23,11 @@ function BlogCard({
         blurred ? "cursor-default" : "cursor-pointer"
       }`}
     >
-      <div className="bg-neutral-700 overflow-hidden flex-1 max-h-[240px]">
+      <div className="bg-neutral-700 overflow-hidden flex-1 max-h-[220px] md:max-h-[290px]">
         <LazyLoadImage
           wrapperClassName="inline-x"
           effect="blur"
-          className="bg-contain w-full h-full aspect-square hover:scale-105 duration-1000"
+          className="min-h-[220px] md:min-h-[290px] aspect-auto hover:scale-105 duration-1000"
           src={featuredImage}
           alt={htmlTitle}
         />
@@ -51,7 +51,7 @@ function BlogCard({
         </div>
 
         <div className="flex items-center justify-between w-full text-xs text-neutral-400 font-medium">
-          <span className={blurred && "blurry-text w-[10ch]"}>
+          <span className={blurred ? "blurry-text w-[10ch]" : "lowercase"}>
             {metaDescription}
           </span>
           <span className={blurred && "blurry-text w-fit"}>

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-function InfiniteLooper({ speed, direction, children }) {
+function InfiniteLooper({ speed, direction, holdable, children }) {
   const [looperInstances, setLooperInstances] = useState(1);
   const outerRef = useRef(null);
   const innerRef = useRef(null);
@@ -21,7 +21,10 @@ function InfiniteLooper({ speed, direction, children }) {
 
   return (
     <div className="looper" ref={outerRef}>
-      <div className="looper-innerList gap-4" ref={innerRef}>
+      <div
+        className={`${holdable ? "holdable " : ""}looper-innerList gap-4`}
+        ref={innerRef}
+      >
         {[...Array(looperInstances)].map((_, index) => (
           <div
             key={index}

@@ -38,7 +38,7 @@ const ResumeUpload = lazy(() =>
   import("./pages/DefaultRoutes/resume/resume-builder/screen-upload")
 );
 
-const Landing = lazy(() => import("./pages/DefaultRoutes/v2-landing"));
+const Landing = lazy(() => import("./pages/DefaultRoutes/landing"));
 const Internship = lazy(() => import("./pages/DefaultRoutes/internship"));
 const About = lazy(() => import("./pages/DefaultRoutes/about"));
 const Blog = lazy(() => import("./pages/DefaultRoutes/blog"));

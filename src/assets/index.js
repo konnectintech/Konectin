@@ -90,22 +90,12 @@ import closeBlack from "./icons/close-black.svg";
 import closeWhite from "./icons/close-white.svg";
 
 // landing Page Images
-import cardImage from "./images/card.png";
-import card1Image from "./images/card 1.png";
-import card2Image from "./images/card 2.png";
-import caseImage from "./images/case one.png";
-import heroImage from "./images/hero.png";
-import recruitImage from "./images/recruiters.png";
-import newsletterBg from "./images/newsletterBg.png";
-import sideImage from "./images/side details.png";
-import side1Image from "./images/side details 1.png";
-import hero_0 from "./images/hero-0.png";
-import hero_1 from "./images/hero-1.png";
-import hero_2 from "./images/hero-2.png";
-import hero_3 from "./images/hero-3.png";
-import hero_bg from "./images/hero-bg.png";
-import headline_bg from "./images/headline-bg.svg";
-
+import heroImage from "./images/hero-0.png";
+import heroImage1 from "./images/hero-1.png";
+import heroImage2 from "./images/hero-2.png";
+import heroImage3 from "./images/hero-3.png";
+import heroBg from "./images/hero-bg.png";
+import highlighter from "./images/headline-bg.svg";
 
 // Internship Images
 import internHero from "./images/internship hero.png";
@@ -254,21 +244,12 @@ export {
   forgotPasswordImage,
 
   // Landing Images
-  cardImage,
-  card1Image,
-  card2Image,
-  caseImage,
+  heroBg,
   heroImage,
-  recruitImage,
-  newsletterBg,
-  sideImage,
-  side1Image,
-  hero_0,
-  hero_1,
-  hero_2,
-  hero_3,
-  headline_bg,
-  hero_bg,
+  heroImage1,
+  heroImage2,
+  heroImage3,
+  highlighter,
 
   // Internship Images
   internHero,

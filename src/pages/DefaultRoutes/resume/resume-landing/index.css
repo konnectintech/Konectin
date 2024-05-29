@@ -2,6 +2,7 @@
   from {
     transform: translateX(0%);
   }
+
   to {
     transform: translateX(calc(-100% - 1rem));
   }
@@ -23,6 +24,10 @@
   width: max-content;
 
   animation: slideAnimation linear infinite;
+}
+
+.looper-innerList.holdable:hover .looper-list-instance {
+  animation-play-state: paused;
 }
 
 .resume-section {
