@@ -45,6 +45,8 @@ import notifyError from "./icons/notifyerror.svg";
 import uploadIcon from "./icons/upload.svg";
 import completedCheck from "./icons/completed-check.svg";
 import halfLoading from "./icons/half-loading.svg";
+import arrowOut from "./icons/arrow-out.svg";
+import arrowRight from "./icons/arrow-right.svg";
 
 // socials
 import SFacebook from "./icons/socials/Facebook.svg";
@@ -81,6 +83,12 @@ import circleProfile from "./icons/Ellipse 97circle-profile.svg";
 import profileBg from "./icons/Rectangle 2952.svg";
 import cancelIcon from "./icons/ic_round-cancelcancle-profile (1).svg";
 
+// faq section icons
+import plusBlack from "./icons/plus-black.svg";
+import plusWhite from "./icons/plus-white.svg";
+import closeBlack from "./icons/close-black.svg";
+import closeWhite from "./icons/close-white.svg";
+
 // landing Page Images
 import cardImage from "./images/card.png";
 import card1Image from "./images/card 1.png";
@@ -91,6 +99,13 @@ import recruitImage from "./images/recruiters.png";
 import newsletterBg from "./images/newsletterBg.png";
 import sideImage from "./images/side details.png";
 import side1Image from "./images/side details 1.png";
+import hero_0 from "./images/hero-0.png";
+import hero_1 from "./images/hero-1.png";
+import hero_2 from "./images/hero-2.png";
+import hero_3 from "./images/hero-3.png";
+import hero_bg from "./images/hero-bg.png";
+import headline_bg from "./images/headline-bg.svg";
+
 
 // Internship Images
 import internHero from "./images/internship hero.png";
@@ -162,6 +177,31 @@ import AboutProfileImage from "./images/about profile.png";
 import OurVisionImage from "./images/vision.png";
 import ContactUSImage from "./images/contact-us.png";
 
+// Impact section
+import impact from "./images/impact.png";
+import graduate from "./icons/impact/graduate.png";
+import workers from "./icons/impact/workers.png";
+
+// solution section
+import solution1 from "./images/solution1.png";
+import solution2 from "./images/solution2.png";
+import solution3 from "./images/solution3.png";
+import solution4 from "./images/solution4.png";
+
+// blog section
+import blog1 from "./images/blog1.jfif";
+import blog2 from "./images/blog2.jfif";
+import blog3 from "./images/blog3.jfif";
+
+// coverage section
+import coverage from "./images/coverage.svg";
+
+// testimonials section
+import person1 from "./images/person1.png";
+import person2 from "./images/person2.png";
+import person3 from "./images/person3.png";
+import person4 from "./images/person4.png";
+
 export {
   // Icons
   orangeLoader,
@@ -206,6 +246,8 @@ export {
   uploadIcon,
   completedCheck,
   halfLoading,
+  arrowOut,
+  arrowRight,
 
   // Sign Images
   signImage,
@@ -221,6 +263,12 @@ export {
   newsletterBg,
   sideImage,
   side1Image,
+  hero_0,
+  hero_1,
+  hero_2,
+  hero_3,
+  headline_bg,
+  hero_bg,
 
   // Internship Images
   internHero,
@@ -326,4 +374,35 @@ export {
   SInstagram,
   SLinkedin,
   SGoogle,
+
+  // impact section
+  impact,
+  graduate,
+  workers,
+
+  // solution section
+  solution1,
+  solution2,
+  solution3,
+  solution4,
+
+  // blog section
+  blog1,
+  blog2,
+  blog3,
+
+  // coverage section
+  coverage,
+
+  // testimonials section
+  person1,
+  person2,
+  person3,
+  person4,
+
+  // faq section
+  plusBlack,
+  plusWhite,
+  closeBlack,
+  closeWhite,
 };

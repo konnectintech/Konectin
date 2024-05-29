@@ -247,7 +247,7 @@ h4 {
 }
 
 /* Terms and Condition  */
-.terms ul.list-decimal>.space-y-2>li.text-sm,
+.terms ul.list-decimal > .space-y-2 > li.text-sm,
 .merri {
   font-family: "Merriweather", sans-serif;
 }
@@ -271,3 +271,5 @@ h4 {
 .debug {
   border: 1px dashed red;
 }
+
+

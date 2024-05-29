@@ -1,9 +1,12 @@
 import professions from "professions";
 import { useState, useRef } from "react";
+
+
+// import JobTitleInput from "../../../../../../components/jobTitleInput";
 import * as FaIcon from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
 import NavigationButton from "../navigationButton";
+
 import CityInput from "../../../../../../components/form/cityInput";
 import StateInput from "../../../../../../components/form/stateInput";
 import DateSelector from "../../../../../../components/form/dateSelector";

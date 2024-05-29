@@ -49,6 +49,11 @@ module.exports = {
         error: {
           500: "#F11010",
         },
+        whites: {
+          100: "#F1F1F3",
+          200: "#F5F5F5",
+        },
+        grey: "#4c4c4d",
       },
       screens: {
         xxs: "375px",
@@ -57,6 +62,9 @@ module.exports = {
       boxShadow: {
         dropShadow:
           "0px 0px 2px 0px rgba(0, 0, 0, 0.05), 0px 4px 8px 0px rgba(0, 0, 0, 0.05)",
+      },
+      backgroundImage: {
+        hero: "url('./assets/images/hero-bg.png')",
       },
     },
   },
