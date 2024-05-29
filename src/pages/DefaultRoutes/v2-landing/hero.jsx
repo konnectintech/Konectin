@@ -6,11 +6,11 @@ import About from "../about";
 
 const heroData = [
   {
-    caption: "Unleash",
+    caption: "Empower",
     src: hero_0,
   },
   {
-    caption: "Discover",
+    caption: "Boost",
     src: hero_1,
   },
   {
@@ -18,7 +18,7 @@ const heroData = [
     src: hero_2,
   },
   {
-    caption: "Harness",
+    caption: "Advance",
     src: hero_3,
   },
 ];

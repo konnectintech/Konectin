@@ -1,17 +1,37 @@
-import Logo1 from "../assets/images/brands/Logo1.png";
-import Logo2 from "../assets/images/brands/Logo2.png";
-import Logo4 from "../assets/images/brands/Logo4.png";
-import Logo5 from "../assets/images/brands/Logo5.png";
-import Logo6 from "../assets/images/brands/Logo6.png";
-import Logo7 from "../assets/images/brands/Logo7.png";
-import Logo8 from "../assets/images/brands/Logo8.png";
+import british_council from "../assets/images/brands/british_council.png";
+import codsoft from "../assets/images/brands/codsoft.png";
+import entrylevel from "../assets/images/brands/entrylevel.png";
+import hng from "../assets/images/brands/hng.svg";
+import jiji from "../assets/images/brands/jiji.png";
+import lagos from "../assets/images/brands/lagos.png";
+import mutha_earth from "../assets/images/brands/mutha-earth.png";
+import nimc from "../assets/images/brands/nimc.png";
+import patricia from "../assets/images/brands/patricia.png";
+import pep from "../assets/images/brands/pep.png";
+import safari from "../assets/images/brands/safari.jfif";
+import safaricom from "../assets/images/brands/safaricom.png";
+import sidehustle from "../assets/images/brands/sidehustle.png";
+import silverstar from "../assets/images/brands/silverstar.png";
+import terawork from "../assets/images/brands/terawork.png";
+import vendorstack from "../assets/images/brands/vendorstack.png";
+import vivo from "../assets/images/brands/vivo.svg";
 
 export const logos = [
-  { src: Logo1, alt: "zapier" },
-  { src: Logo2, alt: "spotify" },
-  { src: Logo4, alt: "zoom" },
-  { src: Logo5, alt: "amazon" },
-  { src: Logo6, alt: "adobe" },
-  { src: Logo7, alt: "notion" },
-  { src: Logo8, alt: "netflix" },
+  { src: british_council, alt: "british council" },
+  { src: codsoft, alt: "codsoft" },
+  { src: entrylevel, alt: "entrylevel" },
+  { src: hng, alt: "hng" },
+  { src: jiji, alt: "jiji" },
+  { src: lagos, alt: "lagos" },
+  { src: mutha_earth, alt: "mutha earth" },
+  { src: nimc, alt: "nimc" },
+  { src: patricia, alt: "patricia" },
+  { src: pep, alt: "pep" },
+  { src: safari, alt: "safari" },
+  { src: safaricom, alt: "safaricom" },
+  { src: sidehustle, alt: "sidehustle" },
+  { src: silverstar, alt: "silverstar" },
+  { src: terawork, alt: "terawork" },
+  { src: vendorstack, alt: "vendorstack" },
+  { src: vivo, alt: "vivo" },
 ];
