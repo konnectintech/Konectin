@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { impact, graduate, workers } from "../../../assets";
-import { animate } from "framer-motion";
+import { animate, useInView } from "framer-motion";
 
 export default function Impact() {
   const data = [
@@ -43,39 +43,28 @@ export default function Impact() {
 
 export function ImpactCard({ item }) {
   const [count, setCount] = useState(0);
-  // const [controls, setControls] = useState(null);
-
-  // const startAnimation = () => {
-  //   const animationControls = animate(0, item.numbers, {
-  //     duration: 1,
-  //     onUpdate(value) {
-  //       setCount(value.toFixed(0));
-  //     },
-  //   });
-  //   setControls(animationControls);
-  // };
-
-  // const stopAnimation = () => {
-  //   if (controls) {
-  //     controls.stop();
-  //   }
-  //   setCount(0);
-  // };
+  const ref = useRef(null);
+  const inView = useInView(ref);
 
   useEffect(() => {
-    const animationControls = animate(0, item.numbers, {
-      duration: 1,
-      onUpdate(value) {
-        setCount(value.toFixed(0));
-      },
-    });
-    return () => {
-      animationControls.stop();
-    };
-  }, [item.numbers]);
+    if (inView) {
+      const controls = animate(0, item.numbers, {
+        duration: 1,
+        onUpdate(value) {
+          setCount(value.toFixed(0));
+        },
+      });
+      return () => controls.stop();
+    } else {
+      setCount(0);
+    }
+  }, [inView, item.numbers]);
 
   return (
-    <div className="flex flex-col md:flex-row items-center gap-6 rounded-2xl bg-white p-6 lg:p-12">
+    <div
+      ref={ref}
+      className="flex flex-col md:flex-row items-center gap-6 rounded-2xl bg-white p-6 lg:p-12"
+    >
       <div className="flex items-center justify-center bg-neutral-800 rounded-tl-3xl rounded-br-3xl w-32 h-24">
         <img
           src={item.src}
