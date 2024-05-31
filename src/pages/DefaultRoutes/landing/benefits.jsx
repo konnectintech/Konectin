@@ -2,33 +2,33 @@ export default function Benefits() {
   const data = [
     {
       id: "01",
-      title: "A unique resume builder",
-      desc: "Create a long lasting first impression in the minds of recruiters. Make an attractive presentation of your skills and experiences to a vast number of employers all over the world and get hired now",
+      title: "Exceptional Resume Builder",
+      desc: "With our resume builder, make a lasting first impression on recruiters. Showcase your skills and experiences to a global network of employers. Take the first step towards landing your dream internship- start building your standout resume with us today.",
     },
     {
       id: "02",
-      title: "Connect directly with recruiters",
-      desc: "Discover millions of incredible opportunities and connect with recruiters that yearn for talents like yours. Every of your dealings with your potential employers are made as transparent as possible",
+      title: "Direct Connections with Recruiters",
+      desc: "Take advantage of great chances and get in touch with recruiters who are looking for candidates with your kind of experience.  We ensure the utmost transparency in your interactions with potential employers, paving the way for a trust-filled professional journey.",
     },
     {
       id: "03",
-      title: "Hire qualified candidates",
-      desc: "At Konectin we help to provide you with the right candidates, be it job seekers or interns who are skilled in diverse fields. Take this step to connect with skilled experts and advance in your career",
+      title: "Recruit Qualified Candidates",
+      desc: "At Konectin, we bridge the gap between you and the ideal candidates, whether professionals seeking employment or interns with diverse skill sets. Use our platform to connect with proficient individuals and enhance your organization's growth.",
     },
     {
       id: "04",
-      title: "Cost-Effective Career Solutions",
-      desc: "Konectin offers top-notch career solutions at unbeatable prices. We provide quality, affordability, and excellence in one package, making your journey to professional success both accessible and budget-friendly",
+      title: "Cost Effective Solution",
+      desc: "Unlock Success with Konectin Experience the perfect blend of quality and affordability with Konectin's premium career solutions. We're committed to supporting your professional journey cost-effectively. With Konectin, achieving your career goals is not just feasible, it's also budget-friendly.",
     },
     {
       id: "05",
-      title: "100% Trust",
-      desc: "Incorporated in Delaware, USA, we assure you of a glitch free experience. You can be assured of validity and transparency in every of your dealings with your potential employers or candidates",
+      title: "Trust and Transparency",
+      desc: "Konectin guarantees a seamless experience. We uphold the highest standards of authenticity and transparency in all interactions, ensuring your engagements with potential employers or candidates are transparent and reliable.",
     },
     {
       id: "06",
-      title: "Dedicated Support",
-      desc: "Our dedicated team is always ready to assist you whenever you need help, ensuring you have the best experience possible with Konectin",
+      title: "Reliable Support",
+      desc: "At Konectin, our devoted team is always on standby to assist whenever you need it. Our dedicated team at Konectin is always available to ensure a seamless and remarkable experience for you.",
     },
   ];
   return (
@@ -44,7 +44,7 @@ export default function Benefits() {
             retain, and nurture your workforce, Konectin is your ally.
           </p>
         </div>
-        <div className="gap-10 grid sm:grid-cols-2 lg:grid-cols-3 md:gap-[30px]">
+        <div className="gap-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:gap-[30px]">
           {data.map((item, index) => (
             <BenefitCard key={index} item={item} />
           ))}
@@ -58,13 +58,13 @@ export function BenefitCard({ item }) {
   return (
     <div className="flex flex-col items-center gap-8 md:gap-12 bg-white py-8 px-6 md:p-10 rounded-[10px] md:rounded-xl hover:bg-whites-200 hover:shadow-2xl">
       <div className="w-full flex justify-end">
-        <p className="font-extrabold text-4xl md:text-5xl">{item.id}</p>
+        <p className="font-bold text-4xl md:text-5xl">{item.id}</p>
       </div>
-      <div className="flex flex-col gap-2.5 md:gap-3.5 mb-10">
-        <p className="font-extrabold text-xl md:text-2xl text-neutral-100 tracking-tighter sm:tracking-normal">
+      <div className="flex flex-col gap-2.5 md:gap-3.5">
+        <p className="font-bold text-lg md:text-xl text-neutral-100 tracking-tighter sm:tracking-normal">
           {item.title}
         </p>
-        <p className="text-neutral-200 text-sm md:text-xl">{item.desc}</p>
+        <p className="text-neutral-200 text-sm md:text-base">{item.desc}</p>
       </div>
     </div>
   );
