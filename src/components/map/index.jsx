@@ -1,8 +1,10 @@
 import SectionWrapper from "../animation/sectionWrapper";
 import { coverage } from "../../assets";
 import { CustomButton } from "../button";
+import { useNavigate } from "react-router-dom";
 
 function MapSection() {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col items-center w-[98%] max-w-screen-lg mx-auto px-4 py-12 md:py-20 gap-12">
       <div className="text-center space-y-2">
@@ -45,7 +47,11 @@ function MapSection() {
             </p>
           </div>
           <div className="max-w-sm">
-            <CustomButton primary colorType="secondary">
+            <CustomButton
+              primary
+              colorType="secondary"
+              onClick={() => navigate("/signup")}
+            >
               Join the Konectin Community Today
             </CustomButton>
           </div>
