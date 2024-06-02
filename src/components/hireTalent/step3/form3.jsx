@@ -45,7 +45,7 @@ function Form3({ handleChange, values }) {
               <div
                 key={hireNeed}
                 onClick={() => {
-                  handleChange("hireNeed", hireNeed);
+                  handleChange("hiringFrequency", hireNeed);
                   setShowData((prev) => ({
                     ...prev,
                     hireNeed: !prev.hireNeed,
@@ -96,7 +96,7 @@ function Form3({ handleChange, values }) {
               <div
                 key={role}
                 onClick={() => {
-                  handleChange("hireRole", role);
+                  handleChange("preferedField", role);
                   setShowData((prev) => ({ ...prev, role: !prev.role }));
                 }}
                 className={`${
@@ -144,7 +144,7 @@ function Form3({ handleChange, values }) {
               <div
                 key={type}
                 onClick={() => {
-                  handleChange("type", type);
+                  handleChange("internshipType", type);
                   setShowData((prev) => ({ ...prev, type: !prev.type }));
                 }}
                 className={`${

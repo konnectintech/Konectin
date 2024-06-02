@@ -4,7 +4,7 @@ function Form4({ handleChange }) {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = () => {
-    handleChange("isChecked", !isChecked);
+    handleChange("mouConfirmed", !isChecked);
     setIsChecked(!isChecked);
   };
   return (

@@ -44,7 +44,7 @@ const Form2 = ({ handleChange, values }) => {
         type="text"
         className="input-container"
         placeholder="Company’s Support Email*"
-        onChange={(e) => handleChange("companyEmail", e.target.value)}
+        onChange={(e) => handleChange("supportEmail", e.target.value)}
         required
       />
 
@@ -84,7 +84,7 @@ const Form2 = ({ handleChange, values }) => {
               <div
                 key={location.name}
                 onClick={() => {
-                  handleChange("location", location.name);
+                  handleChange("country", location.name);
                   setShowData((prev) => ({
                     ...prev,
                     location: !prev.location,
@@ -135,7 +135,7 @@ const Form2 = ({ handleChange, values }) => {
               <div
                 key={size}
                 onClick={() => {
-                  handleChange("size", size);
+                  handleChange("companySize", size);
                   setShowData((prev) => ({ ...prev, size: !prev.size }));
                 }}
                 className={`${
@@ -173,7 +173,7 @@ const Form2 = ({ handleChange, values }) => {
           <input
             type="file"
             ref={fileInputRef}
-            onChange={(e) => handleChange("companyLogo", e.target.files[0])}
+            onChange={(e) => handleChange("logo", e.target.files[0])}
             className="hidden"
           />
         </div>
@@ -181,7 +181,7 @@ const Form2 = ({ handleChange, values }) => {
       <div className="mb-4">
         <textarea
           value={values.companyInfo}
-          onChange={(e) => handleChange("companyInfo", e.target.value)}
+          onChange={(e) => handleChange("companyDescription", e.target.value)}
           className="px-4 py-3 text-[11px] w-full text-primary-400 border rounded border-neutral-500 outline-0 bg-neutral-1000 focus:border-primary-500 focus:border-[1.5px]"
           rows="4"
           required

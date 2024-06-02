@@ -24,7 +24,7 @@ const Form1 = ({ handleChange, values }) => {
         className="input-container"
         placeholder="Role*"
         required
-        onChange={(e) => handleChange("role", e.target.value)}
+        onChange={(e) => handleChange("requiredRole", e.target.value)}
       />
 
       <input

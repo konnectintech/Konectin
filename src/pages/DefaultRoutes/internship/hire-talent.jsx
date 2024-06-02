@@ -6,27 +6,32 @@ import Step4 from "../../../components/hireTalent/step4";
 import Step5 from "../../../components/hireTalent/step5";
 import { MdCheck } from "react-icons/md";
 import Success from "../../../components/hireTalent/success";
+import axios from "axios";
 
 const HireTalent = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
-    email: "",
     fullName: "",
-    role: "",
+    email: "",
+    requiredRole: "",
     phoneNumber: "",
     companyName: "",
     companyWebsite: "",
-    companyEmail: "",
+    supportEmail: "",
     companyAddress: "",
-    location: "",
-    size: "",
-    companyInfo: "",
-    hireNeed: "",
-    hireRole: "",
-    type: "",
-    isChecked: false,
-    // Add more fields as needed for other steps
+    country: "",
+    companySize: "",
+    logo: null,
+    companyDescription: "",
+    hiringFrequency: "",
+    preferedField: "",
+    internshipType: "",
+    mouContent: "",
+    mouConfirmed: false,
   });
+  const [error, setError] = useState("");
+
+  const url = import.meta.env.VITE_CLIENT_SERVER_URL;
 
   const nextStep = () => {
     if (currentStep < 7) {
@@ -43,8 +48,35 @@ const HireTalent = () => {
     setFormData({ ...formData, [key]: value });
   };
 
-  const handleSubmit = () => {
-    alert("Submit");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = new FormData();
+
+    for (const key in formData) {
+      form.append(key, formData[key]);
+    }
+
+    try {
+      const response = await axios.post(`${url}/user/partner`, form, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      if (response.status === 201) {
+        setCurrentStep(6);
+      }
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 409) {
+          setError("Partnership application already exists");
+        } else if (error.response.status === 500) {
+          setError("Internal server error");
+        }
+      } else {
+        setError("Error submitting the form");
+      }
+    }
   };
 
   const renderStep = () => {
@@ -114,7 +146,7 @@ const HireTalent = () => {
           </div>
           {renderStep()}
         </div>
-
+        {error && <div className="text-red-500">{error}</div>}
         {currentStep < 6 && (
           <div className="flex justify-between">
             <button
