@@ -1,35 +1,3 @@
-@keyframes slideAnimation {
-  from {
-    transform: translateX(0%);
-  }
-
-  to {
-    transform: translateX(calc(-100% - 1rem));
-  }
-}
-
-.looper {
-  width: 100%;
-  overflow: hidden;
-}
-
-.looper-innerList {
-  display: flex;
-  justify-content: center;
-  width: fit-content;
-}
-
-.looper-list-instance {
-  display: flex;
-  width: max-content;
-
-  animation: slideAnimation linear infinite;
-}
-
-.looper-innerList.holdable:hover .looper-list-instance {
-  animation-play-state: paused;
-}
-
 .resume-section {
   scroll-behavior: smooth;
 }

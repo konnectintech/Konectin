@@ -137,7 +137,7 @@ function App() {
           {/* Resume Builder Routes */}
           <Route element={<ResumeRoutes />}>
             <Route
-              path="/services/resume/ResumeOptions"
+              path="/services/resume/options"
               element={<ResumeOptions />}
             />
           </Route>

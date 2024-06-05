@@ -247,7 +247,7 @@ h4 {
 }
 
 /* Terms and Condition  */
-.terms ul.list-decimal > .space-y-2 > li.text-sm,
+.terms ul.list-decimal>.space-y-2>li.text-sm,
 .merri {
   font-family: "Merriweather", sans-serif;
 }
@@ -272,4 +272,34 @@ h4 {
   border: 1px dashed red;
 }
 
+@keyframes slideAnimation {
+  from {
+    transform: translateX(0%);
+  }
 
+  to {
+    transform: translateX(calc(-100% - 1rem));
+  }
+}
+
+.looper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.looper-innerList {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+}
+
+.looper-list-instance {
+  display: flex;
+  width: max-content;
+
+  animation: slideAnimation linear infinite;
+}
+
+.looper-innerList.holdable:hover .looper-list-instance {
+  animation-play-state: paused;
+}

@@ -1,13 +1,13 @@
 import Hero from "./hero";
-import Brands from "./brands";
 import Impact from "./impact";
 import Benefits from "./benefits";
 import Solutions from "./solutions";
 import Blog from "./blog";
-import Testimonials from "./testimonials";
 
 import MapSection from "../../../components/map";
 import CustomFAQ from "../../../components/customFAQ";
+import Brands from "../../../components/brandsListing";
+import Testimonials from "../../../components/testimonials";
 
 function Landing() {
   const faqData = [
@@ -40,9 +40,11 @@ function Landing() {
   ];
 
   return (
-    <main>
+    <main className="pt-28">
       <Hero />
-      <Brands />
+      <div className="bg-neutral-1000 md:bg-white">
+        <Brands />
+      </div>
       <Impact />
       <Benefits />
       <Solutions />

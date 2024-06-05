@@ -1,5 +1,5 @@
-import { person1, person2, person3, person4 } from "../../../assets";
-import InfiniteLooper from "../../../components/infiniteScroller";
+import { person1, person2, person3, person4 } from "../assets";
+import InfiniteLooper from "./infiniteScroller";
 
 export default function Testimonials() {
   const data = [
@@ -67,12 +67,14 @@ export default function Testimonials() {
           <TestimonialCard key={index} item={item} />
         ))}
       </div>
+
       <div className="hidden md:flex flex-col gap-11 -mx-28 select-none">
         <InfiniteLooper speed={70} direction="left" holdable>
           {data.map((item, index) => (
             <TestimonialCard key={index} item={item} />
           ))}
         </InfiniteLooper>
+        {/* Scroll to the right  */}
         <InfiniteLooper speed={70} direction="right" holdable>
           {data.map((item, index) => (
             <TestimonialCard key={index} item={item} />

@@ -1,96 +1,125 @@
 import { useState } from "react";
-import { ResumeButton } from "../../../../components/button";
-import { Link } from "react-scroll";
-import { ResumeTemplateCrossImage } from "../../../../assets";
 import { motion } from "framer-motion";
-import { slideIn, textVariantUp } from "../../../../utils/motion";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+
+import { textVariantUp } from "../../../../utils/motion";
 import SectionWrapper from "../../../../components/animation/sectionWrapper";
 
-function SliderSection({ data }) {
-  const [currentTemplate, setTemplate] = useState(0);
+import { ResumeTemplateSample1Image } from "../../../../assets";
+
+const slides = [
+  {
+    image: ResumeTemplateSample1Image,
+    title: "Choose a Template",
+    desc: "Begin your journey to a professionally crafted resume by selecting the perfect template that suits your style and industry. We offer a diverse range of templates, from classic to creative, so you can make a strong first impression.",
+    color: "#E8F0FE",
+  },
+  {
+    image: ResumeTemplateSample1Image,
+    title: "Customize Content",
+    desc: "Tailor your resume to your unique strengths and experiences. Our intuitive customisation options allow you to edit and format your content with ease. Use our editing tools to highlight your achievements and skills effectively.",
+    color: "#FEE1CE",
+  },
+  {
+    image: ResumeTemplateSample1Image,
+    title: "Download & Share",
+    desc: "Once you're satisfied with your resume, it's time to take action. Hit the \"Download\" button to save your resume in various formats such as PDF or Word. You can also share your resume online with potential employers through our sharing options.",
+    color: "#FECECE",
+  },
+];
+
+function SliderSection() {
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
-    <section className="w-11/12 mx-auto max-w-screen-lg -translate-y-6 flex flex-col gap-16">
-      <div className="flex flex-col gap-12">
-        <motion.div
+    <section className="w-11/12 mx-auto max-w-screen-2xl flex flex-col gap-12 py-16">
+      <div className="space-y-4">
+        <motion.h1
           variants={textVariantUp()}
-          className="flex items-center justify-between text-center gap-2 w-full max-w-screen-lg mx-auto"
+          className="text-3xl md:text-4xl !leading-snug font-semibold text-neutral-100 max-w-xl"
         >
-          {data.map((template, index) => (
-            <Link
-              key={index}
-              to={template.id}
-              spy={true}
-              smooth={true}
-              offset={-75}
-              duration={(index + 1) * 250}
-              onClick={() => setTemplate(index)}
+          Creating Impactful <span className="text-secondary-500">Resume</span>{" "}
+          and <span className="text-secondary-500">Cover Letter</span> is Easy
+        </motion.h1>
+        <motion.p
+          variants={textVariantUp(0.4)}
+          className="w-10/12 text-neutral-200 max-w-lg"
+        >
+          With Konectin, creating a professional resume and cover letter is as
+          simple as 1-2-3. Follow our guide and start making an impact in a
+          market where 50% of applicants don't meet the job requirements.
+        </motion.p>
+      </div>
+
+      <div className="w-full relative">
+        <div className="flex justify-stretch gap-2 max-w-[10rem] xs:max-w-[14rem] w-full absolute top-12 left-6 md:top-16 md:left-12">
+          {slides.map((_, bullets) => (
+            <div
               className={`${
-                currentTemplate === index
-                  ? "text-primary-400"
-                  : "text-neutral-300"
-              } w-[60%] cursor-pointer flex flex-col gap-1
-              `}
-              aria-current={currentTemplate === index ? "page" : undefined}
-            >
-              <h4
-                className={`${
-                  currentTemplate === index ? "font-bold" : "font-medium"
-                } text-xl sm:text-xs`}
-              >
-                {template.type}
-              </h4>
-              <small
-              // className={
-              //   currentTemplate === index
-              //     ? "small w-[120px] sm:w-[150px]"
-              //     : "small w-[90px] sm:w-[120px]"
-              // }
-              >
-                {template.title}
-              </small>
-              <div
-                className={`
-                  ${
-                    currentTemplate === index
-                      ? "w-3/4 bg-secondary-600"
-                      : "w-7/12 bg-neutral-300"
-                  }
-                  mx-auto h-[1px] mt-2
-                  `}
-              ></div>
-            </Link>
+                currentSlide >= bullets
+                  ? "flex-1 bg-neutral-200"
+                  : "bg-neutral-600"
+              } rounded-full h-1.5 w-[30px]`}
+            />
           ))}
-        </motion.div>
+        </div>
 
-        <div className="flex flex-col gap-8 md:flex-row md:justify-between md:items-center lg:justify-center">
-          <motion.img
-            variants={slideIn("ltr", "spring", 0.1, 1.5)}
-            className="w-3/4 md:w-1/2 lg:max-w-xl mr-auto lg:mx-0"
-            src={ResumeTemplateCrossImage}
-            alt="resume template"
-          />
+        {slides.map(
+          (slide, index) =>
+            index === currentSlide && (
+              <div
+                style={{ background: slide.color }}
+                key={slide.title + slide.id}
+                className="rounded-3xl min-h-[300px] md:min-h-[400px] flex max-md:flex-col items-center px-6 py-24 md:p-12 gap-8 md:gap-16 select-none"
+              >
+                <div className="order-1 flex flex-col w-full relative z-10 gap-4">
+                  <h5 className="text-3xl md:text-4xl font-semibold">
+                    {slide.title}
+                  </h5>
+                  <p className="text-neutral-300 text-sm md:text-base max-w-lg">
+                    {slide.desc}
+                  </p>
+                </div>
 
-          <div className="flex flex-col gap-8">
-            <motion.h1
-              variants={textVariantUp(0.4)}
-              className="text-2xl font-semibold md:text-3xl md:leading-relaxed lg:text-4xl max-w-md"
-            >
-              Create eye-catching resume that gets you the job.
-            </motion.h1>
+                <div className="order-2 relative w-full bg-white flex items-center justify-center py-8">
+                  <img
+                    className="h-[400px] aspect-auto"
+                    src={slide.image}
+                    alt={slide.title}
+                  />
+                </div>
+              </div>
+            )
+        )}
 
-            <motion.p
-              variants={textVariantUp(0.6)}
-              className=" text-neutral-300"
-            >
-              At konectin, we believe that first impresions matter, that’s why
-              we make sure you put your best foot forward with eye-catching
-              resume designs that stand out from the rest
-            </motion.p>
-
-            <motion.div variants={textVariantUp(0.8)} className="w-fit">
-              <ResumeButton />
-            </motion.div>
+        <div className="flex gap-3 w-full max-md:justify-center absolute bottom-6 md:bottom-16 md:left-12">
+          <div
+            className={`${
+              currentSlide === 0 ? "bg-neutral-500" : "bg-neutral-200"
+            } text-white rounded-full w-10 h-10 flex items-center justify-center cursor-pointer`}
+            onClick={() =>
+              setCurrentSlide((currentId) =>
+                currentId === 0 ? 0 : currentId - 1
+              )
+            }
+          >
+            <IoIosArrowBack size="1.4rem" />
+          </div>
+          <div
+            className={`${
+              currentSlide === slides.length - 1
+                ? "bg-neutral-500"
+                : "bg-neutral-200"
+            } text-white rounded-full w-10 h-10 flex items-center cursor-pointer justify-center`}
+            onClick={() =>
+              setCurrentSlide((currentId) =>
+                currentId === slides.length - 1
+                  ? slides.length - 1
+                  : currentId + 1
+              )
+            }
+          >
+            <IoIosArrowForward size="1.4rem" />
           </div>
         </div>
       </div>
