@@ -10,6 +10,7 @@ import Brands from "../../../../components/brandsListing";
 import TestimonialSection from "../../../../components/testimonials";
 import CoverLetterSection from "./coverletter";
 import WorkingSection from "./workings";
+import TemplateSelector from "./templateSelector";
 
 function ResumeBuilder() {
   return (
@@ -22,7 +23,10 @@ function ResumeBuilder() {
 
       <SolutionSection />
       <CTASection />
-      <SliderSection />
+      <div className="bg-gradient-to-b from-white from-20% to-whites-200">
+        <SliderSection />
+        <TemplateSelector />
+      </div>
 
       <div className="bg-gradient-to-b from-white from-40% to-whites-200">
         <div className="w-full lg:w-11/12 relative mx-auto max-w-screen-2xl flex flex-col gap-10 lg:gap-12 py-16 px-2 xxs:px-4 lg:px-0">

@@ -1,9 +1,8 @@
-import React from "react";
-import CTASection from "../../../components/cta";
-import MapSection from "../../../components/map";
 import CoreValues from "./coreValues";
 import HeroSection from "./hero";
 import Vision from "./vision";
+import MapSection from "../../../components/map";
+import CTASection from "../resume/resume-landing/cta";
 import { TeamData, Values } from "./data";
 import "./index.css";
 import Team from "./ourTeam/ourTeam";

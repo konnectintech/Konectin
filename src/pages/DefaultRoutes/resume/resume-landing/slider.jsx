@@ -55,6 +55,7 @@ function SliderSection() {
         <div className="flex justify-stretch gap-2 max-w-[10rem] xs:max-w-[14rem] w-full absolute top-12 left-6 md:top-16 md:left-12">
           {slides.map((_, bullets) => (
             <div
+              key={bullets}
               className={`${
                 currentSlide >= bullets
                   ? "flex-1 bg-neutral-200"

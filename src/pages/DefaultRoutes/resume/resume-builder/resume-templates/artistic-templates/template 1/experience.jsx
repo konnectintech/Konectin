@@ -4,12 +4,12 @@ function Experience({ jobExperience, currentEditedJob }) {
       <section className="section">
         <style>
           {`
-            .exp-section {
+            .artistic-one .exp-section {
               padding: 20px;
               padding-bottom: 0;
             }
             
-            highlight-bar {
+            .artistic-one .highlight-bar {
               border: 2px solid #3F3EF4;
               background: #3F3EF4;
               width: 100px;
@@ -17,31 +17,31 @@ function Experience({ jobExperience, currentEditedJob }) {
               border-radius: 5px;
             }
             
-            .exp-text {
+            .artistic-one .exp-text {
               font-family: poppins;
               font-size: 10px;
               color: #333333;
             }
             
-            .exp-detail {
+            .artistic-one .exp-detail {
               display: -webkit-flex; /* WebKit-based browsers */
               display: flex;
               -webkit-flex-wrap: wrap; /* WebKit-based browsers */
               flex-wrap: wrap;
             }
             
-            .exp-item {
+            .artistic-one .exp-item {
               -webkit-flex: 1; /* WebKit-based browsers */
               flex: 1;
               margin-right: 15px; /* Add margin to create gap */
               margin-bottom: 15px; /* Add margin to create gap */
             }
             
-            .exp-item:last-child {
+            .artistic-one .exp-item:last-child {
               margin-right: 0; /* Remove margin on the last child */
             }
             
-            .exp-info {
+            .artistic-one .exp-info {
               display: -webkit-flex; /* WebKit-based browsers */
               display: flex;
               -webkit-justify-content: space-between; /* WebKit-based browsers */

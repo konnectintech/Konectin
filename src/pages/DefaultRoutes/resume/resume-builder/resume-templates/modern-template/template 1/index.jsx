@@ -49,13 +49,13 @@ function TemplateOne(data) {
       </style>
 
       <div id="template">
-        <div className="doc-body">
+        <div className="doc-body modern-1">
           <div>
             <style>
               {`
                 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-                .doc-body * {
+                .modern-1.doc-body * {
                   margin: 0;
                   padding: 0;
                   font-size: 16px;
@@ -66,33 +66,34 @@ function TemplateOne(data) {
                   color: #212121;
                 }
 
-                .doc-body {
+                .modern-1.doc-body {
                   position: relative;
                 }
 
-                .doc-body .parent-container {
+                .modern-1.doc-body .parent-container {
                   position: relative;
                   width: 816px;
                   height: 1056px;
                   display: flex;
                   align-items: stretch;
                   background: white;
+                  padding-top: 2rem;
                   // padding: 2rem 4rem 0 1.5rem;
                 }
 
-                .doc-body p, .doc-body a, .doc-body span, .doc-body  ul li {
+                .modern-1.doc-body p, .modern-1.doc-body a, .modern-1.doc-body span, .modern-1.doc-body  ul li {
                   color: #7a7a7a;
                 }
 
-                .doc-body h1,
-                .doc-body h2,
-                .doc-body h3,
-                .doc-body h4 {
+                .modern-1.doc-body h1,
+                .modern-1.doc-body h2,
+                .modern-1.doc-body h3,
+                .modern-1.doc-body h4 {
                   font-family: "IBM Plex Sans", sans-serif;
                   opacity: 1;
                 }
 
-                .doc-body h1 { 
+                .modern-1.doc-body h1 { 
                   font-size: 28px;
                   font-style: normal;
                   font-weight: 700;
@@ -100,23 +101,23 @@ function TemplateOne(data) {
                   margin-bottom: 10px;
                 }
 
-                .doc-body h2 {       
+                .modern-1.doc-body h2 {       
                   font-size: 20px;
                   font-weight: 700;
                   line-height: 15px;
                 }
 
-                .doc-body h3 {
+                .modern-1.doc-body h3 {
                   font-size: 17px;
                   font-weight: 600;
                   line-height: 20px;
                 }
                 
-                .doc-body .top-head {
+                .modern-1.doc-body .top-head {
                   height: 20px;
                 }
 
-                .doc-body .section {
+                .modern-1.doc-body .section {
                   display: flex;
                   display: -webkit-box;
                   align-items: start;
@@ -124,91 +125,91 @@ function TemplateOne(data) {
                   margin: 0px auto;
                 }
             
-                .doc-body .main-content {
+                .modern-1.doc-body .main-content {
                   height: max-content;
                   width: 80%;
                   padding: 1rem 0 1rem 1rem;
                 }
             
-                .doc-body .side-content {
+                .modern-1.doc-body .side-content {
                   width: 20%;
                   padding: 1rem 0;
                 }
 
-                .doc-body .sub-section {
+                .modern-1.doc-body .sub-section {
                   display: flex;
                   flex-direction: column;
                 }
 
-                .doc-body .sub-section > div, .doc-body .sub-section > p {
+                .modern-1.doc-body .sub-section > div, .modern-1.doc-body .sub-section > p {
                   -webkit-box-flex: 1;
                   -webkit-flex: 1;
                   flex: 1;
                   margin-top: 4px;
                 }
 
-                .doc-body .sub-section > div:first-child, .doc-body .sub-section > p:first-child {
+                .modern-1.doc-body .sub-section > div:first-child, .modern-1.doc-body .sub-section > p:first-child {
                   margin-top: 0;
                 }
 
-                .doc-body .separated-div {
+                .modern-1.doc-body .separated-div {
                   display: flex;
                   display: -webkit-flex;
                 }
                 
-                .doc-body ul.separated-div {
+                .modern-1.doc-body ul.separated-div {
                   display: -webkit-flex;
                   -webkit-flex-wrap: wrap;
                 }
 
-                .doc-body .separated-div p, .doc-body .separated-div li:nth-child(even) {
+                .modern-1.doc-body .separated-div p, .modern-1.doc-body .separated-div li:nth-child(even) {
                   margin-left: auto;
                 }
 
-                .doc-body .separated-div li {
+                .modern-1.doc-body .separated-div li {
                   width: 50%;
                   margin-top: 6px;
                 }
 
-                .doc-body .separated-div li:nth-child(2), .doc-body .separated-div li:first-child {
+                .modern-1.doc-body .separated-div li:nth-child(2), .modern-1.doc-body .separated-div li:first-child {
                   margin-top: 0px;
                 }
             
-                .doc-body .capitalize {
+                .modern-1.doc-body .capitalize {
                   text-transform: capitalize;
                 }
             
-                .doc-body .list-disc div ul,
-                .doc-body .list-disc {
+                .modern-1.doc-body .list-disc div ul,
+                .modern-1.doc-body .list-disc {
                   list-style-type: disc;
                   margin: 0;
                   padding: 0;
                 }
 
-                .doc-body .list-none div ul,
-                .doc-body .list-none {
+                .modern-1.doc-body .list-none div ul,
+                .modern-1.doc-body .list-none {
                   list-style-type: none;
                   margin: 0;
                   padding: 0;
                 }
             
-                .doc-body .job-desc {
+                .modern-1.doc-body .job-desc {
                   padding-left: 1.5rem;
                 }
 
-                .doc-body .job-desc ul li {
+                .modern-1.doc-body .job-desc ul li {
                   margin-bottom: .5rem;
                 }
 
-                .doc-body .mb-2 {
+                .modern-1.doc-body .mb-2 {
                   margin-bottom: 0.5rem;
                 }
 
-                .doc-body .ps-4 {
+                .modern-1.doc-body .ps-4 {
                   padding-left: 1rem/* 16px */;
                 }
                 
-                .doc-body .w-full {
+                .modern-1.doc-body .w-full {
                   width: 100%;
                 }
             `}
@@ -238,26 +239,29 @@ function TemplateOne(data) {
         </div>
       </div>
 
-      <div className="parent-container top-head no-scrollbar">
-        <div className="side-content"></div>
-        <div className="main-content"></div>
-      </div>
-
-      <div className="flex w-full justify-end items-center gap-2 !mt-4 text-neutral-300">
-        <MdIcons.MdArrowBackIos
-          onClick={previousPage}
-          size="0.6rem"
-          className="cursor-pointer text-neutral-200"
-        />
-        <span className="text-xs">
-          {pageNumber} of {pageMax}
-        </span>
-        <MdIcons.MdArrowForwardIos
-          onClick={nextPage}
-          size="0.6rem"
-          className="text-neutral-200 cursor-pointer"
-        />
-      </div>
+      {pageMax > 1 && (
+        <>
+          <div className="parent-container top-head no-scrollbar">
+            <div className="side-content"></div>
+            <div className="main-content"></div>
+          </div>
+          <div className="flex w-full justify-end items-center gap-2 !mt-4 text-neutral-300">
+            <MdIcons.MdArrowBackIos
+              onClick={previousPage}
+              size="0.6rem"
+              className="cursor-pointer text-neutral-200"
+            />
+            <span className="text-xs">
+              {pageNumber} of {pageMax}
+            </span>
+            <MdIcons.MdArrowForwardIos
+              onClick={nextPage}
+              size="0.6rem"
+              className="text-neutral-200 cursor-pointer"
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 }
