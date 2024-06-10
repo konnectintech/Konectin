@@ -1,7 +1,8 @@
-import Brands from "../../landing/brands";
-import CustomFAQ from "../../../../components/customFAQ";
-import Testimonials from "../../landing/testimonials";
-import MapSection from "../../../../components/map";
+import Hero from "./hero";
+import Brands from "../../../landing/brands";
+import CustomFAQ from "../../../../../components/customFAQ";
+import Testimonials from "../../../landing/testimonials";
+import MapSection from "../../../../../components/map";
 
 function Review() {
   const faqData = [
@@ -38,6 +39,7 @@ function Review() {
   ];
   return (
     <main>
+      <Hero />
       <Brands />
       <CustomFAQ data={faqData} />
       <Testimonials />

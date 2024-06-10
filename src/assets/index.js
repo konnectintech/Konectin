@@ -192,6 +192,8 @@ import person2 from "./images/person2.png";
 import person3 from "./images/person3.png";
 import person4 from "./images/person4.png";
 
+// resume review section
+import reviewHero from "./images/Illustration.png";
 export {
   // Icons
   orangeLoader,
@@ -386,4 +388,7 @@ export {
   plusWhite,
   closeBlack,
   closeWhite,
+
+  // resume review section
+  reviewHero,
 };
