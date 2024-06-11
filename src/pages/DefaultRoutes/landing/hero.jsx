@@ -50,44 +50,42 @@ function Hero() {
     <section className="bg-neutral-1000">
       <div className="w-full mx-auto max-w-screen-2xl flex flex-col md:flex-row md:justify-between gap-10 lg:gap-12 py-16 px-2 xxs:px-4 lg:px-16">
         <div className="space-y-2.5 md:space-y-16 md:w-7/12">
-          <div className="flex flex-col gap-y-2.5">
-            <div className="flex relative flex-col gap-y-2.5 md:gap-y-5">
-              <span className="absolute -top-4 -left-4">
-                <img src={highlighter} width={39} height={43} alt="" />
-              </span>
-              <p className="py-5 text-2xl sm:text-3xl whitespace-nowrap lg:text-4xl md:h-28 leading-normal font-extrabold text-neutral-100 flex items-center justify-center bg-white rounded-lg border border-solid border-whites-100 md:border-white">
-                {data.map((item, index) => (
-                  <motion.span
-                    key={index}
-                    initial={{ y: 35, display: "none" }}
-                    animate={
-                      currentIndex === index
-                        ? { y: 0, opacity: 1, display: "flex" }
-                        : { y: 35, opacity: 0 }
-                    }
-                    exit={{ y: [0, 8.75, 17.5, 35], display: "none" }}
-                    transition={{
-                      ease: "easeInOut",
-                      duration: 0.5,
-                    }}
-                    className={`${
-                      index === currentIndex ? "block" : "hidden"
-                    } odd:text-primary-400 even:text-secondary-400 `}
-                  >
-                    {item.caption}
-                  </motion.span>
-                ))}
-                &nbsp;Your Career
-              </p>
-              <p className="text-xl md:text-2xl md:font-bold leading-8">
-                Explore remarkable opportunities for growth 
-              </p>
-              <p className="text-neutral-300 text-sm md:text-base ">
-                Join our vibrant community of students, professionals, and
-                employers. At Konectin, we're reshaping how education and work
-                come together, making it a rewarding journey for all.
-              </p>
-            </div>
+          <div className="flex relative flex-col gap-y-2 md:gap-y-4">
+            <span className="absolute -top-4 -left-4">
+              <img src={highlighter} width={39} height={43} alt="" />
+            </span>
+            <h1 className="py-5 text-[22px] xxs:text-2xl max-md:justify-center sm:text-3xl whitespace-nowrap lg:text-5xl md:h-28 w-full md:w-fit leading-normal font-semibold text-neutral-100 flex items-center px-4 md:px-12 bg-white rounded-lg">
+              {data.map((item, index) => (
+                <motion.span
+                  key={index}
+                  initial={{ y: 35, display: "none" }}
+                  animate={
+                    currentIndex === index
+                      ? { y: 0, opacity: 1, display: "flex" }
+                      : { y: 35, opacity: 0 }
+                  }
+                  exit={{ y: [0, 8.75, 17.5, 35], display: "none" }}
+                  transition={{
+                    ease: "easeInOut",
+                    duration: 0.5,
+                  }}
+                  className={`${
+                    index === currentIndex ? "block" : "hidden"
+                  } odd:text-primary-400 even:text-secondary-400 `}
+                >
+                  {item.caption}
+                </motion.span>
+              ))}
+              &nbsp;Your Career
+            </h1>
+            <h2 className="text-xl md:text-2xl md:font-bold leading-8">
+              Explore remarkable opportunities for growth
+            </h2>
+            <p className="text-neutral-300 text-sm md:text-base max-w-xl">
+              Join our vibrant community of students, professionals, and
+              employers. At Konectin, we're reshaping how education and work
+              come together, making it a rewarding journey for all.
+            </p>
           </div>
           <Link
             to="/signup"

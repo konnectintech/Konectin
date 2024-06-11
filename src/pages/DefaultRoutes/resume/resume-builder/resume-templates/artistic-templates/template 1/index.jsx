@@ -38,10 +38,10 @@ function TemplateOneA(data) {
   }, [pageNumber]);
 
   return (
-    <div className="doc-body">
+    <div className="artistic-one">
       <style>
         {`
-        .doc-body .adjuster {
+         .adjuster {
           width: 1px;
           height: ${pageMax * 1056}px;
         }
@@ -49,14 +49,14 @@ function TemplateOneA(data) {
       </style>
 
       <div id="template">
-        <div className="doc-body">
+        <div className="artistic-one">
           <div>
             <style>
               {`
                 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
                 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-                .doc-body * {
+                .artistic-one * {
                   margin: 0;
                   padding: 0;
                   font-size: 16px;
@@ -67,11 +67,11 @@ function TemplateOneA(data) {
                   color: #212121;
                 }
 
-                .doc-body {
+                .artistic-one {
                   position: relative;
                 }
 
-                .doc-body .parent-container {
+                .artistic-one .parent-container {
                   position: relative;
                   width: 816px;
                   height: 1056px;
@@ -80,31 +80,31 @@ function TemplateOneA(data) {
                   background: white;
                 }
 
-                .doc-body p, .doc-body span, .doc-body  ul li {
+                .artistic-one p, .artistic-one span, .artistic-one  ul li {
                   color: #7a7a7a;
                 }
 
-                .doc-body .top-head {
+                .artistic-one .top-head {
                   height: 10px;
                   background: #fff;
                 }
 
-                .doc-body h1,
-                .doc-body h2,
-                .doc-body h3,
-                .doc-body h4 {
+                .artistic-one h1,
+                .artistic-one h2,
+                .artistic-one h3,
+                .artistic-one h4 {
                   font-family: "IBM Plex Sans", sans-serif;
                   opacity: 1;
                 }
 
-                .doc-body h1 {   
+                .artistic-one h1 {   
                   font-size: 48px;
                   font-style: normal;
                   font-weight: 700;
                   line-height: 65px;
                 }
 
-                .doc-body h2 {      
+                .artistic-one h2 {      
                   font-size: 24px;
                   font-weight: 700;
                   line-height: 15px;
@@ -113,7 +113,7 @@ function TemplateOneA(data) {
                   font-family:poppins;
                 }
                 
-                .doc-body h3 {
+                .artistic-one h3 {
                   font-size: 18px;
                   font-weight: 700;
                   line-height: 15px;
@@ -130,9 +130,9 @@ function TemplateOneA(data) {
             className="parent-container overflow-y-scroll no-scrollbar pointer-events-none"
           >
             <div ref={page} className="w-full">
-              <Contacts data={data?.basicInfo} />
+              <Contacts data={data?.basicInfo} templateData={data} />
               <BasicInfo data={data?.basicInfo} theme={data?.theme} />
-              <Profile data={data?.bio} />
+              <Profile data={data?.bio} templateData={data} />
               <Education
                 education={data?.education}
                 currentEditedEducation={data.currentEditedEducation}
@@ -152,21 +152,23 @@ function TemplateOneA(data) {
         <div className="main-content"></div>
       </div>
 
-      <div className="flex w-full justify-end items-center gap-2 !mt-4 text-neutral-300">
-        <MdIcons.MdArrowBackIos
-          onClick={previousPage}
-          size="0.6rem"
-          className="cursor-pointer text-neutral-200"
-        />
-        <span className="text-xs">
-          {pageNumber} of {pageMax}
-        </span>
-        <MdIcons.MdArrowForwardIos
-          onClick={nextPage}
-          size="0.6rem"
-          className="text-neutral-200 cursor-pointer"
-        />
-      </div>
+      {pageMax > 1 && (
+        <div className="flex w-full justify-end items-center gap-2 !mt-4 text-neutral-300">
+          <MdIcons.MdArrowBackIos
+            onClick={previousPage}
+            size="0.6rem"
+            className="cursor-pointer text-neutral-200"
+          />
+          <span className="text-xs">
+            {pageNumber} of {pageMax}
+          </span>
+          <MdIcons.MdArrowForwardIos
+            onClick={nextPage}
+            size="0.6rem"
+            className="text-neutral-200 cursor-pointer"
+          />
+        </div>
+      )}
     </div>
   );
 }

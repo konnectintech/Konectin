@@ -38,28 +38,24 @@ function TemplateThree(data) {
   }, [pageNumber]);
 
   return (
-    <div className="doc-body">
+    <div className="three-modern">
       <style>
         {`
-          .doc-body .adjuster {
+          .three-modern .adjuster {
             width: 1px;
             height: ${pageMax * 1056}px;
           }
       `}
       </style>
-      <div className="parent-container top-head no-scrollbar">
-        <div className="side-content"></div>
-        <div className="main-content"></div>
-      </div>
 
       <div id="template">
-        <div className="doc-body">
+        <div className="three-modern">
           <div>
             <style>
               {`
                 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-                .doc-body * {
+                .three-modern * {
                   margin: 0;
                   padding: 0;
                   font-size: 16px;
@@ -70,11 +66,11 @@ function TemplateThree(data) {
                   color: #212121;
                 }
             
-                .doc-body {
+                .three-modern {
                   position: relative;
                 }
             
-                .doc-body .parent-container {
+                .three-modern .parent-container {
                   position: relative;
                   width: 100%;
                   max-width: 816px;
@@ -85,19 +81,19 @@ function TemplateThree(data) {
                   padding: 0 19.5px;
                 }
 
-                .doc-body p, .doc-body a, .doc-body span, .doc-body  ul li {
+                .three-modern p, .three-modern a, .three-modern span, .three-modern  ul li {
                   color: #7a7a7a;
                 }
 
-                .doc-body h1,
-                .doc-body h2,
-                .doc-body h3,
-                .doc-body h4 {
+                .three-modern h1,
+                .three-modern h2,
+                .three-modern h3,
+                .three-modern h4 {
                   font-family: "IBM Plex Sans", sans-serif;
                   opacity: 1;
                 }
 
-                .doc-body h1 {   
+                .three-modern h1 {   
                   font-size: 28px;
                   font-style: normal;
                   font-weight: 700;
@@ -105,39 +101,39 @@ function TemplateThree(data) {
                   margin-bottom: 10px;
                 }
 
-                .doc-body h2 {      
+                .three-modern h2 {      
                   font-size: 22px;
                   font-weight: 700;
                   line-height: 15px;
                   margin: 30px 0;
                 }
                 
-                .doc-body h3 {
+                .three-modern h3 {
                   font-size: 18px;
                   font-weight: 600;
                   line-height: 20px;
                   margin-bottom: 6px;
                 }
 
-                .doc-body .page {
+                .three-modern .page {
                   display: flex;
                   flex-direction: column;
                   min-height: 1056px;
                 }
 
-                .doc-body .top-head {
+                .three-modern .top-head {
                   max-width: 816px;
                   height: 10px;
                 }
 
-                .doc-body .section {
+                .three-modern .section {
                   display: -webkit-box;
                   display: flex;
                   align-items: stretch;
                   flex-grow: 1;
                 }
             
-                .doc-body .main-content {
+                .three-modern .main-content {
                   height: 100%;
                   display: flex;
                   flex-direction: column;
@@ -145,33 +141,33 @@ function TemplateThree(data) {
                   padding-right: 1rem;
                 }
                 
-                .doc-body .section .main-content {
+                .three-modern .section .main-content {
                   border-right: 1px solid rgb(219, 219, 219);
                 }
                 
-                .doc-body .side-content {
+                .three-modern .side-content {
                   display: flex;
                   flex-direction: column;
                   width: calc(408px - 1rem - 19.5px);
                   padding-left: 1rem;
                 }
                 
-                .doc-body .section .side-content {
+                .three-modern .section .side-content {
                   border-left: 1px solid rgb(219, 219, 219);
                 }
 
-                .doc-body .sub-section > div, .doc-body .sub-section > p {
+                .three-modern .sub-section > div, .three-modern .sub-section > p {
                   -webkit-box-flex: 1;
                   -webkit-flex: 1;
                   flex: 1;
                   margin-top: 4px;
                 }
 
-                .doc-body .sub-section > div:first-child, .doc-body .sub-section > p:first-child {
+                .three-modern .sub-section > div:first-child, .three-modern .sub-section > p:first-child {
                   margin-top: 0;
                 }
 
-                .doc-body .temp-head {
+                .three-modern .temp-head {
                   width: calc(816px - 39px);
                   margin-top: 20px;
                   display: -webkit-box;
@@ -179,11 +175,11 @@ function TemplateThree(data) {
                   border-bottom: 1px solid rgb(219, 219, 219);
                 }
 
-                .doc-body .temp-head section:first-child {
+                .three-modern .temp-head section:first-child {
                   width: 60%;
                 }
 
-                .doc-body .temp-head .contacts {
+                .three-modern .temp-head .contacts {
                   text-align: left;
                 }
 
@@ -191,73 +187,73 @@ function TemplateThree(data) {
                   text-transform: capitalize;
                 }
             
-                .doc-body .list-disc div ul,
-                .doc-body .list-disc {
+                .three-modern .list-disc div ul,
+                .three-modern .list-disc {
                   list-style-type: disc;
                   margin: 0;
                   padding: 0;
                 }
 
-                .doc-body .list-none div ul,
-                .doc-body .list-none {
+                .three-modern .list-none div ul,
+                .three-modern .list-none {
                   list-style-type: none;
                   margin: 0;
                   padding: 0;
                 }
 
-                .doc-body .mt-4 {
+                .three-modern .mt-4 {
                   margin-top: 1rem/* 16px */;
                 }
 
-                .doc-body .mt-2 {
+                .three-modern .mt-2 {
                   margin-top: 0.5rem/* 8px */;
                 }
 
-                .doc-body .w-full {
+                .three-modern .w-full {
                   width: 100%;
                 }
                 
-                .doc-body .ps-4 {
+                .three-modern .ps-4 {
                   padding-left: 1rem/* 16px */;
                 }
                 
-                .doc-body .separated-div {
+                .three-modern .separated-div {
                   display: -webkit-flex;
                   -webkit-flex-wrap: wrap;
                 }
 
-                .doc-body .half-pass {
+                .three-modern .half-pass {
                   display: -webkit-box;
                 }
 
-                .doc-body .skills.separated-div span, .doc-body .separated-div div:nth-child(even) {
+                .three-modern .skills.separated-div span, .three-modern .separated-div div:nth-child(even) {
                   margin-left: auto;
                 }
 
-                .doc-body .separated-div div {
+                .three-modern .separated-div div {
                   width: 45%;
                   margin-top: 6px;
                 }
                 
-                .doc-body .half-pass span {
+                .three-modern .half-pass span {
                   display: block;
                   width: max-content;
                   margin-right: 12px;
                 }
 
-                .doc-body .half-pass > div {
+                .three-modern .half-pass > div {
                   width: 80%;
                 }
 
-                .doc-body .separated-div div:nth-child(2), .separated-div div:first-child {
+                .three-modern .separated-div div:nth-child(2), .separated-div div:first-child {
                   margin-top: 0px;
                 }
 
-                .doc-body .mb-2 {
+                .three-modern .mb-2 {
                   margin-bottom: 0.5rem/* 8px */;
                 }
 
-                .doc-body .mt-4 {
+                .three-modern .mt-4 {
                   margin-top: 1rem/* 16px */;
                 }
                 `}
@@ -295,26 +291,30 @@ function TemplateThree(data) {
         </div>
       </div>
 
-      <div className="parent-container top-head no-scrollbar">
-        <div className="side-content"></div>
-        <div className="main-content"></div>
-      </div>
+      {pageMax > 1 && (
+        <>
+          <div className="parent-container top-head no-scrollbar">
+            <div className="side-content"></div>
+            <div className="main-content"></div>
+          </div>
 
-      <div className="flex w-full justify-end items-center gap-2 !mt-4 text-neutral-300">
-        <MdIcons.MdArrowBackIos
-          onClick={previousPage}
-          size="0.6rem"
-          className="cursor-pointer text-neutral-200"
-        />
-        <span className="text-xs">
-          {pageNumber} of {pageMax}
-        </span>
-        <MdIcons.MdArrowForwardIos
-          onClick={nextPage}
-          size="0.6rem"
-          className="text-neutral-200 cursor-pointer"
-        />
-      </div>
+          <div className="flex w-full justify-end items-center gap-2 !mt-4 text-neutral-300">
+            <MdIcons.MdArrowBackIos
+              onClick={previousPage}
+              size="0.6rem"
+              className="cursor-pointer text-neutral-200"
+            />
+            <span className="text-xs">
+              {pageNumber} of {pageMax}
+            </span>
+            <MdIcons.MdArrowForwardIos
+              onClick={nextPage}
+              size="0.6rem"
+              className="text-neutral-200 cursor-pointer"
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 }

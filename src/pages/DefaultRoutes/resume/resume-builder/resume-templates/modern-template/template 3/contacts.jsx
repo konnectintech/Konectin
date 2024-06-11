@@ -8,7 +8,7 @@ function Contacts({ data }) {
       data.zipCode) && (
       <section className="contacts">
         <p>
-          {data.zipCode && data.zipCode}&#160; {data.city && data.city}
+          {data.zipCode && data.zipCode} {data.city && data.city}
           {(data.zipCode || data.city) && data.state && ", "}
           {data.state && data.state}
           {data.state && data.country && ", "}

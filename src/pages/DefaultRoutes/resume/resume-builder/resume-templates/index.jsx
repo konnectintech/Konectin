@@ -16,7 +16,7 @@ function SelectedTemplates({ data }) {
       ? modernTemplates.filter((_, index) => index === templateIndex - 1)
       : artisticTemplates.filter((_, index) => index === templateIndex - 1);
 
-  return ExactTemplate(data);
+  return ExactTemplate?.element(data);
 }
 
 export default SelectedTemplates;

@@ -52,7 +52,13 @@ export default function Solutions() {
       </div>
       <div className="solutions flex flex-col gap-12">
         {data.map((item, index) => (
-          <SolutionsCard key={index} item={item} total={data.length} />
+          <SolutionsCard
+            key={index}
+            item={item}
+            direction={index % 2 === 0 ? "ltr" : "rtl"}
+            total={data.length}
+            bgColor="rgb(245,245,245)"
+          />
         ))}
       </div>
     </div>

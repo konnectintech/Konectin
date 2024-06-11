@@ -2,9 +2,8 @@ function BasicInfo({ data }) {
   return (
     <section className="section-top text-center">
       <style>{`
-        .doc-body .section-top {
+        .modern-two .section-top {
           width: 100%;
-          margin-top: 10px;
         }
 
         .text-center {
