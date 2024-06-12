@@ -4,20 +4,19 @@ import { reviewHero } from "../../../../../assets";
 
 function Hero() {
   return (
-    <section className="bg-neutral-1000 w-full mx-auto max-w-screen-2xl flex flex-col md:flex-row md:justify-between gap-10 lg:gap-12 py-16 px-2 xxs:px-4 lg:px-16">
-      <div className="space-y-2.5 md:space-y-16 md:w-7/12">
+    <section className="bg-neutral-1000 w-full mx-auto max-w-screen-2xl flex flex-col md:flex-row md:justify-between md:items-center gap-10 py-14 px-2 xxs:px-4 lg:px-16">
+      {/* py-16  gap-10 lg:gap-12 */}
+      <div className="space-y-2.5 md:space-y-16 md:w-1/2">
         <div className="flex flex-col gap-y-2.5">
           <div className="flex relative flex-col gap-y-2.5 md:gap-y-5">
-            <p className="text-2xl sm:text-3xl lg:text-4xl leading-normal font-bold text-neutral-100">
-              Get past{" "}
+            <p className="text-3xl sm:text-4xl lg:text-5xl leading-normal font-bold text-neutral-100">
+              Get Past{" "}
               <span className="text-primary-400">
                 Applicant Tracking Systems (ATS)
               </span>{" "}
-              and land an Interview fast
+              And Land An Interview Fast
             </p>
-            <p className="text-xl md:text-2xl md:font-bold leading-8">
-              Explore remarkable opportunities for growth 
-            </p>
+
             <p className="text-neutral-300 text-sm md:text-base ">
               Is your résumé not good enough? Our résumé review service can help
               turn your résumé into an interview magnet. We provide personalized
@@ -28,14 +27,14 @@ function Hero() {
           </div>
         </div>
         <Link
-          to="/signup"
+          to="/services/resume/upload/"
           className="bg-primary-500 text-white w-fit px-5 md:px-11 py-3.5 md:py-5 md:font-bold md:text-lg flex items-center justify-center rounded-md"
         >
-          Review your resume now
+          Review Your Resume Now
         </Link>
       </div>
 
-      <div className="flex items-center justify-center md:w-5/12">
+      <div className="flex items-center justify-center md:w-7/12">
         <div className="flex items-center justify-center">
           <img
             src={reviewHero}

@@ -1,4 +1,5 @@
 import Hero from "./hero";
+import Impact from "./impact";
 import Brands from "../../../landing/brands";
 import CustomFAQ from "../../../../../components/customFAQ";
 import Testimonials from "../../../landing/testimonials";
@@ -40,6 +41,7 @@ function Review() {
   return (
     <main>
       <Hero />
+      <Impact />
       <Brands />
       <CustomFAQ data={faqData} />
       <Testimonials />
