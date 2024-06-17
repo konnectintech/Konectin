@@ -1,6 +1,9 @@
 import Hero from "./hero";
 import Impact from "./impact";
 import Brands from "../../../landing/brands";
+import Process from "./process";
+import Choice from "./choice";
+import Pricing from "./pricing";
 import CustomFAQ from "../../../../../components/customFAQ";
 import Testimonials from "../../../landing/testimonials";
 import MapSection from "../../../../../components/map";
@@ -43,6 +46,9 @@ function Review() {
       <Hero />
       <Impact />
       <Brands />
+      <Process />
+      <Choice />
+      <Pricing />
       <CustomFAQ data={faqData} />
       <Testimonials />
       <MapSection />

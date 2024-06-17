@@ -1,0 +1,24 @@
+.bg-process {
+  background: linear-gradient(0deg, #ffffff, #ffffff),
+    linear-gradient(
+      180deg,
+      rgba(38, 32, 77, 0.002) 0%,
+      rgba(38, 32, 77, 0.01) 9.25%,
+      rgba(38, 32, 77, 0.01) 18.65%,
+      rgba(38, 32, 77, 0.02) 29.85%,
+      rgba(38, 32, 77, 0.03) 40.66%,
+      rgba(38, 32, 77, 0.04) 53.46%,
+      rgba(38, 32, 77, 0.05) 65.26%,
+      rgba(38, 32, 77, 0.06) 77.46%,
+      rgba(38, 32, 77, 0.07) 88.46%,
+      rgba(38, 32, 77, 0.1) 99.66%
+    );
+}
+
+.bg-gradient {
+  background: linear-gradient(100.26deg, #feba4f 1.38%, #fd5e37 98.2%);
+}
+
+.border-gradient {
+  border-image: linear-gradient(100.26deg, #feba4f 1.38%, #fd5e37 98.2%) 1;
+}
