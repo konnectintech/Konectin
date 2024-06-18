@@ -19,6 +19,6 @@
   background: linear-gradient(100.26deg, #feba4f 1.38%, #fd5e37 98.2%);
 }
 
-.border-gradient {
-  border-image: linear-gradient(100.26deg, #feba4f 1.38%, #fd5e37 98.2%) 1;
+.card-gradient {
+  background: linear-gradient(130.97deg, rgba(255, 255, 255, 0.07) 10.47%, rgba(255, 255, 255, 0.28) 100%);
 }
