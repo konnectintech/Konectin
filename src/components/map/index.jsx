@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 function MapSection() {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col items-center w-[98%] max-w-screen-lg mx-auto px-4 py-12 md:py-20 gap-12">
+    <section className="w-11/12 mx-auto max-w-screen-2xl flex flex-col items-center justify-center gap-12 py-16">
       <div className="text-center space-y-2">
         <h5 className="text-4xl md:text-5xl leading-snug">
           Join Our&nbsp;
@@ -22,7 +22,7 @@ function MapSection() {
         </p>
       </div>
 
-      <div className="h-fit md:h-[550px] w-full bg-primary-500 rounded-xl md:rounded-2xl px-6 md:px-12 pt-12 md:py-16 flex flex-col md:flex-row items-center shadow-[5px_5px_2px_0px] md:shadow-[10px_10px_2px_0px] shadow-secondary-500 md:shadow-secondary-500 gap-20 md:gap-0">
+      <div className="h-fit w-full bg-primary-500 rounded-xl md:rounded-2xl px-6 md:px-12 pt-12 md:pb-16 lg:pb-0 lg:pt-16 flex flex-col md:flex-row items-center shadow-[5px_5px_2px_0px] md:shadow-[10px_10px_2px_0px] shadow-secondary-500 md:shadow-secondary-500 gap-20 md:gap-0">
         <div className="md:w-7/12 flex flex-col justify-center gap-7 md:gap-14">
           <div className="flex flex-col gap-2 md:gap-4">
             <p className="text-4xl !leading-snug text-white font-semibold">
@@ -64,7 +64,7 @@ function MapSection() {
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

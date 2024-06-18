@@ -4,12 +4,12 @@ function Skills({ data }) {
       <section className="section">
         <style>
           {`
-            .skill-section {
+            .artistic-one .skill-section {
               padding: 20px;
               padding-bottom: 0;
             }
             
-            highlight-bar {
+            .artistic-one .highlight-bar {
               border: 2px solid #3F3EF4;
               background: #3F3EF4;
               width: 100px;
@@ -17,27 +17,27 @@ function Skills({ data }) {
               border-radius: 5px;
             }
             
-            .skill-text {
+            .artistic-one .skill-text {
               font-family: poppins;
               font-size: 10px;
               color: #333333;
             }
             
-            .skill-detail {
+            .artistic-one .skill-detail {
               display: -webkit-flex; /* WebKit-based browsers */
               display: flex;
               -webkit-flex-wrap: wrap; /* WebKit-based browsers */
               flex-wrap: wrap;
-              -webkit-justify-content: space-around; /* WebKit-based browsers */
-              justify-content: space-around;
+              -webkit-justify-content: space-between; /* WebKit-based browsers */
+              justify-content: space-between;
             }
             
-            .skill-item {
+            .artistic-one .skill-item {
               -webkit-flex-basis: 50%; /* WebKit-based browsers */
               flex-basis: 50%;
             }
             
-            .skill-info {
+            .artistic-one .skill-info {
               display: -webkit-flex; /* WebKit-based browsers */
               display: flex;
               -webkit-justify-content: space-between; /* WebKit-based browsers */
@@ -46,10 +46,9 @@ function Skills({ data }) {
               align-items: center;
             }
             
-            .skill-year {
+            .artistic-one .skill-year {
               font-size: 10px;
             }
-            
           `}
         </style>
         <div className="skill-section">

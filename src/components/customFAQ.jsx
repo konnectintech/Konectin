@@ -14,7 +14,7 @@ export default function CustomFAQ({ data }) {
               Frequently Asked Questions
             </h4>
             <p className="text-sm">
-              Still you have any questions? Contact our Team via
+              Still you have any questions? <br /> Contact our Team via
               support@konectin.org
             </p>
           </div>

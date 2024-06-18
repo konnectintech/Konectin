@@ -4,25 +4,26 @@ function Skills({ data }) {
       <section className="section">
         <style>
           {`
-          .doc-body .skills.separated-div, .separated-div .separated-div {
+          .modern-two .skills.separated-div, .separated-div .separated-div {
             display: -webkit-flex;
             -webkit-flex-wrap: wrap;
+            align-items: center;
           }
 
-          .doc-body .separated-div span, .doc-body .separated-div div:nth-child(even) {
+          .modern-two .separated-div span, .modern-two .separated-div div:nth-child(even) {
             margin-left: auto;
           }
 
-          .doc-body .separated-div div {
+          .modern-two .separated-div div {
             width: 45%;
             margin-top: 6px;
           }
 
-          .doc-body .separated-div div:nth-child(2), .separated-div div:first-child {
+          .modern-two .separated-div div:nth-child(2), .separated-div div:first-child {
             margin-top: 0px;
           }
 
-          .doc-body .mb-2 {
+          .modern-two .mb-2 {
             margin-bottom: 0.5rem/* 8px */;
           }
       `}

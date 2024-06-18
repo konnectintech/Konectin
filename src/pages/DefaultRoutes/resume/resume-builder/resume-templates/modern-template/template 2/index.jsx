@@ -37,22 +37,18 @@ function TemplateTwo(data) {
   }, [pageNumber]);
 
   return (
-    <div className="doc-body">
+    <div className="modern-two">
       <style>
         {`
-        .doc-body .adjuster {
+        .modern-two .adjuster {
           width: 1px;
           height: ${pageMax * 1056}px;
         }
     `}
       </style>
-      <div className="parent-container top-head no-scrollbar">
-        <div className="side-content"></div>
-        <div className="main-content"></div>
-      </div>
 
       <div id="template">
-        <div className="doc-body">
+        <div className="modern-two">
           <div>
             <style>
               {`
@@ -63,7 +59,7 @@ function TemplateTwo(data) {
                   margin:0; 
                 }
 
-                .doc-body * {
+                .modern-two * {
                   margin: 0;
                   padding: 0;
                   font-size: 16px;
@@ -74,11 +70,11 @@ function TemplateTwo(data) {
                   color: #212121;
                 }
             
-                .doc-body {
+                .modern-two {
                   position: relative;
                 }
             
-                .doc-body .parent-container {
+                .modern-two .parent-container {
                   position: relative;
                   width: 816px;
                   height: 1056px;
@@ -88,19 +84,19 @@ function TemplateTwo(data) {
                   padding: 2rem 4rem 0 1.5rem;
                 }
 
-                .doc-body p, .doc-body a, .doc-body span, .doc-body  ul li {
+                .modern-two p, .modern-two a, .modern-two span, .modern-two  ul li {
                   color: #7a7a7a;
                 }
 
-                .doc-body h1,
-                .doc-body h2,
-                .doc-body h3,
-                .doc-body h4 {
+                .modern-two h1,
+                .modern-two h2,
+                .modern-two h3,
+                .modern-two h4 {
                   font-family: "IBM Plex Sans", sans-serif;
                   opacity: 1;
                 }
 
-                .doc-body h1 {   
+                .modern-two h1 {   
                   font-size: 28px;
                   font-style: normal;
                   font-weight: 700;
@@ -108,36 +104,36 @@ function TemplateTwo(data) {
                   margin-bottom: 15px;
                 }
 
-                .doc-body h2 { 
+                .modern-two h2 { 
                   font-size: 20px;
                   font-weight: 700;
                   line-height: 15px;
                 }
 
-                .doc-body h3 {  
+                .modern-two h3 {  
                   font-size: 17px;
                   font-weight: 600;
                   line-height: 20px;
                   margin: 7px 0;
                 }
 
-                .dataset-container > section {
+                .modern-two .dataset-container > section {
                   padding: 10px 0;
                   border-top: 1px solid rgb(219, 219, 219);
                 }
             
-                .doc-body .top-head {
+                .modern-two .top-head {
                   height: 20px;
                 }
 
-                .doc-body .section {
+                .modern-two .section {
                   display: flex;
                   display: -webkit-box;
                   align-items: start;
                   margin: 0px auto;
                 }
             
-                .doc-body .main-content {
+                .modern-two .main-content {
                   height: max-content;
                   display: flex;
                   flex-direction: column;
@@ -145,26 +141,26 @@ function TemplateTwo(data) {
                   padding: 0 0 0 1rem;
                 }
             
-                .doc-body .side-content {
+                .modern-two .side-content {
                   display: flex;
                   flex-direction: column;
                   width: 23%;
                   margin: 7px 0;
                 }
 
-                .doc-body .sub-section {
+                .modern-two .sub-section {
                   display: flex;
                   flex-direction: column;
                 }
 
-                .doc-body .sub-section > div, .doc-body .sub-section > p {
+                .modern-two .sub-section > div, .modern-two .sub-section > p {
                   -webkit-box-flex: 1;
                   -webkit-flex: 1;
                   flex: 1;
                   margin-top: 4px;
                 }
 
-                .doc-body .sub-section > div:first-child, .doc-body .sub-section > p:first-child {
+                .modern-two .sub-section > div:first-child, .modern-two .sub-section > p:first-child {
                   margin-top: 0;
                 }
 
@@ -172,33 +168,33 @@ function TemplateTwo(data) {
                   text-transform: capitalize;
                 }
             
-                .doc-body .list-disc div ul,
-                .doc-body .list-disc {
+                .modern-two .list-disc div ul,
+                .modern-two .list-disc {
                   list-style-type: disc;
                   margin: 0;
                   padding: 0;
                 }
 
-                .doc-body .list-none div ul,
-                .doc-body .list-none {
+                .modern-two .list-none div ul,
+                .modern-two .list-none {
                   list-style-type: none;
                   margin: 0;
                   padding: 0;
                 }
 
-                .doc-body .mt-4 {
+                .modern-two .mt-4 {
                   margin-top: 1rem/* 16px */;
                 }
 
-                .doc-body .mt-2 {
+                .modern-two .mt-2 {
                   margin-top: 0.5rem/* 8px */;
                 }
 
-                .doc-body .w-full {
+                .modern-two .w-full {
                   width: 100%;
                 }
                 
-                .doc-body .ps-4 {
+                .modern-two .ps-4 {
                   padding-left: 1rem/* 16px */;
                 }
                 `}
@@ -223,26 +219,30 @@ function TemplateTwo(data) {
         </div>
       </div>
 
-      <div className="parent-container top-head no-scrollbar">
-        <div className="side-content"></div>
-        <div className="main-content"></div>
-      </div>
+      {pageMax > 1 && (
+        <>
+          <div className="parent-container top-head no-scrollbar">
+            <div className="side-content"></div>
+            <div className="main-content"></div>
+          </div>
 
-      <div className="flex w-full justify-end items-center gap-2 !mt-4 text-neutral-300">
-        <MdIcons.MdArrowBackIos
-          onClick={previousPage}
-          size="0.6rem"
-          className="cursor-pointer text-neutral-200"
-        />
-        <span className="text-xs">
-          {pageNumber} of {pageMax}
-        </span>
-        <MdIcons.MdArrowForwardIos
-          onClick={nextPage}
-          size="0.6rem"
-          className="text-neutral-200 cursor-pointer"
-        />
-      </div>
+          <div className="flex w-full justify-end items-center gap-2 !mt-4 text-neutral-300">
+            <MdIcons.MdArrowBackIos
+              onClick={previousPage}
+              size="0.6rem"
+              className="cursor-pointer text-neutral-200"
+            />
+            <span className="text-xs">
+              {pageNumber} of {pageMax}
+            </span>
+            <MdIcons.MdArrowForwardIos
+              onClick={nextPage}
+              size="0.6rem"
+              className="text-neutral-200 cursor-pointer"
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 }

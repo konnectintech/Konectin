@@ -3,30 +3,30 @@ function BasicInfo({ data, theme }) {
     <section className="section">
       <style>
         {`
-          .basic_info {
+          .artistic-one .basic_info {
             padding: 30px;
-            background: ${theme?.color};
+            background: ${theme?.color || "blue"};
           }
           
-          .basic_info_content {
+          .artistic-one .basic_info_content {
             display: -webkit-flex;
             display: flex;
             -webkit-flex-direction: column;
             flex-direction: column;
           }
           
-          .basic_info_content > * {
+          .artistic-one .basic_info_content > * {
             margin-top: 20px; /* Add spacing between elements */
           }
           
-          .basic_info_content .name {
+          .artistic-one .basic_info_content .name {
             font-size: 35px;
             font-style: normal;
             font-weight: 700;
             color: white;
           }
           
-          .basic_info_content .profession {
+          .artistic-one .basic_info_content .profession {
             font-size: 20px;
             font-style: normal;
             font-weight: 400;

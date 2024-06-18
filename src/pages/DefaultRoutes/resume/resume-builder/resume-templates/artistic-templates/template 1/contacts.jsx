@@ -1,7 +1,6 @@
 import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
-import { useTemplateContext } from "../../../../../../../middleware/resume";
-function Contacts({ data }) {
-  const { templateData } = useTemplateContext();
+
+function Contacts({ data, templateData }) {
   return (
     (data.state ||
       data.country ||
@@ -13,7 +12,7 @@ function Contacts({ data }) {
         <div>
           <style>
             {`
-             .content {
+             .artistic-one .content {
               padding: 22px;
               display: -webkit-flex; /* WebKit-based browsers */
               display: flex;
@@ -23,13 +22,13 @@ function Contacts({ data }) {
               align-items: center;
             }
             
-            .content .sub_content {
+            .artistic-one .content .sub_content {
               display: -webkit-flex; /* WebKit-based browsers */
               display: flex;
               margin: 0 auto;
             }
             
-            .content .sub_content .item {
+            .artistic-one .content .sub_content .item {
               display: -webkit-flex; /* WebKit-based browsers */
               display: flex;
               -webkit-border-radius: 2px;
@@ -39,11 +38,11 @@ function Contacts({ data }) {
             }
             
             /* Create gap between flex items using negative margin */
-            .content .sub_content .item + .item {
+            .artistic-one .content .sub_content .item + .item {
               margin-left: 10px; /* Adjust this value to control the gap */
             }
             
-            .content .sub_content .icon {
+            .artistic-one .content .sub_content .icon {
               width: 25px;
               height: 25px;
               background:  ${templateData?.theme?.color || "blue"};;
@@ -55,10 +54,7 @@ function Contacts({ data }) {
               justify-content:center;
               -webkit-align-items: center; /* WebKit-based browsers */
               align-items:center
-
             }
-            
-              
             `}
           </style>
           <div className="content">
@@ -66,7 +62,7 @@ function Contacts({ data }) {
               {data?.email && (
                 <div className="item">
                   <div className="icon">
-                    <AiOutlineMail color={"#ffffff"} fill="#ffffff" />
+                    <AiOutlineMail color="#ffffff" fill="#ffffff" />
                   </div>
                   <div className="">
                     <a href={`mailto:${data.email}`}>{data.email}</a>

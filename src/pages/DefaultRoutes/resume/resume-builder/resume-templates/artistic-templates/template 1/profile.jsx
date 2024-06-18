@@ -1,27 +1,25 @@
-import { useTemplateContext } from "../../../../../../../middleware/resume";
-
-function Profile({ data }) {
-  const { templateData } = useTemplateContext();
+function Profile({ data, templateData }) {
   return (
     data && (
       <section className="section">
         <style>
           {`
-           .profile-section {
+           .artistic-one .profile-section {
             padding: 20px;
             padding-bottom: 0;
           }
           
-          .highlight-bar {
+          .artistic-one .highlight-bar {
             border: 2px solid ${templateData?.theme?.color || "blue"};
             background:  ${templateData?.theme?.color || "blue"};
             width: 100px;
-            margin:0.5rem 0;
+            margin: 0.5rem 0;
             border-radius:5px;
           }
-          .text{
-            font-family:poppins;
-            font-size:10px;
+
+          .artistic-one .text{
+            font-family: poppins;
+            // font-size: 10px;
             color:#333333
           }
           `}

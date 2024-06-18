@@ -100,20 +100,20 @@ import highlighter from "./images/headline-bg.svg";
 
 // Internship Images
 import internHero from "./images/internship hero.png";
-import comingSoon from "./images/coming soon.png";
 import modalBackground from "./images/modal background.png";
 import happyTeam from "./images/happyTeam.png";
 
 // Resume Builder Images
 import orangeLoader from "./icons/orange-loader.gif";
 import botIcon from "./images/bot/bot.svg";
-import card3Image from "./images/card 3.png";
 import uploadResume from "./images/upload resume.png";
 import educationImage from "./images/education.png";
 import educationImage1 from "./images/education 1.png";
 import educationImage2 from "./images/education 2.png";
 import createResume from "./images/create resume.png";
 import ResumeHeroImage from "./images/resume hero.png";
+import ResumeHeroImage1 from "./images/resume hero 1.png";
+import ResumeAnalyticsImage from "./images/resume analytics.png";
 import ResumeTemplateCrossImage from "./images/resume cross.png";
 import ResumeTemplateSampleImage from "./images/resume template.png";
 import BuilderBg from "./images/builder-bg.png";
@@ -178,11 +178,6 @@ import solution1 from "./images/solution1.png";
 import solution2 from "./images/solution2.png";
 import solution3 from "./images/solution3.png";
 import solution4 from "./images/solution4.png";
-
-// blog section
-import blog1 from "./images/blog1.jfif";
-import blog2 from "./images/blog2.jfif";
-import blog3 from "./images/blog3.jfif";
 
 // coverage section
 import coverage from "./images/coverage.svg";
@@ -259,18 +254,18 @@ export {
 
   // Internship Images
   internHero,
-  comingSoon,
   modalBackground,
   happyTeam,
 
   // Resume Images
   ResumeCTAImage,
   ResumeHeroImage,
+  ResumeHeroImage1,
+  ResumeAnalyticsImage,
   ResumeTemplateCrossImage,
   ResumeTemplateSampleImage,
   ResumeTemplateSample1Image,
   BuilderBg,
-  card3Image,
   createResume,
   uploadResume,
   botIcon,
@@ -372,11 +367,6 @@ export {
   solution2,
   solution3,
   solution4,
-
-  // blog section
-  blog1,
-  blog2,
-  blog3,
 
   // coverage section
   coverage,
