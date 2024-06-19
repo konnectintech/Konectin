@@ -1,16 +1,16 @@
-
 ## Table of contents
 
+- [Table of contents](#table-of-contents)
 - [Overview](#overview)
-  - [Konnectin](#Konnectin)
+  - [Konectin](#konectin)
   - [Links](#links)
-- [My process](#my-process)
+- [Process](#process)
   - [Built with](#built-with)
 - [Getting Started](#getting-started)
   - [System Requirements](#system-requirements)
   - [Installation](#installation)
   - [Contributing](#contributing)
-- [Author](#author)
+- [Authors](#authors)
 
 ## Overview
 
@@ -18,7 +18,6 @@
 
 Konectin is the perfect platform for business professionals and job seekers to connect with each other. With our easy-to-use tools, you can find the perfect match for your next Business quickly and easily....
 Konectin is the perfect platform for business professionals and job seekers to connect with each other. With our easy-to-use tools, you can find the perfect match for your next Business quickly and easily....
-
 
 ### Links
 
@@ -49,11 +48,13 @@ In order to view this project locally, you need to make sure you clone this repo
 - [npm][https://nodejs.org/en/] 8.7.0 or greater
 
 To check which versions you have installed you can run these commands:
+
 ```
 git --version
 node --version
 npm --version
 ```
+
 If requirements above are not installed in your computer, you'll need to install them. By clicking on them you can go to their website, which can lead you the way.
 
 ### Installation
@@ -72,10 +73,11 @@ If requirements above are not installed in your computer, you'll need to install
   ```sh
   npm install
   ```
-- To run the app in the development mode run in the project directory: 
+- To run the app in the development mode run in the project directory:
   ```sh
   npm run dev
   ```
+
 ### Contributing
 
 To contribute to this repository... After contributing to the repository and commit has been merged... Your name and github link would be added as a contibutor to the repo
@@ -85,7 +87,7 @@ To contribute to this repository... After contributing to the repository and com
 - Commit your Changes (`git commit -m 'Brief explanation of feature`')
 - Push to the Branch (`git push origin feature/yourFeature`)
 - Open a Pull Request
+
 ## Authors
 
 - Ajayi Michael - [Github](https://github.com/Michaelajayi150)
-

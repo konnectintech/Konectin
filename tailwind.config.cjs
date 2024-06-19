@@ -4,6 +4,16 @@ module.exports = {
   mode: "jit",
   theme: {
     extend: {
+      lineHeight: {
+        "custom-30": "30.2px",
+      },
+      fontFamily: {
+        avenir: ["Avenir", "sans-serif"],
+      },
+      boxShadow: {
+        "custom-full":
+          "0 0px 5px rgba(0, 0, 0, 0.1), 0 0px 5px rgba(0, 0, 0, 0.1)",
+      },
       colors: {
         neutral: {
           grey: "#8D8D8D",

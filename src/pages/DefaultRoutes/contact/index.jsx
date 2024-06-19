@@ -1,45 +1,46 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import * as FaIcon from "react-icons/fa";
 import { discussionTopics } from "./data";
-import { RiDeleteBinLine } from "react-icons/ri";
 import { ContactUSImage } from "../../../assets";
 import Preloader from "../../../components/preloader";
-import filePng from "../../../assets/images/file-png-solid-240.png";
+import { CiSearch } from "react-icons/ci";
 
 function Contact() {
-  const wrapperRef = useRef(null);
   const [mailing, setMailing] = useState({
     mail: "",
     topic: "",
-    message: "",
-    files: [],
   });
   const [topics, setTopics] = useState("");
   const [submitable, setSubmitable] = useState(false);
-  const [uploading, setUploading] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const url = import.meta.env.VITE_CLIENT_SERVER_RENDER_URL;
 
-  function checkSubmitable() {
-    if (
-      mailing.mail &&
-      (mailing.topic || topics) &&
-      mailing.message.length > 5
-    ) {
+  const checkSubmitable = useCallback(() => {
+    if (mailing.mail && (mailing.topic || topics)) {
       setSubmitable(true);
     } else {
       setSubmitable(false);
     }
-  }
+  }, [mailing, topics]);
+
+  useEffect(() => {
+    checkSubmitable();
+  }, [mailing, topics, checkSubmitable]);
 
   const handleChange = (name, value) => {
-    setMailing((mailer) => ({ ...mailer, [name]: value }));
-    checkSubmitable();
+    setMailing((prevMailing) => {
+      const updatedMailing = { ...prevMailing, [name]: value };
+      return updatedMailing;
+    });
   };
+
+  useEffect(() => {
+    checkSubmitable();
+  }, [mailing, topics, checkSubmitable]);
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -57,8 +58,6 @@ function Contact() {
         setMailing({
           mail: "",
           topic: "",
-          message: "",
-          files: [],
         });
 
         toast.success(
@@ -74,106 +73,34 @@ function Contact() {
       });
   };
 
-  const onFileDrop = (e) => {
-    const complaintsImages = e.target.files;
-    let complaintsArr = Array.from(complaintsImages);
-
-    if (complaintsArr.length + mailing.files.length >= 3) {
-      complaintsArr = complaintsArr.splice(0, 2 - mailing.files.length);
-    }
-
-    complaintsArr.forEach((complaintImage, id) => {
-      const fd = new FormData();
-      fd.append("file", complaintsImages[id]);
-
-      setUploading((prev) => [
-        ...prev,
-        {
-          image: complaintImage,
-          started: true,
-          percent: 0,
-          message: "Uploading...",
-        },
-      ]);
-
-      axios
-        .post(`${url}/uploadFile`, fd, {
-          onUploadProgress: (event) => {
-            setUploading((prev) =>
-              prev.map((item, i) => {
-                if (i === id) {
-                  return { ...item, percent: event.progress * 100 };
-                } else {
-                  return item;
-                }
-              })
-            );
-          },
-        })
-        .then((res) => {
-          setMailing((mailer) => ({
-            ...mailer,
-            files: [...mailer.files, res.data.data.url],
-          }));
-          setUploading((prev) =>
-            prev.map((item, i) => {
-              if (i === id) {
-                return {
-                  ...item,
-                  message: "Uploaded",
-                  url: res.data.data.url,
-                };
-              } else {
-                return item;
-              }
-            })
-          );
-        })
-        .catch((err) => {
-          console.log(err);
-          setUploading((prev) =>
-            prev.map((item, i) => {
-              if (i === id) {
-                return {
-                  ...item,
-                  message: `Upload failed...`,
-                };
-              } else {
-                return item;
-              }
-            })
-          );
-        });
-    });
-  };
-
-  const fileRemove = (index) => {
-    const updatedList = [...uploading];
-    updatedList.splice(index, 1);
-    setUploading(updatedList);
-    setMailing((mailer) => ({ ...mailer, files: [] }));
-
-    if (uploading.length >= 1) {
-      uploading.forEach((file) => {
-        setMailing((mailer) => ({
-          ...mailer,
-          files: [...mailer.files, file.url],
-        }));
-      });
-    }
-  };
-
   return (
     <>
       {loading && <Preloader />}
-      <div className="mt-[4.5rem] pt-16 pb-28 bg-primary-700">
+      <div className=" mt-[4.5rem] bg-primary-50 h-24 flex items-center justify-center px-4 md:px-8">
+        <div className="relative w-full max-w-lg md:max-w-2xl lg:max-w-3xl">
+          <input
+            type="text"
+            placeholder="Search the help center"
+            className="bg-primary-50 w-full h-10 md:h-16 outline-none rounded-[10px] pl-6 pr-12 border border-[#191A1F] placeholder:text-[#191A1F] text-[#191A1F] font-avenir"
+          />
+          <button>
+            <CiSearch className="w-4 h-4 md:w-8 md:h-8 text-[#2F3437] absolute right-6 top-1/2 transform -translate-y-1/2" />
+          </button>
+        </div>
+      </div>
+
+      <div className=" pt-16 pb-28 bg-primary-700">
         <div className="w-11/12 mx-auto max-w-screen-2xl">
-          <h1 className="text-3xl lg:text-6xl font-bold text-primary-100 mb-2">
-            Contact US
+          <h1 className="text-2xl lg:text-5xl font-bold text-primary-100 mb-8">
+            Contact us
           </h1>
-          <p className="font-bold text-lg lg:text-2xl text-primary-100">
-            Requests, error reports, suggestions, and questions. - we’re here to
-            assist.
+          <p className="text-lg lg:text-xl text-primary-100 leading-custom-30">
+            Get in Touch with Konectin Inc <br />
+            We're always eager to hear from you. Whether you have a question,
+            suggestion, or just want to share your experience <br /> with our
+            platform, don't hesitate to reach out. We value your feedback and
+            are committed to providing you with <br /> the best possible
+            service.
           </p>
         </div>
       </div>
@@ -182,22 +109,22 @@ function Contact() {
         <div className="flex flex-col lg:flex-row z-50 lg:w-[90%] mt-[-70px] justify-between gap-12">
           <div className="shadow-2xl bg-white z-50 p-8 lg:p-12 lg:max-w-[60%]">
             <form onSubmit={sendEmail} className="space-y-3">
-              <h2 className="text-lg font-black">
+              <h2 className="text-lg font-extrabold font-avenir">
                 Please, provide your Email address
               </h2>
               <input
-                className="p-4 py-3 lg:px-6 placeholder:text-xs font-normal w-full mt-3 outline-none rounded-lg border"
+                className="p-4 py-3 lg:px-6 placeholder:text-sm placeholder:font-normal font-normal placeholder:text-neutral-300 w-full mt-3 outline-none rounded-lg border border-neutral-400"
                 type="email"
                 name="email"
-                placeholder="Enter email address "
+                placeholder="Email Address"
                 onChange={(e) => handleChange("mail", e.target.value)}
                 value={mailing.mail}
               />
 
-              <h2 className="text-lg font-black">
+              <h2 className="text-lg font-extrabold font-avenir">
                 Kindly select a topic for discussion:
               </h2>
-              <div className="flex gap-1 sm:gap-2 flex-wrap">
+              <div className="flex gap-3 sm:gap-5 flex-wrap mx-7">
                 {discussionTopics.map((topic) => (
                   <div
                     key={topic.name}
@@ -209,7 +136,7 @@ function Contact() {
                         : topics === ""
                         ? "border-neutral-grey hover:bg-primary-300 hover:text-white"
                         : "text-neutral-700 pointer-events-none"
-                    } font-medium text-xs border rounded-full py-[.65rem] px-4 duration-500 cursor-pointer`}
+                    } font-medium font-avenir text-sm shadow-custom-full rounded-full py-[.65rem] px-5 duration-500 cursor-pointer`}
                     onClick={() =>
                       setTopics((prev) =>
                         prev === topic.name ? "" : topic.name
@@ -223,11 +150,11 @@ function Contact() {
 
               {!topics ? (
                 <>
-                  <h2 className="text-lg font-black">
+                  <h2 className="text-lg font-extrabold font-avenir mt-5">
                     Or simply state what you require help with
                   </h2>
                   <input
-                    className="p-4 py-3 lg:px-6 placeholder:text-xs font-normal w-full mt-3 outline-none rounded-lg border"
+                    className="p-4 py-3 lg:px-6 placeholder:text-sm font-normal placeholder:text-neutral-300 w-full mt-3 outline-none rounded-lg border border-neutral-400"
                     type="text"
                     name="topic"
                     placeholder="Enter a topic like “Account setup” "
@@ -259,94 +186,6 @@ function Contact() {
                         </Link>
                       ))
                     )}
-                </div>
-              )}
-
-              <div>
-                <h2 className="text-lg font-black mt-4">
-                  Kindly provide us with additional information to assist you
-                  better
-                </h2>
-                <textarea
-                  className="p-4 py-3 lg:px-6 placeholder:text-xs font-normal w-full mt-3 outline-none rounded-lg border"
-                  type="text"
-                  name="message"
-                  placeholder="Tell us what you need help with..."
-                  onChange={(e) => handleChange("message", e.target.value)}
-                  value={mailing.message}
-                />
-                {mailing.message.length >= 1 && mailing.message.length <= 4 && (
-                  <span className="text-red-500 text-xs my-2 block">
-                    Write a good and appropriate write up
-                  </span>
-                )}
-              </div>
-
-              <h1 className="font-black">Attach files (optional)</h1>
-              <div
-                className="text-xs text-center py-12 px-4 rounded-md border-dashed border-2 border-primary-300 mb-4 w-full relative cursor-pointer"
-                onClick={() => wrapperRef.current.click()}
-              >
-                Drag & Drop your file(s) to attach it, or <br />{" "}
-                <span className="text-secondary-500 block mt-1">
-                  browse for a file...
-                </span>
-                <input
-                  type="file"
-                  value=""
-                  ref={wrapperRef}
-                  multiple
-                  className="invisible absolute outline-0 border-0 left-[-1000%]"
-                  onChange={onFileDrop}
-                />
-              </div>
-
-              {uploading.length >= 1 && (
-                <div className="space-y-3 c min-w-[200px]">
-                  <p className="font-semibold">Uploaded file(s)</p>
-                  <div className="flex gap-3 flex-wrap">
-                    {uploading.map((file, index) =>
-                      file.message === "uploaded" ? (
-                        <img
-                          className="h-[100px] w-[100px]"
-                          key={index}
-                          src={file.url}
-                          alt={file.image.name}
-                        />
-                      ) : (
-                        <div
-                          key={index}
-                          className="relative flex gap-2 w-1/2 min-w-[200px]"
-                        >
-                          <img
-                            className="h-[35px] object-contain"
-                            src={filePng}
-                            alt={file.image.name}
-                          />
-                          <div className="space-y-2 w-full text-xs">
-                            {/* displaying file name, progress bar and file size in Bytes */}
-                            <p className="truncate max-w-[170px] sm:max-w-[15ch] md:max-w-full lg:max-w-[15ch]">
-                              Report Image {index + 1}
-                            </p>
-                            {file.started && (
-                              <progress
-                                className="h-1 w-full"
-                                max={100}
-                                value={file.percent}
-                              ></progress>
-                            )}
-                            {file.message && file.message}
-                          </div>
-
-                          <RiDeleteBinLine
-                            onClick={() => fileRemove(index)}
-                            size="1rem"
-                            className="text-error-500 cursor-pointer"
-                          />
-                        </div>
-                      )
-                    )}
-                  </div>
                 </div>
               )}
 
@@ -406,7 +245,6 @@ function Contact() {
               </div>
             </div>
           </div>
-
           <div className="max-lg:hidden">
             <img src={ContactUSImage} alt="Contact us page" />
           </div>

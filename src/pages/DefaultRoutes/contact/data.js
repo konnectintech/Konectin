@@ -9,6 +9,15 @@ export const discussionTopics = [
     ],
   },
   {
+    name: "Job search",
+    resources: [
+      { summary: "Tips for job search success", link: "/faq" },
+      { summary: "Creating a winning resume", link: "/faq" },
+      { summary: "Strategies for networking", link: "/faq" },
+      { summary: "Troubleshooting common account issues", link: "/faq" },
+    ],
+  },
+  {
     name: "Resume building",
     resources: [
       { summary: "Tips for job search success", link: "/faq" },
