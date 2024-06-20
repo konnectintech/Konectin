@@ -9,7 +9,7 @@ function HeroSection() {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-gradient-to-b from-white from-40% to-whites-200 pt-12">
+    <div className="bg-gradient-to-b from-white from-40% to-whites-200 py-12">
       <div className="w-11/12 mx-auto max-w-screen-2xl flex flex-col gap-10 md:flex-row items-center justify-between">
         <div className="flex w-full md:w-1/2 flex-col gap-6 items-center text-center md:text-start md:items-start justify-center">
           <motion.h1
