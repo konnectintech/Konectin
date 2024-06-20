@@ -50,7 +50,7 @@ export default function Solutions() {
           cater to the unique needs of the African job and education sectors.
         </p>
       </div>
-      <div className="solutions flex flex-col gap-12">
+      <div className="solutions flex flex-col gap-12 overflow-hidden">
         {data.map((item, index) => (
           <SolutionsCard
             key={index}

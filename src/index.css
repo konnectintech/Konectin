@@ -26,8 +26,15 @@
   }
 }
 
+html,
+body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Avenir", sans-serif;
+  position: relative;
 }
 
 #root {
