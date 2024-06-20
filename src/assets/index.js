@@ -191,6 +191,7 @@ import person4 from "./images/person4.png";
 // resume review section
 import reviewHero from "./images/Illustration.png";
 import processHero from "./images/processHero.png";
+import pricingCardBg from "./images/pricing-card-bg.png";
 
 export {
   // Icons
@@ -386,4 +387,5 @@ export {
   // resume review section
   reviewHero,
   processHero,
+  pricingCardBg,
 };
