@@ -166,14 +166,15 @@ function Contact() {
   return (
     <>
       {loading && <Preloader />}
-      <div className="mt-[4.5rem] pt-16 pb-28 bg-primary-700">
-        <div className="w-11/12 mx-auto max-w-screen-2xl">
-          <h1 className="text-3xl lg:text-6xl font-bold text-primary-100 mb-2">
-            Contact US
-          </h1>
-          <p className="font-bold text-lg lg:text-2xl text-primary-100">
-            Requests, error reports, suggestions, and questions. - we’re here to
-            assist.
+      <div className="mt-[4.5rem] py-28 bg-primary-700">
+        <div className="w-11/12 mx-auto max-w-screen-2xl text-primary-100 text-lg space-y-1">
+          <h1 className="text-3xl lg:text-6xl font-bold mb-2">Contact us</h1>
+          <p>Get in Touch with Konectin Inc</p>
+          <p className="max-w-4xl">
+            We're always eager to hear from you. Whether you have a question,
+            suggestion, or just want to share your experience with our platform,
+            don't hesitate to reach out. We value your feedback and are
+            committed to providing you with the best possible service.
           </p>
         </div>
       </div>
