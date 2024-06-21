@@ -76,17 +76,17 @@ export default function Pricing() {
   return (
     <section className="bg-process w-full mx-auto max-w-screen-2xl flex flex-col gap-12 md:gap-28 py-28 px-2 xxs:px-4 lg:px-16">
       <div className="flex flex-col gap-4 justify-center items-center">
-        <p className="font-semibold text-4xl md:text-5xl">
+        <p className="font-semibold text-4xl md:text-5xl w-11/12 md:w-full md:text-center">
           Simple, Transparent{" "}
           <span className="text-secondary-600">Pricing</span>
         </p>
-        <p className="text-lg text-center w-11/12 md:text-xl md:w-9/12 ">
+        <p className="text-lg md:text-center w-11/12 md:text-xl md:w-9/12 ">
           At Konectin, we believe in providing value for your investment. Our
           Manual Resume Review service is designed to give you the competitive
           edge you need in your job search. Here's how our pricing works:.
         </p>
       </div>
-      <div className="flex flex-col md:flex-row justify-between">
+      <div className="flex flex-col items-center gap-7 md:flex-row justify-between">
         {userData.map((item, index) => (
           <PricingCard
             key={index}
@@ -145,12 +145,14 @@ export function PricingCard({
     <div
       onMouseEnter={() => setOnHover(true)}
       onMouseLeave={() => setOnHover(false)}
-      className={`h-[648px] w-72 bg-no-repeat bg-right rounded-2xl py-11 px-6 ${
-        onHover ? "scale-110" : ""
+      className={`h-[648px] w-10/12 md:w-72 bg-no-repeat bg-right rounded-2xl py-11 px-6 ${
+        onHover ? "md:scale-110" : ""
       }`}
       style={{
         backgroundImage: `url(${pricingCardBg})`,
         backgroundColor: bgColor,
+        boxShadow: "0px 40.74px 32.98px 0px #5243C24B",
+
       }}
     >
       <div className="h-full rounded-2xl w-full items-center flex flex-col gap-14">
