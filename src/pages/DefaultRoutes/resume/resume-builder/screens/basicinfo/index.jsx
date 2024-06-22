@@ -11,12 +11,15 @@ const BasicInformation = ({ data, onInputChange }) => {
   const {
     firstName,
     lastName,
+    imageUrl, 
+    profession,
     city,
     state,
     country,
     phoneNumber,
     zipCode,
     email,
+    website,
   } = data?.basicInfo;
 
   const [code, setCode] = useState("");
@@ -29,6 +32,8 @@ const BasicInformation = ({ data, onInputChange }) => {
   const phoneNumberErrMsg = useRef(null);
   const zipCodeErrMsg = useRef(null);
   const emailErrMsg = useRef(null);
+  const professionErrMsg = useRef(null);
+  const websiteErrMsg = useRef(null);
 
   let allErrMsg = [
     firstNameErrMsg,
@@ -36,6 +41,8 @@ const BasicInformation = ({ data, onInputChange }) => {
     phoneNumberErrMsg,
     zipCodeErrMsg,
     emailErrMsg,
+    professionErrMsg,
+    websiteErrMsg,
   ];
 
   const navigate = useNavigate();
@@ -94,7 +101,7 @@ const BasicInformation = ({ data, onInputChange }) => {
     });
 
     // Validation before routing to next page
-    if (firstName && lastName && email && country) {
+    if (firstName && lastName && email && country && profession && website) {
       const jobArray = Object.entries(data.jobExperience)[0];
       if (Object.keys(data.jobExperience).length >= 1) {
         if (jobArray[1].company === "" || jobArray[1].workDesc.length <= 28) {
@@ -110,6 +117,17 @@ const BasicInformation = ({ data, onInputChange }) => {
     }
   };
 
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        onInputChange({ section: "basicInfo", subsection: "imageUrl", values: reader.result });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <div className="max-w-6xl flex flex-col md:flex-row items-start justify-between self-center mx-auto gap-10">
       <div className="flex flex-col justify-center w-full md:w-1/2">
@@ -117,10 +135,19 @@ const BasicInformation = ({ data, onInputChange }) => {
           Basic Information
         </h2>
         <p className="text-[#66666a] text-sm tracking-wide mt-3 mb-5">
-          This information will placed at the top of your resume.
+          Start with the essentials. Who you are and how can employers connect with you.
         </p>
 
         <form className="w-full">
+          <div className="flex flex-col">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+            />
+            {imageUrl && <img src={imageUrl} alt="Profile" style={{ width: '70px', height: '70px', borderRadius: '50%' }} />}
+          </div>
+
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col">
               <input
@@ -155,6 +182,56 @@ const BasicInformation = ({ data, onInputChange }) => {
                 ref={lastNameErrMsg}
               ></label>
             </div>
+          </div>
+
+          <div className="flex flex-col">
+            <input
+              className="input-container"
+              type="text"
+              value={profession}
+              name="profession"
+              autoComplete="profession"
+              id="profession"
+              onChange={(e) => handleInputChange(e, "profession")}
+              placeholder="Profession"
+            />
+            <label
+              className="-mt-5 mb-4 text-xs pl-4 text-error-500 hidden"
+              htmlFor="email"
+              ref={professionErrMsg}
+            ></label>
+          </div>
+
+          <div className="flex flex-col">
+            <input
+              className="input-container"
+              type="text"
+              placeholder="Phone"
+              minLength="12"
+              maxLength="12"
+              value={phoneNumber}
+              name="phonenumber"
+              id="phoneNumber"
+              onChange={(e) => {
+                e.target.value = e.target.value
+                  .replace(/[^0-9]/g, "")
+                  .replace(/(\d{3})(\d{3})(\d{4})/, "$1 $2 $3")
+                  .trim();
+
+                onInputChange({
+                  section: "basicInfo",
+                  subsection: "phoneNumber",
+                  values: e.target.value,
+                });
+
+                handleInputChange(e, "phoneNumber");
+              }}
+            />
+            <label
+              className="-mt-5 text-xs pl-4 text-error-500 hidden"
+              htmlFor="phoneNumber"
+              ref={phoneNumberErrMsg}
+            ></label>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
@@ -205,37 +282,6 @@ const BasicInformation = ({ data, onInputChange }) => {
             />
           </div>
 
-          <div className="flex flex-col">
-            <input
-              className="input-container"
-              type="text"
-              placeholder="Phone"
-              minLength="12"
-              maxLength="12"
-              value={phoneNumber}
-              name="phonenumber"
-              id="phoneNumber"
-              onChange={(e) => {
-                e.target.value = e.target.value
-                  .replace(/[^0-9]/g, "")
-                  .replace(/(\d{3})(\d{3})(\d{4})/, "$1 $2 $3")
-                  .trim();
-
-                onInputChange({
-                  section: "basicInfo",
-                  subsection: "phoneNumber",
-                  values: e.target.value,
-                });
-
-                handleInputChange(e, "phoneNumber");
-              }}
-            />
-            <label
-              className="-mt-5 text-xs pl-4 text-error-500 hidden"
-              htmlFor="phoneNumber"
-              ref={phoneNumberErrMsg}
-            ></label>
-          </div>
 
           <div className="flex flex-col">
             <input
@@ -252,6 +298,24 @@ const BasicInformation = ({ data, onInputChange }) => {
               className="-mt-5 mb-4 text-xs pl-4 text-error-500 hidden"
               htmlFor="email"
               ref={emailErrMsg}
+            ></label>
+          </div>
+          
+          <div className="flex flex-col">
+            <input
+              className="input-container"
+              type="url"
+              value={website}
+              name="Your Website"
+              autoComplete="website"
+              id="website"
+              onChange={(e) => handleInputChange(e, "website")}
+              placeholder="www.konectin.com"
+            />
+            <label
+              className="-mt-5 mb-4 text-xs pl-4 text-error-500 hidden"
+              htmlFor="website"
+              ref={websiteErrMsg}
             ></label>
           </div>
         </form>

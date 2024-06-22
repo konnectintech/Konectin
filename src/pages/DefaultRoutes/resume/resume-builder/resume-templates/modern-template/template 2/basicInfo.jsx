@@ -10,7 +10,35 @@ function BasicInfo({ data }) {
         .text-center {
           text-align: center;
         }
+
+        .basiInfo-section {
+       display: flex;
+      align-items: center;
+       gap: 34px;
+  
+        }
+
+        .profession-section {
+        margin-Top:20px;
+        }
       `}</style>
+      <div className="basiInfo-section">
+  <div className="image-container">
+  {data.imageUrl && (
+        <img 
+          src={data.imageUrl} 
+          alt="Profile" 
+          style={{
+            borderRadius: "50%",
+            width: "64px",
+            height: "64px",
+            objectFit: "cover",
+            marginBottom: "10px",
+          }}
+        />
+      )}
+  </div>
+  <div className="profession-section">
       <h1 className="capitalize">
         {data.firstName && data.lastName
           ? `${data.firstName} ${data.lastName}`
@@ -54,6 +82,8 @@ function BasicInfo({ data }) {
           )}
         </p>
       )}
+      </div>
+      </div>
     </section>
   );
 }
