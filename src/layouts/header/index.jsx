@@ -47,7 +47,7 @@ function Header({ post }) {
           icon: PiIcons.PiUsersLight,
           links: [
             {
-              name: "Konectin Internship Partnership",
+              name: "Konectin Partnership",
               link: "/internship/hire-talent",
             },
           ],
