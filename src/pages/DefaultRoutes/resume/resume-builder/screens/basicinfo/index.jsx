@@ -231,6 +231,56 @@ const BasicInformation = ({ data, onInputChange }) => {
             ></label>
           </div>
 
+          <div className="flex flex-col">
+            <input
+              className="input-container"
+              type="text"
+              value={profession}
+              name="profession"
+              autoComplete="profession"
+              id="profession"
+              onChange={(e) => handleInputChange(e, "profession")}
+              placeholder="Profession"
+            />
+            <label
+              className="-mt-5 mb-4 text-xs pl-4 text-error-500 hidden"
+              htmlFor="email"
+              ref={professionErrMsg}
+            ></label>
+          </div>
+
+          <div className="flex flex-col">
+            <input
+              className="input-container"
+              type="text"
+              placeholder="Phone"
+              minLength="12"
+              maxLength="12"
+              value={phoneNumber}
+              name="phonenumber"
+              id="phoneNumber"
+              onChange={(e) => {
+                e.target.value = e.target.value
+                  .replace(/[^0-9]/g, "")
+                  .replace(/(\d{3})(\d{3})(\d{4})/, "$1 $2 $3")
+                  .trim();
+
+                onInputChange({
+                  section: "basicInfo",
+                  subsection: "phoneNumber",
+                  values: e.target.value,
+                });
+
+                handleInputChange(e, "phoneNumber");
+              }}
+            />
+            <label
+              className="-mt-5 text-xs pl-4 text-error-500 hidden"
+              htmlFor="phoneNumber"
+              ref={phoneNumberErrMsg}
+            ></label>
+          </div>
+
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col">
               <input
