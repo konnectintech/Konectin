@@ -19,6 +19,7 @@ const BasicInformation = ({ data, onInputChange }) => {
     phoneNumber,
     zipCode,
     email,
+    website,
   } = data?.basicInfo;
 
   const [code, setCode] = useState("");
@@ -31,7 +32,6 @@ const BasicInformation = ({ data, onInputChange }) => {
   const phoneNumberErrMsg = useRef(null);
   const zipCodeErrMsg = useRef(null);
   const emailErrMsg = useRef(null);
-  const professionErrMsg = useRef(null);
 
   let allErrMsg = [
     firstNameErrMsg,
@@ -39,7 +39,6 @@ const BasicInformation = ({ data, onInputChange }) => {
     phoneNumberErrMsg,
     zipCodeErrMsg,
     emailErrMsg,
-    professionErrMsg,
   ];
 
   const navigate = useNavigate();
@@ -98,7 +97,7 @@ const BasicInformation = ({ data, onInputChange }) => {
     });
 
     // Validation before routing to next page
-    if (firstName && lastName && email && country && profession) {
+    if (firstName && lastName && email && country) {
       const jobArray = Object.entries(data.jobExperience)[0];
       if (Object.keys(data.jobExperience).length >= 1) {
         if (jobArray[1].company === "" || jobArray[1].workDesc.length <= 28) {
@@ -295,6 +294,24 @@ const BasicInformation = ({ data, onInputChange }) => {
               className="-mt-5 mb-4 text-xs pl-4 text-error-500 hidden"
               htmlFor="email"
               ref={emailErrMsg}
+            ></label>
+          </div>
+          
+          <div className="flex flex-col">
+            <input
+              className="input-container"
+              type="url"
+              value={website}
+              name="Your Website"
+              autoComplete="website"
+              id="website"
+              onChange={(e) => handleInputChange(e, "website")}
+              placeholder="www.konectin.com"
+            />
+            <label
+              className="-mt-5 mb-4 text-xs pl-4 text-error-500 hidden"
+              htmlFor="website"
+              ref={websiteErrMsg}
             ></label>
           </div>
         </form>
