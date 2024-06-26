@@ -47,6 +47,7 @@ import completedCheck from "./icons/completed-check.svg";
 import halfLoading from "./icons/half-loading.svg";
 import arrowOut from "./icons/arrow-out.svg";
 import arrowRight from "./icons/arrow-right.svg";
+import support from "./icons/support.svg";
 
 // socials
 import SFacebook from "./icons/socials/Facebook.svg";
@@ -188,6 +189,11 @@ import person2 from "./images/person2.png";
 import person3 from "./images/person3.png";
 import person4 from "./images/person4.png";
 
+// resume review section
+import reviewHero from "./images/Illustration.png";
+import processHero from "./images/processHero.png";
+import pricingCardBg from "./images/pricing-card-bg.png";
+
 export {
   // Icons
   orangeLoader,
@@ -234,6 +240,7 @@ export {
   halfLoading,
   arrowOut,
   arrowRight,
+  support,
 
   // Sign Images
   signImage,
@@ -378,4 +385,9 @@ export {
   plusWhite,
   closeBlack,
   closeWhite,
+
+  // resume review section
+  reviewHero,
+  processHero,
+  pricingCardBg,
 };

@@ -38,6 +38,10 @@ const ResumeUpload = lazy(() =>
   import("./pages/DefaultRoutes/resume/resume-builder/screen-upload")
 );
 
+const ResumeReview = lazy(() =>
+  import("./pages/DefaultRoutes/resume/resume-builder/resume-review")
+);
+
 const Landing = lazy(() => import("./pages/DefaultRoutes/landing"));
 const Internship = lazy(() => import("./pages/DefaultRoutes/internship"));
 const About = lazy(() => import("./pages/DefaultRoutes/about"));
@@ -157,7 +161,9 @@ function App() {
             <Route path="/services/resume/ai/*" element={<AIStarter />} />
             <Route path="/services/resume/builder/*" element={<Builder />} />
           </Route>
+
           <Route path="/services/resume/upload/*" element={<ResumeUpload />} />
+          <Route path="/services/resume/review/*" element={<ResumeReview />} />
         </Route>
       </Routes>
     </BrowserRouter>
