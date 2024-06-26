@@ -160,6 +160,7 @@ import AboutHeroImage from "./images/about hero.png";
 import MustafaIcon from "./images/team/mustafa.png";
 import DavidIcon from "./images/team/david.png";
 import MichaelIcon from "./images/team/michael.png";
+import FaithIcon from "./images/team/faith.png";
 import AfolabiIcon from "./images/team/afolabi.png";
 import AnonymousIcon from "./images/team/anonymous.png";
 import FounderIcon from "./images/team/founder.jpg";
@@ -338,6 +339,7 @@ export {
   MustafaIcon,
   DavidIcon,
   MichaelIcon,
+  FaithIcon,
   AfolabiIcon,
   FounderIcon,
   ContactUSImage,

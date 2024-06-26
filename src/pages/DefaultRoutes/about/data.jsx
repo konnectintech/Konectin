@@ -14,12 +14,12 @@ import {
   DavidIcon,
   FounderIcon,
   MichaelIcon,
+  FaithIcon,
   AfolabiIcon,
   person1Icon,
   person2Icon,
   person3Icon,
   person4Icon,
-  AnonymousIcon,
 } from "../../../assets";
 
 export const Values = [
@@ -92,31 +92,28 @@ export const TeamData = [
     ),
   },
   {
-    name: "Mustafa Abdulasis",
-    image: AnonymousIcon,
-    title: "Chief Operations Officer (C.O.O)",
+    name: "Faith Babatunde",
+    image: FaithIcon,
+    title: "Chief Marketing Officer (C.M.O)",
     contact: {
       linkedin: "https://www.linkedin.com/in/mustafa-abdulasis",
     },
     bio: (
       <div>
         <p>
-          Mustafa Abdulasis is a passionate and solution-oriented individual
-          dedicated to transforming brand and company visions into reality for
-          sustainable wealth creation. With a background in Chemical and Polymer
-          Engineering, Mustafa's insatiable curiosity led him to further studies
-          in product management, entrepreneurship, digital marketing, and risk
-          management. He has also gained valuable experience in internal
-          auditing, data analytics, business continuity management, and
-          information security systems.
+          Faith Babatunde Aderinsola, the Chief Marketing Officer at Konectin
+          Inc, is a dedicated Marketing Strategist with a passion for driving
+          business growth. She specializes in developing ROI-driven campaigns
+          and customer-centric strategies that effectively scale businesses.
         </p>
         <p className="mt-4">
-          Driven by the belief in the power of teamwork and collaboration,
-          Mustafa has studied the Agile scrum methodology to provide innovative
-          solutions to the challenges of the modern world. With a continuous
-          thirst for learning and professional development, Mustafa brings
-          excellent professional habits and a commitment to delivering value in
-          a professional setting.
+          Her expertise in digital marketing is demonstrated through her ability
+          to craft impactful brand narratives that foster sustained growth.
+          Faith's proven track record and innovative approach have significantly
+          contributed to positioning Konectin Inc as a leader in the EdTech and
+          Hiring Tech sectors in Africa. Always eager to connect and
+          collaborate, Faith is deeply passionate about empowering businesses to
+          thrive through effective and strategic marketing.
         </p>
       </div>
     ),
@@ -170,20 +167,6 @@ export const TeamData = [
           abreast of the latest industry trends empowers him to create
           cutting-edge websites that not only meet clients' objectives but also
           exceed their expectations.
-        </p>
-        <p className="mt-4">
-          Beyond his technical prowess, Ajayi is known for his collaborative and
-          communicative approach. He thrives in team environments, valuing the
-          exchange of ideas that lead to the creation of superior web solutions.
-          His methodical problem-solving skills enable him to troubleshoot
-          complex issues efficiently, ensuring the optimal performance of
-          websites even in challenging scenarios. With an unwavering dedication
-          to enhancing user experiences, Ajayi stays attuned to user feedback
-          and behavior, refining his designs to provide seamless navigation and
-          engagement. Whether it's crafting e-commerce platforms that drive
-          conversions or developing interactive web applications, Ajayi
-          Michael's portfolio showcases his diverse skill set and unwavering
-          commitment to pushing the boundaries of web development.
         </p>
       </div>
     ),
