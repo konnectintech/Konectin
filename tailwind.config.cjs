@@ -47,7 +47,9 @@ module.exports = {
           600: "#3DF110",
         },
         error: {
+          100: "#FCCFCF",
           500: "#F11010",
+          700: "#F43E3E"
         },
         whites: {
           100: "#F1F1F3",
