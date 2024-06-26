@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
 import "./review.css";
-import { BiCommentDetail } from "react-icons/bi";
-import { MdAutoGraph } from "react-icons/md";
-import { BiCandles } from "react-icons/bi";
 import { useState } from "react";
-import { CustomButton } from "../../../../../components/button";
+import { Link } from "react-router-dom";
+import { BiCandles } from "react-icons/bi";
+import { MdAutoGraph } from "react-icons/md";
+import { BiCommentDetail } from "react-icons/bi";
+import { CustomButton } from "../../../../components/button";
 
 export default function Choice() {
   const data = [

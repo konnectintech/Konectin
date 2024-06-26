@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { pricingCardBg } from "../../../../../assets";
+import { pricingCardBg } from "../../../../assets";
 import { IoCheckmark } from "react-icons/io5";
 
 export default function Pricing() {

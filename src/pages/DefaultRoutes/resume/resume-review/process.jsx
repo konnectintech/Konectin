@@ -1,5 +1,5 @@
 import "./review.css";
-import ReviewSection from "../../../../../components/resume/reviewSection";
+import ReviewSection from "../../../../components/resume/reviewSection";
 
 function Process() {
   return (

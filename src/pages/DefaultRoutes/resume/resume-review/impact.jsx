@@ -1,4 +1,4 @@
-import { useCountUp } from "../../../../../utils/useCountUp";
+import { useCountUp } from "../../../../utils/useCountUp";
 
 export default function Impact() {
   const data = [

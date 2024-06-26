@@ -39,7 +39,7 @@ const ResumeUpload = lazy(() =>
 );
 
 const ResumeReview = lazy(() =>
-  import("./pages/DefaultRoutes/resume/resume-builder/resume-review")
+  import("./pages/DefaultRoutes/resume/resume-review")
 );
 
 const Landing = lazy(() => import("./pages/DefaultRoutes/landing"));

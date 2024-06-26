@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 // import { useState, useEffect } from "react";
-import { reviewHero } from "../../../../../assets";
-import { CustomButton } from "../../../../../components/button";
+import { reviewHero } from "../../../../assets";
+import { CustomButton } from "../../../../components/button";
 
 function Hero() {
   return (

@@ -1,12 +1,12 @@
 import Hero from "./hero";
 import Impact from "./impact";
-import Brands from "../../../../../components/brandsListing";
+import Brands from "../../../../components/brandsListing";
 import Process from "./process";
 import Choice from "./choice";
 import Pricing from "./pricing";
-import CustomFAQ from "../../../../../components/customFAQ";
-import Testimonials from "../../../../../components/testimonials";
-import MapSection from "../../../../../components/map";
+import CustomFAQ from "../../../../components/customFAQ";
+import Testimonials from "../../../../components/testimonials";
+import MapSection from "../../../../components/map";
 
 function Review() {
   const faqData = [
