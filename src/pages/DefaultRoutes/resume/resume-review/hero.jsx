@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 // import { useState, useEffect } from "react";
 import { reviewHero } from "../../../../../assets";
+import { CustomButton } from "../../../../../components/button";
 
 function Hero() {
   return (
@@ -26,10 +27,12 @@ function Hero() {
           </div>
         </div>
         <Link
-          to="/services/resume/upload/"
-          className="self-center md:self-start bg-primary-500 text-white w-fit px-5 md:px-11 py-3.5 md:py-5 md:font-bold md:text-lg flex items-center justify-center rounded-md"
+          to="/services/resume/review"
+          className="max-md:mx-auto md:w-72 block"
         >
-          Review Your Resume Now
+          <CustomButton primary colorType="primary">
+            Review Your Resume Now
+          </CustomButton>
         </Link>
       </div>
 

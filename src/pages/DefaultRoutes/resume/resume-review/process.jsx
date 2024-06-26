@@ -3,15 +3,15 @@ import ReviewSection from "../../../../../components/resume/reviewSection";
 
 function Process() {
   return (
-    <section className="bg-process w-full mx-auto max-w-screen-2xl flex flex-col gap-12 md:gap-28 py-28 px-2 xxs:px-4 lg:px-16">
-      <div className="flex flex-col gap-4">
-        <p className="hidden sm:block font-bold text-xl">How It Works</p>
-        <p className="font-bold text-3xl sm:text-4xl w-4/5 md:w-1/2">
+    <section className="bg-process w-full mx-auto max-w-screen-2xl flex flex-col gap-6 py-16 px-2 xxs:px-4 lg:px-16">
+      <div className="flex flex-col">
+        <h3 className="hidden sm:block font-semibold text-xl">How It Works</h3>
+        <h4 className="font-semibold text-2xl md:text-3xl max-w-md !leading-snug">
           Gain a Competitive Edge with{" "}
           <span className="text-secondary-600">
             Powerful AI and ATS Analytics
           </span>
-        </p>
+        </h4>
       </div>
       <ReviewSection />
     </section>

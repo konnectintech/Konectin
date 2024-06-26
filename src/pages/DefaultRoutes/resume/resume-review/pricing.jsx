@@ -74,18 +74,19 @@ export default function Pricing() {
     },
   ];
   return (
-    <section className="bg-process w-full mx-auto max-w-screen-2xl flex flex-col gap-12 md:gap-28 py-28 px-2 xxs:px-4 lg:px-16">
+    <section className="bg-process w-full mx-auto max-w-screen-2xl flex flex-col gap-12 py-28 px-2 xxs:px-4 lg:px-16">
       <div className="flex flex-col gap-4 justify-center items-center">
-        <p className="font-semibold text-4xl md:text-5xl w-11/12 md:w-full md:text-center">
+        <h4 className="font-semibold text-3xl md:text-4xl !leading-snug w-11/12 md:w-full md:text-center">
           Simple, Transparent{" "}
           <span className="text-secondary-600">Pricing</span>
-        </p>
-        <p className="text-lg md:text-center w-11/12 md:text-xl md:w-9/12 ">
+        </h4>
+        <p className="md:text-center w-11/12 md:w-9/12 ">
           At Konectin, we believe in providing value for your investment. Our
           Manual Resume Review service is designed to give you the competitive
           edge you need in your job search. Here's how our pricing works:.
         </p>
       </div>
+
       <div className="flex flex-col items-center gap-7 md:flex-row justify-between">
         {userData.map((item, index) => (
           <PricingCard
@@ -152,7 +153,6 @@ export function PricingCard({
         backgroundImage: `url(${pricingCardBg})`,
         backgroundColor: bgColor,
         boxShadow: "0px 40.74px 32.98px 0px #5243C24B",
-
       }}
     >
       <div className="h-full rounded-2xl w-full items-center flex flex-col gap-14">

@@ -42,7 +42,7 @@ function Review() {
     },
   ];
   return (
-    <main>
+    <main className="pt-24">
       <Hero />
       <Impact />
       <Brands />
