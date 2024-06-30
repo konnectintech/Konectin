@@ -25,6 +25,7 @@ const BasicInformation = ({ data, onInputChange }) => {
   const [countryId, setCountryId] = useState(0);
   const [stateId, setStateId] = useState(0);
 
+
   // Input Validation Error Reference
   const firstNameErrMsg = useRef(null);
   const lastNameErrMsg = useRef(null);
@@ -99,6 +100,7 @@ const BasicInformation = ({ data, onInputChange }) => {
           break;
       }
     });
+
 
     // Validation before routing to next page
     if (firstName && lastName && email && country) {

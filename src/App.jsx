@@ -7,6 +7,7 @@ import ProtectedRoutes from "./pages/ProtectedRoutes";
 
 import { AuthProvider } from "./middleware/auth";
 
+
 const TemplateProvider = lazy(() =>
   import("./middleware/resume").then((module) => ({
     default: module.TemplateProvider,
